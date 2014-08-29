@@ -2,8 +2,13 @@
   <head>
     <title>My App</title>
   </head>
-
   <body>
+    {{#if currentUser}}
+      <p>You're logged in.</p>
+    {{else}}
+      {{> register}}
+      {{> login}}
+    {{/if}}
     {{> yield}}
   </body>
 </template>
