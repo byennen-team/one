@@ -3,21 +3,14 @@
 /* Application: Event Handlers and Helpersss .js*/
 /*****************************************************************************/
 Template.Application.events({
-  /*
-   * Example:
-   *  'click .selector': function (e, tmpl) {
-   *
-   *  }
-   */
+  'click .logout': function(event){
+      event.preventDefault();
+      Meteor.logout();
+  }
 });
 
 Template.Application.helpers({
-  /*
-   * Example:
-   *  items: function () {
-   *    return Items.find();
-   *  }
-   */
+
 });
 
 /*****************************************************************************/
