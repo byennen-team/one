@@ -10,6 +10,9 @@ Template.Application.events({
 });
 
 Template.Application.helpers({
+  profileUrl: function () {
+    return getProfileUrl(Meteor.user());
+  }
 
 });
 

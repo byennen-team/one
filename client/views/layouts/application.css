@@ -84,7 +84,6 @@
   width: 100%;
   font-weight: 400;
 }
-@import 'media-queries.css';
 body {
   background: #fff;
   font-family: 'Roboto', sans-serif;
