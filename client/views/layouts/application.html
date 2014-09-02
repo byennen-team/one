@@ -1,15 +1,10 @@
 <template name="Application">
   <head>
-    <title>My App</title>
+    <title>Go One</title>
   </head>
   <body>
-    {{#if currentUser}}
-      <p>You're logged in.</p>
-      <p><a href="#" class="logout">Logout</a></p>
-    {{else}}
-      {{> register}}
-      {{> login}}
-    {{/if}}
+    {{> header}}
     {{> yield}}
+    {{> footer}}
   </body>
 </template>
