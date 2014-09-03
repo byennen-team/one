@@ -12,6 +12,9 @@
         </div>
         <div class="navbar-collapse collapse">
           <ul class="nav navbar-nav navbar-right">
+            {{#if isInRole 'admin' 'company_admin'}}
+              <li><a href="/admin">Admin</a></li>
+            {{/if}}
             {{#if currentUser}}
               <li><a href="/dashboard">Dashboard</a></li>
               <li><a href="/profile">Profile</a></li>

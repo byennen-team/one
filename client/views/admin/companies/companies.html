@@ -1,7 +1,23 @@
 <template name="AdminCompanies">
   <div class="row">
     <div class="col-sm-12">
-      <h1>Admin Users</h1>
+      <h1>Admin Companies</h1>
+      <form id="AddCompanies">
+        <label for="Name">Name</label>
+        <input type="input" name="name" id="company-name">
+        <input type="submit" id="submit" value="Add">
+      </form>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-sm-12">
+      <ul>
+        {{#each company}}
+          <li>
+            {{name}}
+          </li>
+        {{/each}}
+      </ul>
     </div>
   </div>
 </template>

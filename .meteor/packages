@@ -7,13 +7,13 @@ standard-app-packages
 iron:router
 accounts-password
 mizzao:bootstrap-3
-aldeed:simple-schema
 joshowens:accounts-entry
 accounts-base
 accounts-ui
-meteorhacks:fast-render
 anti:i18n
-spiderable
 accounts-facebook
 accounts-twitter
+roles
+insecure
 aldeed:collection2
+aldeed:simple-schema
