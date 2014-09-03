@@ -1,10 +1,107 @@
 <template name="profile">
   <h1>Profile</h1>
   <form id="profile">
-    <label for="name">Name</label>
-    <input type="input" name="name" value="">
-    <label for="phone">Phone</label>
-    <input type="input" name="phone" value="">
-    <input type="submit" id="submit" value="Save">
+    <div class="control-group">
+      <label>Name</label>
+      <div class="controls">
+        <input id="name" name="name" type="text" value="{{name}}" />
+      </div>
+      <p class="note">First Name, Last Name</p>
+    </div>
+
+    <div class="control-group">
+      <label>Phone</label>
+      <div class="controls">
+        <input id="phone" name="phone" type="text" value="{{phone}}" />
+      </div>
+      <p class="note">555-555-5555</p>
+    </div>
+
+    <div class="control-group">
+      <label>Title</label>
+      <div class="controls">
+        <input id="title" name="title" type="text" value="{{title}}" />
+      </div>
+    </div>
+
+    <div class="control-group">
+      <label>Company Name</label>
+      <div class="controls">
+        <input id="company_name" name="company_name" type="text" value="{{company_name}}" />
+      </div>
+    </div>
+
+    <div class="control-group">
+      <label>Company Address</label>
+      <div class="controls">
+        <input id="company_address_1" name="company_address_1" type="text" value="{{company_address_1}}" />
+      </div>
+    </div>
+
+    <div class="control-group">
+      <label>Company Address</label>
+      <div class="controls">
+        <input id="company_address_2" name="company_address_2" type="text" value="{{company_address_2}}" />
+      </div>
+    </div>
+
+    <div class="control-group">
+      <label>Country</label>
+      <div class="controls">
+        <input id="country" name="country" type="text" value="{{country}}" />
+      </div>
+    </div>
+
+    <div class="control-group">
+      <label>State</label>
+      <div class="controls">
+        <input id="state" name="state" type="text" value="{{state}}" />
+      </div>
+    </div>
+
+    <div class="control-group">
+      <label>City</label>
+      <div class="controls">
+        <input id="city" name="city" type="text" value="{{city}}" />
+      </div>
+    </div>
+
+    <div class="control-group">
+      <label>Zip</label>
+      <div class="controls">
+        <input id="zip" name="zip" type="text" value="{{zip}}" />
+      </div>
+    </div>
+
+    <div class="control-group">
+      <label>Office ID</label>
+      <div class="controls">
+        <input id="office_id" name="office_id" type="text" value="{{office_id}}" />
+      </div>
+    </div>
+
+    <div class="control-group">
+      <label>Agent ID</label>
+      <div class="controls">
+        <input id="agent_id" name="agent_id" type="text" value="{{agent_id}}" />
+      </div>
+    </div>
+
+    <div class="control-group">
+      <label>Accounting ID</label>
+      <div class="controls">
+        <input id="accounting_id" name="accounting_id" type="text" value="{{accounting_id}}" />
+      </div>
+    </div>
+
+    <div class="control-group">
+      <label>Status</label>
+      <div class="controls">
+        <input id="status" name="status" type="text" value="{{status}}" />
+      </div>
+    </div>
+    <div class="form-actions">
+      <input type="submit" id="submit" value="Save" class="btn btn-primary">
+    </div>
   </form>
 </template>
