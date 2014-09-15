@@ -13,7 +13,8 @@ accounts-ui
 anti:i18n
 accounts-facebook
 accounts-twitter
-roles
 insecure
 aldeed:collection2
 aldeed:simple-schema
+digilord:roles
+
