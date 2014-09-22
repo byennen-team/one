@@ -1,10 +1,4 @@
-Meteor.subscribe('companies');
-
-Template.AdminCompanies.company = function(){
-  return Companies.find();
-}
-
-Template.AdminCompanies.events({
+Template.AdminCompaniesNew.events({
   'submit form' : function(event, template) {
     event.preventDefault();
     var companyName = template.find('#company-name').value;

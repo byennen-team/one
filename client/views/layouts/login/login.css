@@ -1,0 +1,68 @@
+#login {
+  margin-right:0;
+  margin-left:0;
+}
+
+#login img.bg {
+  min-height: 563px;
+  min-width: 900px;
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+}
+
+#login .inside {
+  background: url(images/login/login-overlay.png) repeat;
+  height: 100%;
+  width: 100%;
+  min-width: 300px;
+  max-width: 734px;
+  position: absolute;
+  color: white;
+}
+
+#login .logo {
+  margin-top: 20%;
+  margin-bottom: 20px;
+}
+
+#login h1 {
+  font-size: 24px;
+  line-height: 30px;
+}
+
+.agentID-input {
+  margin-top: 60px;
+  margin-bottom: 60px;
+  border-bottom: #4f96bf solid 2px;
+  background: none;
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  text-align: center;
+  width: 75%;
+}
+
+.login-button {
+  position: relative;
+  vertical-align: top;
+  width: 75%;
+  height: 60px;
+  padding: 0;
+  font-size: 22px;
+  color: white;
+  text-align: center;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.25);
+  background: #5bb8d7;
+  border: 0;
+  border-bottom: none;
+  cursor: pointer;
+}
+.login-button:active {
+  top: 1px;
+  outline: none;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+}

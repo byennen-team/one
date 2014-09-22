@@ -1,0 +1,25 @@
+<template name="Login">
+  <head>
+    <title>Elliman One</title>
+    <meta content='width=device-width, initial-scale=1.0' name='viewport'>
+  </head>
+  <body>
+    {{> LoginElliman}}
+  </body>
+</template>
+
+<template name="LoginElliman">
+  <div id="login" class="row">
+    <img src="images/login/elliman.jpg" class="bg" />
+    <div class="inside text-center col-sm-12 col-md-4 col-lg-6 col-sm-offset-0 col-md-offset-1 col-lg-offset-1">
+      <img src="images/login/elliman-logo.png" class="logo" alt="Elliman One" />
+      <h1>All your real estate applications under One roof.</h1>
+      <form id="agentLogin">
+        <div class="form-group">
+          <input type="text" class="agentID-input" name="agentID" placeholder="Enter Agent ID">
+        </div>
+        <button type="submit" class="login-button">Login</button>
+      </form>
+    </div>
+  </div>
+</template>
