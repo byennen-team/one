@@ -2,6 +2,8 @@ Meteor.subscribe('Agents');
 
 Template.LoginElliman.events({
   'submit form' : function(event, template) {
-    alert("Dashboard Coming Soon!");
+    event.preventDefault();
+    var agentID = template.find('#agentID').value;
+    console.log('Agent ID: ' + agentID);
   }
 });
