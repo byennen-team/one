@@ -1,0 +1,29 @@
+[
+  {
+  "CITY_ID":2617081,
+  "STATE_ID":40,
+  "US_ZIP_CODE_ID":27752,
+  "OFFICE_ID":6,
+  "ID":15,
+  "THIRD_PARTY_ID":"BSA",
+  "FIRST_NAME":"Brian",
+  "LAST_NAME":"Adams",
+  "TITLE":"Agent",
+  "PHONE_NUMBER":2123508524,
+  "PHONE_EXTENSION":null,
+  "MOBILE_NUMBER":9175534453,
+  "FAX_NUMBER":6464975341,
+  "EM_ADDRESS":"badams@elliman.com",
+  "PHOTO_URL":"http://assets2.elliman.com/BrokerPics/Opt/BSA.jpg",
+  "FIRST_LETTER_LAST_NAME":"a",
+  "BIO":"Brian Adams <br /> <br />Whether you're moving to or within New York City, real estate professional Brian Adams vows to go the extra distance to make the process smoother and easier.  With 15 years of industry experience and a solid legal background to his credit, Brian understands every aspect of a real estate transaction, from choosing the right apartments to show to the right buyers on through to all the legal and financial complexities one may come up against.With patience, honesty and careful listening as his mottos, Brian is a native New Yorker who can offer his clientele the utmost in service, market knowledge and personal attention.  Working as part of a team, The Kotler Group, he ensures that every appointment is met and every customer serviced the way he or she deserves to be.  He strives to cut to the chase and not waste anyone's   valuable time.  An Upper West Side resident who grew up in New York as well as part-time in Switzerland, Brian is skilled at dealing with people of all kinds, from various cultures.  He prides himself on being not only effective at what he does, but on his efficiency, punctuality and thoroughness.  When not hard at work, he enjoys golf, skiing, tennis, running, cooking, foreign films and world travel when time allows. <br />",
+  "DATE_LAST_UPDATED":"25-AUG-14 14:02:12",
+  "DATE_CREATED":"01-JUN-10 12:46:12",
+  "SHOW_ACTIVE":"1",
+  "SHOW_CONTRACT":"1",
+  "SHOW_CLOSED":"1",
+  "IS_ACTIVE":"1",
+  "DESIGNATION":"LBA",
+  "FEED_MD5":"e87ca81e80b340582fcadcfd75f30b3f"
+  }
+]
