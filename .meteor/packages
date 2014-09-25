@@ -6,6 +6,5 @@
 iron:router
 mizzao:bootstrap-3
 anti:i18n
-insecure
 digilord:roles
 meteor-platform
