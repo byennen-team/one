@@ -3,8 +3,25 @@
 # 'meteor add' and 'meteor remove' will edit this file for you,
 # but you can also edit it by hand.
 
+# Atmosphere Packages
+
 iron:router
 mizzao:bootstrap-3
-anti:i18n
-digilord:roles
 meteor-platform
+
+# Our Packages
+
+admin
+authorization
+companies
+dashboard
+layout
+loading
+locales
+login
+not-found
+profile
+routes
+settings
+styles
+users-elliman
