@@ -1,18 +1,68 @@
 <template name="AdminCompaniesNew">
-  <div class="row">
-    <div class="col-sm-12">
-      <h1>Admin Companies</h1>
-      <form id="AddCompanies">
-        <div class="control-group">
-          <label>Company Name</label>
-          <div class="controls">
-            <input type="input" name="name" id="company-name">
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-12">
+        <h1>New Company</h1>
+        <form id="AddCompanies">
+          <div class="form-group">
+            <label>Company Name</label>
+            <div class="controls">
+              <input type="input" name="name" id="company-name">
+            </div>
           </div>
-        </div>
-        <div class="form-actions">
-          <input type="submit" id="submit" value="Add" class="btn btn-primary">
-        </div>
-      </form>
+          <div class="form-group">
+            <label>Address</label>
+            <div class="controls">
+              <input type="input" name="address_1" id="address_1">
+            </div>
+          </div>
+          <div class="form-group">
+            <label>Address</label>
+            <div class="controls">
+              <input type="input" name="address_2" id="address_1">
+            </div>
+          </div>
+          <div class="form-group">
+            <label>City</label>
+            <div class="controls">
+              <input type="input" name="city" id="city">
+            </div>
+          </div>
+          <div class="form-group">
+            <label>State</label>
+            <div class="controls">
+              <input type="input" name="state" id="state">
+            </div>
+          </div>
+          <div class="form-group">
+            <label>Zip</label>
+            <div class="controls">
+              <input type="input" name="zip" id="zip">
+            </div>
+          </div>
+          <div class="form-group">
+            <label>Phone</label>
+            <div class="controls">
+              <input type="input" name="phone" id="phone">
+            </div>
+          </div>
+          <div class="form-group">
+            <label>Email</label>
+            <div class="controls">
+              <input type="input" name="email" id="email">
+            </div>
+          </div>
+          <div class="form-group">
+            <label>Website</label>
+            <div class="controls">
+              <input type="input" name="website" id="website">
+            </div>
+          </div>
+          <div class="form-actions">
+            <input type="submit" id="submit" value="Add" class="btn btn-primary">
+          </div>
+        </form>
+      </div>
     </div>
   </div>
 </template>
