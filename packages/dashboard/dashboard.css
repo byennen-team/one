@@ -28,22 +28,28 @@
     background: white;
 }
 
-#dashboard-app-menu ul.apps {
-    color: #1c376c;
-    font-size: 18px;
-    font-weight: bold;
-    list-style: none;
-    margin-left: 0px;
+#dashboard-app-menu  {
+    margin: 0px;
     padding: 0;
-    text-transform: uppercase;
     height: 57px;
 }
 
-#dashboard-app-menu li.app-dropdown {
+#dashboard-app-menu ul {
+    list-style: none;
+}
+
+#dashboard-app-menu .app-dropdown {
     border-bottom: 4px solid #7fc8e0;
     width: 180px;
-    padding-top: 38px;
-    margin-left: 20px;
+    padding-top: 28px;
+    margin-left: 2px;
+}
+
+#dashboard-app-menu .app-dropdown a {
+    color: #1c376c;
+    font-size: 18px;
+    font-weight: bold;
+    text-transform: uppercase;
 }
 
 #company-apps {
