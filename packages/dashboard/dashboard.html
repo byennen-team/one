@@ -1,7 +1,76 @@
 <template name="dashboard">
-  <div class="row">
+  <div id="dashboard-header" class="row">
     <div class="col-sm-12">
-      <h1>Dashboard</h1>
+      <h1 class="company-title">Douglas Elliman</h1>
+      <p class="company-slogan">One Dashboard</p>
     </div>
+  </div>
+
+  <div id="dashboard-app-menu" class="row">
+    <div class="col-sm-9">
+      <ul>
+        <li>Company Apps</li>
+      </ul>
+    </div>
+    <div class="col-sm-3">
+      <ul>
+        <li class="pull-right">Add/Open App</li>
+      </ul>
+    </div>
+  </div>
+
+  <div id="company-apps" class="container-fluid">
+
+    <!--Small, Medium, and Large devices-->
+    <div class="visible-sm-* visible-lg-* visible-md-*">
+
+      <div class="row">
+        <div class="col-md-4 col-lg-2">
+          <img src="http://placehold.it/280x400" class="img-responsive">
+        </div>
+        <div class="col-md-4 col-lg-2">
+          <img src="http://placehold.it/280x400" class="img-responsive">
+        </div>
+        <div class="col-md-4 col-lg-2">
+          <img src="http://placehold.it/280x400" class="img-responsive">
+        </div>
+        <div class="col-md-4 col-lg-2">
+          <img src="http://placehold.it/280x400" class="img-responsive">
+        </div>
+        <div class="col-md-4 col-lg-2">
+          <img src="http://placehold.it/280x400" class="img-responsive">
+        </div>
+        <div class="col-md-4 col-lg-2">
+          <img src="http://placehold.it/280x400" class="img-responsive">
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-4 col-lg-2">
+          <img src="http://placehold.it/280x400" class="img-responsive">
+        </div>
+        <div class="col-md-4 col-lg-2">
+          <img src="http://placehold.it/280x400" class="img-responsive">
+        </div>
+        <div class="col-md-4 col-lg-2">
+          <img src="http://placehold.it/280x400" class="img-responsive">
+        </div>
+        <div class="col-md-4 col-lg-2">
+          <img src="http://placehold.it/280x400" class="img-responsive">
+        </div>
+        <div class="col-md-4 col-lg-2">
+          <img src="http://placehold.it/280x400" class="img-responsive">
+        </div>
+        <div class="col-md-4 col-lg-2">
+          <img src="http://placehold.it/280x400" class="img-responsive">
+        </div>
+      </div>
+    </div>
+
+    <!--Phones (<768px)-->
+    <div class="visible-xs-*">
+      paper app here
+    </div>
+
   </div>
 </template>

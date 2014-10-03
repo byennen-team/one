@@ -13,7 +13,6 @@ Template.application.helpers({
   profileUrl: function () {
     return getProfileUrl(Meteor.user());
   }
-
 });
 
 /*****************************************************************************/

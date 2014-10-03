@@ -14,7 +14,7 @@
 }
 
 #login .inside {
-  background: url(images/login/login-overlay.png) repeat;
+  background: url(../../images/login/login-overlay.png) repeat;
   height: 100%;
   width: 100%;
   min-width: 300px;
