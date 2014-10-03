@@ -27,3 +27,24 @@
 #dashboard-app-menu {
     background: white;
 }
+
+#dashboard-app-menu ul.apps {
+    color: #1c376c;
+    font-size: 18px;
+    font-weight: bold;
+    list-style: none;
+    margin-left: 0px;
+    padding: 0 10px;
+    text-transform: uppercase;
+    height: 57px;
+}
+
+#dashboard-app-menu li.app-dropdown {
+    border-bottom: 4px solid #7fc8e0;
+    width: 200px;
+    padding-top: 20px;
+}
+
+#company-apps .app {
+    margin-bottom: 30px;
+}
