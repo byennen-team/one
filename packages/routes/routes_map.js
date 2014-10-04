@@ -14,7 +14,8 @@ Router.map(function () {
   });
 
   this.route(Routes.LOGIN, {
-    path: '/home'
+    path: '/home',
+    layoutTemplate: 'loginLayout'
   });
 
   this.route(Routes.LOGOUT, {
