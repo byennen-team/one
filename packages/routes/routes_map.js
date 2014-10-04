@@ -9,7 +9,8 @@ Router.configure({
 
 Router.map(function () {
   this.route(Routes.LOGIN, {
-    path: '/'
+    path: '/',
+    layoutTemplate: 'loginLayout'
   });
 
   this.route(Routes.LOGIN, {
