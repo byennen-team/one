@@ -4,8 +4,11 @@
     <meta content='width=device-width, initial-scale=1.0' name='viewport'>
   </head>
   <body id="application">
-    {{> header}}
-    {{> yield}}
-    {{> footer}}
+    {{> left_nav}}
+    <div class="wrap push">
+      {{> header}}
+      {{> yield}}
+      {{> footer}}
+    </div>
   </body>
 </template>

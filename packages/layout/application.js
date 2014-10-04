@@ -22,6 +22,7 @@ Template.application.created = function () {
 };
 
 Template.application.rendered = function () {
+  $('.menu-link').leftNav();
 };
 
 Template.application.destroyed = function () {

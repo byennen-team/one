@@ -18,19 +18,23 @@
 
 html, body {
   height: 100%;
+  min-height: 100%;
   overflow-x: hidden;
 }
+
 body {
   background: #ebf1f5;
   font-family: 'Raleway', sans-serif;
   font-weight: 300;
 }
-body#application {
-  margin-top: 50px;
-}
+
 strong {
   font-weight: 700;
 }
+a {
+  text-decoration: none;
+}
+
 a,
 a:hover,
 a:focus {
@@ -58,54 +62,4 @@ h2 {
   background: #1a70d4;
   color: #fff;
   text-shadow: none;
-}
-
-/*nav*/
-.navbar {
-  font-size: 14px;
-  background: url("../../images/dashboard/nav-bg.png");
-  font-weight: normal;
-  text-transform: uppercase;
-  margin: 0;
-}
-.navbar-brand {
-  width: 150px;
-  height: 60px;
-  margin: 0;
-  padding: 0;
-  background: url("../../images/dashboard/elliman-one-logo-blue.svg") left center no-repeat;
-  background-size: 85px auto;
-  text-indent: -9999px;
-}
-.navbar a {
-  display: inline-block;
-  margin: 0 0;
-  padding: 14px 0;
-  color: ##1a70d4;
-}
-.navbar a:hover {
-  color: #1a70d4;
-}
-.navbar a:focus {
-  color: #1a70d4;
-  font-weight: bold;
-}
-
-footer
-footer {
-  padding: 5px 0 20px 0;
-  text-align: right;
-}
-footer a {
-  display: inline-block;
-  margin: 0 15px;
-  padding: 14px 0;
-  color: #333;
-}
-footer a:hover {
-  color: #1a70d4;
-}
-footer a:focus {
-  color: #1a70d4;
-  font-weight: bold;
 }
