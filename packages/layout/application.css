@@ -1,42 +1,46 @@
 /*nav*/
 .top-nav {
-    font-size: 14px;
-    background: url("../../images/dashboard/nav-bg.png");
-    font-weight: normal;
-    text-transform: uppercase;
-    margin: 0;
-    height: 70px;
+  font-size: 14px;
+  background: url("../../images/dashboard/nav-bg.png");
+  font-weight: normal;
+  text-transform: uppercase;
+  margin: 0;
+  height: 70px;
+  position: relative;
+  width: 100%;
+  padding-left: 10px;
+}
+.menu-link {
+  margin: 0 20px;
+  padding: 28px 0 0;
+  width: 20px;
+  height: 100%;
+  float: left;
+}
+.icon-bar {
+  margin-bottom:4px;
+  display: block;
+  width: 22px;
+  height: 2px;
+  background-color: #cccccc;
+  border-radius: 1px;
 }
 .go-one {
-    float: none;
-    width: 150px;
-    height: 70px;
-    margin: 0;
-    padding: 0;
-    background: url("../../images/dashboard/elliman-one-logo-blue.svg") left center no-repeat;
-    background-size: 110px auto;
-    text-indent: -9999px;
+  float: left;
+  width: 150px;
+  height: 70px;
+  margin: 0;
+  padding: 0;
+  background: url("../../images/dashboard/elliman-one-logo-blue.svg") left center no-repeat;
+  background-size: 110px auto;
+  text-indent: -9999px;
 }
-.top-nav a {
-    display: inline-block;
-    margin: 0 0;
-    padding: 14px 0;
-    color: ##1a70d4;
-}
-.top-nav a:hover {
-    color: #1a70d4;
-}
-.top-nav a:focus {
-    color: #1a70d4;
-    font-weight: bold;
-}
-
 .panel {
-    position: fixed;
-    left: -15.625em;
-    width: 15.625em;
+  position: fixed;
+  left: -15.625em;
+  width: 15.625em;
 }
 
 .wrap {
-    position: relative;
+  position: relative;
 }
