@@ -3,7 +3,10 @@ Package.describe({
 });
 
 Package.onUse(function (api) {
-  api.use(['templating', 'underscore'], 'web');
+  api.use([
+    'less', 'templating', 'underscore',
+    'jonperl:paper'
+  ], 'web');
 
-  api.addFiles(['dashboard.html', 'dashboard.js', 'dashboard.css'], 'web');
+  api.addFiles(['dashboard.html', 'dashboard.js', 'dashboard.less'], 'web');
 });

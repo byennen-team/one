@@ -29,12 +29,20 @@
       "1.0.0"
     ],
     [
+      "jonperl:paper",
+      "0.0.2"
+    ],
+    [
       "jquery",
       "1.0.0"
     ],
     [
       "json",
       "1.0.0"
+    ],
+    [
+      "less",
+      "1.0.9"
     ],
     [
       "meteor",
@@ -59,6 +67,10 @@
     [
       "reactive-var",
       "1.0.2"
+    ],
+    [
+      "stevezhu:velocity.js",
+      "0.1.0"
     ],
     [
       "templating",

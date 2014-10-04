@@ -14,6 +14,7 @@ var cards = [
 ];
 
 Template.dashboard.helpers({
+  cards: cards,
   cardRows: function () {
     // Put 6 cards per row.
     // A row is an array of cards.
@@ -29,11 +30,14 @@ Template.dashboard.helpers({
       rows[rowIndex].push(card);
     });
 
-    console.log(rows);
-
     return rows;
   },
   rendered: function () {
     $('.company-image').backstretch('images/dashboard/elliman.jpg');
+
+    this.cards = new Cards({
+      $cards: self.$('.cards'),
+      $scrollview: self.$('.horizontal-scroll-view')
+    });
   }
 });

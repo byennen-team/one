@@ -31,9 +31,11 @@ iron:dynamic-template@0.4.1
 iron:layout@0.4.1
 iron:router@0.9.4
 jonperl:match-ex@0.1.2
+jonperl:paper@0.0.2
 jquery@1.0.0
 json@1.0.0
 layout@0.0.0
+less@1.0.9
 livedata@1.0.10
 loading@0.0.0
 locales@0.0.0
@@ -64,6 +66,7 @@ session@1.0.2
 settings@0.0.0
 spacebars-compiler@1.0.2
 spacebars@1.0.2
+stevezhu:velocity.js@0.1.0
 styles@0.0.0
 templating@1.0.7
 tracker@1.0.2
