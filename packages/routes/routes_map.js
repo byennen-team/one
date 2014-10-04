@@ -17,6 +17,15 @@ Router.map(function () {
     path: '/home'
   });
 
+  this.route(Routes.LOGOUT, {
+    path: '/logout',
+    action: function () {
+      Meteor.logout();
+      this.redirect(Routes.LOGIN);
+    }
+  });
+
+
   this.route(Routes.DASHBOARD, {
     path: '/dashboard',
     onBeforeAction: function () {

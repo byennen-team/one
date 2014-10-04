@@ -1,6 +1,7 @@
 Routes = {
   DASHBOARD: 'dashboard',
   LOGIN: 'login',
+  LOGOUT: 'logout',
   PROFILE: 'profile'
 };
 
