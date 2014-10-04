@@ -6,10 +6,10 @@ Package.onUse(function (api) {
   api.use(['templating', 'authorization'], 'web');
 
   api.addFiles([
-    '_footer.html',
-    '_header.html',
-    '_left_nav.html', 'left_nav.js',
-    'application.html', 'application.js', 'application.css',
-    'login.html'
+    'application/_footer.html',
+    'application/_header.html',
+    'application/_left_nav.html', 'application/left_nav.js',
+    'application/application.html', 'application/application.js', 'application/application.css',
+    'login/login.html'
   ], 'web');
 });

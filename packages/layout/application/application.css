@@ -1,7 +1,7 @@
 /*nav*/
 .top-nav {
   font-size: 14px;
-  background: url("../../images/dashboard/nav-bg.png");
+  background: url("../../../images/dashboard/nav-bg.png");
   font-weight: normal;
   text-transform: uppercase;
   margin: 0;
@@ -31,7 +31,7 @@
   height: 70px;
   margin: 0;
   padding: 0;
-  background: url("../../images/dashboard/elliman-one-logo-blue.svg") left center no-repeat;
+  background: url("../../../images/dashboard/elliman-one-logo-blue.svg") left center no-repeat;
   background-size: 110px auto;
   text-indent: -9999px;
 }
