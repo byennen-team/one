@@ -1,25 +1,3 @@
-//services: {
-//  elliman: Match.Optional({
-//    agentId: Number,
-//    firstName: String,
-//    lastName: String,
-//    location: {
-//      cityId: Number,
-//      stateId: Number,
-//      zipCode: Number
-//    },
-//    numbers: {
-//      fax:  Match.Optional(Number),
-//      mobile: Match.Optional(Number),
-//      phone: Number,
-//      phoneExtension: Match.Optional(Number)
-//    },
-//    officeId: Number,
-//    photoUrl: Match.Optional(MatchEx.Url()),
-//    title: String
-//  })
-//}
-
 var userFromEllimanRow = function (row) {
   var elliman = {
     id: row.ID,
