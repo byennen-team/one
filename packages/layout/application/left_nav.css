@@ -1,0 +1,10 @@
+.panel {
+  position: fixed;
+  left: -25em;
+  width: 25em;
+  background-image: url('../../../images/dashboard/left-nav-bg.jpg')
+}
+
+.wrap {
+  position: relative;
+}

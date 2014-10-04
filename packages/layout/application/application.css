@@ -35,12 +35,3 @@
   background-size: 110px auto;
   text-indent: -9999px;
 }
-.panel {
-  position: fixed;
-  left: -15.625em;
-  width: 15.625em;
-}
-
-.wrap {
-  position: relative;
-}

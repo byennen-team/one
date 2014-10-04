@@ -7,7 +7,7 @@
       'menu': ('#menu'),
       'push': ('.push'),
       'side': 'left',
-      'menuWidth': '15.625em',
+      'menuWidth': '25em',
       'speed': '300',
       'activeBtn':'menu-open'
     }, options);
