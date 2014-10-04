@@ -1,9 +1,5 @@
 Settings = {};
 
-Settings.isDevelopment = function () {
-  return Meteor.settings.public.ENVIRONMENT === 'development';
-};
+Settings.isDevelopment = Meteor.settings.public.ENVIRONMENT === 'development';
 
-Settings.isProduction = function () {
-  return Meteor.settings.public.ENVIRONMENT === 'production';
-};
+Settings.isProduction = Meteor.settings.public.ENVIRONMENT === 'production';
