@@ -3,7 +3,7 @@ Package.describe({
 });
 
 Package.onUse(function (api) {
-  api.use('templating', 'web');
+  api.use(['templating', 'underscore'], 'web');
 
   api.addFiles(['dashboard.html', 'dashboard.js', 'dashboard.css'], 'web');
 });

@@ -38,42 +38,15 @@
 
     <!--Small, Medium, and Large devices-->
     <div class="visible-sm-* visible-lg-* visible-md-* hidden-xs">
-
-      <div class="row">
+        {{#each cardRows}}
+        <div class="row">
+        {{#each this}}
         <div class="app col-md-4 col-lg-2">
-          <img src="../../images/dashboard/company-apps/edge.png" class="img-responsive">
+            <img src="{{src}}" class="img-responsive">
         </div>
-        <div class="app col-md-4 col-lg-2">
-          <img src="../../images/dashboard/company-apps/gotham.png" class="img-responsive">
+        {{/each}}
         </div>
-        <div class="app col-md-4 col-lg-2">
-          <img src="../../images/dashboard/company-apps/elli.png" class="img-responsive">
-        </div>
-        <div class="app col-md-4 col-lg-2">
-          <img src="../../images/dashboard/company-apps/connect.png" class="img-responsive">
-        </div>
-        <div class="app col-md-4 col-lg-2">
-          <img src="../../images/dashboard/company-apps/limo.png" class="img-responsive">
-        </div>
-        <div class="app col-md-4 col-lg-2">
-          <img src="../../images/dashboard/company-apps/open-house.png" class="img-responsive">
-        </div>
-      </div>
-
-      <div class="row">
-        <div class="app col-md-4 col-lg-2">
-          <img src="../../images/dashboard/company-apps/stratus.png" class="img-responsive">
-        </div>
-        <div class="app col-md-4 col-lg-2">
-          <img src="../../images/dashboard/company-apps/update.png" class="img-responsive">
-        </div>
-        <div class="app col-md-4 col-lg-2">
-          <img src="../../images/dashboard/company-apps/xpressdocs.png" class="img-responsive">
-        </div>
-        <div class="app col-md-4 col-lg-2">
-          <img src="../../images/dashboard/company-apps/zillow.png" class="img-responsive">
-        </div>
-      </div>
+        {{/each}}
     </div>
 
     <!--Phones (<768px)-->
