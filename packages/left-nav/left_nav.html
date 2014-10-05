@@ -1,14 +1,18 @@
 <template name="left_nav">
   <nav id="left_nav" role="navigation">
+    <img src="http://placehold.it/50x50" class="profile-image img-circle"/>
+    <h2 class="name">Name</h2>
+    <h3 class="title">Title</h3>
     <ul>
       {{#if isInRole 'admin' 'company_admin'}}
         <li><a href="/admin">Admin</a></li>
       {{/if}}
-      {{#if currentUser}}
-        <li><a href="/dashboard">Dashboard</a></li>
-        <li><a href="/profile">Profile</a></li>
-        <li><a href="/logout">Logout</a></li>
-      {{/if}}
+      <li><a href="/profile">Profile</a></li>
+      <li><a href="#">Directory</a></li>
+      <li><a href="#">Company Apps</a></li>
+      <li><a href="#">My Apps</a></li>
+      <li><a href="#">App Center</a></li>
     </ul>
+    <a href="/logout">Logout</a>
   </nav>
 </template>
