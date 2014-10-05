@@ -85,6 +85,10 @@
       "1.0.0"
     ],
     [
+      "left-nav",
+      "0.0.0"
+    ],
+    [
       "localstorage",
       "1.0.0"
     ],
@@ -147,6 +151,10 @@
     [
       "spacebars-compiler",
       "1.0.2"
+    ],
+    [
+      "stevezhu:velocity.js",
+      "0.1.0"
     ],
     [
       "templating",

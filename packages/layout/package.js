@@ -3,12 +3,11 @@ Package.describe({
 });
 
 Package.onUse(function (api) {
-  api.use(['templating', 'authorization'], 'web');
+  api.use(['templating', 'authorization', 'left-nav'], 'web');
 
   api.addFiles([
     'application/_footer.html',
     'application/_header.html',
-    'application/_left_nav.html', 'application/left_nav.js', 'application/left_nav.css',
     'application/application.html', 'application/application.js', 'application/application.css',
     'login/login.html'
   ], 'web');

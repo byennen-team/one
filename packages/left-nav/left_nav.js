@@ -1,3 +1,4 @@
+// Write your package code here!
 (function($) {
   'use strict';
 
