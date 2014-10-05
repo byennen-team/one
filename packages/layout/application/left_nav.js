@@ -4,7 +4,7 @@
   $.fn.leftNav = function(options) {
 
     var settings = $.extend({
-      'menu': ('#menu'),
+      'menu': ('#left_nav'),
       'push': ('.push'),
       'side': 'left',
       'menuWidth': '22em',

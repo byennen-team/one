@@ -1,10 +1,7 @@
-.panel {
+#left_nav {
   position: fixed;
   left: -22em;
   width: 22em;
-  background-image: url('../../../images/dashboard/left-nav-bg.jpg')
-}
-
-.wrap {
-  position: relative;
+  background-image: url('../../../images/dashboard/left-nav-bg.jpg');
+  border-radius: 0;
 }

@@ -1,5 +1,5 @@
 <template name="left_nav">
-  <nav id="menu" class="panel" role="navigation">
+  <nav id="left_nav" role="navigation">
     <ul>
       {{#if isInRole 'admin' 'company_admin'}}
         <li><a href="/admin">Admin</a></li>
@@ -8,8 +8,6 @@
         <li><a href="/dashboard">Dashboard</a></li>
         <li><a href="/profile">Profile</a></li>
         <li><a href="/logout">Logout</a></li>
-      {{else}}
-        <li><a href="/sign-up">Get Started</a></li>
       {{/if}}
     </ul>
   </nav>
