@@ -1,4 +1,8 @@
 // Write your package code here!
+Template.left_nav.rendered = function () {
+  $('.menu-link').leftNav();
+};
+
 (function($) {
   'use strict';
 
