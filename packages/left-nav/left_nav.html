@@ -18,16 +18,17 @@
           {{#if isInRole 'admin' 'company_admin'}}
             <li><a href="/admin">Admin</a></li>
           {{/if}}
-          <li><a href="#">Directory</a></li>
-          <li><a href="/dashboard">Company Apps</a></li>
-          <li><a href="#">My Apps</a></li>
-          <li><a href="#">App Center</a></li>
+          <li><a href="/dashboard">Dashboard</a></li>
+          <!-- <li><a href="#">Directory</a></li> -->
+          <li><a href="/company-apps">Company Apps</a></li>
+          <li><a href="/my-apps">My Apps</a></li>
+          <!-- <li><a href="#">App Center</a></li> -->
         </ul>
       </div>
     </div>
 
     <div class="row">
-      <div class="col-sm-12">
+      <div class="logout col-sm-12">
         <a href="/logout" class="btn-logout">Sign Out</a>
       </div>
     </div>
