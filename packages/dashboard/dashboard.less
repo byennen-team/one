@@ -1,4 +1,5 @@
 #dashboard-header {
+  margin-left: 0;
   .banner {
     margin-right: 0;
     margin-left: 0;
@@ -25,9 +26,49 @@
   }
   .feed {
     background: #eceff3;
-  }
-  .feed li {
-    border-bottom: 1px solid #cfdae4;
+    ul {
+      margin: 0;
+      padding: 0;
+    }
+    li {
+      display: block;
+      clear: both;
+      border-bottom: 1px solid #cfdae4;
+      min-height: 110px;
+      margin-top: 20px;
+      img.chat-message-profile-image {
+        padding-top: 10px 0 0 4px;
+        border: 1px solid #77cfbd;
+      }
+      img.document-icon {
+        padding: 10px 0 0 20px;
+      }
+      img.calendar-icon {
+        padding: 10px 0 0 15px;
+      }
+      .chat-message {
+        .name {
+          color: #77cfbd;
+        }
+        .replied {
+          color: #a3b3c3;
+        }
+        .time {
+          float: right;
+          color: #77cfbd;
+        }
+        .message {
+          margin-top: 10px;
+          background: white;
+          border: 1px solid #e3e7ef;
+          padding: 15px;
+          color: #78838e;
+          -webkit-border-radius: 2px;
+          -moz-border-radius: 2px;
+          border-radius: 2px;
+        }
+      }
+    }
   }
 }
 
