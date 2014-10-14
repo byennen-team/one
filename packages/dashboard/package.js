@@ -3,7 +3,6 @@ Package.describe({
 });
 
 Package.onUse(function (api) {
-  api.use('templating', 'web');
-
-  api.addFiles(['dashboard.html', 'dashboard.js', 'dashboard.css'], 'web');
+  api.use(['templating', 'less'], 'web');
+  api.addFiles(['dashboard.html', 'dashboard.js', 'dashboard.less'], 'web');
 });

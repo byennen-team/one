@@ -28,17 +28,11 @@ Router.map(function () {
 
 
   this.route(Routes.DASHBOARD, {
-    path: '/dashboard',
-    onBeforeAction: function () {
-      // TODO: Sign In Required/
-    }
+    path: '/dashboard'
   });
 
   this.route(Routes.PROFILE, {
-    path: '/profile',
-    onBeforeAction: function () {
-      // TODO: Sign In Required/
-    }
+    path: '/profile'
   });
 
   /* Admin */

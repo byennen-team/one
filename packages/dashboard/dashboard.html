@@ -1,12 +1,30 @@
 <template name="dashboard">
   <div id="dashboard-header" class="row">
-    <div class="col-sm-12">
+    <div class="col-sm-3">
+      <ul>
+        <li>
+          <div class="chat-message">
+            Ace W. replied
+            9:16AM
+            photo
+            Yep, I left it with your assistant. Thanks!
+          </div>
+        </li>
+      </ul>
+    </div>
+    <div class="banner col-sm-9">
       <h1 class="company-title">Douglas Elliman</h1>
       <p class="company-slogan">One Dashboard</p>
     </div>
   </div>
 
-  <div id="dashboard-app-menu" class="row hidden-xs">
+  <div class="row">
+    <div class="col-sm-3">
+      document storage
+    </div>
+  </div>
+
+  <!-- <div id="dashboard-app-menu" class="row hidden-xs">
     <div class="col-sm-9">
       <div class="dropdown app-dropdown">
         <a data-toggle="dropdown" href="#">
@@ -28,11 +46,9 @@
         </li>
       </ul>
     </div>
-  </div>
+  </div> -->
 
-  <div id="company-apps" class="container-fluid">
-
-    <!--Small, Medium, and Large devices-->
+  <!-- <div id="company-apps" class="container-fluid">
     <div class="visible-sm-* visible-lg-* visible-md-* hidden-xs">
 
       <div class="row">
@@ -71,7 +87,7 @@
         </div>
       </div>
     </div>
-  </div>
+  </div> -->
 
   <!-- Modal -->
   <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -91,4 +107,5 @@
       </div>
     </div>
   </div>
+
 </template>
