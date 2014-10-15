@@ -10,6 +10,7 @@ Package.onUse(function (api) {
                 '_feed.html',
                 '_board.html',
                 '_banner.html',
+                'banner.js',
                 '_documents.html'
                 ], 'web');
 });

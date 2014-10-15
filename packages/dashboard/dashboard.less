@@ -1,15 +1,19 @@
 #left-column {
   .feed {
     background: #eceff3;
+    margin-top: 0;
     ul {
       margin: 0;
       padding: 0;
+    }
+    li.last {
+      border-bottom: none !important;
     }
     li {
       display: block;
       clear: both;
       border-bottom: 1px solid #cfdae4;
-      min-height: 110px;
+      min-height: 113px;
       margin-top: 20px;
       img.document-icon {
         padding: 10px 0 0 20px;
@@ -56,20 +60,25 @@
     background: url('../../images/dashboard/elliman.jpg') no-repeat;
     background-position: right;
     background-size: cover;
-  }
-  .company-title {
+    margin-left: -15px;
     color: white;
-    z-index: 10;
-    position: relative;
-    padding-top: 40px;
-    margin: 0;
   }
-  .company-slogan {
+  .title {
+    margin-top: 20px;
     color: white;
-    position: relative;
-    z-index: 10;
-    text-transform: uppercase;
-    letter-spacing: 4px;
+    letter-spacing: 2px;
+    .date {
+      font-size: 18px;
+    }
+    h1.company-title {
+      margin: 0;
+      font-size: 50px;
+    }
+    .company-slogan {
+      font-size: 20px;
+      text-transform: uppercase;
+      letter-spacing: 4px;
+    }
   }
 }
 
