@@ -1,25 +1,4 @@
-#dashboard-header {
-  margin-left: 0;
-  .banner {
-    min-height: 400px;
-    max-height: 420px;
-    background: url('../../images/dashboard/elliman.jpg') no-repeat;
-    background-position: right;
-    background-size: cover;
-  }
-  .company-title {
-    color: white;
-    z-index: 10;
-    position: relative;
-    margin-top: 40px;
-  }
-  .company-slogan {
-    color: white;
-    position: relative;
-    z-index: 10;
-    text-transform: uppercase;
-    letter-spacing: 4px;
-  }
+#left-column {
   .feed {
     background: #eceff3;
     ul {
@@ -70,21 +49,48 @@
   }
 }
 
-#dashboard {
+#main {
+  .banner {
+    min-height: 400px;
+    max-height: 420px;
+    background: url('../../images/dashboard/elliman.jpg') no-repeat;
+    background-position: right;
+    background-size: cover;
+  }
+  .company-title {
+    color: white;
+    z-index: 10;
+    position: relative;
+    padding-top: 40px;
+    margin: 0;
+  }
+  .company-slogan {
+    color: white;
+    position: relative;
+    z-index: 10;
+    text-transform: uppercase;
+    letter-spacing: 4px;
+  }
+}
+
+.documents {
+  background: #ccd6e7;
+  height: 100%;
+  min-height: 400px;
+  margin: 0 -15px 0 0;
+}
+
+#board {
   margin-top: 20px;
 }
 
 
 // TODO: remove this code. only for demo.
-.calendar, .news, .support {
-  margin: 10px;
+.calendar, .news, .support, .chat {
+  margin-top: 10px;
   img {
     width: 100%;
   }
-}
-.chat {
-  margin-top: 12px;
-  margin-right: 20px;
 }
 // remove
 
