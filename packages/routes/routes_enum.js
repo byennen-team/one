@@ -2,7 +2,8 @@ Routes = {
   DASHBOARD: 'dashboard',
   LOGIN: 'login',
   LOGOUT: 'logout',
-  PROFILE: 'profile'
+  PROFILE: 'profile',
+  COMPANY_APPS: 'company_apps'
 };
 
 Routes.Admin = {

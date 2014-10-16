@@ -11,6 +11,8 @@ Package.onUse(function (api) {
                 '_board.html',
                 '_banner.html',
                 'banner.js',
-                '_documents.html'
+                '_documents.html',
+                'company_apps.html',
+                'company_apps.less'
                 ], 'web');
 });
