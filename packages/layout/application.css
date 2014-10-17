@@ -37,6 +37,12 @@
   background-size: 110px auto;
   text-indent: -9999px;
 }
+.search {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  float: right;
+}
 .company-apps-button {
   float: right;
   padding: 6px 10px 8px 10px;
