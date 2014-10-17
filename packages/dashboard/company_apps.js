@@ -4,3 +4,7 @@ Template.company_apps.events({
     $('.featured-app-image, .close-feature-app').hide();
   }
 });
+
+Template.company_apps.rendered = function () {
+  $('.company-apps-button').addClass('company-apps-button-active');
+};

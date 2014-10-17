@@ -41,3 +41,6 @@
   float: right;
   padding: 6px 10px 8px 10px;
 }
+.company-apps-button-active {
+  background: #5bb8d7;
+}
