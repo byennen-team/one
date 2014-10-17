@@ -42,12 +42,14 @@ locales@0.0.0
 localstorage@1.0.1
 logging@1.0.4
 login@0.0.0
+matteodem:easy-search@1.1.5
 meteor-platform@1.1.2
 meteor@1.1.2
 minifiers@1.1.1
 minimongo@1.0.4
 mizzao:bootstrap-3@3.2.0_1
 mobile-status-bar@1.0.1
+mongo-livedata@1.0.6
 mongo@1.0.7
 mrt:moment@2.8.1
 natestrauser:font-awesome@4.2.0
@@ -67,6 +69,7 @@ session@1.0.3
 settings@0.0.0
 spacebars-compiler@1.0.3
 spacebars@1.0.3
+standard-app-packages@1.0.3
 stevezhu:velocity.js@0.1.0
 styles@0.0.0
 templating@1.0.8
