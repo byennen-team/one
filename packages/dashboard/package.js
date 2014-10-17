@@ -13,6 +13,7 @@ Package.onUse(function (api) {
                 'banner.js',
                 '_documents.html',
                 'company_apps.html',
-                'company_apps.less'
+                'company_apps.less',
+                'company_apps.js'
                 ], 'web');
 });
