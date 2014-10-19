@@ -55,7 +55,7 @@ Meteor.startup(function () {
   console.log('Total Users', numUsers);
   if (numUsers > 0) return;
 
-  var ellimanAgents = JSON.parse(Assets.getText('http://goone.s3.amazonaws.com/elliman_agents_production.json'));
+  var ellimanAgents = JSON.parse(Assets.getText('elliman_agents_production.json'));
   _.each(ellimanAgents, function (row) {
     var user = userFromEllimanRow(row);
     Meteor.users.insert(user);
