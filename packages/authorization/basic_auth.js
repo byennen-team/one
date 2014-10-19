@@ -25,8 +25,8 @@ HttpBasicAuth = (function () {
   return HttpBasicAuth;
 })();
 
-//// Setup HTTP password for dev.gooneapp.com
-//if(Settings.isProduction) {
+// Setup HTTP password for dev.gooneapp.com
+// if(Settings.isProduction) {
 //  var basicAuth = new HttpBasicAuth('one', 'one');
 //  basicAuth.protect();
-//}
+// }
