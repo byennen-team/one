@@ -26,13 +26,8 @@ Meteor.methods({
 
     return Accounts._loginMethod(this, 'loginWithElliman', arguments, 'loginWithElliman', function () {
 
-      // var user = Meteor.users.findOne({
-      //   'services.elliman.id': agentId
-      // });
-
-      // TODO: remove hard coded agent id
       var user = Meteor.users.findOne({
-        'services.elliman.id': 15
+        'services.elliman.id': agentId
       });
 
       if (! user) throw new Meteor.Error('User not found');
