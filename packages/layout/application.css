@@ -29,12 +29,12 @@
 }
 .go-one {
   float: left;
-  width: 150px;
+  width: 120px;
   height: 70px;
   margin: 0;
   padding: 0;
   background: url("../../../images/dashboard/elliman-one-logo-blue.svg") left center no-repeat;
-  background-size: 110px auto;
+  background-size: 99px auto;
   text-indent: -9999px;
 }
 .search {
