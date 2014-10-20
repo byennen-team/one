@@ -8,6 +8,9 @@ Meteor.publish('user', function () {
   //
   // // TODO cut down what fields we publish
   return Meteor.users.find(this.userId);
+
+  // not seeing this?
+  console.log(User.services.elliman.firstName);
 });
 
 Meteor.methods({
@@ -22,9 +25,16 @@ Meteor.methods({
     var currentUser = Meteor.users.findOne(self.userId);
 
     return Accounts._loginMethod(this, 'loginWithElliman', arguments, 'loginWithElliman', function () {
+
+      // var user = Meteor.users.findOne({
+      //   'services.elliman.id': agentId
+      // });
+
+      // TODO: remove hard coded agent id
       var user = Meteor.users.findOne({
-        'services.elliman.id': agentId
+        'services.elliman.id': 15
       });
+
       if (! user) throw new Meteor.Error('User not found');
 
       // Log the current user out.
