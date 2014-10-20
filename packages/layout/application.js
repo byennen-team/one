@@ -26,3 +26,13 @@ Template.application.rendered = function () {
 
 Template.application.destroyed = function () {
 };
+
+if (Meteor.isClient) {
+  Template.header.helpers({
+    activeIfTemplateIs: function (template) {
+      var currentRoute = Router.current();
+      return currentRoute &&
+        template === currentRoute.lookupTemplate() ? 'active' : '';
+    }
+  });
+}

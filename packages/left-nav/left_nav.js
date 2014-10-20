@@ -1,6 +1,3 @@
-// Subscribe to the current user
-Meteor.subscribe("user");
-
 Template.leftNav.rendered = function () {
   $('.menu-link').leftNav();
 };
@@ -26,7 +23,6 @@ $.fn.leftNav = function(options) {
     menuLink.addClass(settings.activeBtn);
     push.velocity({ left: width }, {easing: [100, 0]});
     menu.velocity({ left: 0 }, {easing: [100, 0]});
-    delay: 100
   };
 
   menu.close = function() {
@@ -34,7 +30,6 @@ $.fn.leftNav = function(options) {
     menuLink.removeClass(settings.activeBtn);
     menu.velocity({ left: '-' + width }, {easing: [100, 0]});
     push.velocity({ left: 0 }, {easing: [100, 0]});
-    delay: 100
   };
 
   $(document).on('click.leftNav', function(e) {
