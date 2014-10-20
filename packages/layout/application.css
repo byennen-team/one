@@ -34,7 +34,7 @@
   margin: 0;
   padding: 0;
   background: url("../../../images/dashboard/elliman-one-logo-blue.svg") left center no-repeat;
-  background-size: 99px auto;
+  background-size: 90px auto;
   text-indent: -9999px;
 }
 .search {
@@ -45,7 +45,7 @@
 }
 .company-apps-button {
   float: right;
-  padding: 6px 10px 8px 10px;
+  padding: 2px 13px 8px 13px;
 }
 .company-apps-button img {
   height: 60px;
