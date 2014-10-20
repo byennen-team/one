@@ -1,5 +1,5 @@
 // Subscribe to the current user
-Meteor.subscribe('user');
+Meteor.subscribe("user");
 
 Template.leftNav.rendered = function () {
   $('.menu-link').leftNav();

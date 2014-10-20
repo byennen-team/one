@@ -14,6 +14,7 @@ Package.onUse(function (api) {
                 '_documents.html',
                 'company_apps.html',
                 'company_apps.less',
-                'company_apps.js'
+                'company_apps.js',
+                'library.html'
                 ], 'web');
 });

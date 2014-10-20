@@ -30,6 +30,10 @@ Router.map(function () {
     path: '/company-apps'
   });
 
+  this.route(Routes.LIBRARY, {
+    path: '/library'
+  });
+
   this.route(Routes.DASHBOARD, {
     path: '/dashboard'
   });

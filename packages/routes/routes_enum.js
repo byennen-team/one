@@ -3,7 +3,8 @@ Routes = {
   LOGIN: 'login',
   LOGOUT: 'logout',
   PROFILE: 'profile',
-  COMPANY_APPS: 'company_apps'
+  COMPANY_APPS: 'company_apps',
+  LIBRARY: 'library'
 };
 
 Routes.Admin = {

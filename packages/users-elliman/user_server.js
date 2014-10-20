@@ -4,7 +4,7 @@ Meteor.users._ensureIndex({ 'services.elliman.id': 1}, { unique: true });
  * Publish the current user.
  */
 Meteor.publish('user', function () {
-  // if (! this.userId) return [];
+  if (! this.userId) return [];
   //
   // // TODO cut down what fields we publish
   return Meteor.users.find(this.userId);
