@@ -12,9 +12,6 @@ Meteor.subscribe('user');
 Meteor.loginWithElliman = function (agentId, callback) {
   Meteor.call('loginWithElliman', agentId, function (error, result) {
     if (error) {
-      //TODO: better error messages. Maybe setup flash notications.
-      console.log(error.message);
-      $('.error').show();
       callback && callback.apply(this, arguments);
       return;
     }
