@@ -4,9 +4,5 @@ Package.describe({
 
 Package.onUse(function (api) {
   api.use(['templating', 'less'], 'web');
-  api.addFiles(['dashboard.html',
-                'dashboard_client.js',
-                'dashboard.less',
-                '_documents.html'
-                ], 'web');
+  api.addFiles(['dashboard.html', 'dashboard_client.js', 'dashboard.less'], 'web');
 });
