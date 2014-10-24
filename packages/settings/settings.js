@@ -1,5 +1,5 @@
-//Settings = {};
+// Settings = {};
 //
-//Settings.isDevelopment = Meteor.settings.public.ENVIRONMENT === 'development';
+// Settings.isDevelopment = Meteor.settings.public.ENVIRONMENT === 'development';
 //
-//Settings.isProduction = Meteor.settings.public.ENVIRONMENT === 'production';
+// Settings.isProduction = Meteor.settings.public.ENVIRONMENT === 'production';

@@ -24,7 +24,7 @@
             <li><a href="/admin">Admin</a></li>
           {{/if}}
           <li><a href="#">Directory</a></li>
-          <li><a href="{{pathFor 'company_apps'}}">Apps</a></li>
+          <li><a href="{{pathFor 'apps'}}">Apps</a></li>
           <li><a href="{{pathFor 'library'}}">Library</a></li>
           <li><a href="#">Messaging</a></li>
           <li><a href="#">Go One Support</a></li>
@@ -34,7 +34,7 @@
 
     <div class="row">
       <div class="logout col-sm-12">
-        <a href="/logout" class="btn-logout">Sign Out</a>
+        <a href="{{pathFor 'logout'}}" class="btn-logout">Sign Out</a>
       </div>
     </div>
   </nav>

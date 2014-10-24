@@ -5,7 +5,7 @@ Template.login.events({
     agentId = parseInt(agentId);
     Meteor.loginWithElliman(agentId, function (error) {
       //TODO: better error messages. Maybe setup flash notications.
-      console.log(error.message);
+      console.log(error);
       $('.error').show();
     });
   }

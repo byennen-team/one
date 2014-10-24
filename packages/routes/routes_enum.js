@@ -3,7 +3,7 @@ Routes = {
   LOGIN: 'login',
   LOGOUT: 'logout',
   PROFILE: 'profile',
-  COMPANY_APPS: 'company_apps',
+  APPS: 'apps',
   LIBRARY: 'library'
 };
 

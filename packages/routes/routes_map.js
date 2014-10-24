@@ -26,8 +26,8 @@ Router.map(function () {
     }
   });
 
-  this.route(Routes.COMPANY_APPS, {
-    path: '/company-apps'
+  this.route(Routes.APPS, {
+    path: '/apps'
   });
 
   this.route(Routes.LIBRARY, {
