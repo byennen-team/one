@@ -7,7 +7,6 @@ Package.onUse(function (api) {
   api.addFiles(['dashboard.html',
                 'dashboard_client.js',
                 'dashboard.less',
-                '_feed.html',
                 '_documents.html'
                 ], 'web');
 });
