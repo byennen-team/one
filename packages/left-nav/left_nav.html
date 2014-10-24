@@ -5,13 +5,14 @@
         <img src="http://assets2.elliman.com/BrokerPics/Opt/fl.3130169.jpg" class="profile-image img-circle"/>
       </div>
       <div class="col-sm-7">
-        <h2 class="name">Helen Fuertes{{User.services.elliman.firstName}}</h2>
-        <h3 class="title">RA{{User.title}}</h3>
+        <h2 class="name">{{User.profile.firstName}}</h2>
+        <h3 class="title">{{User.profile.title}}</h3>
       </div>
       <div class="col-sm-1">
         <a href="/profile"><i class="fa fa-lg fa-cog"></i></a>
       </div>
     </div>
+    <!-- TODO: recent apps breaks ipad screen. should we remove this? -->
     <!-- <div class="row">
       <div class="recent-apps col-sm-12">
         <img src="../../images/dashboard/recent-apps.png"/>
