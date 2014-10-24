@@ -6,8 +6,20 @@
     </div>
 
     <div id="main" class="col-sm-9">
-      {{> banner}}
-      {{> board}}
+      {{> dashboardBanner}}
+      <div class="col-sm-8">
+        {{> calendar}}
+        {{> news}}
+        {{> support}}
+      </div>
+      <div class="col-sm-4">
+        <div class="chat">
+          <img src="../../images/dashboard/chat.png" class="img-responsive" alt="Chat" />
+        </div>
+        <div class="apps">
+          <a href="{{pathFor 'apps'}}"><img src="../../images/dashboard/apps.png" class="img-responsive" alt="Chat" /></a>
+        </div>
+      </div>
     </div>
   </div>
 

@@ -16,6 +16,7 @@ check@1.0.2
 companies@0.0.0
 ctl-helper@1.0.4
 ctl@1.0.2
+dashboard-banner@0.0.0
 dashboard@0.0.0
 ddp@1.0.10
 deps@1.0.5
@@ -56,6 +57,7 @@ mongo-livedata@1.0.6
 mongo@1.0.7
 mrt:moment@2.8.1
 natestrauser:font-awesome@4.2.0
+news@0.0.0
 not-found@0.0.0
 notifications@1.0.0
 observe-sequence@1.0.3

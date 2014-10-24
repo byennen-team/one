@@ -8,9 +8,6 @@ Package.onUse(function (api) {
                 'dashboard_client.js',
                 'dashboard.less',
                 '_feed.html',
-                '_board.html',
-                '_banner.html',
-                'banner_client.js',
                 '_documents.html'
                 ], 'web');
 });
