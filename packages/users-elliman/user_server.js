@@ -1,4 +1,4 @@
-Meteor.users._ensureIndex({ 'services.elliman.id': 1}, { unique: true });
+Meteor.users._ensureIndex({ 'profile.id': 1}, { unique: true });
 
 /**
  * Publish the current user.
@@ -10,7 +10,7 @@ Meteor.publish('user', function () {
   return Meteor.users.find(this.userId);
 
   // not seeing this?
-  console.log(User.services.elliman.firstName);
+  // console.log(User.profile.firstName);
 });
 
 Meteor.methods({
@@ -27,7 +27,7 @@ Meteor.methods({
     return Accounts._loginMethod(this, 'loginWithElliman', arguments, 'loginWithElliman', function () {
 
       var user = Meteor.users.findOne({
-        'services.elliman.id': agentId
+        'profile.id': agentId
       });
 
       if (! user) throw new Meteor.Error('User not found');

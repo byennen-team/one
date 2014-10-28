@@ -1,12 +1,36 @@
 {
   "dependencies": [
     [
+      "accounts-base",
+      "1.1.2"
+    ],
+    [
+      "application-configuration",
+      "1.0.3"
+    ],
+    [
       "base64",
+      "1.0.1"
+    ],
+    [
+      "binary-heap",
       "1.0.1"
     ],
     [
       "blaze",
       "2.0.2"
+    ],
+    [
+      "callback-hook",
+      "1.0.1"
+    ],
+    [
+      "check",
+      "1.0.2"
+    ],
+    [
+      "ddp",
+      "1.0.10"
     ],
     [
       "deps",
@@ -15,6 +39,10 @@
     [
       "ejson",
       "1.0.4"
+    ],
+    [
+      "follower-livedata",
+      "1.0.2"
     ],
     [
       "geojson-utils",
@@ -29,6 +57,10 @@
       "1.0.1"
     ],
     [
+      "jonperl:match-ex",
+      "0.1.2"
+    ],
+    [
       "jquery",
       "1.0.1"
     ],
@@ -41,12 +73,24 @@
       "1.0.10"
     ],
     [
+      "localstorage",
+      "1.0.1"
+    ],
+    [
+      "logging",
+      "1.0.4"
+    ],
+    [
       "meteor",
       "1.1.2"
     ],
     [
       "minimongo",
       "1.0.4"
+    ],
+    [
+      "mongo",
+      "1.0.7"
     ],
     [
       "observe-sequence",
@@ -65,6 +109,14 @@
       "1.0.3"
     ],
     [
+      "retry",
+      "1.0.1"
+    ],
+    [
+      "service-configuration",
+      "1.0.2"
+    ],
+    [
       "stevezhu:velocity.js",
       "0.1.0"
     ],
@@ -79,6 +131,10 @@
     [
       "underscore",
       "1.0.1"
+    ],
+    [
+      "users-elliman",
+      "0.0.0"
     ]
   ],
   "pluginDependencies": [],

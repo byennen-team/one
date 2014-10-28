@@ -1,5 +1,5 @@
 var userFromEllimanRow = function (row) {
-  var elliman = {
+  var profile = {
     id: row.ID,
     firstName: row.FIRST_NAME,
     lastName: row.LAST_NAME,
@@ -13,12 +13,12 @@ var userFromEllimanRow = function (row) {
     title: row.TITLE
   };
 
-  if (row.PHONE_NUMBER) elliman.numbers.phone = row.PHONE_NUMBER;
-  if (row.PHONE_EXTENSION) elliman.numbers.phoneExtension = row.PHONE_EXTENSION;
-  if (row.FAX_NUMBER) elliman.numbers.fax = row.FAX_NUMBER;
-  if (row.MOBILE) elliman.numbers.mobile = row.MOBILE;
+  if (row.PHONE_NUMBER) profile.numbers.phone = row.PHONE_NUMBER;
+  if (row.PHONE_EXTENSION) profile.numbers.phoneExtension = row.PHONE_EXTENSION;
+  if (row.FAX_NUMBER) profile.numbers.fax = row.FAX_NUMBER;
+  if (row.MOBILE) profile.numbers.mobile = row.MOBILE;
 
-  if (row.PHOTO_URL) elliman.photoUrl = row.PHOTO_URL;
+  if (row.PHOTO_URL) profile.photoUrl = row.PHOTO_URL;
 
   var emails = [];
 
@@ -32,9 +32,7 @@ var userFromEllimanRow = function (row) {
 
   var user = {
     emails: emails,
-    services: {
-      elliman: elliman
-    }
+    profile: profile
   };
 
   // Throw and log errors on users that do not match the model

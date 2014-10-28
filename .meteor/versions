@@ -72,6 +72,7 @@ reload@1.1.1
 retry@1.0.1
 routepolicy@1.0.2
 routes@0.0.0
+search@0.0.0
 service-configuration@1.0.2
 session@1.0.3
 settings@0.0.0

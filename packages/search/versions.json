@@ -9,8 +9,8 @@
       "1.0.3"
     ],
     [
-      "authorization",
-      "0.0.0"
+      "autoupdate",
+      "1.1.2"
     ],
     [
       "base64",
@@ -49,12 +49,12 @@
       "1.0.5"
     ],
     [
-      "digilord:roles",
-      "1.2.12"
-    ],
-    [
       "ejson",
       "1.0.4"
+    ],
+    [
+      "fastclick",
+      "1.0.1"
     ],
     [
       "follower-livedata",
@@ -73,6 +73,10 @@
       "1.0.2"
     ],
     [
+      "http",
+      "1.0.7"
+    ],
+    [
       "id-map",
       "1.0.1"
     ],
@@ -89,12 +93,12 @@
       "1.0.1"
     ],
     [
-      "left-nav",
-      "0.0.0"
-    ],
-    [
       "less",
       "1.0.10"
+    ],
+    [
+      "livedata",
+      "1.0.11"
     ],
     [
       "localstorage",
@@ -105,7 +109,15 @@
       "1.0.4"
     ],
     [
+      "matteodem:easy-search",
+      "1.1.5"
+    ],
+    [
       "meteor",
+      "1.1.2"
+    ],
+    [
+      "meteor-platform",
       "1.1.2"
     ],
     [
@@ -117,8 +129,16 @@
       "1.0.4"
     ],
     [
+      "mobile-status-bar",
+      "1.0.1"
+    ],
+    [
       "mongo",
       "1.0.7"
+    ],
+    [
+      "mongo-livedata",
+      "1.0.6"
     ],
     [
       "observe-sequence",
@@ -133,8 +153,16 @@
       "1.0.1"
     ],
     [
+      "reactive-dict",
+      "1.0.4"
+    ],
+    [
       "reactive-var",
       "1.0.3"
+    ],
+    [
+      "reload",
+      "1.1.1"
     ],
     [
       "retry",
@@ -149,8 +177,8 @@
       "1.0.2"
     ],
     [
-      "settings",
-      "0.0.0"
+      "session",
+      "1.0.3"
     ],
     [
       "spacebars",
@@ -161,8 +189,8 @@
       "1.0.3"
     ],
     [
-      "stevezhu:velocity.js",
-      "0.1.0"
+      "standard-app-packages",
+      "1.0.3"
     ],
     [
       "templating",
@@ -178,6 +206,10 @@
     ],
     [
       "underscore",
+      "1.0.1"
+    ],
+    [
+      "url",
       "1.0.1"
     ],
     [
