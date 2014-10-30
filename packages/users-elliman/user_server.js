@@ -8,9 +8,6 @@ Meteor.publish('user', function () {
   //
   // // TODO cut down what fields we publish
   return Meteor.users.find(this.userId);
-
-  // not seeing this?
-  // console.log(User.profile.firstName);
 });
 
 Meteor.methods({
