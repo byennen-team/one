@@ -1,3 +1,5 @@
+Meteor.subscribe('user');
+
 Template.leftNav.rendered = function () {
   $('.menu-link').leftNav();
 };

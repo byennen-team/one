@@ -13,11 +13,6 @@ Router.map(function () {
     layoutTemplate: 'loginLayout'
   });
 
-  this.route(Routes.LOGIN, {
-    path: '/home',
-    layoutTemplate: 'loginLayout'
-  });
-
   this.route(Routes.LOGOUT, {
     path: '/logout',
     action: function () {
