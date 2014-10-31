@@ -29,6 +29,10 @@
       "1.0.1"
     ],
     [
+      "joshowens:simple-form",
+      "0.2.0"
+    ],
+    [
       "jquery",
       "1.0.1"
     ],
@@ -43,6 +47,10 @@
     [
       "minimongo",
       "1.0.5"
+    ],
+    [
+      "mrt:underscore-string-latest",
+      "2.3.3"
     ],
     [
       "observe-sequence",
@@ -67,6 +75,10 @@
     [
       "tracker",
       "1.0.3"
+    ],
+    [
+      "ui",
+      "1.0.4"
     ],
     [
       "underscore",

@@ -3,7 +3,7 @@ Package.describe({
 });
 
 Package.onUse(function (api) {
-  api.use('templating', 'web');
+  api.use(['templating', 'joshowens:simple-form'], 'web');
 
-  api.addFiles(['profile.html', 'profile.js'], 'web');
+  api.addFiles(['profileEdit.html', 'profileEdit.js'], 'web');
 });

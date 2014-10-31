@@ -1,0 +1,24 @@
+<template name="profileEdit">
+  <form id="profile">
+    <h1>Profile</h1>
+    <img src="{{photoUrl}}" alt="" />
+    <br>
+    {{text_field 'firstName'}}
+    {{text_field 'lastName'}}
+    {{text_field 'title'}}
+    {{text_field 'company'}}
+    {{text_field 'company_website'}}
+
+    <h2>Contact Information</h2>
+    {{text_field 'office'}}
+    {{text_field 'phone'}}
+    {{text_field 'email'}}
+    {{text_field 'personal_website'}}
+    {{text_field 'address'}}
+    {{text_field 'apt_suite'}}
+    {{text_field 'city'}}
+    {{text_field 'state'}}
+    {{text_field 'zip'}}
+    {{submit_button 'Save Changes'}}
+  </form>
+</template>

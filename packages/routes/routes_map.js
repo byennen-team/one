@@ -30,11 +30,19 @@ Router.map(function () {
   });
 
   this.route(Routes.DASHBOARD, {
-    path: '/dashboard'
+    path: '/dashboard',
+    waitOn : function () {
+      return Meteor.subscribe('user');
+    }
   });
 
-  this.route(Routes.PROFILE, {
-    path: '/profile'
+  this.route(Routes.PROFILE_EDIT, {
+    path: '/profile/edit',
+    data: function() {
+      if (Meteor.user()) {
+        return Meteor.user().profile;
+      }
+    }
   });
 
   /* Admin */

@@ -2,7 +2,7 @@ Routes = {
   DASHBOARD: 'dashboard',
   LOGIN: 'login',
   LOGOUT: 'logout',
-  PROFILE: 'profile',
+  PROFILE_EDIT: 'profileEdit',
   APPS: 'apps',
   LIBRARY: 'library'
 };
