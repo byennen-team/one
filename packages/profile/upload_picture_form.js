@@ -1,3 +1,11 @@
+//Files.Signature = {
+//  PROFILE_PICTURE: 'signProfilePictureUpload',
+//  COMPANY_DOCUMENT: 'some other signing method'
+//};
+
+// TODO abstract Profile.uploadPictureFromForm to
+//Files.uploadToAws = function(signatur, file, callback, onProgress)
+
 Profile.uploadPictureFromForm = function (file, callback, onProgress) {
   // Heavily borrowed from http://stackoverflow.com/a/12378395/230462
   Meteor.call('signProfilePictureUpload', file.type, Files.ext(file.name), function (error, result) {
