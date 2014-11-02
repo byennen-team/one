@@ -11,6 +11,12 @@ meteor-platform
 
 # Our Packages
 
+natestrauser:font-awesome
+stevezhu:velocity.js@0.1.0
+mrt:moment
+matteodem:easy-search
+joshowens:simple-form
+lepozepo:s3
 admin
 authorization
 companies
@@ -24,10 +30,6 @@ profile
 routes
 settings
 users-elliman
-natestrauser:font-awesome
-stevezhu:velocity.js@0.1.0
-mrt:moment
-matteodem:easy-search
 library
 apps
 notifications
@@ -38,6 +40,4 @@ dashboard-banner
 feed
 messages
 search
-joshowens:simple-form
-lepozepo:s3
-
+directory

@@ -1,5 +1,6 @@
 Routes = {
   DASHBOARD: 'dashboard',
+  DIRECTORY: 'directory',
   LOGIN: 'login',
   LOGOUT: 'logout',
   PROFILE_EDIT: 'profileEdit',

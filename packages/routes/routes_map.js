@@ -36,6 +36,16 @@ Router.map(function () {
     }
   });
 
+  this.route(Routes.DIRECTORY, {
+    path: '/directory',
+    waitOn : function () {
+      return Meteor.subscribe('users');
+    },
+    // data: function() {
+    //   return Meteor.users();
+    // }
+  });
+
   this.route(Routes.PROFILE_EDIT, {
     path: '/profile/edit',
     data: function() {
