@@ -4,6 +4,13 @@
       <a href="#">My Library</a>
       <a href="#">Company Library</a>
       <h2>Favorites</h2>
+      <ul>
+        {{#each favorites}}
+          <li>
+            <span>{{name}}</span>
+          </li>
+        {{/each}}
+      </ul>
     </div>
     <div class="col-sm-9">
       <a href="#">New Folder</a>
