@@ -3,7 +3,11 @@ Package.describe({
 });
 
 Package.onUse(function (api) {
-  api.use(['templating', 'joshowens:simple-form'], 'web');
+  var both = ['web', 'server'];
 
-  api.addFiles(['profileEdit.html', 'profileEdit.js'], 'web');
+  api.use('lepozepo:s3', both);
+  api.addFiles('s3.js', 'server');
+
+  api.use(['templating', 'joshowens:simple-form'], 'web');
+  api.addFiles(['profileEdit.html', 'profileEdit.js', 'profileUploader.html', 'profileUploader.js'], 'web');
 });
