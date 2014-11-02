@@ -40,7 +40,7 @@ Router.map(function () {
     path: '/directory',
     waitOn : function () {
       return Meteor.subscribe('users');
-    },
+    }
     // data: function() {
     //   return Meteor.users();
     // }
