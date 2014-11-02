@@ -4,5 +4,7 @@ Package.describe({
 
 Package.onUse(function (api) {
   api.use(['templating', 'less'], 'web');
-  api.addFiles(['messages.html', 'messages_client.js', 'messages.less'], 'web');
+  api.addFiles(['messages.html', 'messages_client.js', 'messages.less',
+                'messages_widget.html'
+                ], 'web');
 });

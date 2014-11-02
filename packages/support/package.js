@@ -4,5 +4,7 @@ Package.describe({
 
 Package.onUse(function (api) {
   api.use(['templating', 'less'], 'web');
-  api.addFiles(['support.html', 'support_client.js', 'support.less'], 'web');
+  api.addFiles(['support.html', 'support_client.js', 'support.less',
+                'support_widget.html'
+                ], 'web');
 });

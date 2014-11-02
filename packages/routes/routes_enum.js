@@ -5,7 +5,9 @@ Routes = {
   LOGOUT: 'logout',
   PROFILE_EDIT: 'profileEdit',
   APPS: 'apps',
-  LIBRARY: 'library'
+  LIBRARY: 'library',
+  SUPPORT: 'support',
+  MESSAGES: 'messages'
 };
 
 Routes.Admin = {

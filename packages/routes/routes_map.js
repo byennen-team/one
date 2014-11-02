@@ -29,6 +29,10 @@ Router.map(function () {
     path: '/library'
   });
 
+  this.route(Routes.MESSAGES, {
+    path: '/messages'
+  });
+
   this.route(Routes.DASHBOARD, {
     path: '/dashboard',
     waitOn : function () {
@@ -53,6 +57,10 @@ Router.map(function () {
         return Meteor.user().profile;
       }
     }
+  });
+
+  this.route(Routes.SUPPORT, {
+    path: '/support'
   });
 
   /* Admin */
