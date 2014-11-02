@@ -1,7 +1,38 @@
 <template name="library">
   <div class="row">
-    <div class="col-sm-12">
-      <img src="../../images/dashboard/library.png" class="library img-responsive" />
+    <div class="col-sm-3">
+      <a href="#">My Library</a>
+      <a href="#">Company Library</a>
+      <h2>Favorites</h2>
+    </div>
+    <div class="col-sm-9">
+      <a href="#">Upload File</a>
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th></th>
+            <th></th>
+            <th></th>
+            <th>Name</th>
+            <th>Type</th>
+            <th>Date</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          {{#each documents}}
+            <tr>
+              <td>check box</td>
+              <td>favorite</td>
+              <td>icon</td>
+              <td>{{name}}</td>
+              <td>{{type}}</td>
+              <td>{{date}}</td>
+              <td>more</td>
+            </tr>
+          {{/each}}
+        </tbody>
+      </table>
     </div>
   </div>
 </template>
