@@ -5,7 +5,8 @@ Routes = {
   LOGOUT: 'logout',
   PROFILE_EDIT: 'profileEdit',
   APPS: 'apps',
-  LIBRARY: 'library',
+  MY_DOCUMENTS: 'myDocuments',
+  COMPANY_DOCUMENTS: 'companyDocuments',
   SUPPORT: 'support',
   MESSAGES: 'messages'
 };

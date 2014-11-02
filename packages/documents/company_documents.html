@@ -1,0 +1,39 @@
+<template name="companyDocuments">
+  <div class="row">
+    <div class="col-sm-3">
+      <a href="{{pathFor 'myDocuments'}}">My Documents</a>
+      <a href="{{pathFor 'companyDocuments'}}">Company Documents</a>
+      {{> favoriteDocuments}}
+    </div>
+    <div class="col-sm-9">
+      <a href="#">New Folder</a>
+      {{> uploadModal}}
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th></th>
+            <th></th>
+            <th></th>
+            <th>Name</th>
+            <th>Type</th>
+            <th>Date</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          {{#each mydocuments}}
+            <tr>
+              <td>check box</td>
+              <td>favorite</td>
+              <td>icon</td>
+              <td>{{name}}</td>
+              <td>{{type}}</td>
+              <td>{{date}}</td>
+              <td>more</td>
+            </tr>
+          {{/each}}
+        </tbody>
+      </table>
+    </div>
+  </div>
+</template>

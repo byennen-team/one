@@ -24,6 +24,7 @@ ddp@1.0.11
 deps@1.0.5
 digilord:roles@1.2.12
 directory@0.0.0
+documents@0.0.0
 ejson@1.0.4
 fastclick@1.0.1
 feed@0.0.0
@@ -52,7 +53,6 @@ left-nav@0.0.0
 lepozepo:s3@4.1.1
 lepozepo:streams@0.2.0
 less@1.0.11
-library@0.0.0
 livedata@1.0.11
 loading@0.0.0
 locales@0.0.0

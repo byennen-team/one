@@ -30,7 +30,6 @@ profile
 routes
 settings
 users-elliman
-library
 apps
 notifications
 calendar
@@ -41,3 +40,4 @@ feed
 messages
 search
 directory
+documents

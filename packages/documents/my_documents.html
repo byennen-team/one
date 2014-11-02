@@ -1,21 +1,13 @@
-<template name="library">
+<template name="myDocuments">
   <div class="row">
     <div class="col-sm-3">
-      <a href="#">My Library</a>
-      <a href="#">Company Library</a>
-      <h2>Favorites</h2>
-      <ul>
-        {{#each favorites}}
-          <li>
-            <span>{{name}}</span>
-          </li>
-        {{/each}}
-      </ul>
+      <a href="{{pathFor 'myDocuments'}}">My Documents</a>
+      <a href="{{pathFor 'companyDocuments'}}">Company Documents</a>
+      {{> favoriteDocuments}}
     </div>
     <div class="col-sm-9">
       <a href="#">New Folder</a>
-      <a href="#">Upload File</a>
-      {{> documentUploader}}
+      {{> uploadModal}}
       <table class="table table-striped">
         <thead>
           <tr>
@@ -29,7 +21,7 @@
           </tr>
         </thead>
         <tbody>
-          {{#each documents}}
+          {{#each companydocuments}}
             <tr>
               <td>check box</td>
               <td>favorite</td>
