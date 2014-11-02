@@ -1,5 +1,5 @@
-Meteor.subscribe('users');
-
-Template.directory.helpers = function () {
-  return Meteor.users.find();
-};
+Template.directory.helpers({
+  users: function () {
+    return Meteor.users.find({}, {limit: 50});
+  }
+});

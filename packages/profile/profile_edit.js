@@ -1,10 +1,3 @@
-var pictureUploadCallback = function (error, result) {
-  if (error) return;
-
-  //ProfileEdit._profileEdits.pictureUrl = Files.url(result.filePath);
-  //ProfileEdit._profileEditsDep.changed();
-};
-
 Template.profileEdit.events({
   'change .upload': function (event) {
     Profile.uploadPictureFromForm(event.target.files[0], function (error, result) {

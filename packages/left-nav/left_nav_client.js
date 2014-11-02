@@ -1,9 +1,12 @@
 Template.leftNav.helpers({
-  profile: function(){
-    return Meteor.user().profile;
+  profile: function () {
+    var user = Meteor.user();
+    return user && user.profile;
   },
-  fullname: function(){
+  fullName: function () {
     var currentUser = Meteor.user();
+    if (!currentUser) return '';
+
     return currentUser.profile.firstName + " " + currentUser.profile.lastName;
   }
 });
