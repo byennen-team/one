@@ -14,7 +14,6 @@ boilerplate-generator@1.0.1
 calendar@0.0.0
 callback-hook@1.0.1
 check@1.0.2
-coffeescript@1.0.4
 companies@0.0.0
 ctl-helper@1.0.4
 ctl@1.0.2
@@ -50,8 +49,6 @@ json@1.0.1
 launch-screen@1.0.0
 layout@0.0.0
 left-nav@0.0.0
-lepozepo:s3@4.1.1
-lepozepo:streams@0.2.0
 less@1.0.11
 livedata@1.0.11
 loading@0.0.0
