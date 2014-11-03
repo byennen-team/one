@@ -9,16 +9,6 @@ Meteor.publish('user', function () {
   return Meteor.users.find(this.userId);
 });
 
-/**
- * Publish the current user.
- */
-Meteor.publish('users', function () {
-  if (!this.userId) return [];
-
-  // TODO only publish users from the same company
-  return Meteor.users.find({}, {fields: {_id: 1, profile: 1}});
-});
-
 Meteor.methods({
   /**
    * Setup a custom login method for elliman.

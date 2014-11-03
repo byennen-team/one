@@ -14,16 +14,13 @@ Router.map(function () {
   });
 
   this.route(Routes.LOGOUT, {
-    path: '/logout',
     action: function () {
       Meteor.logout();
       this.redirect(Routes.LOGIN);
     }
   });
 
-  this.route(Routes.APPS, {
-    path: '/apps'
-  });
+  this.route(Routes.APPS);
 
   this.route(Routes.COMPANY_DOCUMENTS, {
     path: '/company-documents'
@@ -33,36 +30,22 @@ Router.map(function () {
     path: '/my-documents'
   });
 
-  this.route(Routes.MESSAGES, {
-    path: '/messages'
-  });
+  this.route(Routes.MESSAGES);
 
-  this.route(Routes.DASHBOARD, {
-    path: '/dashboard',
-    waitOn : function () {
-      return Meteor.subscribe('user');
-    }
-  });
+  this.route(Routes.DASHBOARD);
 
-  this.route(Routes.DIRECTORY, {
-    path: '/directory',
-    waitOn : function () {
-      return Meteor.subscribe('users');
-    }
-  });
+  this.route(Routes.DIRECTORY);
 
   this.route(Routes.PROFILE_EDIT, {
     path: '/profile/edit',
-    data: function() {
+    data: function () {
       if (Meteor.user()) {
         return Meteor.user().profile;
       }
     }
   });
 
-  this.route(Routes.SUPPORT, {
-    path: '/support'
-  });
+  this.route(Routes.SUPPORT);
 
   /* Admin */
   this.route(Routes.Admin.DASHBOARD, {
@@ -81,3 +64,10 @@ Router.map(function () {
     path: '/admin/companies/new'
   });
 });
+
+if (Meteor.isClient) {
+  Tracker.autorun(function () {
+    var searchText = Session.get('searchText');
+    return Meteor.subscribe('searchResults', searchText);
+  });
+}
