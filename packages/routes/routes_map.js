@@ -67,7 +67,6 @@ Router.map(function () {
 
 if (Meteor.isClient) {
   Tracker.autorun(function () {
-    var searchText = Session.get('searchText');
-    return Meteor.subscribe('searchResults', searchText);
+    return Meteor.subscribe('searchResults', Search.text());
   });
 }
