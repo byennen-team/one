@@ -1,7 +1,21 @@
 <template name="searchBox">
-    <input class="search">
-
-    <!-- {{#each results}}
-        <h1>{{profile.firstName}}</h1>
-    {{/each}} -->
+  <input type="text" name="search" class="search" placeholder="One search...">
+  <div class="results row">
+    <div class="col-sm-12">
+      <ul>
+        {{#each results}}
+          <li>
+            <div class="col-sm-12">
+              <div class="col-sm-4">
+                <img src="{{profile.photoUrl}}" class="profile-image img-circle"/>=
+              </div>
+              <div class="name col-sm-8">
+                <span>{{profile.firstName}} {{profile.lastName}}</span>
+              </div>
+            </div>
+          </li>
+        {{/each}}
+      </ul>
+    </div>
+  </div>
 </template>

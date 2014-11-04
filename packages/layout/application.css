@@ -73,12 +73,6 @@ a:focus {
   background-size: 90px auto;
   text-indent: -9999px;
 }
-.search {
-  margin: 0;
-  padding: 0;
-  height: 100%;
-  float: right;
-}
 .company-apps-button {
   float: right;
   padding: 2px 13px 8px 13px;
