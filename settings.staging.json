@@ -2,8 +2,8 @@
   "AWS_BUCKET": "goone-staging",
   "AWS_ACCESS_KEY_ID": "AKIAIRIH744ERKEXHPOA",
   "AWS_SECRET_ACCESS_KEY": "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",
-  "MONGO_URL": "",
-  "MONGO_OPLOG_URL": "",
+  "MONGO_URL": "mongodb://le@gooneapp.com:8taQua0F@candidate.33.mongolayer.com:10269,candidate.32.mongolayer.com:10269/goone_staging?autoReconnect=true&connectTimeoutMS=60000",
+  "MONGO_OPLOG_URL": "mongodb://le@gooneapp.com:8taQua0F@candidate.33.mongolayer.com:10269,candidate.32.mongolayer.com:10269/local?authSource=goone_staging",
   "public": {
     "AWS_BUCKET_URL": "https://goone-dev.s3.amazonaws.com",
     "ENVIRONMENT": "staging"
