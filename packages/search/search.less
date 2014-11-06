@@ -1,9 +1,8 @@
-.search {
+.searchBox {
   margin: 0;
   padding: 0;
-  height: 100%;
-  width: 20%;
   float: right;
+  height: 70px;
 }
 
 input.search[type="text"] {
@@ -21,6 +20,8 @@ input.search[type="text"] {
   opacity: .3;
   padding-left: 40px;
   color: #b9c4cf;
+  height: 100%;
+  width: 100%;
 }
 
 input.search[type="text"]:focus {
@@ -36,14 +37,12 @@ input.search[type="text"]:focus {
   right: 70px;
   margin: 0;
   padding: 0;
-  width: 20%;
   background: white;
   img.profile-image {
     width: 50px;
     height: 50px;
-  }
-  .name {
-    margin-top: 20px;
+    float: left;
+    margin-right: 10px;
   }
   ul {
     list-style: none;
@@ -51,8 +50,23 @@ input.search[type="text"]:focus {
     padding: 0;
   }
   li {
+    // height: 90px;
     display: block;
-    height: 70px;
-    margin-top: 20px;
+    margin: 0;
+    padding: 20px 5px 20px 10px;
+    border-bottom: 1px solid #e1e7ed;
+    .name {
+      padding-top: 10px;
+      color: #1c376c;
+    }
+    .title {
+      font-size: 12px;
+      color: #a2a2a2;
+    }
+    .type {
+      float: right;
+      margin: 13px 5px 0 0;
+      color: #b1becc;
+    }
   }
 }
