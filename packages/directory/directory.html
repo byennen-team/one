@@ -1,7 +1,15 @@
 <template name="directory">
   <h1 class="header-green">One Directory</h1>
-
   <div class="container">
+    <div class="row">
+      <div class="col-sm-12">
+        <ul class="alphabet">
+          {{#each alphabets}}
+            <li><a href="directory/{{this}}">{{this}}</a></li>
+          {{/each}}
+        </ul>
+      </div>
+    </div>
     <div class="row">
       <div class="col-sm-12">
         <table class="table table-striped">
@@ -11,15 +19,19 @@
               <th>First Name</th>
               <th>Last Name</th>
               <th>Title</th>
+              <th></th>
+              <th></th>
             </tr>
           </thead>
           <tbody>
             {{#each users}}
               <tr>
                 <td><img src="{{profile.photoUrl}}" class="profile-image img-circle"/></td>
-                <td>{{profile.firstName}}</td>
+                <td class="name">{{profile.firstName}}</td>
                 <td>{{profile.lastName}}</td>
                 <td>{{profile.title}}</td>
+                <td><i class="fa fa-lg fa-comment"></i></td>
+                <td><i class="fa fa-lg fa-info-circle"></i></td>
               </tr>
             {{/each}}
           </tbody>
@@ -27,5 +39,4 @@
       </div>
     </div>
   </div>
-
 </template>

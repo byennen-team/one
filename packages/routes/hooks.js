@@ -30,3 +30,11 @@ Tracker.autorun(function () {
     Router.go(Routes.DASHBOARD, {}, {replaceState: true});
   }
 });
+
+// set HTML class for current page
+Router.onBeforeAction(function() {
+  $('body').attr('class', '').removeClass();
+  var currentPage = Router.current().route.getName();
+  $('body').addClass(currentPage);
+  this.next();
+});

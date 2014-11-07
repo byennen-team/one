@@ -6,7 +6,7 @@ var searchUsers = function (searchText) {
   MongoInternals.defaultRemoteCollectionDriver().mongo.db.executeDbCommand({
     text: 'users',
     search: searchText,
-    limit: 50,
+    limit: 6,
     project: {
       _id: 1 // Only take the ids
     }
@@ -34,7 +34,7 @@ Meteor.publish('searchResults', function (searchText) {
   if (!this.userId) throw new Meteor.Error('Invalid credentials');
 
   // TODO only publish users from the same company
-  if (!searchText || !searchText.length) return Meteor.users.find({}, {fields: {_id: 1, profile: 1}, limit: 50});
+  if (!searchText || !searchText.length) return Meteor.users.find({}, {fields: {_id: 1, profile: 1}, limit: 6});
 
   var userIds = searchUsers(searchText);
 
