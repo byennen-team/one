@@ -14,6 +14,7 @@ boilerplate-generator@1.0.1
 calendar@0.0.0
 callback-hook@1.0.1
 check@1.0.2
+coffeescript@1.0.4
 companies@0.0.0
 ctl-helper@1.0.4
 ctl@1.0.2
@@ -38,12 +39,12 @@ iron:controller@1.0.0
 iron:core@1.0.0
 iron:dynamic-template@1.0.0
 iron:layout@1.0.0
-iron:location@1.0.0
+iron:location@1.0.1
 iron:middleware-stack@1.0.0
-iron:router@1.0.0
+iron:router@1.0.1
 iron:url@1.0.0
 jonperl:match-ex@0.1.2
-joshowens:simple-form@0.2.0
+joshowens:simple-form@0.2.2
 jquery@1.0.1
 json@1.0.1
 launch-screen@1.0.0
@@ -80,6 +81,7 @@ reload@1.1.1
 retry@1.0.1
 routepolicy@1.0.2
 routes@0.0.0
+schnie:uploader@2.0.3
 search@0.0.0
 service-configuration@1.0.2
 session@1.0.4

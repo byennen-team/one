@@ -8,14 +8,15 @@ Package.onUse(function (api) {
   api.use('files', both);
 
   api.use('random', 'server');
-  api.use(['templating', 'joshowens:simple-form'], 'web');
+  api.use(['templating', 'joshowens:simple-form', 'less'], 'web');
 
   api.addFiles('profile.js', both);
 
   api.addFiles('profile.js', 'server');
 
   api.addFiles([
-    'profile_edit.html', 'profile_edit.js', 'upload_picture_form.js'
+    'profile_edit.html', 'profile_edit.js', 'upload_picture_form.js',
+    'profile.less'
   ], 'web');
 
   api.addFiles('profile_server.js', 'server');

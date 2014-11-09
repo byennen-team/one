@@ -1,25 +1,99 @@
 <template name="profileEdit">
-  <form id="profile">
-    <h1>Profile</h1>
-    <img src="{{photoUrl}}"/>
-    <input class="upload" type="file">
-    <br/>
-    {{text_field 'firstName'}}
-    {{text_field 'lastName'}}
-    {{text_field 'title'}}
-    {{text_field 'company'}}
-    {{text_field 'company_website'}}
+  <h1 class=header-blue>One Account</h1>
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-12">
+        <h2>Profile</h2>
+        <form>
+          <div class="row">
+            <div class="col-sm-4">
+              <div class="row">
+                <div class="col-sm-6">
+                  <img src="{{photoUrl}}" class="profile-image img-circle"/>
+                </div>
+                <div class="col-sm-6">
+                  <input class="upload new-pic" type="file" title="">
+                </div>
+              </div>
+            </div>
+            <div class="col-sm-8">
+              <div class="row">
+                <div class="col-sm-6">
+                  <div class="input-wrapper">
+                    {{text_field 'firstName'}}
+                  </div>
+                </div>
+                <div class="col-sm-6">
+                  <div class="input-wrapper">
+                    {{text_field 'lastName'}}
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-sm-12">
+                  <div class="input-wrapper">
+                    {{text_field 'title'}}
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-4">
+              {{text_field 'company'}}
+            </div>
+            <div class="col-sm-8">
+              {{text_field 'company_website'}}
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-12">
+              <h2>Contact Information</h2>
+              <div class="row">
+                <div class="col-sm-6">
+                  {{text_field 'office'}}
+                </div>
+                <div class="col-sm-6">
+                  {{text_field 'phone'}}
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-6">
+              {{text_field 'email'}}
+            </div>
+            <div class="col-sm-6">
+              {{text_field 'personal_website'}}
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-6">
+              {{text_field 'address'}}
+            </div>
+            <div class="col-sm-6">
+              {{text_field 'apt_suite'}}
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-6">
+              {{text_field 'city'}}
+            </div>
+            <div class="col-sm-3">
+              {{text_field 'state'}}
+            </div>
+            <div class="col-sm-3">
+              {{text_field 'zip'}}
+            </div>
+          </div>
 
-    <h2>Contact Information</h2>
-    {{text_field 'office'}}
-    {{text_field 'phone'}}
-    {{text_field 'email'}}
-    {{text_field 'personal_website'}}
-    {{text_field 'address'}}
-    {{text_field 'apt_suite'}}
-    {{text_field 'city'}}
-    {{text_field 'state'}}
-    {{text_field 'zip'}}
-    {{submit_button 'Save Changes'}}
-  </form>
+          <div class="row">
+            <div class="col-sm-12 text-center">
+              {{submit_button 'Save Changes'}}
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
 </template>

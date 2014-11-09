@@ -1,3 +1,7 @@
+Template.profileEdit.render = function () {
+  $('.upload').attr('title', '');
+};
+
 Template.profileEdit.events({
   'change .upload': function (event) {
     Profile.uploadPictureFromForm(event.target.files[0], function (error, result) {
