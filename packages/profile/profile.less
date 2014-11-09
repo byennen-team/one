@@ -3,10 +3,17 @@
   h2 {
     color: #5bb8d7;
     border-bottom: 1px solid #ccc;
+    margin-bottom: 40px;
+    padding-bottom: 10px;
   }
   .profile-image {
     width: 150px;
     height: 150px;
+  }
+  input.new-pic {
+    margin-top: 30px;
+    width: 165px;
+    height: 50px;
   }
   .new-pic::-webkit-file-upload-button {
     visibility: hidden;
@@ -17,7 +24,7 @@
     background: #5bb8d7;
     color: white;
     border-radius: 3px;
-    padding: 8px 8px;
+    padding: 12px 8px;
     outline: none;
     white-space: nowrap;
     -webkit-user-select: none;
@@ -26,16 +33,37 @@
     font-size: 10pt;
     text-align: center;
     text-transform: uppercase;
-    overflow: hidden;
-    width: 150px;
+    width: 100%;
+    letter-spacing: 2px;
   }
   .new-pic:hover::before {
     border-color: black;
   }
   .new-pic:active::before {
-    background: -webkit-linear-gradient(top, #e3e3e3, #f9f9f9);
+    background: #5bb8d7;
   }
-  .input-wrapper {
-    border: 1px solid #000;
+  .form-group {
+    border: 1px solid #c5d3e1;
+    padding-bottom: 10px;
+  }
+  input[type="text"] {
+    appearance: none;
+    box-shadow: none;
+    border-radius: none;
+    border: none 0;
+    color: #78838e;
+    margin: 0 10px;
+    padding: 0;
+    font-size: 18px;
+  }
+  label {
+    margin: 15px 10px 0;
+    padding: 0;
+    text-transform: uppercase;
+    color: #a3b3c3;
+    letter-spacing: 2px;
+  }
+  button {
+    margin: 40px 0;
   }
 }

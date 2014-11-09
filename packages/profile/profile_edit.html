@@ -13,25 +13,26 @@
                 </div>
                 <div class="col-sm-6">
                   <input class="upload new-pic" type="file" title="">
+                  <a href="#" class="delete btn btn-default btn-block">Delete</a>
                 </div>
               </div>
             </div>
             <div class="col-sm-8">
               <div class="row">
                 <div class="col-sm-6">
-                  <div class="input-wrapper">
+                  <div class="form-group">
                     {{text_field 'firstName'}}
                   </div>
                 </div>
                 <div class="col-sm-6">
-                  <div class="input-wrapper">
+                  <div class="form-group">
                     {{text_field 'lastName'}}
                   </div>
                 </div>
               </div>
               <div class="row">
-                <div class="col-sm-12">
-                  <div class="input-wrapper">
+                <div class="col-sm-12 ">
+                  <div class="form-group">
                     {{text_field 'title'}}
                   </div>
                 </div>
@@ -40,56 +41,78 @@
           </div>
           <div class="row">
             <div class="col-sm-4">
-              {{text_field 'company'}}
+              <div class="form-group">
+                {{text_field 'company'}}
+              </div>
             </div>
             <div class="col-sm-8">
-              {{text_field 'company_website'}}
+              <div class="form-group">
+                {{text_field 'company_website'}}
+              </div>
             </div>
           </div>
           <div class="row">
             <div class="col-sm-12">
               <h2>Contact Information</h2>
               <div class="row">
-                <div class="col-sm-6">
-                  {{text_field 'office'}}
+                <div class="col-sm-6 ">
+                  <div class="form-group">
+                    {{text_field 'office'}}
+                  </div>
                 </div>
-                <div class="col-sm-6">
-                  {{text_field 'phone'}}
+                <div class="col-sm-6 ">
+                  <div class="form-group">
+                    {{text_field 'phone'}}
+                  </div>
                 </div>
               </div>
             </div>
           </div>
           <div class="row">
-            <div class="col-sm-6">
-              {{text_field 'email'}}
+            <div class="col-sm-6 ">
+              <div class="form-group">
+                {{text_field 'email'}}
+              </div>
             </div>
-            <div class="col-sm-6">
-              {{text_field 'personal_website'}}
-            </div>
-          </div>
-          <div class="row">
-            <div class="col-sm-6">
-              {{text_field 'address'}}
-            </div>
-            <div class="col-sm-6">
-              {{text_field 'apt_suite'}}
+            <div class="col-sm-6 ">
+              <div class="form-group">
+                {{text_field 'personal_website'}}
+              </div>
             </div>
           </div>
           <div class="row">
-            <div class="col-sm-6">
-              {{text_field 'city'}}
+            <div class="col-sm-6 ">
+              <div class="form-group">
+                {{text_field 'address'}}
+              </div>
             </div>
-            <div class="col-sm-3">
-              {{text_field 'state'}}
+            <div class="col-sm-6 ">
+              <div class="form-group">
+                {{text_field 'apt_suite'}}
+              </div>
             </div>
-            <div class="col-sm-3">
-              {{text_field 'zip'}}
+          </div>
+          <div class="row">
+            <div class="col-sm-6 ">
+              <div class="form-group">
+                {{text_field 'city'}}
+              </div>
+            </div>
+            <div class="col-sm-3 ">
+              <div class="form-group">
+                {{text_field 'state'}}
+              </div>
+            </div>
+            <div class="col-sm-3 ">
+              <div class="form-group">
+                {{text_field 'zip'}}
+              </div>
             </div>
           </div>
 
           <div class="row">
             <div class="col-sm-12 text-center">
-              {{submit_button 'Save Changes'}}
+              <button type="submit" class="btn btn-primary btn-lg">Save Changes</button>
             </div>
           </div>
         </form>

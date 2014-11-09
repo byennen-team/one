@@ -1,5 +1,5 @@
 Package.describe({
-  summary: 'A light wrapper for the aws sdk.'
+  summary: 'A light  for the aws sdk.'
 });
 
 Package.onUse(function (api) {
