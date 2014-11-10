@@ -64,9 +64,3 @@ Router.map(function () {
     path: '/admin/companies/new'
   });
 });
-
-if (Meteor.isClient) {
-  Tracker.autorun(function () {
-    return Meteor.subscribe('searchResults', Search.text());
-  });
-}

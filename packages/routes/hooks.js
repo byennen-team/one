@@ -23,18 +23,15 @@ Router.onBeforeAction(function () {
   }
 }, {except: [Routes.LOGIN, Routes.LOGOUT]});
 
-// Auto-redirect a signed in user.
-Tracker.autorun(function () {
-  var currentRoute = Router.current();
-  if (Meteor.user() && currentRoute && currentRoute.route.getName() === Routes.LOGIN) {
-    Router.go(Routes.DASHBOARD, {}, {replaceState: true});
-  }
+// set HTML class for current page
+Router.onBeforeAction(function () {
+  $('body').removeClass().addClass(Routes.getName());
+  this.next();
 });
 
-// set HTML class for current page
-Router.onBeforeAction(function() {
-  $('body').attr('class', '').removeClass();
-  var currentPage = Router.current().route.getName();
-  $('body').addClass(currentPage);
-  this.next();
+// Auto-redirect a signed in user.
+Tracker.autorun(function () {
+  if (Meteor.user() && Routes.getName() === Routes.LOGIN) {
+    Router.go(Routes.DASHBOARD, {}, {replaceState: true});
+  }
 });

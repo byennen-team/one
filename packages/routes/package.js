@@ -7,8 +7,10 @@ Package.onUse(function (api) {
 
   api.use('iron:router', both);
 
-  api.use(['session', 'tracker', 'underscore', 'authorization', 'search'], 'web');
+  api.use(['session', 'tracker', 'underscore', 'authorization'], 'web');
 
   api.addFiles(['routes_enum.js', 'routes_map.js'], both);
-  api.addFiles('hooks.js', 'web');
+  api.addFiles(['hooks.js', 'routes_client.js'], 'web');
+
+  api.export('Routes', both);
 });

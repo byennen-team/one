@@ -117,10 +117,6 @@
       "1.0.1"
     ],
     [
-      "less",
-      "1.0.11"
-    ],
-    [
       "localstorage",
       "1.0.1"
     ],
@@ -171,10 +167,6 @@
     [
       "routepolicy",
       "1.0.2"
-    ],
-    [
-      "search",
-      "0.0.0"
     ],
     [
       "service-configuration",

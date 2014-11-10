@@ -1,18 +1,20 @@
 <template name="searchBox">
-  <div class="searchBox col-sm-4">
-    <input type="text" name="search" class="search" placeholder="One search...">
-  </div>
-  <div class="results col-sm-4">
-    <ul>
-      {{#each results}}
-        <li>
-          <b class="type">Directory</b>
-          <img src="{{profile.photoUrl}}" class="profile-image img-circle"/>
-          <span class="name">{{profile.firstName}} {{profile.lastName}}</span>
-          <br>
-          <span class="title">{{profile.title}}</span>
-        </li>
-      {{/each}}
-    </ul>
-  </div>
+    <div class="searchBox col-sm-4">
+        <input type="text" name="search" class="search" placeholder="One search...">
+    </div>
+    {{#unless hide}}
+        <div class="results col-sm-4">
+            <ul>
+                {{#each results}}
+                    <li>
+                        <b class="type">Directory</b>
+                        <img src="{{profile.photoUrl}}" class="profile-image img-circle"/>
+                        <span class="name">{{profile.firstName}} {{profile.lastName}}</span>
+                        <br>
+                        <span class="title">{{profile.title}}</span>
+                    </li>
+                {{/each}}
+            </ul>
+        </div>
+    {{/unless}}
 </template>
