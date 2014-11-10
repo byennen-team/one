@@ -7,6 +7,21 @@ var filterByLetter = function () {
   return null;
 };
 
+var getOptions = function () {
+  var options = {
+    text: Search.text(),
+    letter: filterByLetter(),
+    limit: Search.limit.get()
+  };
+
+  if (!options.text) delete options.text;
+  if (!options.letter) delete options.letter;
+
+  return options;
+};
+
+Search.limit = new ReactiveVar(100);
+
 Search.text = function (searchText) {
   if (typeof searchText === 'string') Session.set('searchText', searchText);
 
@@ -15,18 +30,6 @@ Search.text = function (searchText) {
 
 // Reset search on startup
 Search.text('');
-
-var getOptions = function () {
-  var options = {
-    text: Search.text(),
-    letter: filterByLetter()
-  };
-
-  if (!options.text) delete options.text;
-  if (!options.letter) delete options.letter;
-
-  return options;
-};
 
 Search.results = function () {
   return Search.cursor(getOptions());

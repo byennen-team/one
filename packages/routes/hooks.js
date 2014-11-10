@@ -29,6 +29,11 @@ Router.onBeforeAction(function () {
   this.next();
 });
 
+Router.onBeforeAction(function () {
+  Search.limit.set(6);
+  this.next();
+}, {except: [Routes.DIRECTORY]});
+
 // Auto-redirect a signed in user.
 Tracker.autorun(function () {
   if (Meteor.user() && Routes.getName() === Routes.LOGIN) {

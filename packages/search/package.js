@@ -5,7 +5,10 @@ Package.describe({
 //Question: If I include user-elliman package should I be able to find the user?
 Package.onUse(function (api) {
   var both = ['web', 'server'];
-  api.use(['less', 'session', 'templating', 'tracker', 'routes'], 'web');
+  api.use([
+    'less', 'reactive-var', 'session',
+    'templating', 'tracker', 'routes'
+  ], 'web');
 
   api.addFiles('search.js', both);
   api.addFiles(['search.html', 'search.less', 'search_client.js'], 'web');

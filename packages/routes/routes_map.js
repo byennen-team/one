@@ -35,7 +35,11 @@ Router.map(function () {
   this.route(Routes.DASHBOARD);
 
   this.route(Routes.DIRECTORY, {
-    path: '/directory/:letter?'
+    path: '/directory/:letter?',
+    onBeforeAction: function () {
+      Search.limit.set(100);
+      this.next();
+    }
   });
 
   this.route(Routes.PROFILE_EDIT, {
