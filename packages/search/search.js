@@ -30,5 +30,10 @@ Search.cursor = function (search, options) {
     else selector = containsSelector;
   }
 
-  return Meteor.users.find(selector, options || {});
+  if (!selector) selector = {};
+
+  options = options || {};
+  options.sort = {'profile.lastName': 1};
+
+  return Meteor.users.find(selector, options);
 };
