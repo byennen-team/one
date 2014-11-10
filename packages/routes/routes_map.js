@@ -34,7 +34,9 @@ Router.map(function () {
 
   this.route(Routes.DASHBOARD);
 
-  this.route(Routes.DIRECTORY);
+  this.route(Routes.DIRECTORY, {
+    path: '/directory/:letter?'
+  });
 
   this.route(Routes.PROFILE_EDIT, {
     path: '/profile/edit',

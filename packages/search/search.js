@@ -1,23 +1,34 @@
 Search = {};
 
-Search.results = function () {
-  var searchText = Search.text();
-
-  var containsPattern = {$regex: new RegExp('.*' + searchText + '.*', 'i')};
-
-  return Meteor.users.find({
-    $or: [
-      {'profile.firstName': containsPattern},
-      {'profile.lastName': containsPattern},
-      {'profile.title': containsPattern}
-    ]
-  });
+var contains = function (str) {
+  return {$regex: new RegExp('.*' + str + '.*', 'i')};
 };
 
-Search.text = function (searchText) {
-  if (typeof searchText === 'string') Session.set('searchText', searchText);
-  return Session.get('searchText');
+var startsWith = function (str) {
+  return {$regex: new RegExp('^' + str, 'i')};
 };
 
-// Reset search on startup
-Search.text('');
+Search.cursor = function (search, options) {
+  var selector;
+
+  if (search.letter) {
+    selector = {'profile.lastName': startsWith(search.letter)};
+  }
+
+  if (search.text) {
+    var containsRegex = contains(search.text);
+
+    var containsSelector = {
+      $or: [
+        {'profile.firstName': containsRegex},
+        {'profile.lastName': containsRegex},
+        {'profile.title': containsRegex}
+      ]
+    };
+
+    if (selector) selector = {$and: [selector, containsSelector]};
+    else selector = containsSelector;
+  }
+
+  return Meteor.users.find(selector, options || {});
+};
