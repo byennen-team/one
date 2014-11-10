@@ -2,7 +2,7 @@
   "dependencies": [
     [
       "aldeed:simple-schema",
-      "0.1.0"
+      "1.1.0"
     ],
     [
       "aws-sdk",
@@ -15,6 +15,10 @@
     [
       "blaze",
       "2.0.3"
+    ],
+    [
+      "check",
+      "1.0.2"
     ],
     [
       "deps",
