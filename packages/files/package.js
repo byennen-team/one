@@ -3,10 +3,15 @@ Package.describe({
 });
 
 Package.onUse(function (api) {
+  var both = ['web', 'server'];
+
+  api.use('aldeed:simple-schema', both);
+
   api.use('aws-sdk', 'server');
 
-  api.addFiles(['files.js', 'folder.js'], ['web', 'server']);
+  api.addFiles(['files.js', 'folder.js'], both);
   api.addFiles('files_server.js', 'server');
+  api.addFiles('files_client.js', 'web');
 
-  api.export(['Files', 'Folder'], ['web', 'server']);
+  api.export(['Files', 'FileTools', 'Folder'], both);
 });

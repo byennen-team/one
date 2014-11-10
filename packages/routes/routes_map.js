@@ -22,12 +22,14 @@ Router.map(function () {
 
   this.route(Routes.APPS);
 
-  this.route(Routes.COMPANY_DOCUMENTS, {
-    path: '/company-documents'
+  this.route(Routes.MY_DOCUMENTS, {
+    path: '/documents',
+    template: 'documents'
   });
 
-  this.route(Routes.MY_DOCUMENTS, {
-    path: '/my-documents'
+  this.route(Routes.COMPANY_DOCUMENTS, {
+    path: '/documents/company',
+    template: 'documents'
   });
 
   this.route(Routes.MESSAGES);

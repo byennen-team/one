@@ -15,8 +15,7 @@ Package.onUse(function (api) {
   api.addFiles('profile.js', 'server');
 
   api.addFiles([
-    'profile_edit.html', 'profile_edit.js', 'upload_picture_form.js',
-    'profile.less'
+    'profile_edit.html', 'profile_edit.js', 'profile.less'
   ], 'web');
 
   api.addFiles('profile_server.js', 'server');

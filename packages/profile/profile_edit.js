@@ -1,10 +1,6 @@
-Template.profileEdit.render = function () {
-  $('.upload').attr('title', '');
-};
-
 Template.profileEdit.events({
   'change .upload': function (event) {
-    Profile.uploadPictureFromForm(event.target.files[0], function (error, result) {
+    FileTools.upload('signProfilePictureUpload', event.target.files[0], function (error, result) {
       if (error) return; // TODO error message
 
       var photoUrl = Meteor.settings.public.AWS_BUCKET_URL + '/' + result.filePath;

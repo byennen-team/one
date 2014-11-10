@@ -3,8 +3,15 @@ Package.describe({
 });
 
 Package.onUse(function (api) {
+  var both = ['web', 'server'];
+
   api.use(['templating', 'less'], 'web');
-  api.addFiles(['my_documents.html', 'company_documents.html', 'favorite_documents.html',
-                'documents_widget.html', 'documents.less', 'upload_modal.html']
-                , 'web');
+  api.use('files', both);
+
+  api.addFiles([
+    'favorite_documents.html', 'documents.html', 'documents.js',
+    'documents_widget.html', 'documents.less'
+  ], 'web');
+
+  api.addFiles('documents_server.js', 'server');
 });

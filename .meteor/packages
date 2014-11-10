@@ -3,18 +3,22 @@
 # 'meteor add' and 'meteor remove' will edit this file for you,
 # but you can also edit it by hand.
 
+# Meteor Packages
+
+audit-argument-checks
+meteor-platform
+
 # Atmosphere Packages
 
 iron:router
 mizzao:bootstrap-3
-meteor-platform
-
-# Our Packages
-
 natestrauser:font-awesome
 stevezhu:velocity.js@0.1.0
 mrt:moment
 joshowens:simple-form
+
+# Our Packages
+
 admin
 authorization
 companies

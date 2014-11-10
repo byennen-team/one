@@ -23,16 +23,21 @@ Router.onBeforeAction(function () {
   }
 }, {except: [Routes.LOGIN, Routes.LOGOUT]});
 
-// set HTML class for current page
 Router.onBeforeAction(function () {
-  $('body').removeClass().addClass(Routes.getName());
+  Meteor.subscribe('files');
   this.next();
-});
+}, {only: [Routes.COMPANY_DOCUMENTS, Routes.MY_DOCUMENTS]});
 
 Router.onBeforeAction(function () {
   Search.limit.set(6);
   this.next();
 }, {except: [Routes.DIRECTORY]});
+
+// set HTML class for current page
+Router.onBeforeAction(function () {
+  $('body').removeClass().addClass(Routes.getName());
+  this.next();
+});
 
 // Auto-redirect a signed in user.
 Tracker.autorun(function () {

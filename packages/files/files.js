@@ -1,6 +1,17 @@
-Files = {};
+Files = new Meteor.Collection('files');
 
-Files.ext = function (fileName) {
+Files.schema = new SimpleSchema({
+  //companyId: {type: String, optional: true, regEx: SimpleSchema.RegEx.Id},
+  companyDocument: {type: Boolean},
+  name: {type: String},
+  uploadDate: {type: Date},
+  userId: {type: String, regEx: SimpleSchema.RegEx.Id}
+});
+
+// Can't name this File or it will conflict with the HTML5 File.
+FileTools = {};
+
+FileTools.ext = function (fileName) {
   return fileName.substr(fileName.lastIndexOf('.') + 1);
 };
 
@@ -8,6 +19,6 @@ Files.ext = function (fileName) {
  * The url of the file.
  * @param filePath
  */
-Files.url = function (filePath) {
+FileTools.url = function (filePath) {
   return Meteor.settings.public.AWS_BUCKET_URL + '/' + filePath;
 };
