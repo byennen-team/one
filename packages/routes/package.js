@@ -10,7 +10,8 @@ Package.onUse(function (api) {
   api.use(['session', 'tracker', 'underscore', 'authorization'], 'web');
 
   api.addFiles(['routes_enum.js', 'routes_map.js'], both);
-  api.addFiles(['hooks.js', 'routes_client.js'], 'web');
+
+  api.addFiles(['routes_client.js', 'hooks.js'], 'web');
 
   api.export('Routes', both);
 });

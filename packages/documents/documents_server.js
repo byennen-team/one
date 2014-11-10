@@ -1,4 +1,20 @@
 Meteor.methods({
+  favoriteDocument: function (fileId, favorite) {
+    check(fileId, String);
+    check(favorite, Boolean);
+
+    var user = Meteor.user();
+    if (!user) throw new Meteor.Error('Invalid credentials');
+
+    var modifier = {
+      favoriteDocumentIds: fileId
+    };
+
+    if (favorite) modifier = {$addToSet: modifier};
+    else modifier = {$pull: modifier};
+
+    Meteor.users.update(user._id, modifier);
+  },
   signCompanyFileUpload: function (fileName, mimeType) {
     check(fileName, String);
     check(mimeType, String);

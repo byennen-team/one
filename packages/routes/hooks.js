@@ -26,7 +26,7 @@ Router.onBeforeAction(function () {
 Router.onBeforeAction(function () {
   Meteor.subscribe('files');
   this.next();
-}, {only: [Routes.COMPANY_DOCUMENTS, Routes.MY_DOCUMENTS]});
+}, {only: [Routes.DASHBOARD, Routes.COMPANY_DOCUMENTS, Routes.MY_DOCUMENTS]});
 
 Router.onBeforeAction(function () {
   Search.limit.set(6);

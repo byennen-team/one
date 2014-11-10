@@ -24,7 +24,7 @@
                 <tbody>
                 {{#each files}}
                     <tr>
-                        <td>check box</td>
+                        <td><input type="checkbox" {{isFavoriteChecked this}}></td>
                         <td>favorite</td>
                         <td>icon</td>
                         <td><a href="{{url this}}" target="_blank">{{name}}</a></td>
