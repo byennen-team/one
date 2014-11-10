@@ -5,13 +5,13 @@ Package.describe({
 Package.onUse(function (api) {
   var both = ['web', 'server'];
 
-  api.use(['templating', 'less'], 'web');
+  api.use(['templating', 'less', 'mrt:moment'], 'web');
   api.use('files', both);
 
   api.addFiles([
     'favorite_documents.html', 'favorite_documents.js',
     'documents.html', 'documents.js',
-    'documents_widget.html', 'documents.less'
+    'documents_widget.html', 'documents.less', 'documents_menu.html'
   ], 'web');
 
   api.addFiles('documents_server.js', 'server');
