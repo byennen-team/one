@@ -11,7 +11,7 @@ Template.documents.events({
   'click input[type=checkbox]': function (event) {
     var checkbox = event.target;
 
-    var file = Blaze.getElementData(checkbox);
+    var file = Blaze.getData(checkbox);
     Meteor.call('favoriteDocument', file._id, checkbox.checked);
   }
 });

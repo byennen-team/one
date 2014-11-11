@@ -4,9 +4,8 @@ Router.onBeforeAction(function () {
 
   if (!Roles.userIsInRole(user, ['admin'])) {
     this.redirect('login');
-  } else {
-    this.next();
   }
+  this.next();
 }, {only: _.values(Routes.Admin)});
 
 // Ensure the user is logged in.
@@ -18,9 +17,8 @@ Router.onBeforeAction(function () {
   var user = Meteor.user();
   if (!user) {
     Router.go(Routes.LOGIN);
-  } else {
-    this.next();
   }
+  this.next();
 }, {except: [Routes.LOGIN, Routes.LOGOUT]});
 
 Router.onBeforeAction(function () {
