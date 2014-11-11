@@ -8,32 +8,36 @@
         <a href="#">New Folder</a>
         <button type="button" class="upload">Upload File</button>
         <input type="file" class="hide">
-        <table class="table table-striped">
-          <thead>
-            <tr>
-              <th></th>
-              <th></th>
-              <th></th>
-              <th>Name</th>
-              <th>Type</th>
-              <th>Date</th>
-              <th></th>
-            </tr>
-          </thead>
-          <tbody>
-            {{#each files}}
-              <tr>
-                <td><input type="checkbox" {{isFavoriteChecked this}}></td>
-                <td>favorite</td>
-                <td>icon</td>
-                <td><a href="{{url this}}" target="_blank">{{name}}</a></td>
-                <td>{{type}}</td>
-                <td>{{uploadDate}}</td>
-                <td>more</td>
-              </tr>
-            {{/each}}
-          </tbody>
-        </table>
+        <div class="row">
+          <div class="col-sm-12">
+            <table class="table table-striped">
+              <thead>
+                <tr>
+                  <th></th>
+                  <th></th>
+                  <th></th>
+                  <th>Name</th>
+                  <th>Type</th>
+                  <th>Date</th>
+                  <th></th>
+                </tr>
+              </thead>
+              <tbody>
+                {{#each files}}
+                  <tr>
+                    <td><input type="checkbox" {{isFavoriteChecked this}}></td>
+                    <td>favorite</td>
+                    <td>icon</td>
+                    <td><a href="{{url this}}" target="_blank">{{name}}</a></td>
+                    <td>{{type}}</td>
+                    <td>{{uploadDate}}</td>
+                    <td>more</td>
+                  </tr>
+                {{/each}}
+              </tbody>
+            </table>
+          </div>
+        </div>
       </div>
     </div>
 </template>
