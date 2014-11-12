@@ -1,42 +1,93 @@
 // set body background
 .myDocuments, .companyDocuments {
   background: white;
-}
-
-// Fix leftnav margin
-.documents {
-  margin-left: 0;
-}
-
-// left side background color 100% height
-.leftside {
-  background: #f1f4f8;
-  padding-bottom: 100%;
-  margin-bottom: -100%;
-}
-
-// favorites
-.favorites {
-  padding-left: 15px;
-  i {
-    color: #ffb685;
-    padding-right: 10px;
+  // Fix leftnav margin
+  .documents {
+    margin-left: 0;
   }
-  h2 {
-    font-size: 20pt;
-    color: #a3b3c3;
-    border-bottom: 1px solid #c5d0e2;
-    padding-bottom: 10px;
+
+  // left side background color 100% height
+  .leftside {
+    background: #f1f4f8;
+    padding-bottom: 100%;
+    margin-bottom: -100%;
   }
-  li {
-    list-style: none;
-    margin-bottom: 20px;
-    p {
-      color: #1c376c;
-      margin: 0;
+
+  // new folder and upload file options
+  .options {
+    border-bottom: 2px solid #ededed;
+    display: block;
+    padding: 90px 0 30px;
+    a {
+      padding-left: 20px
     }
-    span {
-      color: #8195a7;
+    .folder {
+      color: #a4a0df;
+    }
+    .upload {
+      color: #5bb8d7;
+    }
+  }
+
+  // favorites
+  .favorites {
+    padding-left: 15px;
+    i {
+      color: #ffb685;
+      padding-right: 10px;
+    }
+    h2 {
+      font-size: 20pt;
+      color: #a3b3c3;
+      border-bottom: 1px solid #c5d0e2;
+      padding-bottom: 10px;
+    }
+    li {
+      list-style: none;
+      margin-bottom: 20px;
+      p {
+        color: #1c376c;
+        margin: 0;
+      }
+      span {
+        color: #8195a7;
+      }
+    }
+  }
+
+  //table
+  table {
+    i.pdf {
+      color: #5bb8d7;
+    }
+    /*** custom stars for favorites ***/
+    .favoriteCheckbox {
+      /* to hide the checkbox itself */
+      input[type=checkbox] {
+        display:none;
+      }
+      input[type=checkbox] + label:before {
+        font-family: FontAwesome;
+        display: inline-block;
+      }
+      /* unchecked icon */
+      input[type=checkbox] + label:before {
+        content: "\f006";
+        color: #d6ddea;
+      }
+      /* space between checkbox and label */
+      input[type=checkbox] + label:before {
+        letter-spacing: 10px;
+      }
+      /* checked icon */
+      input[type=checkbox]:checked + label:before {
+        content: "\f005";
+        color: #ffb685;
+      }
+      /* allow space for check mark */
+      input[type=checkbox]:checked + label:before {
+        letter-spacing: 5px;
+      }
     }
   }
 }

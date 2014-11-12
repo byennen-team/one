@@ -5,15 +5,19 @@
         {{> favoriteDocuments}}
       </div>
       <div class="col-sm-9">
-        <a href="#">New Folder</a>
-        <button type="button" class="upload">Upload File</button>
-        <input type="file" class="hide">
+        <div class="row">
+          <div class="options col-sm-12" style="height: 120px;">
+            <a href="#" class="folder"><i class="fa fa-folder"></i> New Folder</a>
+            <a href="#" class="upload"><i class="fa fa-cloud-upload"></i> Upload File</a>
+            <input type="file" class="hide">
+          </div>
+        </div>
         <div class="row">
           <div class="col-sm-12">
-            <table class="table table-striped">
+            <table class="table">
               <thead>
                 <tr>
-                  <th></th>
+                  <!-- <th></th> -->
                   <th></th>
                   <th></th>
                   <th>Name</th>
@@ -25,9 +29,12 @@
               <tbody>
                 {{#each files}}
                   <tr>
-                    <td><input type="checkbox" {{isFavoriteChecked this}}></td>
-                    <td>favorite</td>
-                    <td>icon</td>
+                    <!-- <td><input type="checkbox" ></td> -->
+                    <td class="favoriteCheckbox">
+                      <input id="box-{{_id}}" type="checkbox" {{isFavoriteChecked this}}/>
+                      <label for="box-{{_id}}"></label>
+                    </td>
+                    <td><i class="fa fa-file pdf"></i></td>
                     <td><a href="{{url this}}" target="_blank">{{name}}</a></td>
                     <td>{{type}}</td>
                     <td>{{uploadDate}}</td>
