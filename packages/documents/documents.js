@@ -42,5 +42,11 @@ Template.documents.helpers({
     }
 
     return FileTools.url(folder + '/' + file.name);
+  },
+  date: function (file) {
+    return moment(file.uploadDate).format('MMM D, YYYY');
+  },
+  type: function (file) {
+    return file.name.split('.').pop();
   }
 });

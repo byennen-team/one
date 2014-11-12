@@ -35,10 +35,22 @@
                       <label for="box-{{_id}}"></label>
                     </td>
                     <td><i class="fa fa-file pdf"></i></td>
-                    <td><a href="{{url this}}" target="_blank">{{name}}</a></td>
-                    <td>{{type}}</td>
-                    <td>{{uploadDate}}</td>
-                    <td>more</td>
+                    <td><a href="{{url this}}" target="_blank" class="name">{{name}}</a></td>
+                    <td><span class="type">{{type this}}</span></td>
+                    <td>{{date this}}</td>
+                    <td>
+                      <div class="btn-group">
+                        <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                          More <span class="caret"></span>
+                        </button>
+                        <ul class="dropdown-menu" role="menu">
+                          <li><a href="#"><i class="fa fa-floppy-o"></i> Save</a></li>
+                          <li><a href="#"><i class="fa fa-download"></i> Download</a></li>
+                          <li><a href="#"><i class="fa fa-share"></i> Share</a></li>
+                          <li><a href="#"><i class="fa fa-print"></i> Print</a></li>
+                        </ul>
+                      </div>
+                    </td>
                   </tr>
                 {{/each}}
               </tbody>

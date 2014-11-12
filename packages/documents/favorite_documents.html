@@ -5,8 +5,15 @@
       <ul>
         {{#each favorites}}
           <li>
-            <p>{{name}}</p>
-            <span>{{uploadDate}}</span>
+            <div class="row">
+              <div class="col-sm-1 filetype">
+                <i class="fa fa-file"></i>
+              </div>
+              <div class="col-sm-11">
+                <p>{{name}}</p>
+                <span>{{date this}}</span>
+              </div>
+            </div>
           </li>
         {{/each}}
       </ul>
