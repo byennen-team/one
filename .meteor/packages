@@ -16,6 +16,7 @@ natestrauser:font-awesome
 stevezhu:velocity.js@0.1.0
 mrt:moment
 joshowens:simple-form
+aldeed:simple-schema
 
 # Our Packages
 
@@ -43,5 +44,4 @@ messages
 search
 directory
 documents
-aldeed:simple-schema
-
+favorite-documents

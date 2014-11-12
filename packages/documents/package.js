@@ -1,3 +1,4 @@
+
 Package.describe({
   summary: 'One Documents'
 });
@@ -9,9 +10,8 @@ Package.onUse(function (api) {
   api.use('files', both);
 
   api.addFiles([
-    'favorite_documents.html', 'favorite_documents.js', 'favorite_documents.less',
-    'documents.html', 'documents.js',
-    'documents_widget.html', 'documents.less', 'documents_menu.html'
+    'documents.html', 'documents.js', 'documents.less',
+    'documents_widget.html', 'documents_menu.html'
   ], 'web');
 
   api.addFiles('documents_server.js', 'server');
