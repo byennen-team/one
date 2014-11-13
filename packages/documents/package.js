@@ -6,7 +6,7 @@ Package.describe({
 Package.onUse(function (api) {
   var both = ['web', 'server'];
 
-  api.use(['templating', 'less', 'mrt:moment'], 'web');
+  api.use(['templating', 'less', 'jquery', 'mrt:moment'], 'web');
   api.use('files', both);
 
   api.addFiles([

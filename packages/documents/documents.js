@@ -13,6 +13,17 @@ Template.documents.events({
 
     var file = Blaze.getData(checkbox);
     Meteor.call('favoriteDocument', file._id, checkbox.checked);
+  },
+  'click .print': function (event, template) {
+    event.preventDefault();
+    var file = window.open(event.target.getAttribute("href"));
+    file.print();
+  },
+  'click .download': function (event) {
+    event.preventDefault();
+    var a = $("<a>").attr("href", event.target.getAttribute("href")).attr("download", "img.png").appendTo("body");
+    a[0].click();
+    a.remove();
   }
 });
 

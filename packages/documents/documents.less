@@ -87,14 +87,15 @@
     .open .dropdown-toggle.btn-default {
       color: #74cfce;
       background: none;
-      border-color: 0 none;
-      box-shadow: 0 none;
-      -webkit-box-shadow: 0 none;
+      border-color: none;
+      box-shadow: none;
+      -webkit-box-shadow: none;
     }
     .dropdown-menu {
       background: #f4fafa;
-      box-shadow: 0;
-      -webkit-box-shadow: 0;
+      box-shadow: none;
+      border-color: #d9e4ee;
+      -webkit-box-shadow: none;
       text-transform: uppercase;
       letter-spacing: 2px;
       a {
@@ -104,6 +105,10 @@
         color: #74cfce;
         padding-right: 5px;
       }
+    }
+    .btn-group.open .dropdown-toggle {
+      -webkit-box-shadow: none;
+      box-shadow: none;
     }
   }
 }
