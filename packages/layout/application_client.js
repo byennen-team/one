@@ -11,9 +11,3 @@ Template.application.helpers({
     return getProfileUrl(Meteor.user());
   }
 });
-
-Template.header.helpers({
-  activeForRoute: function (routeName) {
-    return Routes.getName() === routeName ? 'active' : '';
-  }
-});
