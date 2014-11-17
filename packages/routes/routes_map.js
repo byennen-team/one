@@ -44,8 +44,8 @@ Router.map(function () {
     }
   });
 
-  this.route(Routes.PROFILE_EDIT, {
-    path: '/profile/edit',
+  this.route(Routes.ACCOUNT_SETTINGS, {
+    path: '/account-settings',
     data: function () {
       if (Meteor.user()) {
         return Meteor.user().profile;

@@ -29,7 +29,6 @@ loading
 locales
 login
 not-found
-profile
 routes
 settings
 users-elliman
@@ -46,3 +45,4 @@ directory
 documents
 favorite-documents
 navbar
+account-settings

@@ -1,4 +1,6 @@
-Template.profileEdit.events({
+Profile = {};
+
+Template.accountSettings.events({
   'change .upload': function (event) {
     FileTools.upload('signProfilePictureUpload', event.target.files[0], function (error, result) {
       if (error) return; // TODO error message

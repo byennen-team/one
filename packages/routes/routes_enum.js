@@ -3,7 +3,7 @@ Routes = {
   DIRECTORY: 'directory',
   LOGIN: 'login',
   LOGOUT: 'logout',
-  PROFILE_EDIT: 'profileEdit',
+  ACCOUNT_SETTINGS: 'accountSettings',
   APPS: 'apps',
   MY_DOCUMENTS: 'myDocuments',
   COMPANY_DOCUMENTS: 'companyDocuments',
