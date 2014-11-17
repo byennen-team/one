@@ -1,9 +1,9 @@
 <template name="searchBox">
-    <div class="searchBox col-sm-4">
-        <input type="text" name="search" class="search" placeholder="One search...">
+    <div class="searchBox col-sm-4 hidden-xs">
+        <input type="text" name="search" class="search" placeholder="Search...">
     </div>
     {{#unless hide}}
-        <div class="results col-sm-4">
+        <div class="results col-sm-4 hidden-xs">
             <ul>
                 {{#each results}}
                     <li>
