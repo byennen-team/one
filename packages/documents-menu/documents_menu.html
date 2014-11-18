@@ -2,21 +2,18 @@
   <div class="row">
     <div class="documentsMenu col-sm-12">
       <ul>
-        <li>
-          <a href="{{pathFor 'myDocuments'}}">
-            My Documents
+        <li class="dropdown-active">
+          <a href="{{pathFor url}}">
+            {{icon}}
+            {{current_page}}
             <i class="fa fa-sort-desc"></i>
           </a>
         </li>
-        <ul class="dropdown">
+        <ul class="dropdown col-sm-12">
           <li>
-            <a href="{{pathFor 'myDocuments'}}">
-              My Documents
-            </a>
-          </li>
-          <li>
-            <a href="{{pathFor 'companyDocuments'}}">
-              Company Documents
+            <a href="{{pathFor next_url}}">
+              {{icon}}
+              {{next_page}}
             </a>
           </li>
         </ul>
