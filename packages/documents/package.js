@@ -11,7 +11,7 @@ Package.onUse(function (api) {
 
   api.addFiles([
     'documents.html', 'documents.js', 'documents.less',
-    'documents_widget.html', 'documents_menu.html'
+    'documents_widget.html'
   ], 'web');
 
   api.addFiles('documents_server.js', 'server');
