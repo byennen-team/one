@@ -2,20 +2,9 @@
   <div class="row">
     <div class="documentsMenu col-sm-12">
       <ul>
-        <li class="dropdown-active">
-          <a href="{{pathFor url}}">
-            {{icon}}
-            {{current_page}}
-            <i class="fa fa-sort-desc"></i>
-          </a>
-        </li>
+        <li class="dropdown-active">{{{current_page}}}</li>
         <ul class="dropdown col-sm-12">
-          <li>
-            <a href="{{pathFor next_url}}">
-              {{icon}}
-              {{next_page}}
-            </a>
-          </li>
+          <li>{{{next_page}}}</li>
         </ul>
       </ul>
     </div>
