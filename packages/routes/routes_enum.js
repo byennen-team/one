@@ -4,6 +4,7 @@ Routes = {
   LOGIN: 'login',
   LOGOUT: 'logout',
   ACCOUNT_SETTINGS: 'accountSettings',
+  PROFILE: 'profile',
   APPS: 'apps',
   MY_DOCUMENTS: 'myDocuments',
   COMPANY_DOCUMENTS: 'companyDocuments',

@@ -53,6 +53,15 @@ Router.map(function () {
     }
   });
 
+  this.route(Routes.PROFILE, {
+    path: '/:firstName-:lastName',
+    data: function () {
+      if (Meteor.user()) {
+        return Meteor.user().profile;
+      }
+    }
+  });
+
   this.route(Routes.SUPPORT);
 
   /* Admin */
