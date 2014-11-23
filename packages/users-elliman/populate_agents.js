@@ -32,7 +32,8 @@ var userFromEllimanRow = function (row) {
 
   var user = {
     emails: emails,
-    profile: profile
+    profile: profile,
+    slug: User.generateSlug(profile.firstName, profile.lastName)
   };
 
   // Throw and log errors on users that do not match the model

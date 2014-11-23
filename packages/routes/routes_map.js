@@ -53,15 +53,6 @@ Router.map(function () {
     }
   });
 
-  this.route(Routes.PROFILE, {
-    path: '/:firstName-:lastName',
-    data: function () {
-      if (Meteor.user()) {
-        return Meteor.user().profile;
-      }
-    }
-  });
-
   this.route(Routes.SUPPORT);
 
   /* Admin */
@@ -79,5 +70,16 @@ Router.map(function () {
 
   this.route(Routes.Admin.COMPANIES_NEW, {
     path: '/admin/companies/new'
+  });
+
+  // Put this at the end so it does not clobber the other routes.
+  this.route(Routes.PROFILE, {
+    path: '/:slug',
+    data: function () {
+      return Meteor.users.findOne({slug: this.params.slug});
+    },
+    waitOn: function () {
+      return Meteor.subscribe('userProfile', this.params.slug);
+    }
   });
 });
