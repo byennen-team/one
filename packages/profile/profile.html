@@ -9,85 +9,7 @@
   {{/if}}
   {{/if}}
 
-  <div class='relative'>
-    <!-- <div id='drop-alert' class='drop-alert lt-purple-bg'>
-      <p class='raleway-semibold white text-uppercase spacing-125 text-center'>1 Picture added to gallery</p>
-    </div> -->
-
-
-    <div class='container info-container'>
-
-      <div class="row navy-bg info-header z-3">
-
-        <div class="col-sm-2 v-center-box hidden-xs">
-          <div class="v-center">
-            <!-- TEMPLATE - current user's avatar in SRC	  		 -->
-            <img class="img-circle img-responsive-sm" src="{{photoUrl}}"/>
-          </div>
-        </div>
-
-        <div class="fixed-xs col-sm-3 col-md-2 v-center-box z-3">
-          <div class="v-center">
-
-            <div class="dropdown">
-              <button id="status-drop-button" class="status-drop-button text-uppercase green raleway-semibold spacing-250" type="button" data-toggle="dropdown" aria-haspopup="true" role="button" aria-expanded="false" >
-                <!-- TEMPLATE - User's current status	  -->
-                In the office
-                <span class="caret user-only"></span>
-              </button>
-              <ul id="status-drop" class="status-drop dropdown-menu" role="menu" aria-labelledby="status-drop-button">
-                <li role="presentation"><div id="status-in" role="menuitem" class='raleway-semibold spacing-0625 text-uppercase green'>In the office</div></li>
-                <li role="presentation"><div id="status-out" role="menuitem" class='raleway-semibold spacing-0625 text-uppercase red'>out of office</div></li>
-                <li role="presentation"><div id="status-mobile" role="menuitem" class='raleway-semibold spacing-0625 text-uppercase accent'>mobile</div></li>
-              </ul>
-            </div>
-
-            <!-- TEMPLATE - current user's name  		 -->
-            <p class='h3 raleway-light white m-top-025'>{{firstName}} {{lastName}}</p>
-            <!-- TEMPLATE - current user's title 		 -->
-            <p class='raleway-semibold white text-uppercase spacing-250 little'>{{title}}</p>
-            <!-- TEMPLATE - add to network functionality needs to be plugged in		 -->
-            <a href='' class='raleway-semibold accent text-uppercase spacing-0625 not-for-user'>
-              <i class="fa icon-plus-circle fa-lg no-transition"></i>
-              add to team
-            </a>
-          </div>
-        </div>
-
-        <div class="fixed-xs col-sm-2 v-center-box">
-          <div class="v-center">
-            <p class='raleway-semibold accent text-uppercase spacing-0625'>address</p>
-            <!-- TEMPLATE - current user's address	  		 -->
-            <p class='raleway-light white'>575 Madison Ave</p>
-            <p class='raleway-light white'>New York, NY 10022</p>
-          </div>
-        </div>
-
-        <div class="fixed-xs col-sm-3 v-center-box">
-          <div class="v-center">
-            <p class='raleway-semibold accent text-uppercase spacing-0625'>phone</p>
-            <!-- TEMPLATE - current user's office phone  		 -->
-            <p class='raleway-light white'><span class='raleway-semibold text-uppercase spacing-0625'>office:</span> (212) 555-1234</p>
-            <!-- TEMPLATE - current user's mobile phone	  		 -->
-            <p class='raleway-light white'><span class='raleway-semibold text-uppercase spacing-0625'>mobile:</span> (212) 123-1234</p>
-          </div>
-        </div>
-
-        <div class="fixed-xs col-sm-2 col-md-3 v-center-box">
-          <div class="v-center right-0">
-            <!-- TEMPLATE - link to account settings page	  		 -->
-            <a href="#">
-              <button class='btn btn-block btn-small btn-accent raleway-semibold white text-uppercase spacing-0625 small'>account settings</button>
-            </a>
-            <!-- TEMPLATE - link to public profile  		 -->
-            <a href="#">
-              <button class='btn btn-block btn-small btn-accent-border raleway-semibold white text-uppercase spacing-0625 m-top-08'>public profile</button>
-            </a>
-          </div>
-        </div>
-      </div>
-    </div>
-
+  {{profileBanner}}
     <div class='container p-bottom-40'>
       <nav class='hidden-xs'>
         <ul class="nav nav-tabs row m-top-20">
@@ -160,12 +82,12 @@
                   <div id='x-box' class='x-box black-bg img-circle'>
                     <i class="fa icon-x-circle fa-lg white"></i>
                   </div>
-                  <div id="activity-thumb-img" class="full-bg-img" style="background-image: url(images/central-park.jpg);"></div>
+                  <div id="activity-thumb-img" class="full-bg-img" style="background-image: url(../../images/profile/central-park.jpg);"></div>
                 </div>
 
                 <div id='content-preview' class='content-preview not-lt-grey-bg'>
                   <div id="content-preview-thumb" class="content-preview-thumb">
-                    <div id="content-preview-thumb-img" class="full-bg-img" style="background-image: url(images/central-park.jpg);"></div>
+                    <div id="content-preview-thumb-img" class="full-bg-img" style="background-image: url(../../images/profile/central-park.jpg);"></div>
                   </div>
                   <p class='m-bottom-0'>
                     <span id="content-preview-header" class='header'>15 Madison Ave for sale</span>
@@ -250,7 +172,7 @@
                   <i class="fa icon-x-circle fa-lg white"></i>
                 </div>
                 <!-- TEMPLATE - gallery image url in 'style'   				-->
-                <div class="full-bg-img gallery-img" style="background-image: url(images/central-park.jpg);"></div>
+                <div class="full-bg-img gallery-img" style="background-image: url(../../images/profile/central-park.jpg);"></div>
               </div>
 
               <div class='gallery-thumbnail col-sm-6 half-gutter square pointer m-bottom-10' data-toggle="modal" data-target="#gallery-modal" data-slide-to="1">
@@ -258,7 +180,7 @@
                   <span class="sr-only">delete</span>
                   <i class="fa icon-x-circle fa-lg white"></i>
                 </div>
-                <div class="full-bg-img gallery-img" style="background-image: url(images/skyline.jpg);"></div>
+                <div class="full-bg-img gallery-img" style="background-image: url(../../images/profile/skyline.jpg);"></div>
               </div>
 
               <div class='gallery-thumbnail col-sm-6 half-gutter square pointer m-bottom-10' data-toggle="modal" data-target="#gallery-modal" data-slide-to="2">
@@ -266,7 +188,7 @@
                   <span class="sr-only">delete</span>
                   <i class="fa icon-x-circle fa-lg white"></i>
                 </div>
-                <div class="full-bg-img gallery-img" style="background-image: url(images/gallery-5.jpg);"></div>
+                <div class="full-bg-img gallery-img" style="background-image: url(../../images/profile/gallery-5.jpg);"></div>
               </div>
 
               <div class='gallery-thumbnail col-sm-6 half-gutter square pointer m-bottom-10' data-toggle="modal" data-target="#gallery-modal" data-slide-to="3">
@@ -274,7 +196,7 @@
                   <span class="sr-only">delete</span>
                   <i class="fa icon-x-circle fa-lg white"></i>
                 </div>
-                <div class="full-bg-img gallery-img" style="background-image: url(images/gallery-7.jpg);"></div>
+                <div class="full-bg-img gallery-img" style="background-image: url(../../images/profile/gallery-7.jpg);"></div>
               </div>
 
               <div class='gallery-thumbnail col-sm-6 half-gutter square pointer m-bottom-10' data-toggle="modal" data-target="#gallery-modal" data-slide-to="4">
@@ -282,7 +204,7 @@
                   <span class="sr-only">delete</span>
                   <i class="fa icon-x-circle fa-lg white"></i>
                 </div>
-                <div class="full-bg-img gallery-img" style="background-image: url(images/gallery-2.jpg);"></div>
+                <div class="full-bg-img gallery-img" style="background-image: url(../../images/profile/gallery-2.jpg);"></div>
               </div>
 
               <div class='gallery-thumbnail col-sm-6 half-gutter square pointer m-bottom-10' data-toggle="modal" data-target="#gallery-modal" data-slide-to="5">
@@ -290,7 +212,7 @@
                   <span class="sr-only">delete</span>
                   <i class="fa icon-x-circle fa-lg white"></i>
                 </div>
-                <div class="full-bg-img gallery-img" style="background-image: url(images/gallery-4.jpg);"></div>
+                <div class="full-bg-img gallery-img" style="background-image: url(../../images/profile/gallery-4.jpg);"></div>
               </div>
 
               <div class='gallery-thumbnail col-sm-6 half-gutter square pointer m-bottom-10' data-toggle="modal" data-target="#gallery-modal" data-slide-to="6">
@@ -298,7 +220,7 @@
                   <span class="sr-only">delete</span>
                   <i class="fa icon-x-circle fa-lg white"></i>
                 </div>
-                <div class="full-bg-img gallery-img" style="background-image: url(images/gallery-6.jpg);"></div>
+                <div class="full-bg-img gallery-img" style="background-image: url(../../images/profile/gallery-6.jpg);"></div>
               </div>
 
               <div class='gallery-thumbnail col-sm-6 half-gutter square pointer m-bottom-10' data-toggle="modal" data-target="#gallery-modal" data-slide-to="7">
@@ -306,7 +228,7 @@
                   <span class="sr-only">delete</span>
                   <i class="fa icon-x-circle fa-lg white"></i>
                 </div>
-                <div class="full-bg-img gallery-img" style="background-image: url(images/gallery-8.jpg);"></div>
+                <div class="full-bg-img gallery-img" style="background-image: url(../../images/profile/gallery-8.jpg);"></div>
               </div>
 
             </div>
@@ -390,7 +312,7 @@
                   <div class="p-all-10">
                     <div class="avatar pull-left">
                       <!-- TEMPLATE - Post author's avatar in SRC	  		 -->
-                      <img class="img-circle img-responsive" src="images/avatar.jpg" />
+                      <img class="img-circle img-responsive" src="../../images/profile/avatar.jpg" />
                     </div>
                     <!-- TEMPLATE - Post author's name  		 -->
                     <p class='h4 raleway-light accent m-top-0 m-bottom-0'>Marie Espinal</p>
@@ -426,7 +348,7 @@
                 </div>
                 <div class="col-sm-6 full-height">
                   <!-- TEMPLATE - Post image url in style	  		 -->
-                  <div class="full-bg-img" style="background-image: url(images/post-1.jpg);"></div>
+                  <div class="full-bg-img" style="background-image: url(../../images/profile/post-1.jpg);"></div>
                 </div>
               </div>
               <!-- TEMPLATE - Form needs to be plugged in  		 -->
@@ -451,7 +373,7 @@
               <div class="p-all-10">
                 <div class="avatar pull-left">
                   <!-- TEMPLATE - Post author's avatar in SRC	  		 -->
-                  <img class="img-circle img-responsive" src="images/avatar.jpg" />
+                  <img class="img-circle img-responsive" src="../../images/profile/avatar.jpg" />
                 </div>
                 <!-- TEMPLATE - Post author's name  		 -->
                 <p class='h4 raleway-light accent m-top-0 m-bottom-0'>Marie Espinal</p>
@@ -467,12 +389,12 @@
                 </div>
                 <div class="pull-left m-top-15 m-bottom-15">
                   <!-- TEMPLATE - b/w Avatar of user added to team	  		 -->
-                  <img class="img-circle team-img pull-left m-right-10" src="images/dottie.jpg" />
+                  <img class="img-circle team-img pull-left m-right-10" src="../../images/profile/dottie.jpg" />
                   <!-- TEMPLATE - b/w Avatars of the rest of the team	  		 -->
-                  <img class="img-circle team-img pull-left m-right-10" src="images/susan.jpg" />
-                  <img class="img-circle team-img pull-left m-right-10" src="images/ace.jpg" />
-                  <img class="img-circle team-img pull-left m-right-10" src="images/laura.jpg" />
-                  <img class="img-circle team-img pull-left m-right-10" src="images/mike.jpg" />
+                  <img class="img-circle team-img pull-left m-right-10" src="../../images/profile/susan.jpg" />
+                  <img class="img-circle team-img pull-left m-right-10" src="../../images/profile/ace.jpg" />
+                  <img class="img-circle team-img pull-left m-right-10" src="../../images/profile/laura.jpg" />
+                  <img class="img-circle team-img pull-left m-right-10" src="../../images/profile/mike.jpg" />
                 </div>
 
               </div>
@@ -501,7 +423,7 @@
                   <div class="p-all-10">
                     <div class="avatar pull-left">
                       <!-- TEMPLATE - Post author's avatar in SRC	  		 -->
-                      <img class="img-circle img-responsive" src="images/avatar.jpg" />
+                      <img class="img-circle img-responsive" src="../../images/profile/avatar.jpg" />
                     </div>
                     <!-- TEMPLATE - Post author's name  		 -->
                     <p class='h4 raleway-light accent m-top-0 m-bottom-0'>Marie Espinal</p>
@@ -537,14 +459,14 @@
                 </div>
                 <div class="col-sm-6 full-height">
                   <!-- TEMPLATE - Post image url in style	  		 -->
-                  <div class="full-bg-img" style="background-image: url(images/post-2.jpg);"></div>
+                  <div class="full-bg-img" style="background-image: url(../../images/profile/post-2.jpg);"></div>
                 </div>
               </div>
 
               <div class="comment not-lt-grey-bg">
                 <div class="avatar pull-left">
                   <!-- TEMPLATE - commenter's avatar in SRC(in color)  		 -->
-                  <img class="img-circle img-responsive" src="images/avatar-2.jpg" />
+                  <img class="img-circle img-responsive" src="../../images/profile/avatar-2.jpg" />
                 </div>
                 <!-- TEMPLATE - Commenter's name and post date 		 -->
                 <p class='raleway-regular navy m-top-025 m-bottom-0 m-left-40'>Dottie Herman on Nov 13 at 7:34pm</p>
@@ -575,7 +497,7 @@
                   <div class="p-all-10">
                     <div class="avatar pull-left">
                       <!-- TEMPLATE - Post author's avatar in SRC	  		 -->
-                      <img class="img-circle img-responsive" src="images/avatar.jpg" />
+                      <img class="img-circle img-responsive" src="../../images/profile/avatar.jpg" />
                     </div>
                     <!-- TEMPLATE - Post author's name  		 -->
                     <p class='h4 raleway-light accent m-top-0 m-bottom-0'>Marie Espinal</p>
@@ -601,14 +523,14 @@
                 </div>
                 <div class="col-sm-6 full-height">
                   <!-- TEMPLATE - Post image url in style	  		 -->
-                  <div class="full-bg-img" style="background-image: url(images/post-3.jpg);"></div>
+                  <div class="full-bg-img" style="background-image: url(../../images/profile/post-3.jpg);"></div>
                 </div>
               </div>
 
               <div class="comment not-lt-grey-bg">
                 <div class="avatar pull-left">
                   <!-- TEMPLATE - commenter's avatar in SRC(in color)  		 -->
-                  <img class="img-circle img-responsive" src="images/avatar-3.jpg" />
+                  <img class="img-circle img-responsive" src="../../images/profile/avatar-3.jpg" />
                 </div>
                 <!-- TEMPLATE - Commenter's name and post date 		 -->
                 <p class='raleway-regular navy m-top-025 m-bottom-0 m-left-40'>Ace Watanasuparp on Nov 18 at 2:34pm</p>
@@ -703,7 +625,7 @@
                     <div class="namecard cornflower-underline m-top-10">
                       <div class="avatar pull-left">
                         <!-- TEMPLATE - Potential team member's avatar(color) - url in src     100x100px 		 -->
-                        <img class="img-circle team-img pull-left m-right-10" src="images/edilyn-color.jpg" />
+                        <img class="img-circle team-img pull-left m-right-10" src="../../images/profile/edilyn-color.jpg" />
                       </div>
                       <!-- TEMPLATE - Potential team member's name 		 -->
                       <p class='h3 m-left-10 raleway-light text m-top-05 m-bottom-025 auto-width inline-block m-bottom-0'>Edilyn Abeleda</p>
@@ -723,7 +645,7 @@
                     <!-- repeated for style 		 -->
                     <div class="on-team namecard cornflower-underline m-top-10">
                       <div class="avatar pull-left">
-                        <img class="img-circle team-img pull-left m-right-10" src="images/mike-color.jpg" />
+                        <img class="img-circle team-img pull-left m-right-10" src="../../images/profile/mike-color.jpg" />
                       </div>
                       <p class='h3 m-left-10 raleway-light text m-top-05 m-bottom-025 auto-width inline-block m-bottom-0'>Mike Allen</p>
                       <br/>
@@ -738,7 +660,7 @@
                     <div class='clearfix'></div>
                     <div class="namecard cornflower-underline m-top-10">
                       <div class="avatar pull-left">
-                        <img class="img-circle team-img pull-left m-right-10" src="images/terry-color.jpg" />
+                        <img class="img-circle team-img pull-left m-right-10" src="../../images/profile/terry-color.jpg" />
                       </div>
                       <p class='h3 m-left-10 raleway-light text m-top-05 m-bottom-025 auto-width inline-block m-bottom-0'>Terry Bankey</p>
                       <br/>
@@ -753,7 +675,7 @@
                     <div class='clearfix'></div>
                     <div class="namecard cornflower-underline m-top-10">
                       <div class="avatar pull-left">
-                        <img class="img-circle team-img pull-left m-right-10" src="images/mike-color.jpg" />
+                        <img class="img-circle team-img pull-left m-right-10" src="../../images/profile/mike-color.jpg" />
                       </div>
                       <p class='h3 m-left-10 raleway-light text m-top-05 m-bottom-025 auto-width inline-block m-bottom-0'>Paul Basile</p>
                       <br/>
@@ -768,7 +690,7 @@
                     <div class='clearfix'></div>
                     <div class="namecard on-team cornflower-underline m-top-10">
                       <div class="avatar pull-left">
-                        <img class="img-circle team-img pull-left m-right-10" src="images/hakeem-color.jpg" />
+                        <img class="img-circle team-img pull-left m-right-10" src="../../images/profile/hakeem-color.jpg" />
                       </div>
                       <p class='h3 m-left-10 raleway-light text m-top-05 m-bottom-025 auto-width inline-block m-bottom-0'>Hakeem Folami</p>
                       <br/>
@@ -783,7 +705,7 @@
                     <div class='clearfix'></div>
                     <div class="namecard cornflower-underline m-top-10">
                       <div class="avatar pull-left">
-                        <img class="img-circle team-img pull-left m-right-10" src="images/dottie-color.jpg" />
+                        <img class="img-circle team-img pull-left m-right-10" src="../../images/profile/dottie-color.jpg" />
                       </div>
                       <p class='h3 m-left-10 raleway-light text m-top-05 m-bottom-025 auto-width inline-block m-bottom-0'>Dottie Herman</p>
                       <br/>
@@ -809,7 +731,7 @@
               <div class="m-bottom-20">
                 <div class="avatar pull-left">
                   <!-- TEMPLATE - Team member's avatar in SRC	  		 -->
-                  <img class="img-circle team-img pull-left m-right-10" src="images/laura.jpg" />
+                  <img class="img-circle team-img pull-left m-right-10" src="../../images/profile/laura.jpg" />
                 </div>
                 <!-- TEMPLATE - Team member's name  		 -->
                 <p class='h4 raleway-light accent m-top-0 m-bottom-025 p-left-35'>Laura Scott</p>
@@ -820,28 +742,28 @@
               <!-- Repeated for style		 -->
               <div class="m-bottom-20">
                 <div class="avatar pull-left">
-                  <img class="img-circle team-img pull-left m-right-10" src="images/susan.jpg" />
+                  <img class="img-circle team-img pull-left m-right-10" src="../../images/profile/susan.jpg" />
                 </div>
                 <p class='h4 raleway-light accent m-top-0 m-bottom-025 p-left-35'>Susan de Franca</p>
                 <p class='h6 raleway-semibold text text-uppercase spacing-125 m-top-0 m-bottom-025 p-left-525 lh-180'>president &amp; ceo de marketing</p>
               </div>
               <div class="m-bottom-20">
                 <div class="avatar pull-left">
-                  <img class="img-circle team-img pull-left m-right-10" src="images/mike.jpg" />
+                  <img class="img-circle team-img pull-left m-right-10" src="../../images/profile/mike.jpg" />
                 </div>
                 <p class='h4 raleway-light accent m-top-0 m-bottom-025 p-left-35'>Mike Allen</p>
                 <p class='h6 raleway-semibold text text-uppercase spacing-125 m-top-0 m-bottom-025 p-left-525 lh-180'>executive vp &amp; director of sales</p>
               </div>
               <div class="m-bottom-20">
                 <div class="avatar pull-left">
-                  <img class="img-circle team-img pull-left m-right-10" src="images/ace.jpg" />
+                  <img class="img-circle team-img pull-left m-right-10" src="../../images/profile/ace.jpg" />
                 </div>
                 <p class='h4 raleway-light accent m-top-0 m-bottom-025 p-left-35'>Ace Watanasuparp</p>
                 <p class='h6 raleway-semibold text text-uppercase spacing-125 m-top-0 m-bottom-025 p-left-525 lh-180'>president de capital mortgage</p>
               </div>
               <div class="m-bottom-20">
                 <div class="avatar pull-left">
-                  <img class="img-circle team-img pull-left m-right-10" src="images/dottie.jpg" />
+                  <img class="img-circle team-img pull-left m-right-10" src="../../images/profile/dottie.jpg" />
                 </div>
                 <p class='h4 raleway-light accent m-top-0 m-bottom-025 p-left-35'>Dottie Herman</p>
                 <p class='h6 raleway-semibold text text-uppercase spacing-125 m-top-0 m-bottom-025 p-left-525 lh-180'>president &amp; ceo</p>
@@ -892,7 +814,7 @@
                   <i class="fa icon-x-circle fa-lg white"></i>
                 </div>
                 <!-- TEMPLATE - gallery image url in 'style' 			-->
-                <div class="full-bg-img" style="background-image: url(images/central-park.jpg);"></div>
+                <div class="full-bg-img" style="background-image: url(../../images/profile/central-park.jpg);"></div>
               </div>
               <!-- gallery divs repeated for style -->
               <div class='gallery-square col-sm-2 half-gutter m-bottom-10 pointer' data-toggle="modal" data-target="#gallery-modal" data-slide-to="1">
@@ -900,7 +822,7 @@
                   <span class="sr-only">delete</span>
                   <i class="fa icon-x-circle fa-lg white"></i>
                 </div>
-                <div class="full-bg-img" style="background-image: url(images/gallery-5.jpg);"></div>
+                <div class="full-bg-img" style="background-image: url(../../images/profile/gallery-5.jpg);"></div>
               </div>
 
               <div class='gallery-square col-sm-2 half-gutter m-bottom-10 pointer' data-toggle="modal" data-target="#gallery-modal" data-slide-to="2">
@@ -908,7 +830,7 @@
                   <span class="sr-only">delete</span>
                   <i class="fa icon-x-circle fa-lg white"></i>
                 </div>
-                <div class="full-bg-img" style="background-image: url(images/gallery-7.jpg);"></div>
+                <div class="full-bg-img" style="background-image: url(../../images/profile/gallery-7.jpg);"></div>
               </div>
 
               <div class='gallery-square col-sm-2 half-gutter m-bottom-10 pointer' data-toggle="modal" data-target="#gallery-modal" data-slide-to="3">
@@ -916,7 +838,7 @@
                   <span class="sr-only">delete</span>
                   <i class="fa icon-x-circle fa-lg white"></i>
                 </div>
-                <div class="full-bg-img" style="background-image: url(images/gallery-1.jpg);"></div>
+                <div class="full-bg-img" style="background-image: url(../../images/profile/gallery-1.jpg);"></div>
               </div>
 
               <div class='gallery-square col-sm-2 half-gutter m-bottom-10 pointer' data-toggle="modal" data-target="#gallery-modal" data-slide-to="4">
@@ -924,7 +846,7 @@
                   <span class="sr-only">delete</span>
                   <i class="fa icon-x-circle fa-lg white"></i>
                 </div>
-                <div class="full-bg-img" style="background-image: url(images/gallery-2.jpg);"></div>
+                <div class="full-bg-img" style="background-image: url(../../images/profile/gallery-2.jpg);"></div>
               </div>
 
               <div class='gallery-square col-sm-2 half-gutter m-bottom-10 pointer' data-toggle="modal" data-target="#gallery-modal" data-slide-to="5">
@@ -932,7 +854,7 @@
                   <span class="sr-only">delete</span>
                   <i class="fa icon-x-circle fa-lg white"></i>
                 </div>
-                <div class="full-bg-img" style="background-image: url(images/gallery-4.jpg);"></div>
+                <div class="full-bg-img" style="background-image: url(../../images/profile/gallery-4.jpg);"></div>
               </div>
 
               <div class='gallery-square col-sm-2 half-gutter m-bottom-10 pointer' data-toggle="modal" data-target="#gallery-modal" data-slide-to="6">
@@ -940,7 +862,7 @@
                   <span class="sr-only">delete</span>
                   <i class="fa icon-x-circle fa-lg white"></i>
                 </div>
-                <div class="full-bg-img" style="background-image: url(images/gallery-6.jpg);"></div>
+                <div class="full-bg-img" style="background-image: url(../../images/profile/gallery-6.jpg);"></div>
               </div>
 
               <div class='gallery-square col-sm-2 half-gutter m-bottom-10 pointer' data-toggle="modal" data-target="#gallery-modal" data-slide-to="7">
@@ -948,7 +870,7 @@
                   <span class="sr-only">delete</span>
                   <i class="fa icon-x-circle fa-lg white"></i>
                 </div>
-                <div class="full-bg-img" style="background-image: url(images/gallery-8.jpg);"></div>
+                <div class="full-bg-img" style="background-image: url(../../images/profile/gallery-8.jpg);"></div>
               </div>
 
             </div>
@@ -968,42 +890,42 @@
                   <span class="sr-only">delete</span>
                   <i class="fa icon-x-circle fa-lg white"></i>
                 </div>
-                <div class="full-bg-img" style="background-image: url(images/gallery-4.jpg);"></div>
+                <div class="full-bg-img" style="background-image: url(../../images/profile/gallery-4.jpg);"></div>
               </div>
               <div class='gallery-square col-sm-2 half-gutter m-bottom-10'>
                 <div class="delete-photo user-only black-bg img-circle ">
                   <span class="sr-only">delete</span>
                   <i class="fa icon-x-circle fa-lg white"></i>
                 </div>
-                <div class="full-bg-img" style="background-image: url(images/gallery-3.jpg);"></div>
+                <div class="full-bg-img" style="background-image: url(../../images/profile/gallery-3.jpg);"></div>
               </div>
               <div class='gallery-square col-sm-2 half-gutter m-bottom-10'>
                 <div class="delete-photo user-only black-bg img-circle ">
                   <span class="sr-only">delete</span>
                   <i class="fa icon-x-circle fa-lg white"></i>
                 </div>
-                <div class="full-bg-img" style="background-image: url(images/gallery-5.jpg);"></div>
+                <div class="full-bg-img" style="background-image: url(../../images/profile/gallery-5.jpg);"></div>
               </div>
               <div class='gallery-square col-sm-2 half-gutter m-bottom-10'>
                 <div class="delete-photo user-only black-bg img-circle ">
                   <span class="sr-only">delete</span>
                   <i class="fa icon-x-circle fa-lg white"></i>
                 </div>
-                <div class="full-bg-img" style="background-image: url(images/gallery-6.jpg);"></div>
+                <div class="full-bg-img" style="background-image: url(../../images/profile/gallery-6.jpg);"></div>
               </div>
               <div class='gallery-square col-sm-2 half-gutter m-bottom-10'>
                 <div class="delete-photo user-only black-bg img-circle ">
                   <span class="sr-only">delete</span>
                   <i class="fa icon-x-circle fa-lg white"></i>
                 </div>
-                <div class="full-bg-img" style="background-image: url(images/gallery-8.jpg);"></div>
+                <div class="full-bg-img" style="background-image: url(../../images/profile/gallery-8.jpg);"></div>
               </div>
               <div class='gallery-square col-sm-2 half-gutter m-bottom-10'>
                 <div class="delete-photo user-only black-bg img-circle ">
                   <span class="sr-only">delete</span>
                   <i class="fa icon-x-circle fa-lg white"></i>
                 </div>
-                <div class="full-bg-img" style="background-image: url(images/gallery-7.jpg);"></div>
+                <div class="full-bg-img" style="background-image: url(../../images/profile/gallery-7.jpg);"></div>
               </div>
             </div>
           </div>
@@ -1024,7 +946,7 @@
               <div class="col-md-8">
                 <div class="avatar pull-left">
                   <!-- TEMPLATE - Person's avatar url in SRC	  		 -->
-                  <img class="img-circle team-img pull-left m-right-10" src="images/laura.jpg" />
+                  <img class="img-circle team-img pull-left m-right-10" src="../../images/profile/laura.jpg" />
                 </div>
                 <!-- TEMPLATE - Person's name  		 -->
                 <p class='h4 raleway-light accent m-top-0 m-bottom-025 p-left-35'>Laura Scott</p>
@@ -1056,7 +978,7 @@
             <div class='following row p-all-10'>
               <div class="col-md-8">
                 <div class="avatar pull-left">
-                  <img class="img-circle team-img pull-left m-right-10" src="images/mike.jpg" />
+                  <img class="img-circle team-img pull-left m-right-10" src="../../images/profile/mike.jpg" />
                 </div>
                 <p class='h4 raleway-light accent m-top-0 m-bottom-025 p-left-35'>Mike Allen</p>
                 <p class='h6 raleway-semibold text text-uppercase spacing-125 m-top-0 m-bottom-025 p-left-525 lh-180'>executive vp &amp; director of sales</p>
@@ -1083,7 +1005,7 @@
             <div class='row p-all-10'>
               <div class="col-md-8">
                 <div class="avatar pull-left">
-                  <img class="img-circle team-img pull-left m-right-10" src="images/dottie.jpg" />
+                  <img class="img-circle team-img pull-left m-right-10" src="../../images/profile/dottie.jpg" />
                 </div>
                 <p class='h4 raleway-light accent m-top-0 m-bottom-025 p-left-35'>Dottie Herman</p>
                 <p class='h6 raleway-semibold text text-uppercase spacing-125 m-top-0 m-bottom-025 p-left-525 lh-180'>president &amp; ceo</p>
@@ -1110,7 +1032,7 @@
             <div class='following row p-all-10'>
               <div class="col-md-8">
                 <div class="avatar pull-left">
-                  <img class="img-circle team-img pull-left m-right-10" src="images/susan.jpg" />
+                  <img class="img-circle team-img pull-left m-right-10" src="../../images/profile/susan.jpg" />
                 </div>
                 <p class='h4 raleway-light accent m-top-0 m-bottom-025 p-left-35'>Susan de Franca</p>
                 <p class='h6 raleway-semibold text text-uppercase spacing-125 m-top-0 m-bottom-025 p-left-525 lh-180'>president &amp; ceo de marketing</p>
@@ -1137,7 +1059,7 @@
             <div class='row p-all-10'>
               <div class="col-md-8">
                 <div class="avatar pull-left">
-                  <img class="img-circle team-img pull-left m-right-10" src="images/mike.jpg" />
+                  <img class="img-circle team-img pull-left m-right-10" src="../../images/profile/mike.jpg" />
                 </div>
                 <p class='h4 raleway-light accent m-top-0 m-bottom-025 p-left-35'>Mike Allen</p>
                 <p class='h6 raleway-semibold text text-uppercase spacing-125 m-top-0 m-bottom-025 p-left-525 lh-180'>executive vp &amp; director of sales</p>
@@ -1164,7 +1086,7 @@
             <div class='row p-all-10'>
               <div class="col-md-8">
                 <div class="avatar pull-left">
-                  <img class="img-circle team-img pull-left m-right-10" src="images/ace.jpg" />
+                  <img class="img-circle team-img pull-left m-right-10" src="../../images/profile/ace.jpg" />
                 </div>
                 <p class='h4 raleway-light accent m-top-0 m-bottom-025 p-left-35'>Ace Watanasuparp</p>
                 <p class='h6 raleway-semibold text text-uppercase spacing-125 m-top-0 m-bottom-025 p-left-525 lh-180'>president de capital mortgage</p>
@@ -1201,7 +1123,7 @@
               <div class="col-md-8">
                 <div class="avatar pull-left">
                   <!-- TEMPLATE - Person's avatar url in SRC	  		 -->
-                  <img class="img-circle team-img pull-left m-right-10" src="images/laura.jpg" />
+                  <img class="img-circle team-img pull-left m-right-10" src="../../images/profile/laura.jpg" />
                 </div>
                 <!-- TEMPLATE - Person's name  		 -->
                 <p class='h4 raleway-light accent m-top-0 m-bottom-025 p-left-35'>Laura Scott</p>
@@ -1233,7 +1155,7 @@
             <div class='following row p-all-10'>
               <div class="col-md-8">
                 <div class="avatar pull-left">
-                  <img class="img-circle team-img pull-left m-right-10" src="images/mike.jpg" />
+                  <img class="img-circle team-img pull-left m-right-10" src="../../images/profile/mike.jpg" />
                 </div>
                 <p class='h4 raleway-light accent m-top-0 m-bottom-025 p-left-35'>Mike Allen</p>
                 <p class='h6 raleway-semibold text text-uppercase spacing-125 m-top-0 m-bottom-025 p-left-525 lh-180'>executive vp &amp; director of sales</p>
@@ -1260,7 +1182,7 @@
             <div class='row p-all-10'>
               <div class="col-md-8">
                 <div class="avatar pull-left">
-                  <img class="img-circle team-img pull-left m-right-10" src="images/dottie.jpg" />
+                  <img class="img-circle team-img pull-left m-right-10" src="../../images/profile/dottie.jpg" />
                 </div>
                 <p class='h4 raleway-light accent m-top-0 m-bottom-025 p-left-35'>Dottie Herman</p>
                 <p class='h6 raleway-semibold text text-uppercase spacing-125 m-top-0 m-bottom-025 p-left-525 lh-180'>president &amp; ceo</p>
@@ -1287,7 +1209,7 @@
             <div class='following row p-all-10'>
               <div class="col-md-8">
                 <div class="avatar pull-left">
-                  <img class="img-circle team-img pull-left m-right-10" src="images/susan.jpg" />
+                  <img class="img-circle team-img pull-left m-right-10" src="../../images/profile/susan.jpg" />
                 </div>
                 <p class='h4 raleway-light accent m-top-0 m-bottom-025 p-left-35'>Susan de Franca</p>
                 <p class='h6 raleway-semibold text text-uppercase spacing-125 m-top-0 m-bottom-025 p-left-525 lh-180'>president &amp; ceo de marketing</p>
@@ -1314,7 +1236,7 @@
             <div class='row p-all-10'>
               <div class="col-md-8">
                 <div class="avatar pull-left">
-                  <img class="img-circle team-img pull-left m-right-10" src="images/mike.jpg" />
+                  <img class="img-circle team-img pull-left m-right-10" src="../../images/profile/mike.jpg" />
                 </div>
                 <p class='h4 raleway-light accent m-top-0 m-bottom-025 p-left-35'>Mike Allen</p>
                 <p class='h6 raleway-semibold text text-uppercase spacing-125 m-top-0 m-bottom-025 p-left-525 lh-180'>executive vp &amp; director of sales</p>
@@ -1341,7 +1263,7 @@
             <div class='row p-all-10'>
               <div class="col-md-8">
                 <div class="avatar pull-left">
-                  <img class="img-circle team-img pull-left m-right-10" src="images/ace.jpg" />
+                  <img class="img-circle team-img pull-left m-right-10" src="../../images/profile/ace.jpg" />
                 </div>
                 <p class='h4 raleway-light accent m-top-0 m-bottom-025 p-left-35'>Ace Watanasuparp</p>
                 <p class='h6 raleway-semibold text text-uppercase spacing-125 m-top-0 m-bottom-025 p-left-525 lh-180'>president de capital mortgage</p>
@@ -1367,9 +1289,4 @@
 
     </div>
   </div>
-
-
-
-</div>
-
 </template>
