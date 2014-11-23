@@ -1,7 +1,8 @@
 AWS = Npm.require('aws-sdk');
 
 AWS.config.apiVersions = {
-  ec2: '2014-09-01'
+  ec2: '2014-09-01',
+  s3: '2006-03-01'
 };
 
 AWS.config.update({
