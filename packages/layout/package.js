@@ -5,6 +5,6 @@ Package.describe({
 Package.onUse(function (api) {
   api.use(['templating', 'authorization', 'left-nav', 'less'], 'web');
   api.addFiles(['application.html', 'application_client.js', 'application.less',
-                'buttons.less', 'cleanup.less'
+                'buttons.less', 'colors.less', 'cleanup.less'
                ], 'web');
 });

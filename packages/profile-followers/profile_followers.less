@@ -1,0 +1,95 @@
+.profile {
+  .follow {
+    display: block;
+    margin-top: 1.0em;
+  }
+  .following .follow {
+    display: none;
+  }
+  .unfollow {
+    display: none;
+    margin-top: 1.5em;
+  }
+  .following .unfollow {
+    display: block;
+    position: relative;
+    height: 1em;
+  }
+  .following .unfollow .fa {
+    top: 0.15em;
+    opacity: 1;
+    transition: opacity 350ms ease-out 50ms;
+  }
+  .un {
+    color: #ffffff;
+    display: none;
+  }
+  .ing {
+    opacity: 1;
+    transition: opacity 350ms ease-out 50ms;
+  }
+  .unfollow:hover p,
+  .unfollow:hover .un {
+    color: #f26c4f;
+    display: inline;
+  }
+  .unfollow:hover .fa,
+  .unfollow:hover .ing {
+    opacity: 0;
+  }
+  .grey-underline {
+    border: 1px solid #b2c0cd;
+    border-style: none none solid none;
+  }
+  .cornflower-underline {
+    border: 1px solid #e9eef3;
+    border-style: none none solid none;
+  }
+  .followers .card,
+  .following-people .card {
+    position: relative;
+    min-height: 10em;
+  }
+  .followers .card .v-center,
+  .following-people .card .v-center {
+    width: 96%;
+  }
+  .followers .btn,
+  .following-people .btn {
+    padding-left: 2em;
+    padding-right: 2em;
+  }
+  .followers .btn:hover,
+  .following-people .btn:hover,
+  .followers .btn:focus,
+  .following-people .btn:focus {
+    color: #ffffff;
+  }
+  .followers hr,
+  .following-people hr {
+    width: 90%;
+    background-color: #cde7ef;
+    height: 1px;
+    position: absolute;
+    bottom: 0;
+  }
+
+  @media all and (min-width: 768px) and (max-width: 991px) {
+    .following .unfollow {
+      display: block;
+      text-align: center;
+    }
+  }
+  @media all and (min-width: 992px) and (max-width: 1199px) {
+    .following .unfollow .fa {
+      position: absolute;
+      left: -0.75em;
+    }
+  }
+  @media all and (min-width: 1200px) {
+    .followers .card,
+    .following .card {
+      min-height: 8em;
+    }
+  }
+}

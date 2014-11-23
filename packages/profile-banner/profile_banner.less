@@ -1,6 +1,64 @@
 .profileBanner {
   margin: 0;
-  padding: 0;
+  padding: 40px 0;
   position: relative;
-  height: 100px;
+}
+
+.profileBanner .btn:hover,
+.profileBanner .btn:focus,
+.profileBanner .btn.focus {
+  color: #ffffff;
+  text-decoration: none;
+}
+
+.profileBanner .btn {
+  font-size: 11px;
+  font-size: 1.1rem;
+  padding: 9px 24px;
+}
+
+.status-drop-button {
+  font-size: 11px;
+  font-size: 1.1rem;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  transition: color 350ms ease-out 50ms;
+}
+.little {
+  font-size: 11px;
+  font-size: 1.1rem;
+}
+.status-drop-button .caret {
+  right: 0;
+  position: absolute;
+  top: 0.9em;
+}
+.status-drop {
+  position: absolute;
+  width: 18em;
+  left: -1em;
+  padding: 0;
+  border-radius: 0;
+  z-index: 1000;
+}
+.status-drop li div {
+  font-size: 11px;
+  font-size: 1.1rem;
+  letter-spacing: 0.25em;
+  padding: 1em;
+  background-color: #e8eaeb;
+  cursor: pointer;
+  transition: background-color 350ms ease-out 50ms;
+}
+.status-drop li div:hover {
+  background-color: #cde7ef;
+}
+.status-drop .status-other {
+  background-color: #ffffff;
+  cursor: text;
+}
+.status-drop .status-other:hover {
+  background-color: #ffffff;
 }

@@ -1,0 +1,478 @@
+<template name="profileActivity">
+  <section id="section-activity" class="tab-pane fade in active row m-top-25">
+
+    <div class="col-sm-7 col-sm-offset-1 m-top-15 user-only">
+      <!-- TEMPLATE - Form needs to be plugged in  		 -->
+      <form role="form" class='add-post not-lt-grey-bg'>
+        <div class="form-group">
+          <!-- <div class="form-control" contenteditable='true'>Add a post...</div> -->
+          <textarea id='activity-textarea' class="form-control width-100" placeholder="Add a post..." required></textarea>
+
+          <div id='activity-thumb' class='thumb hidden pointer'>
+            <div id='x-box' class='x-box black-bg img-circle'>
+              <i class="fa icon-x-circle fa-lg white"></i>
+            </div>
+            <div id="activity-thumb-img" class="full-bg-img" style="background-image: url(../../images/profile/central-park.jpg);"></div>
+          </div>
+
+          <div id='content-preview' class='content-preview not-lt-grey-bg'>
+            <div id="content-preview-thumb" class="content-preview-thumb">
+              <div id="content-preview-thumb-img" class="full-bg-img" style="background-image: url(../../images/profile/central-park.jpg);"></div>
+            </div>
+            <p class='m-bottom-0'>
+              <span id="content-preview-header" class='header'>15 Madison Ave for sale</span>
+              <span id="content-preview-link" class='link'>http://eliman.com/listings/15madison/</span>
+              <br/>
+              <span id="content-preview-text" class='text'>This beautiful property is finally for sale...</span>
+            </p>
+            <!-- TEMPLATE - Should remove linked content. Hooked in in profile.js line 277ish  		 -->
+            <button id='content-preview-close' type="button" class="close">
+              <span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
+            </button>
+          </div>
+          <div class='clearfix'></div>
+
+          <div class="m-top-10 input-btn">
+            <input id='activity-image-upload' class="hidden" type="file" name="pic" accept="image/*">
+            <span class="sr-only">Upload Image</span>
+            <label for='activity-image-upload' class="fa fa-camera-retro fa-lg grey pointer"></label>
+          </div>
+
+          <div class="m-top-10 input-btn">
+            <span class="sr-only">link content</span>
+            <label class="fa fa-link fa-lg grey pointer" data-toggle="modal" data-target="#content-link-modal"></label>
+          </div>
+
+          <div class="pull-right">
+            <button type="submit" class="btn btn-small btn-grey raleway-semibold white text-uppercase spacing-0625 small">Post</button>
+          </div>
+
+          <div class='clearfix'></div>
+        </div>
+      </form>
+    </div>
+
+    <!-- Content link Modal -->
+    <div class="modal fade" id="content-link-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header accent-bg p-all-15">
+            <button type="button" class="close" data-dismiss="modal">
+              <span class="raleway-light white" aria-hidden="true">X</span>
+              <span class="sr-only">Close</span>
+            </button>
+            <h4 class="modal-title raleway-semibold white text-uppercase spacing-250 m-left-05">Link to a page</h4>
+          </div>
+          <div class="modal-body">
+            <form id='content-link-form' role="form">
+              <div class="form-group">
+                <!-- TEMPLATE - Form needs to be plugged in  		 -->
+                <input type="text" class="form-control" id="recipient-name" placeholder='Insert Link...'>
+              </div>
+              <button id='linked-content' type="button" class="btn btn-accent white text-uppercase raleway-semibold spacing-125">Add</button>
+              <button type="button" class="btn btn-grey white text-uppercase raleway-semibold spacing-125" data-dismiss="modal">Close</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <div class="col-sm-4 col-md-3 col-md-offset-1 pull-right hidden-xs m-top-20 activity-sidebar">
+      <!-- TEMPLATE - Post date		 -->
+      <p class='raleway-semibold auto-width text-uppercase purple pull-left spacing-125 left007'>gallery</p>
+      <!-- TEMPLATE - Add picture functionality		 -->
+      <form class="block pull-right user-only right007">
+        <label for='activity-gallery-image-upload' class='raleway-light auto-width purple pointer'>Add pics</label>
+        <span class="sr-only">Add Picture</span>
+        <input id='activity-gallery-image-upload' class="hidden" type="file" name="pic" accept="image/*">
+        <label for='activity-gallery-image-upload' class="fa icon-plus-circle fa-lg purple pointer lh-180"></label>
+      </form>
+
+      <div class='caret-rt m-top-05 purple pull-right not-for-user'></div>
+      <div class='clearfix'></div>
+
+      <div class='row gallery'>
+        <!-- TEMPLATE - gallery images -  600x600px min	  		 -->
+        <!-- TEMPLATE - gallery image url in 'data-pic'  	  		 -->
+        <div class='gallery-thumbnail col-sm-6 half-gutter square pointer m-bottom-10' data-toggle="modal" data-target="#gallery-modal" data-slide-to="0">
+          <!-- TEMPLATE - delete photo from album   	  		 -->
+          <div class="delete-photo user-only black-bg img-circle ">
+            <span class="sr-only">delete</span>
+            <i class="fa icon-x-circle fa-lg white"></i>
+          </div>
+          <!-- TEMPLATE - gallery image url in 'style'   				-->
+          <div class="full-bg-img gallery-img" style="background-image: url(../../images/profile/central-park.jpg);"></div>
+        </div>
+
+        <div class='gallery-thumbnail col-sm-6 half-gutter square pointer m-bottom-10' data-toggle="modal" data-target="#gallery-modal" data-slide-to="1">
+          <div class="delete-photo user-only black-bg img-circle ">
+            <span class="sr-only">delete</span>
+            <i class="fa icon-x-circle fa-lg white"></i>
+          </div>
+          <div class="full-bg-img gallery-img" style="background-image: url(../../images/profile/skyline.jpg);"></div>
+        </div>
+
+        <div class='gallery-thumbnail col-sm-6 half-gutter square pointer m-bottom-10' data-toggle="modal" data-target="#gallery-modal" data-slide-to="2">
+          <div class="delete-photo user-only black-bg img-circle ">
+            <span class="sr-only">delete</span>
+            <i class="fa icon-x-circle fa-lg white"></i>
+          </div>
+          <div class="full-bg-img gallery-img" style="background-image: url(../../images/profile/gallery-5.jpg);"></div>
+        </div>
+
+        <div class='gallery-thumbnail col-sm-6 half-gutter square pointer m-bottom-10' data-toggle="modal" data-target="#gallery-modal" data-slide-to="3">
+          <div class="delete-photo user-only black-bg img-circle ">
+            <span class="sr-only">delete</span>
+            <i class="fa icon-x-circle fa-lg white"></i>
+          </div>
+          <div class="full-bg-img gallery-img" style="background-image: url(../../images/profile/gallery-7.jpg);"></div>
+        </div>
+
+        <div class='gallery-thumbnail col-sm-6 half-gutter square pointer m-bottom-10' data-toggle="modal" data-target="#gallery-modal" data-slide-to="4">
+          <div class="delete-photo user-only black-bg img-circle ">
+            <span class="sr-only">delete</span>
+            <i class="fa icon-x-circle fa-lg white"></i>
+          </div>
+          <div class="full-bg-img gallery-img" style="background-image: url(../../images/profile/gallery-2.jpg);"></div>
+        </div>
+
+        <div class='gallery-thumbnail col-sm-6 half-gutter square pointer m-bottom-10' data-toggle="modal" data-target="#gallery-modal" data-slide-to="5">
+          <div class="delete-photo user-only black-bg img-circle ">
+            <span class="sr-only">delete</span>
+            <i class="fa icon-x-circle fa-lg white"></i>
+          </div>
+          <div class="full-bg-img gallery-img" style="background-image: url(../../images/profile/gallery-4.jpg);"></div>
+        </div>
+
+        <div class='gallery-thumbnail col-sm-6 half-gutter square pointer m-bottom-10' data-toggle="modal" data-target="#gallery-modal" data-slide-to="6">
+          <div class="delete-photo user-only black-bg img-circle ">
+            <span class="sr-only">delete</span>
+            <i class="fa icon-x-circle fa-lg white"></i>
+          </div>
+          <div class="full-bg-img gallery-img" style="background-image: url(../../images/profile/gallery-6.jpg);"></div>
+        </div>
+
+        <div class='gallery-thumbnail col-sm-6 half-gutter square pointer m-bottom-10' data-toggle="modal" data-target="#gallery-modal" data-slide-to="7">
+          <div class="delete-photo user-only black-bg img-circle ">
+            <span class="sr-only">delete</span>
+            <i class="fa icon-x-circle fa-lg white"></i>
+          </div>
+          <div class="full-bg-img gallery-img" style="background-image: url(../../images/profile/gallery-8.jpg);"></div>
+        </div>
+
+      </div>
+
+      <div class='row social-media m-top-20'>
+        <div class="col-sm-12 half-gutter">
+          <p class='raleway-semibold auto-width m-left-05 text-uppercase facebook pull-left spacing-125'>social media</p>
+          <!-- TEMPLATE - link to User's Facebook page	  		 -->
+          <a href='facebook.com' target='_blank'>
+            <div class="pull-right m-right-10">
+              <span class="sr-only">link to Facebook</span>
+              <i class="fa fa-facebook fa-lg facebook"></i>
+            </div>
+          </a>
+          <!-- TEMPLATE - link to User's Twitter page	  		 -->
+          <a href='twitter.com' target='_blank'>
+            <div class="pull-right m-right-10">
+              <span class="sr-only">link to Twitter</span>
+              <i class="fa fa-twitter fa-lg twitter"></i>
+            </div>
+          </a>
+
+          <div class='clearfix'></div>
+          <!-- TEMPLATE - Form needs to be plugged in  		 -->
+          <form role="form" class='comment-box'>
+            <!-- TEMPLATE - When User is not logged in, placeholder should be the user's twitter handle  		 -->
+            <input class='tweeter' type="text" placeholder='Write message...' >
+
+            <input id='social-facebook' type="checkbox" name="facebook" class='hidden'/>
+            <span class="sr-only user-only">facebook checkbox</span>
+            <label id='social-facebook-label' for='social-facebook' class="fa fa-facebook fa-lg fb-checkbox grey user-only"></label>
+
+            <input id='social-twitter' type="checkbox" name="twitter" class='hidden'/>
+            <span class="sr-only user-only">twitter checkbox</span>
+            <label id='social-twitter-label' for='social-twitter' class="fa fa-twitter fa-lg twitter-checkbox grey user-only"></label>
+
+          </form>
+
+
+          <div class='m-top-05 m-bottom-15 p-left-05 p-right-05'>
+            <!-- TEMPLATE - text from social media post 		 -->
+            <p class='raleway-light m-bottom-0'>New listing for 500 N Wabash!  Beautiful penthouse <a href='http://de.ly/wker' target='_blank' class='facebook' >de.ly/wker</a></p>
+            <!-- TEMPLATE - Post's date 		 -->
+            <span class='h6 raleway-semibold text-uppercase navy spacing-125'>2 hours ago</span>
+            <!-- TEMPLATE - include the spans that correspond to the networks for the post 		 -->
+            <span class="fa fa-facebook navy"></span>
+            <span class="fa fa-twitter navy"></span>
+          </div>
+
+          <!-- Next 2 divs are repeated for context 		 -->
+          <div class='m-top-05 m-bottom-15 p-left-05 p-right-05'>
+            <p class='raleway-light m-bottom-0'>Just took a  quick jog around Central Park. Love this city in the fall!  <a href='http://twitter.com/nyc' target='_blank' class='facebook' >#nyc</a></p>
+            <span class='h6 raleway-semibold text-uppercase navy spacing-125'>2 hours ago</span>
+            <span class="fa fa-twitter navy"></span>
+          </div>
+
+          <div class='m-top-05 m-bottom-15 p-left-05 p-right-05'>
+            <p class='raleway-light m-bottom-0'>Unbelievable rental available in historic SOHO rehab de.ly/2352 <a href='http://de.ly/wker' target='_blank' class='facebook' >de.ly/wker</a></p>
+            <span class='h6 raleway-semibold text-uppercase navy spacing-125'>1 day ago</span>
+            <span class="fa fa-facebook navy"></span>
+          </div>
+
+        </div>
+
+      </div>
+    </div>
+
+
+    <div class="post post-listing col-sm-7 col-sm-offset-1 m-top-20">
+      <!-- TEMPLATE - Post date		 -->
+      <p class='raleway-semibold auto-width m-left-05 text-uppercase pull-left'>2 hours ago</p>
+      <div class="pull-right">
+        <span class="sr-only">Listing:</span>
+        <i class="fa icon-listing fa-lg purple"></i>
+      </div>
+      <div class='clearfix'></div>
+
+      <div class="post-body">
+        <div class='row no-gutter relative'>
+          <div class="col-sm-6">
+            <div class="p-all-10">
+              <div class="avatar pull-left">
+                <!-- TEMPLATE - Post author's avatar in SRC	  		 -->
+                <img class="img-circle img-responsive" src="../../images/profile/avatar.jpg" />
+              </div>
+              <!-- TEMPLATE - Post author's name  		 -->
+              <p class='h4 raleway-light accent m-top-0 m-bottom-0'>Marie Espinal</p>
+              <p class='raleway-regular'>posted a <span class='raleway-semibold navy'>New Listing</span></p>
+              <!-- TEMPLATE - Listing price  		 -->
+              <p class='h1 raleway-light accent m-top-20'>$875,000</p>
+              <!-- TEMPLATE - Listing address  		 -->
+              <p class='raleway-light navy'>575 Madison Ave, New York, NY</p>
+
+              <div class='text-left lh-250'>
+                <div class='inline-block'>
+                  <span class="sr-only">Bedrooms</span>
+                  <label class="fa icon-bed fa-lg grey m-right-05"></label>
+                  <!-- TEMPLATE - Number of bedrooms in listing  		 -->
+                  <span class='h4 raleway-semibold navy m-right-10'>5</span>
+                </div>
+
+                <div class='inline-block'>
+                  <span class="sr-only">Bathrooms</span>
+                  <label class="fa icon-bath fa-lg grey m-right-05"></label>
+                  <!-- TEMPLATE - Number of bathrooms in listing  		 -->
+                  <span class='h4 raleway-semibold navy m-right-10'>5</span>
+                </div>
+
+                <div class='inline-block'>
+                  <span class="sr-only">Bedrooms</span>
+                  <label class="fa icon-sqfeet fa-lg grey m-right-05"></label>
+                  <!-- TEMPLATE - Number of square footage in listing  		 -->
+                  <span class='h4 raleway-semibold navy'>2800<span class='raleway-light'>&nbsp;ft<sup>2</sup></span></span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-6 full-height">
+            <!-- TEMPLATE - Post image url in style	  		 -->
+            <div class="full-bg-img" style="background-image: url(../../images/profile/post-1.jpg);"></div>
+          </div>
+        </div>
+        <!-- TEMPLATE - Form needs to be plugged in  		 -->
+        <form role="form" class='comment-box'>
+          <input type="text" placeholder='Leave comment...' >
+        </form>
+      </div>
+
+    </div>
+
+
+    <div class="post post-team col-sm-7 col-sm-offset-1 m-top-20">
+      <!-- TEMPLATE - Post date		 -->
+      <p class='raleway-semibold auto-width m-left-05 text-uppercase pull-left'>18 hours ago</p>
+      <div class="pull-right">
+        <span class="sr-only">New Team Member:</span>
+        <i class="fa icon-teamadd fa-lg accent"></i>
+      </div>
+      <div class='clearfix'></div>
+
+      <div class="post-body">
+        <div class="p-all-10">
+          <div class="avatar pull-left">
+            <!-- TEMPLATE - Post author's avatar in SRC	  		 -->
+            <img class="img-circle img-responsive" src="../../images/profile/avatar.jpg" />
+          </div>
+          <!-- TEMPLATE - Post author's name  		 -->
+          <p class='h4 raleway-light accent m-top-0 m-bottom-0'>Marie Espinal</p>
+          <!-- TEMPLATE - Name of new Team member 		 -->
+          <p class='raleway-regular'>added <span class='raleway-semibold accent'>Dottie Herman</span> to <span class='raleway-semibold navy'>Team</span></p>
+
+          <div class="team-connector pull-left">
+            <div class="team-connector-pipe"></div>
+            <div class="team-connector-plus">
+              <i class="fa icon-plus-circle fa-2x accent"></i>
+            </div>
+            <div class="team-connector-dash"></div>
+          </div>
+          <div class="pull-left m-top-15 m-bottom-15">
+            <!-- TEMPLATE - b/w Avatar of user added to team	  		 -->
+            <img class="img-circle team-img pull-left m-right-10" src="../../images/profile/dottie.jpg" />
+            <!-- TEMPLATE - b/w Avatars of the rest of the team	  		 -->
+            <img class="img-circle team-img pull-left m-right-10" src="../../images/profile/susan.jpg" />
+            <img class="img-circle team-img pull-left m-right-10" src="../../images/profile/ace.jpg" />
+            <img class="img-circle team-img pull-left m-right-10" src="../../images/profile/laura.jpg" />
+            <img class="img-circle team-img pull-left m-right-10" src="../../images/profile/mike.jpg" />
+          </div>
+
+        </div>
+        <div class='clearfix'></div>
+        <!-- TEMPLATE - Form needs to be plugged in  		 -->
+        <form role="form" class='comment-box'>
+          <input type="text" placeholder='Leave comment...' >
+        </form>
+      </div>
+
+    </div>
+
+
+    <div class="post post-sold col-sm-7 col-sm-offset-1 m-top-20">
+      <!-- TEMPLATE - Post date		 -->
+      <p class='raleway-semibold auto-width m-left-05 text-uppercase pull-left'>Nov 18</p>
+      <div class="pull-right">
+        <span class="sr-only">Listing Sold:</span>
+        <i class="fa icon-tag fa-lg red"></i>
+      </div>
+      <div class='clearfix'></div>
+
+      <div class="post-body">
+        <div class='row no-gutter relative'>
+          <div class="col-sm-6">
+            <div class="p-all-10">
+              <div class="avatar pull-left">
+                <!-- TEMPLATE - Post author's avatar in SRC	  		 -->
+                <img class="img-circle img-responsive" src="../../images/profile/avatar.jpg" />
+              </div>
+              <!-- TEMPLATE - Post author's name  		 -->
+              <p class='h4 raleway-light accent m-top-0 m-bottom-0'>Marie Espinal</p>
+              <p class='raleway-regular'>sold a <span class='raleway-semibold navy'>Property</span></p>
+              <!-- TEMPLATE - Listing price  		 -->
+              <p class='h1 raleway-light accent m-top-20'>$875,000</p>
+              <!-- TEMPLATE - Listing address  		 -->
+              <p class='raleway-light navy'>575 Madison Ave, New York, NY</p>
+
+              <div class='text-left lh-250'>
+                <div class='inline-block'>
+                  <span class="sr-only">Bedrooms</span>
+                  <label class="fa fa-arrows-h fa-lg grey m-right-05"></label>
+                  <!-- TEMPLATE - Number of bedrooms in listing  		 -->
+                  <span class='h4 raleway-semibold navy m-right-10'>5</span>
+                </div>
+
+                <div class='inline-block'>
+                  <span class="sr-only">Bathrooms</span>
+                  <label class="fa icon-bath fa-lg grey m-right-05"></label>
+                  <!-- TEMPLATE - Number of bathrooms in listing  		 -->
+                  <span class='h4 raleway-semibold navy m-right-10'>5</span>
+                </div>
+
+                <div class='inline-block'>
+                  <span class="sr-only">Bedrooms</span>
+                  <label class="fa icon-sqfeet fa-lg grey m-right-05"></label>
+                  <!-- TEMPLATE - Number of square footage in listing  		 -->
+                  <span class='h4 raleway-semibold navy'>2800<span class='raleway-light'>&nbsp;ft<sup>2</sup></span></span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-6 full-height">
+            <!-- TEMPLATE - Post image url in style	  		 -->
+            <div class="full-bg-img" style="background-image: url(../../images/profile/post-2.jpg);"></div>
+          </div>
+        </div>
+
+        <div class="comment not-lt-grey-bg">
+          <div class="avatar pull-left">
+            <!-- TEMPLATE - commenter's avatar in SRC(in color)  		 -->
+            <img class="img-circle img-responsive" src="../../images/profile/avatar-2.jpg" />
+          </div>
+          <!-- TEMPLATE - Commenter's name and post date 		 -->
+          <p class='raleway-regular navy m-top-025 m-bottom-0 m-left-40'>Dottie Herman on Nov 13 at 7:34pm</p>
+          <!-- TEMPLATE - Comment text		 -->
+          <p class='raleway-regular m-bottom-0 m-left-40'>I love this property! Congrats!</p>
+          <div class='clearfix'></div>
+        </div>
+        <!-- TEMPLATE - Form needs to be plugged in  		 -->
+        <form role="form" class='comment-box'>
+          <input type="text" placeholder='Leave comment...' >
+        </form>
+      </div>
+    </div>
+
+
+    <div class="post post-award col-sm-7 col-sm-offset-1 m-top-20">
+      <!-- TEMPLATE - Post date		 -->
+      <p class='raleway-semibold auto-width m-left-05 text-uppercase pull-left'>Nov 13</p>
+      <div class="pull-right">
+        <span class="sr-only">Award:</span>
+        <i class="fa fa-dollar fa-lg orange"></i>
+      </div>
+      <div class='clearfix'></div>
+
+      <div class="post-body">
+        <div class='row no-gutter relative'>
+          <div class="col-sm-6">
+            <div class="p-all-10">
+              <div class="avatar pull-left">
+                <!-- TEMPLATE - Post author's avatar in SRC	  		 -->
+                <img class="img-circle img-responsive" src="../../images/profile/avatar.jpg" />
+              </div>
+              <!-- TEMPLATE - Post author's name  		 -->
+              <p class='h4 raleway-light accent m-top-0 m-bottom-0'>Marie Espinal</p>
+              <p class='raleway-regular'>achieved a <span class='raleway-semibold navy'>Sales Record!</span></p>
+              <!-- TEMPLATE - Listing price  		 -->
+              <p class='h1 raleway-light orange m-top-10'>$500 million</p>
+              <!-- TEMPLATE - Listing address  		 -->
+              <p class='h4 raleway-light navy m-bottom-15'>1st Quarter Sales!</p>
+
+              <div class="pull-left m-left-075">
+                <span class="sr-only">Award:</span>
+                <i class="fa fa-dollar periwinkle"></i>
+              </div>
+
+              <div class='text-left m-left-20'>
+                <p class='raleway-semibold navy m-bottom-0 text-uppercase'>biggest sale</p>
+                <!-- TEMPLATE - Award winners's biggest sale  		 -->
+                <p class='raleway-light accent m-bottom-0'>$6,800,888</p>
+                <!-- TEMPLATE - Address of biggest sale 		 -->
+                <p class='raleway-light navy m-bottom-0'>575 Madison Ave, New York, NY</p>
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-6 full-height">
+            <!-- TEMPLATE - Post image url in style	  		 -->
+            <div class="full-bg-img" style="background-image: url(../../images/profile/post-3.jpg);"></div>
+          </div>
+        </div>
+
+        <div class="comment not-lt-grey-bg">
+          <div class="avatar pull-left">
+            <!-- TEMPLATE - commenter's avatar in SRC(in color)  		 -->
+            <img class="img-circle img-responsive" src="../../images/profile/avatar-3.jpg" />
+          </div>
+          <!-- TEMPLATE - Commenter's name and post date 		 -->
+          <p class='raleway-regular navy m-top-025 m-bottom-0 m-left-40'>Ace Watanasuparp on Nov 18 at 2:34pm</p>
+          <!-- TEMPLATE - Comment text		 -->
+          <p class='raleway-regular m-bottom-0 m-left-40'>What a start!</p>
+          <div class='clearfix'></div>
+        </div>
+        <!-- TEMPLATE - Form needs to be plugged in  		 -->
+        <form role="form" class='comment-box'>
+          <input type="text" placeholder='Congradulate Marie...' >
+        </form>
+      </div>
+    </div>
+  </section>
+</template>

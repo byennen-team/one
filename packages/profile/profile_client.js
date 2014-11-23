@@ -38,4 +38,5 @@ Template.profile.helpers({
     var user = Meteor.user();
     return user && user.slug === getSlug();
   }
+
 });
