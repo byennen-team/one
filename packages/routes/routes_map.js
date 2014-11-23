@@ -76,10 +76,18 @@ Router.map(function () {
   this.route(Routes.PROFILE, {
     path: '/:slug',
     data: function () {
-      return Meteor.users.findOne({slug: this.params.slug});
+      var user = Meteor.users.findOne({slug: this.params.slug});
+
+      user && Meteor.subscribe('followers', user._id);
+
+      return user;
     },
     waitOn: function () {
       return Meteor.subscribe('userProfile', this.params.slug);
     }
   });
 });
+
+if (Meteor.isClient) {
+  Meteor.subscribe('following');
+}
