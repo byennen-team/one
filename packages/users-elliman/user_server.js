@@ -18,6 +18,15 @@ Meteor.publish('userProfile', function (slug) {
   return Meteor.users.find({slug: slug}, {fields: {slug: 1, profile: 1}});
 });
 
+/**
+ * The data needed for a public user profile.
+ */
+Meteor.publish('userProfiles', function (userIds) {
+  check(userIds, [String]);
+
+  return Meteor.users.find({_id: {$in: userIds}}, {fields: {slug: 1, profile: 1}});
+});
+
 Meteor.methods({
   /**
    * Setup a custom login method for elliman.
