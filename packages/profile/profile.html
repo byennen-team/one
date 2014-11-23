@@ -1,16 +1,1375 @@
 <template name="profile">
-    {{#if isPublic}}
+  {{#if isPublic}}
 
-    {{else}}{{#if isMyProfile}}
+  {{else}}{{#if isMyProfile}}
 
-    {{else}}
-    {{! Internal profile }}
+  {{else}}
+  {{! Internal profile }}
 
-    {{/if}}
-    {{/if}}
+  {{/if}}
+  {{/if}}
 
-    <h1>{{firstName}} {{lastName}}</h1>
+  <div class='relative'>
+    <!-- <div id='drop-alert' class='drop-alert lt-purple-bg'>
+      <p class='raleway-semibold white text-uppercase spacing-125 text-center'>1 Picture added to gallery</p>
+    </div> -->
 
-    <h2>{{title}}</h2>
-    <img src="{{photoUrl}}"/>
+
+    <div class='container info-container'>
+
+      <div class="row navy-bg info-header z-3">
+
+        <div class="col-sm-2 v-center-box hidden-xs">
+          <div class="v-center">
+            <!-- TEMPLATE - current user's avatar in SRC	  		 -->
+            <img class="img-circle img-responsive-sm" src="{{photoUrl}}"/>
+          </div>
+        </div>
+
+        <div class="fixed-xs col-sm-3 col-md-2 v-center-box z-3">
+          <div class="v-center">
+
+            <div class="dropdown">
+              <button id="status-drop-button" class="status-drop-button text-uppercase green raleway-semibold spacing-250" type="button" data-toggle="dropdown" aria-haspopup="true" role="button" aria-expanded="false" >
+                <!-- TEMPLATE - User's current status	  -->
+                In the office
+                <span class="caret user-only"></span>
+              </button>
+              <ul id="status-drop" class="status-drop dropdown-menu" role="menu" aria-labelledby="status-drop-button">
+                <li role="presentation"><div id="status-in" role="menuitem" class='raleway-semibold spacing-0625 text-uppercase green'>In the office</div></li>
+                <li role="presentation"><div id="status-out" role="menuitem" class='raleway-semibold spacing-0625 text-uppercase red'>out of office</div></li>
+                <li role="presentation"><div id="status-mobile" role="menuitem" class='raleway-semibold spacing-0625 text-uppercase accent'>mobile</div></li>
+              </ul>
+            </div>
+
+            <!-- TEMPLATE - current user's name  		 -->
+            <p class='h3 raleway-light white m-top-025'>{{firstName}} {{lastName}}</p>
+            <!-- TEMPLATE - current user's title 		 -->
+            <p class='raleway-semibold white text-uppercase spacing-250 little'>{{title}}</p>
+            <!-- TEMPLATE - add to network functionality needs to be plugged in		 -->
+            <a href='' class='raleway-semibold accent text-uppercase spacing-0625 not-for-user'>
+              <i class="fa icon-plus-circle fa-lg no-transition"></i>
+              add to team
+            </a>
+          </div>
+        </div>
+
+        <div class="fixed-xs col-sm-2 v-center-box">
+          <div class="v-center">
+            <p class='raleway-semibold accent text-uppercase spacing-0625'>address</p>
+            <!-- TEMPLATE - current user's address	  		 -->
+            <p class='raleway-light white'>575 Madison Ave</p>
+            <p class='raleway-light white'>New York, NY 10022</p>
+          </div>
+        </div>
+
+        <div class="fixed-xs col-sm-3 v-center-box">
+          <div class="v-center">
+            <p class='raleway-semibold accent text-uppercase spacing-0625'>phone</p>
+            <!-- TEMPLATE - current user's office phone  		 -->
+            <p class='raleway-light white'><span class='raleway-semibold text-uppercase spacing-0625'>office:</span> (212) 555-1234</p>
+            <!-- TEMPLATE - current user's mobile phone	  		 -->
+            <p class='raleway-light white'><span class='raleway-semibold text-uppercase spacing-0625'>mobile:</span> (212) 123-1234</p>
+          </div>
+        </div>
+
+        <div class="fixed-xs col-sm-2 col-md-3 v-center-box">
+          <div class="v-center right-0">
+            <!-- TEMPLATE - link to account settings page	  		 -->
+            <a href="#">
+              <button class='btn btn-block btn-small btn-accent raleway-semibold white text-uppercase spacing-0625 small'>account settings</button>
+            </a>
+            <!-- TEMPLATE - link to public profile  		 -->
+            <a href="#">
+              <button class='btn btn-block btn-small btn-accent-border raleway-semibold white text-uppercase spacing-0625 m-top-08'>public profile</button>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class='container p-bottom-40'>
+      <nav class='hidden-xs'>
+        <ul class="nav nav-tabs row m-top-20">
+          <li role="presentation" class="active col-sm-2 raleway-semibold lt-grey text-uppercase text-center spacing-0625">
+            <a data-toggle="tab" href="#section-activity">activity</a>
+          </li>
+          <li role="presentation" class="col-sm-2 raleway-semibold lt-grey text-uppercase text-center spacing-0625">
+            <a data-toggle="tab" href="#section-about">about</a>
+          </li>
+          <li role="presentation" class="col-sm-2 raleway-semibold lt-grey text-uppercase text-center spacing-0625">
+            <a data-toggle="tab" href="#section-gallery">gallery</a>
+          </li>
+          <li role="presentation" class="col-sm-2 raleway-semibold lt-grey text-uppercase text-center spacing-0625">
+            <!-- TEMPLATE - Number of followers User has in .nav-data	  		 -->
+            <a data-toggle="tab" href="#section-followers">followers <span class='nav-data visible-lg-inline'>231</span></a>
+          </li>
+          <li role="presentation" class="col-sm-2 raleway-semibold lt-grey text-uppercase text-center spacing-0625">
+            <!-- TEMPLATE - Number of users User is following  in .nav-data 		 -->
+            <a data-toggle="tab" href="#section-following">following <span class='nav-data visible-lg-inline'>144</span></a>
+          </li>
+        </ul>
+      </nav>
+
+      <!-- dropdown mobile tabs -->
+      <nav class='visible-xs-block'>
+        <div class="dropdown">
+
+          <button class="btn dropdown-toggle btn-accent raleway-semibold white text-uppercase spacing-0625 m-top-20" type="button" id="mobile-nav-dropdown" data-toggle="dropdown" aria-expanded="true">
+            menu
+          </button>
+          <ul class="dropdown-menu" role="menu" aria-labelledby="mobile-nav-dropdown">
+            <!-- <ul class="nav nav-tabs row m-top-20"> -->
+            <li role="presentation" class="active col-sm-2 raleway-semibold lt-grey text-uppercase text-center spacing-0625">
+              <a data-toggle="tab" href="#section-activity">activity</a>
+            </li>
+            <li role="presentation" class="col-sm-2 raleway-semibold lt-grey text-uppercase text-center spacing-0625">
+              <a data-toggle="tab" href="#section-about">about</a>
+            </li>
+            <li role="presentation" class="col-sm-2 raleway-semibold lt-grey text-uppercase text-center spacing-0625">
+              <a data-toggle="tab" href="#section-gallery">gallery</a>
+            </li>
+            <li role="presentation" class="col-sm-2 raleway-semibold lt-grey text-uppercase text-center spacing-0625">
+              <a data-toggle="tab" href="#section-followers">followers</a>
+            </li>
+            <li role="presentation" class="col-sm-2 raleway-semibold lt-grey text-uppercase text-center spacing-0625">
+              <a data-toggle="tab" href="#section-following">following</a>
+            </li>
+          </ul>
+        </div>
+      </nav>
+
+
+
+
+      <div id="tab-content" class="tab-content">
+
+        <!-- ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+        ________________________________________________  Activity Tab __________________________________________________________________
+        ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||| -->
+        <section id="section-activity" class="tab-pane fade in active row m-top-25">
+
+          <div class="col-sm-7 col-sm-offset-1 m-top-15 user-only">
+            <!-- TEMPLATE - Form needs to be plugged in  		 -->
+            <form role="form" class='add-post not-lt-grey-bg'>
+              <div class="form-group">
+                <!-- <div class="form-control" contenteditable='true'>Add a post...</div> -->
+                <textarea id='activity-textarea' class="form-control width-100" placeholder="Add a post..." required></textarea>
+
+                <div id='activity-thumb' class='thumb hidden pointer'>
+                  <div id='x-box' class='x-box black-bg img-circle'>
+                    <i class="fa icon-x-circle fa-lg white"></i>
+                  </div>
+                  <div id="activity-thumb-img" class="full-bg-img" style="background-image: url(images/central-park.jpg);"></div>
+                </div>
+
+                <div id='content-preview' class='content-preview not-lt-grey-bg'>
+                  <div id="content-preview-thumb" class="content-preview-thumb">
+                    <div id="content-preview-thumb-img" class="full-bg-img" style="background-image: url(images/central-park.jpg);"></div>
+                  </div>
+                  <p class='m-bottom-0'>
+                    <span id="content-preview-header" class='header'>15 Madison Ave for sale</span>
+                    <span id="content-preview-link" class='link'>http://eliman.com/listings/15madison/</span>
+                    <br/>
+                    <span id="content-preview-text" class='text'>This beautiful property is finally for sale...</span>
+                  </p>
+                  <!-- TEMPLATE - Should remove linked content. Hooked in in profile.js line 277ish  		 -->
+                  <button id='content-preview-close' type="button" class="close">
+                    <span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
+                  </button>
+                </div>
+                <div class='clearfix'></div>
+
+                <div class="m-top-10 input-btn">
+                  <input id='activity-image-upload' class="hidden" type="file" name="pic" accept="image/*">
+                  <span class="sr-only">Upload Image</span>
+                  <label for='activity-image-upload' class="fa fa-camera-retro fa-lg grey pointer"></label>
+                </div>
+
+                <div class="m-top-10 input-btn">
+                  <span class="sr-only">link content</span>
+                  <label class="fa fa-link fa-lg grey pointer" data-toggle="modal" data-target="#content-link-modal"></label>
+                </div>
+
+                <div class="pull-right">
+                  <button type="submit" class="btn btn-small btn-grey raleway-semibold white text-uppercase spacing-0625 small">Post</button>
+                </div>
+
+                <div class='clearfix'></div>
+              </div>
+            </form>
+          </div>
+
+          <!-- Content link Modal -->
+          <div class="modal fade" id="content-link-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header accent-bg p-all-15">
+                  <button type="button" class="close" data-dismiss="modal">
+                    <span class="raleway-light white" aria-hidden="true">X</span>
+                    <span class="sr-only">Close</span>
+                  </button>
+                  <h4 class="modal-title raleway-semibold white text-uppercase spacing-250 m-left-05">Link to a page</h4>
+                </div>
+                <div class="modal-body">
+                  <form id='content-link-form' role="form">
+                    <div class="form-group">
+                      <!-- TEMPLATE - Form needs to be plugged in  		 -->
+                      <input type="text" class="form-control" id="recipient-name" placeholder='Insert Link...'>
+                    </div>
+                    <button id='linked-content' type="button" class="btn btn-accent white text-uppercase raleway-semibold spacing-125">Add</button>
+                    <button type="button" class="btn btn-grey white text-uppercase raleway-semibold spacing-125" data-dismiss="modal">Close</button>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+
+
+          <div class="col-sm-4 col-md-3 col-md-offset-1 pull-right hidden-xs m-top-20 activity-sidebar">
+            <!-- TEMPLATE - Post date		 -->
+            <p class='raleway-semibold auto-width text-uppercase purple pull-left spacing-125 left007'>gallery</p>
+            <!-- TEMPLATE - Add picture functionality		 -->
+            <form class="block pull-right user-only right007">
+              <label for='activity-gallery-image-upload' class='raleway-light auto-width purple pointer'>Add pics</label>
+              <span class="sr-only">Add Picture</span>
+              <input id='activity-gallery-image-upload' class="hidden" type="file" name="pic" accept="image/*">
+              <label for='activity-gallery-image-upload' class="fa icon-plus-circle fa-lg purple pointer lh-180"></label>
+            </form>
+
+            <div class='caret-rt m-top-05 purple pull-right not-for-user'></div>
+            <div class='clearfix'></div>
+
+            <div class='row gallery'>
+              <!-- TEMPLATE - gallery images -  600x600px min	  		 -->
+              <!-- TEMPLATE - gallery image url in 'data-pic'  	  		 -->
+              <div class='gallery-thumbnail col-sm-6 half-gutter square pointer m-bottom-10' data-toggle="modal" data-target="#gallery-modal" data-slide-to="0">
+                <!-- TEMPLATE - delete photo from album   	  		 -->
+                <div class="delete-photo user-only black-bg img-circle ">
+                  <span class="sr-only">delete</span>
+                  <i class="fa icon-x-circle fa-lg white"></i>
+                </div>
+                <!-- TEMPLATE - gallery image url in 'style'   				-->
+                <div class="full-bg-img gallery-img" style="background-image: url(images/central-park.jpg);"></div>
+              </div>
+
+              <div class='gallery-thumbnail col-sm-6 half-gutter square pointer m-bottom-10' data-toggle="modal" data-target="#gallery-modal" data-slide-to="1">
+                <div class="delete-photo user-only black-bg img-circle ">
+                  <span class="sr-only">delete</span>
+                  <i class="fa icon-x-circle fa-lg white"></i>
+                </div>
+                <div class="full-bg-img gallery-img" style="background-image: url(images/skyline.jpg);"></div>
+              </div>
+
+              <div class='gallery-thumbnail col-sm-6 half-gutter square pointer m-bottom-10' data-toggle="modal" data-target="#gallery-modal" data-slide-to="2">
+                <div class="delete-photo user-only black-bg img-circle ">
+                  <span class="sr-only">delete</span>
+                  <i class="fa icon-x-circle fa-lg white"></i>
+                </div>
+                <div class="full-bg-img gallery-img" style="background-image: url(images/gallery-5.jpg);"></div>
+              </div>
+
+              <div class='gallery-thumbnail col-sm-6 half-gutter square pointer m-bottom-10' data-toggle="modal" data-target="#gallery-modal" data-slide-to="3">
+                <div class="delete-photo user-only black-bg img-circle ">
+                  <span class="sr-only">delete</span>
+                  <i class="fa icon-x-circle fa-lg white"></i>
+                </div>
+                <div class="full-bg-img gallery-img" style="background-image: url(images/gallery-7.jpg);"></div>
+              </div>
+
+              <div class='gallery-thumbnail col-sm-6 half-gutter square pointer m-bottom-10' data-toggle="modal" data-target="#gallery-modal" data-slide-to="4">
+                <div class="delete-photo user-only black-bg img-circle ">
+                  <span class="sr-only">delete</span>
+                  <i class="fa icon-x-circle fa-lg white"></i>
+                </div>
+                <div class="full-bg-img gallery-img" style="background-image: url(images/gallery-2.jpg);"></div>
+              </div>
+
+              <div class='gallery-thumbnail col-sm-6 half-gutter square pointer m-bottom-10' data-toggle="modal" data-target="#gallery-modal" data-slide-to="5">
+                <div class="delete-photo user-only black-bg img-circle ">
+                  <span class="sr-only">delete</span>
+                  <i class="fa icon-x-circle fa-lg white"></i>
+                </div>
+                <div class="full-bg-img gallery-img" style="background-image: url(images/gallery-4.jpg);"></div>
+              </div>
+
+              <div class='gallery-thumbnail col-sm-6 half-gutter square pointer m-bottom-10' data-toggle="modal" data-target="#gallery-modal" data-slide-to="6">
+                <div class="delete-photo user-only black-bg img-circle ">
+                  <span class="sr-only">delete</span>
+                  <i class="fa icon-x-circle fa-lg white"></i>
+                </div>
+                <div class="full-bg-img gallery-img" style="background-image: url(images/gallery-6.jpg);"></div>
+              </div>
+
+              <div class='gallery-thumbnail col-sm-6 half-gutter square pointer m-bottom-10' data-toggle="modal" data-target="#gallery-modal" data-slide-to="7">
+                <div class="delete-photo user-only black-bg img-circle ">
+                  <span class="sr-only">delete</span>
+                  <i class="fa icon-x-circle fa-lg white"></i>
+                </div>
+                <div class="full-bg-img gallery-img" style="background-image: url(images/gallery-8.jpg);"></div>
+              </div>
+
+            </div>
+
+            <div class='row social-media m-top-20'>
+              <div class="col-sm-12 half-gutter">
+                <p class='raleway-semibold auto-width m-left-05 text-uppercase facebook pull-left spacing-125'>social media</p>
+                <!-- TEMPLATE - link to User's Facebook page	  		 -->
+                <a href='facebook.com' target='_blank'>
+                  <div class="pull-right m-right-10">
+                    <span class="sr-only">link to Facebook</span>
+                    <i class="fa fa-facebook fa-lg facebook"></i>
+                  </div>
+                </a>
+                <!-- TEMPLATE - link to User's Twitter page	  		 -->
+                <a href='twitter.com' target='_blank'>
+                  <div class="pull-right m-right-10">
+                    <span class="sr-only">link to Twitter</span>
+                    <i class="fa fa-twitter fa-lg twitter"></i>
+                  </div>
+                </a>
+
+                <div class='clearfix'></div>
+                <!-- TEMPLATE - Form needs to be plugged in  		 -->
+                <form role="form" class='comment-box'>
+                  <!-- TEMPLATE - When User is not logged in, placeholder should be the user's twitter handle  		 -->
+                  <input class='tweeter' type="text" placeholder='Write message...' >
+
+                  <input id='social-facebook' type="checkbox" name="facebook" class='hidden'/>
+                  <span class="sr-only user-only">facebook checkbox</span>
+                  <label id='social-facebook-label' for='social-facebook' class="fa fa-facebook fa-lg fb-checkbox grey user-only"></label>
+
+                  <input id='social-twitter' type="checkbox" name="twitter" class='hidden'/>
+                  <span class="sr-only user-only">twitter checkbox</span>
+                  <label id='social-twitter-label' for='social-twitter' class="fa fa-twitter fa-lg twitter-checkbox grey user-only"></label>
+
+                </form>
+
+
+                <div class='m-top-05 m-bottom-15 p-left-05 p-right-05'>
+                  <!-- TEMPLATE - text from social media post 		 -->
+                  <p class='raleway-light m-bottom-0'>New listing for 500 N Wabash!  Beautiful penthouse <a href='http://de.ly/wker' target='_blank' class='facebook' >de.ly/wker</a></p>
+                  <!-- TEMPLATE - Post's date 		 -->
+                  <span class='h6 raleway-semibold text-uppercase navy spacing-125'>2 hours ago</span>
+                  <!-- TEMPLATE - include the spans that correspond to the networks for the post 		 -->
+                  <span class="fa fa-facebook navy"></span>
+                  <span class="fa fa-twitter navy"></span>
+                </div>
+
+                <!-- Next 2 divs are repeated for context 		 -->
+                <div class='m-top-05 m-bottom-15 p-left-05 p-right-05'>
+                  <p class='raleway-light m-bottom-0'>Just took a  quick jog around Central Park. Love this city in the fall!  <a href='http://twitter.com/nyc' target='_blank' class='facebook' >#nyc</a></p>
+                  <span class='h6 raleway-semibold text-uppercase navy spacing-125'>2 hours ago</span>
+                  <span class="fa fa-twitter navy"></span>
+                </div>
+
+                <div class='m-top-05 m-bottom-15 p-left-05 p-right-05'>
+                  <p class='raleway-light m-bottom-0'>Unbelievable rental available in historic SOHO rehab de.ly/2352 <a href='http://de.ly/wker' target='_blank' class='facebook' >de.ly/wker</a></p>
+                  <span class='h6 raleway-semibold text-uppercase navy spacing-125'>1 day ago</span>
+                  <span class="fa fa-facebook navy"></span>
+                </div>
+
+              </div>
+
+            </div>
+          </div>
+
+
+          <div class="post post-listing col-sm-7 col-sm-offset-1 m-top-20">
+            <!-- TEMPLATE - Post date		 -->
+            <p class='raleway-semibold auto-width m-left-05 text-uppercase pull-left'>2 hours ago</p>
+            <div class="pull-right">
+              <span class="sr-only">Listing:</span>
+              <i class="fa icon-listing fa-lg purple"></i>
+            </div>
+            <div class='clearfix'></div>
+
+            <div class="post-body">
+              <div class='row no-gutter relative'>
+                <div class="col-sm-6">
+                  <div class="p-all-10">
+                    <div class="avatar pull-left">
+                      <!-- TEMPLATE - Post author's avatar in SRC	  		 -->
+                      <img class="img-circle img-responsive" src="images/avatar.jpg" />
+                    </div>
+                    <!-- TEMPLATE - Post author's name  		 -->
+                    <p class='h4 raleway-light accent m-top-0 m-bottom-0'>Marie Espinal</p>
+                    <p class='raleway-regular'>posted a <span class='raleway-semibold navy'>New Listing</span></p>
+                    <!-- TEMPLATE - Listing price  		 -->
+                    <p class='h1 raleway-light accent m-top-20'>$875,000</p>
+                    <!-- TEMPLATE - Listing address  		 -->
+                    <p class='raleway-light navy'>575 Madison Ave, New York, NY</p>
+
+                    <div class='text-left lh-250'>
+                      <div class='inline-block'>
+                        <span class="sr-only">Bedrooms</span>
+                        <label class="fa icon-bed fa-lg grey m-right-05"></label>
+                        <!-- TEMPLATE - Number of bedrooms in listing  		 -->
+                        <span class='h4 raleway-semibold navy m-right-10'>5</span>
+                      </div>
+
+                      <div class='inline-block'>
+                        <span class="sr-only">Bathrooms</span>
+                        <label class="fa icon-bath fa-lg grey m-right-05"></label>
+                        <!-- TEMPLATE - Number of bathrooms in listing  		 -->
+                        <span class='h4 raleway-semibold navy m-right-10'>5</span>
+                      </div>
+
+                      <div class='inline-block'>
+                        <span class="sr-only">Bedrooms</span>
+                        <label class="fa icon-sqfeet fa-lg grey m-right-05"></label>
+                        <!-- TEMPLATE - Number of square footage in listing  		 -->
+                        <span class='h4 raleway-semibold navy'>2800<span class='raleway-light'>&nbsp;ft<sup>2</sup></span></span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-sm-6 full-height">
+                  <!-- TEMPLATE - Post image url in style	  		 -->
+                  <div class="full-bg-img" style="background-image: url(images/post-1.jpg);"></div>
+                </div>
+              </div>
+              <!-- TEMPLATE - Form needs to be plugged in  		 -->
+              <form role="form" class='comment-box'>
+                <input type="text" placeholder='Leave comment...' >
+              </form>
+            </div>
+
+          </div>
+
+
+          <div class="post post-team col-sm-7 col-sm-offset-1 m-top-20">
+            <!-- TEMPLATE - Post date		 -->
+            <p class='raleway-semibold auto-width m-left-05 text-uppercase pull-left'>18 hours ago</p>
+            <div class="pull-right">
+              <span class="sr-only">New Team Member:</span>
+              <i class="fa icon-teamadd fa-lg accent"></i>
+            </div>
+            <div class='clearfix'></div>
+
+            <div class="post-body">
+              <div class="p-all-10">
+                <div class="avatar pull-left">
+                  <!-- TEMPLATE - Post author's avatar in SRC	  		 -->
+                  <img class="img-circle img-responsive" src="images/avatar.jpg" />
+                </div>
+                <!-- TEMPLATE - Post author's name  		 -->
+                <p class='h4 raleway-light accent m-top-0 m-bottom-0'>Marie Espinal</p>
+                <!-- TEMPLATE - Name of new Team member 		 -->
+                <p class='raleway-regular'>added <span class='raleway-semibold accent'>Dottie Herman</span> to <span class='raleway-semibold navy'>Team</span></p>
+
+                <div class="team-connector pull-left">
+                  <div class="team-connector-pipe"></div>
+                  <div class="team-connector-plus">
+                    <i class="fa icon-plus-circle fa-2x accent"></i>
+                  </div>
+                  <div class="team-connector-dash"></div>
+                </div>
+                <div class="pull-left m-top-15 m-bottom-15">
+                  <!-- TEMPLATE - b/w Avatar of user added to team	  		 -->
+                  <img class="img-circle team-img pull-left m-right-10" src="images/dottie.jpg" />
+                  <!-- TEMPLATE - b/w Avatars of the rest of the team	  		 -->
+                  <img class="img-circle team-img pull-left m-right-10" src="images/susan.jpg" />
+                  <img class="img-circle team-img pull-left m-right-10" src="images/ace.jpg" />
+                  <img class="img-circle team-img pull-left m-right-10" src="images/laura.jpg" />
+                  <img class="img-circle team-img pull-left m-right-10" src="images/mike.jpg" />
+                </div>
+
+              </div>
+              <div class='clearfix'></div>
+              <!-- TEMPLATE - Form needs to be plugged in  		 -->
+              <form role="form" class='comment-box'>
+                <input type="text" placeholder='Leave comment...' >
+              </form>
+            </div>
+
+          </div>
+
+
+          <div class="post post-sold col-sm-7 col-sm-offset-1 m-top-20">
+            <!-- TEMPLATE - Post date		 -->
+            <p class='raleway-semibold auto-width m-left-05 text-uppercase pull-left'>Nov 18</p>
+            <div class="pull-right">
+              <span class="sr-only">Listing Sold:</span>
+              <i class="fa icon-tag fa-lg red"></i>
+            </div>
+            <div class='clearfix'></div>
+
+            <div class="post-body">
+              <div class='row no-gutter relative'>
+                <div class="col-sm-6">
+                  <div class="p-all-10">
+                    <div class="avatar pull-left">
+                      <!-- TEMPLATE - Post author's avatar in SRC	  		 -->
+                      <img class="img-circle img-responsive" src="images/avatar.jpg" />
+                    </div>
+                    <!-- TEMPLATE - Post author's name  		 -->
+                    <p class='h4 raleway-light accent m-top-0 m-bottom-0'>Marie Espinal</p>
+                    <p class='raleway-regular'>sold a <span class='raleway-semibold navy'>Property</span></p>
+                    <!-- TEMPLATE - Listing price  		 -->
+                    <p class='h1 raleway-light accent m-top-20'>$875,000</p>
+                    <!-- TEMPLATE - Listing address  		 -->
+                    <p class='raleway-light navy'>575 Madison Ave, New York, NY</p>
+
+                    <div class='text-left lh-250'>
+                      <div class='inline-block'>
+                        <span class="sr-only">Bedrooms</span>
+                        <label class="fa fa-arrows-h fa-lg grey m-right-05"></label>
+                        <!-- TEMPLATE - Number of bedrooms in listing  		 -->
+                        <span class='h4 raleway-semibold navy m-right-10'>5</span>
+                      </div>
+
+                      <div class='inline-block'>
+                        <span class="sr-only">Bathrooms</span>
+                        <label class="fa icon-bath fa-lg grey m-right-05"></label>
+                        <!-- TEMPLATE - Number of bathrooms in listing  		 -->
+                        <span class='h4 raleway-semibold navy m-right-10'>5</span>
+                      </div>
+
+                      <div class='inline-block'>
+                        <span class="sr-only">Bedrooms</span>
+                        <label class="fa icon-sqfeet fa-lg grey m-right-05"></label>
+                        <!-- TEMPLATE - Number of square footage in listing  		 -->
+                        <span class='h4 raleway-semibold navy'>2800<span class='raleway-light'>&nbsp;ft<sup>2</sup></span></span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-sm-6 full-height">
+                  <!-- TEMPLATE - Post image url in style	  		 -->
+                  <div class="full-bg-img" style="background-image: url(images/post-2.jpg);"></div>
+                </div>
+              </div>
+
+              <div class="comment not-lt-grey-bg">
+                <div class="avatar pull-left">
+                  <!-- TEMPLATE - commenter's avatar in SRC(in color)  		 -->
+                  <img class="img-circle img-responsive" src="images/avatar-2.jpg" />
+                </div>
+                <!-- TEMPLATE - Commenter's name and post date 		 -->
+                <p class='raleway-regular navy m-top-025 m-bottom-0 m-left-40'>Dottie Herman on Nov 13 at 7:34pm</p>
+                <!-- TEMPLATE - Comment text		 -->
+                <p class='raleway-regular m-bottom-0 m-left-40'>I love this property! Congrats!</p>
+                <div class='clearfix'></div>
+              </div>
+              <!-- TEMPLATE - Form needs to be plugged in  		 -->
+              <form role="form" class='comment-box'>
+                <input type="text" placeholder='Leave comment...' >
+              </form>
+            </div>
+          </div>
+
+
+          <div class="post post-award col-sm-7 col-sm-offset-1 m-top-20">
+            <!-- TEMPLATE - Post date		 -->
+            <p class='raleway-semibold auto-width m-left-05 text-uppercase pull-left'>Nov 13</p>
+            <div class="pull-right">
+              <span class="sr-only">Award:</span>
+              <i class="fa fa-dollar fa-lg orange"></i>
+            </div>
+            <div class='clearfix'></div>
+
+            <div class="post-body">
+              <div class='row no-gutter relative'>
+                <div class="col-sm-6">
+                  <div class="p-all-10">
+                    <div class="avatar pull-left">
+                      <!-- TEMPLATE - Post author's avatar in SRC	  		 -->
+                      <img class="img-circle img-responsive" src="images/avatar.jpg" />
+                    </div>
+                    <!-- TEMPLATE - Post author's name  		 -->
+                    <p class='h4 raleway-light accent m-top-0 m-bottom-0'>Marie Espinal</p>
+                    <p class='raleway-regular'>achieved a <span class='raleway-semibold navy'>Sales Record!</span></p>
+                    <!-- TEMPLATE - Listing price  		 -->
+                    <p class='h1 raleway-light orange m-top-10'>$500 million</p>
+                    <!-- TEMPLATE - Listing address  		 -->
+                    <p class='h4 raleway-light navy m-bottom-15'>1st Quarter Sales!</p>
+
+                    <div class="pull-left m-left-075">
+                      <span class="sr-only">Award:</span>
+                      <i class="fa fa-dollar periwinkle"></i>
+                    </div>
+
+                    <div class='text-left m-left-20'>
+                      <p class='raleway-semibold navy m-bottom-0 text-uppercase'>biggest sale</p>
+                      <!-- TEMPLATE - Award winners's biggest sale  		 -->
+                      <p class='raleway-light accent m-bottom-0'>$6,800,888</p>
+                      <!-- TEMPLATE - Address of biggest sale 		 -->
+                      <p class='raleway-light navy m-bottom-0'>575 Madison Ave, New York, NY</p>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-sm-6 full-height">
+                  <!-- TEMPLATE - Post image url in style	  		 -->
+                  <div class="full-bg-img" style="background-image: url(images/post-3.jpg);"></div>
+                </div>
+              </div>
+
+              <div class="comment not-lt-grey-bg">
+                <div class="avatar pull-left">
+                  <!-- TEMPLATE - commenter's avatar in SRC(in color)  		 -->
+                  <img class="img-circle img-responsive" src="images/avatar-3.jpg" />
+                </div>
+                <!-- TEMPLATE - Commenter's name and post date 		 -->
+                <p class='raleway-regular navy m-top-025 m-bottom-0 m-left-40'>Ace Watanasuparp on Nov 18 at 2:34pm</p>
+                <!-- TEMPLATE - Comment text		 -->
+                <p class='raleway-regular m-bottom-0 m-left-40'>What a start!</p>
+                <div class='clearfix'></div>
+              </div>
+              <!-- TEMPLATE - Form needs to be plugged in  		 -->
+              <form role="form" class='comment-box'>
+                <input type="text" placeholder='Congradulate Marie...' >
+              </form>
+            </div>
+          </div>
+
+
+        </section>
+
+        <!-- ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+        ________________________________________________  About Tab __________________________________________________________________
+        ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||| -->
+        <section id="section-about" class="tab-pane section-about fade row m-top-10">
+          <div class="col-sm-6 col-sm-offset-1 m-top-25 text-justify">
+            <!-- TEMPLATE - User's first name 		 -->
+            <p class='raleway-semibold pull-left auto-width accent m-top-025 text-uppercase spacing-125'>About Marie</p>
+            <!-- TEMPLATE - Plug in edit functionality 	- line 154 (ish) in profile.js	 -->
+            <div id='edit-bio' class="pull-right user-only pointer">
+              <span class="sr-only">Edit</span>
+              <i class="fa fa-pencil grey"></i>
+            </div>
+
+            <button id='edit-bio-save' class='btn btn-block btn-small btn-grey raleway-semibold white text-uppercase spacing-125 small pull-right auto-width m-left-20'>save</button>
+
+            <p id='edit-bio-cancel' class='raleway-semibold grey text-uppercase spacing-125 small pull-right auto-width m-top-05 pointer'>cancel</p>
+
+            <div class='clearfix'></div>
+            <!-- TEMPLATE - User's bio 		 -->
+            <div id='bio-board' class='bio-board lt-grey-bg m-top-10' contenteditable='false'>
+              <p class='raleway-light navy lh-200'>Marie's service as a hybrid real estate professional is all-encompassing, providing a way for individuals' real estate needs to be managed by one person with in-depth knowledge of the residential, commercial, and financial markets. Marie relies on her strong financial background to help her clients with the more complicated aspects of the purchasing process. In addition, her experience with the residential and commercial real estate sectors allows her to offer insight from the vantage point of an all-around insider.</p>
+              <p class='raleway-light navy m-top-20 lh-200'>Marie recognizes that each client experience and real estate transaction is unique based on individual goals and objectives. "To see an investment through my clients' eyes is the only way to truly understand their needs and identify solutions that will work for them." </p>
+            </div>
+
+            <div class='clearfix'></div>
+
+            <p class='raleway-semibold pull-left auto-width accent m-top-20 text-uppercase spacing-125'>expertise</p>
+            <!-- TEMPLATE - Plug in edit functionality 	- line 185 (ish) in profile.js	 -->
+            <div id='edit-skills' class="pull-right user-only pointer m-top-20">
+              <span class="sr-only">Edit</span>
+              <i class="fa fa-pencil grey"></i>
+            </div>
+
+            <button id='edit-skills-save' class='btn btn-block btn-small btn-grey raleway-semibold white text-uppercase spacing-125 small pull-right auto-width m-left-20 m-top-20'>save</button>
+
+            <p id='edit-skills-cancel' class='raleway-semibold grey text-uppercase spacing-125 small pull-right auto-width m-top-30 pointer'>cancel</p>
+
+            <div class='clearfix'></div>
+            <!-- TEMPLATE - User's expertise 		 -->
+            <div id='skills-board' class='bio-board lt-grey-bg m-top-10' contenteditable='false'>
+              <p class='raleway-light navy lh-200'>New York Real Estate, Purchasing, Negotiating, Financial Advisor, Commercial Real Estate, Residential Real Estate, Leasing, Renting.</p>
+            </div>
+          </div>
+
+          <div class="col-sm-3 col-sm-offset-2 m-top-25">
+            <p class='raleway-semibold pull-left auto-width accent m-top-025 text-uppercase spacing-125'>team</p>
+
+            <div class="pull-right user-only pointer" data-toggle="modal" data-target="#add-team-modal">
+              <span class='raleway-light auto-width m-right-05 accent'>Add New</span>
+              <i class="fa icon-plus-circle fa-lg accent lh-180"></i>
+            </div>
+
+            <!-- Modal -->
+            <div class="modal fade" id="add-team-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+              <div class="modal-dialog">
+                <div class="modal-content">
+                  <div class="modal-header accent-bg">
+                    <button type="button" class="close" data-dismiss="modal">
+                      <span class="raleway-light white" aria-hidden="true">X</span>
+                      <span class="sr-only">Close</span>
+                    </button>
+                    <h4 class="modal-title raleway-semibold white text-uppercase spacing-250 m-left-05" id="exampleModalLabel">Add a Team Member</h4>
+                  </div>
+                  <div class="modal-body">
+                    <!-- TEMPLATE - Add Team member modal - searchfield 		 -->
+                    <form role="form">
+                      <div class="form-group">
+                        <i class="fa fa-search fa-lg accent"></i>
+                        <input type="text" class="h4 form-control not-lt-grey-bg accent-placeholder" id="add-team-search" placeholder='Search users to add to your team...' />
+                      </div>
+                    </form>
+
+                    <!-- TEMPLATE - Populate potential team members		 -->
+                    <!-- TEMPLATE - Add class 'on-team' if Person is in User's network		 -->
+                    <div class="namecard cornflower-underline m-top-10">
+                      <div class="avatar pull-left">
+                        <!-- TEMPLATE - Potential team member's avatar(color) - url in src     100x100px 		 -->
+                        <img class="img-circle team-img pull-left m-right-10" src="images/edilyn-color.jpg" />
+                      </div>
+                      <!-- TEMPLATE - Potential team member's name 		 -->
+                      <p class='h3 m-left-10 raleway-light text m-top-05 m-bottom-025 auto-width inline-block m-bottom-0'>Edilyn Abeleda</p>
+                      <!-- TEMPLATE - Potential team member's title  - shortened to actual function (?)		 -->
+                      <br/>
+                      <p class='h6 m-left-20 raleway-light accent text-uppercase spacing-125 m-top-0 m-bottom-025 lh-180 auto-width inline-block'>Agent</p>
+                      <!-- TEMPLATE - Add to team functionality   - JS event profile.js line 195ish 		 -->
+                      <a href="#" class='add m-right-25 pull-right'>
+                        <i class="fa icon-plus-circle fa-lg accent"></i>
+                      </a>
+                      <!-- TEMPLATE - Remove from team functionality  - JS event profile.js line 198ish 		 -->
+                      <a href="#" class='remove m-right-10 pull-right raleway-semibold accent text-uppercase spacing-0625'>
+                        <p class='raleway-semibold periwinkle text-uppercase spacing-125 no-transition text-center'>remove</p>
+                      </a>
+                    </div>
+                    <div class='clearfix'></div>
+                    <!-- repeated for style 		 -->
+                    <div class="on-team namecard cornflower-underline m-top-10">
+                      <div class="avatar pull-left">
+                        <img class="img-circle team-img pull-left m-right-10" src="images/mike-color.jpg" />
+                      </div>
+                      <p class='h3 m-left-10 raleway-light text m-top-05 m-bottom-025 auto-width inline-block m-bottom-0'>Mike Allen</p>
+                      <br/>
+                      <p class='h6 m-left-20 raleway-light accent text-uppercase spacing-125 m-top-0 m-bottom-025 auto-width inline-block lh-180'>Agent</p>
+                      <a href="#" class='add m-right-25 pull-right'>
+                        <i class="fa icon-plus-circle fa-lg accent"></i>
+                      </a>
+                      <a href="#" class='remove m-right-10 raleway-semibold accent text-uppercase spacing-0625 pull-right'>
+                        <p class='raleway-semibold periwinkle text-uppercase spacing-125 no-transition text-center'>remove</p>
+                      </a>
+                    </div>
+                    <div class='clearfix'></div>
+                    <div class="namecard cornflower-underline m-top-10">
+                      <div class="avatar pull-left">
+                        <img class="img-circle team-img pull-left m-right-10" src="images/terry-color.jpg" />
+                      </div>
+                      <p class='h3 m-left-10 raleway-light text m-top-05 m-bottom-025 auto-width inline-block m-bottom-0'>Terry Bankey</p>
+                      <br/>
+                      <p class='h6 m-left-20 raleway-light accent text-uppercase spacing-125 m-top-0 m-bottom-025 auto-width inline-block lh-180'>Agent</p>
+                      <a href="#" class='add m-right-25 pull-right'>
+                        <i class="fa icon-plus-circle fa-lg accent"></i>
+                      </a>
+                      <a href="#" class='remove m-right-10 raleway-semibold accent text-uppercase spacing-0625 pull-right'>
+                        <p class='raleway-semibold periwinkle text-uppercase spacing-125 no-transition text-center'>remove</p>
+                      </a>
+                    </div>
+                    <div class='clearfix'></div>
+                    <div class="namecard cornflower-underline m-top-10">
+                      <div class="avatar pull-left">
+                        <img class="img-circle team-img pull-left m-right-10" src="images/mike-color.jpg" />
+                      </div>
+                      <p class='h3 m-left-10 raleway-light text m-top-05 m-bottom-025 auto-width inline-block m-bottom-0'>Paul Basile</p>
+                      <br/>
+                      <p class='h6 m-left-20 raleway-light accent text-uppercase spacing-125 m-top-0 m-bottom-025 auto-width inline-block lh-180'>Broker</p>
+                      <a href="#" class='add m-right-25 pull-right'>
+                        <i class="fa icon-plus-circle fa-lg accent"></i>
+                      </a>
+                      <a href="#" class='remove m-right-10 raleway-semibold accent text-uppercase spacing-0625 pull-right'>
+                        <p class='raleway-semibold periwinkle text-uppercase spacing-125 no-transition text-center'>remove</p>
+                      </a>
+                    </div>
+                    <div class='clearfix'></div>
+                    <div class="namecard on-team cornflower-underline m-top-10">
+                      <div class="avatar pull-left">
+                        <img class="img-circle team-img pull-left m-right-10" src="images/hakeem-color.jpg" />
+                      </div>
+                      <p class='h3 m-left-10 raleway-light text m-top-05 m-bottom-025 auto-width inline-block m-bottom-0'>Hakeem Folami</p>
+                      <br/>
+                      <p class='h6 m-left-20 raleway-light accent text-uppercase spacing-125 m-top-0 m-bottom-025 auto-width inline-block lh-180'>Real Estate Salesperson</p>
+                      <a href="#" class='add m-right-25 pull-right'>
+                        <i class="fa icon-plus-circle fa-lg accent"></i>
+                      </a>
+                      <a href="#" class='remove m-right-10 raleway-semibold accent text-uppercase spacing-0625 pull-right'>
+                        <p class='raleway-semibold periwinkle text-uppercase spacing-125 no-transition text-center'>remove</p>
+                      </a>
+                    </div>
+                    <div class='clearfix'></div>
+                    <div class="namecard cornflower-underline m-top-10">
+                      <div class="avatar pull-left">
+                        <img class="img-circle team-img pull-left m-right-10" src="images/dottie-color.jpg" />
+                      </div>
+                      <p class='h3 m-left-10 raleway-light text m-top-05 m-bottom-025 auto-width inline-block m-bottom-0'>Dottie Herman</p>
+                      <br/>
+                      <p class='h6 m-left-20 raleway-light accent text-uppercase spacing-125 m-top-0 m-bottom-025 auto-width inline-block lh-180'>CEO &amp; President</p>
+                      <a href="#" class='add m-right-25 pull-right'>
+                        <i class="fa icon-plus-circle fa-lg accent"></i>
+                      </a>
+                      <a href="#" class='remove m-right-10 raleway-semibold accent text-uppercase spacing-0625 pull-right'>
+                        <p class='raleway-semibold periwinkle text-uppercase spacing-125 no-transition text-center'>remove</p>
+                      </a>
+                    </div>
+                    <div class='clearfix'></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class='clearfix'></div>
+
+            <div class='m-top-20'>
+
+              <!-- TEMPLATE - repeat this block for each Team member 	  		 -->
+              <div class="m-bottom-20">
+                <div class="avatar pull-left">
+                  <!-- TEMPLATE - Team member's avatar in SRC	  		 -->
+                  <img class="img-circle team-img pull-left m-right-10" src="images/laura.jpg" />
+                </div>
+                <!-- TEMPLATE - Team member's name  		 -->
+                <p class='h4 raleway-light accent m-top-0 m-bottom-025 p-left-35'>Laura Scott</p>
+                <!-- TEMPLATE - Team member's title 		 -->
+                <p class='h6 raleway-semibold text text-uppercase spacing-125 m-top-0 m-bottom-025 p-left-525 lh-180'>executive vp de development</p>
+              </div>
+
+              <!-- Repeated for style		 -->
+              <div class="m-bottom-20">
+                <div class="avatar pull-left">
+                  <img class="img-circle team-img pull-left m-right-10" src="images/susan.jpg" />
+                </div>
+                <p class='h4 raleway-light accent m-top-0 m-bottom-025 p-left-35'>Susan de Franca</p>
+                <p class='h6 raleway-semibold text text-uppercase spacing-125 m-top-0 m-bottom-025 p-left-525 lh-180'>president &amp; ceo de marketing</p>
+              </div>
+              <div class="m-bottom-20">
+                <div class="avatar pull-left">
+                  <img class="img-circle team-img pull-left m-right-10" src="images/mike.jpg" />
+                </div>
+                <p class='h4 raleway-light accent m-top-0 m-bottom-025 p-left-35'>Mike Allen</p>
+                <p class='h6 raleway-semibold text text-uppercase spacing-125 m-top-0 m-bottom-025 p-left-525 lh-180'>executive vp &amp; director of sales</p>
+              </div>
+              <div class="m-bottom-20">
+                <div class="avatar pull-left">
+                  <img class="img-circle team-img pull-left m-right-10" src="images/ace.jpg" />
+                </div>
+                <p class='h4 raleway-light accent m-top-0 m-bottom-025 p-left-35'>Ace Watanasuparp</p>
+                <p class='h6 raleway-semibold text text-uppercase spacing-125 m-top-0 m-bottom-025 p-left-525 lh-180'>president de capital mortgage</p>
+              </div>
+              <div class="m-bottom-20">
+                <div class="avatar pull-left">
+                  <img class="img-circle team-img pull-left m-right-10" src="images/dottie.jpg" />
+                </div>
+                <p class='h4 raleway-light accent m-top-0 m-bottom-025 p-left-35'>Dottie Herman</p>
+                <p class='h6 raleway-semibold text text-uppercase spacing-125 m-top-0 m-bottom-025 p-left-525 lh-180'>president &amp; ceo</p>
+              </div>
+              <!-- end repeat 		 -->
+
+            </div>
+          </div>
+        </section>
+
+        <!-- ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+        ________________________________________________  Gallery Tab __________________________________________________________________
+        ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||| -->
+        <section id="section-gallery" class="tab-pane fade row m-top-10">
+
+          <div class="fixed-xs col-sm-10 col-sm-offset-1 m-top-20">
+            <!-- TEMPLATE - Post date		 -->
+            <p class='not-for-user raleway-semibold auto-width m-left-05 text-uppercase purple pull-left spacing-125'>gallery</p>
+            <!-- TEMPLATE - Add picture functionality		 -->
+            <form class="block pull-left user-only">
+              <label for='gallery-image-upload' class='raleway-light auto-width m-right-05 purple pointer'>Add pics</label>
+              <input id='gallery-image-upload' class="hidden" type="file" name="pic" accept="image/*">
+              <label for='gallery-image-upload' class="fa icon-plus-circle fa-lg purple pointer lh-180"></label>
+            </form>
+            <!-- TEMPLATE - Create Album functionality - on hold		 -->
+            <!-- 	    <a href='#' class="block pull-left user-only m-left-20">
+            <i class="fa fa-picture-o fa-lg purple"></i>
+            <span class='raleway-light auto-width m-right-05 purple'>Create an Album</span>
+          </a> -->
+          <div class='clearfix'></div>
+
+          <div class='album m-top-20'>
+            <!-- TEMPLATE - Album date		 -->
+            <p class='h6 raleway-semibold text-uppercase periwinkle pull-left spacing-125'>4 hours ago</p>
+            <!-- TEMPLATE - Album title	- on hold	 -->
+            <!-- <p class='h4 raleway-light auto-width navy pull-left'>NYC in the Fall</p> -->
+            <!-- TEMPLATE - Number of pictures in the album		 -->
+            <p class='h6 raleway-semibold auto-width purple pull-right m-top-10'>8 pictures</p>
+
+            <div class='clearfix'></div>
+
+            <div class="row">
+              <!-- TEMPLATE - gallery urls  - 600x600px min	  		 -->
+              <!-- TEMPLATE - gallery image url in 'data-pic'  	  		 -->
+              <div class='gallery-square col-sm-2 half-gutter m-bottom-10 pointer' data-toggle="modal" data-target="#gallery-modal" data-slide-to="0">
+                <div class="delete-photo user-only black-bg img-circle ">
+                  <span class="sr-only">delete</span>
+                  <i class="fa icon-x-circle fa-lg white"></i>
+                </div>
+                <!-- TEMPLATE - gallery image url in 'style' 			-->
+                <div class="full-bg-img" style="background-image: url(images/central-park.jpg);"></div>
+              </div>
+              <!-- gallery divs repeated for style -->
+              <div class='gallery-square col-sm-2 half-gutter m-bottom-10 pointer' data-toggle="modal" data-target="#gallery-modal" data-slide-to="1">
+                <div class="delete-photo user-only black-bg img-circle ">
+                  <span class="sr-only">delete</span>
+                  <i class="fa icon-x-circle fa-lg white"></i>
+                </div>
+                <div class="full-bg-img" style="background-image: url(images/gallery-5.jpg);"></div>
+              </div>
+
+              <div class='gallery-square col-sm-2 half-gutter m-bottom-10 pointer' data-toggle="modal" data-target="#gallery-modal" data-slide-to="2">
+                <div class="delete-photo user-only black-bg img-circle ">
+                  <span class="sr-only">delete</span>
+                  <i class="fa icon-x-circle fa-lg white"></i>
+                </div>
+                <div class="full-bg-img" style="background-image: url(images/gallery-7.jpg);"></div>
+              </div>
+
+              <div class='gallery-square col-sm-2 half-gutter m-bottom-10 pointer' data-toggle="modal" data-target="#gallery-modal" data-slide-to="3">
+                <div class="delete-photo user-only black-bg img-circle ">
+                  <span class="sr-only">delete</span>
+                  <i class="fa icon-x-circle fa-lg white"></i>
+                </div>
+                <div class="full-bg-img" style="background-image: url(images/gallery-1.jpg);"></div>
+              </div>
+
+              <div class='gallery-square col-sm-2 half-gutter m-bottom-10 pointer' data-toggle="modal" data-target="#gallery-modal" data-slide-to="4">
+                <div class="delete-photo user-only black-bg img-circle ">
+                  <span class="sr-only">delete</span>
+                  <i class="fa icon-x-circle fa-lg white"></i>
+                </div>
+                <div class="full-bg-img" style="background-image: url(images/gallery-2.jpg);"></div>
+              </div>
+
+              <div class='gallery-square col-sm-2 half-gutter m-bottom-10 pointer' data-toggle="modal" data-target="#gallery-modal" data-slide-to="5">
+                <div class="delete-photo user-only black-bg img-circle ">
+                  <span class="sr-only">delete</span>
+                  <i class="fa icon-x-circle fa-lg white"></i>
+                </div>
+                <div class="full-bg-img" style="background-image: url(images/gallery-4.jpg);"></div>
+              </div>
+
+              <div class='gallery-square col-sm-2 half-gutter m-bottom-10 pointer' data-toggle="modal" data-target="#gallery-modal" data-slide-to="6">
+                <div class="delete-photo user-only black-bg img-circle ">
+                  <span class="sr-only">delete</span>
+                  <i class="fa icon-x-circle fa-lg white"></i>
+                </div>
+                <div class="full-bg-img" style="background-image: url(images/gallery-6.jpg);"></div>
+              </div>
+
+              <div class='gallery-square col-sm-2 half-gutter m-bottom-10 pointer' data-toggle="modal" data-target="#gallery-modal" data-slide-to="7">
+                <div class="delete-photo user-only black-bg img-circle ">
+                  <span class="sr-only">delete</span>
+                  <i class="fa icon-x-circle fa-lg white"></i>
+                </div>
+                <div class="full-bg-img" style="background-image: url(images/gallery-8.jpg);"></div>
+              </div>
+
+            </div>
+          </div>
+
+          <!-- Album repeated for style		 -->
+          <div class='album m-top-20'>
+            <p class='h6 raleway-semibold text-uppercase periwinkle pull-left spacing-125'>nov 14, 2014</p>
+            <!-- <p class='h4 raleway-light auto-width navy pull-left'>Favorite City Shots</p> -->
+            <p class='h6 raleway-semibold auto-width purple pull-right m-top-10'>6 pictures</p>
+
+            <div class='clearfix'></div>
+
+            <div class="row">
+              <div class='gallery-square col-sm-2 half-gutter m-bottom-10'>
+                <div class="delete-photo user-only black-bg img-circle ">
+                  <span class="sr-only">delete</span>
+                  <i class="fa icon-x-circle fa-lg white"></i>
+                </div>
+                <div class="full-bg-img" style="background-image: url(images/gallery-4.jpg);"></div>
+              </div>
+              <div class='gallery-square col-sm-2 half-gutter m-bottom-10'>
+                <div class="delete-photo user-only black-bg img-circle ">
+                  <span class="sr-only">delete</span>
+                  <i class="fa icon-x-circle fa-lg white"></i>
+                </div>
+                <div class="full-bg-img" style="background-image: url(images/gallery-3.jpg);"></div>
+              </div>
+              <div class='gallery-square col-sm-2 half-gutter m-bottom-10'>
+                <div class="delete-photo user-only black-bg img-circle ">
+                  <span class="sr-only">delete</span>
+                  <i class="fa icon-x-circle fa-lg white"></i>
+                </div>
+                <div class="full-bg-img" style="background-image: url(images/gallery-5.jpg);"></div>
+              </div>
+              <div class='gallery-square col-sm-2 half-gutter m-bottom-10'>
+                <div class="delete-photo user-only black-bg img-circle ">
+                  <span class="sr-only">delete</span>
+                  <i class="fa icon-x-circle fa-lg white"></i>
+                </div>
+                <div class="full-bg-img" style="background-image: url(images/gallery-6.jpg);"></div>
+              </div>
+              <div class='gallery-square col-sm-2 half-gutter m-bottom-10'>
+                <div class="delete-photo user-only black-bg img-circle ">
+                  <span class="sr-only">delete</span>
+                  <i class="fa icon-x-circle fa-lg white"></i>
+                </div>
+                <div class="full-bg-img" style="background-image: url(images/gallery-8.jpg);"></div>
+              </div>
+              <div class='gallery-square col-sm-2 half-gutter m-bottom-10'>
+                <div class="delete-photo user-only black-bg img-circle ">
+                  <span class="sr-only">delete</span>
+                  <i class="fa icon-x-circle fa-lg white"></i>
+                </div>
+                <div class="full-bg-img" style="background-image: url(images/gallery-7.jpg);"></div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+      </section>
+
+      <!-- ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+      ________________________________________________  Followers Tab __________________________________________________________________
+      ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||| -->
+      <section id="section-followers" class="tab-pane followers fade row m-top-30">
+        <!-- TEMPLATE - repeat this block for each Entry 	  		 -->
+        <div class="card col-sm-6 row-padding v-center-box">
+          <div class="v-center">
+            <!-- TEMPLATE - Needs 'following' class if logged in User is following person	  		 -->
+            <div class='following row p-all-10'>
+              <div class="col-md-8">
+                <div class="avatar pull-left">
+                  <!-- TEMPLATE - Person's avatar url in SRC	  		 -->
+                  <img class="img-circle team-img pull-left m-right-10" src="images/laura.jpg" />
+                </div>
+                <!-- TEMPLATE - Person's name  		 -->
+                <p class='h4 raleway-light accent m-top-0 m-bottom-025 p-left-35'>Laura Scott</p>
+                <!-- TEMPLATE - Person's title/s.  		 -->
+                <p class='h6 raleway-semibold text text-uppercase spacing-125 m-top-0 m-bottom-025 p-left-525 lh-180'>executive vp de development</p>
+              </div>
+
+              <div class="col-md-4">
+                <!-- TEMPLATE - Follow functionality    		 -->
+                <a href="#" class='follow  m-right-10'>
+                  <button class='btn btn-block btn-small btn-accent raleway-semibold white text-uppercase spacing-0625 small'>follow</button>
+                </a>
+                <!-- TEMPLATE - Unfollow functionality  		 -->
+                <a href="#" class='unfollow m-right-10 raleway-semibold accent text-uppercase spacing-0625'>
+                  <p class='raleway-semibold accent text-uppercase spacing-0625 no-transition text-center'>
+                    <i class="fa fa-check accent"></i>
+                    <span class='un'>un</span>follow<span class='ing'>ing</span>
+                  </p>
+                </a>
+              </div>
+            </div>
+          </div>
+          <hr/>
+        </div>
+
+        <!-- Repeated for style	  		 -->
+        <div class="card col-sm-6 row-padding v-center-box">
+          <div class="v-center">
+            <div class='following row p-all-10'>
+              <div class="col-md-8">
+                <div class="avatar pull-left">
+                  <img class="img-circle team-img pull-left m-right-10" src="images/mike.jpg" />
+                </div>
+                <p class='h4 raleway-light accent m-top-0 m-bottom-025 p-left-35'>Mike Allen</p>
+                <p class='h6 raleway-semibold text text-uppercase spacing-125 m-top-0 m-bottom-025 p-left-525 lh-180'>executive vp &amp; director of sales</p>
+              </div>
+
+              <div class="col-md-4">
+                <a href="#" class='follow  m-right-10'>
+                  <button class='btn btn-block btn-small btn-accent raleway-semibold white text-uppercase spacing-0625 small'>follow</button>
+                </a>
+                <a href="#" class='unfollow m-right-10 raleway-semibold accent text-uppercase spacing-0625'>
+                  <p class=' raleway-semibold accent text-uppercase spacing-0625 no-transition text-center'>
+                    <i class="fa fa-check accent"></i>
+                    <span class='un'>un</span>follow<span class='ing'>ing</span>
+                  </p>
+                </a>
+              </div>
+            </div>
+          </div>
+          <hr/>
+        </div>
+
+        <div class="card col-sm-6 row-padding v-center-box">
+          <div class="v-center">
+            <div class='row p-all-10'>
+              <div class="col-md-8">
+                <div class="avatar pull-left">
+                  <img class="img-circle team-img pull-left m-right-10" src="images/dottie.jpg" />
+                </div>
+                <p class='h4 raleway-light accent m-top-0 m-bottom-025 p-left-35'>Dottie Herman</p>
+                <p class='h6 raleway-semibold text text-uppercase spacing-125 m-top-0 m-bottom-025 p-left-525 lh-180'>president &amp; ceo</p>
+              </div>
+
+              <div class="col-md-4">
+                <a href="#" class='follow  m-right-10'>
+                  <button class='btn btn-block btn-small btn-accent raleway-semibold white text-uppercase spacing-0625 small'>follow</button>
+                </a>
+                <a href="#" class='unfollow m-right-10 raleway-semibold accent text-uppercase spacing-0625'>
+                  <p class=' raleway-semibold accent text-uppercase spacing-0625 no-transition text-center'>
+                    <i class="fa fa-check accent"></i>
+                    <span class='un'>un</span>follow<span class='ing'>ing</span>
+                  </p>
+                </a>
+              </div>
+            </div>
+          </div>
+          <hr/>
+        </div>
+
+        <div class="card col-sm-6 row-padding v-center-box">
+          <div class="v-center">
+            <div class='following row p-all-10'>
+              <div class="col-md-8">
+                <div class="avatar pull-left">
+                  <img class="img-circle team-img pull-left m-right-10" src="images/susan.jpg" />
+                </div>
+                <p class='h4 raleway-light accent m-top-0 m-bottom-025 p-left-35'>Susan de Franca</p>
+                <p class='h6 raleway-semibold text text-uppercase spacing-125 m-top-0 m-bottom-025 p-left-525 lh-180'>president &amp; ceo de marketing</p>
+              </div>
+
+              <div class="col-md-4">
+                <a href="#" class='follow  m-right-10'>
+                  <button class='btn btn-block btn-small btn-accent raleway-semibold white text-uppercase spacing-0625 small'>follow</button>
+                </a>
+                <a href="#" class='unfollow m-right-10 raleway-semibold accent text-uppercase spacing-0625'>
+                  <p class=' raleway-semibold accent text-uppercase spacing-0625 no-transition text-center'>
+                    <i class="fa fa-check accent"></i>
+                    <span class='un'>un</span>follow<span class='ing'>ing</span>
+                  </p>
+                </a>
+              </div>
+            </div>
+          </div>
+          <hr/>
+        </div>
+
+        <div class="card col-sm-6 row-padding v-center-box">
+          <div class="v-center">
+            <div class='row p-all-10'>
+              <div class="col-md-8">
+                <div class="avatar pull-left">
+                  <img class="img-circle team-img pull-left m-right-10" src="images/mike.jpg" />
+                </div>
+                <p class='h4 raleway-light accent m-top-0 m-bottom-025 p-left-35'>Mike Allen</p>
+                <p class='h6 raleway-semibold text text-uppercase spacing-125 m-top-0 m-bottom-025 p-left-525 lh-180'>executive vp &amp; director of sales</p>
+              </div>
+
+              <div class="col-md-4">
+                <a href="#" class='follow  m-right-10'>
+                  <button class='btn btn-block btn-small btn-accent raleway-semibold white text-uppercase spacing-0625 small'>follow</button>
+                </a>
+                <a href="#" class='unfollow m-right-10 raleway-semibold accent text-uppercase spacing-0625'>
+                  <p class=' raleway-semibold accent text-uppercase spacing-0625 no-transition text-center'>
+                    <i class="fa fa-check accent"></i>
+                    <span class='un'>un</span>follow<span class='ing'>ing</span>
+                  </p>
+                </a>
+              </div>
+            </div>
+          </div>
+          <hr/>
+        </div>
+
+        <div class="card col-sm-6 row-padding v-center-box">
+          <div class="v-center">
+            <div class='row p-all-10'>
+              <div class="col-md-8">
+                <div class="avatar pull-left">
+                  <img class="img-circle team-img pull-left m-right-10" src="images/ace.jpg" />
+                </div>
+                <p class='h4 raleway-light accent m-top-0 m-bottom-025 p-left-35'>Ace Watanasuparp</p>
+                <p class='h6 raleway-semibold text text-uppercase spacing-125 m-top-0 m-bottom-025 p-left-525 lh-180'>president de capital mortgage</p>
+              </div>
+
+              <div class="col-md-4">
+                <a href="#" class='follow  m-right-10'>
+                  <button class='btn btn-block btn-small btn-accent raleway-semibold white text-uppercase spacing-0625 small'>follow</button>
+                </a>
+                <a href="#" class='unfollow m-right-10'>
+                  <p class=' raleway-semibold accent text-uppercase spacing-0625 no-transition text-center'>
+                    <i class="fa fa-check accent"></i>
+                    <span class='un'>un</span>follow<span class='ing'>ing</span>
+                  </p>
+                </a>
+              </div>
+            </div>
+          </div>
+          <hr/>
+        </div>
+
+      </section>
+
+      <!-- ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+      ________________________________________________  Following Tab __________________________________________________________________
+      ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||| -->
+      <section id="section-following" class="tab-pane following-people fade row m-top-30">
+
+        <!-- TEMPLATE - repeat this block for each Entry 	  		 -->
+        <div class="card col-sm-6 row-padding v-center-box">
+          <div class="v-center">
+            <!-- TEMPLATE - Needs 'following' class if logged in User is following person	  		 -->
+            <div class='following row p-all-10'>
+              <div class="col-md-8">
+                <div class="avatar pull-left">
+                  <!-- TEMPLATE - Person's avatar url in SRC	  		 -->
+                  <img class="img-circle team-img pull-left m-right-10" src="images/laura.jpg" />
+                </div>
+                <!-- TEMPLATE - Person's name  		 -->
+                <p class='h4 raleway-light accent m-top-0 m-bottom-025 p-left-35'>Laura Scott</p>
+                <!-- TEMPLATE - Person's title/s.  		 -->
+                <p class='h6 raleway-semibold text text-uppercase spacing-125 m-top-0 m-bottom-025 p-left-525 lh-180'>executive vp de development</p>
+              </div>
+
+              <div class="col-md-4">
+                <!-- TEMPLATE - Follow functionality    		 -->
+                <a href="#" class='follow  m-right-10'>
+                  <button class='btn btn-block btn-small btn-accent raleway-semibold white text-uppercase spacing-0625 small'>follow</button>
+                </a>
+                <!-- TEMPLATE - Unfollow functionality  		 -->
+                <a href="#" class='unfollow m-right-10 raleway-semibold accent text-uppercase spacing-0625'>
+                  <p class='raleway-semibold accent text-uppercase spacing-0625 no-transition text-center'>
+                    <i class="fa fa-check accent"></i>
+                    <span class='un'>un</span>follow<span class='ing'>ing</span>
+                  </p>
+                </a>
+              </div>
+            </div>
+          </div>
+          <hr/>
+        </div>
+
+        <!-- Repeated for style	  		 -->
+        <div class="card col-sm-6 row-padding v-center-box">
+          <div class="v-center">
+            <div class='following row p-all-10'>
+              <div class="col-md-8">
+                <div class="avatar pull-left">
+                  <img class="img-circle team-img pull-left m-right-10" src="images/mike.jpg" />
+                </div>
+                <p class='h4 raleway-light accent m-top-0 m-bottom-025 p-left-35'>Mike Allen</p>
+                <p class='h6 raleway-semibold text text-uppercase spacing-125 m-top-0 m-bottom-025 p-left-525 lh-180'>executive vp &amp; director of sales</p>
+              </div>
+
+              <div class="col-md-4">
+                <a href="#" class='follow  m-right-10'>
+                  <button class='btn btn-block btn-small btn-accent raleway-semibold white text-uppercase spacing-0625 small'>follow</button>
+                </a>
+                <a href="#" class='unfollow m-right-10 raleway-semibold accent text-uppercase spacing-0625'>
+                  <p class=' raleway-semibold accent text-uppercase spacing-0625 no-transition text-center'>
+                    <i class="fa fa-check accent"></i>
+                    <span class='un'>un</span>follow<span class='ing'>ing</span>
+                  </p>
+                </a>
+              </div>
+            </div>
+          </div>
+          <hr/>
+        </div>
+
+        <div class="card col-sm-6 row-padding v-center-box">
+          <div class="v-center">
+            <div class='row p-all-10'>
+              <div class="col-md-8">
+                <div class="avatar pull-left">
+                  <img class="img-circle team-img pull-left m-right-10" src="images/dottie.jpg" />
+                </div>
+                <p class='h4 raleway-light accent m-top-0 m-bottom-025 p-left-35'>Dottie Herman</p>
+                <p class='h6 raleway-semibold text text-uppercase spacing-125 m-top-0 m-bottom-025 p-left-525 lh-180'>president &amp; ceo</p>
+              </div>
+
+              <div class="col-md-4">
+                <a href="#" class='follow  m-right-10'>
+                  <button class='btn btn-block btn-small btn-accent raleway-semibold white text-uppercase spacing-0625 small'>follow</button>
+                </a>
+                <a href="#" class='unfollow m-right-10 raleway-semibold accent text-uppercase spacing-0625'>
+                  <p class=' raleway-semibold accent text-uppercase spacing-0625 no-transition text-center'>
+                    <i class="fa fa-check accent"></i>
+                    <span class='un'>un</span>follow<span class='ing'>ing</span>
+                  </p>
+                </a>
+              </div>
+            </div>
+          </div>
+          <hr/>
+        </div>
+
+        <div class="card col-sm-6 row-padding v-center-box">
+          <div class="v-center">
+            <div class='following row p-all-10'>
+              <div class="col-md-8">
+                <div class="avatar pull-left">
+                  <img class="img-circle team-img pull-left m-right-10" src="images/susan.jpg" />
+                </div>
+                <p class='h4 raleway-light accent m-top-0 m-bottom-025 p-left-35'>Susan de Franca</p>
+                <p class='h6 raleway-semibold text text-uppercase spacing-125 m-top-0 m-bottom-025 p-left-525 lh-180'>president &amp; ceo de marketing</p>
+              </div>
+
+              <div class="col-md-4">
+                <a href="#" class='follow  m-right-10'>
+                  <button class='btn btn-block btn-small btn-accent raleway-semibold white text-uppercase spacing-0625 small'>follow</button>
+                </a>
+                <a href="#" class='unfollow m-right-10 raleway-semibold accent text-uppercase spacing-0625'>
+                  <p class=' raleway-semibold accent text-uppercase spacing-0625 no-transition text-center'>
+                    <i class="fa fa-check accent"></i>
+                    <span class='un'>un</span>follow<span class='ing'>ing</span>
+                  </p>
+                </a>
+              </div>
+            </div>
+          </div>
+          <hr/>
+        </div>
+
+        <div class="card col-sm-6 row-padding v-center-box">
+          <div class="v-center">
+            <div class='row p-all-10'>
+              <div class="col-md-8">
+                <div class="avatar pull-left">
+                  <img class="img-circle team-img pull-left m-right-10" src="images/mike.jpg" />
+                </div>
+                <p class='h4 raleway-light accent m-top-0 m-bottom-025 p-left-35'>Mike Allen</p>
+                <p class='h6 raleway-semibold text text-uppercase spacing-125 m-top-0 m-bottom-025 p-left-525 lh-180'>executive vp &amp; director of sales</p>
+              </div>
+
+              <div class="col-md-4">
+                <a href="#" class='follow  m-right-10'>
+                  <button class='btn btn-block btn-small btn-accent raleway-semibold white text-uppercase spacing-0625 small'>follow</button>
+                </a>
+                <a href="#" class='unfollow m-right-10 raleway-semibold accent text-uppercase spacing-0625'>
+                  <p class=' raleway-semibold accent text-uppercase spacing-0625 no-transition text-center'>
+                    <i class="fa fa-check accent"></i>
+                    <span class='un'>un</span>follow<span class='ing'>ing</span>
+                  </p>
+                </a>
+              </div>
+            </div>
+          </div>
+          <hr/>
+        </div>
+
+        <div class="card col-sm-6 row-padding v-center-box">
+          <div class="v-center">
+            <div class='row p-all-10'>
+              <div class="col-md-8">
+                <div class="avatar pull-left">
+                  <img class="img-circle team-img pull-left m-right-10" src="images/ace.jpg" />
+                </div>
+                <p class='h4 raleway-light accent m-top-0 m-bottom-025 p-left-35'>Ace Watanasuparp</p>
+                <p class='h6 raleway-semibold text text-uppercase spacing-125 m-top-0 m-bottom-025 p-left-525 lh-180'>president de capital mortgage</p>
+              </div>
+
+              <div class="col-md-4">
+                <a href="#" class='follow  m-right-10'>
+                  <button class='btn btn-block btn-small btn-accent raleway-semibold white text-uppercase spacing-0625 small'>follow</button>
+                </a>
+                <a href="#" class='unfollow m-right-10'>
+                  <p class=' raleway-semibold accent text-uppercase spacing-0625 no-transition text-center'>
+                    <i class="fa fa-check accent"></i>
+                    <span class='un'>un</span>follow<span class='ing'>ing</span>
+                  </p>
+                </a>
+              </div>
+            </div>
+          </div>
+          <hr/>
+        </div>
+
+      </section>
+
+    </div>
+  </div>
+
+
+
+</div>
+
 </template>
