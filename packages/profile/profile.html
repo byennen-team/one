@@ -1,5 +1,16 @@
 <template name="profile">
-  <h1>{{firstName}} {{lastName}}</h1>
-  <h2>{{title}}</h2>
-  <img src="{{photoUrl}}"/>
+    {{#if isPublic}}
+
+    {{else}}{{#if isMyProfile}}
+
+    {{else}}
+    {{! Internal profile }}
+
+    {{/if}}
+    {{/if}}
+
+    <h1>{{firstName}} {{lastName}}</h1>
+
+    <h2>{{title}}</h2>
+    <img src="{{photoUrl}}"/>
 </template>
