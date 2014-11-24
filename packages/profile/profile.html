@@ -1,23 +1,22 @@
 <template name="profile">
-  {{#if isPublic}}
-
-  {{else}}{{#if isMyProfile}}
-
+  {{#if isPrivate}}
   {{else}}
-  {{! Internal profile }}
+    {{#if isMyProfile}}
+    {{else}}
+    {{! Internal profile }}
 
-  {{/if}}
+    {{/if}}
   {{/if}}
 
-  {{> profileBanner}}
+  {{> profileBanner isPrivate=isPrivate}}
   <div class='container p-bottom-40'>
     {{> profileNav}}
-      <div id="tab-content" class="tab-content">
-        {{> profileActivity}}
-        {{> profileAbout}}
-        {{> profileGallery}}
-        {{> profileFollowers}}
-        {{> profileFollowing}}
+    <div id="tab-content" class="tab-content">
+      {{> profileActivity}}
+      {{> profileAbout}}
+      {{> profileGallery}}
+      {{> profileFollowers}}
+      {{> profileFollowing}}
     </div>
   </div>
 </template>

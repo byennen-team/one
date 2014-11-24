@@ -3,7 +3,7 @@
     <div class="col-sm-12">
       <div class="container">
         <div class="col-sm-2">
-          <img class="img-circle img-responsive-sm" src="{{photoUrl}}"/>
+          <img class="img-circle img-responsive-sm" src="{{profile.photoUrl}}"/>
         </div>
 
         <div class="col-sm-3 col-md-2">
@@ -19,8 +19,8 @@
             </ul>
           </div>
 
-          <p class='h3 raleway-light white m-top-025'>{{userProfile.firstName}}</p>
-          <p class='raleway-semibold white text-uppercase spacing-250 little'>{{title}}</p>
+          <p class='h3 raleway-light white m-top-025'>{{profile.firstName}}</p>
+          <p class='raleway-semibold white text-uppercase spacing-250 little'>{{profile.title}}</p>
           <a href='' class='raleway-semibold accent text-uppercase spacing-0625 not-for-user'>
             <i class="fa icon-plus-circle fa-lg no-transition"></i>
             add to team
@@ -36,7 +36,9 @@
         <div class="col-sm-3">
           <p class='raleway-semibold accent text-uppercase spacing-0625'>phone</p>
           <p class='raleway-light white'><span class='raleway-semibold text-uppercase spacing-0625'>office:</span> (212) 555-1234</p>
-          <p class='raleway-light white'><span class='raleway-semibold text-uppercase spacing-0625'>mobile:</span> (212) 123-1234</p>
+          {{#if profile.numbers.mobile}}
+            <p class='raleway-light white'><span class='raleway-semibold text-uppercase spacing-0625'>mobile:</span> {{profile.numbers.mobile}}</p>
+          {{/if}}
         </div>
 
         <div class="col-sm-2 col-md-3">
@@ -45,7 +47,13 @@
               <button class='btn btn-block btn-small btn-accent raleway-semibold white text-uppercase spacing-0625 small'>account settings</button>
             </a>
             <a href="#">
-              <button class='btn btn-block btn-small btn-accent-border raleway-semibold white text-uppercase spacing-0625 m-top-08'>public profile</button>
+              {{#if isPrivate}}
+                <button class='btn btn-block btn-small btn-accent-border raleway-semibold white text-uppercase spacing-0625 m-top-08 public'>public profile</button>
+              {{else}}
+                {{#if loggedIn}}
+                  <button class='btn btn-block btn-small btn-accent-border raleway-semibold white text-uppercase spacing-0625 m-top-08 private'>private profile</button>
+                {{/if}}
+              {{/if}}
             </a>
           </div>
         </div>

@@ -19,7 +19,7 @@ Router.onBeforeAction(function () {
     Router.go(Routes.LOGIN);
   }
   this.next();
-}, {except: [Routes.LOGIN, Routes.LOGOUT]});
+}, {except: [Routes.LOGIN, Routes.LOGOUT, Routes.PROFILE]});
 
 Router.onBeforeAction(function () {
   Meteor.subscribe('files');

@@ -6,6 +6,8 @@ var getUser = function () {
   return Meteor.users.findOne({slug: getSlug()});
 };
 
+var forcePublic = new ReactiveVar();
+
 var followingUser = function () {
   var following = Following.findOne();
   var user = getUser();
@@ -16,6 +18,12 @@ Template.profile.events({
   'click .follow': function () {
     var userToFollow = getUser();
     Meteor.call('followUser', userToFollow._id);
+  },
+  'click .public': function () {
+    forcePublic.set(true);
+  },
+  'click .private': function () {
+    forcePublic.set(false);
   }
 });
 
@@ -31,12 +39,11 @@ Template.profile.helpers({
     if (followerUserIds) return Meteor.users.find({_id: {$in: followerUserIds}})
   },
 
-  isPublic: function () {
-    return !Meteor.userId();
+  isPrivate: function () {
+    return Meteor.userId() && !forcePublic.get();
   },
   isMyProfile: function () {
     var user = Meteor.user();
     return user && user.slug === getSlug();
   }
-
 });

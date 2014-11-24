@@ -84,6 +84,10 @@ Router.map(function () {
     },
     waitOn: function () {
       return Meteor.subscribe('userProfile', this.params.slug);
+    },
+    action: function () {
+      if (!this.data()) this.render('notFound');
+      else this.render('profile')
     }
   });
 });
