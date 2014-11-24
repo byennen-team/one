@@ -1,0 +1,32 @@
+{
+  "format": "unipackage-unibuild-pre1",
+  "packageVariables": [],
+  "uses": [
+    {
+      "package": "meteor"
+    },
+    {
+      "package": "templating"
+    },
+    {
+      "package": "less"
+    }
+  ],
+  "resources": [
+    {
+      "type": "css",
+      "file": "web.browser/packages/profile-followers/profile_followers.less.css",
+      "length": 1906,
+      "offset": 0,
+      "servePath": "/packages/profile-followers/profile_followers.less.css"
+    },
+    {
+      "type": "prelink",
+      "file": "web.browser/packages/profile-followers.js",
+      "length": 2535,
+      "offset": 0,
+      "servePath": "/packages/profile-followers.js",
+      "sourceMap": "web.browser/packages/profile-followers.js.map"
+    }
+  ]
+}

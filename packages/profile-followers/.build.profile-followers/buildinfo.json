@@ -1,0 +1,41 @@
+{
+  "builtBy": "meteor/14",
+  "buildDependencies": {
+    "os.json": {
+      "files": {
+        "/Users/byennen/Code/Meteor/one/packages/profile-followers/package.js": "ef02948af495021852cde5df8b3a65e497afdc08"
+      },
+      "directories": []
+    },
+    "web.browser.json": {
+      "files": {
+        "/Users/byennen/Code/Meteor/one/packages/profile-followers/package.js": "ef02948af495021852cde5df8b3a65e497afdc08",
+        "/Users/byennen/Code/Meteor/one/packages/profile-followers/profile_followers.html": "543221fd0a44b56f3885432c969b9a045f56f434",
+        "/Users/byennen/Code/Meteor/one/packages/profile-followers/profile_followers.less": "7cfcfdc15dcce9744e8dca932b8202412b1c9bf3"
+      },
+      "directories": []
+    },
+    "web.cordova.json": {
+      "files": {
+        "/Users/byennen/Code/Meteor/one/packages/profile-followers/package.js": "ef02948af495021852cde5df8b3a65e497afdc08",
+        "/Users/byennen/Code/Meteor/one/packages/profile-followers/profile_followers.html": "543221fd0a44b56f3885432c969b9a045f56f434",
+        "/Users/byennen/Code/Meteor/one/packages/profile-followers/profile_followers.less": "7cfcfdc15dcce9744e8dca932b8202412b1c9bf3"
+      },
+      "directories": []
+    }
+  },
+  "pluginDependencies": {
+    "files": {
+      "/Users/byennen/Code/Meteor/one/packages/profile-followers/package.js": "ef02948af495021852cde5df8b3a65e497afdc08"
+    },
+    "directories": []
+  },
+  "source": "/Users/byennen/Code/Meteor/one/packages/profile-followers",
+  "buildTimeDirectDependencies": {
+    "templating": "1.0.9",
+    "less": "1.0.11",
+    "meteor": "1.1.3"
+  },
+  "buildTimePluginDependencies": {},
+  "cordovaDependencies": null
+}

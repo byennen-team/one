@@ -5,8 +5,9 @@ Template.directory.events({
     Search.limit.set(Search.limit.get() + 100);
   },
   'click .user': function () {
-    var user = Blaze.getData();
-    Router.go(Routes.PROFILE, {slug: user.slug});
+    var user = Meteor.users.findOne({_id: this._id});
+    console.log(user);
+    // Router.go(Routes.PROFILE, {slug: user.slug});
   }
 });
 
