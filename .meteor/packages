@@ -24,6 +24,7 @@ admin
 authorization
 companies
 dashboard
+follow
 layout
 loading
 locales
@@ -52,5 +53,5 @@ profile-banner
 profile-activity
 profile-about
 profile-gallery
-profile-followers
-profile-following
+profile-follow
+profile-ui

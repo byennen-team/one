@@ -43,9 +43,19 @@
 
         <div class="col-sm-2 col-md-3">
           <div class="right-0">
+            {{#if isMyProfile}}
             <a href="{{pathFor 'accountSettings'}}">
               <button class='btn btn-block btn-small btn-accent raleway-semibold white text-uppercase spacing-0625 small'>account settings</button>
             </a>
+            {{else}}
+              {{#if isLoggedIn}}
+                {{#if isFollowing}}
+                  <button class='btn btn-block btn-small btn-accent raleway-semibold white text-uppercase spacing-0625 small un-follow'>unfollow</button>
+                {{else}}
+                  <button class='btn btn-block btn-small btn-accent raleway-semibold white text-uppercase spacing-0625 small follow'>follow</button>
+                {{/if}}
+              {{/if}}
+            {{/if}}
             <a href="#">
               {{#if isPrivate}}
                 <button class='btn btn-block btn-small btn-accent-border raleway-semibold white text-uppercase spacing-0625 m-top-08 public'>public profile</button>

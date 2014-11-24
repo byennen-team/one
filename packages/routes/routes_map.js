@@ -78,7 +78,10 @@ Router.map(function () {
     data: function () {
       var user = Meteor.users.findOne({slug: this.params.slug});
 
-      user && Meteor.subscribe('followers', user._id);
+      if (user && Meteor.user()) {
+        Meteor.subscribe('followers', user._id);
+        Meteor.subscribe('following', user._id);
+      }
 
       return user;
     },

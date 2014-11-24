@@ -1,11 +1,9 @@
 Package.describe({
-  summary: 'One profile'
+  summary: 'Profile helpers.'
 });
 
 Package.onUse(function (api) {
-  api.use(['less', 'reactive-var', 'templating'], 'web');
+  api.addFiles('profile.js', 'web');
 
-  api.addFiles(['profile.html', 'profile_client.js', 'profile.less',
-    'profile_nav.html', 'profile_nav.less'
-  ], 'web');
+  api.export('Profile', 'web');
 });

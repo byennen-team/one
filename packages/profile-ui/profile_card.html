@@ -1,0 +1,31 @@
+<template name="profileCard">
+  <div class="card col-sm-6 row-padding">
+    <div class='following row p-all-10'>
+      <div class="col-md-8">
+        <div class="avatar pull-left">
+          <img class="img-circle team-img pull-left m-right-10" src="{{profile.photoUrl}}" />
+        </div>
+        <p class='h4 raleway-light accent m-top-0 m-bottom-025 p-left-35'>{{profile.firstName}} {{profile.lastName}}</p>
+        <p class='h6 raleway-semibold text text-uppercase spacing-125 m-top-0 m-bottom-025 p-left-525 lh-180'>{{profile.title}}</p>
+      </div>
+
+      {{#unless isMyProfile}}
+      <div class="col-md-4">
+        {{#if isFollowing}}
+          <a href="#" class='unfollow m-right-10 raleway-semibold accent text-uppercase spacing-0625'>
+            <p class='raleway-semibold accent text-uppercase spacing-0625 no-transition text-center'>
+              <i class="fa fa-check accent"></i>
+              <span class='un'>un</span>follow<span class='ing'>ing</span>
+            </p>
+          </a>
+        {{else}}
+          <a href="#" class='follow m-right-10'>
+            <button class='btn btn-block btn-small btn-accent raleway-semibold white text-uppercase spacing-0625 small'>follow</button>
+          </a>
+        {{/if}}
+      </div>
+      {{/unless}}
+    </div>
+    <hr/>
+  </div>
+</template>
