@@ -3,6 +3,10 @@
 Template.directory.events({
   'click .load-more': function () {
     Search.limit.set(Search.limit.get() + 100);
+  },
+  'click .user': function () {
+    var user = Blaze.getData();
+    Router.go(Routes.PROFILE, {slug: user.slug});
   }
 });
 
