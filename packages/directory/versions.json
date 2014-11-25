@@ -161,6 +161,10 @@
       "1.0.4"
     ],
     [
+      "stevezhu:velocity.js",
+      "0.1.0"
+    ],
+    [
       "templating",
       "1.0.9"
     ],

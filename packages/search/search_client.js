@@ -38,6 +38,11 @@ Search.results = function () {
 Template.searchBox.events({
   'input input': function (event) {
     Search.text(event.target.value);
+  },
+  'click .user': function () {
+    user = Meteor.users.findOne({_id: this._id});
+    $('.results').velocity("slideUp");
+    Router.go(Routes.PROFILE, {slug: user.slug});
   }
 });
 
