@@ -8,7 +8,7 @@ Meteor.publish('searchResults', function (search) {
   });
 
   return Search.cursor(search, {
-    fields: {_id: 1, profile: 1},
+    fields: {_id: 1, profile: 1, slug: 1},
     limit: search.limit || 100
   });
 });
