@@ -1,3 +1,10 @@
+Template.leftNav.events ({
+  'click .current-user': function () {
+    currentUser = Meteor.user();
+    Router.go(Routes.PROFILE, {slug: currentUser.slug});
+  }
+});
+
 Template.leftNav.helpers({
   profile: function () {
     var user = Meteor.user();
