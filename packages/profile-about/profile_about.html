@@ -2,7 +2,7 @@
   <section id="section-about" class="tab-pane section-about fade row m-top-10">
     <div class="col-sm-6 col-sm-offset-1 m-top-25 text-justify">
       <!-- TEMPLATE - User's first name 		 -->
-      <p class='raleway-semibold pull-left auto-width accent m-top-025 text-uppercase spacing-125'>About Marie</p>
+      <p class='raleway-semibold pull-left auto-width accent m-top-025 text-uppercase spacing-125'>About {{profile.firstName}}</p>
       <!-- TEMPLATE - Plug in edit functionality 	- line 154 (ish) in profile.js	 -->
       <div id='edit-bio' class="pull-right user-only pointer">
         <span class="sr-only">Edit</span>
@@ -16,8 +16,7 @@
       <div class='clearfix'></div>
       <!-- TEMPLATE - User's bio 		 -->
       <div id='bio-board' class='bio-board lt-grey-bg m-top-10' contenteditable='false'>
-        <p class='raleway-light navy lh-200'>Marie's service as a hybrid real estate professional is all-encompassing, providing a way for individuals' real estate needs to be managed by one person with in-depth knowledge of the residential, commercial, and financial markets. Marie relies on her strong financial background to help her clients with the more complicated aspects of the purchasing process. In addition, her experience with the residential and commercial real estate sectors allows her to offer insight from the vantage point of an all-around insider.</p>
-        <p class='raleway-light navy m-top-20 lh-200'>Marie recognizes that each client experience and real estate transaction is unique based on individual goals and objectives. "To see an investment through my clients' eyes is the only way to truly understand their needs and identify solutions that will work for them." </p>
+        <p class='raleway-light navy lh-200'>{{{profile.bio}}}</p>
       </div>
 
       <div class='clearfix'></div>

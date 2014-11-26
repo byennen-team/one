@@ -26,7 +26,8 @@ User.model = {
     },
     officeId: Number,
     photoUrl: Match.Optional(MatchEx.Url()),
-    title: String
+    title: String,
+    bio: String
   }),
   slug: String
 };

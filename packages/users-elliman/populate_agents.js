@@ -10,7 +10,8 @@ var userFromEllimanRow = function (row) {
     },
     numbers: {},
     officeId: row.OFFICE_ID,
-    title: row.TITLE
+    title: row.TITLE,
+    bio: row.BIO
   };
 
   if (row.PHONE_NUMBER) profile.numbers.phone = row.PHONE_NUMBER;
