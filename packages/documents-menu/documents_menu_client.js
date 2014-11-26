@@ -3,12 +3,12 @@ Template.documentsMenu.helpers({
     if (Routes.getName() === Routes.MY_DOCUMENTS) {
       return "<a href='/documents'>My Documents <i class='fa fa-sort-desc'></i></a>";
     } else {
-      return "<a href='/documents/company'><img src='../../images/documents/DE-white.png'/> Company Documents <i class='fa fa-sort-desc'></i></a>"
+      return "<a href='/documents/company'><img src='../../images/documents/DE-white.png'/> Company Docs <i class='fa fa-sort-desc'></i></a>"
     }
   },
   next_page: function () {
     if (Routes.getName() === Routes.MY_DOCUMENTS) {
-      return "<a href='/documents/company'><img src='../../images/documents/DE-white.png'/> Company Documents</a>";
+      return "<a href='/documents/company'><img src='../../images/documents/DE-white.png'/> Company Docs</a>";
     } else {
       return "<a href='/documents'>My Documents</a>"
     }
