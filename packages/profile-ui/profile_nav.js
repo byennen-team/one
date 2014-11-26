@@ -7,7 +7,7 @@ Template.profileNav.helpers({
 
     return followingUserIds && Meteor.users.find({_id: {$in: followingUserIds}}).count();
   },
-  followers: function () {
+  followersCount: function () {
     var user = Profile.currentUser();
 
     var followers = Followers.findOne({userId: user._id});
