@@ -1,0 +1,49 @@
+.btn-primary {
+  background-color: #5bb8d7;
+  color: #fff;
+  border: none;
+}
+.btn-primary:hover,
+.btn-primary:focus {
+  background-color: #50a9c7;
+}
+/* Color Buttons
+--------------------------------------- */
+.btn-accent {
+  background-color: #5bb8d7;
+  text-shadow: 1px 1px 1px #2d96b9;
+}
+.btn-accent:hover {
+  background-color: #2d96b9;
+}
+.btn-accent-border {
+  background-color: transparent;
+  border: 3px solid #5bb8d7;
+}
+.btn-accent-border:hover {
+  background-color: transparent;
+  border-color: #2d96b9;
+}
+.btn-grey {
+  background-color: #b2c0cd;
+  text-shadow: 1px 1px 1px #849aaf;
+}
+.btn-grey:hover {
+  background-color: #849aaf;
+}
+.btn-grey-border {
+  background-color: transparent;
+  border: 3px solid #b2c0cd;
+}
+.btn-grey-border:hover {
+  background-color: transparent;
+  border-color: #849aaf;
+}
+/* Bootstrap Mods
+-------------------------------------------------------------------------------------------------------------------------------------------------*/
+.btn {
+  transition: background-color 350ms ease-out 50ms, color 350ms ease-out 50ms, border-color 350ms ease-out 50ms;
+}
+.btn.white:hover {
+  color: #cccccc;
+}

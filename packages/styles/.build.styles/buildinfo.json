@@ -1,0 +1,46 @@
+{
+  "builtBy": "meteor/14",
+  "buildDependencies": {
+    "os.json": {
+      "files": {
+        "/Users/byennen/Code/Meteor/one/packages/styles/package.js": "5098b16a5b16227f5d9adbba0956c6a8ae1f8d37"
+      },
+      "directories": []
+    },
+    "web.browser.json": {
+      "files": {
+        "/Users/byennen/Code/Meteor/one/packages/styles/package.js": "5098b16a5b16227f5d9adbba0956c6a8ae1f8d37",
+        "/Users/byennen/Code/Meteor/one/packages/styles/main.less": "98430d7e7cfdd36e20ff01fc71fe4a6d760be1fa",
+        "/Users/byennen/Code/Meteor/one/packages/styles/buttons.less": "02549e9e4aead5a5f61247b3a096d175fb5a25f5",
+        "/Users/byennen/Code/Meteor/one/packages/styles/colors.less": "60f49be35337310bcdec60573830204a9bb78472",
+        "/Users/byennen/Code/Meteor/one/packages/styles/padding_and_margin.less": "b5f3785bcbed040c170b82cf741968fd26789105",
+        "/Users/byennen/Code/Meteor/one/packages/styles/cleanup.less": "8620236ff8f295c282cad3418ea8463f5c27fc00"
+      },
+      "directories": []
+    },
+    "web.cordova.json": {
+      "files": {
+        "/Users/byennen/Code/Meteor/one/packages/styles/package.js": "5098b16a5b16227f5d9adbba0956c6a8ae1f8d37",
+        "/Users/byennen/Code/Meteor/one/packages/styles/main.less": "98430d7e7cfdd36e20ff01fc71fe4a6d760be1fa",
+        "/Users/byennen/Code/Meteor/one/packages/styles/buttons.less": "02549e9e4aead5a5f61247b3a096d175fb5a25f5",
+        "/Users/byennen/Code/Meteor/one/packages/styles/colors.less": "60f49be35337310bcdec60573830204a9bb78472",
+        "/Users/byennen/Code/Meteor/one/packages/styles/padding_and_margin.less": "b5f3785bcbed040c170b82cf741968fd26789105",
+        "/Users/byennen/Code/Meteor/one/packages/styles/cleanup.less": "8620236ff8f295c282cad3418ea8463f5c27fc00"
+      },
+      "directories": []
+    }
+  },
+  "pluginDependencies": {
+    "files": {
+      "/Users/byennen/Code/Meteor/one/packages/styles/package.js": "5098b16a5b16227f5d9adbba0956c6a8ae1f8d37"
+    },
+    "directories": []
+  },
+  "source": "/Users/byennen/Code/Meteor/one/packages/styles",
+  "buildTimeDirectDependencies": {
+    "less": "1.0.11",
+    "meteor": "1.1.3"
+  },
+  "buildTimePluginDependencies": {},
+  "cordovaDependencies": null
+}

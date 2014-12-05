@@ -1,0 +1,57 @@
+{
+  "format": "unipackage-unibuild-pre1",
+  "packageVariables": [],
+  "uses": [
+    {
+      "package": "meteor"
+    },
+    {
+      "package": "less"
+    }
+  ],
+  "resources": [
+    {
+      "type": "css",
+      "file": "web.cordova/packages/styles/main.less.css",
+      "length": 3403,
+      "offset": 0,
+      "servePath": "/packages/styles/main.less.css"
+    },
+    {
+      "type": "css",
+      "file": "web.cordova/packages/styles/buttons.less.css",
+      "length": 1136,
+      "offset": 0,
+      "servePath": "/packages/styles/buttons.less.css"
+    },
+    {
+      "type": "css",
+      "file": "web.cordova/packages/styles/colors.less.css",
+      "length": 1569,
+      "offset": 0,
+      "servePath": "/packages/styles/colors.less.css"
+    },
+    {
+      "type": "css",
+      "file": "web.cordova/packages/styles/padding_and_margin.less.css",
+      "length": 1842,
+      "offset": 0,
+      "servePath": "/packages/styles/padding_and_margin.less.css"
+    },
+    {
+      "type": "css",
+      "file": "web.cordova/packages/styles/cleanup.less.css",
+      "length": 2018,
+      "offset": 0,
+      "servePath": "/packages/styles/cleanup.less.css"
+    },
+    {
+      "type": "prelink",
+      "file": "web.cordova/packages/styles.js",
+      "length": 0,
+      "offset": 0,
+      "servePath": "/packages/styles.js",
+      "sourceMap": "web.cordova/packages/styles.js.map"
+    }
+  ]
+}

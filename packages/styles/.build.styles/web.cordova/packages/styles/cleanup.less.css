@@ -1,0 +1,123 @@
+.row.no-gutter {
+  margin-left: 0;
+  margin-right: 0;
+}
+.row.no-gutter [class*='col-']:not(:first-child),
+.row.no-gutter [class*='col-']:not(:last-child) {
+  padding-right: 0;
+  padding-left: 0;
+}
+.row .half-gutter {
+  padding-right: 7px;
+  padding-left: 7px;
+}
+.fa,
+span {
+  transition: color 350ms ease-out 50ms;
+}
+.row-padding {
+  padding-left: 15px;
+  padding-right: 15px;
+}
+/* *-2 Layout
+-------------------------------------------------------------------------------------------------------------------------------------------------*/
+.fixed {
+  position: fixed;
+}
+.relative {
+  position: relative;
+}
+.absolute {
+  position: absolute;
+}
+.inline-block {
+  display: inline-block;
+}
+.auto-width {
+  width: auto;
+}
+.overflow-hidden {
+  overflow: hidden;
+}
+.z-3 {
+  position: relative;
+  z-index: 3;
+}
+.z-100 {
+  position: relative;
+  z-index: 100;
+}
+.no-border {
+  border: none;
+}
+.spacing-0 {
+  letter-spacing: 0;
+}
+.spacing-0625 {
+  letter-spacing: 0.0625em;
+}
+.spacing-125 {
+  letter-spacing: 0.125em;
+}
+.spacing-250 {
+  letter-spacing: 0.25em;
+}
+.full-bg-img {
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: top center;
+}
+.full-height {
+  position: absolute;
+  bottom: 0;
+  top: 0;
+  right: 0;
+}
+body .to-center {
+  transform: translate(0, 0);
+  opacity: 1.0;
+}
+/* Left
+---------------------------------------------------------------------------- */
+.img-responsive-sm {
+  display: block;
+  max-width: 90%;
+  height: auto;
+}
+/* absolute/fixed positioning
+---------------------------------------------------------------------------- */
+.left-0 {
+  left: 0;
+}
+.right-0 {
+  right: 0;
+}
+.lh-170 {
+  line-height: 170%;
+}
+.lh-180 {
+  line-height: 180%;
+}
+.lh-200 {
+  line-height: 200%;
+}
+.lh-250 {
+  line-height: 250%;
+}
+.width-80 {
+  width: 80%;
+}
+.width-100 {
+  width: 100%;
+}
+.drop-alert {
+  position: fixed;
+  height: 4em;
+  width: 100%;
+  padding: 1.25em;
+  z-index: 100;
+  transform: translate(0, -10em);
+  transition: all 1000ms ease-out 50ms;
+}
