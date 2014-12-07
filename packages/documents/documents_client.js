@@ -61,3 +61,32 @@ Template.documents.helpers({
     return file.name.split('.').pop();
   }
 });
+
+Template.documents.rendered = function () {
+  $(document.body).on('dragover', function (e) {
+    e.stopPropagation();
+    e.preventDefault();
+
+    e.originalEvent.dataTransfer.dropEffect = 'copy';
+  });
+
+  $(document.body).on('drop', function (e) {
+    e.stopPropagation();
+    e.preventDefault();
+
+    var files = e.originalEvent.dataTransfer.files;
+    for (var i = 0, file; file = files[i]; i++) {
+      var method = Routes.getName() === Routes.MY_DOCUMENTS ? 'signUserFileUpload' : 'signCompanyFileUpload';
+      FileTools.upload(method, file);
+    }
+  });
+
+  // TODO folders
+  // TODO setup progress
+  // TODO overwriting files
+};
+
+Template.documents.destroyed = function () {
+  $(document.body).off('dragover');
+  $(document.body).off('drop');
+};
