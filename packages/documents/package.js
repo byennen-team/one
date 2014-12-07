@@ -11,7 +11,7 @@ Package.onUse(function (api) {
 
   api.addFiles([
     'documents.html', 'documents_client.js', 'documents.less',
-    'documents_widget.html', 'dropzone.js'
+    'documents_widget.html'
   ], 'web');
 
   api.addFiles('documents_server.js', 'server');
