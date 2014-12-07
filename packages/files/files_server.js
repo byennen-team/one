@@ -6,6 +6,12 @@ Meteor.publish('files', function () {
   return Files.find();
 });
 
+Files.allow({
+  remove: function (userId, doc) {
+    return doc.companyDocument || doc.userId === userId;
+  }
+});
+
 /**
  * Create a signature to allow the client to upload
  * a public readable file in our S3 bucket.

@@ -1,10 +1,18 @@
-// Template.documents.rendered({
-//   var dropzone = new Dropzone(document.body, { // Make the whole body a dropzone
-//     url: "/upload/url", // Set the url
-//     previewsContainer: "#previews", // Define the container to display the previews
-//     clickable: "#clickable" // Define the element that should be used as click trigger to select files.
-//   });
-// });
+// TODO folders
+// TODO progress
+
+var uploadFile = function (file) {
+  var companyDocument = Routes.getName() === Routes.COMPANY_DOCUMENTS;
+
+  var existingFile = Files.findOne({name: file.name, companyDocument: companyDocument});
+  if (existingFile) {
+    if (!confirm('There is already a file named "' + file.name + '". Do you want to overwrite it?')) return;
+    Files.remove(existingFile._id);
+  }
+
+  var method = companyDocument ? 'signCompanyFileUpload' : 'signUserFileUpload';
+  FileTools.upload(method, file);
+};
 
 Template.documents.events({
   'click .upload': function (event, template) {
@@ -12,8 +20,7 @@ Template.documents.events({
   },
 
   'change input[type=file]': function (event) {
-    var method = Routes.getName() === Routes.MY_DOCUMENTS ? 'signUserFileUpload' : 'signCompanyFileUpload';
-    FileTools.upload(method, event.target.files[0]);
+    uploadFile(event.target.files[0]);
   },
 
   'click input[type=checkbox]': function (event) {
@@ -83,15 +90,8 @@ Template.documents.rendered = function () {
     e.preventDefault();
 
     var files = e.originalEvent.dataTransfer.files;
-    for (var i = 0, file; file = files[i]; i++) {
-      var method = Routes.getName() === Routes.MY_DOCUMENTS ? 'signUserFileUpload' : 'signCompanyFileUpload';
-      FileTools.upload(method, file);
-    }
+    for (var i = 0, file; file = files[i]; i++) uploadFile(file);
   });
-
-  // TODO folders
-  // TODO setup progress
-  // TODO overwriting files
 };
 
 Template.documents.destroyed = function () {
