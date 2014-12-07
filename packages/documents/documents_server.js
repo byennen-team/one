@@ -26,7 +26,7 @@ Meteor.methods({
 
     var folder = Folder.companyDocument('elliman');
     if (!file.companyDocument) {
-      folder = Folder.userDocument('elliman', user._id);
+      folder = Folder.userDocument(user._id);
     }
 
     FileTools.rename(folder + '/' + file.name, folder + '/' + newFileName, function (error) {
@@ -46,7 +46,9 @@ Meteor.methods({
     var filePath = Folder.companyDocument('elliman') + '/' + fileName;
 
     var fileId = Files.insert({companyDocument: true, name: fileName, uploadDate: new Date(), userId: user._id});
-    FileTools.signUpload(fileId, filePath, mimeType);
+    var signed = FileTools.signUpload(filePath, 'private', mimeType);
+    signed.fileId = fileId;
+    return signed;
   },
   signUserFileUpload: function (fileName, mimeType) {
     check(fileName, String);
@@ -55,10 +57,11 @@ Meteor.methods({
     var user = Meteor.user();
     if (!user) throw new Meteor.Error('Invalid credentials');
 
-    // TODO grab company name
-    var filePath = Folder.userDocument('elliman', user._id) + '/' + fileName;
+    var filePath = Folder.userDocument(user._id) + '/' + fileName;
 
     var fileId = Files.insert({companyDocument: false, name: fileName, uploadDate: new Date(), userId: user._id});
-    return FileTools.signUpload(fileId, filePath, mimeType);
+    var signed = FileTools.signUpload(filePath, 'private', mimeType);
+    signed.fileId = fileId;
+    return signed;
   }
 });

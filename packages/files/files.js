@@ -20,5 +20,5 @@ FileTools.ext = function (fileName) {
  * @param filePath
  */
 FileTools.url = function (filePath) {
-  return Meteor.settings.public.AWS_BUCKET_URL + '/' + filePath;
+  return 'files/' + encodeURIComponent(filePath);
 };

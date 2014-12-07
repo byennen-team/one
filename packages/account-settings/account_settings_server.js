@@ -9,10 +9,7 @@ Meteor.methods({
     var user = Meteor.user();
     if (!user) throw new Meteor.Error('Invalid credentials');
 
-    // TODO grab company name
-    var companyName = 'elliman';
-
-    var filePath = Folder.profilePicture(companyName, user._id) + '/' + Random.id() + '.' + FileTools.ext(fileName);
-    return FileTools.signUpload(filePath, mimeType);
+    var filePath = Folder.profilePicture(user._id) + '/' + Random.id() + '.' + FileTools.ext(fileName);
+    return FileTools.signUpload(filePath, 'public-read', mimeType);
   }
 });
