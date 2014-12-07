@@ -18,7 +18,7 @@ Files.allow({
  * @param filePath The file path.
  * @returns {{accessKey: *, policy: string, signature: *}}
  */
-FileTools.signUpload = function (filePath, mimeType) {
+FileTools.signUpload = function (fileId, filePath, mimeType) {
   var bucket = Meteor.settings.AWS_BUCKET;
 
   var policy = {
@@ -44,6 +44,7 @@ FileTools.signUpload = function (filePath, mimeType) {
   };
 
   return {
+    fileId: fileId,
     filePath: filePath,
     credentials: credentials
   };

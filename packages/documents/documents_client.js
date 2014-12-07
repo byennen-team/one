@@ -1,6 +1,21 @@
 // TODO folders
 // TODO progress
 
+var updateProgress = function (fileRow, progress) {
+  var element = fileRow.find('.progress');
+
+  if (progress < 100) {
+    element.removeClass('hide');
+    element.find('div')
+      .attr('aria-valuenow', progress)
+      .width(progress + '%')
+      .text(progress + '%');
+  }
+  else {
+    element.addClass('hide');
+  }
+};
+
 var uploadFile = function (file) {
   var companyDocument = Routes.getName() === Routes.COMPANY_DOCUMENTS;
 
@@ -11,7 +26,15 @@ var uploadFile = function (file) {
   }
 
   var method = companyDocument ? 'signCompanyFileUpload' : 'signUserFileUpload';
-  FileTools.upload(method, file);
+
+  var fileRow;
+  FileTools.upload(method, file, function (error, fileId) {
+    if (error) return; // TODO handle error
+    fileRow = $('#row-' + fileId);
+  }, function (progressEvent) {
+    var progress = Math.floor(progressEvent.loaded / progressEvent.total * 100);
+    updateProgress(fileRow, progress);
+  });
 };
 
 Template.documents.events({

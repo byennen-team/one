@@ -1,7 +1,9 @@
-FileTools.upload = function (method, file, callback, onProgress) {
+FileTools.upload = function (method, file, callback, onProgress, onComplete) {
   // Heavily borrowed from http://stackoverflow.com/a/12378395/230462
   Meteor.call(method, file.name, file.type, function (error, result) {
     if (error) return;
+
+    callback && callback(null, result.fileId);
 
     var formData = new FormData();
     var key = 'events/' + (new Date).getTime() + '-' + file.name;
@@ -16,11 +18,10 @@ FileTools.upload = function (method, file, callback, onProgress) {
     formData.append('file', file);
 
     var xhr = new XMLHttpRequest();
-
     if (onProgress) xhr.upload.addEventListener('progress', onProgress, false);
 
-    xhr.addEventListener('load', function () {
-      callback && callback(null, result);
+    onComplete && xhr.addEventListener('load', function () {
+      onComplete(null, result);
     }, false);
 
     var onError = function (evt) {

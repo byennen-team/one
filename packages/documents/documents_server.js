@@ -45,9 +45,8 @@ Meteor.methods({
     // TODO grab company name
     var filePath = Folder.companyDocument('elliman') + '/' + fileName;
 
-    Files.insert({companyDocument: true, name: fileName, uploadDate: new Date(), userId: user._id});
-
-    return FileTools.signUpload(filePath, mimeType);
+    var fileId = Files.insert({companyDocument: true, name: fileName, uploadDate: new Date(), userId: user._id});
+    FileTools.signUpload(fileId, filePath, mimeType);
   },
   signUserFileUpload: function (fileName, mimeType) {
     check(fileName, String);
@@ -59,8 +58,7 @@ Meteor.methods({
     // TODO grab company name
     var filePath = Folder.userDocument('elliman', user._id) + '/' + fileName;
 
-    Files.insert({companyDocument: false, name: fileName, uploadDate: new Date(), userId: user._id});
-
-    return FileTools.signUpload(filePath, mimeType);
+    var fileId = Files.insert({companyDocument: false, name: fileName, uploadDate: new Date(), userId: user._id});
+    return FileTools.signUpload(fileId, filePath, mimeType);
   }
 });
