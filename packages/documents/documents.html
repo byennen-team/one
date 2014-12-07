@@ -11,7 +11,7 @@
         </div>
         <div class="row">
           <div class="options col-sm-12">
-            <a href="#" class="folder"><i class="fa fa-folder"></i> New Folder</a>
+            <a href="#" class="folder" data-toggle="modal" data-target="#documentsFolderModal"><i class="fa fa-folder"></i> New Folder</a>
             <a href="#" class="upload"><i class="fa fa-cloud-upload"></i> Upload File</a>
             <input type="file" class="hide">
           </div>
@@ -67,6 +67,7 @@
               </tbody>
             </table>
             {{> shareDocumentModal}}
+            {{> documentsFolderModal}}
           </div>
         </div>
       </div>

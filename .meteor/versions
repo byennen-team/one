@@ -27,6 +27,7 @@ ddp@1.0.11
 deps@1.0.5
 digilord:roles@1.2.12
 directory@0.0.0
+documents-folder-modal@0.0.0
 documents-menu@0.0.0
 documents@0.0.0
 ejson@1.0.4
