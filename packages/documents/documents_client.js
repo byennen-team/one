@@ -1,3 +1,11 @@
+// Template.documents.rendered({
+//   var dropzone = new Dropzone(document.body, { // Make the whole body a dropzone
+//     url: "/upload/url", // Set the url
+//     previewsContainer: "#previews", // Define the container to display the previews
+//     clickable: "#clickable" // Define the element that should be used as click trigger to select files.
+//   });
+// });
+
 Template.documents.events({
   'click .upload': function (event, template) {
     template.find('input').click();
