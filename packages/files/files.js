@@ -15,6 +15,12 @@ FileTools.ext = function (fileName) {
   return fileName.substr(fileName.lastIndexOf('.') + 1);
 };
 
+FileTools.path = function (file) {
+  if (file.companyDocument) return Folder.companyDocument('elliman') + '/' + file.name;
+
+  return Folder.userDocument(file.userId) + '/' + file.name;
+};
+
 /**
  * The url of the file.
  * @param filePath

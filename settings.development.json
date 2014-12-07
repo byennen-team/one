@@ -6,5 +6,5 @@
     "AWS_BUCKET_URL": "https://goone-dev.s3.amazonaws.com",
     "ENVIRONMENT": "development"
   },
-  "S3_URL_EXPIRATION_SECONDS": 300
+  "S3_URL_EXPIRATION_SECONDS": 604800
 }

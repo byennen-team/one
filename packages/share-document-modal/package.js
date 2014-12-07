@@ -9,6 +9,6 @@ Package.onUse(function (api) {
   api.use(['templating', 'less'], 'web');
 
   api.addFiles([
-    'share_document_modal.html', 'share_document_modal.less'
+    'share_document_modal.html', 'share_document_modal.js', 'share_document_modal.less'
   ], 'web');
 });

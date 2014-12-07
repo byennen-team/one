@@ -35,7 +35,19 @@ Meteor.methods({
       Files.update(file._id, {$set: {name: newFileName}});
     });
   },
-  signCompanyFileUpload: function (fileName, mimeType) {
+
+  sharedDocumentUrl: function (fileId) {
+    check(fileId, String);
+
+    var userId = Meteor.userId();
+
+    var file = Files.findOne(fileId);
+    if (!file.companyDocument && file.userId !== userId) throw new Meteor.Error('Invalid credentials');
+
+    return FileTools.signedGet(FileTools.path(file));
+  },
+
+  signCompanyDocumentUpload: function (fileName, mimeType) {
     check(fileName, String);
     check(mimeType, String);
 
@@ -50,7 +62,7 @@ Meteor.methods({
     signed.fileId = fileId;
     return signed;
   },
-  signUserFileUpload: function (fileName, mimeType) {
+  signUserDocumentUpload: function (fileName, mimeType) {
     check(fileName, String);
     check(mimeType, String);
 

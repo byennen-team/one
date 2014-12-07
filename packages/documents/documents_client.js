@@ -25,7 +25,7 @@ var uploadFile = function (file) {
     Files.remove(existingFile._id);
   }
 
-  var method = companyDocument ? 'signCompanyFileUpload' : 'signUserFileUpload';
+  var method = companyDocument ? 'signCompanyDocumentUpload' : 'signUserDocumentUpload';
 
   var fileRow;
   FileTools.upload(method, file, function (error, fileId) {
@@ -62,6 +62,14 @@ Template.documents.events({
     var a = $("<a>").attr("href", event.target.getAttribute("href")).attr("download", "img.png").appendTo("body");
     a[0].click();
     a.remove();
+  },
+  'click .share-document': function (event) {
+    Session.set('sharedDocumentUrl');
+
+    var file = Blaze.getData(event.target);
+    Meteor.call('sharedDocumentUrl', file._id, function (error, result) {
+      Session.set('sharedDocumentUrl', result);
+    });
   },
   'mouseover td.name': function () {
     // TODO: Lance finish front end
