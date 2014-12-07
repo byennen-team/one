@@ -62,6 +62,11 @@ Template.documents.events({
     var a = $("<a>").attr("href", event.target.getAttribute("href")).attr("download", "img.png").appendTo("body");
     a[0].click();
     a.remove();
+  },
+  'mouseover td.name': function () {
+    // TODO: Lance finish front end
+    console.log('hover');
+    // $(".edit").show();
   }
 });
 
