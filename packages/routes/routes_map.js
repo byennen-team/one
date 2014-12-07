@@ -96,5 +96,9 @@ Router.map(function () {
 });
 
 if (Meteor.isClient) {
-  Meteor.subscribe('following');
+  Tracker.autorun(function () {
+    if (!Meteor.userId()) return;
+
+    Meteor.subscribe('following');
+  });
 }

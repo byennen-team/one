@@ -1,13 +1,13 @@
 Folder = {};
 
-Folder.profilePicture = function (companyName, userId) {
-  return companyName + '/profile/picture/' + userId;
-};
-
 Folder.companyDocument = function (companyName) {
-  return companyName + '/documents/company';
+  return 'company/' + companyName + '/documents';
 };
 
-Folder.userDocument = function (companyName, userId) {
-  return companyName + '/documents/' + userId;
+Folder.profilePicture = function (userId) {
+  return 'user/' + userId;
+};
+
+Folder.userDocument = function (userId) {
+  return 'user/' + userId + '/documents';
 };

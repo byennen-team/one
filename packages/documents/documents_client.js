@@ -85,7 +85,7 @@ Template.documents.helpers({
     var folder;
 
     if (Routes.getName() === Routes.MY_DOCUMENTS) {
-      folder = Folder.userDocument('elliman', Meteor.userId());
+      folder = Folder.userDocument(Meteor.userId());
     } else {
       folder = Folder.companyDocument('elliman');
     }

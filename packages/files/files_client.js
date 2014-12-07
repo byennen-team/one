@@ -9,7 +9,7 @@ FileTools.upload = function (method, file, callback, onProgress, onComplete) {
     var key = 'events/' + (new Date).getTime() + '-' + file.name;
 
     formData.append('key', result.filePath);
-    formData.append('acl', 'public-read');
+    formData.append('acl', result.acl);
     formData.append('Content-Type', file.type);
     formData.append('AWSAccessKeyId', result.credentials.accessKey);
     formData.append('policy', result.credentials.policy);
@@ -21,7 +21,7 @@ FileTools.upload = function (method, file, callback, onProgress, onComplete) {
     if (onProgress) xhr.upload.addEventListener('progress', onProgress, false);
 
     onComplete && xhr.addEventListener('load', function () {
-      onComplete(null, result);
+      callback && callback(null, result);
     }, false);
 
     var onError = function (evt) {

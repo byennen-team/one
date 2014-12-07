@@ -15,10 +15,9 @@ Files.allow({
 /**
  * Create a signature to allow the client to upload
  * a public readable file in our S3 bucket.
- * @param filePath The file path.
  * @returns {{accessKey: *, policy: string, signature: *}}
  */
-FileTools.signUpload = function (fileId, filePath, mimeType) {
+FileTools.signUpload = function (filePath, acl, mimeType) {
   var bucket = Meteor.settings.AWS_BUCKET;
 
   var policy = {
@@ -27,7 +26,7 @@ FileTools.signUpload = function (fileId, filePath, mimeType) {
     conditions: [
       {bucket: bucket},
       {key: filePath},
-      {acl: 'public-read'},
+      {acl: acl},
       ['eq', '$Content-Type', mimeType]
     ]
   };
@@ -44,10 +43,31 @@ FileTools.signUpload = function (fileId, filePath, mimeType) {
   };
 
   return {
-    fileId: fileId,
     filePath: filePath,
+    acl: acl,
     credentials: credentials
   };
+};
+
+var awsSignature = function (str) {
+  var shasum = crypto.createHmac('sha1', Meteor.settings.AWS_SECRET_ACCESS_KEY);
+  shasum.update(str);
+  return shasum.digest('base64').trim();
+};
+
+/**
+ * Return a signed url to read the filePath.
+ */
+FileTools.signedGet = function (filePath) {
+  filePath = '/' + Meteor.settings.AWS_BUCKET + '/' + filePath;
+
+  var dateTime = Math.floor(new Date().getTime() / 1000) + Meteor.settings.S3_URL_EXPIRATION_SECONDS;
+  var stringToSign = 'GET\n\n\n' + dateTime + '\n' + filePath;
+
+  var signature = awsSignature(stringToSign);
+
+  var queryString = '?AWSAccessKeyId=' + Meteor.settings.AWS_ACCESS_KEY_ID + '&Expires=' + dateTime + '&Signature=' + encodeURIComponent(signature);
+  return 'https://s3.amazonaws.com' + filePath + queryString;
 };
 
 FileTools.rename = function (originalFilePath, newFilePath, callback) {
@@ -56,7 +76,7 @@ FileTools.rename = function (originalFilePath, newFilePath, callback) {
   });
 
   s3.copyObject({
-    ACL:'public-read',
+    ACL: 'private',
     Bucket: Meteor.settings.AWS_BUCKET,
     CopySource: Meteor.settings.AWS_BUCKET + '/' + originalFilePath,
     Key: newFilePath
