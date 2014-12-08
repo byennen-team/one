@@ -71,6 +71,10 @@ Template.documents.events({
       Session.set('sharedDocumentUrl', result);
     });
   },
+  'click .rename-document': function (event) {
+    var file = Blaze.getData(event.target);
+    Session.set('selectedFileId', file._id);
+  },
   'mouseover td.name': function () {
     // TODO: Lance finish front end
     console.log('hover');

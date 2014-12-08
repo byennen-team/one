@@ -4,9 +4,7 @@ Package.describe({
 });
 
 Package.onUse(function (api) {
-  var both = ['web', 'server'];
-
-  api.use(['templating', 'less'], 'web');
+  api.use(['templating', 'less', 'natestrauser:select2@3.4.9'], 'web');
 
   api.addFiles([
     'share_document_modal.html', 'share_document_modal.js', 'share_document_modal.less'
