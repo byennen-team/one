@@ -3,7 +3,7 @@
   "AWS_ACCESS_KEY_ID": "AKIAIRIH744ERKEXHPOA",
   "AWS_SECRET_ACCESS_KEY": "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",
   "public": {
-    "AWS_BUCKET_URL": "https://goone-staging.s3.amazonaws.com",
+    "AWS_BUCKET_URL": "https://goone-staging.s3-us-west-2.amazonaws.com",
     "ENVIRONMENT": "staging"
   },
   "S3_URL_EXPIRATION_SECONDS": 604800
