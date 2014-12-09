@@ -67,7 +67,7 @@ FileTools.signedGet = function (filePath) {
   var signature = awsSignature(stringToSign);
 
   var queryString = '?AWSAccessKeyId=' + Meteor.settings.AWS_ACCESS_KEY_ID + '&Expires=' + dateTime + '&Signature=' + encodeURIComponent(signature);
-  return 'https://s3.amazonaws.com' + filePath + queryString;
+  return 'https://' + Meteor.settings.REGION + '.amazonaws.com' + filePath + queryString;
 };
 
 FileTools.rename = function (originalFilePath, newFilePath, callback) {
