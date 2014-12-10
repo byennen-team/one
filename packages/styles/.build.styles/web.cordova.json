@@ -6,6 +6,9 @@
       "package": "meteor"
     },
     {
+      "package": "templating"
+    },
+    {
       "package": "less"
     }
   ],
@@ -48,7 +51,7 @@
     {
       "type": "prelink",
       "file": "web.cordova/packages/styles.js",
-      "length": 0,
+      "length": 1754,
       "offset": 0,
       "servePath": "/packages/styles.js",
       "sourceMap": "web.cordova/packages/styles.js.map"

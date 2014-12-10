@@ -55,6 +55,11 @@ Router.map(function () {
 
   this.route(Routes.SUPPORT);
 
+  // Style Guide
+  this.route(Routes.STYLE_GUIDE, {
+    path: '/style-guide'
+  });
+
   /* Admin */
   this.route(Routes.Admin.DASHBOARD, {
     path: '/admin'
@@ -92,11 +97,6 @@ Router.map(function () {
       if (!this.data()) this.render('notFound');
       else this.render('profile')
     }
-  });
-
-  // Style Guide
-  this.route(Routes.STYLE_GUIDE, {
-    path: '/style-guide'
   });
 
 });
