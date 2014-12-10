@@ -103,6 +103,7 @@ Template.documents.helpers({
     if (Routes.getName() === Routes.MY_DOCUMENTS) {
       folder = Folder.userDocument(Meteor.userId());
     } else {
+      // TODO: add company_id
       folder = Folder.companyDocument('elliman');
     }
 

@@ -44,10 +44,8 @@ messages
 search
 directory
 documents
-favorite-documents
 navbar
 account-settings
-documents-menu
 profile
 profile-banner
 profile-activity
@@ -56,7 +54,4 @@ profile-gallery
 profile-follow
 profile-ui
 styles
-share-document-modal
-documents-folder-modal
-documents-rename-modal
 style-guide
