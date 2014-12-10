@@ -80,12 +80,6 @@ not-found@0.0.0
 notifications@1.0.0
 observe-sequence@1.0.3
 ordered-dict@1.0.1
-profile-about@0.0.0
-profile-activity@0.0.0
-profile-banner@0.0.0
-profile-follow@0.0.0
-profile-gallery@0.0.0
-profile-ui@0.0.0
 profile@0.0.0
 random@1.0.1
 reactive-dict@1.0.4
