@@ -1,5 +1,4 @@
 // TODO folders
-// TODO progress
 
 var updateProgress = function (fileRow, progress) {
   var element = fileRow.find('.progress');

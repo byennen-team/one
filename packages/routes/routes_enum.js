@@ -9,7 +9,8 @@ Routes = {
   MY_DOCUMENTS: 'myDocuments',
   COMPANY_DOCUMENTS: 'companyDocuments',
   SUPPORT: 'support',
-  MESSAGES: 'messages'
+  MESSAGES: 'messages',
+  STYLE_GUIDE: 'styleGuide'
 };
 
 Routes.Admin = {

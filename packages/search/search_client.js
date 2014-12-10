@@ -41,6 +41,7 @@ Template.searchBox.events({
   },
   'click .user': function () {
     user = Meteor.users.findOne({_id: this._id});
+    console.log(user);
     $('.results').velocity("slideUp");
     Router.go(Routes.PROFILE, {slug: user.slug});
   }

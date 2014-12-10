@@ -93,6 +93,12 @@ Router.map(function () {
       else this.render('profile')
     }
   });
+
+  // Style Guide
+  this.route(Routes.STYLE_GUIDE, {
+    path: '/style-guide'
+  });
+
 });
 
 if (Meteor.isClient) {
