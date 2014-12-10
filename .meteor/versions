@@ -52,7 +52,6 @@ jquery@1.0.1
 json@1.0.1
 launch-screen@1.0.0
 layout@0.0.0
-left-nav@0.0.0
 less@1.0.11
 livedata@1.0.11
 loading@0.0.0
@@ -74,7 +73,6 @@ mrt:moment@2.8.1
 mrt:underscore-string-latest@2.3.3
 natestrauser:font-awesome@4.2.0
 natestrauser:select2@3.4.9
-navbar@0.0.0
 news@0.0.0
 not-found@0.0.0
 notifications@1.0.0
