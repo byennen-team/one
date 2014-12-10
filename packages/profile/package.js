@@ -8,7 +8,7 @@ Package.onUse(function (api) {
   api.addFiles([
     'profile.js', 'profile_about.html', 'profile_about.less',
     'profile.html', 'profile_client.js', 'profile.less',
-    'profile_card.html', 'profile_card.js',
+    'profile_card.html', 'profile_card.js', 'profile_card.less',
     'profile_nav.html', 'profile_nav.less', 'profile_nav.js',
     'profile_activity.html', 'profile_activity.less',
     'profile_banner.html', 'profile_banner_client.js', 'profile_banner.less',

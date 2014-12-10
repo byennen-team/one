@@ -11,12 +11,13 @@ meteor-platform
 # Atmosphere Packages
 
 iron:router
-mizzao:bootstrap-3
+mizzao:bootstrap-3 #TODO: refactory to bootstrap-less
 natestrauser:font-awesome
 stevezhu:velocity.js@0.1.0
 mrt:moment
-joshowens:simple-form
+joshowens:simple-form #TODO: refactory this out
 aldeed:simple-schema
+mrt:imagemagick
 
 # Our Packages
 
