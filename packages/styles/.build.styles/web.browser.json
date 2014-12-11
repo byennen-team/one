@@ -49,6 +49,13 @@
       "servePath": "/packages/styles/cleanup.less.css"
     },
     {
+      "type": "css",
+      "file": "web.browser/packages/styles/go_one_icons.less.css",
+      "length": 1529,
+      "offset": 0,
+      "servePath": "/packages/styles/go_one_icons.less.css"
+    },
+    {
       "type": "prelink",
       "file": "web.browser/packages/styles.js",
       "length": 1754,
