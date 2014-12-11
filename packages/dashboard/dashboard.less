@@ -1,36 +1,43 @@
-#board {
-  margin-top: 20px;
-}
+.dashboard {
+  .content {
+    padding-top: 70px;
+  }
 
-// TODO: remove this code. only for demo.
-.calendar, .news, .supportWidget, .chat, .appsWidget {
-  margin-top: 30px;
-  img {
-    width: 100%;
+  // TODO: refactor the code below. -Lance
+  #board {
+    margin-top: 20px;
   }
-}
-.documentsWidget {
-  background: #ccd6e7;
-  height: 100%;
-  min-height: 800px;
-  margin: 0 -15px 0 0;
-  img {
-    width: 100%;
+
+  // TODO: remove this code. only for demo.
+  .calendar, .news, .supportWidget, .chat, .appsWidget {
+    margin-top: 30px;
+    img {
+      width: 100%;
+    }
   }
+  .documentsWidget {
+    background: #ccd6e7;
+    height: 100%;
+    min-height: 800px;
+    margin: 0 -15px 0 0;
+    img {
+      width: 100%;
+    }
+  }
+  img.banner-chat-button {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+  }
+  img.chat-window {
+    position: fixed;
+    bottom: -1000;
+    right: 30px;
+    z-index: 100;
+  }
+  img.library {
+    width: 100%;
+    height: 100%;
+  }
+  // remove
 }
-img.banner-chat-button {
-  position: absolute;
-  bottom: 0;
-  right: 0;
-}
-img.chat-window {
-  position: fixed;
-  bottom: -1000;
-  right: 30px;
-  z-index: 100;
-}
-img.library {
-  width: 100%;
-  height: 100%;
-}
-// remove

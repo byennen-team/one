@@ -67,9 +67,6 @@ a:focus {
   -ms-transition: all 0.3s;
   transition: all 0.3s;
 }
-.content {
-  padding-top: 70px;
-}
 h1.header-green {
   background: #77cfbd;
   margin: 0;

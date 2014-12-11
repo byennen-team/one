@@ -1,27 +1,36 @@
 <template name="profile">
-  {{#if isPrivate}}
-    private
+<!--   {{#if isPrivate}}
+  private
+{{else}}
+  {{#if isMyProfile}}
+    my profile
   {{else}}
-    {{#if isMyProfile}}
-      my profile
-    {{else}}
-      public
-    {{! Internal profile }}
-      internal
-    {{/if}}
+
+  {{! Internal profile }}
+    internal
   {{/if}}
+{{/if}} -->
 
-  {{> profileHeader isMyProfile=isMyProfile}}
 
+  {{#unless isMyProfile}}
+    {{> profileHeader}}
+  {{/unless}}
   {{> profileBanner isPrivate=isPrivate profile=profile isMyProfile=isMyProfile}}
-  <div class='container p-bottom-40'>
-    {{> profileNav}}
-    <div id="tab-content" class="tab-content">
-      {{> profileActivity}}
-      {{> profileAbout}}
-      {{> profileGallery}}
-      {{> profileFollowers}}
-      {{> profileFollowing}}
+  {{#unless isMyProfile}}
+    {{> profilePropertySearch}}
+    {{> profileTestimonial}}
+  {{/unless}}
+
+  {{#if isMyProfile}}
+    <div class='container p-bottom-40'>
+      {{> profileNav}}
+      <div id="tab-content" class="tab-content">
+        {{> profileActivity}}
+        {{> profileAbout}}
+        {{> profileGallery}}
+        {{> profileFollowers}}
+        {{> profileFollowing}}
+      </div>
     </div>
-  </div>
+  {{/if}}
 </template>

@@ -16,7 +16,7 @@
     {
       "type": "css",
       "file": "web.cordova/packages/styles/main.less.css",
-      "length": 3403,
+      "length": 3369,
       "offset": 0,
       "servePath": "/packages/styles/main.less.css"
     },
@@ -30,7 +30,7 @@
     {
       "type": "css",
       "file": "web.cordova/packages/styles/colors.less.css",
-      "length": 1569,
+      "length": 2033,
       "offset": 0,
       "servePath": "/packages/styles/colors.less.css"
     },

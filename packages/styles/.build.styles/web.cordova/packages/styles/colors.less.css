@@ -1,6 +1,4 @@
-/* Color Variables - for whole project
--------------------------------------------------------------------------------- */
-.white {
+Color Variables - for whole project -------------------------------------------------------------------------------- .white {
   color: #ffffff;
 }
 .white-bg {
@@ -24,17 +22,53 @@
 .lt-grey-bg {
   background-color: #f4f5f6;
 }
+.text {
+  color: #78838e;
+}
+.text-bg {
+  background-color: #78838e;
+}
 .accent {
   color: #5bb8d7;
 }
 .accent-bg {
   background-color: #5bb8d7;
 }
+.accent-dk {
+  color: #51a9c6;
+}
+.accent-dk-bg {
+  background-color: #51a9c6;
+}
+.accent-very-dk {
+  color: #4390aa;
+}
+.accent-very-dk-bg {
+  background-color: #4390aa;
+}
+.ultramarine {
+  color: #367f97;
+}
+.ultramarine-bg {
+  background-color: #367f97;
+}
+.sky {
+  color: #9dd4e7;
+}
+.sky-bg {
+  background-color: #9dd4e7;
+}
 .navy {
   color: #293446;
 }
 .navy-bg {
   background-color: #293446;
+}
+.midnight {
+  color: #1c2431;
+}
+.midnight-bg {
+  background-color: #1c2431;
 }
 .blue {
   color: #344c7b;

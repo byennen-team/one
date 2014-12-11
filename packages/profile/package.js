@@ -3,7 +3,7 @@ Package.describe({
 });
 
 Package.onUse(function (api) {
-  api.use(['templating', 'less', 'reactive-var'], 'web');
+  api.use(['templating', 'less', 'reactive-var', 'jquery'], 'web');
 
   api.addFiles([
     'profile.js', 'profile_about.html', 'profile_about.less',
@@ -15,7 +15,9 @@ Package.onUse(function (api) {
     'profile_followers.html', 'profile_followers.less', 'profile_followers.js',
     'profile_following.html', 'profile_following.js',
     'profile_gallery.html', 'profile_gallery.less', 'gallery_modal.html',
-    'gallery_modal.less', 'profile_header.html', 'profile_header.less'
+    'gallery_modal.less',
+    'profile_header.html', 'profile_header.less', 'profile_header.js',
+    'profile_property_search.html', 'profile_testimonial.html'
     ], 'web');
 
   api.export('Profile', 'web');

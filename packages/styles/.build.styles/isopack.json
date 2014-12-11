@@ -2,8 +2,8 @@
   "isopack-1": {
     "name": "styles",
     "summary": "Common styles.",
-    "version": "0.0.0+4dccfab92fb8e327d8f00df31be6578785d5658f",
-    "earliestCompatibleVersion": "0.0.0",
+    "version": null,
+    "earliestCompatibleVersion": null,
     "isTest": false,
     "builds": [
       {
