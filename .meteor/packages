@@ -18,6 +18,7 @@ mrt:moment
 joshowens:simple-form #TODO: refactory this out
 aldeed:simple-schema
 mrt:imagemagick
+mrt:bootstrap-select
 
 # Our Packages
 
@@ -47,5 +48,3 @@ documents
 account-settings
 profile
 styles
-mrt:bootstrap-select
-
