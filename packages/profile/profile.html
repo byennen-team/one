@@ -17,6 +17,7 @@
   {{/unless}}
   {{> profileBanner isPrivate=isPrivate profile=profile isMyProfile=isMyProfile}}
   {{#unless isMyProfile}}
+    {{> profileAbout}}
     {{> profilePropertySearch}}
     {{> profileTestimonial}}
   {{/unless}}

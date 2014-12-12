@@ -69,11 +69,11 @@ mizzao:bootstrap-3@3.3.1_1
 mobile-status-bar@1.0.1
 mongo-livedata@1.0.6
 mongo@1.0.9
+mquandalle:bower@0.1.11
 mrt:bootstrap-select@1.5.4
 mrt:imagemagick@0.1.2
 mrt:moment@2.8.1
 mrt:underscore-string-latest@2.3.3
-natestrauser:font-awesome@4.2.0
 natestrauser:select2@3.4.9
 news@0.0.0
 not-found@0.0.0

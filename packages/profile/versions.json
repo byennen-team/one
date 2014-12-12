@@ -49,6 +49,10 @@
       "1.0.5"
     ],
     [
+      "mrt:bootstrap-select",
+      "1.5.4"
+    ],
+    [
       "observe-sequence",
       "1.0.3"
     ],
