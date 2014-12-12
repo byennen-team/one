@@ -3,7 +3,7 @@ Package.describe({
 });
 
 Package.onUse(function (api) {
-  api.use(['templating', 'less', 'reactive-var', 'jquery'], 'web');
+  api.use(['templating', 'less', 'reactive-var', 'jquery', 'bootstrap-select'], 'web');
 
   api.addFiles([
     'profile.js', 'profile_about.html', 'profile_about.less',
