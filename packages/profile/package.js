@@ -17,7 +17,7 @@ Package.onUse(function (api) {
     'profile_gallery.html', 'profile_gallery.less', 'gallery_modal.html',
     'gallery_modal.less',
     'profile_header.html', 'profile_header.less', 'profile_header.js',
-    'profile_property_search.html', 'profile_property_search.less',
+    'profile_property_search.html', 'profile_property_search.less', 'profile_property_search.js',
     'profile_testimonial.html'
     ], 'web');
 
