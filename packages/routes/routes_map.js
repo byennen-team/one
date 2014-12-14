@@ -106,7 +106,7 @@ Router.route('/:slug', {
   }
 });
 
-Router.route('/files/:path', {where: 'server'})
+Router.route('/files', {where: 'server'})
   .get(Routes.Server.getFiles || function () {});
 
 if (Meteor.isClient) {
