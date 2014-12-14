@@ -19,3 +19,5 @@ Routes.Admin = {
   DASHBOARD: 'adminDashboard',
   USERS: 'adminUsers'
 };
+
+Routes.Server = {};
