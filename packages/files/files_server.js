@@ -63,11 +63,13 @@ FileTools.signedGet = function (filePath) {
 
   var dateTime = Math.floor(new Date().getTime() / 1000) + Meteor.settings.S3_URL_EXPIRATION_SECONDS;
   var stringToSign = 'GET\n\n\n' + dateTime + '\n' + filePath;
-
+  console.log("Signing String", stringToSign);
   var signature = awsSignature(stringToSign);
-
+  console.log("Signature", signature)
   var queryString = '?AWSAccessKeyId=' + Meteor.settings.AWS_ACCESS_KEY_ID + '&Expires=' + dateTime + '&Signature=' + encodeURIComponent(signature);
-  return 'https://' + Meteor.settings.REGION + '.amazonaws.com' + filePath + queryString;
+  var url = 'https://' + Meteor.settings.REGION + '.amazonaws.com' + filePath + queryString;
+  console.log("Signed URL", url)
+  return url
 };
 
 FileTools.rename = function (originalFilePath, newFilePath, callback) {

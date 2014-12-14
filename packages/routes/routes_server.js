@@ -11,20 +11,35 @@ var unauthorized = function (response) {
   response.end('Unauthorized');
 };
 
+/**
+* Return a signed url to read the filePath.
+*/
+
 Routes.Server.getFiles = function () {
-  var filePath = decodeURIComponent(this.params.path);
-
-  var user = currentUser(this.request);
-  if (!user) return unauthorized(this.response);
-
-  var paths = filePath.split('/');
-  var companyDocument = paths[0] === 'company';
-  if (companyDocument) {
-    // TODO check they have access to the company of paths[1]
-  } else if (user._id !== paths[1]) return unauthorized(this.response);
-
-  this.response.writeHead(302, {
-    Location: FileTools.signedGet(filePath)
-  });
-  this.response.end();
+  // var response = this.response;
+  try {
+    console.log("1", this.params.path);
+    var filePath = decodeURIComponent(this.params.path);
+    console.log("2");
+    var user = currentUser(this.request);
+    console.log("3");
+    if (!user) return unauthorized(this.response);
+    console.log("4");
+    var paths = filePath.split('/');
+    console.log("5");
+    var companyDocument = paths[0] === 'company';
+    console.log("6");
+    if (companyDocument) {
+      // TODO check they have access to the company of paths[1]
+    } else if (user._id !== paths[1]) return unauthorized(this.response);
+    console.log(filePath);
+    this.response.writeHead(302, {
+      Location: FileTools.signedGet(filePath)
+    });
+    console.log("8");
+    this.response.end();
+  } catch (e) {
+    console.error('Server.getFiles', e);
+    this.response.end(500);
+  }
 };
