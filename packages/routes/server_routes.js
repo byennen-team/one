@@ -13,6 +13,7 @@ var unauthorized = function (response) {
 
 Router.route('/files/:path', {where: 'server'})
   .get(function () {
+    console.log("hit file route", this.params)
     var filePath = decodeURIComponent(this.params.path);
 
     var user = currentUser(this.request);
