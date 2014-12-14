@@ -26,5 +26,5 @@ FileTools.path = function (file) {
  * @param filePath
  */
 FileTools.url = function (filePath) {
-  return 'files/' + encodeURIComponent(filePath);
+  return 'files?path=' + encodeURIComponent(filePath);
 };
