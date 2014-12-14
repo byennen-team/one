@@ -1,10 +1,10 @@
 Meteor.publishComposite('followers', function (userId) {
-  if (!this.userId) return false;
-
-  check(userId, String);
-
   return {
     find: function () {
+      if (!userId || !this.userId) return;
+
+      check(userId, String);
+
       return Followers.find({userId: userId});
     },
     children: [
@@ -18,13 +18,14 @@ Meteor.publishComposite('followers', function (userId) {
 });
 
 Meteor.publishComposite('following', function (userId) {
-  if (!this.userId) return false;
-
-  userId = userId || this.userId;
-  check(userId, String);
-
   return {
     find: function () {
+      userId = userId || this.userId;
+
+      if (!userId || !this.userId) return;
+
+      check(userId, String);
+
       return Following.find({userId: userId});
     },
     children: [
