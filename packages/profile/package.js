@@ -21,7 +21,9 @@ Package.onUse(function (api) {
     'profile_testimonial.html', 'profile_testimonial.less',
     'profile_buyer.html', 'profile_buyer.less',
     'profile_contact.html', 'profile_contact.less',
-    'profile_footer.html', 'profile_footer.less'
+    'profile_footer.html', 'profile_footer.less',
+    'modals/profile_header_image_modal.html', 'modals/profile_header_delete_image_modal.html',
+    'modals/profile_contact_message_success_modal.html', 'modals/profile_contact_message_failed_modal.html'
     ], 'web');
 
   api.addFiles('profile_cleanup.less', 'web')// TODO: remove this after Dave cleans this up

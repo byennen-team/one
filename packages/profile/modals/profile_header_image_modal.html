@@ -1,0 +1,18 @@
+<template name="profileHeaderImageModal">
+  <div class="modal fade" id="add-image" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <!-- TEMPLATE - form needs to be plugged in					 -->
+      <form class="modal-content">
+        <div class="modal-body">
+          <p class="raleway-bold navy text-uppercase spacing-125 text-center h6">Select an image</p>
+          <!-- <p class="raleway-regular text text-center">photo-1.jpg</p> -->
+          <input id='image-upload' class="" type="file" name="pic" accept="image/*">
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn" data-dismiss="modal">add image</button>
+          <button type="button" class="btn btn-accent-border" data-dismiss="modal">cancel</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</template>
