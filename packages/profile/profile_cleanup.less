@@ -160,16 +160,16 @@
     border-color: #51a9c6;
     background-color: #f0f2f6;
   }
-  Buttons
-  -------------------------------------------------------------------------------------------------------------------------------------------------
+  /* Buttons
+  ------------------------------------------------------------------------------------------------------------------------------------------------- */
   .pointer {
     cursor: pointer;
   }
   a {
     color: #5bb8d7;
   }
-  *-2 Layout
-  -------------------------------------------------------------------------------------------------------------------------------------------------
+   /* -2 Layout
+   ------------------------------------------------------------------------------------------------------------------------------------------------- */
   .fixed {
     position: fixed;
   }
@@ -261,58 +261,35 @@
       white-space: nowrap;
     }
   }
-  a,
-  p {
-    transition: color 350ms ease-out 50ms;
-  }
-  p {
-    color: #78838e;
-  }
-  a {
-    color: #5bb8d7;
-  }
-  a:hover,
-  a:focus,
-  a:active {
-    color: #2885a4;
-  }
-  html,
-  body {
-    min-height: 100%;
-    background-color: #f4f5f6;
-  }
-  body {
-    overflow-y: scroll;
-    -webkit-transform: translateZ(0);
-  }
-  hr {
-    margin: 0;
-    height: 1px;
-  }
+
 }
 
-/* Cant find this CSS */
-/*   .info-header {
-position: relative;
-height: 177px;
+// wrapping these in .profile was creating specificity issues
+a,
+p {
+  transition: color 350ms ease-out 50ms;
 }
-.info-header .btn:hover,
-.info-header .btn:focus,
-.info-header .btn.focus {
-color: #ffffff;
-text-decoration: none;
+p {
+  color: #78838e;
 }
-.info-header .btn {
-font-size: 11px;
-font-size: 1.1rem;
-padding: 9px 45px;
+a {
+  color: #5bb8d7;
 }
-.info-header:after {
-content: "";
-position: absolute;
-background: #293446;
-height: 177px;
-width: 20000px;
-left: -10000px;
-z-index: -1;
-} */
+a:hover,
+a:focus,
+a:active {
+  color: #2885a4;
+}
+html,
+body {
+  min-height: 100%;
+  background-color: #f4f5f6;
+}
+body {
+  overflow-y: scroll;
+  -webkit-transform: translateZ(0);
+}
+hr {
+  margin: 0;
+  height: 1px;
+}
