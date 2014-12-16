@@ -1,0 +1,59 @@
+<template name="profileContact">
+  <section id='contact' class="contact navy-bg p-bottom-30">
+
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-8 col-sm-offset-2">
+          <p class="h1 white text-center raleway-light m-top-20">Contact Me</p>
+          <p class="accent h4 text-center raleway-light m-bottom-30">Allow me to help you answer your real estate questions, buy a home, or sell your property.</p>
+          <!-- TEMPLATE - form needs to be plugged in.  -->
+          <form>
+            <div class="half">
+              <label for="contact-name" class='label'>name</label>
+              <div class="clearfix"></div>
+              <input type="text" class="form-control" id="contact-name">
+            </div>
+            <div class="half">
+              <label for="contact-email" class='label'>email</label>
+              <div class="clearfix"></div>
+              <input type="email" class="form-control" id="contact-email" placeholder='email@email.com'>
+            </div>
+            <div class="half">
+              <label for="contact-phone" class='label'>phone</label>
+              <div class="clearfix"></div>
+              <input type="num" class="form-control" id="contact-phone" placeholder='(xxx) xxx-xxxx'>
+            </div>
+            <div class="half radio">
+              <label id='contact-buyer-radio' for="contact-buyer" class='radio-check'></label>
+              <label for="contact-buyer" class='label'>buyer</label>
+              <input id='contact-buyer' class='hidden' type="radio" name="buy-or-sell" value='buyer' />
+
+              <label id='contact-seller-radio' for="contact-seller" class='radio-check'></label>
+              <label for="contact-seller" class='label'>seller</label>
+              <input id='contact-seller' class='hidden' type="radio" name="buy-or-sell" value='seller' />
+            </div>
+
+            <div class="clearfix"></div>
+
+            <textarea name="contact-textarea" class='form-control' id="contact-textarea" placeholder='Your message or question.'></textarea>
+
+            <!-- TEMPLATE - The success and fail modals (#contact-success and #contact-fail, ln. 1096) need to be called 		 -->
+            <input class='submit btn btn-accent white raleway-light text-uppercase pull-right m-top-20' type="submit" value="send" >
+
+            <div class="radio pull-right">
+              <label for="contact-text-button" class='label pull-right'>send as text</label>
+              <label id='contact-text-radio' for="contact-text-button" class='radio-dot pull-right'></label>
+              <input id='contact-text-button' class='hidden' type="radio" name="email-or-text" value='text' />
+
+              <label for="contact-email-button" class='label pull-right'>send as email</label>
+              <label id='contact-email-radio' for="contact-email-button" class='radio-dot pull-right'></label>
+              <input id='contact-email-button' class='hidden' type="radio" name="email-or-text" value='email' checked/>
+            </div>
+
+          </form>
+
+        </div>
+      </div>
+    </div>
+  </section>
+</template>

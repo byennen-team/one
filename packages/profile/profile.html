@@ -20,6 +20,9 @@
     {{> profileAbout}}
     {{> profilePropertySearch}}
     {{> profileTestimonial}}
+    {{> profileBuyer}}
+    {{> profileContact}}
+    {{> profileFooter}}
   {{/unless}}
 
   {{#if isMyProfile}}
@@ -34,4 +37,69 @@
       </div>
     </div>
   {{/if}}
+
+
+  <!-- TODO: Put Modal's in seperate files -->
+  <div class="modal fade" id="add-image" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <!-- TEMPLATE - form needs to be plugged in					 -->
+      <form class="modal-content">
+        <div class="modal-body">
+          <p class="raleway-bold navy text-uppercase spacing-125 text-center h6">Select an image</p>
+          <!-- <p class="raleway-regular text text-center">photo-1.jpg</p> -->
+          <input id='image-upload' class="" type="file" name="pic" accept="image/*">
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn" data-dismiss="modal">add image</button>
+          <button type="button" class="btn btn-accent-border" data-dismiss="modal">cancel</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Modal -->
+  <div class="modal fade" id="trashcan" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-body">
+          <p class="raleway-bold navy text-uppercase spacing-125 text-center h6">are you sure you want to delete this image?</p>
+          <!-- TEMPLATE - image to delete file name and extension (not path) goes here				 -->
+          <p class="raleway-regular text text-center">photo-1.jpg</p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn" data-dismiss="modal">delete image</button>
+          <button type="button" class="btn btn-accent-border" data-dismiss="modal">cancel</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal -->
+  <div class="modal fade" id="contact-success" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-body">
+          <p class="raleway-bold navy text-uppercase spacing-125 text-center h6">thank you for your message</p>
+          <p class="raleway-regular text text-center">you will receive a response as soon as possible</p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn single" data-dismiss="modal">ok</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal fade" id="contact-fail" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-body">
+          <p class="raleway-bold navy text-uppercase spacing-125 text-center h6">there seems to have been a problem</p>
+          <p class="raleway-regular text text-center">please try again later, or contact me <a href="mailto:someone@gmail.com" class="">directly</a></p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn single" data-dismiss="modal">ok</button>
+        </div>
+      </div>
+    </div>
+  </div>
 </template>

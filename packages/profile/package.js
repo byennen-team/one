@@ -18,8 +18,13 @@ Package.onUse(function (api) {
     'gallery_modal.less',
     'profile_header.html', 'profile_header.less', 'profile_header.js',
     'profile_property_search.html', 'profile_property_search.less', 'profile_property_search_client.js',
-    'profile_testimonial.html', 'profile_testimonial.less'
+    'profile_testimonial.html', 'profile_testimonial.less',
+    'profile_buyer.html', 'profile_buyer.less',
+    'profile_contact.html', 'profile_contact.less',
+    'profile_footer.html', 'profile_footer.less'
     ], 'web');
+
+  api.addFiles('profile_cleanup.less', 'web')// TODO: remove this after Dave cleans this up
 
   api.export('Profile', 'web');
 });
