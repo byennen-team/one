@@ -1,0 +1,166 @@
+.profile {
+  .header {
+    position: absolute;
+    top: 0;
+    width: 100%;
+    height: 100px;
+    z-index: 2;
+    background: -moz-linear-gradient(top, rgba(0, 0, 0, 0.65) 0%, rgba(0, 0, 0, 0) 100%);
+    /* FF3.6+ */
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, rgba(0, 0, 0, 0.65)), color-stop(100%, rgba(0, 0, 0, 0)));
+    /* Chrome,Safari4+ */
+    background: -webkit-linear-gradient(top, rgba(0, 0, 0, 0.65) 0%, rgba(0, 0, 0, 0) 100%);
+    /* Chrome10+,Safari5.1+ */
+    background: -o-linear-gradient(top, rgba(0, 0, 0, 0.65) 0%, rgba(0, 0, 0, 0) 100%);
+    /* Opera 11.10+ */
+    background: -ms-linear-gradient(top, rgba(0, 0, 0, 0.65) 0%, rgba(0, 0, 0, 0) 100%);
+    /* IE10+ */
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 0.65) 0%, rgba(0, 0, 0, 0) 100%);
+    /* W3C */
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#a6000000', endColorstr='#00000000', GradientType=0);
+    /* IE6-9 */
+    .dropdown-menu div {
+      cursor: pointer;
+    }
+    .logobox {
+      position: absolute;
+      left: 1em;
+      top: 1.5em;
+      width: 22.714em;
+      height: 4.643em;
+      color: #ffffff;
+      background-image: url(../../images/profile/logo-text.png );
+      background-repeat: no-repeat;
+      background-size: contain;
+      h2 {
+        margin: 3em 0 0 4.5em;
+        font-family: RalewaySemibold, Verdana, Geneva, sans-serif;
+        font-size: 17px;
+        font-weight: normal;
+        text-transform: uppercase;
+        letter-spacing: 0.125em;
+      }
+    }
+    .nav-box {
+      position: absolute;
+      width: 70%;
+      right: 3em;
+      z-index: 2;
+    }
+    .nav-drop {
+      position: absolute;
+      right: 1.5em;
+      top: 0.5em;
+    }
+    .nav > li > div {
+      position: relative;
+      display: block;
+      padding: 10px 15px;
+      cursor: pointer;
+      transition: color 350ms ease-out 50ms;
+    }
+    .nav-pills.nav-pills-strap > li > a,
+    .nav-pills.nav-pills-strap > li > div {
+      color: #ffffff;
+      background-color: transparent;
+      font-family: RalewayLight, Verdana, Geneva, sans-serif;
+    }
+    .nav-pills.nav-pills-strap > li > a:hover,
+    .nav-pills.nav-pills-strap > li > div:hover,
+    .nav-pills.nav-pills-strap > li.active > a:focus,
+    .nav-pills.nav-pills-strap > li.active > div:focus {
+      color: #cccccc;
+      background-color: transparent;
+    }
+    .nav-pills.nav-pills-strap > li.active > a,
+    .nav-pills.nav-pills-strap > li.active > a:hover,
+    .nav-pills.nav-pills-strap > li.active > a:focus,
+    .nav-pills.nav-pills-strap > li.active > div,
+    .nav-pills.nav-pills-strap > li.active > div:hover,
+    .nav-pills.nav-pills-strap > li.active > div:focus {
+      color: #ffffff;
+      background-color: transparent;
+      border: 3px solid #5bb8d7;
+      border-style: none none solid none;
+    }
+    @media all and (max-width: 479px) {
+      .nav-pills.nav-pills-strap {
+        text-align: center;
+        width: 100%;
+      }
+      .nav-pills.nav-pills-strap > li {
+        display: inline-block;
+        float: none;
+      }
+      .nav-pills.nav-pills-strap > li > a,
+      .nav-pills.nav-pills-strap > li > div {
+        display: inline-block;
+        padding: 10px 5px;
+      }
+    }
+  }
+  .jumbotron {
+    padding: 0;
+    margin: 0;
+    p {
+      font-size: 12px;
+      margin: 0;
+    }
+  }
+  .add-image,
+  .trashcan {
+    display: none;
+    position: absolute;
+    height: 44px;
+    border-radius: 50px;
+    padding: 1em;
+    bottom: 1em;
+    color: #ffffff;
+    z-index: 2;
+    cursor: pointer;
+  }
+  .add-image {
+    right: 8em;
+  }
+  .trashcan {
+    right: 2em;
+  }
+  .trashcan .fa-trash-o {
+    vertical-align: 0;
+  }
+  .trashcan:after,
+  .add-image:after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    top: 0;
+    right: 0;
+    left: 0;
+    background-color: #000000;
+    opacity: 0.5;
+    border-radius: 20px;
+    z-index: -1;
+    transition: opacity 350ms ease-out 50ms;
+  }
+  .add-image:hover:after,
+  .trashcan:hover:after {
+    opacity: 0.8;
+  }
+  .carousel-indicators li {
+    width: 10px;
+    height: 10px;
+    margin: 0 15px;
+    background-color: #000000;
+    opacity: 0.3;
+    border: none;
+    border-radius: 50%;
+    transition: background-color 350ms ease-out 50ms, opacity 350ms ease-out 50ms;
+  }
+  .carousel-indicators .active {
+    width: 10px;
+    height: 10px;
+    margin: 0 15px;
+    background-color: #ffffff;
+    opacity: 1;
+  }
+}

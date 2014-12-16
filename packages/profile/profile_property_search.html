@@ -1,0 +1,601 @@
+<template name="profilePropertySearch">
+  <section class='property-search'>
+    <!-- TEMPLATE - form submission needs to be plugged in. Results should be refined as each entry is updated		 -->
+    <form role="form" class='search-form info-container'>
+
+      <div class="row">
+        <div class="col-md-3">
+
+          <p class='h6 raleway-bold text-uppercase white spacing-125 m-bottom-10'>property for</p>
+
+          <label id='sale-label' class='btn btn-block btn-small btn-accent-border raleway-semibold ultramarine text-uppercase spacing-0625 pull-left checked' for="sale-button">Sale</label>
+          <input id="sale-button" class='hidden' type="radio" name="buy-or-rent" value="sale" checked>
+
+          <label id='rent-label' class='btn btn-block btn-small btn-accent-border raleway-semibold ultramarine text-uppercase spacing-0625 pull-left unchecked' for="rent-button">Rent</label>
+          <input id="rent-button" class='hidden' type="radio" name="buy-or-rent" value="rent" >
+
+        </div>
+
+        <div class='clearfix visible-xxs-block'></div>
+
+        <div class="col-md-3">
+
+          <label for="min-price" class='h6 raleway-bold text-uppercase white spacing-125 auto-width pull-left m-bottom-10'>min price</label>
+          <label for="max-price" class='h6 raleway-bold text-uppercase sky spacing-125 auto-width pull-right m-right-20 m-bottom-10'>max price</label>
+
+          <div class='clearfix'></div>
+
+          <input type="num" class="form-control left" id="min-price" placeholder="$">
+
+          <input type="num" class="form-control right" id="max-price" placeholder="$">
+
+        </div>
+
+        <div class='clearfix visible-sm-block'></div>
+        <div class='clearfix visible-xs-block'></div>
+
+        <div class="col-md-3">
+
+          <div class="half">
+
+            <label for="bedrooms" class='h6 raleway-bold text-uppercase white spacing-125 auto-width pull-left m-bottom-10'>bedrooms</label>
+
+            <select id='bedrooms' class="selectpicker" data-style="accent-select" data-width='100%'>
+              <option value="any">--</option>
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="4">4</option>
+              <option value="5">5</option>
+              <option value="6">6</option>
+              <option value="7">7</option>
+              <option value="8">8</option>
+              <option value="9">9</option>
+              <option value="10">10+</option>
+            </select>
+
+          </div>
+
+          <div class="half right">
+
+            <label for="bathrooms" class='h6 raleway-bold text-uppercase white spacing-125 auto-width pull-right m-right-20 m-bottom-10'>bathrooms</label>
+
+            <select id='bathrooms' class="selectpicker" data-style="accent-select" data-width='100%'>
+              <option value="any">--</option>
+              <option value="1">1</option>
+              <option value="1.5">1.5</option>
+              <option value="2">2</option>
+              <option value="2.5">2.5</option>
+              <option value="3">3</option>
+              <option value="3.5">3.5</option>
+              <option value="4">4</option>
+              <option value="4.5">4.5</option>
+              <option value="5">5</option>
+              <option value="5.5">5.5</option>
+              <option value="6">6+</option>
+            </select>
+
+          </div>
+
+        </div>
+
+        <div class='clearfix visible-xxs-block'></div>
+
+        <div class="col-md-3">
+
+          <p class='h6 raleway-bold spacing-125 text-uppercase white'>sq feet</p>
+
+          <input id="sqft" data-slider-id='sqftSlider' type="text" data-slider-min="250" data-slider-max="10000" data-slider-step="250" data-slider-value="1500"/>
+          <span id="sqftCurrentSliderValLabel" class='raleway-light text-uppercase white lh-300'> &lt; <span id="sqftSliderVal">1500</span>+ ft<span class='sup'>2</span></span>
+
+        </div>
+      </div>
+
+    </form>
+
+  </section>
+
+  <div id="advanced-search" class="advanced-search accent-very-dk-bg p-top-20 p-bottom-20">
+    <div class="info-container">
+      <!-- TEMPLATE - form submission needs to be plugged in. Results should be refined as each entry is updated		 -->
+      <form class="row">
+        <div class="col-sm-3">
+          <p class='h6 raleway-bold text-uppercase white spacing-125'>type</p>
+          <div class="clearfix"></div>
+          <label class='checkbox'>
+            <label id='adv-condo-btn' for='adv-condo' class='adv-checkbox'></label>
+            <input id="adv-condo" class='hidden' type="checkbox" name="type" value='condo' />
+            condo
+          </label>
+          <label class='checkbox'>
+            <label id='adv-cooperative-btn' for='adv-cooperative' class='adv-checkbox'></label>
+            <input id="adv-cooperative" class='hidden' type="checkbox" name="type" value='cooperative' />
+            cooperative
+          </label>
+          <label class='checkbox'>
+            <label id='adv-townhouse-btn' for='adv-townhouse' class='adv-checkbox'></label>
+            <input id="adv-townhouse" class='hidden' type="checkbox" name="type" value='townhouse' />
+            townhouse
+          </label>
+          <label class='checkbox'>
+            <label id='adv-house-btn' for='adv-house' class='adv-checkbox'></label>
+            <input id="adv-house" class='hidden' type="checkbox" name="type" value='house' />
+            house
+          </label>
+          <label class='checkbox'>
+            <label id='adv-land-btn' for='adv-land' class='adv-checkbox'></label>
+            <input id="adv-land" class='hidden' type="checkbox" name="type" value='land' />
+            land
+          </label>
+        </div>
+
+        <div class="clearfix visible-xs-block m-bottom-15"></div>
+
+        <div class="col-sm-3">
+          <p class='h6 raleway-bold text-uppercase white spacing-125'>date listed</p>
+
+          <div class='clearfix'></div>
+
+          <input type="num" class="form-control pointer" id="list-start" placeholder="--" data-provide="datepicker"  data-date-format="mm/dd">
+          <span class='form-span'>to</span>
+          <input type="num" class="form-control pointer" id="list-end" placeholder="--" data-provide="datepicker"  data-date-format="mm/dd">
+
+          <div class='clearfix'></div>
+
+          <p class='h6 raleway-bold text-uppercase white spacing-125 m-top-30'>price change</p>
+
+          <div class='clearfix'></div>
+
+          <div class='half'>
+            <select id='price-change-to' class="selectpicker" data-style="accent-select" data-width='100%'>
+              <option value="-50">-50%</option>
+              <option value="-45">-45%</option>
+              <option value="-40">-40%</option>
+              <option value="-35">-35%</option>
+              <option value="-30">-30%</option>
+              <option value="-25">-25%</option>
+              <option value="-20">-20%</option>
+              <option value="-15">-15%</option>
+              <option value="-10">-10%</option>
+              <option value="-5">-5%</option>
+              <option value="0" selected>0%</option>
+              <option value="5">5%</option>
+              <option value="10">10%</option>
+              <option value="15">15%</option>
+              <option value="20">20%</option>
+              <option value="25">25%</option>
+              <option value="30">30%</option>
+              <option value="35">35%</option>
+              <option value="40">40%</option>
+              <option value="45">45%</option>
+              <option value="50">50%</option>
+            </select>
+          </div>
+
+          <span class='form-span'>to</span>
+
+          <div class="half">
+            <select id='price-change-to' class="selectpicker" data-style="accent-select" data-width='100%'>
+              <option value="-50">-50%</option>
+              <option value="-45">-45%</option>
+              <option value="-40">-40%</option>
+              <option value="-35">-35%</option>
+              <option value="-30">-30%</option>
+              <option value="-25">-25%</option>
+              <option value="-20">-20%</option>
+              <option value="-15">-15%</option>
+              <option value="-10">-10%</option>
+              <option value="-5">-5%</option>
+              <option value="0" selected>0%</option>
+              <option value="5">5%</option>
+              <option value="10">10%</option>
+              <option value="15">15%</option>
+              <option value="20">20%</option>
+              <option value="25">25%</option>
+              <option value="30">30%</option>
+              <option value="35">35%</option>
+              <option value="40">40%</option>
+              <option value="45">45%</option>
+              <option value="50">50%</option>
+            </select>
+          </div>
+
+        </div>
+
+        <div class="clearfix visible-xs-block m-bottom-15"></div>
+
+        <div class="col-sm-3">
+          <div class="p-right-20">
+            <p class='h6 raleway-bold text-uppercase white spacing-125'>Open House</p>
+            <select id='price-change-to' class="selectpicker" data-style="accent-select" data-width='100%'>
+              <option value="no preference">no preference</option>
+              <option value="today">today</option>
+              <option value="tomorrow">tomorrow</option>
+              <!-- TEMPLATE - Dates should be generated dynamically		 -->
+              <option value="Thu, Dec. 11th">Thu, Dec. 11th</option>
+              <option value="Fri, Dec. 12th">Fri, Dec. 12th</option>
+              <option value="Sat, Dec. 13th">Sat, Dec. 13th</option>
+              <option value="Sun, Dec. 14th">Sun, Dec. 14th</option>
+              <option value="Mon, Dec. 15th">Mon, Dec. 15th</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="clearfix visible-xs-block m-bottom-15"></div>
+
+        <div class="col-sm-3">
+          <p class='h6 raleway-bold text-uppercase white spacing-125'>options</p>
+          <label class='checkbox'>
+            <label id='adv-doorman-btn' for='adv-doorman' class='adv-checkbox'></label>
+            <input id="adv-doorman" class='hidden' type="checkbox" name="type" value='doorman' />
+            doorman
+          </label>
+          <label class='checkbox'>
+            <label id='adv-garage-btn' for='adv-garage' class='adv-checkbox'></label>
+            <input id="adv-garage" class='hidden' type="checkbox" name="type" value='garage' />
+            garage
+          </label>
+          <label class='checkbox'>
+            <label id='adv-prewar-btn' for='adv-prewar' class='adv-checkbox'></label>
+            <input id="adv-prewar" class='hidden' type="checkbox" name="type" value='prewar' />
+            prewar
+          </label>
+          <label class='checkbox'>
+            <label id='adv-pet-friendly-btn' for='adv-pet-friendly' class='adv-checkbox'></label>
+            <input id="adv-pet-friendly" class='hidden' type="checkbox" name="type" value='pet-friendly' />
+            pet friendly
+          </label>
+          <label class='checkbox'>
+            <label id='adv-waterview-btn' for='adv-waterview' class='adv-checkbox'></label>
+            <input id="adv-waterview" class='hidden' type="checkbox" name="type" value='waterview' />
+            waterview
+          </label>
+          <label class='checkbox'>
+            <label id='adv-outdoor-space-btn' for='adv-outdoor-space' class='adv-checkbox'></label>
+            <input id="adv-outdoor-space" class='hidden' type="checkbox" name="type" value='outdoor-space' />
+            outdoor space
+          </label>
+          <label class='checkbox'>
+            <label id='adv-no-contract-btn' for='adv-no-contract' class='adv-checkbox'></label>
+            <input id="adv-no-contract" class='hidden' type="checkbox" name="type" value='no-contract' />
+            do not include <span class="indent wraplock">contract signed</span>
+          </label>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <div class="accent-dk-bg text-center p-top-10 p-bottom-10">
+    <p id="advanced-search-btn"  class='inline-block h6 raleway-bold text-uppercase white spacing-125 m-bottom-0 pointer auto-width'>advanced search options <span class="caret"></span> </p>
+  </div>
+
+  <section id='listings' class='listing-gallery'>
+    <div class="container">
+      <div class="row p-bottom-30">
+
+        <div class="col-sm-4 m-top-35">
+          <div class="listing">
+            <!-- TEMPLATE - Listing's cover photo. 419w 295h  		 -->
+            <img class='img-responsive' src="../../images/profile/property-1.jpg" alt="Property Image" />
+
+            <div class="listing-card">
+              <p class='h1 raleway-light accent'>$875,000</p>
+              <!-- TEMPLATE - Listing address  		 -->
+              <p class='raleway-light navy'>575 Madison Ave, New York, NY</p>
+
+              <div class='text-left lh-250'>
+                <div class='inline-block'>
+                  <span class="sr-only">Bedrooms</span>
+                  <label class="fa icon-bed fa-lg grey m-right-05"></label>
+                  <!-- TEMPLATE - Number of bedrooms in listing  		 -->
+                  <span class='h4 raleway-semibold navy m-right-25'>5</span>
+                </div>
+
+                <div class='inline-block'>
+                  <span class="sr-only">Bathrooms</span>
+                  <label class="fa icon-bath fa-lg grey m-right-05"></label>
+                  <!-- TEMPLATE - Number of bathrooms in listing  		 -->
+                  <span class='h4 raleway-semibold navy m-right-25'>5</span>
+                </div>
+
+                <div class='inline-block'>
+                  <span class="sr-only">Bedrooms</span>
+                  <label class="fa icon-sqfeet fa-lg grey m-right-05"></label>
+                  <!-- TEMPLATE - Number of square footage in listing  		 -->
+                  <span class='h4 raleway-semibold navy'>2800<span class='raleway-light'>&nbsp;ft<sup>2</sup></span></span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- repeated for style -->
+        <div class="col-sm-4 m-top-35">
+          <div class="listing">
+            <img class='img-responsive' src="../../images/profile/property-2.jpg" alt="Property Image" />
+
+            <div class="listing-card">
+              <p class='h1 raleway-light accent'>$875,000</p>
+              <p class='raleway-light navy'>575 Madison Ave, New York, NY</p>
+
+              <div class='text-left lh-250'>
+                <div class='inline-block'>
+                  <span class="sr-only">Bedrooms</span>
+                  <label class="fa icon-bed fa-lg grey m-right-05"></label>
+                  <span class='h4 raleway-semibold navy m-right-25'>5</span>
+                </div>
+
+                <div class='inline-block'>
+                  <span class="sr-only">Bathrooms</span>
+                  <label class="fa icon-bath fa-lg grey m-right-05"></label>
+                  <span class='h4 raleway-semibold navy m-right-25'>5</span>
+                </div>
+
+                <div class='inline-block'>
+                  <span class="sr-only">Bedrooms</span>
+                  <label class="fa icon-sqfeet fa-lg grey m-right-05"></label>
+                  <span class='h4 raleway-semibold navy'>2800<span class='raleway-light'>&nbsp;ft<sup>2</sup></span></span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-sm-4 m-top-35">
+          <div class="listing">
+            <img class='img-responsive' src="../../images/profile/property-3.jpg" alt="Property Image" />
+
+            <div class="listing-card">
+              <p class='h1 raleway-light accent'>$875,000</p>
+              <p class='raleway-light navy'>575 Madison Ave, New York, NY</p>
+
+              <div class='text-left lh-250'>
+                <div class='inline-block'>
+                  <span class="sr-only">Bedrooms</span>
+                  <label class="fa icon-bed fa-lg grey m-right-05"></label>
+                  <span class='h4 raleway-semibold navy m-right-25'>5</span>
+                </div>
+
+                <div class='inline-block'>
+                  <span class="sr-only">Bathrooms</span>
+                  <label class="fa icon-bath fa-lg grey m-right-05"></label>
+                  <span class='h4 raleway-semibold navy m-right-25'>5</span>
+                </div>
+
+                <div class='inline-block'>
+                  <span class="sr-only">Bedrooms</span>
+                  <label class="fa icon-sqfeet fa-lg grey m-right-05"></label>
+                  <span class='h4 raleway-semibold navy'>2800<span class='raleway-light'>&nbsp;ft<sup>2</sup></span></span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-sm-4 m-top-35">
+          <div class="listing">
+            <img class='img-responsive' src="../../images/profile/property-4.jpg" alt="Property Image" />
+
+            <div class="listing-card">
+              <p class='h1 raleway-light accent'>$875,000</p>
+              <p class='raleway-light navy'>575 Madison Ave, New York, NY</p>
+
+              <div class='text-left lh-250'>
+                <div class='inline-block'>
+                  <span class="sr-only">Bedrooms</span>
+                  <label class="fa icon-bed fa-lg grey m-right-05"></label>
+                  <span class='h4 raleway-semibold navy m-right-25'>5</span>
+                </div>
+
+                <div class='inline-block'>
+                  <span class="sr-only">Bathrooms</span>
+                  <label class="fa icon-bath fa-lg grey m-right-05"></label>
+                  <span class='h4 raleway-semibold navy m-right-25'>5</span>
+                </div>
+
+                <div class='inline-block'>
+                  <span class="sr-only">Bedrooms</span>
+                  <label class="fa icon-sqfeet fa-lg grey m-right-05"></label>
+                  <span class='h4 raleway-semibold navy'>2800<span class='raleway-light'>&nbsp;ft<sup>2</sup></span></span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-sm-4 m-top-35">
+          <div class="listing">
+            <img class='img-responsive' src="../../images/profile/property-5.jpg" alt="Property Image" />
+
+            <div class="listing-card">
+              <p class='h1 raleway-light accent'>$875,000</p>
+              <p class='raleway-light navy'>575 Madison Ave, New York, NY</p>
+
+              <div class='text-left lh-250'>
+                <div class='inline-block'>
+                  <span class="sr-only">Bedrooms</span>
+                  <label class="fa icon-bed fa-lg grey m-right-05"></label>
+                  <span class='h4 raleway-semibold navy m-right-25'>5</span>
+                </div>
+
+                <div class='inline-block'>
+                  <span class="sr-only">Bathrooms</span>
+                  <label class="fa icon-bath fa-lg grey m-right-05"></label>
+                  <span class='h4 raleway-semibold navy m-right-25'>5</span>
+                </div>
+
+                <div class='inline-block'>
+                  <span class="sr-only">Bedrooms</span>
+                  <label class="fa icon-sqfeet fa-lg grey m-right-05"></label>
+                  <span class='h4 raleway-semibold navy'>2800<span class='raleway-light'>&nbsp;ft<sup>2</sup></span></span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-sm-4 m-top-35">
+          <div class="listing">
+            <img class='img-responsive' src="../../images/profile/property-6.jpg" alt="Property Image" />
+
+            <div class="listing-card">
+              <p class='h1 raleway-light accent'>$875,000</p>
+              <p class='raleway-light navy'>575 Madison Ave, New York, NY</p>
+
+              <div class='text-left lh-250'>
+                <div class='inline-block'>
+                  <span class="sr-only">Bedrooms</span>
+                  <label class="fa icon-bed fa-lg grey m-right-05"></label>
+                  <span class='h4 raleway-semibold navy m-right-25'>5</span>
+                </div>
+
+                <div class='inline-block'>
+                  <span class="sr-only">Bathrooms</span>
+                  <label class="fa icon-bath fa-lg grey m-right-05"></label>
+                  <span class='h4 raleway-semibold navy m-right-25'>5</span>
+                </div>
+
+                <div class='inline-block'>
+                  <span class="sr-only">Bedrooms</span>
+                  <label class="fa icon-sqfeet fa-lg grey m-right-05"></label>
+                  <span class='h4 raleway-semibold navy'>2800<span class='raleway-light'>&nbsp;ft<sup>2</sup></span></span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="clearfix"></div>
+        <!-- TEMPLATE - Only show button if there are more than 6 listings 		 -->
+        <button id='view-all' class="btn btn-block btn-small btn-accent-border raleway-semibold text-uppercase spacing-0625 m-top-30 center-block">view all</button>
+
+        <!-- TEMPLATE - Listings below button are the same, except they have the class .hidden -->
+        <div class="col-sm-4 m-top-35 hidden">
+          <div class="listing">
+            <img class='img-responsive' src="../../images/profile/property-3.jpg" alt="Property Image" />
+
+            <div class="listing-card">
+              <p class='h1 raleway-light accent'>$875,000</p>
+              <p class='raleway-light navy'>575 Madison Ave, New York, NY</p>
+
+              <div class='text-left lh-250'>
+                <div class='inline-block'>
+                  <span class="sr-only">Bedrooms</span>
+                  <label class="fa icon-bed fa-lg grey m-right-05"></label>
+                  <span class='h4 raleway-semibold navy m-right-25'>5</span>
+                </div>
+
+                <div class='inline-block'>
+                  <span class="sr-only">Bathrooms</span>
+                  <label class="fa icon-bath fa-lg grey m-right-05"></label>
+                  <span class='h4 raleway-semibold navy m-right-25'>5</span>
+                </div>
+
+                <div class='inline-block'>
+                  <span class="sr-only">Bedrooms</span>
+                  <label class="fa icon-sqfeet fa-lg grey m-right-05"></label>
+                  <span class='h4 raleway-semibold navy'>2800<span class='raleway-light'>&nbsp;ft<sup>2</sup></span></span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-sm-4 m-top-35 hidden">
+          <div class="listing">
+            <img class='img-responsive' src="../../images/profile/property-4.jpg" alt="Property Image" />
+
+            <div class="listing-card">
+              <p class='h1 raleway-light accent'>$875,000</p>
+              <p class='raleway-light navy'>575 Madison Ave, New York, NY</p>
+
+              <div class='text-left lh-250'>
+                <div class='inline-block'>
+                  <span class="sr-only">Bedrooms</span>
+                  <label class="fa icon-bed fa-lg grey m-right-05"></label>
+                  <span class='h4 raleway-semibold navy m-right-25'>5</span>
+                </div>
+
+                <div class='inline-block'>
+                  <span class="sr-only">Bathrooms</span>
+                  <label class="fa icon-bath fa-lg grey m-right-05"></label>
+                  <span class='h4 raleway-semibold navy m-right-25'>5</span>
+                </div>
+
+                <div class='inline-block'>
+                  <span class="sr-only">Bedrooms</span>
+                  <label class="fa icon-sqfeet fa-lg grey m-right-05"></label>
+                  <span class='h4 raleway-semibold navy'>2800<span class='raleway-light'>&nbsp;ft<sup>2</sup></span></span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-sm-4 m-top-35 hidden">
+          <div class="listing">
+            <img class='img-responsive' src="../../images/profile/property-5.jpg" alt="Property Image" />
+
+            <div class="listing-card">
+              <p class='h1 raleway-light accent'>$875,000</p>
+              <p class='raleway-light navy'>575 Madison Ave, New York, NY</p>
+
+              <div class='text-left lh-250'>
+                <div class='inline-block'>
+                  <span class="sr-only">Bedrooms</span>
+                  <label class="fa icon-bed fa-lg grey m-right-05"></label>
+                  <span class='h4 raleway-semibold navy m-right-25'>5</span>
+                </div>
+
+                <div class='inline-block'>
+                  <span class="sr-only">Bathrooms</span>
+                  <label class="fa icon-bath fa-lg grey m-right-05"></label>
+                  <span class='h4 raleway-semibold navy m-right-25'>5</span>
+                </div>
+
+                <div class='inline-block'>
+                  <span class="sr-only">Bedrooms</span>
+                  <label class="fa icon-sqfeet fa-lg grey m-right-05"></label>
+                  <span class='h4 raleway-semibold navy'>2800<span class='raleway-light'>&nbsp;ft<sup>2</sup></span></span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-sm-4 m-top-35 hidden">
+          <div class="listing">
+            <img class='img-responsive' src="../../images/profile/property-6.jpg" alt="Property Image" />
+
+            <div class="listing-card">
+              <p class='h1 raleway-light accent'>$875,000</p>
+              <p class='raleway-light navy'>575 Madison Ave, New York, NY</p>
+
+              <div class='text-left lh-250'>
+                <div class='inline-block'>
+                  <span class="sr-only">Bedrooms</span>
+                  <label class="fa icon-bed fa-lg grey m-right-05"></label>
+                  <span class='h4 raleway-semibold navy m-right-25'>5</span>
+                </div>
+
+                <div class='inline-block'>
+                  <span class="sr-only">Bathrooms</span>
+                  <label class="fa icon-bath fa-lg grey m-right-05"></label>
+                  <span class='h4 raleway-semibold navy m-right-25'>5</span>
+                </div>
+
+                <div class='inline-block'>
+                  <span class="sr-only">Bedrooms</span>
+                  <label class="fa icon-sqfeet fa-lg grey m-right-05"></label>
+                  <span class='h4 raleway-semibold navy'>2800<span class='raleway-light'>&nbsp;ft<sup>2</sup></span></span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+  </section>
+</template>

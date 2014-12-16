@@ -1,7 +1,11 @@
 <template name="application">
-  {{> leftNav}}
+  {{#if currentUser}}
+    {{> leftNav}}
+  {{/if}}
   <div class="wrap push">
-    {{> navbar}}
+    {{#if currentUser}}
+      {{> navbar}}
+    {{/if}}
     <div class="content">
       {{> yield}}
     </div>

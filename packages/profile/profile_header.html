@@ -1,0 +1,91 @@
+<template name="profileHeader">
+  <div class='header'>
+
+    <div class='logobox'>
+      <!-- TEMPLATE - Agent's team name here                               -->
+      <h2>The Margolis team</h2>
+    </div>
+
+    <nav class='nav-box hidden-xs'>
+      <ul class="nav nav-pills nav-pills-strap row m-top-20 pull-right">
+        <li role="presentation" class="">
+          <div class="nav-about">About</div>
+        </li>
+        <li role="presentation" class="">
+          <div class="nav-properties">My Properties</div>
+        </li>
+        <li role="presentation" class="">
+          <!-- TEMPLATE - need link to neighborhoods page                           -->
+          <div class="nav-neighborhoods">Neighborhoods</div>
+        </li>
+        <li role="presentation" class="">
+          <div class="nav-contact">Contact Me</div>
+        </li>
+      </ul>
+    </nav>
+
+    <!-- dropdown mobile tabs -->
+    <nav class='visible-xs-block'>
+      <div class="dropdown nav-drop">
+
+        <button class="btn dropdown-toggle btn-accent raleway-semibold white text-uppercase spacing-0625 m-top-20" type="button" id="mobile-nav-dropdown" data-toggle="dropdown" aria-expanded="true">
+          <i class='fa fa-bars fa-lg'></i>
+        </button>
+        <ul class="dropdown-menu dropdown-menu-right" role="menu" aria-labelledby="mobile-nav-dropdown">
+          <li role="presentation" class="col-sm-2 raleway-semibold text text-uppercase text-center spacing-0625">
+            <div class="nav-about">About</div>
+          </li>
+          <li role="presentation" class="col-sm-2 raleway-semibold text text-uppercase text-center spacing-0625">
+            <div class="nav-properties">My Properties</div>
+          </li>
+          <li role="presentation" class="col-sm-2 raleway-semibold text text-uppercase text-center spacing-0625">
+            <!-- TEMPLATE - need link to neighborhoods page                           -->
+            <a href='#' class="nav-neighborhoods">Neighborhoods</a>
+          </li>
+          <li role="presentation" class="col-sm-2 raleway-semibold text text-uppercase text-center spacing-0625">
+            <div class="nav-contact">Contact Me</div>
+          </li>
+        </ul>
+      </div>
+    </nav>
+  </div>
+
+  <div class='relative'>
+    <div class='jumbotron'>
+      <div id="jumbotron-carousel" class="carousel slide" data-ride="carousel">
+        <div class="trashcan" data-toggle="modal" data-target="#trashcan">
+          <i class="fa fa-trash-o fa-lg p-left-05 p-right-05"></i>
+        </div>
+        <div class="add-image" data-toggle="modal" data-target="#add-image">
+          <p class="h6 raleway-bold text-uppercase spacing-250 m-bottom-0">
+            <i class="fa fa-image fa-lg p-left-05 m-right-05"></i>
+            add new image
+          </p>
+        </div>
+
+        <!-- TEMPLATE - one <li> per image. data-slide-to must reflect number of slides (0 index) -->
+        <ol class="carousel-indicators">
+          <li data-target="#jumbotron-carousel" data-slide-to="0" class="active"></li>
+          <li data-target="#jumbotron-carousel" data-slide-to="1"></li>
+          <li data-target="#jumbotron-carousel" data-slide-to="2"></li>
+        </ol>
+
+        <div class="carousel-inner" role="listbox">
+          <!-- TEMPLATE - 767w 360h image in source, data-med = 1200w 563h, data-lg = 1920w 900h-->
+          <div class="item active">
+            <img class='slide' src="../../images/profile/slide1-sm.jpg" alt="A beautiful property" data-med="../../images/profile/slide1-med.jpg" data-lg='../../images/profile/slide1.jpg'>
+          </div>
+
+          <div class="item">
+            <img class='slide' src="../../images/profile/slide2-sm.jpg" alt="A beautiful property" data-med="../../images/profile/slide2-med.jpg" data-lg='../../images/profile/slide2.jpg'>
+          </div>
+
+          <div class="item">
+            <img class='slide' src="../../images/profile/slide3-sm.jpg" alt="A beautiful property" data-med="../../images/profile/slide3-med.jpg" data-lg='../../images/profile/slide3.jpg'>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</template>

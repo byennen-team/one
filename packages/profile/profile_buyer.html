@@ -1,0 +1,56 @@
+<template name="profileBuyer">
+  <section class="buyers accent-bg">
+
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-5 tagline">
+          <p class="h1 navy raleway-light m-top-10">Selling your home?</p>
+          <p class="h4 navy raleway-light">Our Find Buyers tool will help you find the <span class="wraplock-lg">perfect buyer for your home</span></p>
+        </div>
+        <div class="col-sm-6 col-sm-offset-1">
+          <!-- TEMPLATE - Form submission needs to be plugged in                          -->
+          <form>
+            <div class="">
+              <label for="buyer-address" class='h6 raleway-bold text-uppercase white spacing-125 auto-width pull-left m-bottom-10'>address</label>
+              <div class="clearfix"></div>
+              <input type="num" class="form-control" id="buyer-address" placeholder="">
+            </div>
+
+            <div class="clearfix"></div>
+
+            <div class="third">
+
+              <label for="buyer-bedrooms" class='h6 raleway-bold text-uppercase white spacing-125 auto-width pull-left m-bottom-10'>bedrooms</label>
+
+              <select id='buyer-bedrooms' class="selectpicker" data-style="accent-select" data-width='100%'>
+                <option value="any">--</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="6">6</option>
+                <option value="7">7</option>
+                <option value="8">8</option>
+                <option value="9">9</option>
+                <option value="10">10+</option>
+              </select>
+
+            </div>
+
+            <div class="third">
+              <label for="buyer-price" class='h6 raleway-bold text-uppercase white spacing-125 auto-width pull-left m-bottom-10'>price</label>
+              <input type="num" class="form-control" id="buyer-price" placeholder="$">
+            </div>
+
+            <div class="third">
+              <input class='submit btn raleway-light text-uppercase' type="submit" value="find buyer">
+            </div>
+          </form>
+
+        </div>
+      </div>
+    </div>
+
+  </section>
+</template>

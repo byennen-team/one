@@ -1,3 +1,312 @@
 .profile {
   background-color: #f4f5f6;
+  .btn-accent-border:hover {
+    color: #367f97;
+    background-color: #70c1dc;
+  }
+  .btn-accent-border:active,
+  .btn-accent-border:focus {
+    box-shadow: none;
+  }
+  .accent-select,
+  .accent-select:active,
+  body .search-form .accent-select:focus,
+  body .advanced-search .accent-select:focus,
+  .accent-select:hover {
+    background-color: #51a9c6;
+    color: #ffffff !important;
+    outline: none!important;
+    border: none!important;
+    box-shadow: none !important;
+    height: 43px;
+    text-transform: uppercase;
+  }
+}
+
+.profile {
+  .comment-box input {
+    color: #78838e;
+    font-family: RalewayLight, Verdana, Geneva, sans-serif;
+  }
+  .comment-box input::-webkit-input-placeholder {
+    color: #78838e;
+    font-family: RalewayLight, Verdana, Geneva, sans-serif;
+  }
+  .comment-box input::-moz-placeholder {
+    color: #78838e;
+    font-family: RalewayLight, Verdana, Geneva, sans-serif;
+  }
+  .comment-box input:-ms-input-placeholder {
+    color: #78838e;
+    font-family: RalewayLight, Verdana, Geneva, sans-serif;
+  }
+  a.facebook:hover {
+    color: #1c2e47;
+  }
+  .accent-placeholder {
+    color: #5bb8d7;
+    font-family: RalewayLight, Verdana, Geneva, sans-serif;
+  }
+  .accent-placeholder::-webkit-input-placeholder {
+    color: #5bb8d7;
+    font-family: RalewayLight, Verdana, Geneva, sans-serif;
+  }
+  .accent-placeholder::-moz-placeholder {
+    color: #5bb8d7;
+    font-family: RalewayLight, Verdana, Geneva, sans-serif;
+  }
+  .accent-placeholder:-ms-input-placeholder {
+    color: #5bb8d7;
+    font-family: RalewayLight, Verdana, Geneva, sans-serif;
+  }
+  .underline {
+    width: 200px;
+    height: 2px;
+    background-color: #b2c0cd;
+  }
+  .grey-underline {
+    border: 2px solid #b2c0cd;
+    border-style: none none solid none;
+  }
+  .cornflower-underline {
+    border: 1px solid #e9eef3;
+    border-style: none none solid none;
+  }
+  @media all and (max-width: 480px) {
+    .info-header {
+      height: auto;
+      overflow: hidden;
+      padding: 2em 0 1em 0;
+    }
+    .info-header .btn {
+      float: left;
+    }
+    .info-header .fixed-xs {
+      width: 70%;
+      margin: 1em 15% 2em 15%;
+      padding: 0;
+      height: 5em;
+      float: left;
+    }
+    .info-header:after {
+      content: none;
+    }
+    .search-form {
+      padding: 0 2em 0 2em;
+    }
+    .search-form .col-md-3 {
+      margin: 2.0em 0;
+    }
+    .search-form .btn-accent-border {
+      width: 48%;
+    }
+    .search-form .form-control {
+      width: 50%;
+    }
+    .search-form .m-right-20 {
+      margin-right: 3px;
+    }
+    .search-form .half.right {
+      padding: 0 0 0 5em;
+    }
+    .search-form .half .m-right-20 {
+      margin-right: 0;
+    }
+    .search-form .slider.slider-horizontal {
+      width: 70%;
+    }
+    .advanced-search {
+      padding-right: 2em;
+      padding-left: 2em;
+    }
+    .advanced-search .indent {
+      margin-left: 0;
+    }
+    .advanced-search .checkbox {
+      width: 100%;
+      margin-top: 0;
+    }
+    .advanced-search .m-top-30 {
+      margin-top: 1.5em;
+    }
+    .buyers .tagline {
+      margin-bottom: 2em;
+    }
+    .buyers .submit {
+      font-size: 10px;
+      margin-top: 33px;
+    }
+    .contact .half {
+      width: 98%;
+      margin: 0 1%;
+    }
+    .contact .radio {
+      margin: 1.5em 1% 0 1%;
+    }
+  }
+  @media all and (min-width: 481px) and (max-width: 767px) {
+    .info-header {
+      height: auto;
+      overflow: hidden;
+      padding: 2em 0 1em 0;
+    }
+    .info-header .btn {
+      float: left;
+    }
+    .info-header .fixed-xs {
+      width: 30%;
+      margin: 1em 10% 2em 10%;
+      padding: 0;
+      height: 5em;
+      float: left;
+    }
+    .info-header:after {
+      content: none;
+    }
+    .search-form {
+      padding: 0 2em 0 5em;
+      font-size: 11px;
+    }
+    .search-form .col-md-3 {
+      width: 50%;
+      float: left;
+      margin: 1.0em 0;
+    }
+    .search-form .half {
+      padding: 0 19% 0 0;
+    }
+    .search-form .half .m-right-20 {
+      margin-right: 0;
+    }
+    .advanced-search {
+      padding-right: 5em;
+      padding-left: 5em;
+    }
+    .advanced-search .checkbox {
+      width: 50%;
+      margin-top: 0;
+      font-size: 13px;
+    }
+    .advanced-search .m-top-30 {
+      margin-top: 1.5em;
+    }
+    .listing-gallery .col-sm-4 {
+      max-width: 419px;
+      margin-right: auto;
+      margin-left: auto;
+    }
+    .buyers .tagline {
+      margin-bottom: 2em;
+    }
+    .buyers .submit {
+      font-size: 10px;
+      margin-top: 33px;
+    }
+  }
+  @media all and (min-width: 768px) {
+    .buyers p {
+      text-align: right;
+    }
+    .footer {
+      height: 8em;
+    }
+    .footer .logobox {
+      font-size: 14px;
+    }
+    .footer .address {
+      left: 380px;
+      width: 200px;
+      top: 0;
+    }
+    .footer .phone {
+      left: 540px;
+      width: 200px;
+      top: 0;
+    }
+  }
+  @media all and (min-width: 768px) and (max-width: 991px) {
+    .logobox {
+      font-size: 10px;
+    }
+    .logobox h2 {
+      font-size: 12px;
+    }
+    .info-header .btn {
+      font-size: 10px;
+      padding: 6px;
+      width: 124px;
+      float: right;
+      margin: 6px 0;
+    }
+    .info-container {
+      padding-left: 2em;
+      padding-right: 2em;
+    }
+    .search-form .col-md-3 {
+      width: 50%;
+      float: left;
+    }
+    .search-form .half {
+      padding: 0 19% 0 0;
+    }
+    .search-form .half .m-right-20 {
+      margin-right: 0;
+    }
+    .advanced-search .p-right-20 {
+      padding-right: 0;
+    }
+    .advanced-search .accent-select {
+      font-size: 11px;
+    }
+    .advanced-search .checkbox {
+      font-size: 11px;
+    }
+    .listing-card .text-left {
+      font-size: 12px;
+    }
+    .listing-card .text-left .h4 {
+      font-size: 15px;
+    }
+    .listing-card .icon-bed {
+      line-height: 200%;
+    }
+    .listing-card .fa-lg {
+      margin-bottom: 0;
+    }
+    .listing-card .m-right-25 {
+      margin-right: 1.0em;
+    }
+    .buyers {
+      font-size: 12px;
+    }
+    .buyers .submit {
+      font-size: 10px;
+      margin-top: 35px;
+    }
+    .buyers .tagline .h4 {
+      margin-right: -20px;
+    }
+  }
+  @media all and (min-width: 992px) and (max-width: 1199px) {
+    .info-container {
+      padding-left: 4em;
+      padding-right: 4em;
+    }
+    .search-form {
+      font-size: 12px;
+    }
+    .listing-card .m-right-25 {
+      margin-right: 2.0em;
+    }
+    .advanced-search .p-right-20 {
+      padding-right: 10%;
+    }
+  }
+  @media all and (min-width: 1200px) {
+    .info-container {
+      max-width: 1170px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+  }
 }

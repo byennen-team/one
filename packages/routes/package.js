@@ -9,9 +9,10 @@ Package.onUse(function (api) {
   api.use(['session', 'tracker', 'underscore', 'authorization'], 'web');
   api.use(['accounts-base', 'files'], 'server');
 
-  api.addFiles('server_routes.js', 'server');
+  api.addFiles('routes.js', both);
+  api.addFiles('routes_server.js', 'server');
 
-  api.addFiles(['routes_enum.js', 'routes_map.js'], both);
+  api.addFiles('routes_map.js', both);
 
   api.addFiles(['routes_client.js', 'hooks.js'], 'web');
 
