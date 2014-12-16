@@ -1,3 +1,317 @@
 .profile {
   background-color: #f4f5f6;
+  .btn-accent-border:hover {
+    color: #367f97;
+    background-color: #70c1dc;
+  }
+  .btn-accent-border:active,
+  .btn-accent-border:focus {
+    box-shadow: none;
+  }
+  .accent-select,
+  .accent-select:active,
+  body .search-form .accent-select:focus,
+  body .advanced-search .accent-select:focus,
+  .accent-select:hover {
+    background-color: #51a9c6;
+    color: #ffffff !important;
+    outline: none!important;
+    border: none!important;
+    box-shadow: none !important;
+    height: 43px;
+    text-transform: uppercase;
+  }
+
+
+
+  /* TODO: cleanup below  --Dave can you please move anything that were missing in the styles package there. Ty! -Lance */
+  .btn,
+  .fa {
+    transition: background-color 350ms ease-out 50ms, color 350ms ease-out 50ms, border-color 350ms ease-out 50ms;
+  }
+  .btn:focus,
+  .btn:focus:active {
+    outline: none;
+  }
+  .navbar {
+    position: static;
+  }
+  .fade {
+    transition: opacity 350ms ease-out 50ms;
+  }
+  .visible-xxs-block {
+    display: none;
+  }
+
+  .h4 {
+    font-size: 17px;
+  }
+  .btn {
+    font-size: 12px;
+    letter-spacing: 0.2em;
+    padding: 11px 12px 9px 12px;
+  }
+  .user .add-image,
+  .user .trashcan {
+    display: block;
+  }
+
+  .btn {
+    transition: background-color 350ms ease-out 50ms, color 350ms ease-out 50ms, border-color 350ms ease-out 50ms;
+  }
+  .btn.white:hover {
+    color: #cccccc;
+  }
+  button {
+    outline: none;
+  }
+  .navbar {
+    position: static;
+  }
+  .fade {
+    transition: opacity 350ms ease-out 50ms;
+  }
+  .form-control:focus {
+    border-color: #cccccc;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+  }
+  .row.no-gutter {
+    margin-left: 0;
+    margin-right: 0;
+  }
+  .row.no-gutter [class*='col-']:not(:first-child),
+  .row.no-gutter [class*='col-']:not(:last-child) {
+    padding-right: 0;
+    padding-left: 0;
+  }
+  .row .half-gutter {
+    padding-right: 7px;
+    padding-left: 7px;
+  }
+  .fa,
+  span {
+    transition: color 350ms ease-out 50ms;
+  }
+  body .no-transition {
+    transition: none;
+  }
+  a:hover {
+    text-decoration: none;
+  }
+  .row-padding {
+    padding-left: 15px;
+    padding-right: 15px;
+  }
+  .caret-rt {
+    display: inline-block;
+    width: 0;
+    height: 0;
+    margin-left: 2px;
+    vertical-align: middle;
+    border-top: 5px solid transparent;
+    border-bottom: 5px solid transparent;
+    border-left: 5px solid;
+  }
+  .caret-lt {
+    display: inline-block;
+    width: 0;
+    height: 0;
+    margin-left: 2px;
+    vertical-align: middle;
+    border-top: 5px solid transparent;
+    border-bottom: 5px solid transparent;
+    border-right: 5px solid;
+  }
+  input[type=text],
+  textarea {
+    -webkit-transition: all 0.3s ease-in-out;
+    -moz-transition: all 0.3s ease-in-out;
+    -ms-transition: all 0.3s ease-in-out;
+    -o-transition: all 0.3s ease-in-out;
+  }
+  input[type=text]:focus,
+  input[type=num]:focus,
+  input[type=tel]:focus,
+  input[type=email]:focus,
+  textarea:focus {
+    box-shadow: 0 0 1px #5bb8d7;
+  }
+
+  @media all and (max-width: 480px) {
+    .visible-xxs-block {
+      display: block;
+    }
+  }
+  .modal-content {
+    border-radius: 5px;
+    padding: 3em;
+  }
+  .modal-footer {
+    border: none;
+    margin-top: 1.5em;
+    padding: 0;
+  }
+  .modal-footer .btn {
+    width: 48%;
+    margin-left: 1%;
+    margin-right: 1%;
+    float: left;
+    color: #ffffff;
+    background-color: #5bb8d7;
+    font-family: RalewayLight, Verdana, Geneva, sans-serif;
+    text-transform: uppercase;
+    border: 2px solid #5bb8d7;
+  }
+  .modal-footer .btn.single {
+    margin-left: 26%;
+    margin-right: 26%;
+  }
+  .modal-footer .btn-accent-border {
+    color: #5bb8d7;
+    background-color: transparent;
+  }
+  .modal-footer .btn:hover,
+  .modal-footer .btn:focus,
+  .modal-footer .btn:active {
+    color: #ffffff;
+    border-color: #51a9c6;
+    background-color: #51a9c6;
+  }
+  .modal-footer .btn-accent-border:hover,
+  .modal-footer .btn-accent-border:focus,
+  .modal-footer .btn-accent-border:active {
+    color: #51a9c6;
+    border-color: #51a9c6;
+    background-color: #f0f2f6;
+  }
+  Buttons
+  -------------------------------------------------------------------------------------------------------------------------------------------------
+  .pointer {
+    cursor: pointer;
+  }
+  a {
+    color: #5bb8d7;
+  }
+  *-2 Layout
+  -------------------------------------------------------------------------------------------------------------------------------------------------
+  .fixed {
+    position: fixed;
+  }
+  .relative {
+    position: relative;
+  }
+  .absolute {
+    position: absolute;
+  }
+  .inline-block {
+    display: inline-block;
+  }
+  .auto-width {
+    width: auto;
+  }
+  .overflow-hidden {
+    overflow: hidden;
+  }
+  .z-3 {
+    position: relative;
+    z-index: 3;
+  }
+  .z-100 {
+    position: relative;
+    z-index: 100;
+  }
+  .no-border {
+    border: none;
+  }
+  .half {
+    float: left;
+    width: 50%;
+  }
+  .spacing-0 {
+    letter-spacing: 0;
+  }
+  .spacing-0625 {
+    letter-spacing: 0.0625em;
+  }
+  .spacing-125 {
+    letter-spacing: 0.125em;
+  }
+  .spacing-250 {
+    letter-spacing: 0.25em;
+  }
+  .h3-5 {
+    font-size: 20px;
+    font-size: 2.0rem;
+  }
+  .italic {
+    font-style: italic;
+  }
+  .wraplock {
+    white-space: nowrap;
+  }
+  .full-bg-img {
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: top center;
+  }
+  .full-height {
+    position: absolute;
+    bottom: 0;
+    top: 0;
+    right: 0;
+  }
+  body .to-center {
+    transform: translate(0, 0);
+    opacity: 1.0;
+  }
+  .v-center-box {
+    position: relative;
+    height: 100%;
+  }
+  .v-center {
+    position: absolute;
+    top: 50%;
+    -webkit-transform: translateY(-50%);
+    -moz-transform: translateY(-50%);
+    -ms-transform: translateY(-50%);
+    -o-transform: translateY(-50%);
+    transform: translateY(-50%);
+  }
+
+  @media all and (min-width: 1200px) {
+    .wraplock-lg {
+      white-space: nowrap;
+    }
+  }
+  a,
+  p {
+    transition: color 350ms ease-out 50ms;
+  }
+  p {
+    color: #78838e;
+  }
+  a {
+    color: #5bb8d7;
+  }
+  a:hover,
+  a:focus,
+  a:active {
+    color: #2885a4;
+  }
+  html,
+  body {
+    min-height: 100%;
+    background-color: #f4f5f6;
+  }
+  body {
+    overflow-y: scroll;
+    -webkit-transform: translateZ(0);
+  }
+  hr {
+    margin: 0;
+    height: 1px;
+  }
 }
