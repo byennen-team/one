@@ -1,12 +1,21 @@
 .profile {
   background-color: #f4f5f6;
+  overflow-y: scroll;
+  -webkit-transform: translateZ(0);
   .btn-accent-border:hover {
     color: #367f97;
     background-color: #70c1dc;
   }
-  .btn-accent-border:active,
-  .btn-accent-border:focus {
-    box-shadow: none;
+  .nav-box {
+    position: absolute;
+    width: 70%;
+    right: 3em;
+    z-index: 2;
+  }
+  .nav-drop {
+    position: absolute;
+    right: 1.5em;
+    top: 0.5em;
   }
   .accent-select,
   .accent-select:active,
@@ -21,9 +30,6 @@
     height: 43px;
     text-transform: uppercase;
   }
-}
-
-.profile {
   .comment-box input {
     color: #78838e;
     font-family: RalewayLight, Verdana, Geneva, sans-serif;
@@ -72,6 +78,20 @@
     border: 1px solid #e9eef3;
     border-style: none none solid none;
   }
+  .wraplock {
+    white-space: nowrap;
+  }
+  .h4 {
+    font-size: 17px;
+  }
+  .btn {
+    font-size: 12px;
+    letter-spacing: 0.2em;
+    padding: 11px 12px 9px 12px;
+  }
+  .btn.white:hover {
+    color: #cccccc;
+  }
   @media all and (max-width: 480px) {
     .info-header {
       height: auto;
@@ -90,51 +110,6 @@
     }
     .info-header:after {
       content: none;
-    }
-    .search-form {
-      padding: 0 2em 0 2em;
-    }
-    .search-form .col-md-3 {
-      margin: 2.0em 0;
-    }
-    .search-form .btn-accent-border {
-      width: 48%;
-    }
-    .search-form .form-control {
-      width: 50%;
-    }
-    .search-form .m-right-20 {
-      margin-right: 3px;
-    }
-    .search-form .half.right {
-      padding: 0 0 0 5em;
-    }
-    .search-form .half .m-right-20 {
-      margin-right: 0;
-    }
-    .search-form .slider.slider-horizontal {
-      width: 70%;
-    }
-    .advanced-search {
-      padding-right: 2em;
-      padding-left: 2em;
-    }
-    .advanced-search .indent {
-      margin-left: 0;
-    }
-    .advanced-search .checkbox {
-      width: 100%;
-      margin-top: 0;
-    }
-    .advanced-search .m-top-30 {
-      margin-top: 1.5em;
-    }
-    .buyers .tagline {
-      margin-bottom: 2em;
-    }
-    .buyers .submit {
-      font-size: 10px;
-      margin-top: 33px;
     }
     .contact .half {
       width: 98%;
@@ -163,65 +138,16 @@
     .info-header:after {
       content: none;
     }
-    .search-form {
-      padding: 0 2em 0 5em;
-      font-size: 11px;
-    }
-    .search-form .col-md-3 {
-      width: 50%;
-      float: left;
-      margin: 1.0em 0;
-    }
-    .search-form .half {
-      padding: 0 19% 0 0;
-    }
-    .search-form .half .m-right-20 {
-      margin-right: 0;
-    }
-    .advanced-search {
-      padding-right: 5em;
-      padding-left: 5em;
-    }
-    .advanced-search .checkbox {
-      width: 50%;
-      margin-top: 0;
-      font-size: 13px;
-    }
-    .advanced-search .m-top-30 {
-      margin-top: 1.5em;
-    }
+    
     .listing-gallery .col-sm-4 {
       max-width: 419px;
       margin-right: auto;
       margin-left: auto;
     }
-    .buyers .tagline {
-      margin-bottom: 2em;
-    }
-    .buyers .submit {
-      font-size: 10px;
-      margin-top: 33px;
-    }
   }
   @media all and (min-width: 768px) {
     .buyers p {
       text-align: right;
-    }
-    .footer {
-      height: 8em;
-    }
-    .footer .logobox {
-      font-size: 14px;
-    }
-    .footer .address {
-      left: 380px;
-      width: 200px;
-      top: 0;
-    }
-    .footer .phone {
-      left: 540px;
-      width: 200px;
-      top: 0;
     }
   }
   @media all and (min-width: 768px) and (max-width: 991px) {
@@ -242,25 +168,6 @@
       padding-left: 2em;
       padding-right: 2em;
     }
-    .search-form .col-md-3 {
-      width: 50%;
-      float: left;
-    }
-    .search-form .half {
-      padding: 0 19% 0 0;
-    }
-    .search-form .half .m-right-20 {
-      margin-right: 0;
-    }
-    .advanced-search .p-right-20 {
-      padding-right: 0;
-    }
-    .advanced-search .accent-select {
-      font-size: 11px;
-    }
-    .advanced-search .checkbox {
-      font-size: 11px;
-    }
     .listing-card .text-left {
       font-size: 12px;
     }
@@ -276,30 +183,14 @@
     .listing-card .m-right-25 {
       margin-right: 1.0em;
     }
-    .buyers {
-      font-size: 12px;
-    }
-    .buyers .submit {
-      font-size: 10px;
-      margin-top: 35px;
-    }
-    .buyers .tagline .h4 {
-      margin-right: -20px;
-    }
   }
   @media all and (min-width: 992px) and (max-width: 1199px) {
     .info-container {
       padding-left: 4em;
       padding-right: 4em;
     }
-    .search-form {
-      font-size: 12px;
-    }
     .listing-card .m-right-25 {
       margin-right: 2.0em;
-    }
-    .advanced-search .p-right-20 {
-      padding-right: 10%;
     }
   }
   @media all and (min-width: 1200px) {
@@ -308,5 +199,9 @@
       margin-left: auto;
       margin-right: auto;
     }
+    .wraplock-lg {
+      white-space: nowrap;
+    }
   }
+
 }

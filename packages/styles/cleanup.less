@@ -34,8 +34,30 @@ textarea:focus {
   box-shadow: 0 0 1px #5bb8d7;
 }
 
-/* *-2 Layout
--------------------------------------------------------------------------------------------------------------------------------------------------*/
+/* Buttons
+------------------------------------------------------------------------------------------------------------------------------------------------- */
+.pointer {
+  cursor: pointer;
+}
+a {
+  color: #5bb8d7;
+}
+
+.auto-width {
+  width: auto;
+}
+.overflow-hidden {
+  overflow: hidden;
+}
+.no-border {
+  border: none;
+}
+.half {
+  float: left;
+  width: 50%;
+}
+
+ /* ---------------------- Position ---------------------------- */
 .fixed {
   position: fixed;
 }
@@ -48,12 +70,9 @@ textarea:focus {
 .inline-block {
   display: inline-block;
 }
-.auto-width {
-  width: auto;
-}
-.overflow-hidden {
-  overflow: hidden;
-}
+
+
+/* ------------ z-index ------------ */
 .z-3 {
   position: relative;
   z-index: 3;
@@ -62,21 +81,10 @@ textarea:focus {
   position: relative;
   z-index: 100;
 }
-.no-border {
-  border: none;
-}
-.spacing-0 {
-  letter-spacing: 0;
-}
-.spacing-0625 {
-  letter-spacing: 0.0625em;
-}
-.spacing-125 {
-  letter-spacing: 0.125em;
-}
-.spacing-250 {
-  letter-spacing: 0.25em;
-}
+
+
+
+
 .full-bg-img {
   width: 100%;
   height: 100%;
@@ -93,6 +101,20 @@ textarea:focus {
 body .to-center {
   transform: translate(0, 0);
   opacity: 1.0;
+}
+/* ---------- Vertical Centering --------- */
+.v-center-box {
+  position: relative;
+  height: 100%;
+}
+.v-center {
+  position: absolute;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+  -moz-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  -o-transform: translateY(-50%);
+  transform: translateY(-50%);
 }
 
 /* Left
@@ -111,24 +133,18 @@ body .to-center {
 .right-0 {
   right: 0;
 }
-.lh-170 {
-  line-height: 170%;
-}
-.lh-180 {
-  line-height: 180%;
-}
-.lh-200 {
-  line-height: 200%;
-}
-.lh-250 {
-  line-height: 250%;
-}
+
 .width-80 {
   width: 80%;
 }
 .width-100 {
   width: 100%;
 }
+
+body .no-transition {
+  transition: none;
+}
+  
 .drop-alert {
   position: fixed;
   height: 4em;

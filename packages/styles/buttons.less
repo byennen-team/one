@@ -1,4 +1,7 @@
 // buttons
+button {
+  outline: none;
+}
 .btn-primary {
   background-color: #5bb8d7;
   color: #fff;
@@ -6,6 +9,10 @@
   &:hover, &:focus {
     background-color: #50a9c7;
   }
+}
+.btn:focus,
+.btn:focus:active {
+  outline: none;
 }
 
 /* Color Buttons
@@ -25,6 +32,11 @@
   background-color: transparent;
   border-color: #2d96b9;
 }
+.btn-accent-border:active,
+.btn-accent-border:focus {
+  box-shadow: none;
+}
+
 .btn-grey {
   background-color: #b2c0cd;
   text-shadow: 1px 1px 1px #849aaf;
