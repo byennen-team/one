@@ -1,0 +1,113 @@
+
+.h3-5 {
+  font-size: 20px;
+  font-size: 2.0rem;
+}
+
+.fade {
+  transition: opacity 350ms ease-out 50ms;
+}
+
+/* ---------- Forms  ----------------- */
+.form-control:focus {
+  border-color: #cccccc;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+}
+input[type=text],
+textarea {
+  -webkit-transition: all 0.3s ease-in-out;
+  -moz-transition: all 0.3s ease-in-out;
+  -ms-transition: all 0.3s ease-in-out;
+  -o-transition: all 0.3s ease-in-out;
+}
+input[type=text]:focus,
+input[type=num]:focus,
+input[type=tel]:focus,
+input[type=email]:focus,
+textarea:focus {
+  box-shadow: 0 0 1px #5bb8d7;
+}
+
+/* ------- Nave Pills ---------------- */
+.nav > li > div {
+  position: relative;
+  display: block;
+  padding: 10px 15px;
+  cursor: pointer;
+  transition: color 350ms ease-out 50ms;
+}
+.nav-pills.nav-pills-strap > li > a,
+.nav-pills.nav-pills-strap > li > div {
+  color: #ffffff;
+  background-color: transparent;
+  font-family: RalewayLight, Verdana, Geneva, sans-serif;
+}
+.nav-pills.nav-pills-strap > li > a:hover,
+.nav-pills.nav-pills-strap > li > div:hover,
+.nav-pills.nav-pills-strap > li.active > a:focus,
+.nav-pills.nav-pills-strap > li.active > div:focus {
+  color: #cccccc;
+  background-color: transparent;
+}
+.nav-pills.nav-pills-strap > li.active > a,
+.nav-pills.nav-pills-strap > li.active > a:hover,
+.nav-pills.nav-pills-strap > li.active > a:focus,
+.nav-pills.nav-pills-strap > li.active > div,
+.nav-pills.nav-pills-strap > li.active > div:hover,
+.nav-pills.nav-pills-strap > li.active > div:focus {
+  color: #ffffff;
+  background-color: transparent;
+  border: 3px solid #5bb8d7;
+  border-style: none none solid none;
+}
+@media all and (max-width: 479px) {
+  .nav-pills.nav-pills-strap {
+    text-align: center;
+    width: 100%;
+  }
+  .nav-pills.nav-pills-strap > li {
+    display: inline-block;
+    float: none;
+  }
+  .nav-pills.nav-pills-strap > li > a,
+  .nav-pills.nav-pills-strap > li > div {
+    display: inline-block;
+    padding: 10px 5px;
+  }
+}
+
+/* -------- Font Awesome  ------------ */
+.fa {
+  transition: background-color 350ms ease-out 50ms, color 350ms ease-out 50ms, border-color 350ms ease-out 50ms;
+}
+
+/* ----------- Columns --------------- */
+.row.no-gutter {
+  margin-left: 0;
+  margin-right: 0;
+}
+.row.no-gutter [class*='col-']:not(:first-child),
+.row.no-gutter [class*='col-']:not(:last-child) {
+  padding-right: 0;
+  padding-left: 0;
+}
+.row .half-gutter {
+  padding-right: 7px;
+  padding-left: 7px;
+}
+.row-padding {
+  padding-left: 15px;
+  padding-right: 15px;
+}
+
+/* -------- Responsive Helpers ------- */
+.visible-xxs-block {
+  display: none;
+}
+
+@media all and (max-width: 480px) {
+	.visible-xxs-block {
+	  display: block;
+	}
+}
