@@ -6,18 +6,21 @@
           <img class="img-circle img-responsive-sm" src="{{profile.photoUrl}}"/>
         </div>
 
+
         <div class="col-sm-3 col-md-2">
-          <div class="dropdown">
-            <button id="status-drop-button" class="status-drop-button text-uppercase green raleway-semibold spacing-250" type="button" data-toggle="dropdown" aria-haspopup="true" role="button" aria-expanded="false" >
-              In the office
-              <span class="caret user-only"></span>
-            </button>
-            <ul id="status-drop" class="status-drop dropdown-menu" role="menu" aria-labelledby="status-drop-button">
-              <li role="presentation"><div id="status-in" role="menuitem" class='raleway-semibold spacing-0625 text-uppercase green'>In the office</div></li>
-              <li role="presentation"><div id="status-out" role="menuitem" class='raleway-semibold spacing-0625 text-uppercase red'>out of office</div></li>
-              <li role="presentation"><div id="status-mobile" role="menuitem" class='raleway-semibold spacing-0625 text-uppercase accent'>mobile</div></li>
-            </ul>
-          </div>
+          {{#if isMyProfile}}
+            <div class="dropdown">
+              <button id="status-drop-button" class="status-drop-button text-uppercase green raleway-semibold spacing-250" type="button" data-toggle="dropdown" aria-haspopup="true" role="button" aria-expanded="false" >
+                In the office
+                <span class="caret user-only"></span>
+              </button>
+              <ul id="status-drop" class="status-drop dropdown-menu" role="menu" aria-labelledby="status-drop-button">
+                <li role="presentation"><div id="status-in" role="menuitem" class='raleway-semibold spacing-0625 text-uppercase green'>In the office</div></li>
+                <li role="presentation"><div id="status-out" role="menuitem" class='raleway-semibold spacing-0625 text-uppercase red'>out of office</div></li>
+                <li role="presentation"><div id="status-mobile" role="menuitem" class='raleway-semibold spacing-0625 text-uppercase accent'>mobile</div></li>
+              </ul>
+            </div>
+          {{/if}}
 
           <p class='h3 raleway-light white m-top-025'>{{profile.firstName}} {{profile.lastName}}</p>
           <p class='raleway-semibold white text-uppercase spacing-250 little'>{{profile.title}}</p>
@@ -63,6 +66,7 @@
                 {{#if loggedIn}}
                   <button class='btn btn-block btn-small btn-accent-border raleway-semibold white text-uppercase spacing-0625 m-top-08 private'>private profile</button>
                 {{/if}}
+                <button id="send-message-btn" class='btn btn-block btn-small btn-accent raleway-semibold white text-uppercase spacing-125 small'>send message</button>
               {{/if}}
             </a>
           </div>
