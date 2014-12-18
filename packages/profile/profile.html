@@ -1,31 +1,6 @@
 <template name="profile">
-<!--   {{#if isPrivate}}
-  private
-{{else}}
-  {{#if isMyProfile}}
-    my profile
-  {{else}}
-
-  {{! Internal profile }}
-    internal
-  {{/if}}
-{{/if}} -->
-
-
-  {{#unless isMyProfile}}
-    {{> profileHeader}}
-  {{/unless}}
-  {{> profileBanner isPrivate=isPrivate profile=profile isMyProfile=isMyProfile}}
-  {{#unless isMyProfile}}
-    {{> profileAbout}}
-    {{> profilePropertySearch}}
-    {{> profileTestimonial}}
-    {{> profileBuyer}}
-    {{> profileContact}}
-    {{> profileFooter}}
-  {{/unless}}
-
-  {{#if isMyProfile}}
+  {{#if isPrivate}}
+    {{> profileBanner isPrivate=isPrivate profile=profile isMyProfile=isMyProfile}}
     <div class='container p-bottom-40'>
       {{> profileNav}}
       <div id="tab-content" class="tab-content">
@@ -36,5 +11,23 @@
         {{> profileFollowing}}
       </div>
     </div>
+  {{else}}
+    {{#if isMyProfile}}
+      {{> profileAbout}}
+      {{> profilePropertySearch}}
+      {{> profileTestimonial}}
+      {{> profileBuyer}}
+      {{> profileContact}}
+      {{> profileFooter}}
+    {{else}}
+      {{> profileHeader}}
+      {{> profileBanner isPrivate=isPrivate profile=profile isMyProfile=isMyProfile}}
+      {{> profileAbout}}
+      {{> profilePropertySearch}}
+      {{> profileTestimonial}}
+      {{> profileBuyer}}
+      {{> profileContact}}
+      {{> profileFooter}}
+    {{/if}}
   {{/if}}
 </template>
