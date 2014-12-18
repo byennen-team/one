@@ -12,14 +12,7 @@
       </div>
     </div>
   {{else}}
-    {{#if isMyProfile}}
-      {{> profileAbout}}
-      {{> profilePropertySearch}}
-      {{> profileTestimonial}}
-      {{> profileBuyer}}
-      {{> profileContact}}
-      {{> profileFooter}}
-    {{else}}
+    {{#unless isMyProfile}}
       {{> profileHeader}}
       {{> profileBanner isPrivate=isPrivate profile=profile isMyProfile=isMyProfile}}
       {{> profileAbout}}
@@ -28,6 +21,6 @@
       {{> profileBuyer}}
       {{> profileContact}}
       {{> profileFooter}}
-    {{/if}}
+    {{/unless}}
   {{/if}}
 </template>
