@@ -1,65 +1,69 @@
 .profile {
   .footer {
     height: 8em;
-  }
-  .footer .logobox {
-    font-size: 14px;
-  }
-  .footer .address {
-    left: 380px;
-    width: 200px;
-    top: 0;
-  }
-  .footer .phone {
-    left: 540px;
-    width: 200px;
-    top: 0;
+    .logobox {
+      font-size: 14px;
+    }
+    .address {
+      left: 380px;
+      width: 200px;
+      top: 0;
+    }
+    .phone {
+      left: 540px;
+      width: 200px;
+      top: 0;
+    }
   }
 }
 
 @media all and (min-width: 768px) and (max-width: 991px) {
-  .logobox {
-    font-size: 10px;
-  }
-  .logobox h2 {
-    font-size: 12px;
-    position: relative;
-    height: 10em;
-    background-color: #1c2431;
-    .logobox {
-      position: absolute;
-      width: 22.714em;
-      height: 4.643em;
-      font-size: 10px;
-      top: 20px;
-      left: 20px;
-      background-image: url(../../images/profile/logo-text-blue.png );
-      background-repeat: no-repeat;
-      background-size: contain;
-    }
-    .address {
-      position: absolute;
-      left: 20px;
-      top: 30px;
-      width: 200px;
-    }
-    .phone {
-      position: absolute;
-      left: 165px;
-      top: 30px;
-      width: 200px;
-    }
-    .btn {
-      border: none;
-      top: 20px;
-    }
-    .btn:focus,
-    .btn:active,
-    .btn:hover {
-      background-color: #51a9c6;
-    }
-    .dropdown-menu div {
-      cursor: pointer;
+  .profile {
+    .footer {
+      .logobox {
+        font-size: 10px;
+      }
+      .logobox h2 {
+        font-size: 12px;
+        position: relative;
+        height: 10em;
+        background-color: #1c2431;
+        .logobox {
+          position: absolute;
+          width: 22.714em;
+          height: 4.643em;
+          font-size: 10px;
+          top: 20px;
+          left: 20px;
+          background-image: url(../../images/profile/logo-text-blue.png );
+          background-repeat: no-repeat;
+          background-size: contain;
+        }
+        .address {
+          position: absolute;
+          left: 20px;
+          top: 30px;
+          width: 200px;
+        }
+        .phone {
+          position: absolute;
+          left: 165px;
+          top: 30px;
+          width: 200px;
+        }
+        .btn {
+          border: none;
+          top: 20px;
+        }
+        .btn:focus,
+        .btn:active,
+        .btn:hover {
+          background-color: #51a9c6;
+        }
+        .dropdown-menu div {
+          cursor: pointer;
+        }
+      }
     }
   }
 }
