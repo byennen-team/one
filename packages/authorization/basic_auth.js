@@ -26,7 +26,7 @@ HttpBasicAuth = (function () {
 })();
 
 // Setup HTTP password for dev.gooneapp.com
-// if(Settings.isStaging) {
-//  var basicAuth = new HttpBasicAuth('one', 'one');
-//  basicAuth.protect();
-// }
+if(Settings.isStaging) {
+ var basicAuth = new HttpBasicAuth('one', 'one');
+ basicAuth.protect();
+}
