@@ -1,8 +1,9 @@
-var scrollTo = function( target, trigger ){
+var goScroll = function(target, trigger){
   trigger.on( 'click', function(){
     if (target.length) {
       var top = target.offset().top;
-      $('html,body').animate({scrollTop: top}, 800);
+      console.log(top)
+      $("html").velocity("scroll", {offset: top, duration: 800, easing: "easeInSine", mobileHA: false });
       return false;
     }
   });
@@ -11,9 +12,10 @@ var scrollTo = function( target, trigger ){
 Template.profileHeader.rendered = function () {
   $('body').addClass('public-profile');
 
-  // Scroll to on click ------------------
-  scrollTo($('#about'), $('.nav-about'));
-  scrollTo($('#listings'), $('.nav-properties') );
-  scrollTo($('#contact'), $('.nav-contact') );
-  scrollTo($('#contact'), $('#send-message-btn'));
+  $(document).ready(function($) {
+    goScroll($('#section-about'), $('.nav-about'));
+    goScroll($('#listings'), $('.nav-properties'));
+    goScroll($('#contact'), $('.nav-contact'));
+    goScroll($('#contact'), $('#send-message-btn'));
+  });
 }
