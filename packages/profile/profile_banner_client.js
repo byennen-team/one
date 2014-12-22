@@ -1,5 +1,14 @@
+var forcePublic = new ReactiveVar();
+
 Template.profileBanner.helpers({
-  loggedIn: Meteor.userId
+  isLoggedIn: Meteor.userId,
+  isPrivate: function () {
+    return Meteor.userId() && !forcePublic.get();
+  },
+  isMyProfile: Profile.isMyProfile,
+  isFollowing: function (){
+    return Profile.isFollowing(Profile.currentUser());
+  }
 });
 
 Template.profileBanner.events({
@@ -21,12 +30,4 @@ Template.profileBanner.events({
     var status = e.target.innerText
     Meteor.users.update({_id: Meteor.userId()}, {$set: {'profile.status': status }});
   }
-});
-
-Template.profileBanner.helpers({
-  isFollowing: function (){
-    return Profile.isFollowing(Profile.currentUser());
-  },
-
-  isLoggedIn: Meteor.userId
 });
