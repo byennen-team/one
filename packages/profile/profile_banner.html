@@ -11,7 +11,7 @@
           {{#if isMyProfile}}
             <div class="dropdown">
               <button id="status-drop-button" class="status-drop-button text-uppercase green raleway-semibold spacing-250" type="button" data-toggle="dropdown" aria-haspopup="true" role="button" aria-expanded="false" >
-                In the office
+                {{profile.status}}
                 <span class="caret user-only"></span>
               </button>
               <ul id="status-drop" class="status-drop dropdown-menu" role="menu" aria-labelledby="status-drop-button">

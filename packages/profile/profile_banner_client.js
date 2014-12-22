@@ -16,6 +16,10 @@ Template.profileBanner.events({
   },
   'click .private': function () {
     forcePublic.set(false);
+  },
+  'click .status-drop': function (e) {
+    var status = e.target.innerText
+    Meteor.users.update({_id: Meteor.userId()}, {$set: {'profile.status': status }});
   }
 });
 
