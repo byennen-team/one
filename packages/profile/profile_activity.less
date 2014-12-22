@@ -2,15 +2,40 @@
   .add-post {
     border: 1px solid #d7dfed;
     border-radius: 5px;
+    .form-control {
+      color: #999;
+      font-family: RalewaySemibold, Verdana, Geneva, sans-serif;
+    }
+    .form-control::-webkit-input-placeholder {
+      color: #999;
+      font-family: RalewaySemibold, Verdana, Geneva, sans-serif;
+    }
+    .form-control::-moz-placeholder {
+      color: #999;
+      font-family: RalewaySemibold, Verdana, Geneva, sans-serif;
+    }
+    .form-control:-ms-input-placeholder {
+      color: #999;
+      font-family: RalewaySemibold, Verdana, Geneva, sans-serif;
+    }
   }
   .add-post textarea {
+    width: 100%;
     height: 8.675em;
     padding: 1em 1.25em;
     border: none;
     outline: 0px;
+    font-size: 14px;
+    line-height: 1.42857143;
+    color: #555;
+    background-color: #fff;
+    background-image: none;
     -webkit-appearance: none;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
   }
   .add-post .btn {
+    font-size: 14px;
     padding: 0.25em 3em;
     margin: 0.5em;
   }
