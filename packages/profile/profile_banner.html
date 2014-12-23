@@ -20,6 +20,9 @@
                 <li role="presentation"><div id="status-mobile" role="menuitem" class='raleway-semibold spacing-0625 text-uppercase accent'>mobile</div></li>
               </ul>
             </div>
+          {{else}}
+            <p class="text-uppercase green raleway-semibold spacing-250">{{profile.status}}</p>
+          {{! Internal profile }}
           {{/if}}
 
           <p class='h3 raleway-light white m-top-025'>{{profile.firstName}} {{profile.lastName}}</p>

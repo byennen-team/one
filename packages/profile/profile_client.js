@@ -10,8 +10,11 @@ Template.profile.helpers({
 Template.profile.events({
   'click .public': function () {
     forcePublic.set(true);
+    $(".navbar").hide();
   },
   'click .private': function () {
     forcePublic.set(false);
+    $(".navbar").show();
+    $("body").removeClass("public-profile");
   }
 });
