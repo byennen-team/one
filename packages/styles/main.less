@@ -24,21 +24,31 @@
   src: url('../../fonts/raleway-light-webfont.eot');
   src: url('../../fonts/raleway-light-webfont.eot?#iefix') format('embedded-opentype'), url('../../fonts/raleway-light-webfont.woff') format('woff'), url('../../fonts/raleway-light-webfont.ttf') format('truetype'), url('../../fonts/raleway-light-webfont.svg#svgFontName') format('svg');
 }
+
+@raleway-bold: RalewayBold, Verdana, Geneva, sans-serif;
+@raleway-semibold: RalewaySemibold, Verdana, Geneva, sans-serif;
+@raleway-medium: RalewayMedium, Verdana, Geneva, sans-serif;
+@raleway-regular: RalewayRegular, Verdana, Geneva, sans-serif;
+@raleway-light: RalewayLight, Verdana, Geneva, sans-serif;
+
 .raleway-bold {
-  font-family: RalewayBold, Verdana, Geneva, sans-serif;
+  font-family: @raleway-bold;
 }
 .raleway-semibold {
-  font-family: RalewaySemibold, Verdana, Geneva, sans-serif;
+  font-family: @raleway-semibold;
 }
 .raleway-medium {
-  font-family: RalewayMedium, Verdana, Geneva, sans-serif;
+  font-family: @raleway-medium;
 }
 .raleway-regular {
-  font-family: RalewayRegular, Verdana, Geneva, sans-serif;
+  font-family: @raleway-regular;
 }
 .raleway-light {
-  font-family: RalewayLight, Verdana, Geneva, sans-serif;
+  font-family: @raleway-light;
 }
+
+
+
 
 body {
   background: #ebf1f5;

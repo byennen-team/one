@@ -3,14 +3,27 @@
     <div class="modal-dialog">
       <!-- TEMPLATE - form needs to be plugged in					 -->
       <form class="modal-content">
-        <div class="modal-body">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">
+            <i class='fa icon-x' aria-hidden="true"></i>
+            <span class="sr-only">Close</span>
+          </button>
           <p class="raleway-bold navy text-uppercase spacing-125 text-center h6">Select an image</p>
-          <!-- <p class="raleway-regular text text-center">photo-1.jpg</p> -->
-          <input id='image-upload' class="" type="file" name="pic" accept="image/*">
+        </div>
+        <div class="modal-body">
+          <div class="form-group">
+            <label>image file</label>
+            <label class='upload-input single'>
+              <span class='file-name'></span>
+              <i class="fa icon-addteam"></i>
+              <input class="image-upload hidden" type="file" name="pic" accept="image/*">
+            </label>
+            <i class="fa fa-times-circle-o hidden"></i>
+          </div>
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn" data-dismiss="modal">add image</button>
-          <button type="button" class="btn btn-accent-border" data-dismiss="modal">cancel</button>
+          <button type="button" class="btn btn-default" data-dismiss="modal">cancel</button>
+          <button type="button" class="btn btn-primary" data-dismiss="modal">add image</button>
         </div>
       </form>
     </div>

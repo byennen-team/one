@@ -4,14 +4,20 @@
       <div class="modal-content">
         <div class="modal-header">
           <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-          <h4 class="modal-title" id="myModalLabel">New Folder</h4>
+          <h4 class="modal-title" id="myModalLabel">create New Folder</h4>
         </div>
         <div class="modal-body">
           <div class="form-group">
-            <input type="text" class="form-control" placeholder="Folder name...">
+            <label>folder name</label>
+            <input type="text" class="form-control">
+          </div>
+          <div class="form-group">
+            <label>invite others</label>
+            <input type="text" class="form-control" placeholder='Name or email address (separate mulitiple invites with commas)'>
           </div>
         </div>
         <div class="modal-footer">
+          <button type="button" class="btn btn-default">Cancel</button>
           <button type="button" class="btn btn-primary">Create</button>
         </div>
       </div>

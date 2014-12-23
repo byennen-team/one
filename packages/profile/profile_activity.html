@@ -52,30 +52,7 @@
       </form>
     </div>
 
-    <!-- Content link Modal -->
-    <div class="modal fade" id="content-link-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-      <div class="modal-dialog">
-        <div class="modal-content">
-          <div class="modal-header accent-bg p-all-15">
-            <button type="button" class="close" data-dismiss="modal">
-              <span class="raleway-light white" aria-hidden="true">X</span>
-              <span class="sr-only">Close</span>
-            </button>
-            <h4 class="modal-title raleway-semibold white text-uppercase spacing-250 m-left-05">Link to a page</h4>
-          </div>
-          <div class="modal-body">
-            <form id='content-link-form' role="form">
-              <div class="form-group">
-                <!-- TEMPLATE - Form needs to be plugged in  		 -->
-                <input type="text" class="form-control" id="recipient-name" placeholder='Insert Link...'>
-              </div>
-              <button id='linked-content' type="button" class="btn btn-accent white text-uppercase raleway-semibold spacing-125">Add</button>
-              <button type="button" class="btn btn-grey white text-uppercase raleway-semibold spacing-125" data-dismiss="modal">Close</button>
-            </form>
-          </div>
-        </div>
-      </div>
-    </div>
+   {{>profileActivityLinkModal}}
 
 
     <div class="col-sm-4 col-md-3 col-md-offset-1 pull-right hidden-xs m-top-20 activity-sidebar">

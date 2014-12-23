@@ -5,9 +5,9 @@ Package.describe({
 Package.onUse(function (api) {
   api.use(['templating', 'less'], 'web');
 
-  api.addFiles(['main.less', 'one_strap.less', 'buttons.less', 'colors.less',
+  api.addFiles(['colors.less', 'main.less', 'one_strap.less', 'buttons.less', 
                 'padding_and_margin.less', 'cleanup.less', 'go_one_icons.less',
-                'form.less', 'typography.less'
+                'form.less', 'typography.less', 'modals.less'
                ], 'web');
 
   //style guide
