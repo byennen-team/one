@@ -21,6 +21,8 @@ mquandalle:bower
 
 # Our Packages
 
+one-profile
+
 admin
 authorization
 companies
@@ -45,6 +47,5 @@ search
 directory
 documents
 account-settings
-profile
 styles
 less
