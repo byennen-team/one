@@ -71,9 +71,8 @@ Package.onUse(function (api) {
     'lib/client/templates/profile_footer.html'
     ], 'web');
 
-    api.addFiles([
-        'smart.json'
-      ], 'web');
+  // Bower packages
+  api.addFiles(['smart.json'], 'web');
 
   api.export('Profile', 'web');
 });
