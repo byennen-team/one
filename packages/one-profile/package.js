@@ -1,5 +1,5 @@
 Package.describe({
-  summary: 'Profile helpers.'
+  summary: 'One Profile'
 });
 
 Package.onUse(function (api) {
