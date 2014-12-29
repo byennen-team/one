@@ -17,7 +17,6 @@ joshowens:simple-form #TODO: refactory this out?
 aldeed:simple-schema
 mrt:moment
 mrt:imagemagick
-mquandalle:bower
 
 # Our Packages
 

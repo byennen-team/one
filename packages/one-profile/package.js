@@ -8,7 +8,8 @@ Package.onUse(function (api) {
     'less',
     'reactive-var',
     'jquery',
-    'stevezhu:velocity.js@0.1.0'
+    'stevezhu:velocity.js@0.1.0',
+    'mquandalle:bower'
     ], 'web');
 
   // less
@@ -69,6 +70,10 @@ Package.onUse(function (api) {
     'lib/client/templates/profile_contact.html',
     'lib/client/templates/profile_footer.html'
     ], 'web');
+
+    api.addFiles([
+        'smart.json'
+      ], 'web');
 
   api.export('Profile', 'web');
 });
