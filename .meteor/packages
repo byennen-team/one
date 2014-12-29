@@ -17,9 +17,10 @@ joshowens:simple-form #TODO: refactory this out?
 aldeed:simple-schema
 mrt:moment
 mrt:imagemagick
-mquandalle:bower
 
 # Our Packages
+
+one-profile
 
 admin
 authorization
@@ -45,6 +46,5 @@ search
 directory
 documents
 account-settings
-profile
 styles
 less
