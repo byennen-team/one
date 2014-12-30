@@ -9,7 +9,8 @@ Package.onUse(function (api) {
     'reactive-var',
     'jquery',
     'stevezhu:velocity.js@0.1.0',
-    'mquandalle:bower'
+    'mquandalle:bower',
+    'styles'
     ], 'web');
 
   // less
