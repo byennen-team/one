@@ -1,25 +1,15 @@
-Meteor.startup(function() {
-  return Meteor.Mandrill.config({
-    username: Meteor.settings.MANDRILL_USERNAME,
-    key: Meteor.settings.MANDRILL_API_KEY
-  });
-});
+// Setup Mandrill if not disabled email and warn the log.
 
-Meteor.methods({
-  // 'sendProfileContactEmail': function(to, subject, htmlText){
-  //   return Meteor.Mandrill.send({
-  //     to: to,
-  //     from: "no-reply@gooneapp.com",
-  //     subject: subject,
-  //     html: htmlText
-  //   });
-  // }
-  'sendProfileContactEmail': function(){
-    return Meteor.Mandrill.send({
-      to: "byennen@gmail.com",
-      from: "no-reply@gooneapp.com",
-      subject: "subject",
-      html: "htmlText"
+var MANDRILL_USERNAME =  Meteor.settings.MANDRILL_USERNAME;
+var MANDRILL_APIKEY = Meteor.settings.MANDRILL_API_KEY;
+if(!MANDRILL_USERNAME || !MANDRILL_APIKEY) {
+  console.warn("Could not find either MANDRILL_USERNAME or MANDRILL_APIKEY" +
+  " environment variables. Emailing is disabled");
+} else {
+  Meteor.startup(function() {
+    Meteor.Mandrill.config({
+      username: MANDRILL_USERNAME,
+      key: MANDRILL_APIKEY,
     });
-  }
-});
+  });
+}
