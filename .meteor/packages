@@ -16,11 +16,11 @@ stevezhu:velocity.js@0.1.0
 joshowens:simple-form #TODO: refactory this out?
 aldeed:simple-schema
 mrt:moment
-mrt:imagemagick
 
 # Our Packages
 
 one-profile
+one-email
 
 admin
 authorization

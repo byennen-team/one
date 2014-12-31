@@ -3,6 +3,7 @@ Package.describe({
 });
 
 Package.onUse(function (api) {
+
   api.use([
     'templating',
     'less',
@@ -10,8 +11,10 @@ Package.onUse(function (api) {
     'jquery',
     'stevezhu:velocity.js@0.1.0',
     'mquandalle:bower',
-    'styles'
+    'styles',
+    'one-email'
     ], 'web');
+
 
   // less
   api.addFiles([
@@ -69,6 +72,7 @@ Package.onUse(function (api) {
     'lib/client/templates/profile_testimonial.html',
     'lib/client/templates/profile_buyer.html',
     'lib/client/templates/profile_contact.html',
+    'lib/client/templates/profile_contact_client.js',
     'lib/client/templates/profile_footer.html'
     ], 'web');
 

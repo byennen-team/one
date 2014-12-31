@@ -7,5 +7,7 @@
     "AWS_BUCKET_URL": "https://goone-staging.s3.amazonaws.com",
     "ENVIRONMENT": "staging"
   },
-  "S3_URL_EXPIRATION_SECONDS": 604800
+  "S3_URL_EXPIRATION_SECONDS": 604800,
+  "MANDRILL_USERNAME": "mandrill@gooneapp.com",
+  "MANDRILL_API_KEY": "SuSOTzzT5JI4ZCa-__HyPw"
 }
