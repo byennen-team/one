@@ -32,10 +32,11 @@ Template.shareDocumentModal.rendered = function(){
 };
 
 Template.shareDocumentModal.events({
-  // TODO: put this back in when copyToClipboard() does something useful.
+
   // 'click .copy-link': function () {
   //   var url = Session.get('sharedDocumentUrl');
-  //   copyToClipboard(url);
+  //   console.log(url);
+  //   document.execCommand('copy', url );
   // },
 
   'click .display-link': function (event, template) {
