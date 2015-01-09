@@ -1,0 +1,51 @@
+<template name='comSidebarCompany'>
+	
+	<div class="dropdown company">
+	  <div  class="dropdown-header" data-toggle="collapse" href="#com-company-header" aria-expanded="true" aria-controls="com-company-header">
+			Company Channels
+	    <span class="caret"></span>
+	  </div>
+		<div class="collapse in" id="com-company-header">
+		  <div class="well">
+			  <ul role="menu">
+		<!-- TODO - number of unread messages in this category in span -->
+			    <li class="">General <span class='unread-num'>2</span></li>
+		<!-- TODO - number of unread messages in this category in span -->
+			    <li class="">News <span class='unread-num'>2</span></li>
+		<!-- TODO - number of unread messages in this category in span -->
+			    <li class="">Events <span class='unread-num'>2</span></li>
+		<!-- TODO - number of unread messages in this category in span -->
+			    <li class="">Training <span class='unread-num'>2</span></li>
+			  </ul>
+
+			  <div class="dropdown secondary">
+		<!-- TODO: for each location added, .dropdown-header's #ID goes in 'aria-controls'		   --> 		
+				  <div  class="dropdown-header" data-toggle="collapse" href="#com-575-madison-header" aria-expanded="false" aria-controls="com-575-madison-header">
+						575 Madison
+				    <span class="caret"></span>
+				  </div>
+		<!-- TODO: for each location added, a unique #ID is needed	  	 -->
+					<div class="collapse in" id="com-575-madison-header">
+					  <div class="well">
+						  <ul role="menu">
+				<!-- TODO - number of unread messages in this category in span -->
+						    <li class="">General <span class='unread-num'>2</span></li>
+				<!-- TODO - number of unread messages in this category in span -->
+						    <li class="">Water Cooler <span class='unread-num'>2</span></li>
+				<!-- TODO - number of unread messages in this category in span -->
+						    <li class="">Listings <span class='unread-num'>2</span></li>
+				<!-- TODO - number of unread messages in this category in span -->
+						    <li class="">Open Houses <span class='unread-num'>2</span></li>
+						  </ul>
+						</div>
+					</div>
+
+				</div>
+
+			</div>
+		</div>
+
+
+	</div>
+	
+</template>

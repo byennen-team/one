@@ -1,0 +1,129 @@
+.dropdown {
+	width: 100%;
+	.dropdown-header {
+		font-family: @raleway-semibold;
+		color: @white;
+		text-transform: uppercase;
+		letter-spacing: 0.25em;
+	}
+	li {
+		font-family: @raleway-medium;
+		color: @white;
+		list-style: none;
+		margin: 1em 0;
+	}
+	.well {
+		background-color: @blue-grey;
+		box-shadow: none;
+		border: none;
+		padding: 0 19px;
+	}
+	.secondary {
+		.dropdown-header {
+			margin-top: 2em;
+		}
+		ul {
+			padding-left: 19px;
+		}
+	}
+}
+
+// TODO: Put this in com_sidebar.less once variables are cross platform
+.com-sidebar {
+	position: relative;
+	margin-left: -15px;
+	margin-right: -15px;
+	background-color: @blue-grey;
+	.sidebar-scroll-target {
+		position: absolute;
+		top: -70px;
+	}
+	.dropdown-header {
+		height: 3em;
+		padding: 1em 3em;
+	}
+	.unread-num {
+		border-radius: 15px;
+		padding: 0.1em 0.43em;
+		margin-left: 3px;
+	}
+	.add-team {
+		cursor: pointer;
+	}
+} 
+// End TODO
+
+// TODO: Put this in com_sidebar_filter.less once variables are cross platform
+.com-filter {
+	.dropdown-header {
+		background-color: @lt-navy;
+		height: 5em;
+		padding: 2em 3em;
+		.caret {
+			display: block;
+			position: absolute;
+			right: 2em;
+			top: 2.5em;
+		}
+	}
+	.dropdown-menu {
+		width: 100%;
+		background-color: @lt-navy-dk;
+	}
+	.all {
+		color: #000;
+	}
+}
+// End TODO
+
+// TODO: Put this in com_sidebar_company.less once variables are cross platform
+.com-sidebar {
+	.company {
+		padding-left: 5%;
+		.dropdown-header {
+			color: @text-aqua;
+		}
+		.unread-num {
+			background-color: @dk-sky;
+		}
+		.fa {
+			color: @text-aqua;
+		}
+	}
+} 
+// End TODO
+
+// TODO: Put this in com_sidebar_direct.less once variables are cross platform
+.com-sidebar {
+	.direct {
+		padding-left: 5%;
+		.dropdown-header {
+			color: @text-purple;
+		}
+		.unread-num {
+			background-color: @blue-purple;
+		}
+		.fa {
+			color: @text-purple;
+		}
+	}
+} 
+// End TODO
+
+// TODO: Put this in com_sidebar_rooms.less once variables are cross platform
+.com-sidebar {
+	.rooms {
+		padding-left: 5%;
+		.dropdown-header {
+			color: @text-blue;
+		}
+		.unread-num {
+			background-color: @dk-sky;
+		}	
+		.fa {
+			color: @text-blue;
+		}
+	}
+} 
+// End TODO
+

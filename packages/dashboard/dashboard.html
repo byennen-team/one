@@ -1,12 +1,18 @@
 <template name="dashboard">
   <div class="row">
-    <div id="left-column" class="col-sm-3">
-      {{> feed}}
-      {{> documentsWidget}}
+
+    <div class="dashboard-banner col-sm-12">
+      {{> dashboardBanner}}
+    </div>
+  </div>
+
+  <div class="container-fluid container-xs-height">
+  <div class="row">
+    <div id="left-column" class="col-sm-3 col-xs-height no-float col-top blue-grey-bg">
+      {{> comSidebar}}
     </div>
 
-    <div id="main" class="col-sm-9">
-      {{> dashboardBanner}}
+    <div id="main" class="col-sm-9 col-xs-height no-float col-top">
       <div class="col-sm-8">
         {{> calendar}}
         {{> news}}
@@ -20,6 +26,7 @@
       </div>
     </div>
   </div>
+</div>
 
   <!-- REMOVE -->
   <img class="chat-window" src="../../images/dashboard/chat-window.png" />

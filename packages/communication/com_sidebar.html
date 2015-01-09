@@ -1,0 +1,26 @@
+<template name="comSidebar">
+
+	<div id='com-sidebar' class="com-sidebar">
+		<div id="sidebar-scroll-target" class='sidebar-scroll-target'></div>	
+
+		{{> comSidebarFilter}}
+
+		{{#if comFilter.all}}
+			<p>all</p>
+      {{> comSidebarAll}}
+    {{else}} {{#if comFilter.company}}
+      <p>company</p>
+	    {{> comSidebarCompany}}
+	  {{else}} {{#if comFilter.direct}}
+			<p>direct</p>
+      {{> comSidebarDirect}}
+    {{else}} {{#if comFilter.rooms}}
+    	<p>rooms</p>
+      {{> comSidebarRooms}}
+	  {{/if}} {{/if}} {{/if}} {{/if}}
+
+	</div>
+
+</template>
+
+<!-- I need to call the function in the template helper -->
