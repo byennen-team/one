@@ -70,8 +70,6 @@ FileTools.upload = function (descriptor, remotefile, done) {
       done();
     })));               
 };   
-                   
-
 // creates an object with various urls to be sent back to client
 function imagesObject(filename){
   // a hash containing all the links to images
