@@ -18,7 +18,7 @@ FileTools.fetch_resize_and_upload = function(url) {
         var imageFile = base+'/'+imagetmp;
         request(url).on('end', function(error, response, body){
           console.log('response end');
-          resize_and_upload(imageFile);
+          resize_and_upload(imagetmp);
         }).pipe(fs.createWriteStream(imageFile))    
 }
 var resize_and_upload = function(imageFile) {
@@ -41,28 +41,35 @@ var resize_and_upload = function(imageFile) {
           width:   resizeWidths['thumb_'],
           quality: 0.6
         }))
-    uploadAll(base+'/'+imageFile, imageremote)
+    uploadAll(imageFile, imageremote)
   
 }
 
-var uploadAll = function(tempfile, remotefilename) {
+var uploadAll = function(imagefile, remotefilename) {
   console.log('upload all')
-  uploadToS3('mobile_'+tempfile, 'mobile_'+remotefilename)
-  uploadToS3('thumb_'+tempfile, 'thumb_'+remotefilename)
-  uploadToS3('full_'+ tempfile, 'full_'+remotefilename)
+  uploadToS3(base+'/mobile_'+imagefile, 'mobile_'+remotefilename)
+  uploadToS3(base+'/thumb_'+imagefile, 'thumb_'+remotefilename)
+  uploadToS3(base+'/full_'+ imagefile, 'full_'+remotefilename)
 }
 var uploadBucket = new AWS.S3()
 var uploadToS3 = function uploadToS3(localfile, remotefilename){
     var signedFile = FileTools.signUpload(localfile, 'private', 'image/jpeg')
-    console.log('signed-remoteFile', signedFile.signature);
+    console.log('signed-remoteFile', signedFile.credentials.signature);
     var stream = fs.createReadStream(localfile)
-    var _bucket = new AWS.S3({Bucket: 'chuckgooneapp'})
-    _bucket.upload({Key: signedFile.signature, Body: stream })
-    .on('httpUploadProgress', function(evt) { console.log(evt); })
-    .send(function(err, data) { console.log(err, data)});
-    console.log('finit')
-   
+    var s3bucket = Meteor.wrapAsync(uploadBucket)
+    uploadBucket.createBucket(function() {
+      var params = { Bucket: 'chuck.goone', Key: signedFile.credentials.signature, Body: stream };
+      uploadBucket.putObject(params, function(err, data) {
+        if (err) {
+          console.log("Error uploading data: ", err);
+        } else {
+          console.log("Successfully uploaded data: ", params.Key);
+        }
+      });
+    console.log('finit', localfile, remotefilename)
+    });
 };
+    
 // creates an object with various urls to be sent back to client
 function imagesObject(filename){
   // a hash containing all the links to images
