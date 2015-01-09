@@ -14,4 +14,5 @@ Package.onUse(function (api) {
     'left_nav.html', 'leftNav.js', 'left_nav_client.js',
     'left_nav.less'
     ], 'web');
+  
 });
