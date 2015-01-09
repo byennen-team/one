@@ -61,6 +61,7 @@ Meteor.startup(function () {
     var user = userFromEllimanRow(row);
     console.log('photoUrl:', user.profile.photoUrl);
     fru(user.profile.photoUrl, function(e, r) {
+      console.log('r', r);
       Meteor.users.insert(user)
       console.log('inserted:', row.FIRST_NAME)
     })
