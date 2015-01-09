@@ -1,11 +1,19 @@
 Profile.forcePublic = new ReactiveVar();
 
 Template.profileBanner.helpers({
-  isLoggedIn: Meteor.userId,
+  isLoggedIn: function() {
+    if (Meteor.userId())
+      return true;
+    else
+      return false;
+  },
   isPrivate: function () {
     return Meteor.userId() && !Profile.forcePublic.get();
   },
   isMyProfile: Profile.isMyProfile,
+  isMyProfileEditable: function() {
+    return (Blaze.getData().isMyProfile && Blaze.getData().isPrivate)
+  },   
   isFollowing: function (){
     return Profile.isFollowing(Profile.currentUser());
   }
