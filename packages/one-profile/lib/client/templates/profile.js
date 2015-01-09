@@ -10,7 +10,7 @@ Profile.currentUser = function () {
 
 Profile.isMyProfile = function () {
   var user = Meteor.user();
-  return user && user._id === Blaze.getData()._id;
+  return user && user._id === Profile.currentUser()._id;
 };
 
 Profile.isFollowing = function (user) {
