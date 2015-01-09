@@ -71,6 +71,18 @@ FileTools.signedGet = function (filePath) {
   return url;
 };
 
+FileTools.upload_from_server =  function (file, path, callback) {
+   var boundCallback = Meteor.bindEnvironment(function (err, res) {
+    callback(err, res);
+  });
+  s3.upload(file, path, function (err, data) {
+      if (err) {
+        boundCallback(err);
+        return;
+      }
+      boundCallback(null, data);
+  });
+};
 FileTools.rename = function (originalFilePath, newFilePath, callback) {
   var boundCallback = Meteor.bindEnvironment(function (err, res) {
     callback(err, res);

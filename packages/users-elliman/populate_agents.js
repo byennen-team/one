@@ -101,6 +101,7 @@ Meteor.startup(function () {
   var count = 1;
   var q_count = 0;
   _.each(ellimanAgents, function (row) {
+    console.log('begin insert:', row.FIRST_NAME);
     var user = userFromEllimanRow(row);
     if (!user.profile.photoUrl || (user.profile.photoUrl.length === 0)) return '';
     console.log('PQing: ', count++, row.FIRST_NAME);
@@ -108,5 +109,4 @@ Meteor.startup(function () {
   });
   console.log('Ready to run queue');
   Meteor._powerQ.run();
-  console.log('queue running', ellimanAgents.length, 'elliman agents');
 });
