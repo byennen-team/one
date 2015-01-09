@@ -72,17 +72,19 @@ FileTools.signedGet = function (filePath) {
 };
 
 FileTools.upload_from_server =  function (file, path, callback) {
-   var boundCallback = Meteor.bindEnvironment(function (err, res) {
-    callback(err, res);
-  });
-  s3.upload(file, path, function (err, data) {
-      if (err) {
-        boundCallback(err);
-        return;
-      }
-      boundCallback(null, data);
+  var uploadBucket = new AWS.S3({params: {Bucket: 'chuck.gooneapp'}});
+  uploadBucket.createBucket(function() {
+    var params = {Key: 'myKey', Body: 'Hello!'};
+    uploadBucket.upload(params, function(err, data) {
+    if (err) {
+      console.log("Error uploading data: ", err);
+    } else {
+      console.log("Successfully uploaded data to myBucket/myKey");
+    }
+    });
   });
 };
+
 FileTools.rename = function (originalFilePath, newFilePath, callback) {
   var boundCallback = Meteor.bindEnvironment(function (err, res) {
     callback(err, res);
