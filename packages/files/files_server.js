@@ -1,6 +1,6 @@
 var crypto = Npm.require('crypto');
 var s3 = new AWS.S3();
-
+AWS.config.region = 'us-west-2';
 Meteor.publish('files', function () {
   // TODO filter by companyId
   return Files.find();
@@ -18,8 +18,8 @@ Files.allow({
  * @returns {{accessKey: *, policy: string, signature: *}}
  */
 FileTools.signUpload = function (filePath, acl, mimeType) {
-  var bucket = Meteor.settings.AWS_BUCKET;
-
+  var bucket = Meteor.settings.AWS_BUCKET || 'chuck.goone';
+  console.log('signupload bucket:', bucket)
   var policy = {
     // expire in 5 minutes
     expiration: new Date(new Date().getTime() + 1000 * 60 * 5).toISOString(),
@@ -30,7 +30,6 @@ FileTools.signUpload = function (filePath, acl, mimeType) {
       ['eq', '$Content-Type', mimeType]
     ]
   };
-
   // Sign the policy with our secret.
   var policyBase64 = new Buffer(JSON.stringify(policy), 'utf8').toString('base64');
   var signature = crypto.createHmac('sha1', Meteor.settings.AWS_SECRET_ACCESS_KEY).update(policyBase64).digest('base64');
@@ -73,17 +72,19 @@ FileTools.signedGet = function (filePath) {
 };
 
 FileTools.upload_from_server =  function (file, path, callback) {
-   var boundCallback = Meteor.bindEnvironment(function (err, res) {
-    callback(err, res);
-  });
-  s3.upload(file, path, function (err, data) {
-      if (err) {
-        boundCallback(err);
-        return;
-      }
-      boundCallback(null, data);
+  var uploadBucket = new AWS.S3({params: {Bucket: 'chuck.gooneapp'}});
+  uploadBucket.createBucket(function() {
+    var params = {Key: 'myKey', Body: 'Hello!'};
+    uploadBucket.upload(params, function(err, data) {
+    if (err) {
+      console.log("Error uploading data: ", err);
+    } else {
+      console.log("Successfully uploaded data to myBucket/myKey");
+    }
+    });
   });
 };
+
 FileTools.rename = function (originalFilePath, newFilePath, callback) {
   var boundCallback = Meteor.bindEnvironment(function (err, res) {
     callback(err, res);

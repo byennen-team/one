@@ -11,23 +11,26 @@ encoding     = 'binary',                      // default encoding
 oi           = {},                            // original image
 resizeWidths = { "mobile_":480, "thumb_":200, "full_":1200 },
 base = process.env.PWD
-
+var imagetmp = 'imagetmp.jpeg'
 FileTools.fetch_resize_and_upload = function (fileUrl, next) {
   fetchImage(fileUrl, 
-            resize_mobile_thumb_full(base+'fetchTemp',
-                                     uploadAll(base+'/fetchTemp', 'remote', next)
+            resize_mobile_thumb_full(imagetmp,
+                                     uploadAll(imagetmp, 'remote', next)
                                     )
             )
 };
 var fetchImage = function fetchImage(url, next) {
-      var req = http.get(url, function(resp) {
-        var buf = new Buffer("", "binary");
-        resp.on('data', function(chunk) {
-          buf = Buffer.concat([buf, chunk]);
-        });
-        resp.on('end', function() {
-          fs.writeFile(base+'/fetchTemp', buf, next)
-        });
+        var req = request.get(url, function(resp) {
+          console.log('request get')
+           var buf = new Buffer("", "binary");
+           resp.on('data', function(chunk) {
+             console.log('response chuck')
+           buf = Buffer.concat([buf, chunk]);
+           });
+           resp.on('end', function() {
+             console.log('response end')
+            fs.writeFile(base+'/'+imagetmp, buf, next)
+           });
     });
 }
 
@@ -37,12 +40,13 @@ var resize_mobile_thumb_full = function(imagefile, next){
                                   resizeImage( imagefile, 'full_',
                                               next)));
 };
-
+var rz = Meteor.wrapAsync(im.resize);
 var resizeImage = function resizeImage(imageFile, prefix, next) {
   var resizedFilePath = prefix+imageFile;
-  im.resize({
-    srcPath: imageFile,
-    dstPath: resizedFilePath,
+  console.log('resizing', imageFile, ' to: ', resizedFilePath);
+  rz({
+    srcPath: base+'/'+imageFile,
+    dstPath: base+'/'+resizedFilePath,
     width:   resizeWidths[prefix],
     quality: 0.6
   }, function(err, stdout, stderr){
@@ -58,12 +62,11 @@ var uploadAll = function(tempfile, remotefilename, next) {
 }
 var uploadToS3 = function uploadToS3(localfile, remotefilename){
     var signedFile = FileTools.signUpload(localfile, 'private', 'image/jpeg')
-    console.log('signedFile', signedFile);
     console.log('remoteFile', remotefilename);
     FileTools.upload_from_server(signedFile.filepath, remotefilename,
                                  signedFile.acl, function(err, res){
       if (err) { throw err;  } else {
-        // console.log(">>> S3 : "+s3baseurl+"full_"+filename);
+        console.log("s3", res);
         res.resume();
       }
                                  });
