@@ -48,3 +48,8 @@ documents
 account-settings
 styles
 less
+
+
+npm-container
+http
+meteorhacks:npm
