@@ -54,17 +54,17 @@ Meteor.startup(function () {
   var numUsers = Meteor.users.find().count();
   console.log('Total Users', numUsers);
   if (numUsers > 0) return;
-  var fru = Meteor.wrapAsync(FileTools.fetch_resize_and_upload)
+  //var fru = Meteor.wrapAsync(FileTools.fetch_resize_and_upload)
   var ellimanAgents = JSON.parse(Assets.getText('elliman_agents.json'));
-  _.each(ellimanAgents, function (row) {
+  Meteor.wrapAsync(_.each(ellimanAgents, function (row) {
     console.log('begin insert:', row.FIRST_NAME);
     var user = userFromEllimanRow(row);
     console.log('photoUrl:', user.profile.photoUrl);
-    fru(user.profile.photoUrl, function(e, r) {
+    FileTools.fetch_resize_and_upload(user.profile.photoUrl, function(e, r) {
       console.log('r', r);
       Meteor.users.insert(user)
       console.log('inserted:', row.FIRST_NAME)
     })
-  });
+  }));
   console.log('Inserting', ellimanAgents.length, 'elliman agents');
 });
