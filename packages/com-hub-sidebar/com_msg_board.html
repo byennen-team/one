@@ -1,0 +1,102 @@
+<template name='msgBoard'>
+	
+	<div class="header">
+<!-- TODO: Need to put Channel name here -->
+		<h1>General</h1>
+<!-- TODO: Install search, and add animation -->
+		<div class="search">
+			<i class="fa fa-lg fa-search"></i>
+		</div>
+	</div>
+
+<!-- TODO: add "user" class if message is by User -->
+	<div class="msg">
+		<div class="avatar">
+<!-- TODO: Agent's status (not the User's) -->
+			<div class="status active"></div>
+<!-- TODO: Agent's Avatar and name. Avatar should be square, and about 50x50px -->
+			<img src="/images/com_hub_main/joy.jpg" alt="Agent's name here" />
+		</div>
+		<p class="name">
+<!-- TODO: Agent's first and last name -->
+			Joy Avery
+<!-- TODO: message time stamp -->
+			<span class="time">8:45am</span>
+		</p>	
+<!-- TODO: message text -->
+		<p class="text">Updated Listing Agreement now in the Company Docs.  Happy New Year everyone!</p>			
+	<!-- TODO: '.doc' should only show up when there's an attachment -->
+		<div class="doc">
+			<div class="thumbnail">
+	<!-- TODO: doc thumbnail -->
+				<img src="/images/com_hub_main/doc.jpg" alt="" class="doc-thumb">
+			</div>
+			<p class="title">
+				<span class="fa fa-file"></span>
+	<!-- TODO: file name -->
+				Leasing Agreement.pdf
+	<!-- TODO: file size -->
+				<span class="size">380kb</span>
+			</p>
+			<div class="action-bar">
+	<!-- TODO: download file -->
+				<a href="#" class="download">
+					<i class="fa fa-download"></i>
+					download
+				</a>
+	<!-- TODO: call print controls, with doc loaded			 -->
+				<a href="#" class="print">
+					<i class="fa fa-print"></i>
+					print
+				</a>
+	<!-- TODO: this should call modal with document viewer -->
+				<a href="#" class="view">
+					<i class="fa fa-view"></i>
+					view
+				</a>
+			</div>
+		</div>
+	</div>
+
+<!-- Repeated for style -->
+	<div class="msg user">
+		<div class="avatar">
+			<div class="status active"></div>
+			<img src="/images/com_hub_main/jon.jpg" alt="Agent's name here" />
+		</div>
+		<p class="name">
+			Jon Evans
+			<span class="time">8:48am</span>
+		</p>	
+<!-- TODO:	@name needs to be plugged in		 -->
+		<p class="text">Thanks <a href='#'>@JoyAvery</a>!</p>			
+	</div>
+<!-- /style repeat -->
+
+	<div class="new-msg-bar">
+		<p>New message</p>
+		<hr/>
+	</div>
+
+	<!-- Repeated for style -->
+	<div class="msg user">
+		<div class="avatar">
+			<div class="status active"></div>
+			<img src="/images/com_hub_main/dottie.jpg" alt="Agent's name here" />
+		</div>
+		<p class="subject">News Update</p>
+		<p class="name">
+			Dottie Herman
+			<span class="time">8:52am</span>
+		</p>	
+<!-- TODO:	link expands text		 -->
+<!-- TODO: Text should be limited to one line, no matter the with (just for messages with subjects) -->
+		<p class="text">DouglasElliman Real Estate and KnightFrank Residential, two of the biggest names in real estate <a href='#'>...<span class="blue-text">read <i class="fa right-arrow"></i></span></a></p>			
+	</div>
+<!-- /style repeat -->
+
+	<div class="msg-input">
+		{{> msgInput}}
+	</div>
+
+</template>

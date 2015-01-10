@@ -12,10 +12,13 @@
 <!-- TODO - number of unread messages in this category in span -->
 <!-- TODO: Add dynamic list of direct message conversations here -->
 <!-- TODO: clicking on the names needs to bring up the conversation -->
+					{{#each directConversation}}
+						<li class='room {{selectedClass}}'>{{name}}: {{score}}</li>
+					{{/each}}
 
 <!-- TODO: Remove - styling code -->
-			    <li class="">Dottie Herman <span class='unread-num'>1</span></li>
-			    <li class="">Marie Espinal <span class='unread-num'></span></li>
+			    <li class="room">Dottie Herman <span class='unread-num'>1</span></li>
+			    <li class="room">Marie Espinal <span class='unread-num'></span></li>
 <!-- TODO: call add direct message conversation here - pulls up directory in center	     -->
 					<li class="add"><i class="fa fa-lg icon-addteam"></i></li>
 			  </ul>

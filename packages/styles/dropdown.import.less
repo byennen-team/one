@@ -5,6 +5,7 @@
 		color: @white;
 		text-transform: uppercase;
 		letter-spacing: 0.25em;
+		cursor: pointer;
 	}
 	li {
 		font-family: @raleway-medium;
@@ -126,4 +127,65 @@
 	}
 } 
 // End TODO
+
+// TODO: Put this in com-hub-main/com_main.less once variables are cross platform
+.com-main {
+	position: absolute;
+	width: 0;
+	height: 100%;
+	margin-left: -15px;
+	overflow: hidden;
+	transition: width 350ms ease-out 50ms;
+	z-index: 2;
+	.msg-board {
+		float: left;
+		width: 80%;
+		height: 100%;
+		background-color: @white;
+	}
+	.task-board {
+		float: left;
+		background-color: @dk-purple;
+		height: 100%;
+		p {
+			color: @white;
+		}
+	}
+	.lib-board {
+		float: left;
+		p {
+			color: @white;
+		}
+	}
+}
+// End TODO
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
