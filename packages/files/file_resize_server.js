@@ -15,14 +15,15 @@ var imagetmp = 'imagetmp.jpeg'
 var imageremote = 'remoteimage.jpeg'
 FileTools.fetch_resize_and_upload = function(url) {
         console.log('fetch_resize_and_upload', url);
+        var originalName = url.substring(url.lastIndexOf('/')+1)
         var imageFile = base+'/'+imagetmp;
         request(url).on('end', function(error, response, body){
           console.log('response end');
-          resize_and_upload(imagetmp);
+          resize_and_upload(imagetmp, originalName);
         }).pipe(fs.createWriteStream(imageFile))    
 }
-var resize_and_upload = function(imageFile) {
-  console.log('resize_and_upload: ', imageFile);
+var resize_and_upload = function(imageFile, originalName) {
+  console.log('resize_and_upload: ', imageFile, originalName);
     Meteor.wrapAsync(im.resize({
       srcPath: base+'/'+imageFile,
       dstPath: base+'/full_'+imageFile,
@@ -41,12 +42,12 @@ var resize_and_upload = function(imageFile) {
           width:   resizeWidths['thumb_'],
           quality: 0.6
         }))
-    uploadAll(imageFile, imageremote)
+    uploadAll(imageFile, originalName)
   
 }
 
 var uploadAll = function(imagefile, remotefilename) {
-  console.log('upload all')
+  console.log('upload all:', imagefile, ' to: ', remotefilename)
   uploadToS3(base+'/mobile_'+imagefile, 'mobile_'+remotefilename)
   uploadToS3(base+'/thumb_'+imagefile, 'thumb_'+remotefilename)
   uploadToS3(base+'/full_'+ imagefile, 'full_'+remotefilename)
@@ -58,7 +59,7 @@ var uploadToS3 = function uploadToS3(localfile, remotefilename){
     var stream = fs.createReadStream(localfile)
     var s3bucket = Meteor.wrapAsync(uploadBucket)
     uploadBucket.createBucket(function() {
-      var params = { Bucket: 'chuck.goone', Key: signedFile.credentials.signature, Body: stream };
+      var params = { Bucket: 'chuck.goone', Key: remotefilename, Body: stream };
       uploadBucket.putObject(params, function(err, data) {
         if (err) {
           console.log("Error uploading data: ", err);
