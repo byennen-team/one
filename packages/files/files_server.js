@@ -30,6 +30,7 @@ FileTools.signUpload = function (filePath, acl, mimeType) {
       ['eq', '$Content-Type', mimeType]
     ]
   };
+  console.log('meteor settings:', Meteor.settings)
   // Sign the policy with our secret.
   var policyBase64 = new Buffer(JSON.stringify(policy), 'utf8').toString('base64');
   var signature = crypto.createHmac('sha1', Meteor.settings.AWS_SECRET_ACCESS_KEY).update(policyBase64).digest('base64');
