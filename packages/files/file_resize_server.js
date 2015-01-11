@@ -12,7 +12,6 @@ encoding     = 'binary',                      // default encoding
 oi           = {},                            // original image
 resizeWidths = { "mobile_":480, "thumb_":65, "full_":140 },
 resizeHeights = { "mobile_": 480, "thumb_": 65, "full_": 140 };
-
 var base = process.env.PWD+'/tempImages/';
 var img_tmp = 'imagetmp';
 var img_ext = '.jpeg';
