@@ -49,9 +49,3 @@ documents
 account-settings
 styles
 less
-
-
-npm-container
-http
-meteorhacks:npm
-rosh93:aws-sdk
