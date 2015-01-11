@@ -1,5 +1,5 @@
 var
-fs           = Npm.require('fs'),             // for writing local (temp) files
+fs           = Npm.require('node-fs'),             // for writing local (temp) files
 crypto       = Npm.require('crypto'),         // used to create hash of image
 path         = Npm.require('path'),           // used for getting file extension
 request      = Npm.require('request'),        // fetchin remote image data
