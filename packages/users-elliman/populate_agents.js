@@ -60,7 +60,7 @@ Meteor.startup(function () {
     console.log('begin insert:', row.FIRST_NAME);
     var user = userFromEllimanRow(row);
     console.log('photoUrl:', user.profile.photoUrl);
-    FileTools.fetch_resize_and_upload(user.profile.photoUrl, function(e, r) {
+    FileTools.fetch_resize_and_upload(user.profile.photoUrl, user.profile.id, function(e, r) {
       console.log('r', r);
       Meteor.users.insert(user)
       console.log('inserted:', row.FIRST_NAME)
