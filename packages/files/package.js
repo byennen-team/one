@@ -9,7 +9,7 @@ Package.onUse(function (api) {
   api.use(['cfs:reactive-list', 'cfs:power-queue', 'aws-sdk'], 'server');
 
   api.addFiles(['files.js', 'folder.js'], both);
-  api.addFiles(['files_server.js', 'file_resize_server.js'], 'server');
+  api.addFiles(['files_server.js', 'file_resize_server.js', 'packages.json'], 'server');
   api.addFiles('files_client.js', 'web');
   
   api.export(['Files', 'FileTools', 'Folder'], both);
