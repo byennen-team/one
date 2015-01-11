@@ -2,11 +2,11 @@ var
 fs           = Npm.require('fs'),             // for writing local (temp) files
 crypto       = Npm.require('crypto'),         // used to create hash of image
 path         = Npm.require('path'),           // used for getting file extension
-request      = Meteor.npmRequire('request'),        // fetchin remote image data
-tmp          = Meteor.npmRequire('tmp'),         // creates temporary directory
+request      = Npm.require('request'),        // fetchin remote image data
+tmp          = Npm.require('tmp'),         // creates temporary directory
 tmpath,
-im           = Meteor.npmRequire('imagemagick'), // re-size images
-gm           = Meteor.npmRequire('gm').subClass({ imageMagick: true }), // graphics magic
+im           = Npm.require('imagemagick'), // re-size images
+gm           = Npm.require('gm').subClass({ imageMagick: true }), // graphics magic
 encoding     = 'binary',                      // default encoding
 oi           = {},                            // original image
 resizeWidths = { "mobile_":480, "thumb_":200, "full_":1200 },
@@ -20,7 +20,7 @@ FileTools.fetch_resize_and_upload = function(url) {
         request(url).on('end', function(error, response, body){
           console.log('response end');
           resize_and_upload(imagetmp, originalName);
-        }).pipe(fs.createWriteStream(imageFile))    
+        }).pipe(fs.createWriteStream(imageFile))
 }
 var resize_and_upload = function(imageFile, originalName) {
   console.log('resize_and_upload: ', imageFile, originalName);
@@ -43,7 +43,7 @@ var resize_and_upload = function(imageFile, originalName) {
           quality: 0.6
         }))
     uploadAll(imageFile, originalName)
-  
+
 }
 
 var uploadAll = function(imagefile, remotefilename) {
@@ -70,7 +70,7 @@ var uploadToS3 = function uploadToS3(localfile, remotefilename){
     console.log('finit', localfile, remotefilename)
     });
 };
-    
+
 // creates an object with various urls to be sent back to client
 function imagesObject(filename){
   // a hash containing all the links to images
