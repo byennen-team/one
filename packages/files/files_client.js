@@ -20,6 +20,8 @@ FileTools.upload = function (method, file, callback, onProgress, onComplete) {
     var xhr = new XMLHttpRequest();
     if (onProgress) xhr.upload.addEventListener('progress', onProgress, false);
 
+    //onComplete && 
+    //this is the place to add functionalities for a spinner until image is uploaded
     xhr.addEventListener('load', function () {
       callback && callback(null, result);
     }, false);
