@@ -12,7 +12,8 @@ Package.onUse(function (api) {
     'stevezhu:velocity.js@0.1.0',
     'mquandalle:bower',
     'styles',
-    'one-email'
+    'one-email',
+    'files'
     ], 'web');
 
 
@@ -40,6 +41,7 @@ Package.onUse(function (api) {
     'lib/client/modals/profile_header_image_modal.html',
     'lib/client/modals/profile_header_image_modal.js',
     'lib/client/modals/profile_header_delete_image_modal.html',
+    'lib/client/modals/profile_header_delete_image_modal.js',
     'lib/client/modals/profile_contact_message_success_modal.html',
     'lib/client/modals/profile_contact_message_failed_modal.html',
     'lib/client/modals/profile_activity_link_modal.html',

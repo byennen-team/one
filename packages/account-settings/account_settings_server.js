@@ -11,5 +11,14 @@ Meteor.methods({
 
     var filePath = Folder.profilePicture(user._id) + '/' + Random.id() + '.' + FileTools.ext(fileName);
     return FileTools.signUpload(filePath, 'public-read', mimeType);
+  },
+  deleteFilesFromS3: function(key) {
+    check(key, String);
+    FileTools.delete(key, function(error,data) {
+      if (error)
+        return ('File could not be deleted')
+      else
+        return (null, data)
+    });
   }
 });

@@ -100,4 +100,23 @@ FileTools.rename = function (originalFilePath, newFilePath, callback) {
       boundCallback(null, data);
     });
   });
+}
+
+
+FileTools.delete = function (filePath, callback) {
+  var boundCallback = Meteor.bindEnvironment(function (err, res) {
+    callback(err, res);
+  });
+
+  s3.deleteObject({
+      Bucket: Meteor.settings.AWS_BUCKET,
+      Key: filePath
+    }, function (err, data) {
+      if (err) {
+        boundCallback(err);
+        return;
+      }
+
+      boundCallback(null, data);
+    });
 };
