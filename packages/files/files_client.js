@@ -34,3 +34,12 @@ FileTools.upload = function (method, file, callback, onProgress, onComplete) {
     xhr.send(formData);
   });
 };
+
+
+FileTools.deleteStub = function (method, filePath, callback) {
+  Meteor.call(method, filePath, function (error, result) {
+    if (error) return;
+
+    callback && callback(null, result);
+  });
+}
