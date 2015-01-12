@@ -58,6 +58,7 @@ body .bootstrap-select .btn:focus {
 /* -------- Navbar ----------------- */
 body .navbar { // same affect as bootstrap, but based on black, it won't turn things grey/white
   box-shadow: 0px -3px 15px @black;
+  border-radius: 0;
 }
 /* ------- Nav Pills ---------------- */
 .nav > li > div {
@@ -147,7 +148,12 @@ body .navbar { // same affect as bootstrap, but based on black, it won't turn th
 	}
 }
 
-// Columns of same height 
+/* -------- Images ---------- */
+.thumbnail {
+  border-radius: 0;
+}
+
+// Columns of same height Plugin
 // http://www.minimit.com/articles/solutions-tutorials/bootstrap-3-responsive-columns-of-same-height
 .container-xs-height {
   width: 100%;

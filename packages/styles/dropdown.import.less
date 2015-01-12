@@ -70,9 +70,42 @@
 	.dropdown-menu {
 		width: 100%;
 		background-color: @lt-navy-dk;
+		border-radius: 0;
+		padding-left: 3em;
+		margin-top: -1px;
+		li {
+			font-size: 12px;
+			padding-left: 0;
+			text-transform: uppercase;
+			letter-spacing: 0.188em;
+			padding: 1em 0.5em;
+			cursor: pointer;
+		}
 	}
 	.all {
-		color: #000;
+		color: @text-purple;
+	}
+	.company {
+		color: @text-blue;
+	}
+	.direct {
+		color: @text-purple;
+	}
+	.rooms {
+		color: @text-blue;
+	}
+	hr {
+		height: 2px;
+		width: 110%;
+		margin-left: -10%;
+		background-color: @navy;
+		border: none;
+	}
+	.draft-num	{
+		border-radius: 15px;
+		padding: 0.1em 0.43em;
+		margin-left: 3px;
+		background-color: #697583;
 	}
 }
 // End TODO
@@ -141,18 +174,21 @@
 		float: left;
 		width: 80%;
 		height: 100%;
+		overflow: hidden;
 		background-color: @white;
 	}
 	.task-board {
 		float: left;
 		background-color: @dk-purple;
 		height: 100%;
+		overflow: hidden;
 		p {
 			color: @white;
 		}
 	}
 	.lib-board {
 		float: left;
+		overflow: hidden;
 		p {
 			color: @white;
 		}
@@ -161,7 +197,124 @@
 // End TODO
 
 
+// TODO: Put this in com-hub-main/com_msg_board.less once variables are cross platform
+.msg-board {
+	.header {
+		border: solid 2px @med-lt-grey;
+		border-style: none none solid none;
+		overflow: hidden;
+		h1 {
+			font-size: 30px;
+			font-family: @raleway-light;
+			margin-left: 20px;
+		}
+		.search {
+			float: right;
+			margin: 1.5em;
+			cursor: pointer;
+		}
+		.msg-search {
+			display: none;
+		}
+	}
+	.msg {
+		padding: 1em 0;
+		overflow: hidden;
+		.avatar {
+			position: relative;
+			float: left;
+			margin-left: 25px;
+			img {
+				border-radius: 50%;
+			}
+			.status {
+				position: absolute;
+				width: 10px;
+				height: 10px;
+				top: 50%;
+				left: -5px;
+				margin-top: -5px;
+				border-radius: 50%;
+				transition: background-color 350ms ease-out 50ms;
+			}
+			.status.active {
+				background-color: @green;
+			}
+			.status.inactive {
+				background-color: @red;
+			}
+		}
+		.msg-body {
+			float: left;
+			margin-left: 3%;
+			.name {
+				font-family: @raleway-bold;
+				color: @text-navy;
+			}
+			.time {
+				font-family: @raleway-regular;
+				font-size: 12px;
+				color: @blue-grey;
+			}
+			.text {
+				font-size: 16px;
+			}
+			.doc {
+				.thumbnail {
+					display: inline-block;
+					margin-bottom: 0.25em;
+				}
+				.title {
+					font-size: 12px;
+					font-family: @raleway-semibold;
+					color: @text-navy;
+					.fa {
+						font-size: 14px;
+						color: @accent;
+						margin-right: 0.5em;
+					}
+					.size {
+						font-family: @raleway-regular;
+						color: @blue-grey;
+						margin-left: 0.5em;
+					}
+				}
+				.action-bar {
+					a {
+						color: @teal;
+						margin-right: 1.5em;
+					}
+				}
+			}
+		}
+	}
+	.msg.user {
+		background-color: @lt-grey;
+	}
+	.new-msg-bar {
+		width: 96%;
+		margin: 1em 2%;
+		text-align: center;
+		p {
+			position: relative;
+			display: inline-block;
+			padding: 0 1em;
+			font-family: @raleway-bold;
+			font-size: 12px;
+			text-transform: uppercase;
+			letter-spacing: 0.125em;
+			background-color: @white;
+			color: @teal;
+			z-index: 1;
+		}
+		hr {
+			margin-top: -1.5em;
+			background-color: @text-teal;
+		}
+	}
 
+}
+// End TODO
 
 
 

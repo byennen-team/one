@@ -46,14 +46,14 @@ Template.comSidebar.events({
 	},
 
 	'click .channel': function(){
-		// expands the main dialog box
+		// expands the main dialog box to 80%
 		$.Velocity.hook($('#com-msg-board'), "width", "80%");
 		$.Velocity.hook($('#com-task-board'), "width", "0%"); 
 		$.Velocity.hook($('#com-lib-board'), "width", "20%");
 	},
 
 	'click .room': function(){
-		// expands the main dialog box
+		// expands the main dialog box t0 60%
 		$.Velocity.hook($('#com-msg-board'), "width", "60%");
 		$.Velocity.hook($('#com-task-board'), "width", "20%"); 
 		$.Velocity.hook($('#com-lib-board'), "width", "20%"); 
