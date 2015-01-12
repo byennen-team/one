@@ -50,21 +50,32 @@ var userFromEllimanRow = function (row) {
 };
 
 // Populate the users collection with elliman agents.
+var q_fetch_resize_and_upload = function(user){
+  Meteor._powerQ.add(function(done) { FileTools.fetch_to_temp(user.profile.photoUrl); done(); })
+  Meteor._powerQ.add(function(done) { console.log('intermediate thumb'); done();})
+  Meteor._powerQ.add(function(done) { FileTools.resize_temp('thumb_'); done();})
+  Meteor._powerQ.add(function(done){ FileTools.upload('thumb_', '/'+user.profile.id+'/thumb_'+user.profile.id); done();})
+  Meteor._powerQ.add(function(done) { console.log('intermediate mobile'); done();})
+  Meteor._powerQ.add(function(done) { FileTools.resize_temp('mobile_'); done() });
+  Meteor._powerQ.add(function(done){ FileTools.upload('mobile_', '/'+user.profile.id+'/mobile_'+user.profile.id); done();})
+  Meteor._powerQ.add(function(done) { FileTools.resize_temp('full_'); done() })
+  Meteor._powerQ.add(function(done){ FileTools.upload('full_', '/'+user.profile.id+'/full_'+user.profile.id); done();})
+}
 Meteor.startup(function () {
+  Meteor._powerQ = new PowerQueue({
+      isPaused: true
+    });
   var numUsers = Meteor.users.find().count();
   console.log('Total Users', numUsers);
   if (numUsers > 0) return;
-  //var fru = Meteor.wrapAsync(FileTools.fetch_resize_and_upload)
+  console.log('PQ', Meteor._powerQ.title)
   var ellimanAgents = JSON.parse(Assets.getText('elliman_agents.json'));
-  Meteor.wrapAsync(_.each(ellimanAgents, function (row) {
-    console.log('begin insert:', row.FIRST_NAME);
+  _.each(ellimanAgents, function (row) {
+    console.log('PQing: ', row.FIRST_NAME)
     var user = userFromEllimanRow(row);
-    console.log('photoUrl:', user.profile.photoUrl);
-    FileTools.fetch_resize_and_upload(user.profile.photoUrl, user.profile.id, function(e, r) {
-      console.log('r', r);
-      Meteor.users.insert(user)
-      console.log('inserted:', row.FIRST_NAME)
-    })
-  }));
-  console.log('Inserting', ellimanAgents.length, 'elliman agents');
+    q_fetch_resize_and_upload(user)
+  })
+  console.log('Ready to run queue');
+  Meteor._powerQ.run()
+  console.log('queue finished', ellimanAgents.length, 'elliman agents');
 });
