@@ -52,10 +52,10 @@ var userFromEllimanRow = function (row) {
 // Populate the users collection with elliman agents.
 var q_fetch_resize_and_upload = function(user){
   Meteor._powerQ.add(function(done) { FileTools.fetch_to_temp(user.profile.photoUrl); done(); })
-  Meteor._powerQ.add(function(done) { console.log('intermediate thumb'); done();})
+  //Meteor._powerQ.add(function(done) { console.log('intermediate thumb'); done();})
   Meteor._powerQ.add(function(done) { FileTools.resize_temp('thumb_'); done();})
   Meteor._powerQ.add(function(done){ FileTools.upload('thumb_', '/'+user.profile.id+'/thumb_'+user.profile.id); done();})
-  Meteor._powerQ.add(function(done) { console.log('intermediate mobile'); done();})
+  //Meteor._powerQ.add(function(done) { console.log('intermediate mobile'); done();})
   Meteor._powerQ.add(function(done) { FileTools.resize_temp('mobile_'); done() });
   Meteor._powerQ.add(function(done){ FileTools.upload('mobile_', '/'+user.profile.id+'/mobile_'+user.profile.id); done();})
   Meteor._powerQ.add(function(done) { FileTools.resize_temp('full_'); done() })
@@ -69,10 +69,11 @@ Meteor.startup(function () {
   console.log('Total Users', numUsers);
   if (numUsers > 0) return;
   console.log('PQ', Meteor._powerQ.title)
-  var ellimanAgents = JSON.parse(Assets.getText('elliman_agents.json'));
+  var ellimanAgents = JSON.parse(Assets.getText('elliman_agents_production.json'));
   _.each(ellimanAgents, function (row) {
     console.log('PQing: ', row.FIRST_NAME)
     var user = userFromEllimanRow(row);
+    if (!user.profile.photoUrl || (user.profile.photoUrl.length === 0)) return '';
     q_fetch_resize_and_upload(user)
   })
   console.log('Ready to run queue');

@@ -10,10 +10,12 @@ im           = Npm.require('imagemagick'), // re-size images
 gm           = Npm.require('gm').subClass({ imageMagick: true }), // graphics magic
 encoding     = 'binary',                      // default encoding
 oi           = {},                            // original image
-resizeWidths = { "mobile_":480, "thumb_":200, "full_":1200 },
-base = process.env.PWD
-var imagetmp = 'imagetmp.jpeg'
-var temp_image_file = base+'/'+imagetmp
+resizeWidths = { "mobile_":480, "thumb_":200, "full_":1200 }
+
+var base = process.env.PWD+'/tempImages/';
+var img_tmp = 'imagetmp'
+var img_ext = 'jpeg'
+var temp_img_file = base+img_tmp+img_ext
 var imageremote = 'remoteimage.jpeg'
 //var uploadBucket = new AWS.S3()
 var s3_params = {
@@ -28,19 +30,35 @@ FileTools.fetch_to_temp = function(url){
   Meteor._powerQ.pause()
   console.log('fetch: ', url);
   var originalName = url.substring(url.lastIndexOf('/')+1)
-  request(url).on('end', 
-                  Meteor.bindEnvironment(function(error, response, body){
-                  console.log('response end: ', url);
-                  Meteor._powerQ.resume()}))
-  .pipe(fs.createWriteStream(temp_image_file)); 
-  
+  var xpat = /\.([0-9a-z]+)(?:[\?#]|$)/i
+  img_ext = originalName.match(xpat)[0];
+  console.log('img_ext', img_ext)
+  request(url)
+  .on('response', 
+      Meteor.bindEnvironment(function(response){
+        response = response || { statusCode: 8888 }
+        console.log('response code:', response.statusCode)
+        if (response && response.statusCode == 404) {
+           console.log(url, ' not found', response.statusCode)
+           fs.createReadStream(base+'No_image_available.jpg')
+           .pipe(fs.createWriteStream(base+img_tmp+img_ext));
+           Meteor._powerQ.resume()
+         } 
+       }))
+  .on('end', 
+      Meteor.bindEnvironment(function(error, response, body){
+        if (error) console.log('end error', response.statusCode)
+        console.log('response end: ', url);
+        Meteor._powerQ.resume()
+       })) 
+  .pipe(fs.createWriteStream(base+img_tmp+img_ext)); 
 }
 FileTools.resize_temp = function(width) {
   Meteor._powerQ.pause()
   console.log('resize to: ', width)
   Meteor.wrapAsync(im.resize({
-      srcPath: base+'/'+imagetmp,
-      dstPath: base+'/'+width+imagetmp,
+      srcPath: base+img_tmp+img_ext,
+      dstPath: base+width+img_tmp+img_ext,
       width:   resizeWidths[width],
       quality: 0.6
     }, Meteor.bindEnvironment(function(err, stdout, stderr){
@@ -51,7 +69,7 @@ FileTools.resize_temp = function(width) {
 }
 FileTools.upload = function (descriptor, remotefile) {
   Meteor._powerQ.pause()
-  var imagefile = base+'/'+descriptor+imagetmp;
+  var imagefile = base+descriptor+img_tmp+img_ext;
   console.log('upload:', imagefile, ' to: ', remotefile)
   Meteor.wrapAsync(s3_client.putFile(imagefile, remotefile
                                      , Meteor.bindEnvironment(function(err, response) {
