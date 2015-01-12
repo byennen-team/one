@@ -1,4 +1,4 @@
-<template name='msgBoard'>
+<template name='messageBoard'>
 	
 	<div class="header">
 		<div class="col-xs-6">
@@ -8,15 +8,15 @@
 <!-- TODO: Install search, and add animation -->
 		<div class="col-xs-6"></div>
 		<div class="search">
-			<input class='msg-search' type="text">
+			<input class='message-search' type="text">
 			<i class="fa fa-lg fa-search"></i>
 		</div>
 	</div>
 	<div class="clearfix"></div>
 
 <!-- TODO: add "user" class if message is by User -->
-	<div class="msg">
-		<div class="col-xs-1">
+	<div class="message">
+		<div class="col-xs-2">
 			<div class="avatar">
 <!-- TODO: Agent's status (not the User's) -->
 			<div class="status active"></div>
@@ -25,8 +25,8 @@
 		</div>
 
 		</div>
-		<div class="col-xs-11">
-			<div class="msg-body">
+		<div class="col-xs-10">
+			<div class="message-body">
 				<p class="name">
 <!-- TODO: Agent's first and last name -->
 					Joy Avery
@@ -72,15 +72,15 @@
 	<div class="clearfix"></div>
 
 <!-- Repeated for style -->
-	<div class="msg user">
-		<div class="col-xs-1">
+	<div class="message user">
+		<div class="col-xs-2">
 			<div class="avatar">
 				<div class="status active"></div>
 				<img src="/images/com-hub-main/jon.jpg" alt="Agent's name here" />
 			</div>
 		</div>
-		<div class="col-xs-11">
-			<div class="msg-body">
+		<div class="col-xs-10">
+			<div class="message-body">
 				<p class="name">
 					Jon Evans
 					<span class="time">8:48am</span>
@@ -93,22 +93,22 @@
 	<div class="clearfix"></div>
 <!-- /style repeat -->
 
-	<div class="new-msg-bar">
+	<div class="new-message-bar">
 		<p>New message</p>
 		<hr/>
 	</div>
 	<div class="clearfix"></div>
 
 	<!-- Repeated for style -->
-	<div class="msg">
-		<div class="col-xs-1">
+	<div class="message">
+		<div class="col-xs-2">
 			<div class="avatar">
 				<div class="status inactive"></div>
 				<img src="/images/com-hub-main/dottie.jpg" alt="Agent's name here" />
 			</div>
 		</div>
-		<div class="col-xs-11">
-			<div class="msg-body">
+		<div class="col-xs-10">
+			<div class="message-body">
 				<p class="subject">News Update</p>
 				<p class="name">
 					Dottie Herman
@@ -123,8 +123,8 @@
 	<div class="clearfix"></div>
 <!-- /style repeat -->
 
-	<div class="msg-input">
-		{{> msgInput}}
+	<div class="message-input">
+		{{> messageInput}}
 	</div>
 
 </template>

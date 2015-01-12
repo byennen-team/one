@@ -18,7 +18,8 @@ calendar@0.0.0
 callback-hook@1.0.2
 check@1.0.3
 coffeescript@1.0.5
-com-hub-sidebar@0.0.0
+communication@0.0.0
+communication-sidebar@0.0.0
 companies@0.0.0
 dashboard@0.0.0
 ddp@1.0.13

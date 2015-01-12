@@ -1,7 +1,7 @@
-Template.comSidebar.helpers({
+Template.communicationSidebar.helpers({
 
 	// Presentation logic
-	comFilter: function(){
+	communicationFilter: function(){
 		var filter = Session.get('filter').filter;
 		if( filter === 'all' ){
 			return {
@@ -36,27 +36,27 @@ Template.comSidebar.helpers({
 
 });
 
-Template.comSidebar.events({
+Template.communicationSidebar.events({
 
 	// Scroll to top when communication sidebar is clicked, to appear full screen
-	'click #com-sidebar': function(){
+	'click #communication-sidebar': function(){
 		$('#sidebar-scroll-target').velocity("scroll",600);
 		$('#main-wrap').addClass('blurry');
-		$.Velocity.hook($('#com-main'), "width", "100%");
+		$.Velocity.hook($('#communication-main'), "width", "100%");
 	},
 
 	'click .channel': function(){
 		// expands the main dialog box to 80%
-		$.Velocity.hook($('#com-msg-board'), "width", "80%");
-		$.Velocity.hook($('#com-task-board'), "width", "0%"); 
-		$.Velocity.hook($('#com-lib-board'), "width", "20%");
+		$.Velocity.hook($('#communication-message-board'), "width", "80%");
+		$.Velocity.hook($('#communication-task-board'), "width", "0%"); 
+		$.Velocity.hook($('#communication-library-board'), "width", "20%");
 	},
 
 	'click .room': function(){
 		// expands the main dialog box t0 60%
-		$.Velocity.hook($('#com-msg-board'), "width", "60%");
-		$.Velocity.hook($('#com-task-board'), "width", "20%"); 
-		$.Velocity.hook($('#com-lib-board'), "width", "20%"); 
+		$.Velocity.hook($('#communication-message-board'), "width", "60%");
+		$.Velocity.hook($('#communication-task-board'), "width", "20%"); 
+		$.Velocity.hook($('#communication-library-board'), "width", "20%"); 
 	}
 
 

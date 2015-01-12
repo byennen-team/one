@@ -1,11 +1,11 @@
-<template name='comSidebarFilter'>
+<template name='communicationSidebarFilter'>
 
-		<div class="dropdown com-filter">
-		  <div id="com-filter" class='dropdown-header' itype="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-		    {{comFilter}}
+		<div class="dropdown communication-filter">
+		  <div id="communication-filter" class='dropdown-header' itype="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+		    {{communicationFilter}}
 		    <span class="caret"></span>
 		  </div>
-		  <ul class="dropdown-menu" role="menu" aria-labelledby="com-filter">
+		  <ul class="dropdown-menu" role="menu" aria-labelledby="#communication-filter">
 		    <li class='filter-option all' data-filter='all'>all communication</li>
 		    <li class='filter-option company' data-filter='company'>company channels</li>
 		    <li class="filter-option direct" data-filter='direct'>direct messaging <i class="fa fa-lock"></i></li>
@@ -13,7 +13,7 @@
 		    <hr/>
 <!-- TODO - number of user's drafts go here -->
 <!-- TODO: clicking on this should do something -->
-		    <li class="drafts">drafts <span id="com-draft-num" class='draft-num'>23</span></li>
+		    <li class="drafts">drafts <span id="communication-draft-num" class='draft-num'>23</span></li>
 		  </ul>
 		</div>
 		

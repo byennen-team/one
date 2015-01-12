@@ -1,8 +1,8 @@
 
-Template.comSidebarFilter.helpers({
+Template.communicationSidebarFilter.helpers({
 
 	// Checks the session 'filter' to see what communications should be shown
-	comFilter: function(){
+	communicationFilter: function(){
 		var filter = Session.get('filter');
 		// If the session hasn't been set yet, set it to show all communication.
 		if(filter === undefined){
@@ -19,7 +19,7 @@ Template.comSidebarFilter.helpers({
 
 });
 
-Template.comSidebarFilter.events({
+Template.communicationSidebarFilter.events({
 
 	// Dropdown sets Session 'filter' to determine which conversations to show
 	'click .filter-option': function(event){

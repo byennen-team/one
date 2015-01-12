@@ -1,40 +1,40 @@
-.dropdown {
-	width: 100%;
-	.dropdown-header {
-		font-family: @raleway-semibold;
-		color: @white;
-		text-transform: uppercase;
-		letter-spacing: 0.25em;
-		cursor: pointer;
-	}
-	li {
-		font-family: @raleway-medium;
-		color: @white;
-		list-style: none;
-		margin: 1em 0;
-	}
-	.well {
-		background-color: @blue-grey;
-		box-shadow: none;
-		border: none;
-		padding: 0 19px;
-	}
-	.secondary {
-		.dropdown-header {
-			margin-top: 2em;
-		}
-		ul {
-			padding-left: 19px;
-		}
-	}
-}
 
-// TODO: Put this in com_sidebar.less once variables are cross platform
-.com-sidebar {
+// TODO: Put this in communication_sidebar.less once variables are cross platform
+.communication-sidebar {
 	position: relative;
 	margin-left: -15px;
 	margin-right: -15px;
 	background-color: @blue-grey;
+	.dropdown {
+		width: 100%;
+		.dropdown-header {
+			font-family: @raleway-semibold;
+			color: @white;
+			text-transform: uppercase;
+			letter-spacing: 0.25em;
+			cursor: pointer;
+		}
+		li {
+			font-family: @raleway-medium;
+			color: @white;
+			list-style: none;
+			margin: 1em 0;
+		}
+		.well {
+			background-color: @blue-grey;
+			box-shadow: none;
+			border: none;
+			padding: 0 19px;
+		}
+		.secondary {
+			.dropdown-header {
+				margin-top: 2em;
+			}
+			ul {
+				padding-left: 19px;
+			}
+		}
+	}
 	.sidebar-scroll-target {
 		position: absolute;
 		top: -70px;
@@ -55,7 +55,7 @@
 // End TODO
 
 // TODO: Put this in com_sidebar_filter.less once variables are cross platform
-.com-filter {
+.communication-filter {
 	.dropdown-header {
 		background-color: @lt-navy;
 		height: 5em;
@@ -82,17 +82,19 @@
 			cursor: pointer;
 		}
 	}
-	.all {
-		color: @text-purple;
-	}
-	.company {
-		color: @text-blue;
-	}
-	.direct {
-		color: @text-purple;
-	}
-	.rooms {
-		color: @text-blue;
+	.dropdown-menu{
+		.all {
+			color: @text-purple;
+		}
+		.company {
+			color: @text-blue;
+		}
+		.direct {
+			color: @text-purple;
+		}
+		.rooms {
+			color: @text-blue;
+		}
 	}
 	hr {
 		height: 2px;
@@ -110,8 +112,8 @@
 }
 // End TODO
 
-// TODO: Put this in com_sidebar_company.less once variables are cross platform
-.com-sidebar {
+// TODO: Put this in communication_sidebar_company.less once variables are cross platform
+.communication-sidebar {
 	.company {
 		padding-left: 5%;
 		.dropdown-header {
@@ -127,8 +129,8 @@
 } 
 // End TODO
 
-// TODO: Put this in com_sidebar_direct.less once variables are cross platform
-.com-sidebar {
+// TODO: Put this in communication_sidebar_direct.less once variables are cross platform
+.communication-sidebar {
 	.direct {
 		padding-left: 5%;
 		.dropdown-header {
@@ -144,8 +146,8 @@
 } 
 // End TODO
 
-// TODO: Put this in com_sidebar_rooms.less once variables are cross platform
-.com-sidebar {
+// TODO: Put this in communication_sidebar_rooms.less once variables are cross platform
+.communication-sidebar {
 	.rooms {
 		padding-left: 5%;
 		.dropdown-header {
@@ -161,8 +163,8 @@
 } 
 // End TODO
 
-// TODO: Put this in com-hub-main/com_main.less once variables are cross platform
-.com-main {
+// TODO: Put this in communication-hub-main/communication_main.less once variables are cross platform
+.communication-main {
 	position: absolute;
 	width: 0;
 	height: 100%;
@@ -170,7 +172,8 @@
 	overflow: hidden;
 	transition: width 350ms ease-out 50ms;
 	z-index: 2;
-	.msg-board {
+	.message-board {
+		position: relative;
 		float: left;
 		width: 80%;
 		height: 100%;
@@ -182,13 +185,15 @@
 		background-color: @dk-purple;
 		height: 100%;
 		overflow: hidden;
+		width: 0;
 		p {
 			color: @white;
 		}
 	}
-	.lib-board {
+	.library-board {
 		float: left;
 		overflow: hidden;
+		width: 0;
 		p {
 			color: @white;
 		}
@@ -197,8 +202,8 @@
 // End TODO
 
 
-// TODO: Put this in com-hub-main/com_msg_board.less once variables are cross platform
-.msg-board {
+// TODO: Put this in communication-main/communication_message_board.less once variables are cross platform
+.message-board {
 	.header {
 		border: solid 2px @med-lt-grey;
 		border-style: none none solid none;
@@ -213,11 +218,11 @@
 			margin: 1.5em;
 			cursor: pointer;
 		}
-		.msg-search {
+		.message-search {
 			display: none;
 		}
 	}
-	.msg {
+	.message {
 		padding: 1em 0;
 		overflow: hidden;
 		.avatar {
@@ -244,9 +249,8 @@
 				background-color: @red;
 			}
 		}
-		.msg-body {
+		.message-body {
 			float: left;
-			margin-left: 3%;
 			.name {
 				font-family: @raleway-bold;
 				color: @text-navy;
@@ -288,10 +292,10 @@
 			}
 		}
 	}
-	.msg.user {
+	.message.user {
 		background-color: @lt-grey;
 	}
-	.new-msg-bar {
+	.new-message-bar {
 		width: 96%;
 		margin: 1em 2%;
 		text-align: center;
@@ -316,8 +320,39 @@
 }
 // End TODO
 
-
-
+// TODO: Put this in communication_sidebar.less once variables are cross platform
+.message-input {
+	position: absolute;
+	width: 100%;
+	height: 70px;
+	bottom: 0;
+	background-color: @white;
+	border: 2px solid @lt-dk-grey;
+	border-style: solid none none none;
+	z-index: 2;
+	.message-btn {
+		float: left;
+		background-color: @lt-blue-grey;
+		height: 4em;
+		width: 4em;
+		border-radius: 50%;
+		margin: 0.5em 0 0.5em 25px;
+		padding: 1.5em;
+		.fa {
+			font-size: 18px;
+		}
+	}
+	.fake-input {
+		font-size: 16px;
+		float: left;
+		padding: 1.5em 1em 1.5em 25px;
+		color: @blue-grey;
+	}
+	.dropdown {
+		width: auto;
+	}
+}
+// End TODO
 
 
 

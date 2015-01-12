@@ -24,7 +24,6 @@ one-profile
 
 admin
 authorization
-com-hub-sidebar
 companies
 dashboard
 follow
@@ -49,3 +48,5 @@ documents
 account-settings
 styles
 less
+communication
+communication-sidebar
