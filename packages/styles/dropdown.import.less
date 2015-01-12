@@ -1,0 +1,344 @@
+.dropdown {
+	width: 100%;
+	.dropdown-header {
+		font-family: @raleway-semibold;
+		color: @white;
+		text-transform: uppercase;
+		letter-spacing: 0.25em;
+		cursor: pointer;
+	}
+	li {
+		font-family: @raleway-medium;
+		color: @white;
+		list-style: none;
+		margin: 1em 0;
+	}
+	.well {
+		background-color: @blue-grey;
+		box-shadow: none;
+		border: none;
+		padding: 0 19px;
+	}
+	.secondary {
+		.dropdown-header {
+			margin-top: 2em;
+		}
+		ul {
+			padding-left: 19px;
+		}
+	}
+}
+
+// TODO: Put this in com_sidebar.less once variables are cross platform
+.com-sidebar {
+	position: relative;
+	margin-left: -15px;
+	margin-right: -15px;
+	background-color: @blue-grey;
+	.sidebar-scroll-target {
+		position: absolute;
+		top: -70px;
+	}
+	.dropdown-header {
+		height: 3em;
+		padding: 1em 3em;
+	}
+	.unread-num {
+		border-radius: 15px;
+		padding: 0.1em 0.43em;
+		margin-left: 3px;
+	}
+	.add-team {
+		cursor: pointer;
+	}
+} 
+// End TODO
+
+// TODO: Put this in com_sidebar_filter.less once variables are cross platform
+.com-filter {
+	.dropdown-header {
+		background-color: @lt-navy;
+		height: 5em;
+		padding: 2em 3em;
+		.caret {
+			display: block;
+			position: absolute;
+			right: 2em;
+			top: 2.5em;
+		}
+	}
+	.dropdown-menu {
+		width: 100%;
+		background-color: @lt-navy-dk;
+		border-radius: 0;
+		padding-left: 3em;
+		margin-top: -1px;
+		li {
+			font-size: 12px;
+			padding-left: 0;
+			text-transform: uppercase;
+			letter-spacing: 0.188em;
+			padding: 1em 0.5em;
+			cursor: pointer;
+		}
+	}
+	.all {
+		color: @text-purple;
+	}
+	.company {
+		color: @text-blue;
+	}
+	.direct {
+		color: @text-purple;
+	}
+	.rooms {
+		color: @text-blue;
+	}
+	hr {
+		height: 2px;
+		width: 110%;
+		margin-left: -10%;
+		background-color: @navy;
+		border: none;
+	}
+	.draft-num	{
+		border-radius: 15px;
+		padding: 0.1em 0.43em;
+		margin-left: 3px;
+		background-color: #697583;
+	}
+}
+// End TODO
+
+// TODO: Put this in com_sidebar_company.less once variables are cross platform
+.com-sidebar {
+	.company {
+		padding-left: 5%;
+		.dropdown-header {
+			color: @text-aqua;
+		}
+		.unread-num {
+			background-color: @dk-sky;
+		}
+		.fa {
+			color: @text-aqua;
+		}
+	}
+} 
+// End TODO
+
+// TODO: Put this in com_sidebar_direct.less once variables are cross platform
+.com-sidebar {
+	.direct {
+		padding-left: 5%;
+		.dropdown-header {
+			color: @text-purple;
+		}
+		.unread-num {
+			background-color: @blue-purple;
+		}
+		.fa {
+			color: @text-purple;
+		}
+	}
+} 
+// End TODO
+
+// TODO: Put this in com_sidebar_rooms.less once variables are cross platform
+.com-sidebar {
+	.rooms {
+		padding-left: 5%;
+		.dropdown-header {
+			color: @text-blue;
+		}
+		.unread-num {
+			background-color: @dk-sky;
+		}	
+		.fa {
+			color: @text-blue;
+		}
+	}
+} 
+// End TODO
+
+// TODO: Put this in com-hub-main/com_main.less once variables are cross platform
+.com-main {
+	position: absolute;
+	width: 0;
+	height: 100%;
+	margin-left: -15px;
+	overflow: hidden;
+	transition: width 350ms ease-out 50ms;
+	z-index: 2;
+	.msg-board {
+		float: left;
+		width: 80%;
+		height: 100%;
+		overflow: hidden;
+		background-color: @white;
+	}
+	.task-board {
+		float: left;
+		background-color: @dk-purple;
+		height: 100%;
+		overflow: hidden;
+		p {
+			color: @white;
+		}
+	}
+	.lib-board {
+		float: left;
+		overflow: hidden;
+		p {
+			color: @white;
+		}
+	}
+}
+// End TODO
+
+
+// TODO: Put this in com-hub-main/com_msg_board.less once variables are cross platform
+.msg-board {
+	.header {
+		border: solid 2px @med-lt-grey;
+		border-style: none none solid none;
+		overflow: hidden;
+		h1 {
+			font-size: 30px;
+			font-family: @raleway-light;
+			margin-left: 20px;
+		}
+		.search {
+			float: right;
+			margin: 1.5em;
+			cursor: pointer;
+		}
+		.msg-search {
+			display: none;
+		}
+	}
+	.msg {
+		padding: 1em 0;
+		overflow: hidden;
+		.avatar {
+			position: relative;
+			float: left;
+			margin-left: 25px;
+			img {
+				border-radius: 50%;
+			}
+			.status {
+				position: absolute;
+				width: 10px;
+				height: 10px;
+				top: 50%;
+				left: -5px;
+				margin-top: -5px;
+				border-radius: 50%;
+				transition: background-color 350ms ease-out 50ms;
+			}
+			.status.active {
+				background-color: @green;
+			}
+			.status.inactive {
+				background-color: @red;
+			}
+		}
+		.msg-body {
+			float: left;
+			margin-left: 3%;
+			.name {
+				font-family: @raleway-bold;
+				color: @text-navy;
+			}
+			.time {
+				font-family: @raleway-regular;
+				font-size: 12px;
+				color: @blue-grey;
+			}
+			.text {
+				font-size: 16px;
+			}
+			.doc {
+				.thumbnail {
+					display: inline-block;
+					margin-bottom: 0.25em;
+				}
+				.title {
+					font-size: 12px;
+					font-family: @raleway-semibold;
+					color: @text-navy;
+					.fa {
+						font-size: 14px;
+						color: @accent;
+						margin-right: 0.5em;
+					}
+					.size {
+						font-family: @raleway-regular;
+						color: @blue-grey;
+						margin-left: 0.5em;
+					}
+				}
+				.action-bar {
+					a {
+						color: @teal;
+						margin-right: 1.5em;
+					}
+				}
+			}
+		}
+	}
+	.msg.user {
+		background-color: @lt-grey;
+	}
+	.new-msg-bar {
+		width: 96%;
+		margin: 1em 2%;
+		text-align: center;
+		p {
+			position: relative;
+			display: inline-block;
+			padding: 0 1em;
+			font-family: @raleway-bold;
+			font-size: 12px;
+			text-transform: uppercase;
+			letter-spacing: 0.125em;
+			background-color: @white;
+			color: @teal;
+			z-index: 1;
+		}
+		hr {
+			margin-top: -1.5em;
+			background-color: @text-teal;
+		}
+	}
+
+}
+// End TODO
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

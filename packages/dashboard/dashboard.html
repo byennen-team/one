@@ -1,23 +1,34 @@
 <template name="dashboard">
   <div class="row">
-    <div id="left-column" class="col-sm-3">
-      {{> feed}}
-      {{> documentsWidget}}
-    </div>
 
-    <div id="main" class="col-sm-9">
+    <div class="dashboard-banner col-sm-12">
       {{> dashboardBanner}}
-      <div class="col-sm-8">
-        {{> calendar}}
-        {{> news}}
-        {{> supportWidget}}
+    </div>
+  </div>
+
+  <div class="container-xs-height">
+    <div class="row">
+      <div id="left-column" class="col-sm-3 col-xs-height no-float col-top blue-grey-bg">
+        {{> comSidebar}}
       </div>
-      <div class="col-sm-4">
-        {{> messagesWidget}}
-        <div class="appsWidget">
-          <a href="{{pathFor 'apps'}}"><img src="../../images/dashboard/apps.png" class="img-responsive" alt="Chat" /></a>
+
+      <div id="main" class="col-sm-9 col-xs-height no-float col-top">
+        {{> comMain}}
+        <div id="main-wrap">
+          <div class="col-sm-8">
+            {{> calendar}}
+            {{> news}}
+            {{> supportWidget}}
+          </div>
+          <div class="col-sm-4">
+            {{> messagesWidget}}
+            <div class="appsWidget">
+              <a href="{{pathFor 'apps'}}"><img src="../../images/dashboard/apps.png" class="img-responsive" alt="Chat" /></a>
+            </div>
+          </div>
         </div>
       </div>
+
     </div>
   </div>
 
