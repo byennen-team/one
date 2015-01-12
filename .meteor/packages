@@ -49,3 +49,5 @@ documents
 account-settings
 styles
 less
+cfs:power-queue
+cfs:reactive-list

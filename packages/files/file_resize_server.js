@@ -1,5 +1,6 @@
 var
 fs           = Npm.require('node-fs'),             // for writing local (temp) files
+knox         = Npm.require('knox'),
 crypto       = Npm.require('crypto'),         // used to create hash of image
 path         = Npm.require('path'),           // used for getting file extension
 request      = Npm.require('request'),        // fetchin remote image data
@@ -12,62 +13,54 @@ oi           = {},                            // original image
 resizeWidths = { "mobile_":480, "thumb_":200, "full_":1200 },
 base = process.env.PWD
 var imagetmp = 'imagetmp.jpeg'
+var temp_image_file = base+'/'+imagetmp
 var imageremote = 'remoteimage.jpeg'
-FileTools.fetch_resize_and_upload = function(url, id, next) {
-        console.log('fetch_resize_and_upload', url);
-        var originalName = url.substring(url.lastIndexOf('/')+1)
-        var imageFile = base+'/'+imagetmp;
-        request(url).on('end', function(error, response, body){
-          console.log('response end');
-          resize_and_upload(imagetmp, originalName, id, next);
-        }).pipe(fs.createWriteStream(imageFile))
-}
-var resize_and_upload = function(imageFile, originalName, id, next) {
-    console.log('resize_and_upload: ', imageFile, originalName, id);
-    var remoteFolder = id+'/'
-    var remotefilename = originalName;
-    Meteor.wrapAsync(im.resize({
-      srcPath: base+'/'+imageFile,
-      dstPath: base+'/full_'+imageFile,
-      width:   resizeWidths['full_'],
-      quality: 0.6
-    }))
-    uploadToS3(base+'/full_'+ imageFile, remoteFolder+'full_'+remotefilename)
-    Meteor.wrapAsync(im.resize({
-        srcPath: base+'/'+imageFile,
-        dstPath: base+'/mobile_'+imageFile,
-        width:   resizeWidths['mobile_'],
-        quality: 0.6
-      }))
-    uploadToS3(base+'/mobile_'+imageFile, remoteFolder+'mobile_'+remotefilename)
-    Meteor.wrapAsync(im.resize({
-          srcPath: base+'/'+imageFile,
-          dstPath: base+'/thumb_'+imageFile,
-          width:   resizeWidths['thumb_'],
-          quality: 0.6
-        }))
-    uploadToS3(base+'/thumb_'+imageFile, remoteFolder+'thumb_'+remotefilename)
-    return next
-}
-
-var uploadBucket = new AWS.S3()
-var uploadToS3 = function uploadToS3(localfile, remotefilename){
-    //var signedFile = FileTools.signUpload(localfile, 'private', 'image/jpeg')
-    //console.log('signed-remoteFile', signedFile.credentials.signature);
-    var stream = fs.createReadStream(localfile)
-    uploadBucket.createBucket(function() {
-      var params = { Bucket: Meteor.settings.AWS_BUCKET, Key: remotefilename, Body: stream };
-      uploadBucket.putObject(params, function(err, data) {
-        if (err) {
-          console.log("Error uploading data: ", err);
-        } else {
-          console.log("Successfully uploaded data: ", params.Key);
-        }
-      });
-    console.log('finit', localfile, remotefilename)
-    });
+//var uploadBucket = new AWS.S3()
+var s3_params = {
+    key: Meteor.settings.AWS_ACCESS_KEY_ID //<api-key-here>'
+  , secret: Meteor.settings.AWS_SECRET_ACCESS_KEY  //'<secret-here>'
+  , bucket: Meteor.settings.AWS_BUCKET
+  , region: 'us-west-2'
 };
-
+console.log('s3_params', s3_params)
+var s3_client = knox.createClient(s3_params);
+FileTools.fetch_to_temp = function(url){
+  Meteor._powerQ.pause()
+  console.log('fetch: ', url);
+  var originalName = url.substring(url.lastIndexOf('/')+1)
+  request(url).on('end', 
+                  Meteor.bindEnvironment(function(error, response, body){
+                  console.log('response end: ', url);
+                  Meteor._powerQ.resume()}))
+  .pipe(fs.createWriteStream(temp_image_file)); 
+  
+}
+FileTools.resize_temp = function(width) {
+  Meteor._powerQ.pause()
+  console.log('resize to: ', width)
+  Meteor.wrapAsync(im.resize({
+      srcPath: base+'/'+imagetmp,
+      dstPath: base+'/'+width+imagetmp,
+      width:   resizeWidths[width],
+      quality: 0.6
+    }, Meteor.bindEnvironment(function(err, stdout, stderr){
+      if (err) throw err;
+      console.log('resized to: '+width);
+      Meteor._powerQ.resume()
+    })));
+}
+FileTools.upload = function (descriptor, remotefile) {
+  Meteor._powerQ.pause()
+  var imagefile = base+'/'+descriptor+imagetmp;
+  console.log('upload:', imagefile, ' to: ', remotefile)
+  Meteor.wrapAsync(s3_client.putFile(imagefile, remotefile
+                                     , Meteor.bindEnvironment(function(err, response) {
+                                       if (err) throw err
+                                       console.log('s3 putFile responded');
+                                       Meteor._powerQ.resume()
+                                     })));               
+};   
+                   
 // creates an object with various urls to be sent back to client
 function imagesObject(filename){
   // a hash containing all the links to images
