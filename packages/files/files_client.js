@@ -3,7 +3,7 @@ FileTools.upload = function (method, file, callback, onProgress, onComplete) {
   Meteor.call(method, file.name, file.type, function (error, result) {
     if (error) return;
 
-    callback && callback(null, result.fileId);
+    callback && callback(null, result);
 
     var formData = new FormData();
     var key = 'events/' + (new Date).getTime() + '-' + file.name;
