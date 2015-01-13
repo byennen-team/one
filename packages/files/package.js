@@ -7,9 +7,7 @@ Package.onUse(function (api) {
 
   api.use(['aldeed:simple-schema'], both);
 
-  api.use('rosh93:aws-sdk', 'server'); //TODO: Chuck remove aws package and use our current package. Move any code you need into our package.
-
-  api.use(['aws-sdk', 'http'], 'server');
+  api.use(['aws-sdk'], 'server');
 
   api.addFiles(['files.js', 'folder.js'], both);
   api.addFiles(['files_server.js', 'file_resize_server.js'], 'server');
