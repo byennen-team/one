@@ -114,7 +114,6 @@ Template.documents.helpers({
       // TODO: add company_id
       folder = Folder.companyDocument('elliman');
     }
-
     return FileTools.url(folder + '/' + file.name);
   },
   date: function (file) {
