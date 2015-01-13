@@ -1,6 +1,6 @@
 var crypto = Npm.require('crypto');
 var s3 = new AWS.S3();
-AWS.config.region = 'us-west-2';
+AWS.config.region = Meteor.settings.AWS_REGION;
 Meteor.publish('files', function () {
   // TODO filter by companyId
   return Files.find();
