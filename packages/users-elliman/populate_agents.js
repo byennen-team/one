@@ -50,16 +50,42 @@ var userFromEllimanRow = function (row) {
 };
 
 // Populate the users collection with elliman agents.
+var count_jobs = 1;
 var q_fetch_resize_and_upload = function(user){
-  Meteor._powerQ.add(function(done) { FileTools.fetch_to_temp(user.profile.photoUrl); done(); })
+  Meteor._powerQ.add(function(done){
+    console.log('begin #', count_jobs, ' : ', user.profile.id)
+    done()
+  })
+  Meteor._powerQ.add(function(done) { 
+    FileTools.fetch_to_temp(user.profile.photoUrl, done); 
+  })
   //Meteor._powerQ.add(function(done) { console.log('intermediate thumb'); done();})
-  Meteor._powerQ.add(function(done) { FileTools.resize_temp('thumb_'); done();})
-  Meteor._powerQ.add(function(done){ FileTools.upload('thumb_', '/'+user.profile.id+'/thumb_'+user.profile.id); done();})
+  Meteor._powerQ.add(function(done) { 
+    FileTools.resize_temp('thumb_', done);
+  })
+  Meteor._powerQ.add(function(done){ 
+    FileTools.upload('thumb_', '/'+user.profile.id+'/thumb_'+user.profile.id, done);
+  })
+  //
   //Meteor._powerQ.add(function(done) { console.log('intermediate mobile'); done();})
-  Meteor._powerQ.add(function(done) { FileTools.resize_temp('mobile_'); done() });
-  Meteor._powerQ.add(function(done){ FileTools.upload('mobile_', '/'+user.profile.id+'/mobile_'+user.profile.id); done();})
-  Meteor._powerQ.add(function(done) { FileTools.resize_temp('full_'); done() })
-  Meteor._powerQ.add(function(done){ FileTools.upload('full_', '/'+user.profile.id+'/full_'+user.profile.id); done();})
+  Meteor._powerQ.add(function(done) {
+    FileTools.resize_temp('mobile_', done); 
+  });
+  Meteor._powerQ.add(function(done){ 
+    FileTools.upload('mobile_', '/'+user.profile.id+'/mobile_'+user.profile.id, done);
+  })
+  //
+  Meteor._powerQ.add(function(done) { 
+    FileTools.resize_temp('full_', done); 
+  })
+  Meteor._powerQ.add(function(done){ 
+    FileTools.upload('full_', '/'+user.profile.id+'/full_'+user.profile.id, done);
+  })
+  //
+  Meteor._powerQ.add(function(done) { 
+    console.log('done:', count_jobs++, ' : ', user.profile.id); 
+    done();
+  })
 }
 Meteor.startup(function () {
   Meteor._powerQ = new PowerQueue({
@@ -70,13 +96,15 @@ Meteor.startup(function () {
   if (numUsers > 0) return;
   console.log('PQ', Meteor._powerQ.title)
   var ellimanAgents = JSON.parse(Assets.getText('elliman_agents_production.json'));
+  ellimanAgents = ellimanAgents.slice(1,101)
+  var count = 0;
   _.each(ellimanAgents, function (row) {
-    console.log('PQing: ', row.FIRST_NAME)
+    console.log('PQing: ', count++, row.FIRST_NAME)
     var user = userFromEllimanRow(row);
     if (!user.profile.photoUrl || (user.profile.photoUrl.length === 0)) return '';
     q_fetch_resize_and_upload(user)
   })
   console.log('Ready to run queue');
   Meteor._powerQ.run()
-  console.log('queue finished', ellimanAgents.length, 'elliman agents');
+  console.log('queue running', ellimanAgents.length, 'elliman agents');
 });
