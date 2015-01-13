@@ -6,8 +6,7 @@ Package.onUse(function (api) {
   var both = ['web', 'server'];
 
   api.use(['aldeed:simple-schema'], both);
-
-  api.use(['aws-sdk'], 'server');
+  api.use(['cfs:reactive-list', 'cfs:power-queue', 'aws-sdk'], 'server');
 
   api.addFiles(['files.js', 'folder.js'], both);
   api.addFiles(['files_server.js', 'file_resize_server.js'], 'server');
