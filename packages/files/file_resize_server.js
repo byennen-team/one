@@ -17,22 +17,17 @@ var img_tmp = 'imagetmp'
 var img_ext = '.jpeg'
 var temp_img_file = base+img_tmp+img_ext
 var imageremote = 'remoteimage.jpeg'
-//var uploadBucket = new AWS.S3()
 var s3_params = {
     key: Meteor.settings.AWS_ACCESS_KEY_ID //<api-key-here>'
   , secret: Meteor.settings.AWS_SECRET_ACCESS_KEY  //'<secret-here>'
   , bucket: Meteor.settings.AWS_BUCKET
   , region: 'us-west-2'
 };
-//console.log('s3_params', s3_params)
 var s3_client = knox.createClient(s3_params);
 FileTools.fetch_to_temp = function(url, done){
-  //Meteor._powerQ.pause()
-  //console.log('fetch: ', url);
   var originalName = url.substring(url.lastIndexOf('/')+1)
   var xpat = /\.([0-9a-z]+)(?:[\?#]|$)/i
   img_ext = originalName.match(xpat)[0];
-  //console.log('img_ext', img_ext)
   request(url)
   .on('response', 
       Meteor.bindEnvironment(function(response){
@@ -60,7 +55,6 @@ FileTools.fetch_to_temp = function(url, done){
   .pipe(fs.createWriteStream(base+img_tmp+img_ext)); 
 }
 FileTools.resize_temp = function(width, done) {
-  //console.log('resize to: ', width)
   Meteor.wrapAsync(im.resize({
       srcPath: base+img_tmp+img_ext,
       dstPath: base+width+img_tmp+img_ext,
