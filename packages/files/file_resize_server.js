@@ -10,7 +10,8 @@ im           = Npm.require('imagemagick'), // re-size images
 gm           = Npm.require('gm').subClass({ imageMagick: true }), // graphics magic
 encoding     = 'binary',                      // default encoding
 oi           = {},                            // original image
-resizeWidths = { "mobile_":480, "thumb_":200, "full_":1200 }
+resizeWidths = { "mobile_":480, "thumb_":65, "full_":140 }
+resizeHeights = { "mobile_": 480, "thumb_": 65, "full_": 140 }
 
 var base = process.env.PWD+'/tempImages/';
 var img_tmp = 'imagetmp'
@@ -54,11 +55,12 @@ FileTools.fetch_to_temp = function(url, done){
        })) 
   .pipe(fs.createWriteStream(base+img_tmp+img_ext)); 
 }
-FileTools.resize_temp = function(width, done) {
+FileTools.resize_temp = function(size, done) {
   Meteor.wrapAsync(im.resize({
       srcPath: base+img_tmp+img_ext,
-      dstPath: base+width+img_tmp+img_ext,
-      width:   resizeWidths[width],
+      dstPath: base+size+img_tmp+img_ext,
+      width:   resizeWidths[size],
+      height: resizeHeights[size],
       quality: 0.6
     }, Meteor.bindEnvironment(function(err, stdout, stderr){
       if (err) {
