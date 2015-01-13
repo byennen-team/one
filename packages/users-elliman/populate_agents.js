@@ -96,12 +96,13 @@ Meteor.startup(function () {
   if (numUsers > 0) return;
   console.log('PQ', Meteor._powerQ.title)
   var ellimanAgents = JSON.parse(Assets.getText('elliman_agents_production.json'));
-  ellimanAgents = ellimanAgents.slice(1,101)
-  var count = 0;
+  //ellimanAgents = ellimanAgents.slice(147,165)
+  var count = 1;
+  var q_count = 0
   _.each(ellimanAgents, function (row) {
-    console.log('PQing: ', count++, row.FIRST_NAME)
     var user = userFromEllimanRow(row);
     if (!user.profile.photoUrl || (user.profile.photoUrl.length === 0)) return '';
+    console.log('PQing: ', count++, row.FIRST_NAME)
     q_fetch_resize_and_upload(user)
   })
   console.log('Ready to run queue');
