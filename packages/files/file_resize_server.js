@@ -21,7 +21,7 @@ var s3_params = {
     key: Meteor.settings.AWS_ACCESS_KEY_ID //<api-key-here>'
   , secret: Meteor.settings.AWS_SECRET_ACCESS_KEY  //'<secret-here>'
   , bucket: Meteor.settings.AWS_BUCKET
-  , region: 'us-west-2'
+  , region: Meteor.settings.AWS_REGION
 };
 var s3_client = knox.createClient(s3_params);
 FileTools.fetch_to_temp = function(url, done){
