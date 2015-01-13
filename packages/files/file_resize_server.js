@@ -67,8 +67,9 @@ FileTools.resize_temp = function(width, done) {
       width:   resizeWidths[width],
       quality: 0.6
     }, Meteor.bindEnvironment(function(err, stdout, stderr){
-      if (err) throw err;
-      //console.log('resized to: '+width);
+      if (err) {
+        console.log('resized error: ');
+      }
       done()
     })));
 }
@@ -79,8 +80,9 @@ FileTools.upload = function (descriptor, remotefile, done) {
   //console.log('upload:', imagefile, ' to: ', remotefile)
   Meteor.wrapAsync(s3_client.putFile(imagefile, remotefile
                                      , Meteor.bindEnvironment(function(err, response) {
-                                       if (err) throw err
-                                       console.log('s3 putFile responded');
+                                       if (err) {
+                                         console.log('upload error:', remotefile);
+                                       }
                                        //Meteor._powerQ.resume()
                                        done();
                                      })));               
