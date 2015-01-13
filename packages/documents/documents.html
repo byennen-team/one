@@ -59,6 +59,9 @@
                           <li><a href="{{url this}}" class="download"><i class="fa fa-download"></i> Download</a></li>
                           <li class="share-document"><a href="#" data-toggle="modal" data-target="#shareDocumentModal"><i class="fa fa-share"></i> Share</a></li>
                           <li><a href="{{url this}}" class="print"><i class="fa fa-print"></i> Print</a></li>
+                          {{#if isPersonalDocument this}}  
+                            <li><a href="#" class="remove"><i class="fa fa-remove"></i> Remove</a></li>
+                          {{/if}}
                           <li class="share-document"><a href="#" data-toggle="modal" data-target="#emailDocumentModal"><i class="fa fa-envelope-o"></i> Email</a></li>
                         </ul>
                       </div>
