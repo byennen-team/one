@@ -64,7 +64,7 @@ var q_fetch_resize_and_upload = function(user){
     FileTools.resize_temp('thumb_', done);
   })
   Meteor._powerQ.add(function(done){ 
-    FileTools.upload('thumb_', '/'+user.profile.id+'/thumb_'+user.profile.id, done);
+    FileTools.upload('thumb_', '/'+user.profile.id+'/profile-images/thumb_'+user.profile.id, done);
   })
   //
   //Meteor._powerQ.add(function(done) { console.log('intermediate mobile'); done();})
@@ -72,14 +72,14 @@ var q_fetch_resize_and_upload = function(user){
     FileTools.resize_temp('mobile_', done); 
   });
   Meteor._powerQ.add(function(done){ 
-    FileTools.upload('mobile_', '/'+user.profile.id+'/mobile_'+user.profile.id, done);
+    FileTools.upload('mobile_', '/'+user.profile.id+'/profile-images/mobile_'+user.profile.id, done);
   })
   //
   Meteor._powerQ.add(function(done) { 
     FileTools.resize_temp('full_', done); 
   })
   Meteor._powerQ.add(function(done){ 
-    FileTools.upload('full_', '/'+user.profile.id+'/full_'+user.profile.id, done);
+    FileTools.upload('full_', '/'+user.profile.id+'/profile-images/full_'+user.profile.id, done);
   })
   //
   Meteor._powerQ.add(function(done) { 
