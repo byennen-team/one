@@ -16,9 +16,9 @@ Meteor.methods({
     check(key, String);
     FileTools.delete(key, function(error,data) {
       if (error)
-        return ('File could not be deleted')
+        return ('File could not be deleted');
       else
-        return (null, data)
+        return (null, data);
     });
   }
 });
