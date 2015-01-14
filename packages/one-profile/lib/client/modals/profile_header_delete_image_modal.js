@@ -9,7 +9,7 @@ Template.profileHeaderDeleteImageModal.events({
 				} else {
 					Meteor.users.update(Meteor.userId(),{$pull: {'profile.coverUrl': {key:key}}});
 				}
-			})
+			});
 		} else {
 			alert("This is the default image, and it cannot be deleted");
 		}
