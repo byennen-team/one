@@ -86,7 +86,9 @@ Meteor.startup(function () {
   if (numUsers > 0) return;
   console.log('PQ', Meteor._powerQ.title)
   var ellimanAgents = JSON.parse(Assets.getText('elliman_agents_production.json'));
-  //ellimanAgents = ellimanAgents.slice(147,149)
+  if (Meteor.settings.public && (Meteor.settings.public.ENVIRONMENT === 'development')) {
+      ellimanAgents = ellimanAgents.slice(144,157)
+  }
   var count = 1;
   var q_count = 0
   _.each(ellimanAgents, function (row) {
