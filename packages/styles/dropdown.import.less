@@ -167,7 +167,7 @@
 .communication-main {
 	position: fixed;
 	top: 70px;
-	left: 25%;
+	left: 25.5%;
 	bottom: 0;
 	right: 0;
 	width: 0;
@@ -182,7 +182,8 @@
 		height: 100%;
 		background-color: @white;
 		.sleeve {
-			height: 100%;
+			height: 100%; // height of window
+			padding-bottom: 140px; // to account for both input bar and header
 			overflow: hidden;
 		}
 	}
@@ -272,7 +273,7 @@
 				background-color: @red;
 			}
 			.status.mobile {
-				background-color: @blue;
+				background-color: @accent;
 			}
 		}
 		.message-body {
@@ -383,8 +384,113 @@
 
 
 
-
-
+// TODO: Put this in communication_sidebar.less once variables are cross platform
+.library-board {
+	height: 100%;
+	.top-btn {
+		float: left;
+		width: 25%;
+		text-align: center;
+		cursor: pointer;
+		color: @lt-blue-purple;
+		.fa {
+		}
+	}
+	.top-btn.active {
+		color: @lt-sky;
+		.fa {
+		}
+	}
+	.library-board-sleeve {
+		height: 100%;
+		padding-top: 5em;
+		.member{
+			position: relative;
+			float: left;
+			width: 100%;
+			height: 70px;
+			.avatar {
+				position: absolute;
+				height: 55px;
+				width: 55px;
+				margin-left: 25px;
+				img {
+					border-radius: 50%;
+					width: 100%;
+					height: auto;
+				}
+				.status {
+					position: absolute;
+					width: 10px;
+					height: 10px;
+					top: 50%;
+					left: -5px;
+					margin-top: -5px;
+					border-radius: 50%;
+					transition: background-color 350ms ease-out 50ms;
+				}
+				.status.active {
+					background-color: @green;
+				}
+				.status.inactive {
+					background-color: @red;
+				}
+				.status.mobile {
+					background-color: @accent;
+				}
+			}
+			.name {
+				margin-left: 95px;
+				margin-top: 15px;
+				font-family: @raleway-bold;
+				color: @white;
+			}
+			.title {
+				margin-left: 95px;
+				font-size: 12px;
+				font-family: @raleway-light;
+				color: @text-cornflower;
+				line-height: 100%;
+			}
+			.video-chat, 
+			.phone {
+				position: absolute;
+				right: 2em;
+				top: 15px;
+				opacity: 0;
+				color: @text-cornflower;
+			}
+			.phone {
+				right: 4em;
+			}
+			.member:hover .video-chat,
+			.member:hover .phone {
+				opacity: 1;
+			}
+		}
+	}
+	.invite-button {
+		position: relative;
+		float: left;
+		width: 100%;
+		height: 70px;
+		i {
+			font-size: 56px;
+			position: absolute;
+			height: 55px;
+			width: 55px;
+			margin-left: 25px;
+			color: @lt-teal;
+		}
+		p {
+			margin-left: 95px;
+			margin-top: 15px;
+			font-family: @raleway-light;
+			color: @lt-teal;
+		}
+	}
+}
+// End TODO
 
 
 

@@ -39,7 +39,7 @@ Template.communicationSidebar.helpers({
 Template.communicationSidebar.events({
 
 	// Scroll to top when communication sidebar is clicked, to appear full screen
-	'click #communication-sidebar': function(){
+	'click #communication-sidebar-options': function(){
 		$('#sidebar-scroll-target').velocity("scroll",600);
 		// $('#main-wrap').addClass('blurry');
 		$.Velocity.hook($('#communication-main'), "width", "100%");
@@ -53,15 +53,15 @@ Template.communicationSidebar.events({
 		$.Velocity.hook($('#communication-library-board'), "width", "15%");
 		// force scrollbar on sidebar
 		var currentHeight = $(window).height();
-		$('#communication-sidebar-sleeve').css({
+		$('.communication-sidebar-sleeve').css({
 			'height': currentHeight - 130 + 'px',
 			'position': 'fixed',
 			'top': '130px',
 			'width': '25%'
 		});
 		// adjust message board height
-		var board = $('#communication-message-board-sleeve');
-		board.css('height', currentHeight - 140 + 'px');
+		// var board = $('#communication-message-board-sleeve');
+		// board.css('height', currentHeight - 140 + 'px');
 
 	  // lock scroll position, but retain settings for later
     var scrollPosition = [
@@ -82,15 +82,15 @@ Template.communicationSidebar.events({
 		$.Velocity.hook($('#communication-library-board'), "width", "15%"); 
 		// force scrollbar on sidebar
 		var currentHeight = $(window).height();
-		$('#communication-sidebar-sleeve').css({
+		$('.communication-sidebar-sleeve').css({
 			'height': currentHeight - 130 + 'px',
 			'position': 'fixed',
 			'top': '130px',
 			'width': '25%'
 		});
 		// adjust message board height
-		var board = $('#communication-message-board-sleeve');
-		board.css('height', currentHeight - 140 + 'px');
+		// var board = $('#communication-message-board-sleeve');
+		// board.css('height', currentHeight - 140 + 'px');
 	}
 
 });

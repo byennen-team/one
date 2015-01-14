@@ -17,7 +17,7 @@ Template.navbar.events({
 		$.Velocity.hook($('#communication-library-board'), "width", "0");
 		// force scrollbar on sidebar
 		var currentHeight = $(window).height();
-		$('#communication-sidebar-sleeve').css({
+		$('.communication-sidebar-sleeve').css({
 			'height': 'inherit',
 			'position': 'static',
 			'top': '130px',

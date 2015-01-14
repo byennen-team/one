@@ -4,6 +4,8 @@
 	<div id='communication-sidebar' class="communication-sidebar">
 
 		{{> communicationSidebarFilter}}
+
+		<div id='communication-sidebar-options'>
 	
 		{{#if communicationFilter.all}}
       {{> communicationSidebarAll}}
@@ -15,6 +17,7 @@
       {{> communicationSidebarRooms}}
 	  {{/if}} {{/if}} {{/if}} {{/if}}
 
+		</div>
 	</div>
 
 </template>
