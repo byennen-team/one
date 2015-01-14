@@ -53,37 +53,27 @@ var userFromEllimanRow = function (row) {
 var count_jobs = 1;
 var q_fetch_resize_and_upload = function(user){
   Meteor._powerQ.add(function(done){
-    console.log('begin #', count_jobs, ' : ', user.profile.id)
+    console.log('#: ', count_jobs, ' : ', user.profile.id)
     done()
   })
   Meteor._powerQ.add(function(done) { 
     FileTools.fetch_to_temp(user.profile.photoUrl, done); 
   })
-  //Meteor._powerQ.add(function(done) { console.log('intermediate thumb'); done();})
   Meteor._powerQ.add(function(done) { 
     FileTools.resize_temp('thumb_', done);
   })
   Meteor._powerQ.add(function(done){ 
-    FileTools.upload('thumb_', '/'+user.profile.id+'/profile-images/thumb_'+user.profile.id, done);
+    FileTools.upload('thumb_', '/user/'+user.profile.id+'/profile-images/thumb_'+user.profile.id, done);
   })
-  //
-  //Meteor._powerQ.add(function(done) { console.log('intermediate mobile'); done();})
-  Meteor._powerQ.add(function(done) {
-    FileTools.resize_temp('mobile_', done); 
-  });
-  Meteor._powerQ.add(function(done){ 
-    FileTools.upload('mobile_', '/'+user.profile.id+'/profile-images/mobile_'+user.profile.id, done);
-  })
-  //
   Meteor._powerQ.add(function(done) { 
     FileTools.resize_temp('full_', done); 
   })
   Meteor._powerQ.add(function(done){ 
-    FileTools.upload('full_', '/'+user.profile.id+'/profile-images/full_'+user.profile.id, done);
+    FileTools.upload('full_', '/user/'+user.profile.id+'/profile-images/full_'+user.profile.id, done);
   })
   //
   Meteor._powerQ.add(function(done) { 
-    console.log('done:', count_jobs++, ' : ', user.profile.id); 
+    console.log('end:', count_jobs++, ' : ', user.profile.id); 
     done();
   })
 }
@@ -96,7 +86,7 @@ Meteor.startup(function () {
   if (numUsers > 0) return;
   console.log('PQ', Meteor._powerQ.title)
   var ellimanAgents = JSON.parse(Assets.getText('elliman_agents_production.json'));
-  //ellimanAgents = ellimanAgents.slice(147,165)
+  //ellimanAgents = ellimanAgents.slice(147,149)
   var count = 1;
   var q_count = 0
   _.each(ellimanAgents, function (row) {

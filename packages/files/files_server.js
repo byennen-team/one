@@ -18,7 +18,7 @@ Files.allow({
  * @returns {{accessKey: *, policy: string, signature: *}}
  */
 FileTools.signUpload = function (filePath, acl, mimeType) {
-  var bucket = Meteor.settings.AWS_BUCKET || 'chuck.goone'
+  var bucket = Meteor.settings.AWS_BUCKET 
   console.log('signupload bucket:', bucket)
   var policy = {
     // expire in 5 minutes
@@ -30,7 +30,6 @@ FileTools.signUpload = function (filePath, acl, mimeType) {
       ['eq', '$Content-Type', mimeType]
     ]
   };
-  console.log('meteor settings:', Meteor.settings)
   // Sign the policy with our secret.
   var policyBase64 = new Buffer(JSON.stringify(policy), 'utf8').toString('base64');
   var signature = crypto.createHmac('sha1', Meteor.settings.AWS_SECRET_ACCESS_KEY).update(policyBase64).digest('base64');
