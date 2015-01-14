@@ -73,7 +73,12 @@ var q_fetch_resize_and_upload = function(user){
   })
   //
   Meteor._powerQ.add(function(done) { 
-    console.log('end:', count_jobs++, ' : ', user.profile.id); 
+    user.profile.photoUrl = {
+        large: '/user/'+user.profile.id+'/profile-images/full_'+user.profile.id,
+        thumb: '/user/'+user.profile.id+'/profile-images/thumb_'+user.profile.id
+    }
+    var user_mongo = Meteor.users.insert(user);
+    console.log('end:', count_jobs++, ' mongo: ', user_mongo); 
     done();
   })
 }
