@@ -5,6 +5,9 @@
 	margin-left: -15px;
 	margin-right: -15px;
 	background-color: @blue-grey;
+	.communication-sidebar-sleeve {
+		padding-top: 2em;
+	}
 	.dropdown {
 		width: 100%;
 		.dropdown-header {
@@ -35,10 +38,6 @@
 			}
 		}
 	}
-	.sidebar-scroll-target {
-		position: absolute;
-		top: -70px;
-	}
 	.dropdown-header {
 		height: 3em;
 		padding: 1em 3em;
@@ -52,13 +51,14 @@
 		cursor: pointer;
 	}
 } 
+
 // End TODO
 
 // TODO: Put this in com_sidebar_filter.less once variables are cross platform
 .communication-filter {
 	.dropdown-header {
 		background-color: @lt-navy;
-		height: 5em;
+		height: 60px; // set to px to play nice with JS
 		padding: 2em 3em;
 		.caret {
 			display: block;
@@ -165,9 +165,12 @@
 
 // TODO: Put this in communication-hub-main/communication_main.less once variables are cross platform
 .communication-main {
-	position: absolute;
+	position: fixed;
+	top: 70px;
+	left: 25%;
+	bottom: 0;
+	right: 0;
 	width: 0;
-	height: 100%;
 	margin-left: -15px;
 	overflow: hidden;
 	transition: width 350ms ease-out 50ms;
@@ -177,8 +180,11 @@
 		float: left;
 		width: 80%;
 		height: 100%;
-		overflow: hidden;
 		background-color: @white;
+		.sleeve {
+			height: 100%;
+			overflow: hidden;
+		}
 	}
 	.task-board {
 		float: left;
@@ -198,6 +204,23 @@
 			color: @white;
 		}
 	}
+	.blurry {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    overflow: hidden;
+    background-image: url('/images/com-hub-main/blur.png');
+    /* Fallback to SVG filters */
+    filter: url('#blur');
+    -webkit-filter: blur(5px);
+    -moz-filter: blur(5px);
+    -o-filter: blur(5px);
+    -ms-filter: blur(5px);
+    filter: blur(5px);
+    z-index: -1;
+  }
 }
 // End TODO
 
@@ -223,11 +246,11 @@
 		}
 	}
 	.message {
+		position: relative;
 		padding: 1em 0;
 		overflow: hidden;
 		.avatar {
-			position: relative;
-			float: left;
+			position: absolute;
 			margin-left: 25px;
 			img {
 				border-radius: 50%;
@@ -248,9 +271,13 @@
 			.status.inactive {
 				background-color: @red;
 			}
+			.status.mobile {
+				background-color: @blue;
+			}
 		}
 		.message-body {
 			float: left;
+			margin-left: 100px;
 			.name {
 				font-family: @raleway-bold;
 				color: @text-navy;

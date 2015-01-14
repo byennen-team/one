@@ -1,5 +1,6 @@
 <template name='messageBoard'>
 	
+<div id='communication-message-board-sleeve' class="sleeve">
 	<div class="header">
 		<div class="col-xs-6">
 <!-- TODO: Need to put Channel name here -->
@@ -16,55 +17,51 @@
 
 <!-- TODO: add "user" class if message is by User -->
 	<div class="message">
-		<div class="col-xs-2">
-			<div class="avatar">
+		<div class="avatar">
 <!-- TODO: Agent's status (not the User's) -->
 			<div class="status active"></div>
 <!-- TODO: Agent's Avatar and name. Avatar should be square, and about 50x50px -->
 			<img src="images/com-hub-main/joy.jpg" alt="Agent's name here" />
 		</div>
 
-		</div>
-		<div class="col-xs-10">
-			<div class="message-body">
-				<p class="name">
+		<div class="message-body">
+			<p class="name">
 <!-- TODO: Agent's first and last name -->
-					Joy Avery
+				Joy Avery
 <!-- TODO: message time stamp -->
-					<span class="time">8:45am</span>
-				</p>	
+				<span class="time">8:45am</span>
+			</p>	
 <!-- TODO: message text -->
-				<p class="text">Updated Listing Agreement now in the Company Docs.  Happy New Year everyone!</p>			
+			<p class="text">Updated Listing Agreement now in the Company Docs.  Happy New Year everyone!</p>			
 <!-- TODO: '.doc' should only show up when there's an attachment -->
-				<div class="doc">
-					<div class="thumbnail">
+			<div class="doc">
+				<div class="thumbnail">
 <!-- TODO: doc thumbnail -->
-						<img src="/images/com-hub-main/doc.jpg" alt="" class="doc-thumb">
-					</div>
-					<p class="title">
-						<span class="fa fa-file"></span>
+					<img src="/images/com-hub-main/doc.jpg" alt="" class="doc-thumb">
+				</div>
+				<p class="title">
+					<span class="fa fa-file"></span>
 <!-- TODO: file name -->
-						Leasing Agreement.pdf
+					Leasing Agreement.pdf
 <!-- TODO: file size -->
-						<span class="size">380kb</span>
-					</p>
-					<div class="action-bar">
+					<span class="size">380kb</span>
+				</p>
+				<div class="action-bar">
 <!-- TODO: download file -->
-						<a href="#" class="download">
-							<i class="fa fa-arrow-circle-down"></i>
-							download
-						</a>
+					<a href="#" class="download">
+						<i class="fa fa-arrow-circle-down"></i>
+						download
+					</a>
 <!-- TODO: call print controls, with doc loaded			 -->
-						<a href="#" class="print">
-							<i class="fa fa-print"></i>
-							print
-						</a>
+					<a href="#" class="print">
+						<i class="fa fa-print"></i>
+						print
+					</a>
 <!-- TODO: this should call modal with document viewer -->
-						<a href="#" class="view">
-							<i class="fa fa-view"></i>
-							view
-						</a>
-					</div>
+					<a href="#" class="view">
+						<i class="fa fa-view"></i>
+						view
+					</a>
 				</div>
 			</div>
 		</div>
@@ -73,22 +70,18 @@
 
 <!-- Repeated for style -->
 	<div class="message user">
-		<div class="col-xs-2">
-			<div class="avatar">
-				<div class="status active"></div>
-				<img src="/images/com-hub-main/jon.jpg" alt="Agent's name here" />
-			</div>
+		<div class="avatar">
+			<div class="status active"></div>
+			<img src="/images/com-hub-main/jon.jpg" alt="Agent's name here" />
 		</div>
-		<div class="col-xs-10">
-			<div class="message-body">
-				<p class="name">
-					Jon Evans
-					<span class="time">8:48am</span>
-				</p>	
+		<div class="message-body">
+			<p class="name">
+				Jon Evans
+				<span class="time">8:48am</span>
+			</p>	
 <!-- TODO:	@name needs to be plugged in		 -->
-				<p class="text">Thanks <a href='#'>@JoyAvery</a>!</p>		
-			</div>	
-		</div>
+			<p class="text">Thanks <a href='#'>@JoyAvery</a>!</p>		
+		</div>	
 	</div>
 	<div class="clearfix"></div>
 <!-- /style repeat -->
@@ -101,30 +94,22 @@
 
 	<!-- Repeated for style -->
 	<div class="message">
-		<div class="col-xs-2">
-			<div class="avatar">
-				<div class="status inactive"></div>
-				<img src="/images/com-hub-main/dottie.jpg" alt="Agent's name here" />
-			</div>
+		<div class="avatar">
+			<div class="status inactive"></div>
+			<img src="/images/com-hub-main/dottie.jpg" alt="Agent's name here" />
 		</div>
-		<div class="col-xs-10">
-			<div class="message-body">
-				<p class="subject">News Update</p>
-				<p class="name">
-					Dottie Herman
-					<span class="time">8:52am</span>
-				</p>	
+		<div class="message-body">
+			<p class="subject">News Update</p>
+			<p class="name">
+				Dottie Herman
+				<span class="time">8:52am</span>
+			</p>	
 <!-- TODO:	link expands text		 -->
 <!-- TODO: Text should be limited to one line, no matter the with (just for messages with subjects) -->
-				<p class="text">DouglasElliman Real Estate and KnightFrank Residential, two of the biggest names in real estate <a href='#'>...<span class="blue-text">read <i class="fa right-arrow"></i></span></a></p>			
-			</div>
+			<p class="text">DouglasElliman Real Estate and KnightFrank Residential, two of the biggest names in real estate <a href='#'>...<span class="blue-text">read <i class="fa right-arrow"></i></span></a></p>			
 		</div>
 	</div>
 	<div class="clearfix"></div>
 <!-- /style repeat -->
-
-	<div class="message-input">
-		{{> messageInput}}
-	</div>
-
+</div>
 </template>

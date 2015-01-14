@@ -1,21 +1,17 @@
 <template name="communicationSidebar">
 
+<div id="sidebar-scroll-target" class='sidebar-scroll-target'></div>	
 	<div id='communication-sidebar' class="communication-sidebar">
-		<div id="sidebar-scroll-target" class='sidebar-scroll-target'></div>	
 
 		{{> communicationSidebarFilter}}
-
+	
 		{{#if communicationFilter.all}}
-			<p>all</p>
       {{> communicationSidebarAll}}
     {{else}} {{#if communicationFilter.company}}
-      <p>company</p>
 	    {{> communicationSidebarCompany}}
 	  {{else}} {{#if communicationFilter.direct}}
-			<p>direct</p>
       {{> communicationSidebarDirect}}
     {{else}} {{#if communicationFilter.rooms}}
-    	<p>rooms</p>
       {{> communicationSidebarRooms}}
 	  {{/if}} {{/if}} {{/if}} {{/if}}
 

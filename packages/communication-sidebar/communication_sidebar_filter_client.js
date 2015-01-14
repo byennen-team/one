@@ -2,7 +2,7 @@
 Template.communicationSidebarFilter.helpers({
 
 	// Checks the session 'filter' to see what communications should be shown
-	communicationFilter: function(){
+	communicationFilterTop: function(){
 		var filter = Session.get('filter');
 		// If the session hasn't been set yet, set it to show all communication.
 		if(filter === undefined){

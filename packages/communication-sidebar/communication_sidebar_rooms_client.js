@@ -1,4 +1,4 @@
-Template.communicationSidebarDirect.rendered = function(){
+Template.communicationSidebarRooms.rendered = function(){
 
   // initialize maazalik:malihu-jquery-custom-scrollbar scrollbar plugin
   // Repeated to play nice with plugin
