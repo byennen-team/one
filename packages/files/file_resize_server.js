@@ -24,6 +24,7 @@ var s3_params = {
   , bucket: Meteor.settings.AWS_BUCKET
   , region: Meteor.settings.AWS_REGION
 };
+console.log('s3_params', s3_params);
 var s3_client = knox.createClient(s3_params);
 FileTools.fetch_to_temp = function(url, done){
   var originalName = url.substring(url.lastIndexOf('/')+1)
@@ -43,7 +44,6 @@ FileTools.fetch_to_temp = function(url, done){
             console.log('piped No Image Available')
             done();
           }));
-           //Meteor._powerQ.resume()
          } 
        }))
   .on('end', 
@@ -70,7 +70,6 @@ FileTools.resize_temp = function(size, done) {
     })));
 }
 FileTools.upload = function (descriptor, remotefile, done) {
-  //Meteor._powerQ.pause()
   var imagefile = base+descriptor+img_tmp+img_ext;
   remotefile+=img_ext
   //console.log('upload:', imagefile, ' to: ', remotefile)
@@ -79,7 +78,7 @@ FileTools.upload = function (descriptor, remotefile, done) {
                                        if (err) {
                                          console.log('upload error:', remotefile);
                                        }
-                                       //Meteor._powerQ.resume()
+                                       //console.log(' upload code: ', response.statusCode);
                                        done();
                                      })));               
 };   
