@@ -5,7 +5,7 @@ var goScroll = function(target, trigger){
       return false;
     }
   });
-}
+};
 
 Template.profileHeader.rendered = function () {
   $('body').addClass('public-profile');
@@ -16,7 +16,7 @@ Template.profileHeader.rendered = function () {
     goScroll($('#contact'), $('.nav-contact'));
     goScroll($('#contact'), $('#send-message-btn'));
   });
-}
+};
 
 Template.profileHeader.helpers({
   coverImages: function() {
@@ -28,16 +28,16 @@ Template.profileHeader.helpers({
           index: index,
           url: item.photoUrl,
           key: item.key
-        })
+        });
       });
       return modifiedCovers;
     } else {
-      //TODO: remove these placeholders maybe? 
+      //TODO: remove these placeholders maybe?
       return [
         {index: 0, url: '../../images/profile/slide1-sm.jpg'},
         {index: 1, url: '../../images/profile/slide2-sm.jpg'},
         {index: 2, url: '../../images/profile/slide3-sm.jpg'}
-      ]
+      ];
     }
   },
   isFirstCover: function() {

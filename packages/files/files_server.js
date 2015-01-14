@@ -65,11 +65,11 @@ FileTools.signedGet = function (filePath) {
   var stringToSign = 'GET\n\n\n' + dateTime + '\n' + filePath;
   console.log("Signing String", stringToSign);
   var signature = awsSignature(stringToSign);
-  console.log("Signature", signature)
+  console.log("Signature", signature);
   var queryString = '?AWSAccessKeyId=' + Meteor.settings.AWS_ACCESS_KEY_ID + '&Expires=' + dateTime + '&Signature=' + encodeURIComponent(signature);
   var url = 'https://' + Meteor.settings.REGION + '.amazonaws.com' + filePath + queryString;
-  console.log("Signed URL", url)
-  return url
+  console.log("Signed URL", url);
+  return url;
 };
 
 FileTools.rename = function (originalFilePath, newFilePath, callback) {
@@ -100,7 +100,7 @@ FileTools.rename = function (originalFilePath, newFilePath, callback) {
       boundCallback(null, data);
     });
   });
-}
+};
 
 
 FileTools.delete = function (filePath, callback) {
