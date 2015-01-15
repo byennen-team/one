@@ -6,7 +6,7 @@ FileTools.upload = function (method, file, callback, onProgress, onComplete) {
     //callback && callback(null, result);
 
     var formData = new FormData();
-    var key = 'events/' + (new Date).getTime() + '-' + file.name;
+    var key = 'events/' + (new Date()).getTime() + '-' + file.name();
 
     formData.append('key', result.filePath);
     formData.append('acl', result.acl);
@@ -20,7 +20,7 @@ FileTools.upload = function (method, file, callback, onProgress, onComplete) {
     var xhr = new XMLHttpRequest();
     if (onProgress) xhr.upload.addEventListener('progress', onProgress, false);
 
-    //onComplete && 
+    //onComplete &&
     //this is the place to add functionalities for a spinner until image is uploaded
     xhr.addEventListener('load', function () {
       callback && callback(null, result);
@@ -44,4 +44,4 @@ FileTools.deleteStub = function (method, filePath, callback) {
 
     callback && callback(null, result);
   });
-}
+};

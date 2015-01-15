@@ -102,7 +102,7 @@ Router.route('/:slug', {
   },
   action: function () {
     if (!this.data()) this.render('notFound');
-    else this.render('profile')
+    else this.render('profile');
   }
 });
 

@@ -1,4 +1,4 @@
-var defaultEmail = "no-reply@gooneapp.com"
+var defaultEmail = "no-reply@gooneapp.com";
 
 Meteor.methods({
   // Profile Contact Email

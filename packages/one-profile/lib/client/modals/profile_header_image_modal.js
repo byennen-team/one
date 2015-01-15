@@ -5,7 +5,7 @@ Template.profileHeaderImageModal.events({
     var $this = $(event.target);
 	var contents = $this.val();
 	var formGroup = $this.closest('.form-group');
-	// check if there's actually a file, if so, change the color		
+	// check if there's actually a file, if so, change the color
 	if( contents.length > 0 ){
 		// swap icon if there is a file
 		$this.siblings( '.icon-addteam' ).removeClass( 'icon-addteam' ).addClass( 'fa-camera-retro' );
@@ -47,7 +47,7 @@ Template.profileHeaderImageModal.events({
 		  if (error) return; // TODO error message
 
 		  var photoUrl = Meteor.settings.public.AWS_BUCKET_URL + '/' + result.filePath;
-		  console.log(photoUrl)
+		  console.log(photoUrl);
 		  Meteor.users.update(Meteor.userId(), {$push: {'profile.coverUrl': {photoUrl: photoUrl, key: result.filePath}}});
 		});
   	} else {

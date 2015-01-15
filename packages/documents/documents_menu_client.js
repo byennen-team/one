@@ -3,14 +3,14 @@ Template.documentsMenu.helpers({
     if (Routes.getName() === Routes.MY_DOCUMENTS) {
       return "<a href='/documents'>My Library <span class='caret'></span></a>";
     } else {
-      return "<a href='/documents/company'><img src='../../images/documents/DE-white.png'/> Company Docs <span class='caret'></span></a>"
+      return "<a href='/documents/company'><img src='../../images/documents/DE-white.png'/> Company Docs <span class='caret'></span></a>";
     }
   },
   next_page: function () {
     if (Routes.getName() === Routes.MY_DOCUMENTS) {
       return "<a href='/documents/company'><img src='../../images/documents/DE-white.png'/> Company Docs</a>";
     } else {
-      return "<a href='/documents'>My Library</a>"
+      return "<a href='/documents'>My Library</a>";
     }
   }
 });

@@ -4,9 +4,9 @@ Template.accountSettings.events({
   'change .upload': function (event) {
     FileTools.upload('signProfilePictureUpload', event.target.files[0], function (error, result) {
       if (error) {
-        alert(error)
+        alert(error);
         return;
-      }; // TODO error message
+      } // TODO error message
 
       var photoUrl = Meteor.settings.public.AWS_BUCKET_URL + '/' + result.filePath;
       Meteor.users.update(Meteor.userId(), {$set: {'profile.photoUrl': photoUrl, 'profile.photoKey': result.filePath}});
@@ -22,7 +22,7 @@ Template.accountSettings.events({
           } else {
             Meteor.users.update(Meteor.userId(),{$unset: {'profile.photoUrl': "", 'profile.photoKey': ""}});
           }
-        })
+        });
   },
   'submit form': function (event, template) {
     event.preventDefault();

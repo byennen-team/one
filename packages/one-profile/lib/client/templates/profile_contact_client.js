@@ -5,9 +5,9 @@ Template.profileContact.events({
   'submit form': function (event, template) {
     event.preventDefault();
     // TODO: Add user email "to"
-    var to = "dev-team@gooneapp.com"
+    var to = "dev-team@gooneapp.com";
     var senderName = template.find('[id=contact-name]').value;
-    var subject = "Go One - Profile Contact from: " + senderName
+    var subject = "Go One - Profile Contact from: " + senderName;
     var sender = template.find('[id=contact-email]').value;
     var phone = template.find('[id=contact-email]').value;
     var buyOrSell = template.find('input[name=buy-or-sell]:checked').value;

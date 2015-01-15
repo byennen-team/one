@@ -12,8 +12,8 @@ Template.profileBanner.helpers({
   },
   isMyProfile: Profile.isMyProfile,
   isMyProfileEditable: function() {
-    return (Blaze.getData().isMyProfile && Blaze.getData().isPrivate)
-  },   
+    return (Blaze.getData().isMyProfile && Blaze.getData().isPrivate);
+  },
   isFollowing: function (){
     return Profile.isFollowing(Profile.currentUser());
   }
@@ -35,7 +35,7 @@ Template.profileBanner.events({
     Profile.forcePublic.set(false);
   },
   'click .status-drop': function (e) {
-    var status = e.target.innerText
+    var status = e.target.innerText;
     Meteor.users.update({_id: Meteor.userId()}, {$set: {'profile.status': status }});
   }
 });
