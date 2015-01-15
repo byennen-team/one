@@ -52,9 +52,13 @@ var userFromEllimanRow = function (row) {
 // Populate the users collection with elliman agents.
 var count_jobs = 1;
 var q_fetch_resize_and_upload = function(user){
+  var xpat = /\.([0-9a-z]+)(?:[\?#]|$)/i;
+  var _URL = user.profile.photoUrl;  
+  var _ext = _URL.match(xpat)[0];
+  var s3BaseURL = 'https://s3.amazonaws.com/'+Meteor.settings.AWS_BUCKET+'/user/';  
   Meteor._powerQ.add(function(done){
-    console.log('#: ', count_jobs, ' : ', user.profile.id)
-    done()
+    console.log('#: ', count_jobs, ' : ', user.profile.id);
+    done();
   })
   Meteor._powerQ.add(function(done) { 
     FileTools.fetch_to_temp(user.profile.photoUrl, done); 
@@ -72,10 +76,10 @@ var q_fetch_resize_and_upload = function(user){
     FileTools.upload('full_', '/user/'+user.profile.id+'/profile-images/full_'+user.profile.id, done);
   })
   //
-  Meteor._powerQ.add(function(done) { 
+  Meteor._powerQ.add(function(done) {
     user.profile.photoUrl = {
-        large: '/user/'+user.profile.id+'/profile-images/full_'+user.profile.id,
-        thumb: '/user/'+user.profile.id+'/profile-images/thumb_'+user.profile.id
+        large: s3BaseURL+user.profile.id+'/profile-images/full_'+user.profile.id+_ext,
+        thumb: s3BaseURL+user.profile.id+'/profile-images/thumb_'+user.profile.id+_ext
     }
     var user_mongo = Meteor.users.insert(user);
     console.log('end:', count_jobs++, ' mongo: ', user_mongo); 
@@ -92,17 +96,17 @@ Meteor.startup(function () {
   console.log('PQ', Meteor._powerQ.title)
   var ellimanAgents = JSON.parse(Assets.getText('elliman_agents_production.json'));
   if (Meteor.settings.public && (Meteor.settings.public.ENVIRONMENT === 'development')) {
-      ellimanAgents = ellimanAgents.slice(144,157)
+      ellimanAgents = ellimanAgents.slice(144,157);
   }
   var count = 1;
   var q_count = 0
   _.each(ellimanAgents, function (row) {
     var user = userFromEllimanRow(row);
     if (!user.profile.photoUrl || (user.profile.photoUrl.length === 0)) return '';
-    console.log('PQing: ', count++, row.FIRST_NAME)
-    q_fetch_resize_and_upload(user)
+    console.log('PQing: ', count++, row.FIRST_NAME);
+    q_fetch_resize_and_upload(user);
   })
   console.log('Ready to run queue');
-  Meteor._powerQ.run()
+  Meteor._powerQ.run();
   console.log('queue running', ellimanAgents.length, 'elliman agents');
 });
