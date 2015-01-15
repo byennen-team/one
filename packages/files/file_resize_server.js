@@ -61,6 +61,10 @@ FileTools.resize_temp = function(size, done) {
     }, Meteor.bindEnvironment(function(err, stdout, stderr){
       if (err) {
         console.log('resized error: ');
+      }
+      done();
+    })));
+};
 FileTools.upload = function (descriptor, remotefile, done) {
   var imagefile = base+descriptor+img_tmp+img_ext;
   remotefile+=img_ext;
@@ -79,6 +83,5 @@ function imagesObject(filename){
   };
   return images;
 }
-
 // always clean up temporary files
 tmp.setGracefulCleanup();
