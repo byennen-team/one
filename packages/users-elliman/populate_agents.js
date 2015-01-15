@@ -59,22 +59,22 @@ var q_fetch_resize_and_upload = function(user){
   Meteor._powerQ.add(function(done){
     console.log('#: ', count_jobs, ' : ', user.profile.id);
     done();
-  })
+  });
   Meteor._powerQ.add(function(done) { 
     FileTools.fetch_to_temp(user.profile.photoUrl, done); 
-  })
+  });
   Meteor._powerQ.add(function(done) { 
     FileTools.resize_temp('thumb_', done);
-  })
+  });
   Meteor._powerQ.add(function(done){ 
     FileTools.upload('thumb_', '/user/'+user.profile.id+'/profile-images/thumb_'+user.profile.id, done);
-  })
+  });
   Meteor._powerQ.add(function(done) { 
     FileTools.resize_temp('full_', done); 
-  })
+  });
   Meteor._powerQ.add(function(done){ 
     FileTools.upload('full_', '/user/'+user.profile.id+'/profile-images/full_'+user.profile.id, done);
-  })
+  });
   //
   Meteor._powerQ.add(function(done) {
     user.profile.photoUrl = {
@@ -84,8 +84,8 @@ var q_fetch_resize_and_upload = function(user){
     var user_mongo = Meteor.users.insert(user);
     console.log('end:', count_jobs++, ' mongo: ', user_mongo); 
     done();
-  })
-}
+  });
+};
 Meteor.startup(function () {
   Meteor._powerQ = new PowerQueue({
       isPaused: true
@@ -93,19 +93,19 @@ Meteor.startup(function () {
   var numUsers = Meteor.users.find().count();
   console.log('Total Users', numUsers);
   if (numUsers > 0) return;
-  console.log('PQ', Meteor._powerQ.title)
+  console.log('PQ', Meteor._powerQ.title);
   var ellimanAgents = JSON.parse(Assets.getText('elliman_agents_production.json'));
   if (Meteor.settings.public && (Meteor.settings.public.ENVIRONMENT === 'development')) {
       ellimanAgents = ellimanAgents.slice(144,157);
   }
   var count = 1;
-  var q_count = 0
+  var q_count = 0;
   _.each(ellimanAgents, function (row) {
     var user = userFromEllimanRow(row);
     if (!user.profile.photoUrl || (user.profile.photoUrl.length === 0)) return '';
     console.log('PQing: ', count++, row.FIRST_NAME);
     q_fetch_resize_and_upload(user);
-  })
+  });
   console.log('Ready to run queue');
   Meteor._powerQ.run();
   console.log('queue running', ellimanAgents.length, 'elliman agents');

@@ -6,7 +6,7 @@ FileTools.upload = function (method, file, callback, onProgress, onComplete) {
     callback && callback(null, result.fileId);
 
     var formData = new FormData();
-    var key = 'events/' + (new Date).getTime() + '-' + file.name;
+    var key = 'events/' + (new Date()).getTime() + '-' + file.name;
 
     formData.append('key', result.filePath);
     formData.append('acl', result.acl);
