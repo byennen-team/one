@@ -1,11 +1,19 @@
-var forcePublic = new ReactiveVar();
+Profile.forcePublic = new ReactiveVar();
 
 Template.profileBanner.helpers({
-  isLoggedIn: Meteor.userId,
+  isLoggedIn: function() {
+    if (Meteor.userId())
+      return true;
+    else
+      return false;
+  },
   isPrivate: function () {
-    return Meteor.userId() && !forcePublic.get();
+    return Meteor.userId() && !Profile.forcePublic.get();
   },
   isMyProfile: Profile.isMyProfile,
+  isMyProfileEditable: function() {
+    return (Blaze.getData().isMyProfile && Blaze.getData().isPrivate)
+  },   
   isFollowing: function (){
     return Profile.isFollowing(Profile.currentUser());
   }
@@ -21,10 +29,10 @@ Template.profileBanner.events({
     Meteor.call('unfollowUser', userToUnfollow._id);
   },
   'click .public': function () {
-    forcePublic.set(true);
+    Profile.forcePublic.set(true);
   },
   'click .private': function () {
-    forcePublic.set(false);
+    Profile.forcePublic.set(false);
   },
   'click .status-drop': function (e) {
     var status = e.target.innerText

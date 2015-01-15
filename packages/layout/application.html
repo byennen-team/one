@@ -2,6 +2,7 @@
   {{#if currentUser}}
     {{> leftNav}}
   {{/if}}
+  {{#if isPublic}}
   <div class="wrap push">
     {{#if currentUser}}
       {{> navbar}}
@@ -10,4 +11,11 @@
       {{> yield}}
     </div>
   </div>
+    {{else}}
+    <div class="wrap">
+      <div class="content">
+      {{> yield}}
+    </div>
+  </div>
+  {{/if}}
 </template>

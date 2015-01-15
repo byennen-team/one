@@ -3,7 +3,7 @@ FileTools.upload = function (method, file, callback, onProgress, onComplete) {
   Meteor.call(method, file.name, file.type, function (error, result) {
     if (error) return;
 
-    callback && callback(null, result.fileId);
+    //callback && callback(null, result);
 
     var formData = new FormData();
     var key = 'events/' + (new Date()).getTime() + '-' + file.name;
@@ -20,7 +20,9 @@ FileTools.upload = function (method, file, callback, onProgress, onComplete) {
     var xhr = new XMLHttpRequest();
     if (onProgress) xhr.upload.addEventListener('progress', onProgress, false);
 
-    onComplete && xhr.addEventListener('load', function () {
+    //onComplete &&
+    //this is the place to add functionalities for a spinner until image is uploaded
+    xhr.addEventListener('load', function () {
       callback && callback(null, result);
     }, false);
 
@@ -32,5 +34,12 @@ FileTools.upload = function (method, file, callback, onProgress, onComplete) {
 
     xhr.open('POST', Meteor.settings.public.AWS_BUCKET_URL, true);
     xhr.send(formData);
+  });
+};
+FileTools.deleteStub = function (method, filePath, callback) {
+  Meteor.call(method, filePath, function (error, result) {
+    if (error) return;
+
+    callback && callback(null, result);
   });
 };

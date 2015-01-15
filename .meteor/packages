@@ -12,6 +12,7 @@ meteor-platform
 
 iron:router
 mizzao:bootstrap-3 #TODO: refactory to bootstrap-less
+nemo64:bootstrap
 stevezhu:velocity.js@0.1.0
 joshowens:simple-form #TODO: refactory this out?
 aldeed:simple-schema

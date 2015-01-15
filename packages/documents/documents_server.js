@@ -15,6 +15,15 @@ Meteor.methods({
 
     Meteor.users.update(user._id, modifier);
   },
+  archiveDocument: function (fileId, archive) {
+    check(fileId, String);
+    check(archive, Boolean);
+
+    var user = Meteor.user();
+    if (!user) throw new Meteor.Error('Invalid credentials');
+
+    Files.update({_id: fileId, companyDocument:false}, {$set: {archived: archive}});
+  },
   renameDocument: function (fileId, newFileName) {
     check(fileId, String);
     check(newFileName, String);

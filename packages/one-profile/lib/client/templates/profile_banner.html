@@ -6,9 +6,8 @@
           <img class="img-circle img-responsive-sm" src="{{profile.photoUrl}}"/>
         </div>
 
-
         <div class="col-sm-3 col-md-2">
-          {{#if isMyProfile}}
+          {{#if isMyProfileEditable}}
             <div class="dropdown">
               <button id="status-drop-button" class="status-drop-button text-uppercase green raleway-semibold spacing-250" type="button" data-toggle="dropdown" aria-haspopup="true" role="button" aria-expanded="false" >
                 {{profile.status}}
@@ -21,7 +20,9 @@
               </ul>
             </div>
           {{else}}
-            <p class="text-uppercase green raleway-semibold spacing-250">{{profile.status}}</p>
+            {{#if isLoggedIn}}
+              <p class="text-uppercase green raleway-semibold spacing-250">{{profile.status}}</p>
+            {{/if}}
           {{! Internal profile }}
           {{/if}}
 
@@ -54,13 +55,15 @@
               <button class='btn btn-block btn-small btn-accent raleway-semibold white text-uppercase spacing-0625 small'>account settings</button>
             </a>
             {{else}}
-              {{#if isLoggedIn}}
-                {{#if isFollowing}}
-                  <button class='btn btn-block btn-small btn-accent raleway-semibold white text-uppercase spacing-0625 small un-follow'>unfollow</button>
-                {{else}}
-                  <button class='btn btn-block btn-small btn-accent raleway-semibold white text-uppercase spacing-0625 small follow'>follow</button>
+              {{#unless isMyProfile}}
+                {{#if isLoggedIn}}
+                  {{#if isFollowing}}
+                    <button class='btn btn-block btn-small btn-accent raleway-semibold white text-uppercase spacing-0625 small un-follow'>unfollow</button>
+                  {{else}}
+                    <button class='btn btn-block btn-small btn-accent raleway-semibold white text-uppercase spacing-0625 small follow'>follow</button>
+                  {{/if}}
                 {{/if}}
-              {{/if}}
+              {{/unless}}
             {{/if}}
             <a href="#">
               {{#if isPrivate}}

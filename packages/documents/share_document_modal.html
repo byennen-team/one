@@ -3,17 +3,60 @@
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-          <h4 class="modal-title" id="myModalLabel">Share and Invite</h4>
+          <button type="button" class="close" data-dismiss="modal">
+            <i class='fa icon-x' aria-hidden="true"></i>
+            <span class="sr-only">Close</span>
+          </button>
+          <h4 class="modal-title" id="myModalLabel">Link to</h4>
+<!-- TEMPLATE - need current document name and file, wrapped in "" - ie, "Elli SEO plan.docx"  -->
+          <p>"Elli SEO plan.docx"</p>
         </div>
         <div class="modal-body">
-          <a href="{{shareUrl}}">{{shareUrl}}</a>
+          
           <div class="form-group">
-            <input type="text" class="form-control" placeholder="Type names or email addresses to share...">
+
+            <label>link</label>
+            <div class="relative">
+              <div class='display-link'>
+                {{shareUrl}}
+              </div>
+              <div class="copy-link">
+                <i class="fa fa-copy"></i>
+                copy
+              </div>
+            </div>
+
+            <label>
+              access
+              <i class="fa fa-info-circle" data-toggle="tooltip" data-placement="right" title='Zombie ipsum reversus ab viral inferno, nam rick grimes malum cerebro. De carne lumbering animata corpora quaeritis.'></i>
+            </label>
+            <select class="selectpicker" data-style="drop-select" data-width='100%'>
+              <option value="link">Anyone with the Link</option>
+              <option value="company">People in the Company</option>
+              <option value="folder">People in this Folder</option>
+            </select>
+            
+            <label class='m-top-20'>advanced</label>
+            <div class="input-bag">
+              <div class="input-box">
+                <div class='upload-input'>
+                  <span>Require Password</span>
+                  <input class="pull-right" type="text" placeholder='enter password'>
+                </div>
+              </div>
+              <div class="input-box">
+                <div class='upload-input'>
+                  <span>Set Link Expiration</span>
+                  <!-- <input class="pull-right" type="text" placeholder='enter password'> -->
+                  <input type="num" class="link-expiration pull-right pointer" placeholder="--" data-provide="datepicker"  data-date-format="mm/dd">
+                </div>
+              </div>
+            </div>
+
           </div>
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-primary">Send Invite</button>
+          <button type="button" class="btn btn-primary" data-dismiss="modal">done</button>
         </div>
       </div>
     </div>

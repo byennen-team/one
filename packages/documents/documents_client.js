@@ -74,6 +74,14 @@ Template.documents.events({
     var file = Blaze.getData(event.target);
     Session.set('selectedFileId', file._id);
   },
+  'click .remove': function (event) {
+    event.preventDefault();
+    var file = Blaze.getData(event.target);
+    Meteor.call('archiveDocument',file._id, true, function(error,response) {
+      if (error)
+        alert ("could not delete file");
+    });
+  },
   'mouseover td.name': function () {
     // TODO: Lance finish front end
     console.log('hover');
@@ -95,7 +103,7 @@ Template.documents.helpers({
     });
   },
   files: function () {
-    return Files.find({companyDocument: Routes.getName() === Routes.COMPANY_DOCUMENTS});
+    return Files.find({companyDocument: Routes.getName() === Routes.COMPANY_DOCUMENTS, archived: {$ne: true}});
   },
   url: function (file) {
     var folder;
@@ -106,7 +114,6 @@ Template.documents.helpers({
       // TODO: add company_id
       folder = Folder.companyDocument('elliman');
     }
-
     return FileTools.url(folder + '/' + file.name);
   },
   date: function (file) {
@@ -114,6 +121,9 @@ Template.documents.helpers({
   },
   type: function (file) {
     return file.name.split('.').pop();
+  },
+  isPersonalDocument: function (file) {
+    return file.companyDocument === false;
   }
 });
 
