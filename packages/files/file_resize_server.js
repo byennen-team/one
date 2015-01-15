@@ -23,7 +23,6 @@ var s3_params = {
   , bucket: Meteor.settings.AWS_BUCKET
   , region: Meteor.settings.AWS_REGION
 };
-console.log('s3_params', s3_params);
 var s3_client = knox.createClient(s3_params);
 FileTools.fetch_to_temp = function(url, done){
   var originalName = url.substring(url.lastIndexOf('/')+1);
