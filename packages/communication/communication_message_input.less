@@ -1,1 +1,80 @@
-// Styles in /styles/dropdown.import.less until variables are cross package
+// Variables 
+@import "/client/lib/style.import.less";
+
+.message-input {
+	position: absolute;
+	width: 100%;
+	height: 70px;
+	bottom: 0;
+	background-color: @white;
+	border: 2px solid @lt-dk-grey;
+	border-style: solid none none none;
+	z-index: 2;
+	.message-btn {
+		float: left;
+		background-color: @lt-blue-grey;
+		height: 4em;
+		width: 4em;
+		border-radius: 50%;
+		margin: 0.5em 0 0.5em 40px;
+		padding: 1.5em;
+		cursor: pointer;
+		.fa {
+			font-size: 18px;
+		}
+	}
+	.input-options {
+		position: absolute;
+		bottom: 80px;
+		left: 10px;
+		// height: 0;
+		display: none;
+		.option {
+			font-size: 11px;
+			width: 12.273em;
+			height: 4.091;
+			margin-top: 0.5em;
+			padding: 1.5em 0;
+			color: @white;
+			font-family: @raleway-semibold;
+			text-transform: uppercase;
+			letter-spacing: 0.125em;
+			text-align: center;
+			border-radius: 3px;
+			cursor: pointer;
+			-webkit-box-shadow: -3px 3px 4px -1px rgba(0,0,0,0.35);
+			-moz-box-shadow: -3px 3px 4px -1px rgba(0,0,0,0.35);
+			box-shadow: -3px 3px 4px -1px rgba(0,0,0,0.35);
+		}
+		.post {
+			background-color: @lime;
+		}
+		.attachment {
+			background-color: @purple;
+		}
+		.task {
+			display: none;
+			background-color: @aqua;
+		}
+	}
+	.fake-input {
+		font-size: 16px;
+		float: left;
+		padding: 1.5em 1em 1.5em 25px;
+		color: @blue-grey;
+	}
+	.dropdown {
+		width: auto;
+	}
+}
+
+// alternate styles when tasks are enabled
+.tasks {
+	.message-input {
+		.input-options {
+			.task {
+				display: block;
+			}
+		}
+	}
+}

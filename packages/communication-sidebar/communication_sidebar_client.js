@@ -51,6 +51,8 @@ Template.communicationSidebar.events({
 		$.Velocity.hook($('#communication-message-board'), "width", "60%");
 		$.Velocity.hook($('#communication-task-board'), "width", "0%"); 
 		$.Velocity.hook($('#communication-library-board'), "width", "15.5%");
+		// remove class from main chat window
+		$('#communication-main').removeClass('tasks');
 		// force scrollbar on sidebar
 		var currentHeight = $(window).height();
 		$('.communication-sidebar-sleeve').css({
@@ -77,6 +79,8 @@ Template.communicationSidebar.events({
 		$.Velocity.hook($('#communication-message-board'), "width", "45%");
 		$.Velocity.hook($('#communication-task-board'), "width", "15%"); 
 		$.Velocity.hook($('#communication-library-board'), "width", "15.5%"); 
+		// add class to main chat window
+		$('#communication-main').addClass('tasks');
 		// force scrollbar on sidebar
 		var currentHeight = $(window).height();
 		$('.communication-sidebar-sleeve').css({
