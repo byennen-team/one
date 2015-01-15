@@ -27,8 +27,8 @@ var s3_params = {
 console.log('s3_params', s3_params);
 var s3_client = knox.createClient(s3_params);
 FileTools.fetch_to_temp = function(url, done){
-  var originalName = url.substring(url.lastIndexOf('/')+1)
-  var xpat = /\.([0-9a-z]+)(?:[\?#]|$)/i
+  var originalName = url.substring(url.lastIndexOf('/')+1);
+  var xpat = /\.([0-9a-z]+)(?:[\?#]|$)/i;
   img_ext = originalName.match(xpat)[0];
   request(url)
   .on('response', 
@@ -40,18 +40,18 @@ FileTools.fetch_to_temp = function(url, done){
            .pipe(fs.createWriteStream(base+img_tmp+img_ext))
            .on('end', Meteor.bindEnvironment(function(err, res) {
             if (err) throw err;
-            console.log('piped No Image Available')
+            console.log('piped No Image Available');
             done();
             }));
          } 
        }))
   .on('end', 
       Meteor.bindEnvironment(function(error, response, body){
-        if (error) console.log('end error', response.statusCode)
+        if (error) console.log('end error', response.statusCode);
         done();
        })) 
   .pipe(fs.createWriteStream(base+img_tmp+img_ext)); 
-}
+};
 FileTools.resize_temp = function(size, done) {
   Meteor.wrapAsync(im.resize({
       srcPath: base+img_tmp+img_ext,
@@ -63,19 +63,16 @@ FileTools.resize_temp = function(size, done) {
       if (err) {
         console.log('resized error: ');
       }
-      done()
+      done();
     })));
-}
+};
 FileTools.upload = function (descriptor, remotefile, done) {
   var imagefile = base+descriptor+img_tmp+img_ext;
-  remotefile+=img_ext
-  Meteor.wrapAsync(s3_client.putFile(imagefile, remotefile
-                                     , Meteor.bindEnvironment(function(err, response) {
-                                       if (err) {
-                                         console.log('upload error:', remotefile);
-                                       }
-                                       done();
-                                     })));               
+  remotefile+=img_ext;
+  Meteor.wrapAsync(s3_client.putFile(imagefile, remotefile, Meteor.bindEnvironment(function(err, response) {
+      if (err) { console.log('upload error:', remotefile); }
+      done();
+    })));               
 };   
                    
 // creates an object with various urls to be sent back to client
