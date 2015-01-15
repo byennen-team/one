@@ -10,14 +10,14 @@ im           = Npm.require('imagemagick'), // re-size images
 gm           = Npm.require('gm').subClass({ imageMagick: true }), // graphics magic
 encoding     = 'binary',                      // default encoding
 oi           = {},                            // original image
-resizeWidths = { "mobile_":480, "thumb_":65, "full_":140 }
-resizeHeights = { "mobile_": 480, "thumb_": 65, "full_": 140 }
+resizeWidths = { "mobile_":480, "thumb_":65, "full_":140 },
+resizeHeights = { "mobile_": 480, "thumb_": 65, "full_": 140 };
 
 var base = process.env.PWD+'/tempImages/';
-var img_tmp = 'imagetmp'
-var img_ext = '.jpeg'
-var temp_img_file = base+img_tmp+img_ext
-var imageremote = 'remoteimage.jpeg'
+var img_tmp = 'imagetmp';
+var img_ext = '.jpeg';
+var temp_img_file = base+img_tmp+img_ext;
+var imageremote = 'remoteimage.jpeg';
 var s3_params = {
     key: Meteor.settings.AWS_ACCESS_KEY_ID //<api-key-here>'
   , secret: Meteor.settings.AWS_SECRET_ACCESS_KEY  //'<secret-here>'
@@ -33,25 +33,22 @@ FileTools.fetch_to_temp = function(url, done){
   request(url)
   .on('response', 
       Meteor.bindEnvironment(function(response){
-        response = response || { statusCode: 8888 }
-        //console.log('response code:', response.statusCode)
+        response = response || { statusCode: 8888 };
         if (response && response.statusCode == 404) {
-           console.log(url, ' not found', response.statusCode)
+           console.log(url, ' not found', response.statusCode);
            fs.createReadStream(base+'No_image_available.jpg')
            .pipe(fs.createWriteStream(base+img_tmp+img_ext))
            .on('end', Meteor.bindEnvironment(function(err, res) {
             if (err) throw err;
             console.log('piped No Image Available')
             done();
-          }));
+            }));
          } 
        }))
   .on('end', 
       Meteor.bindEnvironment(function(error, response, body){
         if (error) console.log('end error', response.statusCode)
-        //console.log('response end: ', url);
         done();
-        //Meteor._powerQ.resume()
        })) 
   .pipe(fs.createWriteStream(base+img_tmp+img_ext)); 
 }
@@ -72,13 +69,11 @@ FileTools.resize_temp = function(size, done) {
 FileTools.upload = function (descriptor, remotefile, done) {
   var imagefile = base+descriptor+img_tmp+img_ext;
   remotefile+=img_ext
-  //console.log('upload:', imagefile, ' to: ', remotefile)
   Meteor.wrapAsync(s3_client.putFile(imagefile, remotefile
                                      , Meteor.bindEnvironment(function(err, response) {
                                        if (err) {
                                          console.log('upload error:', remotefile);
                                        }
-                                       //console.log(' upload code: ', response.statusCode);
                                        done();
                                      })));               
 };   

@@ -18,8 +18,8 @@ Files.allow({
  * @returns {{accessKey: *, policy: string, signature: *}}
  */
 FileTools.signUpload = function (filePath, acl, mimeType) {
-  var bucket = Meteor.settings.AWS_BUCKET 
-  console.log('signupload bucket:', bucket)
+  var bucket = Meteor.settings.AWS_BUCKET; 
+  console.log('signupload bucket:', bucket);
   var policy = {
     // expire in 5 minutes
     expiration: new Date(new Date().getTime() + 1000 * 60 * 5).toISOString(),
@@ -64,11 +64,11 @@ FileTools.signedGet = function (filePath) {
   var stringToSign = 'GET\n\n\n' + dateTime + '\n' + filePath;
   console.log("Signing String", stringToSign);
   var signature = awsSignature(stringToSign);
-  console.log("Signature", signature)
+  console.log("Signature", signature);
   var queryString = '?AWSAccessKeyId=' + Meteor.settings.AWS_ACCESS_KEY_ID + '&Expires=' + dateTime + '&Signature=' + encodeURIComponent(signature);
   var url = 'https://' + Meteor.settings.REGION + '.amazonaws.com' + filePath + queryString;
-  console.log("Signed URL", url)
-  return url
+  console.log("Signed URL", url);
+  return url;
 };
 
 FileTools.rename = function (originalFilePath, newFilePath, callback) {
