@@ -77,9 +77,13 @@ var q_fetch_resize_and_upload = function(user){
   });
   //
   Meteor._powerQ.add(function(done) {
+      var large_url_raw = 'user/'+user.profile.id+'/profile-images/full_'+user.profile.id+_ext;
+      var thumb_url_raw = 'user/'+user.profile.id+'/profile-images/thumn_'+user.profile.id+_ext;
+      var thumb_signed = FileTools.signedGetS3(thumb_url_raw);
+      var large_signed = FileTools.signedGetS3(large_url_raw);
     user.profile.photoUrl = {
-        large: s3BaseURL+user.profile.id+'/profile-images/full_'+user.profile.id+_ext,
-        thumb: s3BaseURL+user.profile.id+'/profile-images/thumb_'+user.profile.id+_ext
+        large: large_signed,
+        thumb: thumb_signed
     }
     var user_mongo = Meteor.users.insert(user);
     console.log('end:', count_jobs++, ' mongo: ', user_mongo); 
