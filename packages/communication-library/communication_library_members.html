@@ -1,6 +1,6 @@
 <template name='libraryMembers'>
 	
-	<div class='library-board-sleeve'>
+	<div class='library-board-sleeve members'>
 
 		<div class="member">
 			<div class="avatar">
@@ -16,7 +16,7 @@
 <!-- TODO: Plug in phone button -->
 			<div class="phone"><i class="fa fa-phone"></i></div>
 <!-- TODO: Plug in video chat -->
-			<div class="video-chat"><i class="fa fa-video"></i></div>
+			<div class="video-chat"><i class="fa fa-video-camera"></i></div>
 		</div>	
 
 <!-- repeated for style -->
@@ -28,7 +28,7 @@
 			<div class="name">Jon Evans</div>
 			<div class="title">Marketing Directory</div>
 			<div class="phone"><i class="fa fa-phone"></i></div>
-			<div class="video-chat"><i class="fa fa-video"></i></div>
+			<div class="video-chat"><i class="fa fa-video-camera"></i></div>
 		</div>	
 		
 		<div class="member">
@@ -39,7 +39,7 @@
 			<div class="name">Dottie Herman</div>
 			<div class="title">Realtor</div>
 			<div class="phone"><i class="fa fa-phone"></i></div>
-			<div class="video-chat"><i class="fa fa-video"></i></div>
+			<div class="video-chat"><i class="fa fa-video-camera"></i></div>
 		</div>	
 
 		<div class="member">
@@ -50,13 +50,14 @@
 			<div class="name">Michael Graves</div>
 			<div class="title">Seller's Attorney</div>
 			<div class="phone"><i class="fa fa-phone"></i></div>
-			<div class="video-chat"><i class="fa fa-video"></i></div>
+			<div class="video-chat"><i class="fa fa-video-camera"></i></div>
 		</div>	
 <!-- /style repeat -->
 
-		<div id="communication-library-invite" class="invite-button">
-			<i class="fa icon-addteam"></i>
-			<p>Invite someone</p>
+		<div class="invite-button">
+			<i id="communication-library-invite" class="fa icon-addteam"></i>
+			<input id="communication-library-invite-input" type="text" placeholder='Invite someone' />
+			<i id="communication-library-invite-directory" class="fa fa-user" data-toggle="modal" data-target="#communication-directory-modal"></i>
 		</div>
 	</div>
 

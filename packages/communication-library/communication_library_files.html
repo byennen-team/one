@@ -1,24 +1,23 @@
 <template name='libraryFiles'>
 	
-	<div class='library-board-sleeve'>
+	<div class='library-board-sleeve files'>
 
-		<p>Files in</p>
-		<div class="dropdown">
-		  <div class="dropdown-header" data-toggle="collapse" href="#communication-library-files-folders" aria-expanded="true" aria-controls="communication-library-files-folders">
-<!-- TODO: Should show currently selectec/shown folder -->
-				My Docs
-		    <span class="caret"></span>
-		  </div>
-		  <div class="collapse in" id="communication-library-files-folders">
-			  <div class="well">
-		  		<ul role="menu" >
-	<!-- TODO: List folders -->
-	<!-- TODO: Selecting one of these brings up files in folder -->
-				    <li>My Docs</li>
-				    <li>Company Docs</li>
-				    <li>Team Awesome</li>
-				  </ul>
-				</div>
+		<div class="drop-box">
+			<p>Files in</p>
+
+			<div class="dropdown">
+			  <div class="dropdown-toggle" type="button" id="communication-library-files-folders" data-toggle="dropdown" aria-expanded="true">
+			<!-- TODO: Should show currently selectec/shown folder -->
+			    My Docs
+			    <span class="caret"></span>
+			  </div>
+			  <ul class="dropdown-menu" role="menu" aria-labelledby="communication-library-files-folders">
+			<!-- TODO: List folders -->
+			<!-- TODO: Selecting one of these brings up files in folder -->
+			    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">My Docs</a></li>
+			    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Company Docs</a></li>
+			    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Team Awesome</a></li>
+			  </ul>
 			</div>
 		</div>
 
@@ -39,67 +38,67 @@ class="file {{company/personal}}" -->
 	 -->
 				<i class="fa fa-file"></i>
 <!-- TODO: file's title -->
-				<div class="title">Listing Agreement.doc</div>
-<!-- TODO: file's date modified -->
-				<div class="date">Dec 17, 2013</div>
 			</div>
+			<div class="title">Listing Agreement.doc</div>
+<!-- TODO: file's date modified -->
+			<div class="date">Dec 17, 2013</div>
 		</div>
 
 <!-- Repeated for style -->
-		<div class="file">
+		<div class="file company">
 			<div class="file-icon">
 				<i class="fa fa-file"></i>
-				<div class="title">Blank Offer to Purchase.doc</div>
-				<div class="date">Dec 17, 2013</div>
 			</div>
+			<div class="title">Blank Offer to Purchase.doc</div>
+			<div class="date">Dec 17, 2013</div>
 		</div>
 
-		<div class="file">
+		<div class="file company">
 			<div class="file-icon">
 				<i class="fa fa-table"></i>
-				<div class="title">Broker Settlement Statement.xls</div>
-				<div class="date">Dec 17, 2013</div>
 			</div>
+			<div class="title">Broker Settlement Statement.xls</div>
+			<div class="date">Dec 17, 2013</div>
 		</div>
 
-		<div class="file">
+		<div class="file personal">
 			<div class="file-icon">
 				<i class="fa fa-table"></i>
-				<div class="title">Business plan 5 Step Agent...xls</div>
-				<div class="date">Dec 17, 2013</div>
 			</div>
+			<div class="title">Business plan 5 Step Agent...xls</div>
+			<div class="date">Dec 17, 2013</div>
 		</div>
 
-		<div class="file">
+		<div class="file company">
 			<div class="file-icon">
 				<i class="fa fa-file"></i>
-				<div class="title">Broker Settlement Statement.doc</div>
-				<div class="date">Dec 17, 2013</div>
 			</div>
+			<div class="title">Broker Settlement Statement.doc</div>
+			<div class="date">Dec 17, 2013</div>
 		</div>
 
-		<div class="file">
-			<div class="file-icon">
-				<img src="images/com-hub-main/de-mark.png" alt="title_of_file"/>
-				<div class="title">Staging Idea.jpg</div>
-				<div class="date">Dec 17, 2013</div>
-			</div>
-		</div>
-
-		<div class="file">
-			<div class="file-icon">
-				<i class="fa fa-file"></i>
-				<div class="title">575 Madison Ave description.doc</div>
-				<div class="date">Dec 17, 2013</div>
-			</div>
-		</div>
-
-		<div class="file">
+		<div class="file personal">
 			<div class="file-icon">
 				<img src="images/com-hub-main/interior.jpg" alt="title_of_file"/>
-				<div class="title">DE Mark.png</div>
-				<div class="date">Dec 17, 2013</div>
 			</div>
+			<div class="title">Staging Idea.jpg</div>
+			<div class="date">Dec 17, 2013</div>
+		</div>
+
+		<div class="file personal">
+			<div class="file-icon">
+				<i class="fa fa-file"></i>
+			</div>
+			<div class="title">575 Madison Ave description.doc</div>
+			<div class="date">Dec 17, 2013</div>
+		</div>
+
+		<div class="file company">
+			<div class="file-icon">
+				<img src="images/com-hub-main/de-mark.png" alt="title_of_file"/>
+			</div>
+			<div class="title">DE Mark.png</div>
+			<div class="date">Dec 17, 2013</div>
 		</div>
 <!-- /style repeat -->
 
