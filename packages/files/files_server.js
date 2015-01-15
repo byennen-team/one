@@ -87,6 +87,7 @@ FileTools.signedGetS3 = function (filePath) {
 };
 
 
+
 FileTools.rename = function (originalFilePath, newFilePath, callback) {
   var boundCallback = Meteor.bindEnvironment(function (err, res) {
     callback(err, res);

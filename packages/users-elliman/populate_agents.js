@@ -113,4 +113,5 @@ Meteor.startup(function () {
   });
   console.log('Ready to run queue');
   Meteor._powerQ.run();
+  console.log('queue running', ellimanAgents.length, 'elliman agents');
 });
