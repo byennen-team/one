@@ -4,152 +4,47 @@
       <!-- TEMPLATE - Post date		 -->
       <p class='not-for-user raleway-semibold auto-width m-left-05 text-uppercase purple pull-left spacing-125'>gallery</p>
       <!-- TEMPLATE - Add picture functionality		 -->
-      <form class="block pull-left user-only">
-        <label for='gallery-image-upload' class='raleway-light auto-width m-right-05 purple pointer'>Add pics</label>
-        <input id='gallery-image-upload' class="hidden" type="file" name="pic" accept="image/*">
-        <label for='gallery-image-upload' class="fa icon-plus-circle fa-lg purple pointer lh-180"></label>
-      </form>
-      <!-- TEMPLATE - Create Album functionality - on hold		 -->
-      <!-- 	    <a href='#' class="block pull-left user-only m-left-20">
-      <i class="fa fa-picture-o fa-lg purple"></i>
-      <span class='raleway-light auto-width m-right-05 purple'>Create an Album</span>
-    </a> -->
+      {{#if isMyProfileEditable}}
+        {{#if galleries.count}}
+          <a href="#" class="raleway-light auto-width m-right-05 purple pointer" data-toggle="modal" data-target="#picturesUploadModal"><i class="fa fa-cloud-upload"></i> Add a picture</a>
+        {{/if}}
+        <a href="#" class="raleway-light auto-width m-right-05 purple pointer" data-toggle="modal" data-target="#addGaleryModal"><i class="fa fa-photo"></i> Add a gallery</a>
+      {{/if}}
+      
     <div class='clearfix'></div>
 
-    <div class='album m-top-20'>
-      <!-- TEMPLATE - Album date		 -->
-      <p class='h6 raleway-semibold text-uppercase periwinkle pull-left spacing-125'>4 hours ago</p>
-      <!-- TEMPLATE - Album title	- on hold	 -->
-      <!-- <p class='h4 raleway-light auto-width navy pull-left'>NYC in the Fall</p> -->
-      <!-- TEMPLATE - Number of pictures in the album		 -->
-      <p class='h6 raleway-semibold auto-width purple pull-right m-top-10'>8 pictures</p>
+    {{#each galleries}}
+      <div class='album m-top-20'>
+        <!-- TEMPLATE - Album date     -->
+        <p class='h6 raleway-semibold text-uppercase periwinkle pull-left spacing-125'>{{date createdAt}}</p>
+        <div class='clearfix'></div>
+        <p class='h5 raleway-semibold text-uppercase pull-left spacing-125'>{{galleryName}}<a href="#" class="remove-gallery" data-id="{{_id}}"><i class="fa fa-remove"></i></a></p>
+        <!-- TEMPLATE - Album title - on hold  -->
+        <!-- <p class='h4 raleway-light auto-width navy pull-left'>NYC in the Fall</p> -->
+        <!-- TEMPLATE - Number of pictures in the album    -->
+        <p class='h6 raleway-semibold auto-width purple pull-right m-top-10'>{{pictureCount}} pictures</p>
 
-      <div class='clearfix'></div>
+        <div class='clearfix'></div>
 
-      <div class="row">
-        <!-- TEMPLATE - gallery urls  - 600x600px min	  		 -->
-        <!-- TEMPLATE - gallery image url in 'data-pic'  	  		 -->
-        <div class='gallery-square col-sm-2 half-gutter m-bottom-10 pointer' data-toggle="modal" data-target="#gallery-modal" data-slide-to="0">
-          <div class="delete-photo user-only black-bg img-circle ">
-            <span class="sr-only">delete</span>
-            <i class="fa icon-x-circle fa-lg white"></i>
-          </div>
-          <!-- TEMPLATE - gallery image url in 'style' 			-->
-          <div class="full-bg-img" style="background-image: url(../../images/profile/central-park.jpg);"></div>
+        <div class="row">
+          {{#each pictures}}
+            <!-- TEMPLATE - gallery urls  - 600x600px min        -->
+            <!-- TEMPLATE - gallery image url in 'data-pic'          -->
+            <div class='gallery-square col-sm-2 half-gutter m-bottom-10 pointer' data-toggle="modal" data-target="#gallery-modal" data-slide-to="0">
+              <div class="delete-photo user-only black-bg img-circle" data-id="{{pictureKey}}">
+                <span class="sr-only">delete</span>
+                <i class="fa icon-x-circle fa-lg white"></i>
+              </div>
+              <!-- TEMPLATE - gallery image url in 'style'      -->
+              <div class="full-bg-img" style="background-image: url({{pictureUrl}});"></div>
+            </div>
+          {{/each}}
         </div>
-        <!-- gallery divs repeated for style -->
-        <div class='gallery-square col-sm-2 half-gutter m-bottom-10 pointer' data-toggle="modal" data-target="#gallery-modal" data-slide-to="1">
-          <div class="delete-photo user-only black-bg img-circle ">
-            <span class="sr-only">delete</span>
-            <i class="fa icon-x-circle fa-lg white"></i>
-          </div>
-          <div class="full-bg-img" style="background-image: url(../../images/profile/gallery-5.jpg);"></div>
-        </div>
-
-        <div class='gallery-square col-sm-2 half-gutter m-bottom-10 pointer' data-toggle="modal" data-target="#gallery-modal" data-slide-to="2">
-          <div class="delete-photo user-only black-bg img-circle ">
-            <span class="sr-only">delete</span>
-            <i class="fa icon-x-circle fa-lg white"></i>
-          </div>
-          <div class="full-bg-img" style="background-image: url(../../images/profile/gallery-7.jpg);"></div>
-        </div>
-
-        <div class='gallery-square col-sm-2 half-gutter m-bottom-10 pointer' data-toggle="modal" data-target="#gallery-modal" data-slide-to="3">
-          <div class="delete-photo user-only black-bg img-circle ">
-            <span class="sr-only">delete</span>
-            <i class="fa icon-x-circle fa-lg white"></i>
-          </div>
-          <div class="full-bg-img" style="background-image: url(../../images/profile/gallery-1.jpg);"></div>
-        </div>
-
-        <div class='gallery-square col-sm-2 half-gutter m-bottom-10 pointer' data-toggle="modal" data-target="#gallery-modal" data-slide-to="4">
-          <div class="delete-photo user-only black-bg img-circle ">
-            <span class="sr-only">delete</span>
-            <i class="fa icon-x-circle fa-lg white"></i>
-          </div>
-          <div class="full-bg-img" style="background-image: url(../../images/profile/gallery-2.jpg);"></div>
-        </div>
-
-        <div class='gallery-square col-sm-2 half-gutter m-bottom-10 pointer' data-toggle="modal" data-target="#gallery-modal" data-slide-to="5">
-          <div class="delete-photo user-only black-bg img-circle ">
-            <span class="sr-only">delete</span>
-            <i class="fa icon-x-circle fa-lg white"></i>
-          </div>
-          <div class="full-bg-img" style="background-image: url(../../images/profile/gallery-4.jpg);"></div>
-        </div>
-
-        <div class='gallery-square col-sm-2 half-gutter m-bottom-10 pointer' data-toggle="modal" data-target="#gallery-modal" data-slide-to="6">
-          <div class="delete-photo user-only black-bg img-circle ">
-            <span class="sr-only">delete</span>
-            <i class="fa icon-x-circle fa-lg white"></i>
-          </div>
-          <div class="full-bg-img" style="background-image: url(../../images/profile/gallery-6.jpg);"></div>
-        </div>
-
-        <div class='gallery-square col-sm-2 half-gutter m-bottom-10 pointer' data-toggle="modal" data-target="#gallery-modal" data-slide-to="7">
-          <div class="delete-photo user-only black-bg img-circle ">
-            <span class="sr-only">delete</span>
-            <i class="fa icon-x-circle fa-lg white"></i>
-          </div>
-          <div class="full-bg-img" style="background-image: url(../../images/profile/gallery-8.jpg);"></div>
-        </div>
-
+      
       </div>
+    {{/each}}
     </div>
-
-    <!-- Album repeated for style		 -->
-    <div class='album m-top-20'>
-      <p class='h6 raleway-semibold text-uppercase periwinkle pull-left spacing-125'>nov 14, 2014</p>
-      <!-- <p class='h4 raleway-light auto-width navy pull-left'>Favorite City Shots</p> -->
-      <p class='h6 raleway-semibold auto-width purple pull-right m-top-10'>6 pictures</p>
-
-      <div class='clearfix'></div>
-
-      <div class="row">
-        <div class='gallery-square col-sm-2 half-gutter m-bottom-10'>
-          <div class="delete-photo user-only black-bg img-circle ">
-            <span class="sr-only">delete</span>
-            <i class="fa icon-x-circle fa-lg white"></i>
-          </div>
-          <div class="full-bg-img" style="background-image: url(../../images/profile/gallery-4.jpg);"></div>
-        </div>
-        <div class='gallery-square col-sm-2 half-gutter m-bottom-10'>
-          <div class="delete-photo user-only black-bg img-circle ">
-            <span class="sr-only">delete</span>
-            <i class="fa icon-x-circle fa-lg white"></i>
-          </div>
-          <div class="full-bg-img" style="background-image: url(../../images/profile/gallery-3.jpg);"></div>
-        </div>
-        <div class='gallery-square col-sm-2 half-gutter m-bottom-10'>
-          <div class="delete-photo user-only black-bg img-circle ">
-            <span class="sr-only">delete</span>
-            <i class="fa icon-x-circle fa-lg white"></i>
-          </div>
-          <div class="full-bg-img" style="background-image: url(../../images/profile/gallery-5.jpg);"></div>
-        </div>
-        <div class='gallery-square col-sm-2 half-gutter m-bottom-10'>
-          <div class="delete-photo user-only black-bg img-circle ">
-            <span class="sr-only">delete</span>
-            <i class="fa icon-x-circle fa-lg white"></i>
-          </div>
-          <div class="full-bg-img" style="background-image: url(../../images/profile/gallery-6.jpg);"></div>
-        </div>
-        <div class='gallery-square col-sm-2 half-gutter m-bottom-10'>
-          <div class="delete-photo user-only black-bg img-circle ">
-            <span class="sr-only">delete</span>
-            <i class="fa icon-x-circle fa-lg white"></i>
-          </div>
-          <div class="full-bg-img" style="background-image: url(../../images/profile/gallery-8.jpg);"></div>
-        </div>
-        <div class='gallery-square col-sm-2 half-gutter m-bottom-10'>
-          <div class="delete-photo user-only black-bg img-circle ">
-            <span class="sr-only">delete</span>
-            <i class="fa icon-x-circle fa-lg white"></i>
-          </div>
-          <div class="full-bg-img" style="background-image: url(../../images/profile/gallery-7.jpg);"></div>
-        </div>
-      </div>
-    </div>
-  </div>
   </section>
+  {{> addGalleryModal}}
+  {{> picturesUploadModal}}
 </template>

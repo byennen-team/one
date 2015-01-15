@@ -1,0 +1,45 @@
+<template name="picturesUploadModal">
+  <div class="documents-upload-modal modal fade" id="picturesUploadModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">
+            <i class='fa icon-x' aria-hidden="true"></i>
+            <span class="sr-only">Close</span>
+          </button>
+          <h4 class="modal-title" id="myModalLabel">Upload pictures</h4>
+        </div>
+        <div class="modal-body">
+          
+          <div class="form-group">
+
+            <label>pictures</label>
+            <div class="input-bag">
+              <div class="input-box">
+                <label class='upload-input uploadCount'>
+                  <i class="fa icon-addteam"></i>
+                  <span class='file-name'></span>
+                  <input class="file-upload upload hidden" type="file" accept="image/*" />
+                </label>
+                <i class="fa fa-times-circle-o hidden"></i>
+              </div>
+            </div>
+
+            <label class='m-top-20'>Upload to Gallery:</label>
+            <select class="selectpicker" id="select-gallery-dropdown" data-style="drop-select" data-width='100%'>
+<!-- LANCE - <option>s should be the folders the user has created -->
+              {{#each galleries}}
+                <option value="{{_id}}">{{galleryName}}</option>
+              {{/each}}
+            </select>
+            
+          </div>
+        </div>
+        <div class="modal-footer m-top-20">
+          <button type="button" class="btn btn-default" data-dismiss="modal">cancel</button>
+          <button type="button" class="btn btn-primary upload-modal-btn" data-dismiss="modal">upload</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</template>
