@@ -92,7 +92,7 @@ Template.documents.helpers({
 
     return Files.find({
       _id: {$in: user.favoriteDocumentIds}
-    })
+    });
   },
   files: function () {
     return Files.find({companyDocument: Routes.getName() === Routes.COMPANY_DOCUMENTS});
