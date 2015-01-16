@@ -14,7 +14,7 @@
     <div class='clearfix'></div>
 
     {{#each galleries}}
-      <div class='album m-top-20'>
+      <div class='album row m-top-20' album-id="{{_id}}">
         <!-- TEMPLATE - Album date     -->
         <p class='h6 raleway-semibold text-uppercase periwinkle pull-left spacing-125'>{{date createdAt}}</p>
         <div class='clearfix'></div>
@@ -26,17 +26,17 @@
 
         <div class='clearfix'></div>
 
-        <div class="row">
+        <div class="">
           {{#each pictures}}
             <!-- TEMPLATE - gallery urls  - 600x600px min        -->
             <!-- TEMPLATE - gallery image url in 'data-pic'          -->
-            <div class='gallery-square col-sm-2 half-gutter m-bottom-10 pointer' data-toggle="modal" data-target="#gallery-modal" data-slide-to="0">
+            <div class='gallery-square col-sm-2 half-gutter m-bottom-10 pointer pswipe-picture' data-url="{{pictureUrl}}">
               <div class="delete-photo user-only black-bg img-circle" data-id="{{pictureKey}}">
                 <span class="sr-only">delete</span>
                 <i class="fa icon-x-circle fa-lg white"></i>
               </div>
               <!-- TEMPLATE - gallery image url in 'style'      -->
-              <div class="full-bg-img" style="background-image: url({{pictureUrl}});"></div>
+              <div class="full-bg-img" style="background-image: url({{pictureUrl}});" data-url="{{pictureUrl}}"></div>
             </div>
           {{/each}}
         </div>
@@ -47,4 +47,5 @@
   </section>
   {{> addGalleryModal}}
   {{> picturesUploadModal}}
+  {{> photoSwipeModal}}
 </template>

@@ -72,19 +72,21 @@ Template.picturesUploadModal.events({
     $(".file-upload").each(function() {
       if($(this).prop('files')) {
         var $contents = $(this).prop('files');
-        console.log($contents)
         if ($contents && $contents.length > 0) {
-          console.log($contents[0])
+          //we have a file, let's add a loading indicator
+          var $galleryId = $("#select-gallery-dropdown").val();
+
+          $('.album[album-id="'+$galleryId+'"] .row').append('<div data-type="loader" class="gallery-square col-sm-2 half-gutter m-bottom-10 pointer"><div class="full-bg-img" style="background-image: url(/photo-load.gif);"></div></div>');
           FileTools.upload('signProfilePictureUpload', $contents[0], function (error, result) {
             if (error) throw new Meteor.Error(500, 'Error in uploading file'); // TODO error message
 
             var photoUrl = Meteor.settings.public.AWS_BUCKET_URL + '/' + result.filePath;
-            console.log(photoUrl);
-            var $galleryId = $("#select-gallery-dropdown").val();
-            console.log(result.filePath, photoUrl, $galleryId)
             Meteor.call('addPictureToGallery',result.filePath, photoUrl, $galleryId, function(error, result) {
+              //removing the loading indicator
+              $('.gallery-square[data-type="loader"')[0].remove();
               if (error)
                 return; // TODO: present an error to the user
+
             })
           });
         }

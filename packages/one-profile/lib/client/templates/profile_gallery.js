@@ -31,6 +31,7 @@ Template.profileGallery.events({
 		}
 	},
 	'click .delete-photo': function(event) {
+		event.stopPropagation();
 		$photoKey = $(event.currentTarget).data("id");
 
 		if ($photoKey && $photoKey.length > 0) {
@@ -45,5 +46,85 @@ Template.profileGallery.events({
 		} else {
 			//TODO: throw an error
 		}
+	},
+	'click .pswipe-picture': function(event) {
+		//getting current url to set index
+		$url = $(event.currentTarget).data("url");
+		//building the slides array
+		var slides =[];
+		var openIndex = 0;
+		var $elements = $(event.currentTarget).closest('.album').find('.full-bg-img');
+		_.each($elements,function(item,index) {
+			console.log($(item))
+
+			//getting image so that we can get originaldimensions, 
+			//should not use bandwith as images are already loaded
+
+			var image = new Image();
+			image.src = $(item).data('url')
+
+			slides.push({
+				src: $(item).data('url'),
+				w: image.naturalWidth,
+				h: image.naturalHeight
+			});
+
+			if ($(item).data('url') === $url)
+				openIndex = index;
+		});
+
+		var options = {
+			index: openIndex
+		};
+
+		var gallery = new PhotoSwipe( $('.pswp')[0], PhotoSwipeUI_Default, slides, options);
+		gallery.init();
 	}
 })
+
+Template.profileGallery.rendered = function () {
+  $('.album').on('dragover', function (e) {
+    e.stopPropagation();
+    e.preventDefault();
+
+
+    e.originalEvent.dataTransfer.dropEffect = 'copy';
+  });
+
+  $('.album').on('dragenter', function (e) {
+    $(this).addClass('draggedOver');
+  });
+
+  $('.album').on('dragleave', function (e) {
+    $(this).removeClass('draggedOver');
+  });
+
+  $('.album').on('drop', function (e) {
+    e.stopPropagation();
+    e.preventDefault();
+    $(this).removeClass('draggedOver');
+    var $galleryId = $(this).attr("album-id");
+
+
+    var files = e.originalEvent.dataTransfer.files;
+    for (var i = 0, file; file = files[i]; i++) {
+    	//check if file is image
+    	if (!file.type.match('image.*'))
+    		continue;
+
+    	$('.album[album-id="'+$galleryId+'"] .row').append('<div data-type="loader" class="gallery-square col-sm-2 half-gutter m-bottom-10 pointer"><div class="full-bg-img" style="background-image: url(/photo-load.gif);"></div></div>');
+    	FileTools.upload('signProfilePictureUpload', file, function (error, result) {
+            if (error) throw new Meteor.Error(500, 'Error in uploading file'); // TODO error message
+
+            var photoUrl = Meteor.settings.public.AWS_BUCKET_URL + '/' + result.filePath;
+            Meteor.call('addPictureToGallery',result.filePath, photoUrl, $galleryId, function(error, result) {
+              //removing the loading indicator
+              $('.gallery-square[data-type="loader"]')[0].remove();
+              if (error)
+                return; // TODO: present an error to the user
+
+            })
+          });
+    };
+  });
+};
