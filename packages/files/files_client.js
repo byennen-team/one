@@ -8,7 +8,10 @@ FileTools.temporaryUpload = function (method, file, callback, onProgress, onComp
 
     var formData = new FormData();
     var key = 'events/' + (new Date()).getTime() + '-' + file.name;
+<<<<<<< HEAD
 
+=======
+>>>>>>> master
     formData.append('key', result.filePath);
     formData.append('acl', result.acl);
     formData.append('Content-Type', file.type);
@@ -38,6 +41,17 @@ FileTools.temporaryUpload = function (method, file, callback, onProgress, onComp
     xhr.send(formData);
   });
 };
+<<<<<<< HEAD
 
 
 
+=======
+FileTools.deleteStub = function (method, filePath, callback) {
+  Meteor.call(method, filePath, function (error, result) {
+    if (error) return;
+
+    if (callback)
+      callback(null, result);
+  });
+};
+>>>>>>> master
