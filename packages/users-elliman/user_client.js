@@ -12,7 +12,8 @@ Meteor.subscribe('user');
 Meteor.loginWithElliman = function (agentId, callback) {
   Meteor.call('loginWithElliman', agentId, function (error, result) {
     if (error) {
-      callback && callback.apply(this, arguments);
+      if (callback)
+        callback.apply(this, arguments);
       return;
     }
 
@@ -23,6 +24,7 @@ Meteor.loginWithElliman = function (agentId, callback) {
     Meteor._localStorage.setItem(loginTokenKey, result.token);
     Meteor._localStorage.setItem(loginTokenExpiresKey, result.tokenExpires);
 
-    callback && callback.apply(this, arguments);
+    if (callback)
+      callback.apply(this, arguments);
   });
 };
