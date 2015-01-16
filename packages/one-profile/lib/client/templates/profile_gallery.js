@@ -21,6 +21,9 @@ Template.profileGallery.helpers({
 });
 
 Template.profileGallery.events({
+	'click a[data-target="#picturesUploadModal"]': function(e) {
+		$('.selectpicker').selectpicker('refresh');
+	},
 	'click .remove-gallery': function(event) {
 		$galleryId = $(event.currentTarget).data("id");
 
@@ -52,7 +55,7 @@ Template.profileGallery.events({
 Template.profileGallery.rendered = function () {
 	$('.swipebox').swipebox();
 
-  $('.dropZone').on('dragover', function (e) {
+  $('.album').on('dragover', function (e) {
     e.stopPropagation();
     e.preventDefault();
 
@@ -60,17 +63,17 @@ Template.profileGallery.rendered = function () {
     e.originalEvent.dataTransfer.dropEffect = 'copy';
   });
 
-  $('.dropZone').on('dragenter', function (e) {
+  $('.album').on('dragenter', function (e) {
   	e.stopPropagation();
     e.preventDefault();
     $(e.currentTarget).addClass('draggedOver');
   });
 
-  $('.dropZone').on('dragleave', function (e) {
+  $('.album').on('dragleave', function (e) {
     $(e.currentTarget).removeClass('draggedOver');
   });
 
-  $('.dropZone').on('drop', function (e) {
+  $('.album').on('drop', function (e) {
     e.stopPropagation();
     e.preventDefault();
     $(e.currentTarget).removeClass('draggedOver');
