@@ -22,11 +22,13 @@ FileTools.upload = function (method, file, callback, onProgress, onComplete) {
     //onComplete &&
     //this is the place to add functionalities for a spinner until image is uploaded
     xhr.addEventListener('load', function () {
-      callback && callback(null, result);
+      if (callback)
+        callback(null, result);
     }, false);
 
     var onError = function (evt) {
-      callback && callback(evt);
+      if (callback)
+        callback(evt);
     };
     xhr.addEventListener('error', onError, false);
     xhr.addEventListener('abort', onError, false);
@@ -39,6 +41,7 @@ FileTools.deleteStub = function (method, filePath, callback) {
   Meteor.call(method, filePath, function (error, result) {
     if (error) return;
 
-    callback && callback(null, result);
+    if (callback)
+      callback(null, result);
   });
 };

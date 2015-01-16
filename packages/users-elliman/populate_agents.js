@@ -53,26 +53,26 @@ var userFromEllimanRow = function (row) {
 var count_jobs = 1;
 var q_fetch_resize_and_upload = function(user){
   var xpat = /\.([0-9a-z]+)(?:[\?#]|$)/i;
-  var _URL = user.profile.photoUrl;  
+  var _URL = user.profile.photoUrl;
   var _ext = _URL.match(xpat)[0];
-  var s3BaseURL = 'https://s3.amazonaws.com/'+Meteor.settings.AWS_BUCKET+'/user/';  
+  var s3BaseURL = 'https://s3.amazonaws.com/'+Meteor.settings.AWS_BUCKET+'/user/';
   Meteor._powerQ.add(function(done){
     console.log('#: ', count_jobs, ' : ', user.profile.id);
     done();
   });
-  Meteor._powerQ.add(function(done) { 
-    FileTools.fetch_to_temp(user.profile.photoUrl, done); 
+  Meteor._powerQ.add(function(done) {
+    FileTools.fetch_to_temp(user.profile.photoUrl, done);
   });
-  Meteor._powerQ.add(function(done) { 
+  Meteor._powerQ.add(function(done) {
     FileTools.resize_temp('thumb_', done);
   });
-  Meteor._powerQ.add(function(done){ 
+  Meteor._powerQ.add(function(done){
     FileTools.upload('thumb_', '/user/'+user.profile.id+'/profile-images/thumb_'+user.profile.id, done);
   });
-  Meteor._powerQ.add(function(done) { 
-    FileTools.resize_temp('full_', done); 
+  Meteor._powerQ.add(function(done) {
+    FileTools.resize_temp('full_', done);
   });
-  Meteor._powerQ.add(function(done){ 
+  Meteor._powerQ.add(function(done){
     FileTools.upload('full_', '/user/'+user.profile.id+'/profile-images/full_'+user.profile.id, done);
   });
   //
@@ -84,9 +84,9 @@ var q_fetch_resize_and_upload = function(user){
     user.profile.photoUrl = {
         large: large_signed,
         thumb: thumb_signed
-    }
+    };
     var user_mongo = Meteor.users.insert(user);
-    console.log('end:', count_jobs++, ' mongo: ', user_mongo); 
+    console.log('end:', count_jobs++, ' mongo: ', user_mongo);
     done();
   });
 };

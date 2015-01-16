@@ -1,8 +1,8 @@
 Meteor.Mandrill = {
   options: {},
   config: function (options) {
-    this.options.username = options["username"];
-    this.options.key = options["key"];
+    this.options.username = options.username;
+    this.options.key = options.key;
     this.options.host = "smtp.mandrillapp.com";
     this.options.port = "587";
     // setn the environment SMTP server
