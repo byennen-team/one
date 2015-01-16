@@ -104,16 +104,9 @@ Template.profileGallery.rendered = function () {
     $(this).removeClass('draggedOver');
     var $galleryId = $(this).attr("album-id");
 
+    //this function is necessary to pass jslint tests :(
 
-    var files = e.originalEvent.dataTransfer.files;
-    for (var i = 0; i < files.length; i++) {
-    	file = files[i];
-    	//check if file is image
-    	if (!file.type.match('image.*'))
-    		continue;
-
-    	$('.album[album-id="'+$galleryId+'"] .row').append('<div data-type="loader" class="gallery-square col-sm-2 half-gutter m-bottom-10 pointer"><div class="full-bg-img" style="background-image: url(/photo-load.gif);"></div></div>');
-    	FileTools.temporaryUpload('signProfilePictureUpload', file, function (error, result) {
+    var callbackFunction = function (error, result) {
             if (error) throw new Meteor.Error(500, 'Error in uploading file'); // TODO error message
 
             var photoUrl = Meteor.settings.public.AWS_BUCKET_URL + '/' + result.filePath;
@@ -124,7 +117,18 @@ Template.profileGallery.rendered = function () {
                 return; // TODO: present an error to the user
 
             });
-          });
+          };
+
+
+    var files = e.originalEvent.dataTransfer.files;
+    for (var i = 0; i < files.length; i++) {
+    	file = files[i];
+    	//check if file is image
+    	if (!file.type.match('image.*'))
+    		continue;
+
+    	$('.album[album-id="'+$galleryId+'"] .row').append('<div data-type="loader" class="gallery-square col-sm-2 half-gutter m-bottom-10 pointer"><div class="full-bg-img" style="background-image: url(/photo-load.gif);"></div></div>');
+    	FileTools.temporaryUpload('signProfilePictureUpload', file, callbackFunction);
     }
   });
 };

@@ -27,7 +27,7 @@ Meteor.methods({
 			throw new Meteor.error(404,'Gallery not found');
 
 		if (gallery.userId != this.userId)
-			throw new Meteor.Error(403,'Not allowed to delete gallery!')
+			throw new Meteor.Error(403,'Not allowed to delete gallery!');
 
 		//deleting all files from s3 first
 		_.each(gallery.pictures, function(item) {
