@@ -1,10 +1,12 @@
 FileTools.upload = function (method, file, callback, onProgress, onComplete) {
+  console.log('method', method);
   // Heavily borrowed from http://stackoverflow.com/a/12378395/230462
   Meteor.call(method, file.name, file.type, function (error, result) {
     if (error) return;
 
-    //callback && callback(null, result);
-
+    callback && callback(null, result);
+    var newUrl = Meteor.settings.public.AWS_BUCKET_URL+'/' + result.filePath
+    console.log('result url', newUrl);
     var formData = new FormData();
     var key = 'events/' + (new Date()).getTime() + '-' + file.name;
     formData.append('key', result.filePath);
@@ -22,6 +24,8 @@ FileTools.upload = function (method, file, callback, onProgress, onComplete) {
     //onComplete &&
     //this is the place to add functionalities for a spinner until image is uploaded
     xhr.addEventListener('load', function () {
+        console.log('on load');
+        Meteor.call('resizeNewProfileImage', newUrl);
       if (callback)
         callback(null, result);
     }, false);
