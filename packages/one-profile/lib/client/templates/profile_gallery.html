@@ -26,8 +26,9 @@
 
         <div class='clearfix'></div>
 
-        <div class="">
+        <div class="galleryHolder">
           {{#each pictures}}
+          <a href="{{pictureUrl}}" rel="{{_id}}" class="swipebox">
             <!-- TEMPLATE - gallery urls  - 600x600px min        -->
             <!-- TEMPLATE - gallery image url in 'data-pic'          -->
             <div class='gallery-square col-sm-2 half-gutter m-bottom-10 pointer pswipe-picture' data-url="{{pictureUrl}}">
@@ -38,6 +39,7 @@
               <!-- TEMPLATE - gallery image url in 'style'      -->
               <div class="full-bg-img" style="background-image: url({{pictureUrl}});" data-url="{{pictureUrl}}"></div>
             </div>
+            </a>
           {{/each}}
         </div>
       
@@ -47,5 +49,4 @@
   </section>
   {{> addGalleryModal}}
   {{> picturesUploadModal}}
-  {{> photoSwipeModal}}
 </template>

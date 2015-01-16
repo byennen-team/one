@@ -60,8 +60,7 @@ Package.onUse(function (api) {
     'lib/client/modals/profile_add_gallery_modal.html',
     'lib/client/modals/profile_add_gallery_modal.js',
     'lib/client/modals/profile_add_picture_gallery_modal.html',
-    'lib/client/modals/profile_add_picture_gallery_modal.js',
-    'lib/client/templates/photoswipe_modal.html'
+    'lib/client/modals/profile_add_picture_gallery_modal.js'
     ], 'web');
 
   // templates

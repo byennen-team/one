@@ -36,6 +36,7 @@ files@0.0.0
 follow@0.0.0
 follower-livedata@1.0.3
 geojson-utils@1.0.2
+horka:swipebox@1.0.2
 html-tools@1.0.3
 htmljs@1.0.3
 http@1.0.9

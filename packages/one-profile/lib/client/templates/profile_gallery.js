@@ -46,43 +46,13 @@ Template.profileGallery.events({
 		} else {
 			//TODO: throw an error
 		}
-	},
-	'click .pswipe-picture': function(event) {
-		//getting current url to set index
-		$url = $(event.currentTarget).data("url");
-		//building the slides array
-		var slides =[];
-		var openIndex = 0;
-		var $elements = $(event.currentTarget).closest('.album').find('.full-bg-img');
-		_.each($elements,function(item,index) {
-
-			//getting image so that we can get original dimensions, 
-			//should not use bandwith as images are already loaded
-
-			var image = new Image();
-			image.src = $(item).data('url');
-
-			slides.push({
-				src: $(item).data('url'),
-				w: image.naturalWidth,
-				h: image.naturalHeight
-			});
-
-			if ($(item).data('url') === $url)
-				openIndex = index;
-		});
-
-		var options = {
-			index: openIndex
-		};
-
-		var gallery = new PhotoSwipe( $('.pswp')[0], PhotoSwipeUI_Default, slides, options);
-		gallery.init();
 	}
 });
 
 Template.profileGallery.rendered = function () {
-  $('.album').on('dragover', function (e) {
+	$('.swipebox').swipebox();
+
+  $('.dropZone').on('dragover', function (e) {
     e.stopPropagation();
     e.preventDefault();
 
@@ -90,18 +60,20 @@ Template.profileGallery.rendered = function () {
     e.originalEvent.dataTransfer.dropEffect = 'copy';
   });
 
-  $('.album').on('dragenter', function (e) {
-    $(this).addClass('draggedOver');
+  $('.dropZone').on('dragenter', function (e) {
+  	e.stopPropagation();
+    e.preventDefault();
+    $(e.currentTarget).addClass('draggedOver');
   });
 
-  $('.album').on('dragleave', function (e) {
-    $(this).removeClass('draggedOver');
+  $('.dropZone').on('dragleave', function (e) {
+    $(e.currentTarget).removeClass('draggedOver');
   });
 
-  $('.album').on('drop', function (e) {
+  $('.dropZone').on('drop', function (e) {
     e.stopPropagation();
     e.preventDefault();
-    $(this).removeClass('draggedOver');
+    $(e.currentTarget).removeClass('draggedOver');
     var $galleryId = $(this).attr("album-id");
 
     //this function is necessary to pass jslint tests :(
@@ -127,7 +99,7 @@ Template.profileGallery.rendered = function () {
     	if (!file.type.match('image.*'))
     		continue;
 
-    	$('.album[album-id="'+$galleryId+'"] .row').append('<div data-type="loader" class="gallery-square col-sm-2 half-gutter m-bottom-10 pointer"><div class="full-bg-img" style="background-image: url(/photo-load.gif);"></div></div>');
+    	$('.album[album-id="'+$galleryId+'"] .galleryHolder').append('<div data-type="loader" class="gallery-square col-sm-2 half-gutter m-bottom-10 pointer"><div class="full-bg-img" style="background-image: url(/photo-load.gif);"></div></div>');
     	FileTools.temporaryUpload('signProfilePictureUpload', file, callbackFunction);
     }
   });
