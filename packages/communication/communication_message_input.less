@@ -16,11 +16,12 @@
 		height: 4em;
 		width: 4em;
 		border-radius: 50%;
-		margin: 0.5em 0 0.5em 40px;
-		padding: 1.5em;
+		margin: 0.5em 10px 0.5em 40px;
+		padding: 1.35em 1.5em 1.5em 1.5em;
 		cursor: pointer;
 		.fa {
 			font-size: 18px;
+			margin-left: -1px;
 		}
 	}
 	.input-options {
@@ -57,14 +58,57 @@
 			background-color: @aqua;
 		}
 	}
-	.fake-input {
+	.input {
 		font-size: 16px;
 		float: left;
 		padding: 1.5em 1em 1.5em 25px;
 		color: @blue-grey;
+		border: none;
 	}
 	.dropdown {
 		width: auto;
+	}
+	.attachment-display {
+		position: relative;
+		width: 0;
+		height: 50px;
+		margin: 10px;
+		overflow: hidden;
+		background-color: @lt-blue-grey;
+		.fa-file {
+			color: @accent;
+		}
+		.name {
+			font-family: @raleway-semibold;
+			color: @text-navy;
+			font-size: 12px;
+			margin-left: 3px;
+		}
+		.size {
+			font-family: @raleway-regular;
+			color: @text;
+			font-size: 12px;
+		}
+		.fa-close {
+			position: absolute;
+			right: 8px;
+			top: 18px;
+			color: @text;
+			cursor: pointer;
+		}
+	}
+	.attachment-display::after {
+		content: '';
+		position: absolute;
+		left: -8px;
+		top: 50%;
+		margin-top: -4px;
+		border-top: 8px solid transparent;
+		border-bottom: 8px solid transparent;
+		border-right: 8px solid @lt-blue-grey;
+	}
+	.new-post {
+		display: none;
 	}
 }
 
@@ -76,5 +120,20 @@
 				display: block;
 			}
 		}
+	}
+}
+
+// alternate styles when attachment is uploaded
+.message-input.holding {
+	.message-btn {
+		background-color: @purple;
+		color: @white;
+		.fa {
+			font-size: 22px;
+			margin: -2px 0 0 -2px;
+		}
+	}
+	.fa-bars::before {
+		content: "\f0c6";
 	}
 }

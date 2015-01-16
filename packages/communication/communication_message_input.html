@@ -7,23 +7,90 @@
 		</div>
 
 		<div id="communication-message-input-options" class="input-options">
+<!-- TODO: need to open new post dialog			 -->
 			<div id="communication-message-input-options-post" class="option post">
 				<i class="fa fa-pencil-square-o"></i>
 				<span>new post</span>
 			</div>
-			<div id="communication-message-input-options-attachment" class="option attachment">
+			<label id="communication-message-input-options-attachment" class="option attachment">
 				<i class="fa fa-paperclip"></i>
 				<span>attachment</span>
-			</div>
+<!-- TODO: needs to be plugged in			 -->
+				<input id='communication-message-input-attachment-input' class='hidden' type="file" />
+			</label>
+<!-- TODO: open task panel, and create task modal		 -->
 			<div id="communication-message-input-options-task" class="option task">
 				<i class="fa fa-th-list"></i>
 				<span>create task</span>
 			</div>
 		</div>
 
-		<div class='fake-input' contenteditable="true">Type your message...</div>
+		<div id="communication-message-attachment-display" class='attachment-display'>
+			<i class="fa fa-file"></i>
+			<span id="communication-message-attachment-name" class="name">
+				<span id="communication-message-attachment-size" class="size"></span>
+			</span>
+			<i id="communication-message-attachment-delete" class="fa fa-close"></i>
+		</div>
+
+<!-- TODO: needs to be plugged in -->
+		<form action="" id="communication-message-post" class="new-post">
+			<span>in</span>
+<!-- TODO: needs to include all possible channels/rooms/conversations -->
+			<select class="selectpicker" multiple>
+		    <optgroup label="Company Channels">
+		      <option>General</option>
+		      <option>News</option>
+		      <option>Events</option>
+		      <option>Training</option>
+		    </optgroup>
+<!-- TODO: label needs name of office -->
+		    <optgroup label="575 Madison">
+		      <option>General</option>
+		      <option>Water Cooler</option>
+		      <option>Listings</option>
+		      <option>Open Houses</option>
+		    </optgroup>
+		    <optgroup label="Direct Messaging">
+		      <option>Dottie Herman</option>
+		      <option>Marie Espinal</option>
+		    </optgroup>
+		    <optgroup label="Rooms">
+		      <option>Team Awesome</option>
+		      <option>111 4th Ave, 4h</option>
+		      <option>575 Madison Ave</option>
+		    </optgroup>
+  		</select>
+
+  		<input type="text" class="subject" placeholder="Subject...">
+  		<div id="communication-message-post-textarea" class="fake-textarea">Type a post...</div>
+
+  		<div id="communication-message-post-attachment-btn" class="paperclip">
+  			<i class="fa fa-paperclip"></i>
+  		</div>
+
+  		<div class="dropdown">
+			  <button id="communication-message-post-style" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+			    <i class="fa fa-font"></i>
+			    <span class="caret"></span>
+			  </button>
+			  <ul class="dropdown-menu dropup" role="menu" aria-labelledby="dLabel">
+			    <li id='communication-message-post-style-link'><i class="fa fa-link"></i></li>
+			    <li id='communication-message-post-style-link'><i class="fa fa-bold"></i></li>
+			    <li id='communication-message-post-style-link'><i class="fa fa-italic"></i></li>
+			    <li id='communication-message-post-style-link'><i class="fa fa-underline"></i></li>
+			  </ul>
+			</div>
+
+			<div id='communication-message-post-save' class="btn btn-secondary">save draft</div>
+			<div id='communication-message-post-btn' class="btn btn-primary">post</div>
+
+		</form>
+
+		<input class='input' type="text" placeholder="Type your message..." />
 
 <!-- TODO: put emoticon selector back in once it's thought out (needs bank of emoticons) -->
+<!-- TODO: style emoticon dropdown - once installed -->
 <!-- 	<div class="dropdown pull-right">
 		  <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-expanded="true">
 		    <i class="fa fa-smile-o"></i>

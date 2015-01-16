@@ -8,7 +8,8 @@ Package.onUse(function (api) {
   api.use([
     'less', 'jquery', 'session',
     'templating', 'mrt:moment', 'stevezhu:velocity.js@0.1.0', 
-    'routes', 'styles', 'tracker'
+    'routes', 'styles', 'tracker',
+    'mquandalle:bower'
     ], 'web');
   api.use('files', both);
 
@@ -17,9 +18,12 @@ Package.onUse(function (api) {
     'communication_channel.html', 'communication_channel.less', 'communication_channel_client.js',
     'communication_room.html', 'communication_room.less', 'communication_room_client.js',
     'communication_message_board.html', 'communication_message_board.less', 'communication_message_board_client.js',
-    'communication_message_input.html', 'communication_message_input.less', 'communication_message_input_client.js',
-    'communication_directory_modal.html'
+    'communication_message_input.html', 'communication_message_input.less', 'communication_message_input_client.js'
  
   ], 'web');
+
+  // Bower packages
+  api.addFiles(['smart.json'], 'web');
+
 
 }); 
