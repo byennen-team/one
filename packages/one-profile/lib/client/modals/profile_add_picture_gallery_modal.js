@@ -8,7 +8,7 @@ Template.picturesUploadModal.helpers({
       createdAt: -1
     }});
   }
-})
+});
 
 Template.picturesUploadModal.events({
   'change .file-upload': function (event) {
@@ -87,11 +87,11 @@ Template.picturesUploadModal.events({
               if (error)
                 return; // TODO: present an error to the user
 
-            })
+            });
           });
         }
       }
-    })
+    });
 
     var freshBag = [
       '<div class="input-bgx">',

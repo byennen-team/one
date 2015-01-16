@@ -4,7 +4,7 @@ Galleries = new Meteor.Collection('galleries');
 PicturesSchema = new SimpleSchema({
 	pictureUrl: {type: String, regEx: SimpleSchema.RegEx.Url},
 	pictureKey: {type: String}
-})
+});
 
 Galleries.schema = new SimpleSchema({
   galleryName: {type:String},

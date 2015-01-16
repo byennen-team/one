@@ -7,14 +7,14 @@ Meteor.methods({
 
 		Galleries.insert({
 			galleryName: name,
-			createdAt: new Date,
+			createdAt: new Date(),
 			userId: Meteor.userId()
 		}, function (error, result) {
 			if (error)
 				throw new Meteor.Error(500, 'Error in creating gallery');
 
 			return (null, 'Gallery created');
-		})
+		});
 	},
 	deleteGallery: function (galleryId) {
 		check(galleryId, String);
@@ -24,7 +24,7 @@ Meteor.methods({
 		//check gallery exists
 		var gallery = Galleries.findOne(galleryId);
 		if (!gallery)
-			throw new Meteor.error(404,'Gallery not found')
+			throw new Meteor.error(404,'Gallery not found');
 
 		if (gallery.userId != this.userId)
 			throw new Meteor.Error(403,'Not allowed to delete gallery!')
@@ -34,14 +34,14 @@ Meteor.methods({
 			FileTools.deleteStub('deleteFilesFromS3',item.pictureKey, function(err,result) {
 				if (err) throw new Meteor.Error(500,'Error in deleting file from s3 bucket');
 			});
-		})
+		});
 
 		Galleries.remove({_id: galleryId}, function(error, result) {
 			if (error)
 				throw new Meteor.Error(500, 'Error in deleting gallery');
 
 			return(null, result);
-		})
+		});
 
 	},
 	addPictureToGallery: function(key,url,galleryId) {
@@ -106,4 +106,4 @@ Meteor.publish('galleries', function(userId) {
 	check(userId, String);
 
 	return Galleries.find({userId: userId});
-})
+});

@@ -12,7 +12,7 @@ Template.addGalleryModal.events({
 					console.error(error); 
 				} else {
 					$name.val('');
-					$('#addGaleryModal').modal('hide')
+					$('#addGaleryModal').modal('hide');
 				}
 			});
 

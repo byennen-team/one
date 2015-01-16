@@ -5,7 +5,7 @@ Template.profileGallery.helpers({
 		}});
 	},
 	date: function(date) {
-		if (moment(date).diff(moment(new Date), 'days') >= 1) {
+		if (moment(date).diff(moment(new Date()), 'days') >= 1) {
 			return moment(date).format('MMM D, YYYY');
 		} else {
 			return moment(date).fromNow();
@@ -55,13 +55,12 @@ Template.profileGallery.events({
 		var openIndex = 0;
 		var $elements = $(event.currentTarget).closest('.album').find('.full-bg-img');
 		_.each($elements,function(item,index) {
-			console.log($(item))
 
-			//getting image so that we can get originaldimensions, 
+			//getting image so that we can get original dimensions, 
 			//should not use bandwith as images are already loaded
 
 			var image = new Image();
-			image.src = $(item).data('url')
+			image.src = $(item).data('url');
 
 			slides.push({
 				src: $(item).data('url'),
@@ -123,8 +122,8 @@ Template.profileGallery.rendered = function () {
               if (error)
                 return; // TODO: present an error to the user
 
-            })
+            });
           });
     };
   });
-};
+}
