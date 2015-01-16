@@ -18,10 +18,10 @@ var img_ext = '.jpeg';
 var temp_img_file = base+img_tmp+img_ext;
 var imageremote = 'remoteimage.jpeg';
 var s3_params = {
-    key: Meteor.settings.AWS_ACCESS_KEY_ID //<api-key-here>'
-  , secret: Meteor.settings.AWS_SECRET_ACCESS_KEY  //'<secret-here>'
-  , bucket: Meteor.settings.AWS_BUCKET
-  , region: Meteor.settings.AWS_REGION
+    key: Meteor.settings.AWS_ACCESS_KEY_ID, //<api-key-here>'
+    secret: Meteor.settings.AWS_SECRET_ACCESS_KEY,  //'<secret-here>'
+    bucket: Meteor.settings.AWS_BUCKET,
+    region: Meteor.settings.AWS_REGION
 };
 var s3_client = knox.createClient(s3_params);
 FileTools.fetch_to_temp = function(url, done){
@@ -29,7 +29,7 @@ FileTools.fetch_to_temp = function(url, done){
   var xpat = /\.([0-9a-z]+)(?:[\?#]|$)/i;
   img_ext = originalName.match(xpat)[0];
   request(url)
-  .on('response', 
+  .on('response',
       Meteor.bindEnvironment(function(response){
         response = response || { statusCode: 8888 };
         if (response && response.statusCode == 404) {
@@ -41,14 +41,14 @@ FileTools.fetch_to_temp = function(url, done){
             console.log('piped No Image Available');
             done();
             }));
-         } 
+         }
        }))
-  .on('end', 
+  .on('end',
       Meteor.bindEnvironment(function(error, response, body){
         if (error) console.log('end error', response.statusCode);
         done();
-       })) 
-  .pipe(fs.createWriteStream(base+img_tmp+img_ext)); 
+       }))
+  .pipe(fs.createWriteStream(base+img_tmp+img_ext));
 };
 FileTools.resize_temp = function(size, done) {
   Meteor.wrapAsync(im.resize({
@@ -70,8 +70,8 @@ FileTools.upload = function (descriptor, remotefile, done) {
   Meteor.wrapAsync(s3_client.putFile(imagefile, remotefile, Meteor.bindEnvironment(function(err, response) {
       if (err) { console.log('upload error:', remotefile); }
       done();
-    })));               
-};   
+    })));
+};
 // creates an object with various urls to be sent back to client
 function imagesObject(filename){
   // a hash containing all the links to images
