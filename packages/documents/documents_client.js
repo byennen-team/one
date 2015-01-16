@@ -140,7 +140,7 @@ Template.documents.rendered = function () {
     e.preventDefault();
 
     var files = e.originalEvent.dataTransfer.files;
-    for (var i = 0, file; file = files[i]; i++) uploadFile(file);
+    for (i = 0; i < files.length; i++) uploadFile(files[i]);
   });
 };
 

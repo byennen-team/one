@@ -1,4 +1,5 @@
-FileTools.upload = function (method, file, callback, onProgress, onComplete) {
+FileTools.temporaryUpload = function (method, file, callback, onProgress, onComplete) {
+  //this is a temporary placeholder. Eventually files will have to go through resizer
   // Heavily borrowed from http://stackoverflow.com/a/12378395/230462
   Meteor.call(method, file.name, file.type, function (error, result) {
     if (error) return;
@@ -23,17 +24,28 @@ FileTools.upload = function (method, file, callback, onProgress, onComplete) {
     //onComplete &&
     //this is the place to add functionalities for a spinner until image is uploaded
     xhr.addEventListener('load', function () {
-      callback && callback(null, result);
+      if (callback)
+        callback(null, result);
     }, false);
 
     var onError = function (evt) {
-      callback && callback(evt);
+      if (callback)
+        callback(evt);
     };
     xhr.addEventListener('error', onError, false);
     xhr.addEventListener('abort', onError, false);
 
     xhr.open('POST', Meteor.settings.public.AWS_BUCKET_URL, true);
     xhr.send(formData);
+  });
+};
+
+FileTools.deleteStub = function (method, filePath, callback) {
+  Meteor.call(method, filePath, function (error, result) {
+    if (error) return;
+
+    if (callback)
+      callback(null, result);
   });
 };
 

@@ -47,7 +47,8 @@ Meteor.methods({
       if (!user) throw new Meteor.Error('User not found');
 
       // Log the current user out.
-      currentUser && Accounts._setLoginToken(currentUser._id, self.connection, null);
+      if (currentUser)
+        Accounts._setLoginToken(currentUser._id, self.connection, null);
 
       return {userId: user._id};
     });

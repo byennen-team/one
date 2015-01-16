@@ -113,7 +113,7 @@ Template.profileGallery.rendered = function () {
     		continue;
 
     	$('.album[album-id="'+$galleryId+'"] .row').append('<div data-type="loader" class="gallery-square col-sm-2 half-gutter m-bottom-10 pointer"><div class="full-bg-img" style="background-image: url(/photo-load.gif);"></div></div>');
-    	FileTools.upload('signProfilePictureUpload', file, function (error, result) {
+    	FileTools.temporaryUpload('signProfilePictureUpload', file, function (error, result) {
             if (error) throw new Meteor.Error(500, 'Error in uploading file'); // TODO error message
 
             var photoUrl = Meteor.settings.public.AWS_BUCKET_URL + '/' + result.filePath;

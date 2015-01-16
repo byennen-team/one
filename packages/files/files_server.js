@@ -1,6 +1,6 @@
 var crypto = Npm.require('crypto');
 var s3 = new AWS.S3();
-
+AWS.config.region = Meteor.settings.AWS_REGION;
 Meteor.publish('files', function () {
   // TODO filter by companyId
   return Files.find();
@@ -19,7 +19,7 @@ Files.allow({
  */
 FileTools.signUpload = function (filePath, acl, mimeType) {
   var bucket = Meteor.settings.AWS_BUCKET;
-
+  console.log('signupload bucket:', bucket);
   var policy = {
     // expire in 5 minutes
     expiration: new Date(new Date().getTime() + 1000 * 60 * 5).toISOString(),
@@ -30,7 +30,6 @@ FileTools.signUpload = function (filePath, acl, mimeType) {
       ['eq', '$Content-Type', mimeType]
     ]
   };
-
   // Sign the policy with our secret.
   var policyBase64 = new Buffer(JSON.stringify(policy), 'utf8').toString('base64');
   var signature = crypto.createHmac('sha1', Meteor.settings.AWS_SECRET_ACCESS_KEY).update(policyBase64).digest('base64');
@@ -67,10 +66,26 @@ FileTools.signedGet = function (filePath) {
   var signature = awsSignature(stringToSign);
   console.log("Signature", signature);
   var queryString = '?AWSAccessKeyId=' + Meteor.settings.AWS_ACCESS_KEY_ID + '&Expires=' + dateTime + '&Signature=' + encodeURIComponent(signature);
-  var url = 'https://' + Meteor.settings.REGION + '.amazonaws.com' + filePath + queryString;
+  var url = 'https://' + Meteor.settings.AWS_REGION + '.amazonaws.com' + filePath + queryString;
   console.log("Signed URL", url);
   return url;
 };
+FileTools.signedGetS3 = function (filePath) {
+  filePath = '/' + Meteor.settings.AWS_BUCKET + '/' + filePath;
+  console.log('filepath', filePath);
+  var dateTime = Math.floor(new Date().getTime() / 1000) + Meteor.settings.S3_URL_EXPIRATION_SECONDS;
+  var stringToSign = 'GET\n\n\n' + dateTime + '\n' + filePath;
+  console.log("Signing String", stringToSign);
+  var signature = awsSignature(stringToSign);
+  console.log("Signature", signature);
+  var queryString = '?AWSAccessKeyId=' + Meteor.settings.AWS_ACCESS_KEY_ID + '&Expires=' + dateTime + '&Signature=' + encodeURIComponent(signature);
+  //var url = Meteor.settings.public.AWS_BUCKET_URL + filePath + queryString;
+  var url = 'https://s3.amazonaws.com'+filePath+queryString;
+  console.log("Signed URL", url);
+  return url;
+};
+
+
 
 FileTools.rename = function (originalFilePath, newFilePath, callback) {
   var boundCallback = Meteor.bindEnvironment(function (err, res) {
