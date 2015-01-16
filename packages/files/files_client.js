@@ -22,7 +22,6 @@ FileTools.temporaryUpload = function (method, file, callback, onProgress, onComp
     if (onProgress) xhr.upload.addEventListener('progress', onProgress, false);
 
     //onComplete &&
-    //this is the place to add functionalities for a spinner until image is uploaded
     xhr.addEventListener('load', function () {
       if (callback)
         callback(null, result);
@@ -40,12 +39,5 @@ FileTools.temporaryUpload = function (method, file, callback, onProgress, onComp
   });
 };
 
-FileTools.deleteStub = function (method, filePath, callback) {
-  Meteor.call(method, filePath, function (error, result) {
-    if (error) return;
 
-    if (callback)
-      callback(null, result);
-  });
-};
 
