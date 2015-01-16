@@ -32,7 +32,6 @@ var uploadFile = function (file) {
 
     fileRow = $('#row-' + result.fileId);
   }, function (progressEvent) {
-    console.log(fileRow)
     var progress = Math.floor(progressEvent.loaded / progressEvent.total * 100);
     updateProgress(fileRow, progress);
   });
