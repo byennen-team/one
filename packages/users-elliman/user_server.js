@@ -49,7 +49,8 @@ Meteor.methods({
       });
       if (!_findEmail) throw new Meteor.Error('User Email Not Found');
       // Log the current user out.
-      currentUser && Accounts._setLoginToken(currentUser._id, self.connection, null);
+      if (currentUser)
+        Accounts._setLoginToken(currentUser._id, self.connection, null);
 
       return {userId: user._id};
     });
