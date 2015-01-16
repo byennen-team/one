@@ -79,7 +79,7 @@ Template.profileGallery.events({
 		var gallery = new PhotoSwipe( $('.pswp')[0], PhotoSwipeUI_Default, slides, options);
 		gallery.init();
 	}
-})
+});
 
 Template.profileGallery.rendered = function () {
   $('.album').on('dragover', function (e) {
@@ -106,7 +106,8 @@ Template.profileGallery.rendered = function () {
 
 
     var files = e.originalEvent.dataTransfer.files;
-    for (var i = 0, file; file = files[i]; i++) {
+    for (var i = 0; i < files.length; i++) {
+    	file = files[i];
     	//check if file is image
     	if (!file.type.match('image.*'))
     		continue;
@@ -124,6 +125,6 @@ Template.profileGallery.rendered = function () {
 
             });
           });
-    };
+    }
   });
-}
+};
