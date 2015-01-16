@@ -4,9 +4,9 @@ Meteor.methods({
    */
   resizeNewProfileImage: function(newUrl) {
       check(newUrl, String);
-      var user = Meteor.user()
-      var _ext = '.'+FileTools.ext(newUrl)
-      Meteor._powerQ.pause()
+      var user = Meteor.user();
+      var _ext = '.'+FileTools.ext(newUrl);
+      Meteor._powerQ.pause();
       Meteor._powerQ.add(function(done) {
         FileTools.fetch_to_temp(newUrl, done);
       });
@@ -32,7 +32,7 @@ Meteor.methods({
         thumb: thumb_signed
     };
     var update = Meteor.users.update(user._id, { "$set": { "profile.photoUrl": user.profile.photoUrl }}); 
-    done()
+    done();
     });
     Meteor._powerQ.resume();
   },
