@@ -9,8 +9,8 @@ Meteor.subscribe('user');
  * @param agentId
  * @param callback
  */
-Meteor.loginWithElliman = function (agentId, callback) {
-  Meteor.call('loginWithElliman', agentId, function (error, result) {
+Meteor.loginWithElliman = function (agentId, agentEmail, callback) {
+  Meteor.call('loginWithElliman', agentId, agentEmail, function (error, result) {
     if (error) {
       callback && callback.apply(this, arguments);
       return;
