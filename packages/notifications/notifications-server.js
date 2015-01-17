@@ -27,7 +27,7 @@ Meteor.methods({
 			createdAt: new Date(),
 			createdFor: toUserId,
 			notificationText: message,
-			notificationText: title ? title : 'New notification'
+			notificationsTitle: title ? title : 'New notification'
 		};
 
 		if (link)
