@@ -17,8 +17,6 @@ Meteor.methods({
 		if (link)
 			check(link, String);
 
-		console.log(message,title,link)
-
 		//check that the user exists
 		var user = Meteor.users.findOne(toUserId);
 
