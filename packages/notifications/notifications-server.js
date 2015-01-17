@@ -4,7 +4,7 @@ Meteor.publish('notifications', function(limit) {
 	else
 		limit = 20;
 
-	return Notifications.find({createdFor: userId},{limit: limit});
+	return Notifications.find({createdFor: this.userId},{limit: limit});
 });
 
 Meteor.methods({
@@ -16,6 +16,8 @@ Meteor.methods({
 			check(title,String);
 		if (link)
 			check(link, String);
+
+		console.log(message,title,link)
 
 		//check that the user exists
 		var user = Meteor.users.findOne(toUserId);
@@ -109,8 +111,8 @@ Notify.generateMessageText = function(text, stringArray) {
 };
 
 
-Notify.addNotification = function(toUserId,message,link) {
-	Meteor.call('addNotification',toUserId,message, function(error, result) {
+Notify.addNotification = function(toUserId,message,title,link) {
+	Meteor.call('addNotification',toUserId,message,title,link,function(error, result) {
 		if (error)
 			throw new Meteor.Error(500,error);
 	});
