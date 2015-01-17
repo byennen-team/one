@@ -3,6 +3,7 @@ Go One is a real-time dashboard for real-estate apps built with [Meteor](http://
 ###Getting Started
 
 1. Install [meteor](https://docs.meteor.com/#/full/quickstart)
+   and [imagemagick](http://www.imagemagick.org/script/binary-releases.php)
 
 2. Run the application
 
