@@ -5,7 +5,7 @@ Meteor.publish('notifications', function(limit) {
 		limit = 20;
 
 	return Notifications.find({createdFor: userId},{limit: limit});
-})
+});
 
 Meteor.methods({
 	addNotification: function(toUserId,message,link) {
@@ -35,7 +35,7 @@ Meteor.methods({
 				return (error.message);
 			else
 				return (null, result);
-		})
+		});
 	},
 	markNotificationAsRead: function(notificationId) {
 		check(notificationId, String);
@@ -86,8 +86,8 @@ Notify.generateMessageText = function(text, stringArray) {
 
 	for (var i=0;i<stringArray.length;i++) {
 		var argNo = i+1;
-		text = text.replace('{arg'+argNo+'}',stringArray[i])
-	};
+		text = text.replace('{arg'+argNo+'}',stringArray[i]);
+	}
 
 	return text;
 };

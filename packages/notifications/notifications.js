@@ -12,11 +12,11 @@ Notifications.simpleSchema = new SimpleSchema({
 Notify = {};
 
 Notify.markNotificationAsRead = function(notificationId) {
-	Meteor.call('markNotificationAsRead', notificationId),function(error,result) {
+	Meteor.call('markNotificationAsRead', notificationId, function(error,result) {
 		if (error)
 			console.log(error); //we can't throw here and this is a debug error, not a general error
-	})
-}
+	});
+};
 
 Notify.getUnreadNotifications = function(userId) {
 	if (!userId && Meteor.userId())
@@ -26,12 +26,12 @@ Notify.getUnreadNotifications = function(userId) {
 		createdFor: userId, 
 		read: {$ne: true}, 
 		$or: {
-			[expires: {$gt: new Date()}],
-			[expires: {$exists: false}]
+			[{ expires: {$gt: new Date()} }],
+			[{ expires: {$exists: false} }]
 			}
 	}, {
 		sort: {
 			createdAt: -1
 		}
-	})
-}
+	});
+};
