@@ -8,10 +8,12 @@ Meteor.publish('notifications', function(limit) {
 });
 
 Meteor.methods({
-	addNotification: function(toUserId,message,link) {
+	addNotification: function(toUserId,message,title,link) {
 		check(toUserId,String);
 		check(message,String);
 
+		if (title)
+			check(title,String);
 		if (link)
 			check(link, String);
 
@@ -24,7 +26,8 @@ Meteor.methods({
 		var options = {
 			createdAt: new Date(),
 			createdFor: toUserId,
-			notificationText: message
+			notificationText: message,
+			notificationText: title ? title : 'New notification'
 		};
 
 		if (link)
@@ -65,9 +68,22 @@ Meteor.methods({
 });
 
 Notify.messages = {
-	FOLLOWED_BY_USER: '{arg1} followed you',
-	DOCUMENT_SHARED_WITH_YOU: '{arg1} shared a document with you',
-	ADDED_TO_A_TEAM: '{arg1} added you to team {arg2}'
+	FOLLOWED_BY_USER: {
+		message: '{arg1} followed you',
+		title: 'New follower'
+	},
+	DOCUMENT_SHARED_WITH_YOU: {
+		message: '{arg1} shared a document with you',
+		title: 'New document'
+	},
+	FOLDER_SHARED_WITH_YOU: {
+		message: '{arg1} shared a folder with you',
+		title: 'New folder'
+	},
+	ADDED_TO_A_TEAM: {
+		message: '{arg1} added you to team {arg2}',
+		title: 'New team'
+	}
 };
 
 /**

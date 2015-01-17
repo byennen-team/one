@@ -4,6 +4,7 @@ Notifications.simpleSchema = new SimpleSchema({
 	createdAt: {type: Date},
 	createdFor: {type: String},
 	notificationText: {type: String},
+	notificationTitle: {type: String},
 	notificationActionLink: {type: String, optional: true},
 	read: {type: Boolean, defaultValue: false},
 	expires: {type: Date, optional: true}
