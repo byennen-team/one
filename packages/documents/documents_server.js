@@ -84,5 +84,14 @@ Meteor.methods({
     var signed = FileTools.signUpload(filePath, 'private', mimeType);
     signed.fileId = fileId;
     return signed;
+  },
+
+  createFolder: function (folderName) {
+    check(folderName, String);
+
+    var user = Meteor.user();
+    if (!user) throw new Meteor.Error('Invalid credentials');
+
+    return FileTools.createFolder(folderName, user._id);
   }
 });

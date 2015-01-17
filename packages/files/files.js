@@ -5,7 +5,12 @@ Files.schema = new SimpleSchema({
   companyDocument: {type: Boolean},
   name: {type: String},
   uploadDate: {type: Date},
-  userId: {type: String, regEx: SimpleSchema.RegEx.Id}
+  userId: {type: String, regEx: SimpleSchema.RegEx.Id},
+  isFolder: {type: Boolean, defaultValue: false},
+  /**
+   * The parent folder. Like folderA/folderB.
+   */
+  parent: {type: String}
 });
 
 // Can't name this File or it will conflict with the HTML5 File.

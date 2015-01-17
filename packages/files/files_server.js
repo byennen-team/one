@@ -135,3 +135,16 @@ FileTools.delete = function (filePath, callback) {
       boundCallback(null, data);
     });
 };
+
+FileTools.createFolder = function (folderName, userId) {
+  return Files.insert({
+    // TODO: Also create companyDocument folders
+    companyDocument: false,
+    name: folderName,
+    uploadDate: new Date(),
+    userId: userId,
+    isFolder: true,
+    // TODO: Parent folder
+    parent: ''
+  });
+};
