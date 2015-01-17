@@ -26,8 +26,8 @@ Notify.getUnreadNotifications = function(userId) {
 		createdFor: userId, 
 		read: {$ne: true}, 
 		$or: {
-			[{ expires: {$gt: new Date()} }],
-			[{ expires: {$exists: false} }]
+			[{ expires: {$gt: new Date()} },
+			 { expires: {$exists: false} }]
 			}
 	}, {
 		sort: {
