@@ -10,3 +10,6 @@ Go One is a real-time dashboard for real-estate apps built with [Meteor](http://
 
 ###Production & Staging Data
 https://www.compose.io/mongodb/
+
+###Style Guide
+[Metor Style Guide](https://github.com/meteor/meteor/wiki/Meteor-Style-Guide)
