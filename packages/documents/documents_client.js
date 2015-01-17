@@ -103,7 +103,15 @@ Template.documents.helpers({
     });
   },
   files: function () {
-    return Files.find({companyDocument: Routes.getName() === Routes.COMPANY_DOCUMENTS, archived: {$ne: true}});
+    return Files.find(
+      {
+        companyDocument: Routes.getName() === Routes.COMPANY_DOCUMENTS,
+        archived: {$ne: true}
+      },
+      {
+        sort: {uploadDate: -1}
+      }
+    );
   },
   url: function (file) {
     var folder;
