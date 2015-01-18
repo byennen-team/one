@@ -26,7 +26,7 @@ s3_client = knox.createClient(s3_params);
 if(Settings.isStaging || Settings.isBeta) {
   var base = process.env.TEMP_DIR+'/'
 } else {
-  var base = process.env.PWD+'/'
+  var base = process.env.PWD+'/tmp/'
 }
 
 //fetch temp image
