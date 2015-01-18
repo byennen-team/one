@@ -22,15 +22,21 @@ FileTools.ext = function (fileName) {
 };
 
 FileTools.path = function (file) {
-  if (file.companyDocument) return Folder.companyDocument('elliman') + '/' + file.name;
+  var folderPath;
+  if (file.companyDocument) {
+    // TODO: add company_id
+    folderPath = Folder.companyDocument('elliman');
+  } else {
+    folderPath = Folder.userDocument(file.userId);
+  }
 
-  return Folder.userDocument(file.userId) + '/' + file.name;
+  return folderPath + '/' + file.name;
 };
 
 /**
  * The url of the file.
- * @param filePath
+ * @param file
  */
-FileTools.url = function (filePath) {
-  return '/files?path=' + encodeURIComponent(filePath);
+FileTools.url = function (file) {
+  return '/files?path=' + encodeURIComponent(FileTools.path(file));
 };

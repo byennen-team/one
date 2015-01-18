@@ -122,15 +122,7 @@ Template.documents.helpers({
     );
   },
   url: function (file) {
-    var folder;
-
-    if (Routes.getName() === Routes.MY_DOCUMENTS) {
-      folder = Folder.userDocument(Meteor.userId());
-    } else {
-      // TODO: add company_id
-      folder = Folder.companyDocument('elliman');
-    }
-    return FileTools.url(folder + '/' + file.name);
+    return FileTools.url(file);
   },
   date: function (file) {
     return moment(file.uploadDate).format('MMM D, YYYY');
