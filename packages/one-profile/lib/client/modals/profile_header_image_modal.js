@@ -43,7 +43,7 @@ Template.profileHeaderImageModal.events({
   	var $imageUpload = $( '.image-upload[name="pic"]' )[0];
   	var contents = $imageUpload.files;
   	if (contents.length > 0) {
-		FileTools.upload('signProfilePictureUpload', $imageUpload.files[0], function (error, result) {
+		FileTools.temporaryUpload('signProfilePictureUpload', $imageUpload.files[0], function (error, result) {
 		  if (error) return; // TODO error message
 
 		  var photoUrl = Meteor.settings.public.AWS_BUCKET_URL + '/' + result.filePath;

@@ -1,5 +1,5 @@
-FileTools.upload = function (method, file, callback, onProgress, onComplete) {
-  console.log('method', method);
+FileTools.upload = FileTools.temporaryUpload = function (method, file, callback, onProgress, onComplete) {
+  //this is a temporary placeholder. Eventually files will have to go through resizer
   // Heavily borrowed from http://stackoverflow.com/a/12378395/230462
   Meteor.call(method, file.name, file.type, function (error, result) {
     if (error) return;
@@ -9,6 +9,7 @@ FileTools.upload = function (method, file, callback, onProgress, onComplete) {
     console.log('result url', newUrl);
     var formData = new FormData();
     var key = 'events/' + (new Date()).getTime() + '-' + file.name;
+
     formData.append('key', result.filePath);
     formData.append('acl', result.acl);
     formData.append('Content-Type', file.type);
@@ -22,7 +23,6 @@ FileTools.upload = function (method, file, callback, onProgress, onComplete) {
     if (onProgress) xhr.upload.addEventListener('progress', onProgress, false);
 
     //onComplete &&
-    //this is the place to add functionalities for a spinner until image is uploaded
     xhr.addEventListener('load', function () {
         console.log('on load');
         Meteor.call('resizeNewProfileImage', newUrl);
@@ -41,6 +41,7 @@ FileTools.upload = function (method, file, callback, onProgress, onComplete) {
     xhr.send(formData);
   });
 };
+
 FileTools.deleteStub = function (method, filePath, callback) {
   Meteor.call(method, filePath, function (error, result) {
     if (error) return;
@@ -49,3 +50,4 @@ FileTools.deleteStub = function (method, filePath, callback) {
       callback(null, result);
   });
 };
+

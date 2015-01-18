@@ -36,6 +36,7 @@ files@0.0.0
 follow@0.0.0
 follower-livedata@1.0.3
 geojson-utils@1.0.2
+horka:swipebox@1.0.2
 html-tools@1.0.3
 htmljs@1.0.3
 http@1.0.9
@@ -99,6 +100,7 @@ session@1.0.5
 settings@0.0.0
 spacebars@1.0.4
 spacebars-compiler@1.0.4
+spectrum:photoswipe@1.0.0
 stevezhu:velocity.js@0.1.0
 styles@0.0.0
 support@0.0.0

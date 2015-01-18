@@ -27,9 +27,10 @@ var uploadFile = function (file) {
   var method = companyDocument ? 'signCompanyDocumentUpload' : 'signUserDocumentUpload';
 
   var fileRow;
-  FileTools.upload(method, file, function (error, fileId) {
+  FileTools.temporaryUpload(method, file, function (error, result) {
     if (error) return; // TODO handle error
-    fileRow = $('#row-' + fileId);
+
+    fileRow = $('#row-' + result.fileId);
   }, function (progressEvent) {
     var progress = Math.floor(progressEvent.loaded / progressEvent.total * 100);
     updateProgress(fileRow, progress);

@@ -28,3 +28,12 @@ FileTools.path = function (file) {
 FileTools.url = function (filePath) {
   return '/files?path=' + encodeURIComponent(filePath);
 };
+
+FileTools.deleteStub = function (method, filePath, callback) {
+  Meteor.call(method, filePath, function (error, result) {
+    if (error) return;
+
+    if(callback)
+     callback(null, result);
+  });
+};

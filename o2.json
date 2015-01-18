@@ -1,0 +1,13 @@
+{
+  "AWS_BUCKET": "goone-dev",
+  "AWS_ACCESS_KEY_ID": "AKIAJ2RFAZID2NZB3RWQ", 
+  "AWS_SECRET_ACCESS_KEY": "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", 
+  "AWS_REGION": "us-standard",
+  "public": {
+    "AWS_BUCKET_URL": "https://goone-dev.s3.amazonaws.com",
+    "ENVIRONMENT": "development"
+  },
+  "S3_URL_EXPIRATION_SECONDS": 604800,
+  "MANDRILL_USERNAME": "mandrill@gooneapp.com",
+  "MANDRILL_API_KEY": "SuSOTzzT5JI4ZCa-__HyPw"
+}

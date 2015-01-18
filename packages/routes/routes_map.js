@@ -93,6 +93,7 @@ Router.route('/:slug', {
     if (user && Meteor.user()) {
       Meteor.subscribe('followers', user._id);
       Meteor.subscribe('following', user._id);
+      Meteor.subscribe('galleries', user._id);
     }
 
     return user;
