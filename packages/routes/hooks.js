@@ -21,10 +21,17 @@ Router.onBeforeAction(function () {
   this.next();
 }, {except: [Routes.LOGIN, Routes.LOGOUT, Routes.PROFILE]});
 
-Router.onBeforeAction(function () {
-  Meteor.subscribe('files');
-  this.next();
-}, {only: [Routes.DASHBOARD, Routes.COMPANY_DOCUMENTS, Routes.MY_DOCUMENTS]});
+Router.onBeforeAction(
+  function () {
+    Meteor.subscribe('files');
+    this.next();
+  }, {
+    only: [
+      Routes.DASHBOARD, Routes.COMPANY_DOCUMENTS, Routes.MY_DOCUMENTS,
+      Routes.FOLDER
+    ]
+  }
+);
 
 Router.onBeforeAction(function () {
   Search.limit.set(6);

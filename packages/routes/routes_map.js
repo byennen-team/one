@@ -26,12 +26,29 @@ Router.route('/apps', {
 
 Router.route('/documents', {
   name: Routes.MY_DOCUMENTS,
-  template: 'documents'
+  template: 'documents',
+  action: function () {
+    Session.set('currentFolderId', null);
+    this.render();
+  }
 });
 
 Router.route('/documents/company', {
   name: Routes.COMPANY_DOCUMENTS,
-  template: 'documents'
+  template: 'documents',
+  action: function () {
+    Session.set('currentFolderId', null);
+    this.render();
+  }
+});
+
+Router.route('/folders/:_id', {
+  name: Routes.FOLDER,
+  template: 'documents',
+  action: function () {
+    Session.set('currentFolderId', this.params._id);
+    this.render();
+  }
 });
 
 Router.route('/messages', {

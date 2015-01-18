@@ -1,12 +1,24 @@
-FileTools.upload = FileTools.temporaryUpload = function (method, file, callback, onProgress, onComplete) {
-  //this is a temporary placeholder. Eventually files will have to go through resizer
-  // Heavily borrowed from http://stackoverflow.com/a/12378395/230462
-  Meteor.call(method, file.name, file.type, function (error, result) {
-    if (error) return;
+FileTools.upload = function (method, file, options) {
+  options = options || {};
+  var noop = function () {};
+  _.defaults(options, {
+    onProgress: undefined,
+    onError: noop,
+    onComplete: noop,
+    parentFolderId: null
+  });
 
-    var _CB = callback && callback(null, result);
-    var newUrl = Meteor.settings.public.AWS_BUCKET_URL+'/' + result.filePath;
-    console.log('result url', newUrl);
+  var args = [file.name, file.type];
+  if (options.parentFolderId) {
+    args.push(options.parentFolderId);
+  }
+
+  // Heavily borrowed from http://stackoverflow.com/a/12378395/230462
+  Meteor.apply(method, args, function (error, result) {
+    if (error) {
+      options.onError(error);
+      return;
+    }
     var formData = new FormData();
     var key = 'events/' + (new Date()).getTime() + '-' + file.name;
 
@@ -20,22 +32,16 @@ FileTools.upload = FileTools.temporaryUpload = function (method, file, callback,
     formData.append('file', file);
 
     var xhr = new XMLHttpRequest();
-    if (onProgress) xhr.upload.addEventListener('progress', onProgress, false);
+    if (options.onProgress)
+      xhr.upload.addEventListener('progress', options.onProgress, false);
 
     //onComplete &&
     xhr.addEventListener('load', function () {
-        console.log('on load');
-        Meteor.call('resizeNewProfileImage', newUrl);
-      if (callback)
-        callback(null, result);
+     options.onComplete(result);
     }, false);
 
-    var onError = function (evt) {
-      if (callback)
-        callback(evt);
-    };
-    xhr.addEventListener('error', onError, false);
-    xhr.addEventListener('abort', onError, false);
+    xhr.addEventListener('error', options.onError, false);
+    xhr.addEventListener('abort', options.onError, false);
 
     xhr.open('POST', Meteor.settings.public.AWS_BUCKET_URL, true);
     xhr.send(formData);
@@ -51,3 +57,20 @@ FileTools.deleteStub = function (method, filePath, callback) {
   });
 };
 
+FileTools.createFolder = function (folderName, parentFolderId, isCompanyDocument, callback) {
+  return Meteor.call('createFolder', folderName, parentFolderId, isCompanyDocument, callback);
+};
+
+FileTools.isCompanyDocumentsActive = function () {
+  var currentFolder = Files.findOne(Session.get('currentFolderId'));
+  return currentFolder ?
+    currentFolder.companyDocument :
+    Routes.getName() === Routes.COMPANY_DOCUMENTS;
+};
+
+FileTools.isMyDocumentsActive = function () {
+  var currentFolder = Files.findOne(Session.get('currentFolderId'));
+  return currentFolder ?
+    !currentFolder.companyDocument :
+    Routes.getName() === Routes.MY_DOCUMENTS;
+};

@@ -2,12 +2,15 @@ Profile = {};
 
 Template.accountSettings.events({
   'change .upload': function (event) {
-    FileTools.upload('signProfilePictureUpload', event.target.files[0],
-    function (error, result) {
-      if (error) {
+FileTools.upload('signProfilePictureUpload', event.target.files[0], {
+      onError: function (error) {
+        // TODO error message
         alert(error);
-        return;
-      } // TODO error message
+      },
+      onComplete: function (result) {
+        var photoUrl = Meteor.settings.public.AWS_BUCKET_URL + '/' + result.filePath;
+        Meteor.users.update(Meteor.userId(), {$set: {'profile.photoUrl': photoUrl, 'profile.photoKey': result.filePath}});
+      }
     });
   },
   'click #delete-profile-picture': function(event) {

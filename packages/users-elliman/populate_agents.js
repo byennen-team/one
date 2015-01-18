@@ -78,8 +78,8 @@ var q_fetch_resize_and_upload = function(user){
   Meteor._powerQ.add(function(done) {
       var large_url_raw = 'user/'+user.profile.id+'/profile-images/full_'+user.profile.id+_ext;
       var thumb_url_raw = 'user/'+user.profile.id+'/profile-images/thumb_'+user.profile.id+_ext;
-      var thumb_signed = FileTools.signedGetS3(thumb_url_raw);
-      var large_signed = FileTools.signedGetS3(large_url_raw);
+      var thumb_signed = FileTools.signedGet(thumb_url_raw);
+      var large_signed = FileTools.signedGet(large_url_raw);
     user.profile.photoUrl = {
         large: large_signed,
         thumb: thumb_signed
