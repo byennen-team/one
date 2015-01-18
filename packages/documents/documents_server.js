@@ -59,7 +59,7 @@ Meteor.methods({
   signCompanyDocumentUpload: function (fileName, mimeType, parentFolderId) {
     check(fileName, String);
     check(mimeType, String);
-    check(parentFolderId, Match.Optional(String));
+    check(parentFolderId, Match.Optional(Match.OneOf(String, null)));
 
     var user = Meteor.user();
     if (!user) throw new Meteor.Error('Invalid credentials');
@@ -83,7 +83,7 @@ Meteor.methods({
   signUserDocumentUpload: function (fileName, mimeType, parentFolderId) {
     check(fileName, String);
     check(mimeType, String);
-    check(parentFolderId, Match.Optional(String));
+    check(parentFolderId, Match.Optional(Match.OneOf(String, null)));
 
     var user = Meteor.user();
     if (!user) throw new Meteor.Error('Invalid credentials');
@@ -105,7 +105,7 @@ Meteor.methods({
 
   createFolder: function (folderName, parentFolderId) {
     check(folderName, String);
-    check(parentFolderId, Match.Optional(String));
+    check(parentFolderId, Match.Optional(Match.OneOf(String, null)));
 
     var user = Meteor.user();
     if (!user) throw new Meteor.Error('Invalid credentials');
