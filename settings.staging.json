@@ -2,7 +2,7 @@
   "AWS_BUCKET": "goone-staging",
   "AWS_ACCESS_KEY_ID": "AKIAIRIH744ERKEXHPOA",
   "AWS_SECRET_ACCESS_KEY": "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",
-  "AWS_REGION": "s3-us-west-2",
+  "AWS_REGION": "us-west-2",
   "public": {
     "AWS_BUCKET_URL": "https://goone-staging.s3.amazonaws.com",
     "ENVIRONMENT": "staging"
