@@ -9,7 +9,8 @@ FileTools.upload('signProfilePictureUpload', event.target.files[0], {
       },
       onComplete: function (result) {
         var photoUrl = Meteor.settings.public.AWS_BUCKET_URL + '/' + result.filePath;
-        Meteor.users.update(Meteor.userId(), {$set: {'profile.photoUrl': photoUrl, 'profile.photoKey': result.filePath}});
+        Meteor.call('resizeNewProfileImage', photoUrl);
+        //Meteor.users.update(Meteor.userId(), {$set: {'profile.photoUrl': photoUrl, 'profile.photoKey': result.filePath}});
       }
     });
   },
