@@ -74,12 +74,12 @@ Meteor.methods({
 
 
 		Notifications.update({
-			createdFor: this.userId, 
-			read: false
-			}, 
-			{$set: 
+				createdFor: this.userId, 
+				read: false
+			}, {
+				$set: 
 				{
-				read: true
+					read: true
 				}
 			}, {
 				multi: true
