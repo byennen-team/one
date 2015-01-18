@@ -8,6 +8,7 @@ Routes = {
   APPS: 'apps',
   MY_DOCUMENTS: 'myDocuments',
   COMPANY_DOCUMENTS: 'companyDocuments',
+  FOLDER: 'folder',
   SUPPORT: 'support',
   MESSAGES: 'messages',
   STYLE_GUIDE: 'styleGuide'

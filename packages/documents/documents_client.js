@@ -27,12 +27,19 @@ var uploadFile = function (file) {
   var method = companyDocument ? 'signCompanyDocumentUpload' : 'signUserDocumentUpload';
 
   var fileRow;
-  FileTools.upload(method, file, function (error, fileId) {
-    if (error) return; // TODO handle error
-    fileRow = $('#row-' + fileId);
-  }, function (progressEvent) {
-    var progress = Math.floor(progressEvent.loaded / progressEvent.total * 100);
-    updateProgress(fileRow, progress);
+
+  FileTools.upload(method, file, {
+    parentFolderId: Session.get('currentFolderId'),
+    onError: function (error) {
+      // TODO handle error
+    },
+    onProgress: function (progressEvent) {
+      var progress = Math.floor(progressEvent.loaded / progressEvent.total * 100);
+      updateProgress(fileRow, progress);
+    },
+    onComplete: function (fileId) {
+      fileRow = $('#row-' + fileId);
+    }
   });
 };
 
@@ -106,7 +113,8 @@ Template.documents.helpers({
     return Files.find(
       {
         companyDocument: Routes.getName() === Routes.COMPANY_DOCUMENTS,
-        archived: {$ne: true}
+        archived: {$ne: true},
+        parent: Session.get('currentFolderId')
       },
       {
         sort: {uploadDate: -1}
@@ -128,7 +136,7 @@ Template.documents.helpers({
     return moment(file.uploadDate).format('MMM D, YYYY');
   },
   type: function (file) {
-    return file.name.split('.').pop();
+    return file.isFolder ? 'folder' : file.name.split('.').pop();
   },
   isPersonalDocument: function (file) {
     return file.companyDocument === false;

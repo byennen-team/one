@@ -6,7 +6,8 @@ Template.documentsFolderModal.events({
     var folderNameInput = form.find('[name="folderName"]');
 
     var folderName = folderNameInput.val();
-    FileTools.createFolder(folderName);
+    var parentFolderId = Session.get('currentFolderId');
+    FileTools.createFolder(folderName, parentFolderId);
 
     Template.instance().$('#documentsFolderModal').modal('hide');
     form.get(0).reset();

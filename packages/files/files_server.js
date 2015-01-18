@@ -136,7 +136,16 @@ FileTools.delete = function (filePath, callback) {
     });
 };
 
-FileTools.createFolder = function (folderName, userId) {
+/**
+ * Creates a folder.
+ * @param {String} folderName The name of the folder.
+ * @param {String} userId The user id of the owner.
+ * @param {String} [parentFolderId] The id of the parentFolderId folder.
+ * @returns {String} The id of the created folder.
+ */
+FileTools.createFolder = function (folderName, userId, parentFolderId) {
+  parentFolderId = parentFolderId || null;
+
   return Files.insert({
     // TODO: Also create companyDocument folders
     companyDocument: false,
@@ -144,7 +153,6 @@ FileTools.createFolder = function (folderName, userId) {
     uploadDate: new Date(),
     userId: userId,
     isFolder: true,
-    // TODO: Parent folder
-    parent: ''
+    parent: parentFolderId
   });
 };
