@@ -111,7 +111,7 @@ Template.profileGallery.rendered = function () {
     	if (!file.type.match('image.*'))
     		continue;
 
-    	$('.album[album-id="'+$galleryId+'"] .galleryHolder').append('<div data-type="loader" class="gallery-square col-sm-2 half-gutter m-bottom-10 pointer"><div class="full-bg-img" style="background-image: url(/photo-load.gif);"></div></div>');
+    	$('.album[album-id="'+$galleryId+'"] .galleryHolder').append('<div data-type="loader" class="gallery-square col-sm-2 half-gutter m-bottom-10 center picture-loader"><img src="/photo-load.gif" /></div>');
     	FileTools.temporaryUpload('signProfilePictureUpload', file, callbackFunction);
     }
   });
