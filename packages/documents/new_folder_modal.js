@@ -11,6 +11,7 @@ Template.documentsFolderModal.events({
     FileTools.createFolder(
       folderName,
       parentFolderId,
+      FileTools.isCompanyDocumentsActive(),
       function (error, newFolderId) {
         if (error) {
           // TODO: Show error to user

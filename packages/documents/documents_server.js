@@ -103,15 +103,21 @@ Meteor.methods({
     return signed;
   },
 
-  createFolder: function (folderName, parentFolderId) {
+  createFolder: function (folderName, parentFolderId, isCompanyDocument) {
     check(folderName, String);
     check(parentFolderId, Match.Optional(Match.OneOf(String, null)));
+    check(isCompanyDocument, Match.Optional(Boolean));
 
     var user = Meteor.user();
     if (!user) throw new Meteor.Error('Invalid credentials');
     validateParentFolderId(user, parentFolderId);
 
-    return FileTools.createFolder(folderName, user._id, parentFolderId);
+    return FileTools.createFolder(
+      folderName,
+      user._id,
+      parentFolderId,
+      isCompanyDocument
+    );
   }
 });
 

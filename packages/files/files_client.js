@@ -58,8 +58,8 @@ FileTools.deleteStub = function (method, filePath, callback) {
   });
 };
 
-FileTools.createFolder = function (folderName, parentFolderId, callback) {
-  return Meteor.call('createFolder', folderName, parentFolderId, callback);
+FileTools.createFolder = function (folderName, parentFolderId, isCompanyDocument, callback) {
+  return Meteor.call('createFolder', folderName, parentFolderId, isCompanyDocument, callback);
 };
 
 FileTools.isCompanyDocumentsActive = function () {

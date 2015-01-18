@@ -141,14 +141,14 @@ FileTools.delete = function (filePath, callback) {
  * @param {String} folderName The name of the folder.
  * @param {String} userId The user id of the owner.
  * @param {String} [parentFolderId] The id of the parentFolderId folder.
+ * @param {Boolean} [isCompanyDocument] Is the folder a companyDocument?
  * @returns {String} The id of the created folder.
  */
-FileTools.createFolder = function (folderName, userId, parentFolderId) {
+FileTools.createFolder = function (folderName, userId, parentFolderId, isCompanyDocument) {
   parentFolderId = parentFolderId || null;
 
   return Files.insert({
-    // TODO: Also create companyDocument folders
-    companyDocument: false,
+    companyDocument: !!isCompanyDocument,
     name: folderName,
     uploadDate: new Date(),
     userId: userId,
