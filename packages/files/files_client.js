@@ -61,3 +61,17 @@ FileTools.deleteStub = function (method, filePath, callback) {
 FileTools.createFolder = function (folderName, parentFolderId, callback) {
   return Meteor.call('createFolder', folderName, parentFolderId, callback);
 };
+
+FileTools.isCompanyDocumentsActive = function () {
+  var currentFolder = Files.findOne(Session.get('currentFolderId'));
+  return currentFolder ?
+    currentFolder.companyDocument :
+    Routes.getName() === Routes.COMPANY_DOCUMENTS;
+};
+
+FileTools.isMyDocumentsActive = function () {
+  var currentFolder = Files.findOne(Session.get('currentFolderId'));
+  return currentFolder ?
+    !currentFolder.companyDocument :
+    Routes.getName() === Routes.MY_DOCUMENTS;
+};

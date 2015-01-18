@@ -1,9 +1,6 @@
 Template.documentsBreadcrumb.helpers({
-  isCompanyDocument: function () {
-    var currentFolder = Files.findOne(Session.get('currentFolderId'));
-    return currentFolder ?
-      currentFolder.companyDocument :
-      Routes.getName() === Routes.COMPANY_DOCUMENTS;
+  isMyDocumentsActive: function () {
+    return FileTools.isMyDocumentsActive();
   },
 
   isCompanyDocumentsRoute: function () {

@@ -1,16 +1,16 @@
 <template name="documentsBreadcrumb">
   <ol class="breadcrumb documents__breadcrumb">
-    {{#if isCompanyDocument}}
-      {{#if isCompanyDocumentsRoute}}
-        <li class="active">Company Docs</li>
-      {{else}}
-        <li>{{#linkTo route="companyDocuments"}}Company Docs{{/linkTo}}</li>
-      {{/if}}
-    {{else}}
+    {{#if isMyDocumentsActive}}
       {{#if isMyDocumentsRoute}}
         <li class="active">My Library</li>
       {{else}}
         <li>{{#linkTo route="myDocuments"}}My Library{{/linkTo}}</li>
+      {{/if}}
+    {{else}}
+      {{#if isCompanyDocumentsRoute}}
+        <li class="active">Company Docs</li>
+      {{else}}
+        <li>{{#linkTo route="companyDocuments"}}Company Docs{{/linkTo}}</li>
       {{/if}}
     {{/if}}
 
