@@ -24,9 +24,9 @@ s3_client = knox.createClient(s3_params);
 
 // set base for modulus in staging and beta enviroment
 if(Settings.isStaging || Settings.isBeta) {
-  var base = process.env.TEMP_DIR+'/'
+  var base = process.env.TEMP_DIR+'/';
 } else {
-  var base = process.env.PWD+'/tmp/'
+  var base = process.env.PWD+'/tmp/';
 }
 
 //fetch temp image
