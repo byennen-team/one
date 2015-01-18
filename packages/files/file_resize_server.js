@@ -18,8 +18,7 @@ imageremote = 'remoteimage.jpeg',
 s3_params = {
   key: Meteor.settings.AWS_ACCESS_KEY_ID, //<api-key-here>'
   secret: Meteor.settings.AWS_SECRET_ACCESS_KEY,  //'<secret-here>'
-  bucket: Meteor.settings.AWS_BUCKET,
-  region: Meteor.settings.AWS_REGION
+  bucket: Meteor.settings.AWS_BUCKET
 },
 s3_client = knox.createClient(s3_params);
 
