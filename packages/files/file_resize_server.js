@@ -11,18 +11,24 @@ gm           = Npm.require('gm').subClass({ imageMagick: true }), // graphics ma
 encoding     = 'binary', // default encoding
 resizeWidths = { "mobile_":480, "thumb_":65, "full_":140 },
 resizeHeights = { "mobile_": 480, "thumb_": 65, "full_": 140 },
-base = process.env.TEMP_DIR+'/',
 img_tmp = 'imagetmp',
 img_ext = '.jpeg',
 temp_img_file = base+img_tmp+img_ext,
 imageremote = 'remoteimage.jpeg',
 s3_params = {
-    key: Meteor.settings.AWS_ACCESS_KEY_ID, //<api-key-here>'
-    secret: Meteor.settings.AWS_SECRET_ACCESS_KEY,  //'<secret-here>'
-    bucket: Meteor.settings.AWS_BUCKET,
-    region: Meteor.settings.AWS_REGION
+  key: Meteor.settings.AWS_ACCESS_KEY_ID, //<api-key-here>'
+  secret: Meteor.settings.AWS_SECRET_ACCESS_KEY,  //'<secret-here>'
+  bucket: Meteor.settings.AWS_BUCKET,
+  region: Meteor.settings.AWS_REGION
 },
 s3_client = knox.createClient(s3_params);
+
+// set base for modulus in staging and beta enviroment
+if(Settings.isStaging || Settings.isBeta) {
+  var base = process.env.TEMP_DIR+'/'
+} else {
+  var base = process.env.PWD+'/'
+}
 
 //fetch temp image
 FileTools.fetch_to_temp = function(url, done){
