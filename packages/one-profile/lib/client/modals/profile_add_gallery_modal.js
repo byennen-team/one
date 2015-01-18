@@ -25,3 +25,9 @@ Template.addGalleryModal.events({
 		$('#galleryNameField').val('');
 	}
 });
+
+Template.addGalleryModal.rendered = function() {
+	$('#addGaleryModal').on('shown.bs.modal', function() {
+		$('#galleryNameField').focus();
+	});
+}
