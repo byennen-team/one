@@ -19,6 +19,13 @@ Notify.markNotificationAsRead = function(notificationId) {
 	});
 };
 
+Notify.markAllNotificationsAsRead = function() {
+	Meteor.call('markAllNotificationsAsRead', function(error,result) {
+		if (error)
+			console.log(error); //we can't throw here and this is a debug error, not a general error
+	});
+};
+
 Notify.getUnreadNotifications = function(userId) {
 	if (!userId && Meteor.userId())
 		userId = Meteor.userId();

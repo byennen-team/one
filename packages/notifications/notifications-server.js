@@ -8,14 +8,17 @@ Meteor.publish('notifications', function(limit) {
 });
 
 Meteor.methods({
-	addNotification: function(toUserId,message,title,link) {
+	/**
+	* @description: Adds a new notification
+	* @params: toUserId - String, context - Object (message - String, title - String optional, link - String optional);
+	* @returns: Object - insert result
+	*/
+	addNotification: function(toUserId, context) {
 		check(toUserId,String);
-		check(message,String);
+		check(context,Object);
 
-		if (title)
-			check(title,String);
-		if (link)
-			check(link, String);
+		if (context.message)
+			return('You need to specify a message');
 
 		//check that the user exists
 		var user = Meteor.users.findOne(toUserId);
@@ -26,12 +29,12 @@ Meteor.methods({
 		var options = {
 			createdAt: new Date(),
 			createdFor: toUserId,
-			notificationText: message,
-			notificationsTitle: title ? title : 'New notification'
+			notificationText: context.message,
+			notificationsTitle: context.title ? context.title : 'New notification'
 		};
 
 		if (link)
-			options.link = link;
+			options.link = context.link;
 
 		Notifications.insert(options, function(error, result) {
 			if (error)
@@ -60,6 +63,29 @@ Meteor.methods({
 		}}, function(error, result) {
 			if (error)
 				return "Could not update notification";
+
+			return result;
+		});
+
+	},
+	markAllNotificationsAsRead: function() {
+		if (!this.userId)
+			return "You are not logged in";
+
+
+		Notifications.update({
+			createdFor: this.userId, 
+			read: false
+			}, 
+			{$set: 
+				{
+				read: true
+				}
+			}, {
+				multi: true
+			}, function(error, result) {
+			if (error)
+				return "Could not update notifications";
 
 			return result;
 		});
@@ -108,9 +134,9 @@ Notify.generateMessageText = function(text, stringArray) {
 	return text;
 };
 
-
-Notify.addNotification = function(toUserId,message,title,link) {
-	Meteor.call('addNotification',toUserId,message,title,link,function(error, result) {
+//Placeholder function to avoid using Meteor.call everytime
+Notify.addNotification = function(toUserId, context) {
+	Meteor.call('addNotification',toUserId,context,function(error, result) {
 		if (error)
 			throw new Meteor.Error(500,error);
 	});
