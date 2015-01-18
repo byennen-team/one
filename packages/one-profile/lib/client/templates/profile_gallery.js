@@ -53,9 +53,10 @@ Template.profileGallery.events({
 });
 
 Template.profileGallery.rendered = function () {
-	$('.swipebox').swipebox();
+  var counter = 0;
+  $('.swipebox').swipebox();
 
-  $('.album').on('dragover', function (e) {
+  $('#section-gallery').on('dragover', '.album', function (e) {
     e.stopPropagation();
     e.preventDefault();
 
@@ -63,19 +64,27 @@ Template.profileGallery.rendered = function () {
     e.originalEvent.dataTransfer.dropEffect = 'copy';
   });
 
-  $('.album').on('dragenter', function (e) {
+  $('#section-gallery').on('dragenter', '.album', function (e) {
   	e.stopPropagation();
     e.preventDefault();
+
+    counter++;
     $(e.currentTarget).addClass('draggedOver');
   });
 
-  $('.album').on('dragleave', function (e) {
-    $(e.currentTarget).removeClass('draggedOver');
+  $('#section-gallery').on('dragleave', '.album', function (e) {
+  	e.stopPropagation();
+    e.preventDefault();
+
+    counter--;
+    if(counter === 0)
+    	$(e.currentTarget).removeClass('draggedOver');
   });
 
-  $('.album').on('drop', function (e) {
+  $('#section-gallery').on('drop', '.album', function (e) {
     e.stopPropagation();
     e.preventDefault();
+
     $(e.currentTarget).removeClass('draggedOver');
     var $galleryId = $(this).attr("album-id");
 
