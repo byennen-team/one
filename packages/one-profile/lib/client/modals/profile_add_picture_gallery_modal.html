@@ -12,7 +12,12 @@
         <div class="modal-body">
           
           <div class="form-group">
-
+            <label class='m-top-20'>Upload to Gallery:</label>
+            <select class="selectpicker" id="select-gallery-dropdown" data-style="drop-select" data-width='100%'>
+              {{#each galleries}}
+                <option value="{{_id}}">{{galleryName}}</option>
+              {{/each}}
+            </select>
             <label>pictures</label>
             <div class="input-bag">
               <div class="input-box">
@@ -24,15 +29,6 @@
                 <i class="fa fa-times-circle-o hidden"></i>
               </div>
             </div>
-
-            <label class='m-top-20'>Upload to Gallery:</label>
-            <select class="selectpicker" id="select-gallery-dropdown" data-style="drop-select" data-width='100%'>
-<!-- LANCE - <option>s should be the folders the user has created -->
-              {{#each galleries}}
-                <option value="{{_id}}">{{galleryName}}</option>
-              {{/each}}
-            </select>
-            
           </div>
         </div>
         <div class="modal-footer m-top-20">
