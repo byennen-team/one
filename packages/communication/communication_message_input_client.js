@@ -1,8 +1,6 @@
-var inputBox = $('#communication-message-input');
-
 Template.messageInput.rendered = function(){
 	Session.set('menuOpen', false);
-	Session.setDefault('attachment', false);
+	Session.set('attachment', false);
 	$('.selectpicker').selectpicker();
 }
 
@@ -40,7 +38,7 @@ Template.messageInput.events({
 
 	// Open New Post menu
 	'click #communication-message-input-options-post': function(){
-		inputBox.addClass('new-post');
+		$('#communication-message-board').addClass('new-post');
 	}
 
 });
@@ -66,18 +64,16 @@ Tracker.autorun(function () {
   	$('#communication-message-input').addClass('holding');
 		var str = $('#communication-message-input-attachment-input').val();
 		var fileName = /[^\\]*$/.exec(str)[0];
-		$('#communication-message-attachment-name').prepend(fileName);
+		$('#communication-message-attachment-name').text('').prepend(fileName);
 		$('#communication-message-attachment-display')
 			.velocity({width: '270px'}, 800, "easeInSine")
 			.velocity("fadeIn", {duration: 300})
-			.css( 'padding', '15px')
 			.velocity({overflow: 'visible'}, {delay: 800});
 		} else {
 			$('#communication-message-input').removeClass('holding');
 			$('#communication-message-attachment-display')
 				.velocity({width: '0'}, 800, "easeInSine")
 				.velocity("fadeOut", {duration: 800})
-				.css( 'padding', '0')
 				.velocity({overflow: 'hidden'});
 		}
 });

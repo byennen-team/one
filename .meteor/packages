@@ -17,6 +17,7 @@ stevezhu:velocity.js@0.1.0
 joshowens:simple-form #TODO: refactory this out?
 aldeed:simple-schema
 mrt:moment
+maazalik:malihu-jquery-custom-scrollbar
 
 # Our Packages
 
@@ -50,7 +51,6 @@ styles
 less
 communication
 communication-sidebar
-maazalik:malihu-jquery-custom-scrollbar
 communication-library
 communication-task
 communication-directory

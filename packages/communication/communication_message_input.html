@@ -26,20 +26,25 @@
 		</div>
 
 		<div id="communication-message-attachment-display" class='attachment-display'>
-			<i class="fa fa-file"></i>
-			<span id="communication-message-attachment-name" class="name">
+			<div class="caret-left"></div>
+			<div class="background">
+				<i class="fa fa-file"></i>
+				<span id="communication-message-attachment-name" class="name"></span>
 				<span id="communication-message-attachment-size" class="size"></span>
-			</span>
-			<i id="communication-message-attachment-delete" class="fa fa-close"></i>
+				<i id="communication-message-attachment-delete" class="fa fa-close"></i>
+			</div>
 		</div>
 
+		<input class='input' type="text" placeholder="Type your message..." />
+
 <!-- TODO: needs to be plugged in -->
-		<form action="" id="communication-message-post" class="new-post">
+		<form action="" id="communication-message-post" class="new-post-form">
 			<span>in</span>
 <!-- TODO: needs to include all possible channels/rooms/conversations -->
-			<select class="selectpicker" multiple>
+<!-- TODO: whatever room the user is in should be preselected (not General) -->
+			<select class="selectpicker" style='select-style' multiple>
 		    <optgroup label="Company Channels">
-		      <option>General</option>
+		      <option selected>General</option>
 		      <option>News</option>
 		      <option>Events</option>
 		      <option>Training</option>
@@ -63,7 +68,8 @@
   		</select>
 
   		<input type="text" class="subject" placeholder="Subject...">
-  		<div id="communication-message-post-textarea" class="fake-textarea">Type a post...</div>
+
+  		<div id="communication-message-post-textarea" class="fake-textarea" contenteditable='true'>Type a post...</div>
 
   		<div id="communication-message-post-attachment-btn" class="paperclip">
   			<i class="fa fa-paperclip"></i>
@@ -81,13 +87,14 @@
 			    <li id='communication-message-post-style-link'><i class="fa fa-underline"></i></li>
 			  </ul>
 			</div>
-
+<!-- TODO: Saves a post as a draft -->
 			<div id='communication-message-post-save' class="btn btn-secondary">save draft</div>
+<!-- TODO: posts the post -->
 			<div id='communication-message-post-btn' class="btn btn-primary">post</div>
 
 		</form>
 
-		<input class='input' type="text" placeholder="Type your message..." />
+
 
 <!-- TODO: put emoticon selector back in once it's thought out (needs bank of emoticons) -->
 <!-- TODO: style emoticon dropdown - once installed -->
