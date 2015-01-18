@@ -1,5 +1,5 @@
 var
-fs           = Npm.require('node-fs'), // for writing local (temp) files
+fs           = Npm.require('fs'), // for writing local (temp) files
 knox         = Npm.require('knox'),
 crypto       = Npm.require('crypto'), // used to create hash of image
 path         = Npm.require('path'),  // used for getting file extension
@@ -9,10 +9,9 @@ tmpath,
 im           = Npm.require('imagemagick'), // re-size images
 gm           = Npm.require('gm').subClass({ imageMagick: true }), // graphics magic
 encoding     = 'binary', // default encoding
-oi           = {}, // original image
 resizeWidths = { "mobile_":480, "thumb_":65, "full_":140 },
 resizeHeights = { "mobile_": 480, "thumb_": 65, "full_": 140 },
-base = process.env.PWD+'/tempImages/',
+base = process.env.TEMP_DIR+'/',
 img_tmp = 'imagetmp',
 img_ext = '.jpeg',
 temp_img_file = base+img_tmp+img_ext,
@@ -36,8 +35,8 @@ FileTools.fetch_to_temp = function(url, done){
         response = response || { statusCode: 8888 };
         if (response && response.statusCode == 404) {
            console.log(url, ' not found', response.statusCode);
-           fs.createReadStream(base+'No_image_available.jpg')
-           .pipe(fs.createWriteStream(temp_img_file))
+           fs.createReadStream('http://assets2.elliman.com/BrokerPics/Opt/JEFA.jpg')
+           .pipe(fs.createWriteStream(temp_img_file, {internal :  true}))
            .on('end', Meteor.bindEnvironment(function(err, res) {
             if (err) throw err;
             console.log('piped No Image Available');
@@ -50,7 +49,7 @@ FileTools.fetch_to_temp = function(url, done){
         if (error) console.log('end error', response.statusCode);
         done();
        }))
-  .pipe(fs.createWriteStream(temp_img_file));
+  .pipe(fs.createWriteStream(temp_img_file, {internal :  true}));
 };
 
 //resize
@@ -89,5 +88,6 @@ function imagesObject(filename){
   };
   return images;
 }
+
 // always clean up temporary files
 tmp.setGracefulCleanup();
