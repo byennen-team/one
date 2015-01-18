@@ -16,7 +16,7 @@ var updateProgress = function (fileRow, progress) {
 };
 
 var uploadFile = function (file) {
-  var companyDocument = Routes.getName() === Routes.COMPANY_DOCUMENTS;
+  var companyDocument = FileTools.isCompanyDocumentsActive();
 
   var existingFile = Files.findOne({name: file.name, companyDocument: companyDocument});
   if (existingFile) {
