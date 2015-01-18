@@ -40,7 +40,8 @@ FileTools.fetch_to_temp = function(url, done){
         response = response || { statusCode: 8888 };
         if (response && response.statusCode == 404) {
            console.log(url, ' not found', response.statusCode);
-           fs.createReadStream('http://assets2.elliman.com/BrokerPics/Opt/JEFA.jpg')
+          //  fs.createReadStream('http://assets2.elliman.com/BrokerPics/Opt/JEFA.jpg')
+            fs.createReadStream(base+'No_image_available.jpg')
            .pipe(fs.createWriteStream(temp_img_file, {internal :  true}))
            .on('end', Meteor.bindEnvironment(function(err, res) {
             if (err) throw err;
