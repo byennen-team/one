@@ -30,4 +30,4 @@ Template.addGalleryModal.rendered = function() {
 	$('#addGaleryModal').on('shown.bs.modal', function() {
 		$('#galleryNameField').focus();
 	});
-}
+};
