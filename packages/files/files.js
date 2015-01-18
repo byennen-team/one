@@ -8,9 +8,10 @@ Files.schema = new SimpleSchema({
   userId: {type: String, regEx: SimpleSchema.RegEx.Id},
   isFolder: {type: Boolean, defaultValue: false},
   /**
-   * The parent folder. Like folderA/folderB.
+   * The parent folder id.
+   * Files that have no parent value are in the root folder.
    */
-  parent: {type: String}
+  parent: {type: String, optional: true}
 });
 
 // Can't name this File or it will conflict with the HTML5 File.
