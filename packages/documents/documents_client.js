@@ -112,7 +112,7 @@ Template.documents.helpers({
   files: function () {
     return Files.find(
       {
-        companyDocument: Routes.getName() === Routes.COMPANY_DOCUMENTS,
+        companyDocument: FileTools.isCompanyDocumentsActive(),
         archived: {$ne: true},
         parent: Session.get('currentFolderId')
       },
