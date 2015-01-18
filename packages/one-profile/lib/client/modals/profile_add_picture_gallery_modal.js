@@ -76,7 +76,7 @@ Template.picturesUploadModal.events({
           //we have a file, let's add a loading indicator
           var $galleryId = $("#select-gallery-dropdown").val();
 
-          $('.album[album-id="'+$galleryId+'"] .galleryHolder').append('<div data-type="loader" class="gallery-square col-sm-2 half-gutter m-bottom-10 pointer"><div class="full-bg-img" style="background-image: url(/photo-load.gif);"></div></div>');
+          $('.album[album-id="'+$galleryId+'"] .galleryHolder').append('<div data-type="loader" class="gallery-square col-sm-2 half-gutter m-bottom-10 center picture-loader"><img src="/photo-load.gif" /></div>');
           FileTools.temporaryUpload('signProfilePictureUpload', $contents[0], function (error, result) {
             if (error) throw new Meteor.Error(500, 'Error in uploading file'); // TODO error message
 
