@@ -58,7 +58,7 @@ Template.documents.events({
   },
   'click .download': function (event) {
     event.preventDefault();
-    var a = $("<a>").attr("href", event.target.getAttribute("href")).attr("download", "img.png").appendTo("body");
+    var a = $('<a target="_blank">').attr("href", event.target.getAttribute("href")).attr("download", "img.png").appendTo("body");
     a[0].click();
     a.remove();
   },
