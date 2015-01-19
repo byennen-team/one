@@ -24,14 +24,14 @@ s3_client = knox.createClient(s3_params);
 
 // set base for modulus in staging and beta enviroment
 if(Settings.isStaging || Settings.isBeta) {
-  var __dirname = process.env.TEMP_DIR+'/packages/files/img/';
+  var base = process.env.TEMP_DIR+'/';
 } else {
-  var __dirname = process.env.PWD+'/packages/files/img/';
+  var base = process.env.PWD+'/tmp/';
 }
 
 //fetch temp image
 FileTools.fetch_to_temp = function(url, callback){
-  flag404 = false;  
+  flag404 = false;
   var originalName = url.substring(url.lastIndexOf('/')+1);
   var xpat = /\.([0-9a-z]+)(?:[\?#]|$)/i;
   img_ext = originalName.match(xpat)[0];
@@ -41,7 +41,7 @@ FileTools.fetch_to_temp = function(url, callback){
         response = response || { statusCode: 8888 };
         if (response && response.statusCode == 404) {
             console.log(url, ' not found', response.statusCode);
-            console.log('__dirname', __dirname);
+            console.log('base', base);
             flag404 = true;
             callback();
             }})
@@ -51,15 +51,15 @@ FileTools.fetch_to_temp = function(url, callback){
         if (error) console.log('end error', response.statusCode);
         callback();
        }))
-  .pipe(fs.createWriteStream(__dirname+img_tmp+img_ext, {internal :  true}));
+  .pipe(fs.createWriteStream(base+img_tmp+img_ext, {internal :  true}));
 };
 
 //resize
 FileTools.resize_temp = function(size, callback) {
     if (flag404) { return callback(); }
     Meteor.wrapAsync(im.resize({
-      srcPath: __dirname + img_tmp+img_ext,
-      dstPath: __dirname + size+img_tmp+img_ext,
+      srcPath: base+img_tmp+img_ext,
+      dstPath: base+size+img_tmp+img_ext,
       width:  resizeWidths[size],
       height: resizeHeights[size],
       quality: 0.6
@@ -73,10 +73,10 @@ FileTools.resize_temp = function(size, callback) {
 
 //upload
 FileTools.upload = function (descriptor, remotefile, callback) {
-  var imagefile = __dirname+descriptor+img_tmp+img_ext;
+  var imagefile = base+descriptor+img_tmp+img_ext;
   remotefile+=img_ext;
-  if (flag404) { 
-      imagefile = __dirname+descriptor+'NIA.jpg';
+  if (flag404) {
+      imagefile = base+descriptor+'NIA.jpg';
       console.log('remote:', remotefile, '  : ', imagefile);
   }
   Meteor.wrapAsync(s3_client.putFile(imagefile, remotefile, Meteor.bindEnvironment(function(err, response) {
