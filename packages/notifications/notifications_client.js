@@ -10,14 +10,18 @@ Template.notifications.helpers({
       return Meteor.user().profile;
   },
   status: function (status) {
-    switch (status.toUpperCase()) {
-      case 'MOBILE':
-        return 'mobile';
-      case 'OUT OF OFFICE':
-        return 'inactive';
-      case 'IN THE OFFICE':
-        return 'active';
+    if (status) {
+      switch (status.toUpperCase()) {
+        case 'MOBILE':
+          return 'mobile';
+        case 'OUT OF OFFICE':
+          return 'inactive';
+        case 'IN THE OFFICE':
+          return 'active';
       }
+    } else {
+      return "inactive"
+    }
   },
   notificationsUnread: function () {
     return Notify.getUnreadNotifications();
@@ -32,7 +36,7 @@ Template.notifications.helpers({
     return moment(dateToFormat).calendar();
   },
   isActive: function (text,status) {
-    return text.toUpperCase() === status.toUpperCase() ? 'active': '';
+    return text.toUpperCase() === (status && status.toUpperCase()) ? 'active': '';
   }
 });
 
