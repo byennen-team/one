@@ -54,7 +54,7 @@ var q_fetch_resize_and_upload = function(user){
   var xpat = /\.([0-9a-z]+)(?:[\?#]|$)/i;
   var _URL = user.profile.photoUrl;
   var _ext = _URL.match(xpat)[0];
-  var s3BaseURL = 'https://s3.amazonaws.com/'+Meteor.settings.AWS_BUCKET+'/user/';
+  var s3BaseURL = Meteor.settings.AWS_BUCKET_URL+'/user/';
   Meteor._powerQ.add(function(done){
     console.log('#: ', count_jobs, ' : ', user.profile.id);
     done();
