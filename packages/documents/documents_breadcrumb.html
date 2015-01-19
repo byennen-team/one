@@ -1,0 +1,25 @@
+<template name="documentsBreadcrumb">
+  <ol class="breadcrumb documents__breadcrumb">
+    {{#if isMyDocumentsActive}}
+      {{#if isMyDocumentsRoute}}
+        <li class="active">My Library</li>
+      {{else}}
+        <li>{{#linkTo route="myDocuments"}}My Library{{/linkTo}}</li>
+      {{/if}}
+    {{else}}
+      {{#if isCompanyDocumentsRoute}}
+        <li class="active">Company Docs</li>
+      {{else}}
+        <li>{{#linkTo route="companyDocuments"}}Company Docs{{/linkTo}}</li>
+      {{/if}}
+    {{/if}}
+
+    {{#each breadcrumbs}}
+      {{#if isCurrentFolder}}
+        <li class="active">{{name}}</li>
+      {{else}}
+        <li>{{#linkTo route="folder"}}{{name}}{{/linkTo}}</li>
+      {{/if}}
+    {{/each}}
+  </ol>
+</template>

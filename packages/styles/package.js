@@ -14,5 +14,5 @@ Package.onUse(function (api) {
                ], 'web');
 
   //style guide
-  api.addFiles('style_guide.html', 'web')
+  api.addFiles('style_guide.html', 'web');
 });

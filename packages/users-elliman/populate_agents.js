@@ -24,11 +24,10 @@ var userFromEllimanRow = function (row) {
   var emails = [];
 
   if (row.EM_ADDRESS && Match.test(row.EM_ADDRESS, MatchEx.Email())) {
-    // Figure out how to handle duplicates before inserting emails
-//    emails.push({
-//      address: row.EM_ADDRESS,
-//      verified: true
-//    });
+    emails.push({
+      address: row.EM_ADDRESS,
+      verified: true
+    });
   }
 
   var user = {
@@ -50,16 +49,68 @@ var userFromEllimanRow = function (row) {
 };
 
 // Populate the users collection with elliman agents.
+var count_jobs = 1;
+var q_fetch_resize_and_upload = function(user){
+  var xpat = /\.([0-9a-z]+)(?:[\?#]|$)/i;
+  var _URL = user.profile.photoUrl;
+  var _ext = _URL.match(xpat)[0];
+  var s3BaseURL = Meteor.settings.AWS_BUCKET_URL+'/user/';
+  Meteor._powerQ.add(function(done){
+    console.log('#: ', count_jobs, ' : ', user.profile.id);
+    done();
+  });
+  Meteor._powerQ.add(function(done) {
+    FileTools.fetch_to_temp(user.profile.photoUrl, done);
+  });
+  Meteor._powerQ.add(function(done) {
+    FileTools.resize_temp('thumb_', done);
+  });
+  Meteor._powerQ.add(function(done){
+    FileTools.upload('thumb_', '/user/'+user.profile.id+'/profile-images/thumb_'+user.profile.id, done);
+  });
+  Meteor._powerQ.add(function(done) {
+    FileTools.resize_temp('full_', done);
+  });
+  Meteor._powerQ.add(function(done){
+    FileTools.upload('full_', '/user/'+user.profile.id+'/profile-images/full_'+user.profile.id, done);
+  });
+  //
+  Meteor._powerQ.add(function(done) {
+      var large_url_raw = 'user/'+user.profile.id+'/profile-images/full_'+user.profile.id+_ext;
+      var thumb_url_raw = 'user/'+user.profile.id+'/profile-images/thumb_'+user.profile.id+_ext;
+      var thumb_signed = FileTools.signedGet(thumb_url_raw);
+      var large_signed = FileTools.signedGet(large_url_raw);
+    user.profile.photoUrl = {
+        large: large_signed,
+        thumb: thumb_signed
+    };
+    var user_mongo = Meteor.users.insert(user);
+    console.log('X:', count_jobs++, ' email: ',  user.emails[0].address);
+    done();
+  });
+};
 Meteor.startup(function () {
+  Meteor._powerQ = new PowerQueue({
+      isPaused: true
+    });
   var numUsers = Meteor.users.find().count();
   console.log('Total Users', numUsers);
   if (numUsers > 0) return;
-
+  console.log('PQ', Meteor._powerQ.title);
   var ellimanAgents = JSON.parse(Assets.getText('elliman_agents_production.json'));
+  if (Settings.isDevelopment || Settings.isStaging) {
+      ellimanAgents = ellimanAgents.slice(14,33);
+  }
+  var count = 1;
+  var q_count = 0;
   _.each(ellimanAgents, function (row) {
+    console.log('begin insert:', row.FIRST_NAME, ' : ', row.EM_ADDRESS);
     var user = userFromEllimanRow(row);
-    Meteor.users.insert(user);
+    if (!user.profile.photoUrl || (user.profile.photoUrl.length === 0)) return '';
+    console.log('PQing: ', count++, row.FIRST_NAME);
+    q_fetch_resize_and_upload(user);
   });
-
-  console.log('Inserted', ellimanAgents.length, 'elliman agents');
+  console.log('Ready to run queue');
+  Meteor._powerQ.run();
+  console.log('queue running', ellimanAgents.length, 'elliman agents');
 });

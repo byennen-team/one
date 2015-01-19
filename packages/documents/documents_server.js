@@ -15,6 +15,15 @@ Meteor.methods({
 
     Meteor.users.update(user._id, modifier);
   },
+  archiveDocument: function (fileId, archive) {
+    check(fileId, String);
+    check(archive, Boolean);
+
+    var user = Meteor.user();
+    if (!user) throw new Meteor.Error('Invalid credentials');
+
+    Files.update({_id: fileId, companyDocument:false}, {$set: {archived: archive}});
+  },
   renameDocument: function (fileId, newFileName) {
     check(fileId, String);
     check(newFileName, String);
@@ -47,33 +56,79 @@ Meteor.methods({
     return FileTools.signedGet(FileTools.path(file));
   },
 
-  signCompanyDocumentUpload: function (fileName, mimeType) {
+  signCompanyDocumentUpload: function (fileName, mimeType, parentFolderId) {
     check(fileName, String);
     check(mimeType, String);
+    check(parentFolderId, Match.Optional(Match.OneOf(String, null)));
 
     var user = Meteor.user();
     if (!user) throw new Meteor.Error('Invalid credentials');
+    validateParentFolderId(user, parentFolderId);
 
     // TODO grab company name
     var filePath = Folder.companyDocument('elliman') + '/' + fileName;
 
-    var fileId = Files.insert({companyDocument: true, name: fileName, uploadDate: new Date(), userId: user._id});
+    var fileId = Files.insert({
+      companyDocument: true,
+      name: fileName,
+      uploadDate: new Date(),
+      userId: user._id,
+      parent: parentFolderId
+    });
     var signed = FileTools.signUpload(filePath, 'private', mimeType);
     signed.fileId = fileId;
     return signed;
   },
-  signUserDocumentUpload: function (fileName, mimeType) {
+
+  signUserDocumentUpload: function (fileName, mimeType, parentFolderId) {
     check(fileName, String);
     check(mimeType, String);
+    check(parentFolderId, Match.Optional(Match.OneOf(String, null)));
 
     var user = Meteor.user();
     if (!user) throw new Meteor.Error('Invalid credentials');
+    validateParentFolderId(user, parentFolderId);
 
     var filePath = Folder.userDocument(user._id) + '/' + fileName;
 
-    var fileId = Files.insert({companyDocument: false, name: fileName, uploadDate: new Date(), userId: user._id});
+    var fileId = Files.insert({
+      companyDocument: false,
+      name: fileName,
+      uploadDate: new Date(),
+      userId: user._id,
+      parent: parentFolderId
+    });
     var signed = FileTools.signUpload(filePath, 'private', mimeType);
     signed.fileId = fileId;
     return signed;
+  },
+
+  createFolder: function (folderName, parentFolderId, isCompanyDocument) {
+    check(folderName, String);
+    check(parentFolderId, Match.Optional(Match.OneOf(String, null)));
+    check(isCompanyDocument, Match.Optional(Boolean));
+
+    var user = Meteor.user();
+    if (!user) throw new Meteor.Error('Invalid credentials');
+    validateParentFolderId(user, parentFolderId);
+
+    return FileTools.createFolder(
+      folderName,
+      user._id,
+      parentFolderId,
+      isCompanyDocument
+    );
   }
 });
+
+function validateParentFolderId(user, parentFolderId) {
+  if (parentFolderId && !isUserOwnerOfFile(user._id, parentFolderId)) {
+    throw new Meteor.Error('NOT_OWNER_OF_PARENT_FOLDER');
+  }
+}
+
+function isUserOwnerOfFile(userId, fileId) {
+  var file = Files.findOne(fileId);
+
+  return file.userId === userId;
+}

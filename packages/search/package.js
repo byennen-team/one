@@ -15,5 +15,5 @@ Package.onUse(function (api) {
   api.addFiles(['search.html', 'search.less', 'search_client.js'], 'web');
   api.addFiles('search_server.js', 'server');
 
-  api.export('Search', 'web')
+  api.export('Search', 'web');
 });

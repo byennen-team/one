@@ -26,7 +26,7 @@ var cumuloCheckboxColor = function( checkbox, label, checkedClass, uncheckedClas
       }
     });
   }
-}
+};
 
 var cumuloRadioColor = function( radio1, radio2, label1, label2, checkedClass ){
   /* Changes a label's color if it's radio is clicked
@@ -65,7 +65,7 @@ var cumuloRadioColor = function( radio1, radio2, label1, label2, checkedClass ){
       label1.removeClass( checkedClass );
     }
   });
-}
+};
 
 Template.profilePropertySearch.rendered = function () {
   $('.selectpicker').selectpicker();
@@ -94,7 +94,7 @@ Template.profilePropertySearch.rendered = function () {
   cumuloCheckboxColor( $('#adv-waterview'), $('#adv-waterview-btn'), 'checked' );
   cumuloCheckboxColor( $('#adv-outdoor-space'), $('#adv-outdoor-space-btn'), 'checked' );
   cumuloCheckboxColor( $('#adv-no-contract'), $('#adv-no-contract-btn'), 'checked' );
-}
+};
 
 Template.profilePropertySearch.events({
   'click #advanced-search-btn': function () {

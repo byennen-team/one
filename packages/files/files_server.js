@@ -1,6 +1,5 @@
 var crypto = Npm.require('crypto');
 var s3 = new AWS.S3();
-
 Meteor.publish('files', function () {
   // TODO filter by companyId
   return Files.find();
@@ -19,7 +18,7 @@ Files.allow({
  */
 FileTools.signUpload = function (filePath, acl, mimeType) {
   var bucket = Meteor.settings.AWS_BUCKET;
-
+  console.log('signupload bucket:', bucket);
   var policy = {
     // expire in 5 minutes
     expiration: new Date(new Date().getTime() + 1000 * 60 * 5).toISOString(),
@@ -30,7 +29,6 @@ FileTools.signUpload = function (filePath, acl, mimeType) {
       ['eq', '$Content-Type', mimeType]
     ]
   };
-
   // Sign the policy with our secret.
   var policyBase64 = new Buffer(JSON.stringify(policy), 'utf8').toString('base64');
   var signature = crypto.createHmac('sha1', Meteor.settings.AWS_SECRET_ACCESS_KEY).update(policyBase64).digest('base64');
@@ -59,17 +57,13 @@ var awsSignature = function (str) {
  * Return a signed url to read the filePath.
  */
 FileTools.signedGet = function (filePath) {
-  filePath = '/' + Meteor.settings.AWS_BUCKET + '/' + filePath;
-
+  filePath = encodeURI('/' + Meteor.settings.AWS_BUCKET + '/' + filePath);
   var dateTime = Math.floor(new Date().getTime() / 1000) + Meteor.settings.S3_URL_EXPIRATION_SECONDS;
   var stringToSign = 'GET\n\n\n' + dateTime + '\n' + filePath;
-  console.log("Signing String", stringToSign);
   var signature = awsSignature(stringToSign);
-  console.log("Signature", signature)
   var queryString = '?AWSAccessKeyId=' + Meteor.settings.AWS_ACCESS_KEY_ID + '&Expires=' + dateTime + '&Signature=' + encodeURIComponent(signature);
-  var url = 'https://' + Meteor.settings.REGION + '.amazonaws.com' + filePath + queryString;
-  console.log("Signed URL", url)
-  return url
+  var url = 'https://s3.amazonaws.com' + filePath + queryString;
+  return url;
 };
 
 FileTools.rename = function (originalFilePath, newFilePath, callback) {
@@ -99,5 +93,45 @@ FileTools.rename = function (originalFilePath, newFilePath, callback) {
 
       boundCallback(null, data);
     });
+  });
+};
+
+
+FileTools.delete = function (filePath, callback) {
+  var boundCallback = Meteor.bindEnvironment(function (err, res) {
+    callback(err, res);
+  });
+
+  s3.deleteObject({
+      Bucket: Meteor.settings.AWS_BUCKET,
+      Key: filePath
+    }, function (err, data) {
+      if (err) {
+        boundCallback(err);
+        return;
+      }
+
+      boundCallback(null, data);
+    });
+};
+
+/**
+ * Creates a folder.
+ * @param {String} folderName The name of the folder.
+ * @param {String} userId The user id of the owner.
+ * @param {String} [parentFolderId] The id of the parentFolderId folder.
+ * @param {Boolean} [isCompanyDocument] Is the folder a companyDocument?
+ * @returns {String} The id of the created folder.
+ */
+FileTools.createFolder = function (folderName, userId, parentFolderId, isCompanyDocument) {
+  parentFolderId = parentFolderId || null;
+
+  return Files.insert({
+    companyDocument: !!isCompanyDocument,
+    name: folderName,
+    uploadDate: new Date(),
+    userId: userId,
+    isFolder: true,
+    parent: parentFolderId
   });
 };

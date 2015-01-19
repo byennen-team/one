@@ -16,7 +16,7 @@ var updateProgress = function (fileRow, progress) {
 };
 
 var uploadFile = function (file) {
-  var companyDocument = Routes.getName() === Routes.COMPANY_DOCUMENTS;
+  var companyDocument = FileTools.isCompanyDocumentsActive();
 
   var existingFile = Files.findOne({name: file.name, companyDocument: companyDocument});
   if (existingFile) {
@@ -27,12 +27,18 @@ var uploadFile = function (file) {
   var method = companyDocument ? 'signCompanyDocumentUpload' : 'signUserDocumentUpload';
 
   var fileRow;
-  FileTools.upload(method, file, function (error, fileId) {
-    if (error) return; // TODO handle error
-    fileRow = $('#row-' + fileId);
-  }, function (progressEvent) {
-    var progress = Math.floor(progressEvent.loaded / progressEvent.total * 100);
-    updateProgress(fileRow, progress);
+ FileTools.upload(method, file, {
+    parentFolderId: Session.get('currentFolderId'),
+    onError: function (error) {
+      // TODO handle error
+    },
+    onProgress: function (progressEvent) {
+      var progress = Math.floor(progressEvent.loaded / progressEvent.total * 100);
+      updateProgress(fileRow, progress);
+    },
+    onComplete: function (fileId) {
+      fileRow = $('#row-' + fileId);
+    }
   });
 };
 
@@ -58,7 +64,7 @@ Template.documents.events({
   },
   'click .download': function (event) {
     event.preventDefault();
-    var a = $("<a>").attr("href", event.target.getAttribute("href")).attr("download", "img.png").appendTo("body");
+    var a = $('<a target="_blank">').attr("href", event.target.getAttribute("href")).attr("download", "img.png").appendTo("body");
     a[0].click();
     a.remove();
   },
@@ -73,6 +79,14 @@ Template.documents.events({
   'click .rename-document': function (event) {
     var file = Blaze.getData(event.target);
     Session.set('selectedFileId', file._id);
+  },
+  'click .remove': function (event) {
+    event.preventDefault();
+    var file = Blaze.getData(event.target);
+    Meteor.call('archiveDocument',file._id, true, function(error,response) {
+      if (error)
+        alert ("could not delete file");
+    });
   },
   'mouseover td.name': function () {
     // TODO: Lance finish front end
@@ -92,28 +106,31 @@ Template.documents.helpers({
 
     return Files.find({
       _id: {$in: user.favoriteDocumentIds}
-    })
+    });
   },
   files: function () {
-    return Files.find({companyDocument: Routes.getName() === Routes.COMPANY_DOCUMENTS});
+    return Files.find(
+      {
+        companyDocument: FileTools.isCompanyDocumentsActive(),
+        archived: {$ne: true},
+        parent: Session.get('currentFolderId')
+      },
+      {
+        sort: {uploadDate: -1}
+      }
+    );
   },
   url: function (file) {
-    var folder;
-
-    if (Routes.getName() === Routes.MY_DOCUMENTS) {
-      folder = Folder.userDocument(Meteor.userId());
-    } else {
-      // TODO: add company_id
-      folder = Folder.companyDocument('elliman');
-    }
-
-    return FileTools.url(folder + '/' + file.name);
+    return FileTools.url(file);
   },
   date: function (file) {
     return moment(file.uploadDate).format('MMM D, YYYY');
   },
   type: function (file) {
-    return file.name.split('.').pop();
+    return file.isFolder ? 'folder' : file.name.split('.').pop();
+  },
+  isPersonalDocument: function (file) {
+    return file.companyDocument === false;
   }
 });
 
@@ -130,7 +147,7 @@ Template.documents.rendered = function () {
     e.preventDefault();
 
     var files = e.originalEvent.dataTransfer.files;
-    for (var i = 0, file; file = files[i]; i++) uploadFile(file);
+    for (i = 0; i < files.length; i++) uploadFile(files[i]);
   });
 };
 

@@ -14,7 +14,7 @@ Meteor.publishComposite('followers', function (userId) {
         }
       }
     ]
-  }
+  };
 });
 
 Meteor.publishComposite('following', function (userId) {
@@ -35,7 +35,7 @@ Meteor.publishComposite('following', function (userId) {
         }
       }
     ]
-  }
+  };
 });
 
 Meteor.methods({
