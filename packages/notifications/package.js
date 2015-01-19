@@ -10,11 +10,11 @@ Package.onUse(function(api) {
 	api.versionsFrom('METEOR@0.9.3.1');
 	api.addFiles('notifications.js', ['server', 'web']);
 
-	api.addFiles('notifications-server.js','server');
+	api.addFiles('notifications_server.js','server');
 
 	api.addFiles([
 		'notifications.html',
-		'notifications-client.js',
+		'notifications_client.js',
 		'notifications.less'
 		], 'web');
 
@@ -25,5 +25,5 @@ Package.onUse(function(api) {
 Package.onTest(function(api) {
 	api.use('tinytest');
 	api.use('notifications');
-	api.addFiles('notifications-tests.js');
+	api.addFiles('notifications_tests.js');
 });
