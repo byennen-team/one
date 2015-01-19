@@ -1,25 +1,22 @@
 Template.notifications.rendered = function () {
-  Meteor.subscribe('notifications',5)
+  Meteor.subscribe('notifications',5);
   Session.set( 'dropdown', false );
   Session.set( 'statusPanel', true );
-}
+};
 
 Template.notifications.helpers({
   profile: function() {
     if ( Meteor.user() )
-      return Meteor.user().profile
+      return Meteor.user().profile;
   },
   status: function (status) {
     switch (status.toUpperCase()) {
       case 'MOBILE':
         return 'mobile';
-        break;
       case 'OUT OF OFFICE':
         return 'inactive';
-        break;
       case 'IN THE OFFICE':
         return 'active';
-        break;
       }
   },
   notificationsUnread: function () {
@@ -32,12 +29,12 @@ Template.notifications.helpers({
     return Notify.getUnreadNotifications();
   },
   date: function (dateToFormat) {
-    return moment(dateToFormat).calendar()
+    return moment(dateToFormat).calendar();
   },
   isActive: function (text,status) {
     return text.toUpperCase() === status.toUpperCase() ? 'active': '';
   }
-})
+});
 
 Template.notifications.events({
 
@@ -45,11 +42,9 @@ Template.notifications.events({
   'click #notifications-avatar': function () {
      var open = Session.get( 'dropdown' );
     if( open ){
-  console.log('open - flash')
       $( '#notification-dropdown' ).velocity("slideUp", { duration: 300 });
       Session.set( 'dropdown', false );
     } else {
-  console.log('close - flash')
       $( '#notification-dropdown' ).velocity("slideDown", { duration: 500, easing: "ease-out" });
       Session.set( 'dropdown', true );
     }
@@ -77,13 +72,11 @@ Tracker.autorun(function () {
   // otherwise show the notifications
   var statusPanel = Session.get( 'statusPanel' );
   if( statusPanel ){
-    console.log('true')
     // $( '#status-panel' ).velocity({ opacity: 1 }, { display: "block" });
     // $( '#notification-panel' ).velocity({ opacity: 0 }, { display: "none" });
     $( '#status-panel' ).velocity("slideDown", { duration: 500, easing: "ease-out", delay: 450 });
     $( '#notification-panel' ).velocity("slideUp", { duration: 500 });
   } else {
-    console.log('false')
     // $( '#notification-panel' ).velocity({ opacity: 1 }, { display: "block" });
     // $( '#status-panel' ).velocity({ opacity: 0 }, { display: "none" });
     $( '#notification-panel' ).velocity("slideDown", { duration: 500, easing: "ease-out", delay: 450 });

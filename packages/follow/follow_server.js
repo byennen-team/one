@@ -62,7 +62,7 @@ Meteor.methods({
           [currentUser.profile.firstName + ' ' + currentUser.profile.lastName]),
         title: Notify.messages.FOLLOWED_BY_USER.message,
         link: '/' + currentUser.slug
-      })
+      });
       return;
     }
 
@@ -73,7 +73,7 @@ Meteor.methods({
           [currentUser.profile.firstName + ' ' + currentUser.profile.lastName]),
         title: Notify.messages.FOLLOWED_BY_USER.title,
         link: '/' + currentUser.slug
-      })
+      });
     }
   },
   unfollowUser: function (userIdToUnfollow) {
