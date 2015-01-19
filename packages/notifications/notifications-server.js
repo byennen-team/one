@@ -4,7 +4,16 @@ Meteor.publish('notifications', function(limit) {
 	else
 		limit = 20;
 
-	return Notifications.find({ createdFor: this.userId },{ limit: limit });
+	return Notifications.find({
+		createdFor: this.userId,
+		$or: [
+			{ expires:
+				{ $gt: new Date() }
+			},
+			{ expires:
+				{ $exists: false }
+			}]
+		 },{ limit: limit });
 });
 
 Meteor.methods({
@@ -78,7 +87,9 @@ Meteor.methods({
 		Notifications.update(
 			{
 				createdFor: this.userId,
-				read: false
+				read: {
+					$ne: false
+				}
 			},
 			{
 				$set:
@@ -93,7 +104,7 @@ Meteor.methods({
 				if (error)
 					return "Could not update notifications";
 
-				return result;
+				return (null, result);
 			});
 	}
 });
