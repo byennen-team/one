@@ -2,14 +2,16 @@ Profile = {};
 
 Template.accountSettings.events({
   'change .upload': function (event) {
-    FileTools.upload('signProfilePictureUpload', event.target.files[0], function (error, result) {
-      if (error) {
+FileTools.upload('signProfilePictureUpload', event.target.files[0], {
+      onError: function (error) {
+        // TODO error message
         alert(error);
-        return;
-      } // TODO error message
-
-      var photoUrl = Meteor.settings.public.AWS_BUCKET_URL + '/' + result.filePath;
-      Meteor.users.update(Meteor.userId(), {$set: {'profile.photoUrl': photoUrl, 'profile.photoKey': result.filePath}});
+      },
+      onComplete: function (result) {
+        var photoUrl = Meteor.settings.public.AWS_BUCKET_URL + '/' + result.filePath;
+        Meteor.call('resizeNewProfileImage', photoUrl);
+        //Meteor.users.update(Meteor.userId(), {$set: {'profile.photoUrl': photoUrl, 'profile.photoKey': result.filePath}});
+      }
     });
   },
   'click #delete-profile-picture': function(event) {
@@ -32,3 +34,9 @@ Template.accountSettings.events({
     Router.go('dashboard');
   }
 });
+Template.accountSettings.helpers({
+    profile: function () {
+    var user = Meteor.user();
+    return user && user.profile;
+}});
+
