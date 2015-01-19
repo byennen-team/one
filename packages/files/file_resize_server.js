@@ -24,14 +24,14 @@ s3_client = knox.createClient(s3_params);
 
 // set base for modulus in staging and beta enviroment
 if(Settings.isStaging || Settings.isBeta) {
-  var __dirname = __dirname || process.env.TEMP_DIR+'/packages/files/img/';
+  var __dirname = process.env.TEMP_DIR+'/packages/files/img/';
 } else {
   var __dirname = process.env.PWD+'/packages/files/img/';
 }
 
 //fetch temp image
 FileTools.fetch_to_temp = function(url, callback){
-  flag404 = false  
+  flag404 = false;  
   var originalName = url.substring(url.lastIndexOf('/')+1);
   var xpat = /\.([0-9a-z]+)(?:[\?#]|$)/i;
   img_ext = originalName.match(xpat)[0];
@@ -56,7 +56,7 @@ FileTools.fetch_to_temp = function(url, callback){
 
 //resize
 FileTools.resize_temp = function(size, callback) {
-    if (flag404) { return callback(); };
+    if (flag404) { return callback(); }
     Meteor.wrapAsync(im.resize({
       srcPath: __dirname + img_tmp+img_ext,
       dstPath: __dirname + size+img_tmp+img_ext,
@@ -65,7 +65,7 @@ FileTools.resize_temp = function(size, callback) {
       quality: 0.6
     }, Meteor.bindEnvironment(function(err, stdout, stderr){
       if (err) {
-        console.log('resized error: ');
+        console.log('resized error: ', err);
       }
       callback();
     })));
