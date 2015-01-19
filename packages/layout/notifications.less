@@ -1,0 +1,203 @@
+.notifications {
+  position: relative;
+  float: right;
+  height: 70px;
+  width: 70px;
+  margin-top: -1px; // not sure why this is necessary 
+  cursor: pointer;
+  .avatar-box{
+    background-color: #fff;
+    .avatar {
+      margin: 5px;
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+    }
+    .status-dot {
+      position: absolute;
+      width: 10px;
+      height: 10px;
+      margin-top: -5px;
+      top: 50%;
+      left: 0;
+      border-radius: 50%;
+    }
+    .status-dot.active {
+      background-color: #4baf00;
+    }
+    .status-dot.inactive {
+      background-color: #f26c4f;
+    }
+    .status-dot.mobile {
+      background-color: #5bb8d7;
+    }
+  }
+  .notification-alert {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    margin-top: -10px;
+    top: 50%;
+    right: -2px;
+    border-radius: 50%;
+    background-color: #5bb8d7;
+    color: #fff;
+    text-align: center;
+  }
+  .notification-dropdown {
+    display: none;
+    position: absolute;
+    left: -300px;
+    width: 370px;
+    font-size: 16px;
+    border-top: 1px solid #e8eaeb;
+    background-color: #fff;
+    -webkit-box-shadow: -10px 10px 20px -10px rgba(0,0,0,0.75);
+    -moz-box-shadow: -10px 10px 20px -10px rgba(0,0,0,0.75);
+    box-shadow: -10px 10px 20px -10px rgba(0,0,0,0.75);
+    p {
+      font-family: RalewayLight, Verdana, Geneva, sans-serif;
+      text-transform: none;
+    }
+    .notification-object {
+      position: relative;
+      cursor: pointer;
+      height: 3em;
+      padding: 1em 1em 1em 1.5em;
+      .notification-alert {
+        right: 1em;
+      }
+      .caret {
+        position: absolute;
+        margin-left: -20px;
+        margin-top: 5px;
+        border-right: 7px solid darken( #dae4ed, 10% );
+        border-top: 6px solid transparent;
+        border-bottom: 6px solid transparent;
+      }
+    }
+    .in,
+    .out,
+    .mobile {
+      font-family: RalewaySemibold, Verdana, Geneva, sans-serif;
+      font-variant: small-caps;
+      text-transform: lowercase;
+      background-color: #e8eaeb;
+      letter-spacing: 0.125em;
+      cursor: pointer;
+      transition: background-color 350ms ease-out 50ms, color 350ms ease-out 50ms;
+    }
+    .in:hover,
+    .out:hover,
+    .mobile:hover {
+      background-color: #f4f5f6;
+    }
+    .in.active,
+    .out.active,
+    .mobile.active {
+      background-color: #f4f5f6;
+    }
+    .in {
+      color: #4baf00;
+    }
+    .out {
+      color: #f26c4f;
+    }
+    .mobile {
+      color: #5bb8d7;
+    }
+    .business-card {
+      padding: 1em 1em 1.75em 1em;
+      overflow: hidden;
+      .card-graphic {
+        float: left;
+        width: 103px;
+        height: 60px;
+        background-image: url(/images/notifications/business-card.png);
+      }
+      input {
+        float: left;
+        height: 2em;
+        margin: 0.5em 0 0 0.25em;
+        padding-left: 0.75em;
+        padding-right: 0.75em;
+        width: 200px;
+        border: none;
+        outline: none;
+        border-radius: 3px;
+        background-color: #e8eaeb;
+        font-family: RalewayLight, Verdana, Geneva, sans-serif;
+        color: #78838e;
+      }
+      input:focus {
+        border-color: #5bb8d7;
+        -webkit-box-shadow: 0px 0px 3px 0px rgba(91,184,215,1);
+        -moz-box-shadow: 0px 0px 3px 0px rgba(91,184,215,1);
+        box-shadow: 0px 0px 3px 0px rgba(91,184,215,1);
+      }
+      ::-webkit-input-placeholder {
+        font-family: RalewayLight, Verdana, Geneva, sans-serif;
+        color: #78838e;
+      }
+      ::-moz-placeholder {  /* Firefox 19+ */
+        font-family: RalewayLight, Verdana, Geneva, sans-serif;
+        color: #78838e;
+      }
+      :-ms-input-placeholder {  
+        font-family: RalewayLight, Verdana, Geneva, sans-serif;
+        color: #78838e;
+      }
+    }
+  }
+  .notification-panel {
+    display: none;
+    .notification-body {
+      background-color: #dae4ed;
+      padding: 0.25em 1em;
+      max-height: 600px;
+      overflow-y: scroll;
+      cursor: default;
+      .notice {
+        padding-top: 1em;
+        padding-bottom: 1em;
+        text-transform: none;
+        border: 1px solid #fff;
+        border-style: none none solid none;
+      }
+      .notice:last-of-type {
+        border-style: none;
+      }
+      h5 {
+        font-family: RalewayBold, Verdana, Geneva, sans-serif;
+        color: darken( #78838e, 20% );
+        letter-spacing: 0.125em;
+        float: left;
+        margin-left: 1em;
+      }
+      .text {
+        clear: both;
+        font-family: RalewayLight, Verdana, Geneva, sans-serif;
+        margin-left: 1em;
+      }
+      .date {
+        float: right;
+        margin-right: 1em;
+        margin-top: 10px;
+        font-size: 12px;
+        font-family: RalewayRegular, Verdana, Geneva, sans-serif;
+      }
+    }
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
