@@ -1,9 +1,17 @@
 .profile {
+  @media all and (min-width: 768px) {
+    .gallery-square {
+      height:90px;
+    }
+  }
   @media all and (max-width: 480px) {
     #section-gallery .fixed-xs {
       width: 80%;
       margin: 1em 10% 2em 10%;
       padding: 0;
+    }
+    .gallery-square {
+      height:400px;
     }
   }
   @media all and (min-width: 481px) and (max-width: 767px) {
@@ -12,5 +20,20 @@
       margin: 1em 10% 2em 10%;
       padding: 0;
     }
+    .gallery-square {
+      height:480px;
+    }
+  }
+  .album.draggedOver {
+    opacity: 0.3;
+    border: 2px dotted gray;
+  }
+
+  .picture-loader {
+    text-align: center;
+    line-height:90px;
+    border: 1px dotted #eeeeee;
   }
 }
+
+

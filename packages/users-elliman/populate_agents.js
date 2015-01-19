@@ -24,11 +24,10 @@ var userFromEllimanRow = function (row) {
   var emails = [];
 
   if (row.EM_ADDRESS && Match.test(row.EM_ADDRESS, MatchEx.Email())) {
-    // Figure out how to handle duplicates before inserting emails
-//    emails.push({
-//      address: row.EM_ADDRESS,
-//      verified: true
-//    });
+    emails.push({
+      address: row.EM_ADDRESS,
+      verified: true
+    });
   }
 
   var user = {
@@ -86,7 +85,7 @@ var q_fetch_resize_and_upload = function(user){
         thumb: thumb_signed
     };
     var user_mongo = Meteor.users.insert(user);
-    console.log('end:', count_jobs++, ' mongo: ', user_mongo);
+    console.log('X:', count_jobs++, ' email: ',  user.emails[0].address); 
     done();
   });
 };
@@ -100,12 +99,12 @@ Meteor.startup(function () {
   console.log('PQ', Meteor._powerQ.title);
   var ellimanAgents = JSON.parse(Assets.getText('elliman_agents_production.json'));
   if (Meteor.settings.public && (Meteor.settings.public.ENVIRONMENT === 'development')) {
-      ellimanAgents = ellimanAgents.slice(144,157);
+      ellimanAgents = ellimanAgents.slice(14,33);
   }
   var count = 1;
   var q_count = 0;
   _.each(ellimanAgents, function (row) {
-    console.log('begin insert:', row.FIRST_NAME);
+    console.log('begin insert:', row.FIRST_NAME, ' : ', row.EM_ADDRESS);
     var user = userFromEllimanRow(row);
     if (!user.profile.photoUrl || (user.profile.photoUrl.length === 0)) return '';
     console.log('PQing: ', count++, row.FIRST_NAME);

@@ -60,12 +60,9 @@ FileTools.signedGet = function (filePath) {
   filePath = encodeURI('/' + Meteor.settings.AWS_BUCKET + '/' + filePath);
   var dateTime = Math.floor(new Date().getTime() / 1000) + Meteor.settings.S3_URL_EXPIRATION_SECONDS;
   var stringToSign = 'GET\n\n\n' + dateTime + '\n' + filePath;
-  console.log("Signing String", stringToSign);
   var signature = awsSignature(stringToSign);
-  console.log("Signature", signature);
   var queryString = '?AWSAccessKeyId=' + Meteor.settings.AWS_ACCESS_KEY_ID + '&Expires=' + dateTime + '&Signature=' + encodeURIComponent(signature);
   var url = 'https://s3.amazonaws.com' + filePath + queryString;
-  console.log("Signed URL", url);
   return url;
 };
 
@@ -116,4 +113,25 @@ FileTools.delete = function (filePath, callback) {
 
       boundCallback(null, data);
     });
+};
+
+/**
+ * Creates a folder.
+ * @param {String} folderName The name of the folder.
+ * @param {String} userId The user id of the owner.
+ * @param {String} [parentFolderId] The id of the parentFolderId folder.
+ * @param {Boolean} [isCompanyDocument] Is the folder a companyDocument?
+ * @returns {String} The id of the created folder.
+ */
+FileTools.createFolder = function (folderName, userId, parentFolderId, isCompanyDocument) {
+  parentFolderId = parentFolderId || null;
+
+  return Files.insert({
+    companyDocument: !!isCompanyDocument,
+    name: folderName,
+    uploadDate: new Date(),
+    userId: userId,
+    isFolder: true,
+    parent: parentFolderId
+  });
 };

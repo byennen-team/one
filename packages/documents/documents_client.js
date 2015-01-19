@@ -16,7 +16,7 @@ var updateProgress = function (fileRow, progress) {
 };
 
 var uploadFile = function (file) {
-  var companyDocument = Routes.getName() === Routes.COMPANY_DOCUMENTS;
+  var companyDocument = FileTools.isCompanyDocumentsActive();
 
   var existingFile = Files.findOne({name: file.name, companyDocument: companyDocument});
   if (existingFile) {
@@ -27,12 +27,18 @@ var uploadFile = function (file) {
   var method = companyDocument ? 'signCompanyDocumentUpload' : 'signUserDocumentUpload';
 
   var fileRow;
-  FileTools.upload(method, file, function (error, fileId) {
-    if (error) return; // TODO handle error
-    fileRow = $('#row-' + fileId);
-  }, function (progressEvent) {
-    var progress = Math.floor(progressEvent.loaded / progressEvent.total * 100);
-    updateProgress(fileRow, progress);
+ FileTools.upload(method, file, {
+    parentFolderId: Session.get('currentFolderId'),
+    onError: function (error) {
+      // TODO handle error
+    },
+    onProgress: function (progressEvent) {
+      var progress = Math.floor(progressEvent.loaded / progressEvent.total * 100);
+      updateProgress(fileRow, progress);
+    },
+    onComplete: function (fileId) {
+      fileRow = $('#row-' + fileId);
+    }
   });
 };
 
@@ -103,24 +109,25 @@ Template.documents.helpers({
     });
   },
   files: function () {
-    return Files.find({companyDocument: Routes.getName() === Routes.COMPANY_DOCUMENTS, archived: {$ne: true}});
+    return Files.find(
+      {
+        companyDocument: FileTools.isCompanyDocumentsActive(),
+        archived: {$ne: true},
+        parent: Session.get('currentFolderId')
+      },
+      {
+        sort: {uploadDate: -1}
+      }
+    );
   },
   url: function (file) {
-    var folder;
-
-    if (Routes.getName() === Routes.MY_DOCUMENTS) {
-      folder = Folder.userDocument(Meteor.userId());
-    } else {
-      // TODO: add company_id
-      folder = Folder.companyDocument('elliman');
-    }
-    return FileTools.url(folder + '/' + file.name);
+    return FileTools.url(file);
   },
   date: function (file) {
     return moment(file.uploadDate).format('MMM D, YYYY');
   },
   type: function (file) {
-    return file.name.split('.').pop();
+    return file.isFolder ? 'folder' : file.name.split('.').pop();
   },
   isPersonalDocument: function (file) {
     return file.companyDocument === false;

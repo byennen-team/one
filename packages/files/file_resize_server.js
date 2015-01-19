@@ -13,8 +13,8 @@ resizeWidths = { "mobile_":480, "thumb_":65, "full_":140 },
 resizeHeights = { "mobile_": 480, "thumb_": 65, "full_": 140 },
 img_tmp = 'imagetmp',
 img_ext = '.jpeg',
-temp_img_file = base+img_tmp+img_ext,
 imageremote = 'remoteimage.jpeg',
+flag404 = false,
 s3_params = {
   key: Meteor.settings.AWS_ACCESS_KEY_ID, //<api-key-here>'
   secret: Meteor.settings.AWS_SECRET_ACCESS_KEY,  //'<secret-here>'
@@ -24,13 +24,14 @@ s3_client = knox.createClient(s3_params);
 
 // set base for modulus in staging and beta enviroment
 if(Settings.isStaging || Settings.isBeta) {
-  var base = process.env.TEMP_DIR+'/';
+  var __dirname = process.env.TEMP_DIR+'/packages/files/img/';
 } else {
-  var base = process.env.PWD+'/tmp/';
+  var __dirname = process.env.PWD+'/packages/files/img/';
 }
 
 //fetch temp image
-FileTools.fetch_to_temp = function(url, done){
+FileTools.fetch_to_temp = function(url, callback){
+  flag404 = false;  
   var originalName = url.substring(url.lastIndexOf('/')+1);
   var xpat = /\.([0-9a-z]+)(?:[\?#]|$)/i;
   img_ext = originalName.match(xpat)[0];
@@ -39,48 +40,48 @@ FileTools.fetch_to_temp = function(url, done){
       Meteor.bindEnvironment(function(response){
         response = response || { statusCode: 8888 };
         if (response && response.statusCode == 404) {
-           console.log(url, ' not found', response.statusCode);
-          //  fs.createReadStream('http://assets2.elliman.com/BrokerPics/Opt/JEFA.jpg')
-            fs.createReadStream(base+'No_image_available.jpg')
-           .pipe(fs.createWriteStream(temp_img_file, {internal :  true}))
-           .on('end', Meteor.bindEnvironment(function(err, res) {
-            if (err) throw err;
-            console.log('piped No Image Available');
-            done();
-            }));
-         }
-       }))
+            console.log(url, ' not found', response.statusCode);
+            console.log('__dirname', __dirname);
+            flag404 = true;
+            callback();
+            }})
+      )
   .on('end',
       Meteor.bindEnvironment(function(error, response, body){
         if (error) console.log('end error', response.statusCode);
-        done();
+        callback();
        }))
-  .pipe(fs.createWriteStream(temp_img_file, {internal :  true}));
+  .pipe(fs.createWriteStream(__dirname+img_tmp+img_ext, {internal :  true}));
 };
 
 //resize
-FileTools.resize_temp = function(size, done) {
-  Meteor.wrapAsync(im.resize({
-      srcPath: temp_img_file,
-      dstPath: base+size+img_tmp+img_ext,
-      width:   resizeWidths[size],
+FileTools.resize_temp = function(size, callback) {
+    if (flag404) { return callback(); }
+    Meteor.wrapAsync(im.resize({
+      srcPath: __dirname + img_tmp+img_ext,
+      dstPath: __dirname + size+img_tmp+img_ext,
+      width:  resizeWidths[size],
       height: resizeHeights[size],
       quality: 0.6
     }, Meteor.bindEnvironment(function(err, stdout, stderr){
       if (err) {
-        console.log('resized error: ');
+        console.log('resized error: ', err);
       }
-      done();
+      callback();
     })));
 };
 
 //upload
-FileTools.upload = function (descriptor, remotefile, done) {
-  var imagefile = base+descriptor+img_tmp+img_ext;
+FileTools.upload = function (descriptor, remotefile, callback) {
+  var imagefile = __dirname+descriptor+img_tmp+img_ext;
   remotefile+=img_ext;
+  if (flag404) { 
+      imagefile = __dirname+descriptor+'NIA.jpg';
+      console.log('remote:', remotefile, '  : ', imagefile);
+  }
   Meteor.wrapAsync(s3_client.putFile(imagefile, remotefile, Meteor.bindEnvironment(function(err, response) {
       if (err) { console.log('upload error:', remotefile); }
-      done();
+      callback();
     })));
 };
 
