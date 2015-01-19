@@ -4,27 +4,27 @@ Meteor.publish('notifications', function(limit) {
 	else
 		limit = 20;
 
-	return Notifications.find({createdFor: this.userId},{limit: limit});
+	return Notifications.find({ createdFor: this.userId },{ limit: limit });
 });
 
 Meteor.methods({
-	/**
-	* @description: Adds a new notification
-	* @params: toUserId - String, context - Object (message - String, title - String optional, link - String optional);
-	* @returns: Object - insert result
-	*/
+	// @description: Adds a new notification
+	// @params: toUserId - String, context - Object (message - String,
+	// title - String optional, link - String optional);
+	// @returns: Object - insert result
+
 	addNotification: function(toUserId, context) {
-		check(toUserId,String);
-		check(context,Object);
+		check(toUserId, String);
+		check(context, Object);
 
 		if (context.message)
-			return('You need to specify a message');
+			return 'You need to specify a message';
 
 		//check that the user exists
 		var user = Meteor.users.findOne(toUserId);
 
-		if(!user)
-			return ("User does not exist");
+		if (! user)
+			return ('User does not exist');
 
 		var options = {
 			createdAt: new Date(),
@@ -46,50 +46,55 @@ Meteor.methods({
 	markNotificationAsRead: function(notificationId) {
 		check(notificationId, String);
 
-		if (!this.userId)
+		if (! this.userId)
 			return "You are not logged in";
 
 		//check that the notification exist
 		var notification = Notifications.findOne(notificationId);
 
-		if (!notification)
+		if (! notification)
 			return "Notification does not exist";
 
 		if (notification.read === true)
 			return "Notification already read";
 
-		Notifications.update(notificationId, {$set: {
-			read: true
-		}}, function(error, result) {
-			if (error)
-				return "Could not update notification";
+		Notifications.update(notificationId,
+			{
+				$set: {
+					read: true
+				}
+			},
+			function(error, result) {
+				if (error)
+					return "Could not update notification";
 
-			return result;
-		});
-
+				return result;
+			});
 	},
 	markAllNotificationsAsRead: function() {
-		if (!this.userId)
+		if (! this.userId)
 			return "You are not logged in";
 
-
-		Notifications.update({
-				createdFor: this.userId, 
+		Notifications.update(
+			{
+				createdFor: this.userId,
 				read: false
-			}, {
-				$set: 
+			},
+			{
+				$set:
 				{
 					read: true
 				}
-			}, {
+			},
+			{
 				multi: true
-			}, function(error, result) {
-			if (error)
-				return "Could not update notifications";
+			},
+			function(error, result) {
+				if (error)
+					return "Could not update notifications";
 
-			return result;
-		});
-
+				return result;
+			});
 	}
 });
 
@@ -112,23 +117,25 @@ Notify.messages = {
 	}
 };
 
-/**
-*	@description: Function that generates a message from a string and multiple arguments
-*	@params: text - the string to replace in, arg0...argN - the strings to replace with
-*	@returns: String text
-*/
+// @description: Function that generates a message from a string and
+// multiple arguments
+// @params: text - the string to replace in, arg0...argN - the strings
+// to replace with
+// @returns: String text
 Notify.generateMessageText = function(text, stringArray) {
 
-	//checking if the number of arguments passed is same with the number of string placeholders
+	//checking if the number of arguments passed is same with the number of
+	//string placeholders
 	var placeholders = /(\{arg\d\})/gi;
 	var found = text.match(placeholders);
 
 	if (stringArray.length != found.length)
-		throw new Meteor.Error(500,"You have specified a different number of arguments. (Notifications package)");
+		throw new Meteor.Error(500,"You have specified a different number " +
+			"of arguments. (Notifications package)");
 
-	for (var i=0;i<stringArray.length;i++) {
-		var argNo = i+1;
-		text = text.replace('{arg'+argNo+'}',stringArray[i]);
+	for (var i=0; i<stringArray.length; i++) {
+		var argNo = i + 1;
+		text = text.replace('{arg'+argNo+'}', stringArray[i]);
 	}
 
 	return text;
@@ -136,8 +143,8 @@ Notify.generateMessageText = function(text, stringArray) {
 
 //Placeholder function to avoid using Meteor.call everytime
 Notify.addNotification = function(toUserId, context) {
-	Meteor.call('addNotification',toUserId,context,function(error, result) {
+	Meteor.call('addNotification', toUserId, context, function(error, result) {
 		if (error)
-			throw new Meteor.Error(500,error);
+			throw new Meteor.Error(500, error);
 	});
 };
