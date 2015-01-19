@@ -16,9 +16,9 @@ blaze-tools@1.0.2
 boilerplate-generator@1.0.2
 calendar@0.0.0
 callback-hook@1.0.2
-cfs:power-queue@0.9.11
-cfs:reactive-list@0.0.9
-cfs:reactive-property@0.0.4
+cfs:power-queue@0.0.0
+cfs:reactive-list@0.0.0
+cfs:reactive-property@0.0.0
 check@1.0.3
 coffeescript@1.0.5
 communication@0.0.0
