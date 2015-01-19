@@ -42,6 +42,8 @@ Meteor.methods({
   followUser: function (userIdToFollow) {
     if (!this.userId) return;
 
+    var currentUser = Meteor.users.findOne(this.userId);
+
     check(userIdToFollow, String);
 
     var followers = Followers.findOne({userId: userIdToFollow});
@@ -54,11 +56,24 @@ Meteor.methods({
     var following = Following.findOne({userId: this.userId});
     if (!following) {
       Following.insert({userId: this.userId, followingUserIds: [userIdToFollow]});
+      //notify
+      Notify.addNotification(userIdToFollow,{
+        message: Notify.generateMessageText(Notify.messages.FOLLOWED_BY_USER.message,
+          [currentUser.profile.firstName + ' ' + currentUser.profile.lastName]),
+        title: Notify.messages.FOLLOWED_BY_USER.message,
+        link: '/' + currentUser.slug
+      });
       return;
     }
 
     if (!_.contains(following.followingUserIds, userIdToFollow)) {
       Following.update(following._id, {$push: {followingUserIds: userIdToFollow}});
+      Notify.addNotification(userIdToFollow,{
+        message: Notify.generateMessageText(Notify.messages.FOLLOWED_BY_USER.message,
+          [currentUser.profile.firstName + ' ' + currentUser.profile.lastName]),
+        title: Notify.messages.FOLLOWED_BY_USER.title,
+        link: '/' + currentUser.slug
+      });
     }
   },
   unfollowUser: function (userIdToUnfollow) {

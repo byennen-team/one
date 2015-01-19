@@ -1,0 +1,70 @@
+<template name='notifications'>
+  <div class="notifications">
+    <div class="avatar-box">
+
+      <img id='notifications-avatar' class="avatar" src="{{profile.photoUrl}}" />
+
+      <div class="status-dot {{status profile.status}}"></div>
+
+    {{#if notificationsUnread.count}}
+      <div id='notification-alert' class="notification-alert {{hasNotifications}}">{{notificationsUnread.count}}</div>
+    {{/if}}
+      </div>
+
+
+    <div id="notification-dropdown" class='notification-dropdown'>
+
+      <div id="notification-panel" class="notification-panel">
+        <div id="notification-deactivate" class='notification-object'>
+          <div class="caret"></div>
+            <p>Notifications</p>
+          {{#if notificationsUnread.count}}
+            <div class="notification-alert">{{notificationsUnread.count}}</div>
+          {{/if}}
+        </div>
+        <div class="notification-body">
+        {{#each notifications}}
+            <div class="notice">
+            {{#if notificationActionLink}}
+              <a href="{{notificationActionLink}}">
+                <h5>{{notificationTitle}}</h5>
+              </a>
+              {{else}}
+              <h5>{{notificationTitle}}</h5>
+            {{/if}}
+
+              <p class="date">{{date createdAt}}</p>
+              <p class='text'>{{notificationText}}</p>
+            </div>
+        {{/each}}
+        </div>
+      </div>
+
+      <div id="status-panel" class="status-panel">
+        <div id="notification-activate" class='notification-object {{hasNotifications}}'>
+        {{#if notificationsUnread.count}}
+          <p>Notifications</p>
+        {{else}}
+          <p>No notifications</p>
+        {{/if}}
+          {{#if notificationsUnread.count}}
+            <div class="notification-alert">{{notificationsUnread.count}}</div>
+          {{/if}}
+        </div>
+<!-- TODO: 'active' class should be added to the div that reflects User's status -->
+        <div id="notification-status-in" class='notification-object status-changer in {{isActive "in the office" profile.status}}'>In the office</div>
+        <div id="notification-status-out" class='notification-object status-changer out {{isActive "out of office" profile.status}}'>out of office</div>
+        <div id="notification-status-mobile" class='notification-object status-changer mobile {{isActive "mobile" profile.status}}'>mobile</div>
+
+        <div class="business-card">
+          <p>Send Business Card to Mobile</p>
+          <div class="card-graphic"></div>
+<!-- TODO: needs to be plugged in. -->
+          <input type="tel" placeholder='(xxx) xxx-xxxx' />
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+</template>
