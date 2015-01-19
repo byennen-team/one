@@ -33,6 +33,9 @@ Template.notifications.helpers({
   },
   date: function (dateToFormat) {
     return moment(dateToFormat).calendar()
+  },
+  isActive: function (text,status) {
+    return text.toUpperCase() === status.toUpperCase() ? 'active': '';
   }
 })
 
