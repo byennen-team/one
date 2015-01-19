@@ -4,14 +4,20 @@ Package.describe({
 });
 var both = ['server','web'];
 Package.onUse(function(api) {
-	api.use(['aldeed:simple-schema'], both);	
+	api.use(['aldeed:simple-schema','templating', 'authorization', 'less',
+    'styles', 'jquery', 'stevezhu:velocity.js@0.1.0',
+    'tracker', 'session'], both);
 	api.versionsFrom('METEOR@0.9.3.1');
 	api.addFiles('notifications.js', ['server', 'web']);
-	
+
 	api.addFiles('notifications-server.js','server');
 
-	api.addFiles('notifications-client.js', 'web');
-  
+	api.addFiles([
+		'notifications.html',
+		'notifications-client.js',
+		'notifications.less'
+		], 'web');
+
 
 	api.export(['Notifications', 'Notify'], both);
 });

@@ -1,45 +1,57 @@
 <template name='notifications'>
-  
   <div class="notifications">
     <div class="avatar-box">
+
 <!-- TODO: - Logged in User's avatar(B&W)   70x70px     -->
-      <img id='notifications-avatar' class="avatar" src="/images/notifications/avatar.jpg" />
+      <img id='notifications-avatar' class="avatar" src="{{profile.photoUrl}}" />
 <!-- TODO: put User's current status here, as a class. Options are: "active", "inactive", and "mobile" -->
 <!-- TODO: "status-dot" div only rendered if User has status set (not sure if they cannot have a status) -->
-      <div class="status-dot active"></div>
+      <div class="status-dot {{status profile.status}}"></div>
 <!-- TODO: Only render 'alert' if User has unread alerts. Include number of alerts -->
-      <div id='notification-alert' class="notification-alert">2</div>
-    </div>
+    {{#if notificationsUnread.count}}
+      <div id='notification-alert' class="notification-alert {{hasNotifications}}">{{notificationsUnread.count}}</div>
+    {{/if}}
+      </div>
+
 
     <div id="notification-dropdown" class='notification-dropdown'>
 
       <div id="notification-panel" class="notification-panel">
         <div id="notification-deactivate" class='notification-object'>
           <div class="caret"></div>
-          <p>Notifications</p>
+          {{#if notificationsUnread.count}}
+            <p>Notifications</p>
+          {{else}}
+            <p>No notifications</p>
+          {{/if}}
 <!-- TODO: number of active alerts go here -->
-          <div class="notification-alert">2</div>
+          {{#if notificationsUnread.count}}
+            <div class="notification-alert">{{notificationsUnread.count}}</div>
+          {{/if}}
         </div>
         <div class="notification-body">
-          <div class="notice">
-            <h5>Company Brunch</h5>
-            <p class="date">Yesterday</p>
-            <p class='text'>Come to the board room on Thursday at 11 for champagne and pastries from Sullivan Streen Bakery.</p>
-          </div>
-          <div class="notice">
-            <h5>Security Seminar</h5>
-            <p class="date">Sept 5</p>
-            <p class='text'>A reminder to please register before the 24th.</p>
-          </div>
+        {{#each notifications}}
+            <div class="notice">
+              <h5>{{notificationTitle}}</h5>
+              <p class="date">{{date createdAt}}</p>
+              <p class='text'>{{notificationText}}</p>
+            </div>
+        {{/each}}
         </div>
       </div>
 
       <div id="status-panel" class="status-panel">
-        <div id="notification-activate" class='notification-object'>
+        <div id="notification-activate" class='notification-object {{hasNotifications}}'>
 <!-- TODO: If there are notifications, "Notifications", else "No Notifications"         -->
+        {{#if notificationsUnread.count}}
           <p>Notifications</p>
+        {{else}}
+          <p>No notifications</p>
+        {{/if}}
 <!-- TODO: number of active alerts go here -->
-          <div class="notification-alert">2</div>
+          {{#if notificationsUnread.count}}
+            <div class="notification-alert">{{notificationsUnread.count}}</div>
+          {{/if}}
         </div>
 <!-- TODO: 'active' class should be added to the div that reflects User's status -->
         <div id="notification-status-in" class='notification-object in active'>In the office</div>
@@ -53,9 +65,8 @@
           <input type="tel" placeholder='(xxx) xxx-xxxx' />
         </div>
       </div>
-        
+
     </div>
 
   </div>
-
 </template>
