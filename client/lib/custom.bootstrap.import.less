@@ -35,7 +35,7 @@
 //## Settings for some of the most global styles.
 
 //** Background color for `<body>`.
-@body-bg:               #fff;
+@body-bg:               #ebf1f5;
 //** Global text color on `<body>`.
 @text-color:            @gray-dark;
 
@@ -50,12 +50,59 @@
 //== Typography
 //
 //## Font, line-height, and color for body text, headings, and more.
+@font-face {
+  font-family: 'RalewayBold';
+  src: url('../../fonts/raleway-bold-webfont.eot');
+  src: url('../../fonts/raleway-bold-webfont.eot?#iefix') format('embedded-opentype'), url('../../fonts/raleway-bold-webfont.woff') format('woff'), url('../../fonts/raleway-bold-webfont.ttf') format('truetype'), url('../../fonts/raleway-bold-webfont.svg#svgFontName') format('svg');
+}
+@font-face {
+  font-family: 'RalewaySemibold';
+  src: url('../../fonts/raleway-semibold-webfont.eot');
+  src: url('../../fonts/raleway-semibold-webfont.eot?#iefix') format('embedded-opentype'), url('../../fonts/raleway-semibold-webfont.woff') format('woff'), url('../../fonts/raleway-semibold-webfont.ttf') format('truetype'), url('../../fonts/raleway-semibold-webfont.svg#svgFontName') format('svg');
+}
+@font-face {
+  font-family: 'RalewayMedium';
+  src: url('../../fonts/raleway-medium-webfont.eot');
+  src: url('../../fonts/raleway-medium-webfont.eot?#iefix') format('embedded-opentype'), url('../../fonts/raleway-medium-webfont.woff') format('woff'), url('../../fonts/raleway-medium-webfont.ttf') format('truetype'), url('../../fonts/raleway-medium-webfont.svg#svgFontName') format('svg');
+}
+@font-face {
+  font-family: 'RalewayRegular';
+  src: url('../../fonts/raleway-regular-webfont.eot');
+  src: url('../../fonts/raleway-regular-webfont.eot?#iefix') format('embedded-opentype'), url('../../fonts/raleway-regular-webfont.woff') format('woff'), url('../../fonts/raleway-regular-webfont.ttf') format('truetype'), url('../../fonts/raleway-regular-webfont.svg#svgFontName') format('svg');
+}
+@font-face {
+  font-family: 'RalewayLight';
+  src: url('../../fonts/raleway-light-webfont.eot');
+  src: url('../../fonts/raleway-light-webfont.eot?#iefix') format('embedded-opentype'), url('../../fonts/raleway-light-webfont.woff') format('woff'), url('../../fonts/raleway-light-webfont.ttf') format('truetype'), url('../../fonts/raleway-light-webfont.svg#svgFontName') format('svg');
+}
+
+@raleway-bold: RalewayBold, Verdana, Geneva, sans-serif;
+@raleway-semibold: RalewaySemibold, Verdana, Geneva, sans-serif;
+@raleway-medium: RalewayMedium, Verdana, Geneva, sans-serif;
+@raleway-regular: RalewayRegular, Verdana, Geneva, sans-serif;
+@raleway-light: RalewayLight, Verdana, Geneva, sans-serif;
+
+.raleway-bold {
+  font-family: @raleway-bold;
+}
+.raleway-semibold {
+  font-family: @raleway-semibold;
+}
+.raleway-medium {
+  font-family: @raleway-medium;
+}
+.raleway-regular {
+  font-family: @raleway-regular;
+}
+.raleway-light {
+  font-family: @raleway-light;
+}
 
 @font-family-sans-serif:  "Helvetica Neue", Helvetica, Arial, sans-serif;
 @font-family-serif:       Georgia, "Times New Roman", Times, serif;
 //** Default monospace fonts for `<code>`, `<kbd>`, and `<pre>`.
 @font-family-monospace:   Menlo, Monaco, Consolas, "Courier New", monospace;
-@font-family-base:        @font-family-sans-serif;
+@font-family-base:        @raleway-regular;
 
 @font-size-base:          14px;
 @font-size-large:         ceil((@font-size-base * 1.25)); // ~18px
@@ -357,7 +404,7 @@
 
 // Basics of a navbar
 @navbar-height:                    70px;
-@navbar-margin-bottom:             0;
+@navbar-margin-bottom:             0px;
 @navbar-border-radius:             @border-radius-base;
 @navbar-padding-horizontal:        floor((@grid-gutter-width / 2));
 @navbar-padding-vertical:          ((@navbar-height - @line-height-computed) / 2);
