@@ -1,0 +1,34 @@
+<template name='communicationSidebarDirect'>
+	<div class='communication-sidebar-sleeve'>
+		{{> communicationSidebarDirectFill}}
+	</div>
+</template>	
+
+<template name='communicationSidebarDirectFill'>
+	
+	<div class="dropdown direct">
+	  <div class="dropdown-header" data-toggle="collapse" href="#communication-direct-header" aria-expanded="true" aria-controls="communication-direct-header">
+			Direct Messaging
+			<i class="fa fa-lock"></i>
+	    <span class="caret"></span>
+	  </div>
+	  <div class="collapse in" id="communication-direct-header">
+		  <div class="well">
+	  		<ul role="menu" >
+<!-- TODO - number of unread messages in this category in span -->
+<!-- TODO: Add dynamic list of direct message conversations here -->
+<!-- TODO: clicking on the names needs to bring up the conversation -->
+					{{#each directConversation}}
+						<li class='room {{selectedClass}}'>{{name}}: {{score}}</li>
+					{{/each}}
+
+<!-- TODO: Remove - styling code -->
+			    <li class="room">Dottie Herman <span class='unread-num'>1</span></li>
+			    <li class="room">Marie Espinal <span class='unread-num'></span></li>
+					<li class="add"><i class="fa fa-lg icon-addteam" data-toggle="modal" data-target="#communication-directory-modal"></i></li>
+			  </ul>
+			</div>
+		</div>
+	</div>
+	
+</template>

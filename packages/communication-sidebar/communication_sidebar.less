@@ -1,0 +1,66 @@
+// Variables 
+@import "/client/lib/style.import.less";
+
+.communication-sidebar {
+	position: relative;
+	margin-left: -15px;
+	margin-right: -15px;
+	background-color: @blue-grey;
+	.sidebar-scroll-target {
+		position: absolute;
+		top: -70px;
+	}
+	.channel {
+		cursor: pointer;
+	}
+	.room {
+		cursor: pointer;
+	}
+	.communication-sidebar-sleeve {
+		padding-top: 2em;
+	}
+	.dropdown {
+		width: 100%;
+		.dropdown-header {
+			font-size: 16px;
+			font-family: @raleway-semibold;
+			color: @white;
+			font-variant: small-caps;
+			text-transform: lowercase;
+			letter-spacing: 0.25em;
+			cursor: pointer;
+		}
+		li {
+			font-family: @raleway-medium;
+			color: @white;
+			list-style: none;
+			margin: 1em 0;
+		}
+		.well {
+			background-color: @blue-grey;
+			box-shadow: none;
+			border: none;
+			padding: 0 19px;
+		}
+		.secondary {
+			.dropdown-header {
+				margin-top: 2em;
+			}
+			ul {
+				padding-left: 19px;
+			}
+		}
+	}
+	.dropdown-header {
+		height: 3em;
+		padding: 1em 2.25em;
+	}
+	.unread-num {
+		border-radius: 15px;
+		padding: 0.1em 0.43em;
+		margin-left: 3px;
+	}
+	.add-team {
+		cursor: pointer;
+	}
+} 

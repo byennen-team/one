@@ -16,11 +16,16 @@ blaze-tools@1.0.2
 boilerplate-generator@1.0.2
 calendar@0.0.0
 callback-hook@1.0.2
-cfs:power-queue@0.9.11
-cfs:reactive-list@0.0.9
-cfs:reactive-property@0.0.4
+cfs:power-queue@0.0.0
+cfs:reactive-list@0.0.0
+cfs:reactive-property@0.0.0
 check@1.0.3
 coffeescript@1.0.5
+communication@0.0.0
+communication-directory@0.0.0
+communication-library@0.0.0
+communication-sidebar@0.0.0
+communication-task@0.0.0
 companies@0.0.0
 dashboard@0.0.0
 ddp@1.0.13
@@ -36,7 +41,6 @@ files@0.0.0
 follow@0.0.0
 follower-livedata@1.0.3
 geojson-utils@1.0.2
-horka:swipebox@1.0.2
 html-tools@1.0.3
 htmljs@1.0.3
 http@1.0.9
@@ -62,6 +66,7 @@ locales@0.0.0
 localstorage@1.0.2
 logging@1.0.6
 login@0.0.0
+maazalik:malihu-jquery-custom-scrollbar@3.0.6
 messages@0.0.0
 meteor@1.1.4
 meteor-platform@1.2.1

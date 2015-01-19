@@ -1,0 +1,133 @@
+ // LESS Functions:
+ // Functions for defining color objects
+// implementation -- >      .one-color-object(e('white'), @white);
+.one-color-object(@color-name, @color) {
+  .@{color-name} {
+    color: @color;
+  }
+  .@{color-name}-bg {
+    background-color: @color;
+  }
+}
+
+.one-ab-full() {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  top: 0;
+  right: 0;
+  left: 0;
+}
+
+
+// Placeholder text maker
+.one-placeholder( @class, @color, @font ) { 
+    .@{class} {
+      color:@color;
+      font-family: @font;
+    }
+    .@{class}::-webkit-input-placeholder {
+      color:@color;
+      font-family: @font;
+    }
+    .@{class}::-moz-placeholder { 
+      color:@color;
+      font-family: @font;
+    }
+    .@{class}:-ms-input-placeholder {
+      color:@color;
+      font-family: @font;
+    }
+}
+
+
+// /* Mixins
+// ------------------------------------------------------------------------------------------------------------------------------------------------------ */
+.underline(@color, @weight) {
+  border: @weight solid @color;
+  border-style: none none solid none;
+}
+
+// Fonts
+@raleway-bold:        RalewayBold, Verdana, Geneva, sans-serif;
+@raleway-semibold:      RalewaySemibold, Verdana, Geneva, sans-serif;
+@raleway-medium:      RalewayMedium, Verdana, Geneva, sans-serif;
+@raleway-regular:     RalewayRegular, Verdana, Geneva, sans-serif;
+@raleway-light:       RalewayLight, Verdana, Geneva, sans-serif;
+
+
+
+/* Color Variables - for whole project
+-------------------------------------------------------------------------------- */
+// common colors (must be defined)
+@black:               #000000;
+@white:               #ffffff;
+@white-hover:         darken(@white, 20%);
+@grey:                #b2c0cd; // Careful!! "@gray" is defined by Bootstrap
+@accent:              #5bb8d7;
+@accent-hover:        darken(@accent, 20%);
+
+// text specific colors (must be defined)
+@text:                #78838e;
+@lt-text:             #5b5e67;
+@text-hover:          darken(@text, 20%);
+
+// Navigation colors (must be defined)
+@nav:                 #ffffff;
+@nav-hover:           darken( #ffffff, 20%);
+
+// Spefic colors
+@facebook:            #4875b4;
+@twitter:             #1dcaff;
+@linkedin:            #007bb6;
+
+// Custom greys
+@dark-grey:           #666666;
+@lt-dk-grey:          #c8d1db;
+@med-lt-grey:         #e8eaeb;
+@lt-blue-grey:        #dae4ed;
+@lt-grey:             #f4f5f6;
+@not-lt-grey:         #f4f7fa;
+@not-white:           #f0f2f6;
+
+// Custom colors
+@accent-dk:           #51a9c6;
+@accent-very-dk:      #4390aa;
+@ultramarine:         #367f97;  
+@ultramarine-lt:      #4b9ab4;  
+@sky:                 #9dd4e7; 
+@dk-sky:              #6598b1;   
+@lt-sky:              #87e7ed;
+@navy:                #293446;
+@med-navy:            #324365;
+@lt-navy:             #4e6175;
+@lt-navy-dk:          #435364;
+@blue-grey:           #6c8298;
+@dk-blue-grey:        #64798d;
+@midnight:            #1c2431;
+@blue:                #344c7b;
+@lt-blue:             #75a1de;
+@green:               #4baf00;
+@red:                 #f26c4f;
+@purple:              #8781bd;
+@lt-purple:           #a783c9;
+@dk-purple:           #6c7798;
+@blue-purple:         #8996be;
+@lt-blue-purple:      #96a4c2;
+@orange:              #fcac66;
+@lime:                #b2d877;
+@aqua:                #7edae0;
+@teal:                #6cd2bd;
+@lt-teal:             #73e5ce;
+@cornflower:          #cde7ef;
+@lt-cornflower:       #e9eef3;
+@cornflower-grey:     #d7dfed;
+@periwinkle:          #a3b3c3;
+
+@text-teal:           #79e79d;
+@text-aqua:           #83c1da;
+@text-blue:           #7cbed6;
+@text-purple:         #bbb9ff;
+@text-navy:           #40506f;
+@text-cornflower:     #bfcede;
+
