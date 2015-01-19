@@ -27,7 +27,7 @@ Template.navbar.events({
     var body = jQuery('body');
     var scrollPosition = body.data('scroll-position');
     body.css('overflow', body.data('previous-overflow'));
-    window.scrollTo(scrollPosition[0], scrollPosition[1])
+    window.scrollTo(scrollPosition[0], scrollPosition[1]);
 	}
 
 });

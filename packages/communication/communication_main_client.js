@@ -36,4 +36,4 @@ Template.communicationMain.rendered = function () {
   board.mCustomScrollbar("scrollTo","bottom");
 
 
-} 
+}; 

@@ -9,28 +9,28 @@ Template.communicationSidebar.helpers({
 				company: false,
 				direct: false,
 				rooms: false 
-			}
+			};
 		}else if( filter === 'company' ){
 			return {
 				all: false,
 				company: true,
 				direct: false,
 				rooms: false 
-			}
+			};
 		}else if( filter === 'direct' ){
 			return {
 				all: false,
 				company: false,
 				direct: true,
 				rooms: false 
-			}
+			};
 		}else if( filter === 'rooms' ){
 			return {
 				all: false,
 				company: false,
 				direct: false,
 				rooms: true 
-			}
+			};
 		}
 	}
 

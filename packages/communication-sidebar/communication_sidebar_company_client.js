@@ -7,4 +7,4 @@ Template.communicationSidebarCompany.rendered = function(){
 	  	scrollbarPosition: "inside"
   });
 
-}
+};

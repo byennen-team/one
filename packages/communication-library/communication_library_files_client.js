@@ -3,5 +3,5 @@ Template.libraryFiles.rendered = function(){
   	theme:"one-light",
   	scrollbarPosition: "inside"
   });
-}
+};
 

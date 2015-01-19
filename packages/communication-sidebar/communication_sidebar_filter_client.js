@@ -30,7 +30,7 @@ Template.communicationSidebarFilter.events({
 		var json = {
 			'filter': filter,
 			'pretty': pretty
-		}
+		};
 		Session.set('filter', json);
 	}
 

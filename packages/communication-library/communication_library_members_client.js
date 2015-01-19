@@ -3,7 +3,7 @@ Template.libraryMembers.rendered = function(){
   	theme:"one-light",
   	scrollbarPosition: "inside"
   });
-}
+};
 
 Template.libraryMembers.events({
 

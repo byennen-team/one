@@ -2,7 +2,7 @@ Template.messageInput.rendered = function(){
 	Session.set('menuOpen', false);
 	Session.set('attachment', false);
 	$('.selectpicker').selectpicker();
-}
+};
 
 Template.messageInput.events({
 	// toggle the menu on button click

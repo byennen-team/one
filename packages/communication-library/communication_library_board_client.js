@@ -2,7 +2,7 @@ Template.libraryBoard.rendered = function () {
 	Session.setDefault('members', true);
 	$('#communication-library-board .top-btn').removeClass('active');
 	$('#communication-library-members-btn').addClass('active');
-} 
+};
 
 Template.libraryBoard.helpers({
 
@@ -53,7 +53,7 @@ Template.libraryBoard.events({
     var body = jQuery('body');
     var scrollPosition = body.data('scroll-position');
     body.css('overflow', body.data('previous-overflow'));
-    window.scrollTo(scrollPosition[0], scrollPosition[1])
+    window.scrollTo(scrollPosition[0], scrollPosition[1]);
 	}
 
 });
