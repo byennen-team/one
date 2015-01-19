@@ -13,7 +13,11 @@ Meteor.publish('notifications', function(limit) {
 			{ expires:
 				{ $exists: false }
 			}]
-		 },{ limit: limit });
+		 },{
+		 	limit: limit,
+		 	sort: {
+		 		createdAt: -1
+		 	} });
 });
 
 Meteor.methods({
@@ -26,7 +30,7 @@ Meteor.methods({
 		check(toUserId, String);
 		check(context, Object);
 
-		if (context.message)
+		if (! context.message)
 			return 'You need to specify a message';
 
 		//check that the user exists
@@ -39,11 +43,11 @@ Meteor.methods({
 			createdAt: new Date(),
 			createdFor: toUserId,
 			notificationText: context.message,
-			notificationsTitle: context.title ? context.title : 'New notification'
+			notificationTitle: context.title ? context.title : 'New notification'
 		};
 
-		if (link)
-			options.link = context.link;
+		if (context.link)
+			options.notificationActionLink = context.link;
 
 		Notifications.insert(options, function(error, result) {
 			if (error)

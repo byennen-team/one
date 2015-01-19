@@ -19,11 +19,7 @@
       <div id="notification-panel" class="notification-panel">
         <div id="notification-deactivate" class='notification-object'>
           <div class="caret"></div>
-          {{#if notificationsUnread.count}}
             <p>Notifications</p>
-          {{else}}
-            <p>No notifications</p>
-          {{/if}}
 <!-- TODO: number of active alerts go here -->
           {{#if notificationsUnread.count}}
             <div class="notification-alert">{{notificationsUnread.count}}</div>
@@ -32,7 +28,14 @@
         <div class="notification-body">
         {{#each notifications}}
             <div class="notice">
+            {{#if notificationActionLink}}
+              <a href="{{notificationActionLink}}">
+                <h5>{{notificationTitle}}</h5>
+              </a>
+              {{else}}
               <h5>{{notificationTitle}}</h5>
+            {{/if}}
+
               <p class="date">{{date createdAt}}</p>
               <p class='text'>{{notificationText}}</p>
             </div>
@@ -54,9 +57,9 @@
           {{/if}}
         </div>
 <!-- TODO: 'active' class should be added to the div that reflects User's status -->
-        <div id="notification-status-in" class='notification-object in active'>In the office</div>
-        <div id="notification-status-out" class='notification-object out'>out of office</div>
-        <div id="notification-status-mobile" class='notification-object mobile'>mobile</div>
+        <div id="notification-status-in" class='notification-object status-changer in active'>In the office</div>
+        <div id="notification-status-out" class='notification-object status-changer out'>out of office</div>
+        <div id="notification-status-mobile" class='notification-object status-changer mobile'>mobile</div>
 
         <div class="business-card">
           <p>Send Business Card to Mobile</p>
