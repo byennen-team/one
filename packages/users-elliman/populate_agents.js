@@ -85,7 +85,7 @@ var q_fetch_resize_and_upload = function(user){
         thumb: thumb_signed
     };
     var user_mongo = Meteor.users.insert(user);
-    console.log('end:', count_jobs++, ' mongo: ', user_mongo, user.emails[0]); 
+    console.log('X:', count_jobs++, ' email: ',  user.emails[0].address); 
     done();
   });
 };
@@ -99,7 +99,7 @@ Meteor.startup(function () {
   console.log('PQ', Meteor._powerQ.title);
   var ellimanAgents = JSON.parse(Assets.getText('elliman_agents_production.json'));
   if (Meteor.settings.public && (Meteor.settings.public.ENVIRONMENT === 'development')) {
-      ellimanAgents = ellimanAgents.slice(144,157);
+      ellimanAgents = ellimanAgents.slice(14,33);
   }
   var count = 1;
   var q_count = 0;
