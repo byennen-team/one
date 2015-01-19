@@ -14,7 +14,7 @@ Package.onUse(function (api) {
     'styles',
     'one-email',
     'mrt:moment',
-    'spectrum:photoswipe'
+    'horka:swipebox'
     ], 'web');
 
   api.use(['aldeed:simple-schema','files'], ['server','client']);
