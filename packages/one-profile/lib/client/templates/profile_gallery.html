@@ -1,24 +1,37 @@
 <template name="profileGallery">
-  <section id="section-gallery" class="tab-pane fade row m-top-10">
+  <section id="section-gallery" class="tab-pane fade row m-top-10 gallery-pane">
     <div class="fixed-xs col-sm-10 col-sm-offset-1 m-top-20">
-      <!-- TEMPLATE - Post date		 -->
-      <p class='not-for-user raleway-semibold auto-width m-left-05 text-uppercase purple pull-left spacing-125'>gallery</p>
-      <!-- TEMPLATE - Add picture functionality		 -->
-      {{#if isMyProfileEditable}}
-        {{#if galleries.count}}
-          <a href="#" class="raleway-light auto-width m-right-05 purple pointer" data-toggle="modal" data-target="#picturesUploadModal"><i class="fa fa-cloud-upload"></i> Add a picture</a>
+      <div class="gallery-top-controls">
+        <!-- TEMPLATE - Post date		 -->
+        <p class='not-for-user raleway-semibold auto-width m-left-05 text-uppercase purple pull-left spacing-125'>gallery</p>
+        <!-- TEMPLATE - Add picture functionality		 -->
+        {{#if isMyProfileEditable}}
+          {{#if galleries.count}}
+            <a href="#" class="raleway-light auto-width m-right-10 purple" data-toggle="modal" data-target="#picturesUploadModal"><i class="fa icon-addteam"></i> Add a picture</a>
+          {{/if}}
+          <a href="#" class="raleway-light auto-width m-right-05 purple pointer" data-toggle="modal" data-target="#addGaleryModal"><i class="fa fa-photo"></i> Add a gallery</a>
         {{/if}}
-        <a href="#" class="raleway-light auto-width m-right-05 purple pointer" data-toggle="modal" data-target="#addGaleryModal"><i class="fa fa-photo"></i> Add a gallery</a>
-      {{/if}}
+      </div>
       
     <div class='clearfix'></div>
 
     {{#each galleries}}
       <div class='album row m-top-20' album-id="{{_id}}">
         <!-- TEMPLATE - Album date     -->
-        <p class='h6 raleway-semibold text-uppercase periwinkle pull-left spacing-125'>{{date createdAt}}</p>
+        <p class='h6 raleway-semibold text-uppercase periwinkle pull-left spacing-0625'>{{date createdAt}}</p>
         <div class='clearfix'></div>
-        <p class='h5 raleway-semibold text-uppercase pull-left spacing-125'>{{galleryName}}<a href="#" class="remove-gallery" data-id="{{_id}}"><i class="fa fa-remove"></i></a></p>
+        <p class='h3 raleway-light pull-left navy m-top-0'>{{galleryName}}</p>
+        <div class="controls">
+  <!-- TODO: pre-select album when modal is called -->
+          <a href="#" class="add-pics" data-id="{{_id}}" data-toggle="modal" data-target="#picturesUploadModal">
+            <i class="fa icon-addteam"></i>
+            <span>add pics</span>
+          </a>
+          <a href="#" class="remove-gallery" data-id="{{_id}}">
+            <i class="fa fa-trash-o"></i>
+            <span>Delete album</span>
+          </a>
+        </div>
         <!-- TEMPLATE - Album title - on hold  -->
         <!-- <p class='h4 raleway-light auto-width navy pull-left'>NYC in the Fall</p> -->
         <!-- TEMPLATE - Number of pictures in the album    -->
