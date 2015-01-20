@@ -12,42 +12,34 @@ meteor-platform
 
 iron:router
 mizzao:bootstrap-3 #TODO: refactory to bootstrap-less
-nemo64:bootstrap
 aldeed:simple-schema
 
 # Our Packages
 
+one-admin
 one-profile
 one-email
+one-dashboard
+one-communication
+one-documents
+one-directory
+one-notifications
+one-layout
+one-login
+one-account-settings
+one-search
+one-support
+one-news
+one-calendar
+one-apps
 
-admin
 authorization
 companies
-dashboard
 follow
-layout
 loading
 locales
-login
 not-found
 routes
 settings
 users-elliman
-apps
-notifications
-calendar
-support
-news
-feed
-messages
-search
-directory
-documents
-account-settings
 styles
-less
-communication
-communication-sidebar
-communication-library
-communication-task
-communication-directory

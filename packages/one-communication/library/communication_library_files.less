@@ -1,0 +1,100 @@
+// Variables 
+@import "/packages/styles/variables.import.less";
+
+.library-board-sleeve.files {
+	height: 100%;
+	padding-bottom: 3.5em;
+	.drop-box {
+		margin-top: 1.5em;
+		p {
+			display: inline-block;
+			margin-left: 5%;
+			font-family: @raleway-regular;
+		}
+		.dropdown {
+			display: inline-block;
+			.dropdown-toggle {
+				font-family: @raleway-bold;
+				color: @white;
+				cursor: pointer;
+			}
+			li {
+				font-family: @raleway-medium;
+				color: @white;
+				list-style: none;
+				margin: 1em 0;
+			}
+		}
+	}
+	.fa {
+		font-size: 17px;
+	}
+	.search {
+		margin-bottom: 2em;
+		.fa-search {
+			width: 20%;
+			margin-top: 3px;
+			text-align: center;
+			color: @white;
+		}
+		input {
+			width: 80%;
+			float: right;
+			background-color: transparent;
+			border: none;
+			color: @periwinkle;
+			font-family: Myriad Pro, sans-serif;
+			font-size: 18px;
+		}
+		::-webkit-input-placeholder {
+		   color:@periwinkle;
+		   font-family: Myriad Pro, sans-serif;
+		   font-size: 18px;
+		}
+		::-moz-placeholder { 
+		   color: @periwinkle;
+		   font-family: Myriad Pro, sans-serif;
+		   font-size: 18px; 
+		}
+		:-ms-input-placeholder {  
+		   color: @periwinkle;
+		   font-family: Myriad Pro, sans-serif;
+		   font-size: 18px; 
+		}
+	}
+	.file {
+		width: 100%;
+		height: 3.5em;
+		margin-bottom: 1em;
+		.file-icon {
+			width: 20%;
+			float: left;
+			text-align: center;
+			color: @accent;
+			img {
+				display: inline-block;
+				width: 80%;
+				height: auto;
+			}
+		}
+		.title {
+			width: 80%;
+			float: right;
+			font-family: @raleway-regular;
+			font-size: 13px;
+			color: @white;
+		}
+		.date {
+			width: 80%;
+			float: right;
+			font-size: 11px;
+			font-family: @raleway-regular;
+			color: @grey;
+		}
+	}
+	.file.personal {
+		.file-icon {
+			color: @teal;
+		}
+	}
+}
