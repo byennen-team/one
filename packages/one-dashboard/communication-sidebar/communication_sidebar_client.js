@@ -8,28 +8,28 @@ Template.communicationSidebar.helpers({
 				all: true,
 				company: false,
 				direct: false,
-				rooms: false 
+				rooms: false
 			};
 		}else if( filter === 'company' ){
 			return {
 				all: false,
 				company: true,
 				direct: false,
-				rooms: false 
+				rooms: false
 			};
 		}else if( filter === 'direct' ){
 			return {
 				all: false,
 				company: false,
 				direct: true,
-				rooms: false 
+				rooms: false
 			};
 		}else if( filter === 'rooms' ){
 			return {
 				all: false,
 				company: false,
 				direct: false,
-				rooms: true 
+				rooms: true
 			};
 		}
 	}
@@ -49,7 +49,7 @@ Template.communicationSidebar.events({
 	'click .channel': function(){
 		// expands the main dialog box to 80% of full screen
 		$.Velocity.hook($('#communication-message-board'), "width", "60%");
-		$.Velocity.hook($('#communication-task-board'), "width", "0%"); 
+		$.Velocity.hook($('#communication-task-board'), "width", "0%");
 		$.Velocity.hook($('#communication-library-board'), "width", "15.5%");
 		// remove class from main chat window
 		$('#communication-main').removeClass('tasks');
@@ -64,10 +64,14 @@ Template.communicationSidebar.events({
 
 	  // lock scroll position, but retain settings for later
     var scrollPosition = [
-      self.pageXOffset || document.documentElement.scrollLeft || document.body.scrollLeft,
-      self.pageYOffset || document.documentElement.scrollTop  || document.body.scrollTop
+      window.pageXOffset ||
+      document.documentElement.scrollLeft ||
+      document.body.scrollLeft,
+      window.pageYOffset ||
+      document.documentElement.scrollTop ||
+      document.body.scrollTop
     ];
-    var body = jQuery('body'); 
+    var body = $('body');
     body.data('scroll-position', scrollPosition);
     body.data('previous-overflow', body.css('overflow'));
     body.css('overflow', 'hidden');
@@ -77,8 +81,8 @@ Template.communicationSidebar.events({
 	'click .room': function(){
 		// expands the main dialog box t0 60% of full screen
 		$.Velocity.hook($('#communication-message-board'), "width", "45%");
-		$.Velocity.hook($('#communication-task-board'), "width", "15%"); 
-		$.Velocity.hook($('#communication-library-board'), "width", "15.5%"); 
+		$.Velocity.hook($('#communication-task-board'), "width", "15%");
+		$.Velocity.hook($('#communication-library-board'), "width", "15.5%");
 		// add class to main chat window
 		$('#communication-main').addClass('tasks');
 		// force scrollbar on sidebar

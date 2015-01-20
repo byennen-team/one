@@ -1,3 +1,5 @@
+/* globals Followers: true, Following: true */
+
 // Who the user is followed by
 Followers = new Meteor.Collection('followers');
 

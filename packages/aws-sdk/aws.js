@@ -1,3 +1,5 @@
+/* global AWS: true */
+
 AWS = Npm.require('aws-sdk');
 AWS.config.apiVersions = {
   ec2: '2014-09-01',

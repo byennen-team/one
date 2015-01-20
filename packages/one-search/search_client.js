@@ -49,7 +49,7 @@ Template.searchBox.events({
     Search.text(event.target.value);
   },
   'click .user': function () {
-    user = Meteor.users.findOne({_id: this._id});
+    var user = Meteor.users.findOne({_id: this._id});
     console.log(user);
     $('.results').velocity("slideUp");
     Router.go(Routes.PROFILE, {slug: user.slug});

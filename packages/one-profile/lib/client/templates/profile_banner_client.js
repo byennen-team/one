@@ -36,6 +36,9 @@ Template.profileBanner.events({
   },
   'click .status-drop': function (e) {
     var status = e.target.innerText;
-    Meteor.users.update({_id: Meteor.userId()}, {$set: {'profile.status': status }});
+    Meteor.users.update({
+      _id: Meteor.userId()},
+      {$set: {'profile.status': status }}
+    );
   }
 });
