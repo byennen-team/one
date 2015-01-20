@@ -14,7 +14,7 @@ resizeHeights = { "mobile_": 480, "thumb_": 65, "full_": 140 },
 img_tmp = 'imagetmp',
 img_ext = '.jpeg',
 imageremote = 'remoteimage.jpeg',
-flag404 = false,
+flag404 = false
 s3_params = {
   key: Meteor.settings.AWS_ACCESS_KEY_ID, //<api-key-here>'
   secret: Meteor.settings.AWS_SECRET_ACCESS_KEY,  //'<secret-here>'
@@ -28,13 +28,24 @@ if(Settings.isStaging || Settings.isBeta) {
 } else {
   var base = process.env.PWD+'/packages/files/img/';
 }
-
+FileTools.cleanup_temp =  function(callback) {
+    var delete_imgs = ['thumb_imagetmp.jpg', 'imagetmp.jpg', 'full_imagetmp.jpg', 'imagetmp.JPG', 'thumb_imagetmp.JPG', 'imagetmp.jpeg'];
+    delete_imgs.forEach(function(img) {
+        console.log('unlink', img);
+        fs.unlink(base+img, function (error) {
+            if (error) { console.log('error', error) }
+            return;
+        });
+    });
+};
 //fetch temp image
 FileTools.fetch_to_temp = function(url, callback){
   flag404 = false;
   var originalName = url.substring(url.lastIndexOf('/')+1);
   var xpat = /\.([0-9a-z]+)(?:[\?#]|$)/i;
   img_ext = originalName.match(xpat)[0];
+  var writable = fs.createWriteStream(base+img_tmp+img_ext, {internal :  true})
+  .on('finish', Meteor.bindEnvironment(function() { callback(); }))
   request(url)
   .on('response',
       Meteor.bindEnvironment(function(response){
@@ -43,15 +54,14 @@ FileTools.fetch_to_temp = function(url, callback){
             console.log(url, ' not found', response.statusCode);
             console.log('base', base);
             flag404 = true;
-            callback();
             }})
       )
   .on('end',
       Meteor.bindEnvironment(function(error, response, body){
         if (error) console.log('end error', response.statusCode);
-        callback();
+        console.log('request end');
        }))
-  .pipe(fs.createWriteStream(base+img_tmp+img_ext, {internal :  true}));
+  .pipe(writable);
 };
 
 //resize
