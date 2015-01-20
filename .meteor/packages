@@ -12,7 +12,6 @@ meteor-platform
 
 iron:router
 mizzao:bootstrap-3 #TODO: refactory to bootstrap-less
-nemo64:bootstrap
 aldeed:simple-schema
 
 # Our Packages
