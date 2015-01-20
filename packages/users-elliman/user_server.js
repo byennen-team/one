@@ -24,7 +24,10 @@ Meteor.publish('userProfile', function (slug) {
 Meteor.publish('userProfiles', function (userIds) {
   check(userIds, [String]);
 
-  return Meteor.users.find({_id: {$in: userIds}}, {fields: {slug: 1, profile: 1}});
+  return Meteor.users.find(
+    {_id: {$in: userIds}},
+    {fields: {slug: 1, profile: 1}}
+  );
 });
 
 Meteor.methods({
@@ -38,21 +41,27 @@ Meteor.methods({
     check(agentEmail, String);
     var currentUser = Meteor.users.findOne(self.userId);
 
-    return Accounts._loginMethod(this, 'loginWithElliman', arguments, 'loginWithElliman', function () {
+    return Accounts._loginMethod(
+      this,
+      'loginWithElliman',
+      arguments,
+      'loginWithElliman',
+      function () {
 
-      var user = Meteor.users.findOne({
-        'profile.id': agentId
-      });
-      if (!user) throw new Meteor.Error('User not found');
-      var _findEmail = _.find(user.emails, function(em) { 
-          return em.address == agentEmail;
-      });
-      if (!_findEmail) throw new Meteor.Error('User Email Not Found');
-      // Log the current user out.
-      if (currentUser)
-        Accounts._setLoginToken(currentUser._id, self.connection, null);
+        var user = Meteor.users.findOne({
+          'profile.id': agentId
+        });
+        if (!user) throw new Meteor.Error('User not found');
+        var _findEmail = _.find(user.emails, function(em) {
+            return em.address === agentEmail;
+        });
+        if (!_findEmail) throw new Meteor.Error('User Email Not Found');
+        // Log the current user out.
+        if (currentUser)
+          Accounts._setLoginToken(currentUser._id, self.connection, null);
 
-      return {userId: user._id};
-    });
+        return {userId: user._id};
+      }
+    );
   }
 });

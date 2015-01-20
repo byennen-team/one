@@ -1,7 +1,12 @@
 var goScroll = function(target, trigger){
   trigger.on( 'click', function(){
     if (target.length) {
-      $("html").velocity("scroll", {offset: target.offset().top, duration: 800, easing: "easeInSine", mobileHA: false });
+      $("html").velocity("scroll", {
+        offset: target.offset().top,
+        duration: 800,
+        easing: "easeInSine",
+        mobileHA: false
+      });
       return false;
     }
   });

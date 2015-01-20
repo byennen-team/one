@@ -1,27 +1,26 @@
 Template.addGalleryModal.events({
-	'click #createGallery': function(event) {
+	'click #createGallery': function () {
 		var $name = $('#galleryNameField');
 
 		if ($name.val() && $name.val().length >0) {
 
 
 			//TODO: call a server function to add a gallery
-			Meteor.call('createGallery', $name.val(), function(error, response) {
+			Meteor.call('createGallery', $name.val(), function (error) {
 				if (error) {
 					//TODO: show error
-					console.error(error); 
+					console.error(error);
 				} else {
 					$name.val('');
 					$('#addGaleryModal').modal('hide');
 				}
 			});
 
-		} else {
-			//TODO: show error you have to enter a name? 
 		}
+    //TODO: show error you have to enter a name?
 	},
 
-	'click #cancelCreateGallery': function(event) {
+	'click #cancelCreateGallery': function () {
 		$('#galleryNameField').val('');
 	}
 });

@@ -2,8 +2,20 @@ var defaultEmail = "no-reply@gooneapp.com";
 
 Meteor.methods({
   // Profile Contact Email
-  'sendProfileContactEmail': function(to, subject, senderName, sender, phone, buyOrSell, message){
-    check([to, subject, senderName, buyOrSell, sender, phone, message], [String]);
+  // TODO: Refactor arguments to options hash
+  'sendProfileContactEmail': function(
+    to,
+    subject,
+    senderName,
+    sender,
+    phone,
+    buyOrSell,
+    message
+  ){
+    check(
+      [to, subject, senderName, buyOrSell, sender, phone, message],
+      [String]
+    );
 
     return Meteor.Mandrill.sendTemplate({
       "template_name": "ContactFormNotification",

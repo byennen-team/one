@@ -34,7 +34,7 @@ Template.emailDocumentModal.events({
     copyToClipboard(url);
   },
 
-  'click .display-link': function (event, template) {
+  'click .display-link': function (event) {
     var displayLink = event.currentTarget;
     console.log(displayLink);
     selectElementText(displayLink);

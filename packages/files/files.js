@@ -1,3 +1,5 @@
+/* globals Files: true, FileTools: true */
+
 Files = new Meteor.Collection('files');
 
 Files.schema = new SimpleSchema({

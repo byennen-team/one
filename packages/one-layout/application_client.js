@@ -7,11 +7,11 @@ Template.application.events({
 });
 
 Template.application.helpers({
-  profileUrl: function () {
-    return getProfileUrl(Meteor.user());
-  },
   isPublic: function () {
-    if(Profile.forcePublic.get() !== undefined && Profile.forcePublic.get() === true)
+    if (
+      Profile.forcePublic.get() !== undefined &&
+      Profile.forcePublic.get() === true
+    )
       return false;
     else
       return true;

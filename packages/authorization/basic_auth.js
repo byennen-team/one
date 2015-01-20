@@ -1,3 +1,5 @@
+/* global HttpBasicAuth: true */
+
 HttpBasicAuth = (function () {
   var HttpBasicAuth = function (callback, realm) {
     this.callback = callback;

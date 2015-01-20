@@ -39,7 +39,9 @@ Package.onUse(function (api) {
     'communication-sidebar/communication_sidebar_rooms.html',
     'communication-sidebar/communication_sidebar_rooms.less',
     'communication-sidebar/communication_sidebar_rooms_client.js',
-    //messages TODO: this is old code. Just putting this here until the new dashboard is approved. Remove.
+    //messages
+    // TODO: this is old code.
+    //       Just putting this here until the new dashboard is approved. Remove.
     'messages/messages.html',
     'messages/messages_client.js',
     'messages/messages.less',

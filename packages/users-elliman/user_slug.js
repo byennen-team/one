@@ -1,6 +1,8 @@
 User.generateSlug = function (firstName, lastName) {
   // Strip any non-alphanumeric characters.
-  var seedSlug = (firstName.replace(/\W/g, '') + '-' + lastName.replace(/\W/g, '')).toLowerCase();
+  var seedSlug = (
+    firstName.replace(/\W/g, '') + '-' + lastName.replace(/\W/g, '')
+  ).toLowerCase();
 
   var potentialSlugs = [seedSlug];
 
@@ -16,7 +18,8 @@ User.generateSlug = function (firstName, lastName) {
 
     slug = _.first(potentialSlugs);
 
-    // if all the slugs are taken, generate another 10 potential aliases, and perform the search again
+    // if all the slugs are taken, generate another 10 potential aliases,
+    // and perform the search again
     if (!slug) {
       potentialSlugs = [];
 

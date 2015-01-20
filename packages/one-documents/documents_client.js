@@ -18,22 +18,34 @@ var updateProgress = function (fileRow, progress) {
 var uploadFile = function (file) {
   var companyDocument = FileTools.isCompanyDocumentsActive();
 
-  var existingFile = Files.findOne({name: file.name, companyDocument: companyDocument});
+  var existingFile = Files.findOne({
+    name: file.name,
+    companyDocument: companyDocument
+  });
   if (existingFile) {
-    if (!confirm('There is already a file named "' + file.name + '". Do you want to overwrite it?')) return;
+    var success = confirm(
+      'There is already a file named "' + file.name +
+      '". Do you want to overwrite it?'
+    );
+    if (!success) return;
     Files.remove(existingFile._id);
   }
 
-  var method = companyDocument ? 'signCompanyDocumentUpload' : 'signUserDocumentUpload';
+  var method = companyDocument ?
+    'signCompanyDocumentUpload' :
+    'signUserDocumentUpload';
 
   var fileRow;
  FileTools.upload(method, file, {
     parentFolderId: Session.get('currentFolderId'),
-    onError: function (error) {
-      // TODO handle error
-    },
+    // TODO handle error
+    //onError: function (error) {
+    //
+    //},
     onProgress: function (progressEvent) {
-      var progress = Math.floor(progressEvent.loaded / progressEvent.total * 100);
+      var progress = Math.floor(
+        progressEvent.loaded / progressEvent.total * 100
+      );
       updateProgress(fileRow, progress);
     },
     onComplete: function (fileId) {
@@ -57,14 +69,17 @@ Template.documents.events({
     var file = Blaze.getData(checkbox);
     Meteor.call('favoriteDocument', file._id, checkbox.checked);
   },
-  'click .print': function (event, template) {
+  'click .print': function (event) {
     event.preventDefault();
     var file = window.open(event.target.getAttribute("href"));
     file.print();
   },
   'click .download': function (event) {
     event.preventDefault();
-    var a = $('<a target="_blank">').attr("href", event.target.getAttribute("href")).attr("download", "img.png").appendTo("body");
+    var a = $('<a target="_blank">')
+      .attr("href", event.target.getAttribute("href"))
+      .attr("download", "img.png")
+      .appendTo("body");
     a[0].click();
     a.remove();
   },
@@ -83,7 +98,7 @@ Template.documents.events({
   'click .remove': function (event) {
     event.preventDefault();
     var file = Blaze.getData(event.target);
-    Meteor.call('archiveDocument',file._id, true, function(error,response) {
+    Meteor.call('archiveDocument',file._id, true, function(error) {
       if (error)
         alert ("could not delete file");
     });
@@ -98,7 +113,10 @@ Template.documents.events({
 Template.documents.helpers({
   isFavoriteChecked: function (file) {
     var user = Meteor.user();
-    if (user && user.favoriteDocumentIds && user.favoriteDocumentIds.indexOf(file._id) > -1) return 'checked';
+    if (user &&
+      user.favoriteDocumentIds &&
+      user.favoriteDocumentIds.indexOf(file._id) > -1
+    ) return 'checked';
   },
   favorite: function () {
     var user = Meteor.user();
@@ -147,7 +165,7 @@ Template.documents.rendered = function () {
     e.preventDefault();
 
     var files = e.originalEvent.dataTransfer.files;
-    for (i = 0; i < files.length; i++) uploadFile(files[i]);
+    for (var i = 0; i < files.length; i++) uploadFile(files[i]);
   });
 };
 
