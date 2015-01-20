@@ -14,7 +14,7 @@ resizeHeights = { "mobile_": 480, "thumb_": 65, "full_": 140 },
 img_tmp = 'imagetmp',
 img_ext = '.jpeg',
 imageremote = 'remoteimage.jpeg',
-flag404 = false
+flag404 = false,
 s3_params = {
   key: Meteor.settings.AWS_ACCESS_KEY_ID, //<api-key-here>'
   secret: Meteor.settings.AWS_SECRET_ACCESS_KEY,  //'<secret-here>'
