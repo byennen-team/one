@@ -9,15 +9,14 @@ var both = ['server','web']
 Package.onUse(function(api) {
   api.versionsFrom('1.0.2.1');
 
-  api.use(['service-configuration', 'twitter', 'facebook', 'templating'], both);
-
+  api.use(['service-configuration', 'mongo', 'oauth1', 'oauth', 'twitter', 'facebook', 'templating'], both);
   api.use('settings', 'server');
 
   api.addFiles('social_media_server.js', 'server');
 
   api.addFiles([ 'social_media.html', 'social_media.js' ], 'web');
 
-  api.export(['SocialMedia', 'Statuses'], both)
+  api.export(['SocialMedia', 'Statuses'], both);
 });
 
 Package.onTest(function(api) {
