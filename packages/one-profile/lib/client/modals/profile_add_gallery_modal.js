@@ -11,7 +11,6 @@ Template.addGalleryModal.events({
 					//TODO: show error
 					console.error(error);
 				} else {
-          console.log(response)
           //uploading files
           $(".file-upload").each(function() {
             if($(this).prop('files')) {
@@ -33,7 +32,7 @@ Template.addGalleryModal.events({
                   };
 
                   var onError = function(error) {
-                    console.log(error)
+                    console.log(error);
                   };
 
                 $('.album[album-id="'+$galleryId+'"] .galleryHolder').append('<div data-type="loader" class="gallery-square col-sm-2 half-gutter m-bottom-10 center picture-loader"><img src="/photo-load.gif" /></div>');

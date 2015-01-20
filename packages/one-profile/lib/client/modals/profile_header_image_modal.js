@@ -76,7 +76,7 @@ Template.profileHeaderImageModal.events({
           };
 
           var onError = function(error) {
-            console.log(error)
+            console.log(error);
           };
 
           //check if file is image

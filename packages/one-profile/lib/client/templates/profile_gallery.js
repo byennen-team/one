@@ -26,7 +26,7 @@ Template.profileGallery.events({
       $("#select-gallery-dropdown option").each(function(index) {
         if ($(this).val() === $(event.currentTarget).data("id"))
           $(this).attr('selected','selected');
-      })
+      });
     }
 		$('.selectpicker').selectpicker('refresh');
 	},
@@ -108,13 +108,12 @@ Template.profileGallery.rendered = function () {
     };
 
     var onError = function(error) {
-      console.log(error)
+      console.log(error);
     };
 
     var files = e.originalEvent.dataTransfer.files;
     for (var i = 0; i < files.length; i++) {
     	file = files[i];
-      console.log(file)
     	//check if file is image
     	if (!file.type.match('image.*'))
     		continue;
