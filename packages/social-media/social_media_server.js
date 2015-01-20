@@ -25,6 +25,16 @@ Meteor.methods({
     if (!credentials)
       throw new Meteor.Error(500, 'Unknown twitter login Error');
 
+    if (type === 'twitter')
+      var options = { 'services.twitter' : credentials.serviceData };
+    else
+      var options = { 'services.facebook' : credentials.serviceData };
+
+
+    Meteor.users.update( this.userId , {
+      $set: options
+    })
+
     return(null, true);
   }
 })
