@@ -1,0 +1,62 @@
+// Variables 
+@import "/packages/styles/variables.import.less";
+
+.communication-main {
+	position: fixed;
+	top: 70px;
+	left: 25.5%;
+	bottom: 0;
+	right: 0;
+	width: 0;
+	margin-left: -15px;
+	overflow: hidden;
+	transition: width 350ms ease-out 50ms;
+	z-index: 2;
+	.message-board {
+		position: relative;
+		float: left;
+		width: 80%;
+		height: 100%;
+		background-color: @white;
+		.sleeve {
+			height: 100%; // height of window
+			padding-bottom: 140px; // to account for both input bar and header
+			overflow: hidden;
+		}
+	}
+	.task-board {
+		float: left;
+		background-color: @dk-purple;
+		height: 100%;
+		overflow: hidden;
+		width: 0;
+		p {
+			color: @white;
+		}
+	}
+	.library-board {
+		float: left;
+		overflow: hidden;
+		width: 0;
+		p {
+			color: @white;
+		}
+	}
+	.blurry {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    overflow: hidden;
+    background-image: url('/images/com-hub-main/blur.png');
+    // /* Fallback to SVG filters */
+    filter: url('#blur');
+    -webkit-filter: blur(5px);
+    -moz-filter: blur(5px);
+    -o-filter: blur(5px);
+    -ms-filter: blur(5px);
+    filter: blur(5px);
+    z-index: -1;
+  }
+}
