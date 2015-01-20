@@ -29,7 +29,7 @@ Template.profileHeaderImageModal.events({
       var x = ary.length;
       var fileName = ary[x-1];
       $this.siblings( '.file-name' ).text(fileName);
-    } 
+    }
     else{
       // swap icon if there isn't a file
       $this.siblings( '.fa-camera-retro' ).removeClass( 'fa-camera-retro' ).addClass( 'icon-addteam' );
@@ -42,7 +42,7 @@ Template.profileHeaderImageModal.events({
     var fileNum = $bag.find('.fa-camera-retro').length;
     var inputNum = $bag.find( '.uploadCount' ).length;
     if( fileNum == inputNum){
-      // append a new input-box 
+      // append a new input-box
       $bag.append(formHTML);
       $bag.find('.input-box:last').hide().slideDown(1000);
     }
@@ -56,29 +56,40 @@ Template.profileHeaderImageModal.events({
     });
   },
 
-  'click .upload-modal-btn': function(){
+  'click #header-upload-image': function(){
     //Uploading the files
-
     $(".file-upload").each(function() {
       if($(this).prop('files')) {
         var $contents = $(this).prop('files');
         if ($contents && $contents.length > 0) {
-          //we have a file, let's add a loading indicator
-          var $galleryId = $("#select-gallery-dropdown").val();
 
-          $('.album[album-id="'+$galleryId+'"] .galleryHolder').append('<div data-type="loader" class="gallery-square col-sm-2 half-gutter m-bottom-10 center picture-loader"><img src="/photo-load.gif" /></div>');
-          FileTools.temporaryUpload('signProfilePictureUpload', $contents[0], function (error, result) {
-            if (error) throw new Meteor.Error(500, 'Error in uploading file'); // TODO error message
-
+          var onComplete = function(result) {
             var photoUrl = Meteor.settings.public.AWS_BUCKET_URL + '/' + result.filePath;
-            Meteor.call('addPictureToGallery',result.filePath, photoUrl, $galleryId, function(error, result) {
-              //removing the loading indicator
-              $('.gallery-square[data-type="loader"')[0].remove();
-              if (error)
-                return; // TODO: present an error to the user
+              Meteor.users.update(Meteor.userId(),{
+                $push: {
+                  'profile.coverUrl': {
+                    photoUrl: photoUrl,
+                    key: result.filePath
+                  }
+                }
+              });
+          };
 
-            });
-          });
+          var onError = function(error) {
+            console.log(error)
+          };
+
+          //check if file is image
+          if (!$contents[0].type.match('image.*'))
+            return;
+
+          var options = {
+            onComplete: onComplete,
+            onError: onError,
+            filePath: Random.id()
+          };
+
+          FileTools.upload('signProfilePictureUpload', $contents[0], options);
         }
       }
     });

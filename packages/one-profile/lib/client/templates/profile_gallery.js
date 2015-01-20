@@ -21,7 +21,13 @@ Template.profileGallery.helpers({
 });
 
 Template.profileGallery.events({
-	'click a[data-target="#picturesUploadModal"]': function(e) {
+	'click a[data-target="#picturesUploadModal"]': function(event) {
+    if($(event.currentTarget).data("id")) {
+      $("#select-gallery-dropdown option").each(function(index) {
+        if ($(this).val() === $(event.currentTarget).data("id"))
+          $(this).attr('selected','selected');
+      })
+    }
 		$('.selectpicker').selectpicker('refresh');
 	},
 	'click .remove-gallery': function(event) {
