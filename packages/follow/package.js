@@ -6,7 +6,7 @@ Package.onUse(function (api) {
   var both = ['server', 'web'];
 
   api.use(['check', 'jonperl:match-ex@0.1.2'], both);
-  api.use(['reywood:publish-composite@1.3.5', 'notifications'], 'server');
+  api.use(['reywood:publish-composite@1.3.5', 'one-notifications'], 'server');
 
   api.addFiles('follow.js', both);
   api.addFiles('follow_server.js', 'server');
