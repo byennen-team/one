@@ -4,4 +4,24 @@ Template.taskBoard.rendered = function () {
       theme:"one-light",
       scrollbarPosition: "inside"
   });
+
+  console.log('task board rendered'); // DAVE: remove this
+  Session.set( 'taskMenu', false );
 };
+
+Template.taskBoard.events({
+
+  // Toggle task menu when a dot is clicked
+  'click .dot': function (event) {
+    var self = this;
+    var menuVisible = Session.get( 'taskMenu' );
+    if( ! menuVisible ) {
+      Session.set( 'taskMenu', true );
+      $( '#communication-task-menu' ).velocity( "fadeIn", { duration: 300 });
+    } else {
+      Session.set( 'taskMenu', false );
+      $( '#communication-task-menu' ).velocity( "fadeOut", { duration: 300 });
+    }
+  }
+
+});

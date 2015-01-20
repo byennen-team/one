@@ -1,0 +1,94 @@
+// Variables 
+@import "/packages/styles/variables.import.less"; 
+
+.task-menu {
+  position: absolute;
+  display: none;
+  top: 5%;
+  left: 25%;
+  width: 20.5%;
+  min-height: 400px; // TODO: remove this line
+  background-color: @very-lt-blue-grey;
+  z-index: 5;
+  -webkit-box-shadow: -10px -9px 27px -9px rgba(0,0,0,1);
+  -moz-box-shadow: -10px -9px 27px -9px rgba(0,0,0,1);
+  box-shadow: -10px -9px 27px -9px rgba(0,0,0,1);
+
+  .due-date {
+
+  } 
+  .bootstrap-select.btn-group { // this class/element is injected by plugin
+    // width: 22px!important;
+    .btn {
+      width: 40px;
+      padding: 2px;
+      .caret {
+        right: 4px;
+      }
+    }
+    ul {
+      width: 25px;
+    }
+  }
+  // with selectpicker(), this class ends up on the button, list styles aren't nested
+  .select-color { 
+
+  } 
+  .dot,
+  .xdot {
+    position: relative;
+    width: 16px;
+    height: 16px;
+    padding: 0;
+    margin: 7px;
+    border-radius: 50%;
+    z-index: 2;
+    span {
+      display: none!important;
+    }
+  }
+  .xdot:after {
+    content: "";
+    position: absolute;
+    top: -5px;
+    bottom: -5px;
+    right: -5px;
+    left: -5px;
+    border-radius: 50%;
+    opacity: 0.2;
+    z-index: 1;
+  }
+  .purple.dot,
+  .purple.xdot,
+  .purple.xdot:after {
+    background-color: @purple;
+  }
+  .pink.dot,
+  .pink.xdot,
+  .pink.xdot:after {
+    background-color: @pink;
+  }
+  .orange.dot,
+  .orange.xdot,
+  .orange.xdot:after {
+    background-color: @cameo;
+  }
+  .teal.dot,
+  .teal.xdot,
+  .teal.xdot:after {
+    background-color: @teal;
+  }
+  .blue.dot,
+  .blue.xdot,
+  .blue.xdot:after {
+    background-color: @accent;
+  }
+  .red.dot,
+  .red.xdot,
+  .red.xdot:after {
+    background-color: @red;
+  }
+
+
+
+}

@@ -1,0 +1,55 @@
+<template name='communicationCreateTask'>
+  
+  <form id="communication-task-menu" class="task-menu">
+    
+    <div class="due-date">
+      <span>due date</span>
+      <i class="fa fa-calendar"></i>
+    </div>
+
+    <select class="selectpicker" data-style='select-color'>
+      <option class="purple dot">purple</option>
+      <option class="pink dot">pink</option>
+      <option class="orange dot">orange</option>
+      <option class="teal dot">teal</option>
+      <option class="blue dot">blue</option>
+      <option class="red dot">red</option>
+      <option class="purple xdot">xpurple</option>
+      <option class="pink xdot">xpink</option>
+      <option class="orange xdot">xorange</option>
+      <option class="teal xdot">xteal</option>
+      <option class="blue xdot">xblue</option>
+      <option class="red xdot">xred</option>
+    </select>
+
+    <input class='title' type="text" placeholder='Task name...'/>
+
+    <textarea name="description" id="" cols="30" rows="10" class="description" placeholder='Description'></textarea>
+
+    <label>
+      <i class="fa fa-th-list"></i>
+      <span>task list</span>
+    </label>
+<!-- TODO: add list of User's active rooms -->
+    <select class="selectpicker" data-style='select-task-list'>
+      <option class="purple dot">Dottie Herman</option>
+      <option class="pink dot">Marie Espinal</option>
+      <option class="orange dot">Team Awesome</option>
+      <option class="teal dot">111 4th Ave, 4h</option>
+      <option class="blue dot">575 Madison Ave</option>
+    </select>
+
+    <label>
+      <i class="fa fa-user"></i>
+      <span>add people</span>
+    </label>
+    <div class="add-people">
+      <i id="communication-task-invite" class="fa icon-addteam"></i>
+<!-- TODO: This should search the directory -->
+      <input id="communication-library-invite-input" type="text" placeholder='Name or Email' />
+  
+    </div>
+
+  </form>
+
+</template>
