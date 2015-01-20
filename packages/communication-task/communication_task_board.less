@@ -1,19 +1,137 @@
-.task-board {
-  .header {
-    .percent-complete {
+// Variables 
+@import "/client/lib/style.import.less";
 
+.task-board {
+  position: relative;
+  .header {
+    position: relative;
+    height: 4em;
+    .percent-complete {
+      position: absolute;
+      font-size: 12px;
+      left: 1em;
+      margin-top: 1em;
+      width: 3.214em;
+      height: 3.214em;
+      padding-top: 1em;
+      font-family: @raleway-bold;
+      text-align: center;
+      color: @text-lime;
+    }
+    .percent-complete:after {
+      content: "";
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: 0;
+      bottom: 0;
+      background-color: @white;
+      border-radius: 50%;
+      opacity: 0.1;
     }
     .dropdown {
-
+      position: absolute;
+      margin-top: 2em;
+      left: 25%;
+      width: 50%;
+      text-align: left;
+      cursor: pointer;
       .dropdown-header {
-
+        font-family: @raleway-bold;
+        font-size: 16px;
+        letter-spacing: 0.0625em;
+        padding: 0;
+        color: @white;
+      }
+      .well {
+        width: 140%;
+        margin-left: -20%;
+        padding: 0;
+        background-color: darken(@dk-purple, 5%);
+        border: none;
+        border-radius: 0;
+      }
+      ul {
+        padding: 0;
+        margin: 0;
       }
       li {
-
+        list-style: none;
+        font-family: @raleway-regular;
+        color: @white;
+        padding: 10px;
+        border-bottom: 1px solid lighten(@dk-purple, 3%);
+        transition: background-color 350ms ease-out 50ms;
+      }
+      li:last-of-type {
+        border: none;
+      }
+      li:hover {
+        background-color: darken(@dk-purple, 10%);
       }
     }
     .calendar {
+      position: absolute;
+      font-size: 19px;
+      right: 1em;
+      margin-top: 25px;
+      color: @accent;
+      cursor: pointer;
+    }
+  }
+  .task-list {
+    position: relative;
+    clear: both;
+    .task {
+      position: relative;
+      margin: 1.5em 0.25em;
+      color: @text-lt-purple;
+      .dot {
+        position: absolute;
+        width: 14px;
+        height: 14px;
+        border-radius: 50%;
+      }
+      .title {
+        margin-left: 3em;
+      }
+      .due {
+        margin-left: 3em;
+      }
+      .fa-calendar {
+        margin-left: 3em;
+      }
+    }
+    .done {
+      .dot {
+        background-color: @green;
+      }
+    }
+    .teal {
+      .dot {
+        background-color: @teal;
+      }
+    }
+    .purple {
+      .dot {
+        background-color: @purple;
+      }
+    }
+    .orange {
+      .dot {
+        background-color: @orange;
+      }
+    }
+    .add-dot {
 
+    }
+    .task-line {
+      position: absolute;
+      left: 30px;
+      top: 0;
+      bottom: 0;
+      width: 3px;
+      background-color: @blue-purple;
     }
   }
 }

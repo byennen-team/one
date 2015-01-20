@@ -1,15 +1,15 @@
 <template name='taskBoard'>
 	<div class="header">
 <!-- TODO: should reflect the percent completed	 -->
-		<div id="communication-task-percent-completed" class="percent-complete">42</div>
+		<div id="communication-task-percent-completed" class="percent-complete">42%</div>
 <!-- TODO: Dropdown toggles between all tasks, completed tasks, or incomplete tasks -->
 	  <div class="dropdown">
-			<div class="dropdown-header" data-toggle="collapse" href="#communication-library-files-folders" aria-expanded="true" aria-controls="communication-library-files-folders">
+			<div class="dropdown-header" data-toggle="collapse" href="#communication-library-files-folders" aria-expanded="false" aria-controls="communication-library-files-folders">
 <!-- TODO: Should show currently selected/shown tasks -->
 				All Tasks
 		    <span class="caret"></span>
 		  </div>
-		  <div class="collapse in" id="communication-library-files-folders">
+		  <div class="collapse" id="communication-library-files-folders">
 			  <div class="well">
 		  		<ul role="menu" >
 				    <li>all tasks</li>
@@ -19,6 +19,7 @@
 				</div>
 			</div>
 		</div>
+
 <!-- TODO: should call up calendar -->
 		<div class="calendar">
 			<i class="fa fa-calendar"></i>
