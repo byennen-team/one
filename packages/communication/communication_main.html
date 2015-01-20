@@ -1,0 +1,24 @@
+<template name='communicationMain'>
+	
+	<div id='communication-main' class="communication-main">
+
+		<div id='communication-message-board' class="message-board">
+			{{> messageBoard}}
+			{{> messageInput}}
+		</div>
+
+		<div id='communication-task-board' class="task-board">
+			{{> taskBoard}}
+		</div>
+
+		<div id='communication-library-board' class="library-board">
+			{{> libraryBoard}}
+		</div>
+
+		{{> communicationDirectoryModal}}
+		
+		<div class="blurry"></div>
+		
+	</div>
+
+</template>

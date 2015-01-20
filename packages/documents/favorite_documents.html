@@ -7,7 +7,7 @@
           <li>
             <div class="row">
               <div class="col-lg-12">
-                <i class="fa fa-file filetype"></i>
+                <i class="fa {{#if isFolder}}fa-folder{{else}}fa-file{{/if}} filetype"></i>
                 <p>{{name}}</p>
                 <span>{{date this}}</span>
               </div>

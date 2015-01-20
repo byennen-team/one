@@ -2,7 +2,6 @@
   "AWS_BUCKET": "goone-dev",
   "AWS_ACCESS_KEY_ID": "AKIAIRIH744ERKEXHPOA",
   "AWS_SECRET_ACCESS_KEY": "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",
-  "REGION": "s3",
   "public": {
     "AWS_BUCKET_URL": "https://goone-dev.s3.amazonaws.com",
     "ENVIRONMENT": "development"

@@ -1,0 +1,25 @@
+<template name="communicationSidebar">
+
+<div id="sidebar-scroll-target" class='sidebar-scroll-target'></div>	
+	<div id='communication-sidebar' class="communication-sidebar">
+
+		{{> communicationSidebarFilter}}
+
+		<div id='communication-sidebar-options'>
+	
+		{{#if communicationFilter.all}}
+      {{> communicationSidebarAll}}
+    {{else}} {{#if communicationFilter.company}}
+	    {{> communicationSidebarCompany}}
+	  {{else}} {{#if communicationFilter.direct}}
+      {{> communicationSidebarDirect}}
+    {{else}} {{#if communicationFilter.rooms}}
+      {{> communicationSidebarRooms}}
+	  {{/if}} {{/if}} {{/if}} {{/if}}
+
+		</div>
+	</div>
+
+</template>
+
+<!-- I need to call the function in the template helper -->

@@ -13,8 +13,11 @@ Package.onUse(function (api) {
     'mquandalle:bower',
     'styles',
     'one-email',
-    'files'
+    'mrt:moment',
+    'horka:swipebox'
     ], 'web');
+
+  api.use(['aldeed:simple-schema','files'], ['server','client']);
 
 
   // less
@@ -36,6 +39,14 @@ Package.onUse(function (api) {
     'lib/client/less/profile_footer.less'
   ], 'web');
 
+
+  //server files
+  api.addFiles([
+    'gallery/gallery_server.js'], 'server');
+
+  api.addFiles([
+    'gallery/gallery.js'], ['server','web']);
+
   // modals
   api.addFiles([
     'lib/client/modals/profile_header_image_modal.html',
@@ -45,7 +56,11 @@ Package.onUse(function (api) {
     'lib/client/modals/profile_contact_message_success_modal.html',
     'lib/client/modals/profile_contact_message_failed_modal.html',
     'lib/client/modals/profile_activity_link_modal.html',
-    'lib/client/modals/gallery_modal.html'
+    'lib/client/modals/gallery_modal.html',
+    'lib/client/modals/profile_add_gallery_modal.html',
+    'lib/client/modals/profile_add_gallery_modal.js',
+    'lib/client/modals/profile_add_picture_gallery_modal.html',
+    'lib/client/modals/profile_add_picture_gallery_modal.js'
     ], 'web');
 
   // templates
@@ -67,6 +82,7 @@ Package.onUse(function (api) {
     'lib/client/templates/profile_following.html',
     'lib/client/templates/profile_following.js',
     'lib/client/templates/profile_gallery.html',
+    'lib/client/templates/profile_gallery.js',
     'lib/client/templates/profile_header.html',
     'lib/client/templates/profile_header.js',
     'lib/client/templates/profile_property_search.html',
@@ -75,7 +91,8 @@ Package.onUse(function (api) {
     'lib/client/templates/profile_buyer.html',
     'lib/client/templates/profile_contact.html',
     'lib/client/templates/profile_contact_client.js',
-    'lib/client/templates/profile_footer.html'
+    'lib/client/templates/profile_footer.html',
+    'gallery/gallery_client.js'
     ], 'web');
 
   // Bower packages

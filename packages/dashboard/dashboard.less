@@ -1,21 +1,11 @@
 .dashboard {
-  .blurry::before {
-  content: "";
-  position: absolute;
-  left: 0;
-  right: 0;
-  top: 0;
-  bottom: 0;
-  overflow: hidden;
-  background-image: url('/images/com-hub-main/blur.png');
-  /* Fallback to SVG filters */
-  filter: url('#blur');
-  -webkit-filter: blur(5px);
-  -moz-filter: blur(5px);
-  -o-filter: blur(5px);
-  -ms-filter: blur(5px);
-  filter: blur(5px);
-  z-index: 1;
+  .sidebar-scroll-target {
+    position: absolute;
+    top: -70px;
+  }
+  .left-column {
+    background-color: #6c8298;
+    float: none;
   }
   // TODO: refactor the code below. -Lance
   #board {

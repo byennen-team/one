@@ -5,7 +5,7 @@ Template.profileHeaderImageModal.events({
     var $this = $(event.target);
 	var contents = $this.val();
 	var formGroup = $this.closest('.form-group');
-	// check if there's actually a file, if so, change the color		
+	// check if there's actually a file, if so, change the color
 	if( contents.length > 0 ){
 		// swap icon if there is a file
 		$this.siblings( '.icon-addteam' ).removeClass( 'icon-addteam' ).addClass( 'fa-camera-retro' );
@@ -43,22 +43,25 @@ Template.profileHeaderImageModal.events({
   	var $imageUpload = $( '.image-upload[name="pic"]' )[0];
   	var contents = $imageUpload.files;
   	if (contents.length > 0) {
-		FileTools.upload('signProfilePictureUpload', $imageUpload.files[0], function (error, result) {
-		  if (error) return; // TODO error message
-
-		  var photoUrl = Meteor.settings.public.AWS_BUCKET_URL + '/' + result.filePath;
-		  console.log(photoUrl)
-		  Meteor.users.update(Meteor.userId(), {$push: {'profile.coverUrl': {photoUrl: photoUrl, key: result.filePath}}});
-		});
+			FileTools.upload('signProfilePictureUpload', $imageUpload.files[0], {
+				onError: function (error) {
+					// TODO error message
+				},
+				onComplete: function (result) {
+					var photoUrl = Meteor.settings.public.AWS_BUCKET_URL + '/' + result.filePath;
+					console.log(photoUrl);
+					Meteor.users.update(Meteor.userId(), {$push: {'profile.coverUrl': {photoUrl: photoUrl, key: result.filePath}}});
+				}
+			});
   	} else {
   		// swap icon if there isn't a file
-		$imageUpload.siblings( '.fa-camera-retro' ).removeClass( 'fa-camera-retro' ).addClass( 'icon-addteam' );
-		// clear input if there is not a file
-		$imageUpload.siblings( '.file-name' ).text("");
-		// hide x
-		$imageUpload.closest('.form-group').find( '.fa-times-circle-o' ).addClass( 'hidden' );
+			$imageUpload.siblings( '.fa-camera-retro' ).removeClass( 'fa-camera-retro' ).addClass( 'icon-addteam' );
+			// clear input if there is not a file
+			$imageUpload.siblings( '.file-name' ).text("");
+			// hide x
+			$imageUpload.closest('.form-group').find( '.fa-times-circle-o' ).addClass( 'hidden' );
 
-		//TODO: show some error feedback to the user
+			//TODO: show some error feedback to the user
   	}
   }
 

@@ -5,6 +5,6 @@ Template.profileFollowing.helpers({
     var following = Following.findOne({userId: user._id});
     var followingUserIds = following && following.followingUserIds;
 
-    return followingUserIds && Meteor.users.find({_id: {$in: followingUserIds}})
+    return followingUserIds && Meteor.users.find({_id: {$in: followingUserIds}});
   }
 });
