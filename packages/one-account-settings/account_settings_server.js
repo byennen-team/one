@@ -31,20 +31,29 @@ Meteor.methods({
         large: large_signed,
         thumb: thumb_signed
     };
-    var update = Meteor.users.update(user._id, { "$set": { "profile.photoUrl": user.profile.photoUrl }}); 
+    var update = Meteor.users.update(user._id, { "$set": { "profile.photoUrl": user.profile.photoUrl }});
     done();
     });
     Meteor._powerQ.resume();
   },
-  signProfilePictureUpload: function (fileName, mimeType) {
+  signProfilePictureUpload: function (fileName, mimeType, filePath) {
     check(fileName, String);
     check(mimeType, String);
+    if (filePath)
+      check(filePath, String);
 
     var user = Meteor.user();
     if (!user) throw new Meteor.Error('Invalid credentials');
 
-    var filePath = Folder.profilePicture(user.profile.id) + '/newUpload.' + FileTools.ext(fileName);
-    return FileTools.signUpload(filePath, 'public-read', mimeType);
+
+    if (filePath)
+      var pathToFile = Folder.galleryPicture(user.profile.id) + '/' + filePath + '.' + FileTools.ext(fileName);
+    else
+      var pathToFile = Folder.profilePicture(user.profile.id) + '/newUpload.' + FileTools.ext(fileName);
+
+    //Andreas: to discuss: does my modification from newUpload to Random.id() impacts the code in any way?
+
+    return FileTools.signUpload(pathToFile, 'public-read', mimeType);
   },
   deleteFilesFromS3: function(key) {
     check(key, String);

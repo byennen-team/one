@@ -12,4 +12,3 @@ Galleries.schema = new SimpleSchema({
   userId: {type: String, regEx: SimpleSchema.RegEx.Id},
   pictures: {type: [PicturesSchema], optional: true}
 });
-

@@ -10,7 +10,7 @@ Template.profileGallery.helpers({
 		} else {
 			return moment(date).fromNow();
 		}
-	
+
 	},
 	pictureCount: function() {
 		return (this.pictures)?this.pictures.length:0;
@@ -35,6 +35,7 @@ Template.profileGallery.events({
 	},
 	'click .delete-photo': function(event) {
 		event.stopPropagation();
+    event.preventDefault();
 		$photoKey = $(event.currentTarget).data("id");
 
 		if ($photoKey && $photoKey.length > 0) {
@@ -88,31 +89,39 @@ Template.profileGallery.rendered = function () {
     $(e.currentTarget).removeClass('draggedOver');
     var $galleryId = $(this).attr("album-id");
 
-    //this function is necessary to pass jslint tests :(
+    var onComplete = function(result) {
+      var photoUrl = Meteor.settings.public.AWS_BUCKET_URL + '/' + result.filePath;
+        Meteor.call('addPictureToGallery',result.filePath, photoUrl, $galleryId,
+          function(error, result) {
+          //removing the loading indicator
+          $('.gallery-square[data-type="loader"]')[0].remove();
+          if (error)
+            return; // TODO: present an error to the user
 
-    var callbackFunction = function (error, result) {
-            if (error) throw new Meteor.Error(500, 'Error in uploading file'); // TODO error message
+        });
+    };
 
-            var photoUrl = Meteor.settings.public.AWS_BUCKET_URL + '/' + result.filePath;
-            Meteor.call('addPictureToGallery',result.filePath, photoUrl, $galleryId, function(error, result) {
-              //removing the loading indicator
-              $('.gallery-square[data-type="loader"]')[0].remove();
-              if (error)
-                return; // TODO: present an error to the user
-
-            });
-          };
-
+    var onError = function(error) {
+      console.log(error)
+    };
 
     var files = e.originalEvent.dataTransfer.files;
     for (var i = 0; i < files.length; i++) {
     	file = files[i];
+      console.log(file)
     	//check if file is image
     	if (!file.type.match('image.*'))
     		continue;
 
     	$('.album[album-id="'+$galleryId+'"] .galleryHolder').append('<div data-type="loader" class="gallery-square col-sm-2 half-gutter m-bottom-10 center picture-loader"><img src="/photo-load.gif" /></div>');
-    	FileTools.temporaryUpload('signProfilePictureUpload', file, callbackFunction);
+
+      var options = {
+        onComplete: onComplete,
+        onError: onError,
+        filePath: Random.id()
+      };
+
+    	FileTools.upload('signProfilePictureUpload', file, options);
     }
   });
 };
