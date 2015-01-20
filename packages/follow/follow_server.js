@@ -60,7 +60,7 @@ Meteor.methods({
       Notify.addNotification(userIdToFollow,{
         message: Notify.generateMessageText(Notify.messages.FOLLOWED_BY_USER.message,
           [currentUser.profile.firstName + ' ' + currentUser.profile.lastName]),
-        title: Notify.messages.FOLLOWED_BY_USER.message,
+        title: Notify.messages.FOLLOWED_BY_USER.title,
         link: '/' + currentUser.slug
       });
       return;
