@@ -20,7 +20,7 @@ Template.notifications.helpers({
           return 'active';
       }
     } else {
-      return "inactive"
+      return "inactive";
     }
   },
   notificationsUnread: function () {
