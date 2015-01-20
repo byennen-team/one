@@ -8,11 +8,20 @@ var filterByLetter = function () {
 };
 
 var getOptions = function () {
-  var options = {
-    text: Search.text(),
-    letter: filterByLetter(),
-    limit: Search.limit.get()
-  };
+  // dont filter by first letter when searching
+  var options;
+  if (Search.text()) {
+    options = {
+      text: Search.text(),
+      limit: Search.limit.get()
+    };
+  } else {
+    options = {
+      text: Search.text(),
+      letter: filterByLetter(),
+      limit: Search.limit.get()
+    };
+  }
 
   if (!options.text) delete options.text;
   if (!options.letter) delete options.letter;
