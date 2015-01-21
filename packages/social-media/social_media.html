@@ -1,4 +1,12 @@
 <template name='loginWithSocialMedia'>
-  <button id="loginWithTwitter"><i class="fa fa-twitter"></i> Login with twitter</button>
-  <button id="loginWithFacebook"><i class="fa fa-facebook"></i> Login with facebook</button>
+  {{#if loggedInWithTwitter}}
+    <button class="btn btn-small" id="logoutFromTwitter"><i class="fa fa-twitter"></i> Logout {{twitterName}}</button>
+  {{else}}
+    <button class="btn btn-small" id="loginWithTwitter"><i class="fa fa-twitter"></i> Login with twitter</button>
+  {{/if}}
+  {{#if loggedInWithFacebook}}
+    <button class="btn btn-small" id="logoutFromFacebook"><i class="fa fa-facebook"></i> Logout {{facebookName}}</button>
+  {{else}}
+    <button class="btn btn-small" id="loginWithFacebook"><i class="fa fa-facebook"></i> Login with Facebook</button>
+  {{/if}}
 </template>
