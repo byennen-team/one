@@ -47,20 +47,6 @@ Template.addGalleryModal.events({
             }
           });
 
-          var freshBag = [
-            '<div class="input-bgx">',
-            '          <div class="input-box">',
-            '            <label class="upload-input uploadCount">',
-            '              <i class="fa icon-addteam"></i>',
-            '              <span class="file-name"></span>',
-            '              <input class="file-upload upload hidden" type="file" accept="image/*" >',
-            '            </label>',
-            '            <i class="fa fa-times-circle-o hidden"></i>',
-            '          </div>',
-            '        </div>'
-            ].join('');
-          $( '.input-bag' ).replaceWith( freshBag );
-
 					$name.val('');
 					$('#addGaleryModal').modal('hide');
 				}
@@ -124,10 +110,13 @@ Template.addGalleryModal.events({
 
   'click .fa-times-circle-o': function (event) {
     var $this = $(event.target);
+
+    if ($('input-box').length > 1) {
     var doomed = $this.closest('.input-box');
-    doomed.slideUp( "fast", function() {
-      doomed.remove();
-    });
+      doomed.slideUp( "fast", function() {
+        doomed.remove();
+      });
+    }
   }
 
 });
@@ -136,4 +125,7 @@ Template.addGalleryModal.rendered = function() {
 	$('#addGaleryModal').on('shown.bs.modal', function() {
 		$('#galleryNameField').focus();
 	});
+  $('#addGaleryModal').on('hidden.bs.modal', function() {
+    getAFreshBag();
+  });
 };

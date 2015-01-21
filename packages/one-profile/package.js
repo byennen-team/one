@@ -49,6 +49,7 @@ Package.onUse(function (api) {
 
   // modals
   api.addFiles([
+    'lib/client/modals/profile_common_modal.js',
     'lib/client/modals/profile_header_image_modal.html',
     'lib/client/modals/profile_header_image_modal.js',
     'lib/client/modals/profile_header_delete_image_modal.html',
