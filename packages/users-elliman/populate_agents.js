@@ -124,6 +124,10 @@ Meteor.startup(function () {
     qFetchResizeAndUpload(user);
   });
   console.log('Ready to run queue');
+  
   Meteor._powerQ.run();
+  Meteor._powerQ.add(function(done){
+    FileTools.cleanupTemp(done);
+  });
   console.log('queue running', ellimanAgents.length, 'elliman agents');
 });
