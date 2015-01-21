@@ -1,13 +1,9 @@
-
-
-
-
 Template.profileActivity.events({
   'change #activity-image-upload': function (event) {
   	// get string of file path (fake)
     var $this = $(event.target);
 		var contents = $this.val();
-		// check if there's actually a file, if so, change the color		
+		// check if there's actually a file, if so, change the color
 		if( contents.length > 0 ){
 			// swap icon if there is a file
 			$this.siblings( '.fa' ).removeClass( 'grey' ).addClass( 'accent' );
@@ -23,7 +19,7 @@ Template.profileActivity.events({
 
     $( '#activity-thumb' ).removeClass( 'hidden' );
     $( '#activity-textarea' ).removeClass( 'width-100' ).addClass( 'width-80' );
-		
+
   },
 
   'click #x-box': function () {
@@ -35,7 +31,7 @@ Template.profileActivity.events({
 
 	  $( '#activity-thumb' ).addClass( 'hidden' );
     $( '#activity-textarea' ).removeClass( 'width-80' ).addClass( 'width-100' );
-	} 
+	}
 
 });
 
