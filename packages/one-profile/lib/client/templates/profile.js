@@ -1,3 +1,5 @@
+/* global Profile: true */
+
 Profile = {};
 
 Profile.currentSlug = function () {

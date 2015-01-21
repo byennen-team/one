@@ -1,0 +1,42 @@
+// Variables 
+@import "/packages/styles/variables.import.less";
+
+.library-board {
+	height: 100%;
+	.header {
+		border-bottom: solid 1px @dk-purple;
+		height: 3.5em;
+	}
+	.top-btn {
+		float: left;
+		width: 25%;
+		padding-top: 1em;;
+		text-align: center;
+		cursor: pointer;
+		color: @lt-blue-purple;
+		.fa {
+			font-size: 17px;
+		}
+	}
+	.top-btn.secondary {
+		position: relative;
+		border-left: solid 1px @dk-purple;
+		height: 100%;
+		color: @white;
+	}
+	.top-btn.secondary:after {
+		content: "";
+		position: absolute;
+		top: 0;
+		bottom: 0;
+		left: 0;
+		right: 0;
+		background-color: #384661;
+		opacity: 0.5;
+	}
+	.top-btn.active {
+		color: @lt-sky;
+		.fa {
+		}
+	}
+}

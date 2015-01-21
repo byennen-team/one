@@ -1,0 +1,30 @@
+Template.documentsMenu.helpers({
+  currentPage: function () {
+    if (FileTools.isMyDocumentsActive()) {
+      return "<a href='/documents'>My Library <span class='caret'></span></a>";
+    } else {
+      return "<a href='/documents/company'>" +
+             "<img src='../../images/documents/DE-white.png'/>" +
+             " Company Docs " +
+             "<span class='caret'></span></a>";
+    }
+  },
+  nextPage: function () {
+    if (FileTools.isMyDocumentsActive()) {
+      return "<a href='/documents/company'>" +
+             "<img src='../../images/documents/DE-white.png'/>" +
+             " Company Docs</a>";
+    } else {
+      return "<a href='/documents'>My Library</a>";
+    }
+  }
+});
+
+Template.documentsMenu.events({
+  'click .dropdown-active': function () {
+    $('.dropdown').velocity("slideDown");
+  },
+  'click .dropdown': function () {
+    $('.dropdown').velocity("slideUp");
+  }
+});

@@ -5,7 +5,8 @@ Template.profileNav.helpers({
     var following = Following.findOne({userId: user._id});
     var followingUserIds = following && following.followingUserIds;
 
-    return followingUserIds && Meteor.users.find({_id: {$in: followingUserIds}}).count();
+    return followingUserIds &&
+      Meteor.users.find({_id: {$in: followingUserIds}}).count();
   },
   followersCount: function () {
     var user = Profile.currentUser();
@@ -13,6 +14,7 @@ Template.profileNav.helpers({
     var followers = Followers.findOne({userId: user._id});
     var followerUserIds = followers && followers.followerUserIds;
 
-    return followerUserIds && Meteor.users.find({_id: {$in: followerUserIds}}).count();
+    return followerUserIds &&
+      Meteor.users.find({_id: {$in: followerUserIds}}).count();
   }
 });

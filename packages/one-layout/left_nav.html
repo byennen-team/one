@@ -1,0 +1,42 @@
+<template name="leftNav">
+  <nav id="left_nav" role="navigation">
+    <div class="row">
+      <div class="col-sm-3">
+        <img src="{{profile.photoUrl.thumb}}" class="profile-image img-circle"/>
+      </div>
+      <div class="col-sm-7">
+        <h2 class="current-user">{{fullName}}</h2>
+        <h3 class="title">{{profile.title}}</h3>
+      </div>
+      <div class="col-sm-1">
+        <a href="{{pathFor 'accountSettings'}}"><i class="fa fa-lg fa-cog"></i></a>
+      </div>
+    </div>
+    <!-- TODO: recent apps breaks ipad screen. should we remove this? -->
+    <!-- <div class="row">
+      <div class="recent-apps col-sm-12">
+        <img src="../../images/dashboard/recent-apps.png"/>
+      </div>
+    </div> -->
+    <div class="row">
+      <div class="col-sm-12">
+        <ul>
+          {{#if isInRole 'admin' 'company_admin'}}
+            <li><a href="/admin">Admin</a></li>
+          {{/if}}
+          <li><a href="{{pathFor 'directory'}}">Directory</a></li>
+          <li><a href="{{pathFor 'apps'}}">Apps</a></li>
+          <li><a href="{{pathFor 'myDocuments'}}">Documents</a></li>
+          <li><a href="{{pathFor 'messages'}}">Messaging</a></li>
+          <li><a href="{{pathFor 'support'}}">Go One Support</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="logout col-sm-12">
+        <a href="{{pathFor 'logout'}}" class="btn-logout">Sign Out</a>
+      </div>
+    </div>
+  </nav>
+</template>

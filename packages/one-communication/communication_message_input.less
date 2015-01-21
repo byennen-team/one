@@ -1,0 +1,251 @@
+// Variables 
+@import "/packages/styles/variables.import.less";
+
+.message-input {
+	position: absolute;
+	width: 100%;
+	height: 70px;
+	bottom: 0;
+	background-color: @white;
+	border: 2px solid @lt-dk-grey;
+	border-style: solid none none none;
+	z-index: 2;
+	.message-btn {
+		float: left;
+		background-color: @lt-blue-grey;
+		height: 4em;
+		width: 4em;
+		border-radius: 50%;
+		margin: 0.5em 10px 0.5em 40px;
+		padding: 1.35em 1.5em 1.5em 1.5em;
+		cursor: pointer;
+		.fa {
+			font-size: 18px;
+			margin-left: -1px;
+		}
+	}
+	.input-options {
+		position: absolute;
+		bottom: 80px;
+		left: 10px;
+		// height: 0;
+		display: none;
+		.option {
+			font-size: 11px;
+			width: 12.273em;
+			height: 4.091;
+			margin-top: 0.5em;
+			padding: 1.5em 0;
+			color: @white;
+			font-family: @raleway-semibold;
+			text-transform: uppercase;
+			letter-spacing: 0.125em;
+			text-align: center;
+			border-radius: 3px;
+			cursor: pointer;
+			-webkit-box-shadow: -3px 3px 4px -1px rgba(0,0,0,0.35);
+			-moz-box-shadow: -3px 3px 4px -1px rgba(0,0,0,0.35);
+			box-shadow: -3px 3px 4px -1px rgba(0,0,0,0.35);
+		}
+		.post {
+			background-color: @lime;
+		}
+		.attachment {
+			background-color: @purple;
+		}
+		.task {
+			display: none;
+			background-color: @aqua;
+		}
+	}
+	.input {
+		font-size: 16px;
+		float: left;
+		margin: 16px;
+		padding: 0.5em 1em 0.5em 5px;
+		color: @blue-grey;
+		border: none;
+	}
+	.dropdown {
+		width: auto;
+	}
+	.attachment-display {
+		position: relative;
+		float: left;
+		width: 0;
+		height: 50px;
+		overflow: hidden;
+		.caret-left {
+			float: left;
+			margin-top: 16px;
+			border-top: 8px solid transparent;
+			border-bottom: 8px solid transparent;
+			border-right: 8px solid @lt-blue-grey;
+		}
+		.background {
+			float: left;
+			width: 262px;
+			background-color: @lt-blue-grey;
+			padding: 15px;
+		}
+		.fa-file {
+			color: @accent;
+		}
+		.name {
+			font-family: @raleway-semibold;
+			color: @text-navy;
+			font-size: 12px;
+			margin-left: 3px;
+		}
+		.size {
+			font-family: @raleway-regular;
+			color: @text;
+			font-size: 12px;
+		}
+		.fa-close {
+			position: absolute;
+			right: 8px;
+			top: 18px;
+			color: @text;
+			cursor: pointer;
+		}
+	}
+	.new-post-form {
+		display: none;
+	}
+}
+
+// alternate styles when New Post window is open
+.message-board.new-post {
+	.sleeve {
+		padding-bottom: 440px;
+	}
+	.message-input {
+		height: 370px;
+	}
+	.message-btn {
+		margin-top: 30px;
+		background-color: @lime;
+		color: @white;
+		.fa-bars::before {
+			content: "\f044";
+			font-size: 22px;
+		}
+	}
+	.input {
+		display: none;
+	}
+	.new-post-form {
+		position: relative;
+		display: block;
+		height: 100%;
+		padding: 35px 10px 10px 110px;
+		span {
+			font-family: @raleway-bold;
+			font-variant: small-caps;
+			text-transform: lowercase;
+			color: @text;
+		}
+		.select-style {
+			outline: none;
+			border: none;
+		}
+		.subject {
+			display: block;
+			border: none;
+			margin-top: 1em;
+			color:@text;
+		  font-family: @raleway-bold;
+		  font-size: 16px;
+		  letter-spacing: 0.0625em;
+		}
+		::-webkit-input-placeholder {
+		  color:@text;
+		  font-family: @raleway-bold;
+		  font-size: 16px;
+		  letter-spacing: 0.0625em;
+		}
+		::-moz-placeholder { 
+		  color: @text;
+		  font-family: @raleway-bold;
+		  font-size: 16px; 
+		  letter-spacing: 0.0625em;
+		}
+		:-ms-input-placeholder {  
+		  color: @text;
+		  font-family: @raleway-bold;
+		  font-size: 16px;
+		  letter-spacing: 0.0625em;
+		}
+		.fake-textarea {
+			height: 200px;
+			margin-top: 0.75em;
+			font-family: @raleway-regular;
+			color: @text-navy;
+			font-size: 15px;
+		}
+		.paperclip {
+			position: absolute;
+			bottom: 10px;
+			left: 110px;
+			font-size: 20px;
+			color: @med-navy;
+		}
+		.dropdown {
+			position: absolute;
+			bottom: 10px;
+			left: 145px;
+			font-size: 20px;
+			color: @med-navy;
+		}
+		.btn-secondary,
+		.btn-primary  {
+			position: absolute;
+			bottom: 10px;
+			width: 135px;
+			height: 30px;
+			padding: 5px;
+			line-height: 100%;
+			letter-spacing: 0.125em;
+			font-size: 15px;
+			font-variant: small-caps;
+			text-transform: lowercase;
+			font-family: @raleway-semibold;
+		}
+		.btn-primary {
+			right: 15px;
+			padding-top: 7px;
+		}
+		.btn-secondary {
+			right: 165px;
+			border: 3px solid @accent;
+			border-radius: 3px;
+			color: @accent;
+		}
+	}
+}
+// alternate styles when tasks are enabled
+.tasks {
+	.message-input {
+		.input-options {
+			.task {
+				display: block;
+			}
+		}
+	}
+}
+
+// alternate styles when attachment is uploaded
+.message-input.holding {
+	.message-btn {
+		background-color: @purple;
+		color: @white;
+		.fa {
+			font-size: 22px;
+			margin: -2px 0 0 -2px;
+		}
+	}
+	.fa-bars::before {
+		content: "\f0c6";
+	}
+}
