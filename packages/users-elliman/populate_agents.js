@@ -127,7 +127,7 @@ Meteor.startup(function () {
   
   Meteor._powerQ.run();
   Meteor._powerQ.add(function(done){
-    FileTools.cleanup_temp(done);
+    FileTools.cleanupTemp(done);
   });
   console.log('queue running', ellimanAgents.length, 'elliman agents');
 });
