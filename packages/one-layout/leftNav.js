@@ -29,7 +29,10 @@ $.fn.leftNav = function(options) {
   };
 
   $(document).on('click.leftNav', function(e) {
-    if (!$(e.target).parents().andSelf().is(menuLink) && menu._state === 'open')  {
+    if (
+      !$(e.target).parents().andSelf().is(menuLink) &&
+      menu._state === 'open'
+    ) {
       menu.close();
       menuLink.removeClass(settings.activeBtn);
     }

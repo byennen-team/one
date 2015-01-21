@@ -1,3 +1,5 @@
+/* globals Notifications: true, Notify: true */
+
 Notifications = new Meteor.Collection('notifications');
 
 Notifications.simpleSchema = new SimpleSchema({
@@ -14,7 +16,7 @@ Notify = {};
 
 Notify.markNotificationAsRead = function(notificationId) {
 	Meteor.call('markNotificationAsRead', notificationId,
-		function(error, result) {
+		function(error) {
 			if (error)
 				console.log(error);
 		});
@@ -22,7 +24,7 @@ Notify.markNotificationAsRead = function(notificationId) {
 
 Notify.markAllNotificationsAsRead = function() {
 	Meteor.call('markAllNotificationsAsRead',
-		function(error, result) {
+		function(error) {
 			if (error)
 				console.log(error);
 		});

@@ -22,7 +22,10 @@ Meteor.methods({
     var user = Meteor.user();
     if (!user) throw new Meteor.Error('Invalid credentials');
 
-    Files.update({_id: fileId, companyDocument:false}, {$set: {archived: archive}});
+    Files.update(
+      {_id: fileId, companyDocument:false},
+      {$set: {archived: archive}}
+    );
   },
   renameDocument: function (fileId, newFileName) {
     check(fileId, String);
@@ -38,11 +41,14 @@ Meteor.methods({
       folder = Folder.userDocument(user._id);
     }
 
-    FileTools.rename(folder + '/' + file.name, folder + '/' + newFileName, function (error) {
-      if (error) return;
+    FileTools.rename(
+      folder + '/' + file.name, folder + '/' + newFileName,
+      function (error) {
+        if (error) return;
 
-      Files.update(file._id, {$set: {name: newFileName}});
-    });
+        Files.update(file._id, {$set: {name: newFileName}});
+      }
+    );
   },
 
   sharedDocumentUrl: function (fileId) {
@@ -51,7 +57,8 @@ Meteor.methods({
     var userId = Meteor.userId();
 
     var file = Files.findOne(fileId);
-    if (!file.companyDocument && file.userId !== userId) throw new Meteor.Error('Invalid credentials');
+    if (!file.companyDocument && file.userId !== userId)
+      throw new Meteor.Error('Invalid credentials');
 
     return FileTools.signedGet(FileTools.path(file));
   },

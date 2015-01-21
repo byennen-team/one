@@ -30,8 +30,12 @@ FileTools.signUpload = function (filePath, acl, mimeType) {
     ]
   };
   // Sign the policy with our secret.
-  var policyBase64 = new Buffer(JSON.stringify(policy), 'utf8').toString('base64');
-  var signature = crypto.createHmac('sha1', Meteor.settings.AWS_SECRET_ACCESS_KEY).update(policyBase64).digest('base64');
+  var policyBase64 = new Buffer(JSON.stringify(policy), 'utf8')
+    .toString('base64');
+  var signature =
+    crypto.createHmac('sha1', Meteor.settings.AWS_SECRET_ACCESS_KEY)
+      .update(policyBase64)
+      .digest('base64');
 
   // Return the credentials.
   var credentials = {
@@ -58,10 +62,13 @@ var awsSignature = function (str) {
  */
 FileTools.signedGet = function (filePath) {
   filePath = encodeURI('/' + Meteor.settings.AWS_BUCKET + '/' + filePath);
-  var dateTime = Math.floor(new Date().getTime() / 1000) + Meteor.settings.S3_URL_EXPIRATION_SECONDS;
+  var dateTime = Math.floor(new Date().getTime() / 1000) +
+    Meteor.settings.S3_URL_EXPIRATION_SECONDS;
   var stringToSign = 'GET\n\n\n' + dateTime + '\n' + filePath;
   var signature = awsSignature(stringToSign);
-  var queryString = '?AWSAccessKeyId=' + Meteor.settings.AWS_ACCESS_KEY_ID + '&Expires=' + dateTime + '&Signature=' + encodeURIComponent(signature);
+  var queryString = '?AWSAccessKeyId=' + Meteor.settings.AWS_ACCESS_KEY_ID +
+    '&Expires=' + dateTime +
+    '&Signature=' + encodeURIComponent(signature);
   var url = 'https://s3.amazonaws.com' + filePath + queryString;
   return url;
 };
@@ -123,7 +130,12 @@ FileTools.delete = function (filePath, callback) {
  * @param {Boolean} [isCompanyDocument] Is the folder a companyDocument?
  * @returns {String} The id of the created folder.
  */
-FileTools.createFolder = function (folderName, userId, parentFolderId, isCompanyDocument) {
+FileTools.createFolder = function (
+  folderName,
+  userId,
+  parentFolderId,
+  isCompanyDocument
+) {
   parentFolderId = parentFolderId || null;
 
   return Files.insert({

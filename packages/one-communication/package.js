@@ -3,8 +3,6 @@ Package.describe({
 });
 
 Package.onUse(function (api) {
-  var both = ['web', 'server'];
-
   api.use([
     'less',
     'jquery',

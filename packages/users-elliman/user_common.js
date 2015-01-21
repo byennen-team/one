@@ -1,3 +1,5 @@
+/* global User: true */
+
 User = {};
 
 User.model = {

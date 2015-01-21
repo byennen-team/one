@@ -1,3 +1,5 @@
+/* global Routes: true */
+
 Routes = {
   DASHBOARD: 'dashboard',
   DIRECTORY: 'directory',

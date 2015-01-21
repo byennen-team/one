@@ -1,3 +1,5 @@
+/* global Search: true */
+
 Search = {};
 
 var contains = function (str) {

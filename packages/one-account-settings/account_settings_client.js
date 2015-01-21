@@ -1,3 +1,5 @@
+/* global Profile: true */
+
 Profile = {};
 
 Template.accountSettings.events({
@@ -8,9 +10,15 @@ FileTools.upload('signProfilePictureUpload', event.target.files[0], {
         alert(error);
       },
       onComplete: function (result) {
-        var photoUrl = Meteor.settings.public.AWS_BUCKET_URL + '/' + result.filePath;
+        var photoUrl = Meteor.settings.public.AWS_BUCKET_URL +
+          '/' + result.filePath;
         Meteor.call('resizeNewProfileImage', photoUrl);
-        //Meteor.users.update(Meteor.userId(), {$set: {'profile.photoUrl': photoUrl, 'profile.photoKey': result.filePath}});
+        //Meteor.users.update(Meteor.userId(), {
+        //  $set: {
+        //    'profile.photoUrl': photoUrl,
+        //    'profile.photoKey': result.filePath
+        //  }
+        //});
       }
     });
   },
@@ -18,15 +26,18 @@ FileTools.upload('signProfilePictureUpload', event.target.files[0], {
     var key = $(event.target).data("url");
 
     if (key && key.length > 0)
-      FileTools.deleteStub('deleteFilesFromS3',key,function(err,result) {
+      FileTools.deleteStub('deleteFilesFromS3',key,function(err) {
           if (err) {
             alert(err);
           } else {
-            Meteor.users.update(Meteor.userId(),{$unset: {'profile.photoUrl': "", 'profile.photoKey': ""}});
+            Meteor.users.update(
+              Meteor.userId(),
+              {$unset: {'profile.photoUrl': "", 'profile.photoKey': ""}}
+            );
           }
         });
   },
-  'submit form': function (event, template) {
+  'submit form': function (event) {
     event.preventDefault();
     var data = SimpleForm.processForm(event.target);
     var combinedData = _.extend(Meteor.user().profile, data);

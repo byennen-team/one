@@ -1,5 +1,10 @@
 // TODO: refactor this. Lance & Dave
-var cumuloCheckboxColor = function( checkbox, label, checkedClass, uncheckedClass ){
+var cumuloCheckboxColor = function(
+  checkbox,
+  label,
+  checkedClass,
+  uncheckedClass
+) {
   /* Changes a label's color if it's checkbox is clicked
   // 		Works great with icon fonts
   //		Both label and checkbox must have an #id
@@ -79,21 +84,56 @@ Template.profilePropertySearch.rendered = function () {
 
   // TODO: refactor this. Lance & Dave
   // Checkbox/Radio checker
-  cumuloRadioColor( $('#sale-button'), $('#rent-button'), $('#sale-label'), $('#rent-label'), 'checked' );
-  cumuloRadioColor( $('#contact-buyer'), $('#contact-seller'), $('#contact-buyer-radio'), $('#contact-seller-radio'), 'checked' );
-  cumuloRadioColor( $('#contact-email-button'), $('#contact-text-button'), $('#contact-email-radio'), $('#contact-text-radio'), 'checked' );
+  cumuloRadioColor(
+    $('#sale-button'), $('#rent-button'), $('#sale-label'), $('#rent-label'),
+    'checked'
+  );
+  cumuloRadioColor(
+    $('#contact-buyer'), $('#contact-seller'), $('#contact-buyer-radio'),
+    $('#contact-seller-radio'),
+    'checked'
+  );
+  cumuloRadioColor(
+    $('#contact-email-button'), $('#contact-text-button'),
+    $('#contact-email-radio'), $('#contact-text-radio'),
+    'checked'
+  );
   cumuloCheckboxColor( $('#adv-condo'), $('#adv-condo-btn'), 'checked' );
-  cumuloCheckboxColor( $('#adv-cooperative'), $('#adv-cooperative-btn'), 'checked' );
-  cumuloCheckboxColor( $('#adv-townhouse'), $('#adv-townhouse-btn'), 'checked' );
-  cumuloCheckboxColor( $('#adv-house'), $('#adv-house-btn'), 'checked' );
-  cumuloCheckboxColor( $('#adv-land'), $('#adv-land-btn'), 'checked' );
+  cumuloCheckboxColor(
+    $('#adv-cooperative'), $('#adv-cooperative-btn'),
+    'checked'
+  );
+  cumuloCheckboxColor(
+    $('#adv-townhouse'), $('#adv-townhouse-btn'),
+    'checked'
+  );
+  cumuloCheckboxColor(
+    $('#adv-house'), $('#adv-house-btn'),
+    'checked'
+  );
+  cumuloCheckboxColor(
+    $('#adv-land'), $('#adv-land-btn'),
+    'checked'
+  );
   cumuloCheckboxColor( $('#adv-doorman'), $('#adv-doorman-btn'), 'checked' );
   cumuloCheckboxColor( $('#adv-garage'), $('#adv-garage-btn'), 'checked' );
   cumuloCheckboxColor( $('#adv-prewar'), $('#adv-prewar-btn'), 'checked' );
-  cumuloCheckboxColor( $('#adv-pet-friendly'), $('#adv-pet-friendly-btn'), 'checked' );
-  cumuloCheckboxColor( $('#adv-waterview'), $('#adv-waterview-btn'), 'checked' );
-  cumuloCheckboxColor( $('#adv-outdoor-space'), $('#adv-outdoor-space-btn'), 'checked' );
-  cumuloCheckboxColor( $('#adv-no-contract'), $('#adv-no-contract-btn'), 'checked' );
+  cumuloCheckboxColor(
+    $('#adv-pet-friendly'), $('#adv-pet-friendly-btn'),
+    'checked'
+  );
+  cumuloCheckboxColor(
+    $('#adv-waterview'), $('#adv-waterview-btn'),
+    'checked'
+  );
+  cumuloCheckboxColor(
+    $('#adv-outdoor-space'), $('#adv-outdoor-space-btn'),
+    'checked'
+  );
+  cumuloCheckboxColor(
+    $('#adv-no-contract'), $('#adv-no-contract-btn'),
+    'checked'
+  );
 };
 
 Template.profilePropertySearch.events({
