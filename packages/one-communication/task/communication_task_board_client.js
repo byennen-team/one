@@ -12,8 +12,7 @@ Template.taskBoard.rendered = function () {
 Template.taskBoard.events({
 
   // Toggle task menu when a dot is clicked
-  'click .dot': function (event) {
-    var self = this;
+  'click .dot': function () {
     var menuVisible = Session.get( 'taskMenu' );
     if( ! menuVisible ) {
       Session.set( 'taskMenu', true );
