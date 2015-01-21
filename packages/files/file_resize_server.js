@@ -22,13 +22,25 @@ if(Settings.isStaging || Settings.isBeta) {
 } else {
   var base = process.env.PWD+'/packages/files/img/';
 }
-
+FileTools.cleanupTemp =  function() {
+    var deleteImgs = ['thumb_imagetmp.jpg', 'imagetmp.jpg', 'full_imagetmp.jpg',
+    'imagetmp.JPG', 'thumb_imagetmp.JPG', 'imagetmp.jpeg'];
+    deleteImgs.forEach(function(img) {
+        console.log('unlink', img);
+        fs.unlink(base+img, function (error) {
+            if (error) { console.log('error', error); }
+            return;
+        });
+    });
+};
 //fetch temp image
 FileTools.fetchToTemp = function(url, callback){
   flag404 = false;
   var originalName = url.substring(url.lastIndexOf('/')+1);
   var xpat = /\.([0-9a-z]+)(?:[\?#]|$)/i;
   imgExt = originalName.match(xpat)[0];
+  var writable = fs.createWriteStream(base+imgTmp+imgExt, {internal :  true})
+  .on('finish', Meteor.bindEnvironment(function() { callback(); }));
   request(url)
   .on('response',
       Meteor.bindEnvironment(function(response){
@@ -37,15 +49,14 @@ FileTools.fetchToTemp = function(url, callback){
             console.log(url, ' not found', response.statusCode);
             console.log('base', base);
             flag404 = true;
-            callback();
             }})
       )
   .on('end',
       Meteor.bindEnvironment(function(error, response){
         if (error) console.log('end error', response.statusCode);
-        callback();
+        console.log('request end');
        }))
-  .pipe(fs.createWriteStream(base+imgTmp+imgExt, {internal :  true}));
+  .pipe(writable);
 };
 
 //resize
