@@ -6,7 +6,7 @@ Template.adminCompanies.companies = function () {
 };
 
 Template.adminCompanies.events({
-  'click #AddCompany': function (event, template) {
+  'click #AddCompany': function () {
     Router.go(Routes.Admin.COMPANIES_NEW);
   }
 });

@@ -144,7 +144,7 @@ Notify.generateMessageText = function(text, stringArray) {
 	var placeholders = /(\{arg\d\})/gi;
 	var found = text.match(placeholders);
 
-	if (stringArray.length != found.length)
+	if (stringArray.length !== found.length)
 		throw new Meteor.Error(500,"You have specified a different number " +
 			"of arguments. (Notifications package)");
 
@@ -158,7 +158,7 @@ Notify.generateMessageText = function(text, stringArray) {
 
 //Placeholder function to avoid using Meteor.call everytime
 Notify.addNotification = function(toUserId, context) {
-	Meteor.call('addNotification', toUserId, context, function(error, result) {
+	Meteor.call('addNotification', toUserId, context, function(error) {
 		if (error)
 			throw new Meteor.Error(500, error);
 	});

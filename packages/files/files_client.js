@@ -20,7 +20,6 @@ FileTools.upload = function (method, file, options) {
       return;
     }
     var formData = new FormData();
-    var key = 'events/' + (new Date()).getTime() + '-' + file.name;
 
     formData.append('key', result.filePath);
     formData.append('acl', result.acl);
@@ -57,8 +56,19 @@ FileTools.deleteStub = function (method, filePath, callback) {
   });
 };
 
-FileTools.createFolder = function (folderName, parentFolderId, isCompanyDocument, callback) {
-  return Meteor.call('createFolder', folderName, parentFolderId, isCompanyDocument, callback);
+FileTools.createFolder = function (
+  folderName,
+  parentFolderId,
+  isCompanyDocument,
+  callback
+) {
+  return Meteor.call(
+    'createFolder',
+    folderName,
+    parentFolderId,
+    isCompanyDocument,
+    callback
+  );
 };
 
 FileTools.isCompanyDocumentsActive = function () {

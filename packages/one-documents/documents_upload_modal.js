@@ -24,7 +24,10 @@ Template.documentsUploadModal.events({
     // Check to see if a file has been uploaded
     if( contents.length > 0 ){
       // swap icon if there is a file
-      $this.siblings( '.icon-addteam' ).removeClass( 'icon-addteam' ).addClass( 'fa-file-o' );
+      $this
+        .siblings( '.icon-addteam' )
+        .removeClass( 'icon-addteam' )
+        .addClass( 'fa-file-o' );
       // toggle close button
       $label.next( '.fa-times-circle-o' ).removeClass( 'hidden' );
       // Retrieve file name & display it
@@ -32,10 +35,13 @@ Template.documentsUploadModal.events({
       var x = ary.length;
       var fileName = ary[x-1];
       $this.siblings( '.file-name' ).text(fileName);
-    } 
+    }
     else{
       // swap icon if there isn't a file
-      $this.siblings( '.fa-file-o' ).removeClass( 'fa-file-o' ).addClass( 'icon-addteam' );
+      $this
+        .siblings( '.fa-file-o' )
+        .removeClass( 'fa-file-o' )
+        .addClass( 'icon-addteam' );
       // clear input if there is not a file
       $this.siblings( '.file-name' ).text("");
       // hide x
@@ -44,8 +50,8 @@ Template.documentsUploadModal.events({
     // Count number of fields with files
     var fileNum = $('.fa-file-o').length;
     var inputNum = $('.uploadCount').length;
-    if( fileNum == inputNum){
-      // append a new input-box 
+    if( fileNum === inputNum){
+      // append a new input-box
       $bag.append(formHTML);
       $bag.find('.input-box:last').hide().slideDown(1000);
     }

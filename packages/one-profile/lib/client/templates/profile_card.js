@@ -4,10 +4,10 @@ Template.profileCard.events({
   },
   'click .unfollow': function () {
     var userToUnfollow = Blaze.getData();
-    Meteor.call('unfollowUser', Blaze.getData()._id);
+    Meteor.call('unfollowUser', userToUnfollow._id);
   },
   'click .card': function () {
-    user = Meteor.users.findOne({_id: this._id});
+    var user = Meteor.users.findOne({_id: this._id});
     Router.go(Routes.PROFILE, {slug: user.slug});
   }
 });
