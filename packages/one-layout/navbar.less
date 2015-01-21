@@ -1,17 +1,20 @@
+// Variables 
+@import "/packages/styles/variables.import.less";
+
 .navbar {
   font-size: 14px;
   background: url("../../../images/dashboard/nav-bg.png");
   font-weight: normal;
-  text-transform: uppercase;
+  text-align: center;
   margin: 0;
-  height: 70px;
+  height: 60px;
   position: fixed;
   width: 100%;
   padding-left: 10px;
   z-index: 10;
   box-shadow: 0px 1px 10px #888888;
   .menu-link {
-    margin: 29px 20px;
+    margin: 24px 20px;
     padding: 0;
     width: 20px;
     height: 100%;
@@ -29,22 +32,63 @@
     float: left;
     width: 85px;
     height: 35px;
-    margin: 17px 0;
+    margin: 12px 0;
     padding: 0;
     background: url("../../../images/dashboard/elliman-one-logo-blue.svg") left center no-repeat;
     background-size: 85px auto;
     text-indent: -9999px
   }
-  a.company-apps-button {
-    float: right;
-    padding: 14px 20px 8px 20px;
-    height: 70px;
-    width: 70px;
-    margin: 0;
-    background: url("../../images/dashboard/company-apps-button.png") 15px 15px no-repeat;
+  .nav-links {
+    position: absolute;
+    width: 420px;
+    left: 50%;
+    margin-left: -210px;
+    margin-top: 20px;
+    a {
+      margin: 0 1.25em;
+      font-family: @raleway-semibold;
+      color: @dk-periwinkle;
+      font-variant: small-caps;
+      text-transform: lowercase;
+      letter-spacing: 0.125em;
+      .fa {
+        font-size: 12px;
+        margin-right: 0.35em;
+      }
+    }
+    a.company-apps-button {
+      float: right;
+      padding: 14px 20px 8px 20px;
+      height: 60px;
+      width: 60px;
+      margin: 0;
+      background: url("../../images/dashboard/company-apps-button.png") 15px 15px no-repeat;
 
+    }
+    a.company-apps-button.active {
+      background: url("../../images/dashboard/company-apps-button-white.png") 15px 15px no-repeat #5bb8d7;
+    }
   }
-  a.company-apps-button.active {
-    background: url("../../images/dashboard/company-apps-button-white.png") 15px 15px no-repeat #5bb8d7;
+}
+
+@media all and (min-width: 768px) and (max-width: 1000px) {
+  .navbar {
+    .nav-links {
+      left: 43%;
+      a {
+        margin: 0 1.25em;
+      }
+      i {
+        display: none;
+      }
+    }
+  }
+}
+
+@media all and (min-width: 1000px) and (max-width: 1200px) {
+  .navbar {
+    .nav-links {
+      left: 40%;
+    }
   }
 }
