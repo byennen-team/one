@@ -22,12 +22,13 @@ if(Settings.isStaging || Settings.isBeta) {
 } else {
   var base = process.env.PWD+'/packages/files/img/';
 }
-FileTools.cleanup_temp =  function(callback) {
-    var delete_imgs = ['thumb_imagetmp.jpg', 'imagetmp.jpg', 'full_imagetmp.jpg', 'imagetmp.JPG', 'thumb_imagetmp.JPG', 'imagetmp.jpeg'];
-    delete_imgs.forEach(function(img) {
+FileTools.cleanup_temp =  function() {
+    var deleteImgs = ['thumb_imagetmp.jpg', 'imagetmp.jpg', 'full_imagetmp.jpg', 'imagetmp.JPG',
+    'thumb_imagetmp.JPG', 'imagetmp.jpeg'];
+    deleteImgs.forEach(function(img) {
         console.log('unlink', img);
         fs.unlink(base+img, function (error) {
-            if (error) { console.log('error', error) }
+            if (error) { console.log('error', error); }
             return;
         });
     });
@@ -37,9 +38,9 @@ FileTools.fetchToTemp = function(url, callback){
   flag404 = false;
   var originalName = url.substring(url.lastIndexOf('/')+1);
   var xpat = /\.([0-9a-z]+)(?:[\?#]|$)/i;
-  img_ext = originalName.match(xpat)[0];
-  var writable = fs.createWriteStream(base+img_tmp+img_ext, {internal :  true})
-  .on('finish', Meteor.bindEnvironment(function() { callback(); }))
+  imgExt = originalName.match(xpat)[0];
+  var writable = fs.createWriteStream(base+imgTmp+imgExt, {internal :  true})
+  .on('finish', Meteor.bindEnvironment(function() { callback(); }));
   request(url)
   .on('response',
       Meteor.bindEnvironment(function(response){
