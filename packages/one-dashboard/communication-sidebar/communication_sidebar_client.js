@@ -59,7 +59,7 @@ Template.communicationSidebar.events({
 			'height': currentHeight - 130 + 'px',
 			'position': 'fixed',
 			'top': '130px',
-			'width': '25%'
+			'width': '24%'
 		});
 
 	  // lock scroll position, but retain settings for later
@@ -91,7 +91,7 @@ Template.communicationSidebar.events({
 			'height': currentHeight - 130 + 'px',
 			'position': 'fixed',
 			'top': '130px',
-			'width': '25%'
+			'width': '24%'
 		});
 	}
 

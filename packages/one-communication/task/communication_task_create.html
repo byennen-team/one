@@ -2,53 +2,96 @@
   
   <form id="communication-task-menu" class="task-menu">
     
-    <div class="due-date">
+    <div class="due-date form-group">
       <span>due date</span>
       <i class="fa fa-calendar"></i>
     </div>
 
-    <select class="selectpicker" data-style='select-color'>
-      <option class="purple dot">purple</option>
-      <option class="pink dot">pink</option>
-      <option class="orange dot">orange</option>
-      <option class="teal dot">teal</option>
-      <option class="blue dot">blue</option>
-      <option class="red dot">red</option>
-      <option class="purple xdot">xpurple</option>
-      <option class="pink xdot">xpink</option>
-      <option class="orange xdot">xorange</option>
-      <option class="teal xdot">xteal</option>
-      <option class="blue xdot">xblue</option>
-      <option class="red xdot">xred</option>
-    </select>
-
-    <input class='title' type="text" placeholder='Task name...'/>
-
-    <textarea name="description" id="" cols="30" rows="10" class="description" placeholder='Description'></textarea>
-
-    <label>
-      <i class="fa fa-th-list"></i>
-      <span>task list</span>
-    </label>
-<!-- TODO: add list of User's active rooms -->
-    <select class="selectpicker" data-style='select-task-list'>
-      <option class="purple dot">Dottie Herman</option>
-      <option class="pink dot">Marie Espinal</option>
-      <option class="orange dot">Team Awesome</option>
-      <option class="teal dot">111 4th Ave, 4h</option>
-      <option class="blue dot">575 Madison Ave</option>
-    </select>
-
-    <label>
-      <i class="fa fa-user"></i>
-      <span>add people</span>
-    </label>
-    <div class="add-people">
-      <i id="communication-task-invite" class="fa icon-addteam"></i>
-<!-- TODO: This should search the directory -->
-      <input id="communication-library-invite-input" type="text" placeholder='Name or Email' />
-  
+    <div class="form-group color-drop">
+      <label class='sr-only' for="task-menu-color-select">Select a Color</label>
+      <select class="selectpicker" id="task-menu-color-select" data-style='select-color'>
+        <option class="purple dot">purple</option>
+        <option class="pink dot">pink</option>
+        <option class="orange dot">orange</option>
+        <option class="teal dot">teal</option>
+        <option class="blue dot">blue</option>
+        <option class="red dot">red</option>
+        <option class="purple xdot">xpurple</option>
+        <option class="pink xdot">xpink</option>
+        <option class="orange xdot">xorange</option>
+        <option class="teal xdot">xteal</option>
+        <option class="blue xdot">xblue</option>
+        <option class="red xdot">xred</option>
+      </select>
     </div>
+
+    <div class="form-group title">
+      <label class='sr-only' for="task-menu-name">Name your task</label>
+      <input id='task-menu-name' type="text" placeholder='Task name...'/>
+    </div>
+
+    <div class="form-group description">
+      <label class='sr-only' for="task-menu-name">Task's description</label>
+      <textarea name="description" id="task-menu-description" cols="30" rows="10" placeholder='Description...'></textarea>
+    </div>
+
+    <div class="form-group task-list">
+      <label for='task-menu-task-list'>
+        <i class="fa fa-th-list"></i>
+        <span>task list</span>
+      </label>
+<!-- TODO: add list of User's active rooms -->
+      <select class="selectpicker form-control" id='task-menu-task-list' data-style='select-task-list'>
+        <option>Dottie Herman</option>
+        <option>Marie Espinal</option>
+        <option>Team Awesome</option>
+        <option>111 4th Ave, 4h</option>
+        <option>575 Madison Ave</option>
+      </select>
+    </div>
+
+    <div class="form-group add-people">
+      <label for="task-menu-invite">
+        <i class="fa fa-user"></i>
+        <span>add people</span>
+      </label>
+      <div class="add-people-btn">
+        <i id="task-menu-invite" class="fa icon-addteam"></i>
+<!-- TODO: This should search the directory -->
+      </div>
+
+      <label class='sr-only' for="task-menu-invite-search">Search for people to add</label>
+      <input id="task-menu-invite-search" type="text" placeholder='Name or Email' />
+
+      <label class='sr-only' for="task-menu-user-status">Invitee status</label>
+      <select class="selectpicker form-control" id='task-menu-user-status' data-style='select-admin'>
+        <option selected>admin</option>
+        <option>buyer</option>
+        <option>seller</option>
+        <option>user</option>
+        <option>lawyer</option>
+        <option>broker</option>
+        <option>contractor</option>
+      </select>
+    </div>
+
+    <div class="form-group attachments">
+      <label for="task-menu-attachments">
+        <i class="fa fa-paperclip"></i>
+        <span>attachments</span>
+      </label>
+      <input id="task-menu-attachments" type="file" placeholder='add files' />
+    </div>
+
+    <div class="checkbox private">
+      <label for="task-menu-attachments">
+        <i class="fa fa-eye-slash"></i>
+        <span>make private?≠</span>
+      </label>
+      <input type="checkbox">
+    </div>
+
+    <button type="submit" class="btn btn-default">create task</button>
 
   </form>
 
