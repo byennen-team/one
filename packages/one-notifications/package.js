@@ -5,8 +5,9 @@ Package.describe({
 var both = ['server','web'];
 Package.onUse(function(api) {
 	api.use(['aldeed:simple-schema','templating', 'authorization', 'less',
-    'styles', 'jquery', 'stevezhu:velocity.js@0.1.0',
+    'styles', 'jquery', 'velocityjs:velocityjs',
     'tracker', 'session', 'maazalik:malihu-jquery-custom-scrollbar'], both);
+
 	api.versionsFrom('METEOR@0.9.3.1');
 	api.addFiles('notifications.js', ['server', 'web']);
 

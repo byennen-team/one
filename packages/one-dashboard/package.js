@@ -9,7 +9,7 @@ Package.onUse(function (api) {
     'mrt:moment',
     'jquery',
     'session',
-    'stevezhu:velocity.js@0.1.0',
+    'velocityjs:velocityjs',
     'routes',
     'styles',
     'maazalik:malihu-jquery-custom-scrollbar'

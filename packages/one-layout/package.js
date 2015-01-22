@@ -5,7 +5,7 @@ Package.describe({
 Package.onUse(function (api) {
   api.use([
     'templating', 'authorization', 'less',
-    'styles', 'jquery', 'stevezhu:velocity.js@0.1.0',
+    'styles', 'jquery', 'velocityjs:velocityjs',
     'tracker', 'session'
     ], 'web');
 
