@@ -9,7 +9,7 @@ var both = ['server','web']
 Package.onUse(function(api) {
   api.versionsFrom('1.0.2.1');
 
-  api.use(['aldeed:simple-schema', 'service-configuration', 'mongo', 'oauth1', 'oauth', 'twitter',
+  api.use(['http', 'aldeed:simple-schema', 'service-configuration', 'mongo', 'oauth1', 'oauth', 'twitter',
     'facebook', 'templating', 'underscore', 'accounts-base'], both);
 
   api.use(['meteorhacks:async', 'settings', 'mrt:twit'], 'server');
@@ -27,7 +27,3 @@ Package.onTest(function(api) {
   api.use('social-media');
   api.addFiles('social_media_tests.js');
 });
-
-Npm.depends({
-  'twit': '1.1.19'
-})
