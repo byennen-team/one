@@ -1,9 +1,11 @@
 <template name="searchBox">
     <div class="searchBox col-sm-3 hidden-xs">
-        <input type="text" name="search" class="search" placeholder="Search...">
+        <i class="fa fa-search"></i>
+        <i id='navbar-search-clear' class="fa icon-x"></i>
+        <input id='navbar-search-input' type="text" name="search" class="search" placeholder="Search anything...">
     </div>
     {{#unless hide}}
-        <div class="results col-sm-3 hidden-xs">
+        <div class="navbar-search-results col-sm-3 hidden-xs">
             <ul>
                 {{#each results}}
                     <li class="user">

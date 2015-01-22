@@ -1,0 +1,70 @@
+// Variables 
+@import "/packages/styles/variables.import.less";
+
+.notifications-popup {
+  position: fixed;
+  width: 27.857em;
+  height: 26.786em;
+  top: 70px;
+  left: 50%;
+  margin-left: -13.929em;
+  overflow: hidden;
+  z-index: 100;
+  .sleeve {
+    height: 100%;
+  }
+  .notice {
+    position: relative;
+    padding: 0.25em 0.65em 1.5em 1.5em;
+    margin: 1em 0;
+    .x {
+      float: right;
+      cursor: pointer;
+      .fa {
+        font-size: 10px;
+        color: @white;
+        margin-left: 0.5em;
+      }
+    }
+    a {
+      font-family: @raleway-semibold;
+      color: @white;
+      letter-spacing: 0.0625em;
+      .fa {
+        margin-left: 0.5em;
+      }
+    }
+    a:hover {
+      color: @white-hover;
+    }
+    h5 {
+      display: inline-block;
+      font-family: @raleway-semibold;
+      color: @white;
+      letter-spacing: 0.0625em
+    }
+    .date {
+      display: inline-block;
+      margin-left: 2em;
+      font-size: 12px;
+      font-family: @raleway-light;
+      color: @periwinkle;
+    }
+    .text {
+      font-family: @raleway-light;
+      color: @white;
+    }
+  }
+  .notice::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    background-color: @black;
+    border-radius: 3px;
+    opacity: 0.5;
+    z-index: -1;
+  }
+}

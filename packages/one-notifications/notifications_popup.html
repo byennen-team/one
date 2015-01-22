@@ -1,0 +1,49 @@
+<template name='notificationsPopup'>
+{{#if haveNotifications}}
+  <div class="notifications-popup">
+    <div id='notifications-popup-sleeve' class="sleeve">
+
+<!-- TODO: Remove this static content -->
+      <div class="notice">
+        <div class="x">
+          <i class="fa icon-x"></i>
+        </div>
+        <div class="clearfix"></div>
+        <a href="#">
+          <h5>Company Brunch<i class="fa fa-long-arrow-right"></i></h5>
+        </a>
+        <p class="date">Yesterday</p>
+        <p class='text'>Come to the board room on Thursday at 11 for champagne and pastries from Sullivan Street Bakery.</p>
+      </div>
+
+      <div class="notice">
+        <div class="x">
+          <i class="fa icon-x"></i>
+        </div>
+        <div class="clearfix"></div>
+        <h5>Security Seminar</h5>
+        <p class="date">Sept 5</p>
+        <p class='text'>A reminder to please register before the 24th.</p>
+      </div>
+<!-- /remove -->
+
+  <!-- Andreas: probably something like this     -->
+<!--       {{#each notifications}}
+        <div class="notice">
+        {{#if notificationActionLink}}
+          <a href="{{notificationActionLink}}">
+            <h5>{{notificationTitle}}</h5>
+          </a>
+          {{else}}
+          <h5>{{notificationTitle}}</h5>
+        {{/if}}
+
+          <p class="date">{{date createdAt}}</p>
+          <p class='text'>{{notificationText}}</p>
+        </div>
+      {{/each}} -->
+
+    </div>
+  </div>
+{{/if}}
+</template>

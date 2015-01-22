@@ -1,9 +1,17 @@
 <template name="dashboardBanner">
   <div class="banner">
     <div class="title col-sm-6">
-      <p class="date">{{date}}</p>
+      <div class="weather">
+        <i class="fa {{weather}}"></i>
+        <span class="temp">{{temp}}º</span>
+        <span>in</span>
+        <span class="city">{{city}}</span>
+      </div>
       <h1 class="company-title">Douglas Elliman</h1>
-      <p class="company-slogan">One Dashboard</p>
+      <p class="date">
+        <span class="month">{{month}}</span>
+        <span class="time">{{time}}</span>
+      </p>
     </div>
     <div id="col-sm-6">
       <a href="#" id="chat-button"><img src="../../images/dashboard/banner-chat-button.png" class="banner-chat-button pull-right img-responsive"/></a>
