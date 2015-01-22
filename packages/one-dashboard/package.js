@@ -21,6 +21,9 @@ Package.onUse(function (api) {
     'dashboard_banner.html',
     'dashboard_banner_client.js',
     'dashboard_banner.less',
+    'dashboard_event.html',
+    'dashboard_event.less',
+    'dashboard_event_client.js',
     //communication-sidebar
     'communication-sidebar/communication_sidebar.html',
     'communication-sidebar/communication_sidebar.less',

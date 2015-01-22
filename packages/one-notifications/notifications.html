@@ -6,15 +6,15 @@
 
       <div class="status-dot {{status profile.status}}"></div>
 
-    {{#if notificationsUnread.count}}
-      <div id='notification-alert' class="notification-alert {{hasNotifications}}">{{notificationsUnread.count}}</div>
-    {{/if}}
-      </div>
+      {{#if notificationsUnread.count}}
+        <div id='notification-alert' class="notification-alert {{hasNotifications}}">{{notificationsUnread.count}}</div>
+      {{/if}}
+    </div>
 
 
     <div id="notification-dropdown" class='notification-dropdown'>
 
-<!--       <div id="notification-panel" class="notification-panel">
+      <div id="notification-panel" class="notification-panel">
         <div id="notification-deactivate" class='notification-object'>
           <div class="caret"></div>
             <p>Notifications</p>
@@ -38,10 +38,10 @@
             </div>
         {{/each}}
         </div>
-      </div> -->
+      </div>
 
       <div id="status-panel" class="status-panel">
-<!--         <div id="notification-activate" class='notification-object {{hasNotifications}}'>
+        <div id="notification-activate" class='notification-object {{hasNotifications}}'>
         {{#if notificationsUnread.count}}
           <p>Notifications</p>
         {{else}}
@@ -50,7 +50,7 @@
           {{#if notificationsUnread.count}}
             <div class="notification-alert">{{notificationsUnread.count}}</div>
           {{/if}}
-        </div> -->
+        </div>
 <!-- TODO: 'active' class should be added to the div that reflects User's status -->
         <div id="notification-status-in" class='notification-object status-changer in {{isActive "in the office" profile.status}}'>In the office</div>
         <div id="notification-status-out" class='notification-object status-changer out {{isActive "out of office" profile.status}}'>out of office</div>

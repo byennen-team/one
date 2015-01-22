@@ -13,8 +13,126 @@
         <span class="time">{{time}}</span>
       </p>
     </div>
-    <div id="col-sm-6">
-      <a href="#" id="chat-button"><img src="../../images/dashboard/banner-chat-button.png" class="banner-chat-button pull-right img-responsive"/></a>
+
+    <div class="team">
+<!-- TODO: Selected Agent should be added to User's team -->
+      <div id="dashboard-add-team" class='add-team' data-toggle="modal" data-target="#communication-directory-modal">
+        <i class="fa icon-addteam"></i>
+      </div>
+      
+<!-- SAMPLE CODE: -->
+<!-- TODO: {{hasNotifications}} should return "none" if there are no notifications
+      (another solution is fine, but the LESS for .status-dot.none should be changed) -->
+      <!-- <div class="avatar-box">
+        <img class="avatar" src="{{profile.photoUrl.thumb}}" />
+        <div class="status-dot {{status profile.status}}"></div>
+        {{#if notificationsUnread.count}}
+          <div class="message {{hasNotifications}}">{{notificationsUnread.count}}</div>
+        {{/if}}
+      </div> -->
+
+
+<!-- TODO: Remove: -->
+      <div class="avatar-box">
+        <img class="avatar" src="images/com-hub-main/dottie.jpg" />
+        <div class="status-dot active"></div>
+        <div class="message none">1</div>
+      </div>
+
+      <div class="avatar-box">
+        <img class="avatar" src="images/com-hub-main/howard.jpg" />
+        <div class="status-dot mobile"></div>
+        <div class="message none">1</div>
+      </div>
+
+      <div class="avatar-box">
+        <img class="avatar" src="images/com-hub-main/joy.jpg" />
+        <div class="status-dot active"></div>
+        <div class="message">1</div>
+      </div>
+
+      <div class="avatar-box">
+        <img class="avatar" src="images/com-hub-main/jon.jpg" />
+        <div class="status-dot inactive"></div>
+        <div class="message none">1</div>
+      </div>
+
+      <div class="avatar-box">
+        <img class="avatar" src="images/com-hub-main/brittany.jpg" />
+        <div class="status-dot active"></div>
+        <div class="message">1</div>
+      </div>
+<!-- /remove -->
     </div>
+
+    <div class="schedule">
+      <div class="add-event" id="banner-add-event">
+        <i class="fa icon-addteam"></i>
+      </div>
+      <div class="event">
+        <div class="description-box">
+          <div class="caret-right"></div>
+          <div class="description">
+            <p>Breakfast at the Club</p>
+          </div>
+        </div>
+        <div class="time">8:00 am</div>
+        <div class="x">
+          <i class="fa icon-x"></i>
+        </div>
+      </div>
+      <div class="event">
+        <div class="description-box">
+          <div class="caret-right"></div>
+          <div class="description">
+            <p>Meeting with Jon</p>
+          </div>
+        </div>
+        <div class="time">9:45 am</div>
+        <div class="x">
+          <i class="fa icon-x"></i>
+        </div>
+      </div>
+      <div class="event">
+        <div class="description-box">
+          <div class="caret-right"></div>
+          <div class="description">
+            <p>Lunch with Dottie at Nobu</p>
+          </div>
+        </div>
+        <div class="time">12:00 pm</div>
+        <div class="x">
+          <i class="fa icon-x"></i>
+        </div>
+      </div>
+      <div class="event">
+        <div class="description-box">
+          <div class="caret-right"></div>
+          <div class="description">
+            <p>Safety Seminar</p>
+          </div>
+        </div>
+        <div class="time">3:30 pm</div>
+        <div class="x">
+          <i class="fa icon-x"></i>
+        </div>
+      </div>
+      <div class="event">
+        <div class="description-box">
+          <div class="caret-right"></div>
+          <div class="description">
+            <p>This event has a long description. Really long.</p>
+          </div>
+        </div>
+        <div class="time">7:30 pm</div>
+        <div class="x">
+          <i class="fa icon-x"></i>
+        </div>
+      </div>
+      <div class="blue-line"></div>
+
+      {{> eventMenu}}
+    </div>
+
   </div>
 </template>
