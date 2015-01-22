@@ -9,3 +9,4 @@ SocialStatuses.simpleSchema = new SimpleSchema({
   postId: { type: String }
 });
 
+SocialMedia = {};

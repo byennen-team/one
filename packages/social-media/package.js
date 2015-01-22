@@ -12,7 +12,7 @@ Package.onUse(function(api) {
   api.use(['aldeed:simple-schema', 'service-configuration', 'mongo', 'oauth1', 'oauth', 'twitter',
     'facebook', 'templating', 'underscore', 'accounts-base'], both);
 
-  api.use(['settings', 'mrt:twit'], 'server');
+  api.use(['meteorhacks:async', 'settings', 'mrt:twit'], 'server');
 
   api.addFiles('social_media.js', both);
   api.addFiles('social_media_server.js', 'server');

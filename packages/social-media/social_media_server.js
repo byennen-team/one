@@ -1,5 +1,4 @@
 // Load Twitter settings from Settings file
-
 ServiceConfiguration.configurations.upsert(
   { service: 'twitter' },
   { $set:
@@ -35,16 +34,26 @@ Meteor.publish('socialStatuses', function(userId) {
         });
   }
 });
-TwitMaker = Npm.require('twit');
 
-//we don't set tokens here because they are user tokens. We'll set them later
-//depending on the call
-var T = new TwitMaker({
-  consumer_key: Meteor.settings.twitter.CONSUMER_KEY,
-  consumer_secret: Meteor.settings.twitter.SECRET,
-  access_token: "empty_token",
-  access_token_secret: "empty_token"
-});
+
+SocialMedia.hasTwitter = function() {
+  if (! this.userId)
+    return false;
+
+  var user = Meteor.users.findOne(this.userId);
+
+  if (! user)
+    return false;
+
+  var twitter = user.services.twitter.id;
+
+  if (!twitter)
+    return false;
+
+  return true;
+
+  };
+
 
 var autopublishedFields = _.map(
     // don't send access token. https://dev.twitter.com/discussions/5025
@@ -113,14 +122,42 @@ Meteor.methods({
     var user = Meteor.users.findOne(userId);
 
     if (! user)
-      throw new Meteor.Error("User not found");
+      throw new Meteor.Error("You are not logged in");
 
     if (! user.services || ! user.services.twitter || ! user.services.twitter.id)
       throw new Meteor.Error("User doesn't have a twitter account connected");
 
-    T.get('statuses/user_timeline', { user_id: user.services.twitter.id, count: 4 },
-      function(err, data, response) {
-        console.log(err, data, response)
+    var TwitMaker = Npm.require('twit');
+      //if the loggedin user has twitter connected we'll use his account to show
+      //the tweets. Otherwise we'll use the owning user account
+
+    var accessToken, accessTokenSecret;
+    var loggedInUser = Meteor.users.findOne(this.userId);
+    if(loggedInUser && loggedInUser.services && loggedInUser.services.twitter &&
+      loggedInUser.services.twitter.id) {
+      accessToken = loggedInUser.services.twitter.accessToken;
+      accessTokenSecret = loggedInUser.services.twitter.accessTokenSecret;
+    } else {
+      accessToken = user.services.twitter.accessToken;
+      accessTokenSecret = user.services.twitter.accessTokenSecret;
+    }
+
+
+    var T = new TwitMaker({
+        consumer_key: Meteor.settings.twitter.CONSUMER_KEY,
+        consumer_secret: Meteor.settings.twitter.SECRET,
+        access_token: accessToken,
+        access_token_secret: accessTokenSecret
+      });
+
+      return Async.runSync(function(done) {
+        T.get('statuses/user_timeline', { user_id: user.services.twitter.id, count: 4 },
+          function(err, data, response) {
+            if (err)
+              done(err);
+
+            done (null, data);
+          });
       });
   },
   postTweet: function(tweet) {
