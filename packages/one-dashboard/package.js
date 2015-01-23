@@ -24,6 +24,9 @@ Package.onUse(function (api) {
     'dashboard_event.html',
     'dashboard_event.less',
     'dashboard_event_client.js',
+    'dashboard_widget_search.html',
+    'dashboard_widget_search.less',
+    'dashboard_widget_search_client.js',
     //communication-sidebar
     'communication-sidebar/communication_sidebar.html',
     'communication-sidebar/communication_sidebar.less',

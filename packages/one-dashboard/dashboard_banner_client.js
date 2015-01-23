@@ -67,13 +67,19 @@ Template.dashboardBanner.events({
   'click .event': function (event) { // these events are different
     var $this = $( event.target );
     var $description = $this.siblings( '.description-box' );
-    $description.velocity("fadeIn", { duration: 500 })
+    $description.velocity("fadeIn", { duration: 500 });
   },
 
   'mouseleave .event': function (event) {
     var $this = $( event.target );
     var $description = $this.find( '.description-box' );
-    $description.velocity("fadeOut", { duration: 300 })
-  }
+    $description.velocity("fadeOut", { duration: 300 });
+  },
+
+// TODO: Should populate the event menu with data for event
+  // Calls the event menu modal
+  'click .description': function () { // these events are different
+    $( '#event-menu' ).velocity("fadeIn", { duration: 500 });
+  },
 
 });

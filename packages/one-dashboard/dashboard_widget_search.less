@@ -1,0 +1,102 @@
+// Variables 
+@import "/packages/styles/variables.import.less";
+
+.widget-search {
+  position: relative;
+  width: 100%;
+  height: 40px;
+  .icon-x {
+    position: absolute;
+    font-size: 8px;
+    right: 2em;
+    top: 2em;
+    color: @navy;
+    cursor: pointer;
+    z-index: 2;
+    opacity: 0;
+    transition: opacity 350ms ease-out 50ms;
+  }
+  input.search[type="text"] {
+    display: block;
+    margin: 0;
+    padding: 0 1em;
+    font-family: @raleway-light;
+    font-size: 14px;
+    appearance: none;
+    box-shadow: none;
+    border-radius: none;
+    border: none 0;
+    background-color: white;
+    color: @navy;
+    height: 100%;
+    width: 100%;
+    border-radius: 3px;
+  }
+  input::-webkit-input-placeholder {
+    font-family: @raleway-light;
+    font-size: 14px;
+    color: @navy;
+  }
+  input::-moz-placeholder { 
+    font-family: @raleway-light;
+    font-size: 14px;
+    color: @navy;
+  }
+  input:-ms-input-placeholder {  
+    font-family: @raleway-light;
+    font-size: 14px;
+    color: @navy;
+  }
+  input.search[type="text"]:focus {
+    outline: none;
+    opacity: 1;
+  }
+  input.search[type="text"]:focus + .icon-x {
+    opacity: 1;
+  }
+}
+
+// These styles are borrowed from the navbar search, and may be a good start
+
+// .navbar-search-results {
+//   z-index: 100;
+//   position: absolute;
+//   top: 59px;
+//   right: 78px;
+//   margin: 0;
+//   padding: 0;
+//   background: white;
+//   img.profile-image {
+//     width: 50px;
+//     height: 50px;
+//     float: left;
+//     margin-right: 10px;
+//   }
+//   ul {
+//     list-style: none;
+//     margin: 0;
+//     padding: 0;
+//   }
+//   li {
+//     // height: 90px;
+//     display: block;
+//     margin: 0;
+//     padding: 20px 5px 20px 10px;
+//     border-bottom: 1px solid #e1e7ed;
+//     .name {
+//       padding-top: 10px;
+//       color: #1c376c;
+//     }
+//     .title {
+//       font-size: 12px;
+//       color: #a2a2a2;
+//     }
+//     .type {
+//       float: right;
+//       margin: 13px 5px 0 0;
+//       color: #b1becc;
+//     }
+//   }
+// }
+
+
