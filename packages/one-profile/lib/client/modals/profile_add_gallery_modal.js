@@ -57,8 +57,6 @@ Template.addGalleryModal.events({
 					$('#addGaleryModal').modal('hide');
 				}
 			});
-		} else {
-			//TODO: show error you have to enter a name?
 		}
     //TODO: show error you have to enter a name?
 	},
