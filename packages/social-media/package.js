@@ -1,10 +1,10 @@
 Package.describe({
   name: 'social-media',
   summary: ' Package for linking Twitter and Facebook account to the user. ',
-  version: '0.0.1'
+  version: '0.0.3'
 });
 
-var both = ['server','web']
+var both = ['server','web'];
 
 Package.onUse(function(api) {
   api.versionsFrom('1.0.2.1');
@@ -12,7 +12,7 @@ Package.onUse(function(api) {
   api.use(['http', 'aldeed:simple-schema', 'service-configuration', 'mongo', 'oauth1', 'oauth', 'twitter',
     'facebook', 'templating', 'underscore', 'accounts-base'], both);
 
-  api.use(['meteorhacks:async', 'settings', 'mrt:twit'], 'server');
+  api.use(['meteorhacks:async', 'settings'], 'server');
 
   api.addFiles('social_media.js', both);
   api.addFiles('social_media_server.js', 'server');
@@ -27,3 +27,8 @@ Package.onTest(function(api) {
   api.use('social-media');
   api.addFiles('social_media_tests.js');
 });
+
+
+Npm.depends({
+  'twitter-text': '1.10.0'
+})

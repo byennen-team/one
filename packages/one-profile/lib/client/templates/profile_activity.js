@@ -1,7 +1,3 @@
-
-
-
-
 Template.profileActivity.events({
   'change #activity-image-upload': function (event) {
   	// get string of file path (fake)
@@ -47,5 +43,39 @@ Template.profileActivity.events({
 	}
 
 });
+Template.profileActivity.helpers({
+  hasSocialMedia: function () {
+    var user = Profile.currentUser();
+    return (user && user.services) && (user.services.twitter || user.services.facebook) ? true : false;
+  }
+});
+Template.socialMediaTemplate.rendered = function() {
+  var user = Profile.currentUser();
 
-
+  if (user && user.services && user.services.twitter)
+    Meteor.call('getLatestTweets', user._id);
+};
+Template.socialMediaTemplate.helpers({
+  socialStatuses: function() {
+    return SocialStatuses.find();
+  },
+  date: function(date) {
+    if (moment(date).diff(moment(new Date()), 'days') >= 1) {
+      return moment(date).format('MMM D, YYYY');
+    } else {
+      return moment(date).fromNow();
+    }
+  },
+  hasTwitter: function() {
+    var user = Profile.currentUser();
+    return (user && user.services && user.services.twitter) ? true : false;
+  },
+  hasFacebook: function() {
+    var user = Profile.currentUser();
+    return (user && user.services && user.services.facebook) ? true : false;
+  },
+  services: function() {
+    var user = Profile.currentUser();
+    return (user && user.services && user.services) ? user.services : false;
+  }
+});
