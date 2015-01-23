@@ -22,7 +22,7 @@ Template.dashboardBanner.helpers({
     return 'new york';
   },
   month: function() {
-    return moment().format('MMMM Do');
+    return moment().format('MMMM D');
   },
   time: function() {
     return moment().format('h:mm a');

@@ -1,5 +1,5 @@
 Template.eventMenu.rendered = function () {
-  $('.datepicker').datepicker()
+
 };
 
 var roundTime = function( add ){
@@ -9,10 +9,7 @@ var roundTime = function( add ){
   var min = moment().format('mm');
   var ampm = moment().format('a');
 console.log( hour + ':' + min + ampm );
-  if( add == null ){
-console.log( 'null' );
-    var add = 0;
-  }
+
   // round the time up to the nearest half hour
   if( min < 30 ){
 console.log( 'up to 30' );
@@ -35,7 +32,15 @@ console.log( 'to AM' );
       ampm = 'am';
     }
   }
-  return hour + add + ':' + min + ' ' + ampm; // make it pretty
+
+  if( add == null ){
+    return hour + ':' + min + ' ' + ampm; // make it pretty
+  }else {
+    hour = parseInt(hour, 10);
+    add = parseInt(add, 10);
+    hour = hour + add;
+    return hour + ':' + min + ' ' + ampm; // make it pretty
+  }
 }
 
 Template.eventMenu.helpers({
@@ -43,7 +48,8 @@ Template.eventMenu.helpers({
   // returns today's date
   day: function () {
     var weekday = moment().format('dddd');
-    var date = moment().format('MMMM Do');
+    var date = moment().format('MMMM D');
+    console.log( weekday + ', ' + date );
     return weekday + ', ' + date;
   },
 

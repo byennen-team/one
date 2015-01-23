@@ -22,36 +22,30 @@
 
     <div class="form-group event-title">
       <label class='sr-only' for="task-menu-name">Name your event</label>
-      <input id='task-menu-name' type="text" placeholder='Event name...'/>
+      <input id='event-menu-name' type="text" placeholder='Event name...'/>
     </div>  
 
     <div class="form-group event-date">
       <label for="event-menu-start"><i class="fa fa-calendar"></i> starts</label>
-      <input class='event-date-input' name="start-date" id="event-menu-start" data-provide="datepicker" value='{{day}}' type='date' />
+      <input class='event-date-input' name="start-date" id="event-menu-start" type='text' data-provide="datepicker" data-date-format="DD, MM d" data-start-date='{{day}}' value='{{day}}' />
       <span>at</span>
       <input class='event-date-time' name="start-time" type="text" value='{{time.start}}' />
 
       <div class="clearfix"></div>
 
       <label for="event-menu-end"><i class="fa fa-calendar"></i> ends</label>
-      <input class='event-date-input' name="end-date" id="event-menu-end" data-provide="datepicker" value='{{day}}' type='date' />
+      <input class='event-date-input' name="end-date" id="event-menu-end" type='text' data-provide="datepicker" data-date-format="DD, MM d" data-start-date='{{day}}' value='{{day}}' />
       <span>at</span>
       <input class='event-date-time' name="end-time" type="text" value='{{time.end}}' />
     </div>
 
-    <div class="form-group task-list">
-      <label for='task-menu-task-list'>
-        <i class="fa fa-th-list"></i>
-        <span>task list</span>
+    <div class="form-group event-location">
+      <label for='event-menu-location'>
+        <i class="fa fa-map-marker"></i>
+        <span>where</span>
       </label>
-<!-- TODO: add list of User's active rooms -->
-      <select class="selectpicker form-control" id='task-menu-task-list' data-style='select-task-list'>
-        <option>Dottie Herman</option>
-        <option>Marie Espinal</option>
-        <option>Team Awesome</option>
-        <option>111 4th Ave, 4h</option>
-        <option>575 Madison Ave</option>
-      </select>
+      <input id='event-menu-location' type="text" />
+      <div id='event-menu-directions' class="directions">get directions <i class="fa fa-location-arrow"></i></div>
     </div>
 
     <div class="form-group add-people">

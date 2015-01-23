@@ -115,12 +115,14 @@
   .event-date {
     clear: both;
     width: 100%;
-    padding: 0.75em;
+    padding: 1em 0.75em;
     background-color: @white;
     label {
+      min-width: 58px;
       cursor: pointer;
     }
     input {
+      width: 210px; 
       color: @darkest-purple;
       font-family: @raleway-light;
       font-size: 16px;
@@ -141,6 +143,18 @@
       color: @darkest-purple;
       font-family: @raleway-light;
       font-size: 16px;
+    }
+    span {
+      font-family: @raleway-semibold;
+      font-variant: small-caps;
+      text-transform: lowercase;
+      color: @blue-purple;
+    }
+    .event-date-input {
+      
+    }
+    .event-date-time {
+      width: 70px;
     }
   }
   .event-title {
@@ -172,6 +186,14 @@
       color: @dk-purple;
     }
   }
+  .event-location {
+    .directions {
+      color: @blue-purple;
+      opacity: 0.5;
+      float: right;
+      margin-right: 1em;
+    }
+  }
   .description {
     textarea {
       width: 100%;
@@ -196,15 +218,6 @@
       font-family: @raleway-light;
       font-size: 16px;
       color: @darkest-purple;
-    }
-  }
-  .task-list {
-    .form-control.bootstrap-select {
-      margin: 0 3%;
-      max-width: 94%;
-      .caret {
-        border-color: @blue-purple transparent transparent transparent;
-      }
     }
   }
   .add-people {
