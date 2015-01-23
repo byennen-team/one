@@ -1,4 +1,4 @@
-/* globals Galleries: true, PicturesSchema: true */
+/* globals Galleries: true, PicturesSchema: true, Gallery: true */
 
 Galleries = new Meteor.Collection('galleries');
 

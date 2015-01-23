@@ -1,4 +1,4 @@
-
+/* globals Gallery: true */
 Template.addGalleryModal.events({
 	'click #createGallery': function () {
 		var $name = $('#galleryNameField');

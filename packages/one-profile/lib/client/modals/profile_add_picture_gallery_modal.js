@@ -1,4 +1,4 @@
-/* global Galleries: false */
+/* global Galleries: false, Gallery: true */
 Template.picturesUploadModal.rendered = function(){
   $('.selectpicker').selectpicker();
 

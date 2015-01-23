@@ -99,5 +99,5 @@ Package.onUse(function (api) {
   // Bower packages
   api.addFiles(['smart.json'], 'web');
 
-  api.export(['Profile', 'Gallery'], 'web');
+  api.export(['Profile'], 'web');
 });

@@ -1,3 +1,4 @@
+/* globals Gallery: true */
 Template.profileHeaderImageModal.events({
 
  'change .file-upload': function (event) {
