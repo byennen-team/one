@@ -8,22 +8,30 @@ var roundTime = function( add ){
   var hour = moment().format('h');
   var min = moment().format('mm');
   var ampm = moment().format('a');
+console.log( hour + ':' + min + ampm );
   if( add == null ){
+console.log( 'null' );
     var add = 0;
   }
   // round the time up to the nearest half hour
   if( min < 30 ){
+console.log( 'up to 30' );
     min = 30;
   }else {
+console.log( 'down to 00' );
     min = '00';
   }
-  if( min == 00 || hour < 12 ){
+  if( min == '00' && hour < 12 ){ // if we've rounded down
+console.log( 'add an hour' );
     hour++;
-  }else { // if switching over am/pm
+  }else if( hour == 12 ){ // if it's 12, to to 1 and switch am/pm
+console.log( 'hour to 1' );
     hour = 1;
     if( ampm == 'am' ){ 
+console.log( 'to PM' );
       ampm = 'pm';
     }else {
+console.log( 'to AM' );
       ampm = 'am';
     }
   }
