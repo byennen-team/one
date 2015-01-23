@@ -14,16 +14,23 @@ class TransitionerClass
     @reverseAnimations[a]
   
   transition: (fromRoute, toRoute, animationName, options) ->
-    duration = options?.duration or 600
-    easing = options?.easing or 'ease-in-out'
+    duration = 600
+    easing = 'ease-in-out'
+    reverse = true
+    if options
+      if 'duration' of options then duration = options.duration
+      if 'easing' of options then easing = options.easing
+      if 'reverse' of options then reverse = options.reverse
     # this is Router.route but for transitions
     # TODO: check that the routes exist in iron router.
     # TODO: check that the animation exists.
     @transitions.push {fromRoute, toRoute, animationName, duration, easing}
     # the reverse
-    reverse = @reverseAnimation(animationName)
+    console.log options, reverse
     if reverse
-      @transitions.push({fromRoute: toRoute, toRoute: fromRoute, animationName:reverse, duration, easing})
+      reverseAnimationName = @reverseAnimation(animationName)
+      if reverseAnimationName
+        @transitions.push({fromRoute: toRoute, toRoute: fromRoute, animationName:reverseAnimationName, duration, easing})
     return
 
   getAnimation: (fromRoute, toRoute) ->
