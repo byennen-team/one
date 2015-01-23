@@ -9,7 +9,6 @@ Router.configure({
 
 Router.route('/', {
   name: Routes.LOGIN,
-  layoutTemplate: 'loginLayout'
 });
 
 Router.route('/logout', {
