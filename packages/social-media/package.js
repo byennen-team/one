@@ -31,5 +31,6 @@ Package.onTest(function(api) {
 
 
 Npm.depends({
-  'twitter-text': '1.10.0'
+  'twitter-text': '1.10.0',
+  'crypto-js': '3.1.2-5'
 });

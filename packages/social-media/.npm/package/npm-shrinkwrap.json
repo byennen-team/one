@@ -1,5 +1,8 @@
 {
   "dependencies": {
+    "crypto-js": {
+      "version": "3.1.2-5"
+    },
     "twitter-text": {
       "version": "1.10.0"
     }

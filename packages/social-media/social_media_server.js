@@ -205,28 +205,25 @@ SocialMedia.twitter.getSignature = function(params, user) {
   _.each(paramsArray, function(item, index) {
     unsignedString = unsignedString + encodeURIComponent(item[0]) +
       '=' + encodeURIComponent(item[1]);
-    if(index !== paramsArray.length + 1)
+    if(index + 1 !== paramsArray.length)
       unsignedString = unsignedString + "&";
   });
 
   unsignedString = 'POST&' +
     encodeURIComponent('https://api.twitter.com/1.1/statuses/'+
-      'update.json?include_entities=true') +
+      'update.json') +
       '&' + encodeURIComponent(unsignedString);
 
   var signingKey = encodeURIComponent(Meteor.settings.twitter.SECRET) + '&' +
     encodeURIComponent(user.services.twitter.accessTokenSecret);
 
-  var crypto = Npm.require("crypto");
+  var crypto = Npm.require("crypto-js");
 
-  var hmac = crypto.createHmac('sha1', signingKey);
-  hmac.setEncoding('base64');
-  hmac.write(unsignedString);
-  hmac.end();
+  var signature = crypto.HmacSHA1(unsignedString, signingKey);
 
-  var signature = hmac.read();
+  var sig = crypto.enc.Base64.stringify(signature);
 
-  return signature;
+  return sig;
 
 };
 var autopublishedFields = _.map(
@@ -366,6 +363,10 @@ Meteor.methods({
     /*jshint camelcase: false */
     check(tweet, String);
 
+    //checking if the tweet is in accordance to the twitter 140 char limit
+    if(SocialMedia.twitterParser.getTweetLength(tweet) > 140)
+      throw new Meteor.Error("Tweet is too long");
+
     var user = Meteor.users.findOne(this.userId);
 
     if (! user)
@@ -388,12 +389,11 @@ Meteor.methods({
     }
 
     var oauthParams = {
-      include_entities: true,
       oauth_consumer_key: Meteor.settings.twitter.CONSUMER_KEY,
       oauth_nonce: Random.secret().replace(/\W/g, ''),
       oauth_signature_method: 'HMAC-SHA1',
       oauth_timestamp: (new Date().valueOf()/1000).toFixed().toString(),
-      oauth_token: user.services.twitter.acces_token,
+      oauth_token: user.services.twitter.accessToken,
       oauth_version: '1.0',
       status: tweet
     };
@@ -410,29 +410,35 @@ Meteor.methods({
         headers: {
           'Authorization': 'OAuth ' +
           'oauth_consumer_key="'+
-            encodeURIComponent(oauthParams.oauth_consumer_key)+'", ' +
+            encodeURIComponent(oauthParams.oauth_consumer_key) +'", ' +
           'oauth_nonce="'+
-            encodeURIComponent(oauthParams.oauth_nonce)+'", ' +
+            encodeURIComponent(oauthParams.oauth_nonce) +'", ' +
           'oauth_signature="'+
-            encodeURIComponent(signature)+'", ' +
-          'oauth_signature_method="'+
-            encodeURIComponent(oauthParams.oauth_signature_method)+'", ' +
-          'oauth_timestamp="'+
-            encodeURIComponent(oauthParams.oauth_timestamp)+'", ' +
-          'oauth_token="'+
-            encodeURIComponent(oauthParams.oauth_token)+'", ' +
-          'oauth_version="'+
-            encodeURIComponent(oauthParams.oauth_version)+'"',
-          'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8'
+            encodeURIComponent(signature) +'", ' +
+          'oauth_signature_method="' +
+            encodeURIComponent(oauthParams.oauth_signature_method) +'", ' +
+          'oauth_timestamp="' +
+            encodeURIComponent(oauthParams.oauth_timestamp) +'", ' +
+          'oauth_token="' +
+            encodeURIComponent(oauthParams.oauth_token) +'", ' +
+          'oauth_version="' +
+            encodeURIComponent(oauthParams.oauth_version) +'"',
+          'Content-Type': 'application/x-www-form-urlencoded'
         }
       };
-      var tweets = HTTP.get('https://api.twitter.com/1.1/statuses/'+
-        'update.json?include_entities=true', options);
+      HTTP.post('https://api.twitter.com/1.1/statuses/'+
+        'update.json', options);
 
-      console.log(tweets);
+      return (null, true);
 
     } catch (e) {
-      console.log(e);
+      if(e.statusCode === 401 || e.statusCode === 403) //removing credentials
+        Meteor.users.update(user._id, {
+          $unset: {
+            'services.twitter': null
+          }
+        });
+      return(e);
     }
   }
 

@@ -82,3 +82,20 @@ Template.socialMediaTemplate.helpers({
     return (user && user.services && user.services) ? user.services : false;
   }
 });
+Template.socialMediaTemplate.events({
+  'submit form.comment-box': function(e) {
+    e.preventDefault();
+    var value = $('input.tweeter').val();
+
+    if (! value || value === '')
+      return false;
+
+    Meteor.call('postTweet', value, function(e) {
+      if (e)
+        console.log(e);
+
+
+      $('input.tweeter').val('');
+    });
+  }
+});

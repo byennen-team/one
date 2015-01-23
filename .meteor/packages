@@ -13,10 +13,7 @@ meteor-platform
 iron:router
 mizzao:bootstrap-3 #TODO: refactory to bootstrap-less
 aldeed:simple-schema
-<<<<<<< HEAD
-=======
 velocityjs:velocityjs
->>>>>>> master
 
 # Our Packages
 
@@ -47,8 +44,4 @@ routes
 settings
 users-elliman
 styles
-<<<<<<< HEAD
 social-media
-=======
-
->>>>>>> master
