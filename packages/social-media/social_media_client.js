@@ -1,3 +1,4 @@
+/* globals SocialMedia: true, Twitter: true, Facebook: true */
 SocialMedia = {
   twitter: {},
   facebook: {}
@@ -29,21 +30,20 @@ Template.loginWithSocialMedia.events({
   'click #loginWithTwitter': function(e) {
     e.preventDefault();
 
-    var credentialRequestCompleteCallback = SocialMedia.twitter.credentialRequestCompleteHandler(function(tokenOrError) {
-      if(tokenOrError && tokenOrError instanceof Error) {
-        console.log(tokenOrError);
-      } else {
-        //autentification complete do something here.
-        console.log('Done')
-      };
-    });
+    var credentialRequestCompleteCallback =
+      SocialMedia.twitter.credentialRequestCompleteHandler(
+        function(tokenOrError) {
+          if(tokenOrError && tokenOrError instanceof Error) {
+            console.log(tokenOrError);
+          }
+        });
 
     Twitter.requestCredential(credentialRequestCompleteCallback);
   },
   'click #logoutFromTwitter': function(e) {
     e.preventDefault();
 
-    Meteor.call('logoutFromTwitter', function(error, result) {
+    Meteor.call('logoutFromTwitter', function(error) {
       if (error)
         console.log(error);
     });
@@ -51,34 +51,35 @@ Template.loginWithSocialMedia.events({
   'click #loginWithFacebook': function(e) {
     e.preventDefault();
 
-    var credentialRequestCompleteCallback = SocialMedia.facebook.credentialRequestCompleteHandler(function(tokenOrError) {
-      if(tokenOrError && tokenOrError instanceof Error) {
-        console.log(tokenOrError);
-      } else {
-        //autentification complete do something here.
-        console.log('Done')
-      };
-    });
+    var credentialRequestCompleteCallback =
+      SocialMedia.facebook.credentialRequestCompleteHandler(
+        function(tokenOrError) {
+          if(tokenOrError && tokenOrError instanceof Error) {
+            console.log(tokenOrError);
+          }
+        });
 
     Facebook.requestCredential(credentialRequestCompleteCallback);
   },
   'click #logoutFromFacebook': function(e) {
     e.preventDefault();
 
-    Meteor.call('logoutFromFacebook', function(error, result) {
+    Meteor.call('logoutFromFacebook', function(error) {
       if (error)
         console.log(error);
     });
   },
-})
+});
 
 SocialMedia.twitter.credentialRequestCompleteHandler = function(callback) {
   return function (credentialTokenOrError) {
     if(credentialTokenOrError && credentialTokenOrError instanceof Error) {
-      callback && callback(credentialTokenOrError);
+      if (callback)
+        callback(credentialTokenOrError);
     } else {
       Meteor.call('saveCredentials', credentialTokenOrError, 'twitter');
-      callback && callback(credentialTokenOrError);
+      if (callback)
+        callback(credentialTokenOrError);
     }
   };
 };
@@ -86,10 +87,12 @@ SocialMedia.twitter.credentialRequestCompleteHandler = function(callback) {
 SocialMedia.facebook.credentialRequestCompleteHandler = function(callback) {
   return function (credentialTokenOrError) {
     if(credentialTokenOrError && credentialTokenOrError instanceof Error) {
-      callback && callback(credentialTokenOrError);
+      if (callback)
+        callback(credentialTokenOrError);
     } else {
       Meteor.call('saveCredentials', credentialTokenOrError, 'facebook');
-      callback && callback(credentialTokenOrError);
+      if (callback)
+        callback(credentialTokenOrError);
     }
   };
 };

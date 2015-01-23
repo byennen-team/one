@@ -1,3 +1,4 @@
+/* globals SocialStatuses: true, SocialMedia: true */
 SocialStatuses = new Mongo.Collection('socialStatuses');
 
 SocialStatuses.simpleSchema = new SimpleSchema({

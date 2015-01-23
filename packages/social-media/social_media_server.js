@@ -1,3 +1,5 @@
+/* globals SocialStatuses: true, ServiceConfiguration: true,
+SocialMedia: true, Twitter: true, OAuth: true, Facebook: true */
 var CACHE_INTERVAL_MINUTES = 1 * 60000;
 
 Meteor.publish('socialStatuses', function(userId) {
@@ -54,13 +56,14 @@ Meteor.publish('socialStatuses', function(userId) {
 ServiceConfiguration.configurations.upsert(
   { service: 'twitter' },
   { $set:
-    { consumerKey: Meteor.settings.twitter.CONSUMER_KEY, secret: Meteor.settings.twitter.SECRET }
+    { consumerKey: Meteor.settings.twitter.CONSUMER_KEY,
+      secret: Meteor.settings.twitter.SECRET }
   });
 
 //internal collection to hold Twitter Tokens
-_socialMediaTokens = new Mongo.Collection("_socialMediaTokens");
+var _socialMediaTokens = new Mongo.Collection("_socialMediaTokens");
 //internal collection to cache responses from social networks
-_socialMediaCache = new Mongo.Collection("_socialMediaCache");
+var _socialMediaCache = new Mongo.Collection("_socialMediaCache");
 
 var cachedHttp = function(method, url, options, force) {
   check(method, String);
@@ -81,7 +84,8 @@ var cachedHttp = function(method, url, options, force) {
     }
   });
 
-  if (! cachedResponse || force === true) {//nothing cached, or call is forced, make a call
+  if (! cachedResponse || force === true) {
+  //nothing cached, or call is forced, make a call
     try {
       var response = HTTP.call(method, url, options);
       if (response) {
@@ -101,7 +105,8 @@ var cachedHttp = function(method, url, options, force) {
       return(e);
     }
   } else { //we already have a response
-    return (null,{ type: 'cached', data: JSON.parse(cachedResponse.responseString) });
+    return (null,{ type: 'cached',
+      data: JSON.parse(cachedResponse.responseString) });
   }
 
 };
@@ -128,12 +133,13 @@ SocialMedia.hasTwitter = function() {
 SocialMedia.twitter = {};
 
 SocialMedia.twitter.encodeSecrets = function() {
-  return new Buffer(encodeURIComponent(Meteor.settings.twitter.CONSUMER_KEY)+':'+
-    encodeURIComponent(Meteor.settings.twitter.SECRET)).toString('base64');
-}
+  return new Buffer(encodeURIComponent(Meteor.settings.twitter.CONSUMER_KEY)+
+    ':' + encodeURIComponent(Meteor.settings.twitter.SECRET))
+      .toString('base64');
+};
 
 SocialMedia.twitter.getApplicationBearerToken = function() {
-
+  /*jshint camelcase: false */
   var possibleToken = _socialMediaTokens.findOne({
     type: 'twitter'
   });
@@ -141,7 +147,7 @@ SocialMedia.twitter.getApplicationBearerToken = function() {
   if (possibleToken)
     return (possibleToken.token);
 
-  base64encodedString = SocialMedia.twitter.encodeSecrets();
+  var base64encodedString = SocialMedia.twitter.encodeSecrets();
   var authOptions = {
     headers: {
       'Authorization': 'Basic ' + base64encodedString,
@@ -151,7 +157,8 @@ SocialMedia.twitter.getApplicationBearerToken = function() {
   };
 
   try {
-    var response = HTTP.post('https://api.twitter.com/oauth2/token', authOptions);
+    var response = HTTP.post('https://api.twitter.com/oauth2/token',
+      authOptions);
     if (response.data.token_type === 'bearer') {
       _socialMediaTokens.insert({
         type: 'twitter',
@@ -160,32 +167,34 @@ SocialMedia.twitter.getApplicationBearerToken = function() {
       return (null, response.data.access_token);
     }
   } catch (e) {
-    return(e)
+    return(e);
   }
 };
 
-SocialMedia.twitter.invalidateApplicationBearerToken = function() {
-  base64encodedString = SocialMedia.twitter.encodeSecrets();
+SocialMedia.twitter.invalidateApplicationBearerToken = function(accessToken) {
+  /*jshint camelcase: false */
+  var base64encodedString = SocialMedia.twitter.encodeSecrets();
   var authOptions = {
     headers: {
       'Authorization': 'Basic ' + base64encodedString,
       'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8'
     },
     params: {
-      'access_token': access_token
+      'access_token': accessToken
     }
   };
 
   try {
-    var response = HTTP.post('https://api.twitter.com/oauth2/invalidate_token', authOptions);
+    var response = HTTP.post('https://api.twitter.com/oauth2/invalidate_token',
+      authOptions);
     if (response.statusCode === 200) {
       _socialMediaTokens.remove({
         type: 'twitter'
-      })
+      });
       return (null, response.data.access_token);
     }
   } catch (e) {
-    return(e)
+    return(e);
   }
 };
 
@@ -194,23 +203,23 @@ SocialMedia.twitter.getSignature = function(params, user) {
 
   var paramsArray = _.pairs(params);
   _.each(paramsArray, function(item, index) {
-    unsignedString = unsignedString + encodeURIComponent(item[0]) + '=' + encodeURIComponent(item[1]);
-    if(index != paramsArray.length + 1)
+    unsignedString = unsignedString + encodeURIComponent(item[0]) +
+      '=' + encodeURIComponent(item[1]);
+    if(index !== paramsArray.length + 1)
       unsignedString = unsignedString + "&";
   });
 
   unsignedString = 'POST&' +
-    encodeURIComponent('https://api.twitter.com/1.1/statuses/update.json?include_entities=true') +
-    '&' + encodeURIComponent(unsignedString);
-
-    console.log(user)
+    encodeURIComponent('https://api.twitter.com/1.1/statuses/'+
+      'update.json?include_entities=true') +
+      '&' + encodeURIComponent(unsignedString);
 
   var signingKey = encodeURIComponent(Meteor.settings.twitter.SECRET) + '&' +
     encodeURIComponent(user.services.twitter.accessTokenSecret);
 
-  crypto = Npm.require("crypto");
+  var crypto = Npm.require("crypto");
 
-  hmac = crypto.createHmac('sha1', signingKey);
+  var hmac = crypto.createHmac('sha1', signingKey);
   hmac.setEncoding('base64');
   hmac.write(unsignedString);
   hmac.end();
@@ -235,7 +244,7 @@ Meteor.methods({
     check(token, String);
     check(type, String);
 
-    var credentialSecret = Oauth._pendingCredentials.findOne({
+    var credentialSecret = OAuth._pendingCredentials.findOne({
       key: token
     });
 
@@ -249,15 +258,17 @@ Meteor.methods({
     if (!credentials)
       throw new Meteor.Error(500, 'Unknown twitter login Error');
 
+    var options = {};
+
     if (type === 'twitter')
-      var options = { 'services.twitter' : credentials.serviceData };
+      options = { 'services.twitter' : credentials.serviceData };
     else
-      var options = { 'services.facebook' : credentials.serviceData };
+      options = { 'services.facebook' : credentials.serviceData };
 
 
     Meteor.users.update( this.userId , {
       $set: options
-    })
+    });
 
     return(null, true);
   },
@@ -282,6 +293,7 @@ Meteor.methods({
     });
   },
   getLatestTweets: function(userId, force) {
+    /*jshint camelcase: false */
     check(userId, String);
 
     if(force)
@@ -294,7 +306,9 @@ Meteor.methods({
     if (! user)
       throw new Meteor.Error("You are not logged in");
 
-    if (! user.services || ! user.services.twitter || ! user.services.twitter.id)
+    if (! user.services ||
+        ! user.services.twitter ||
+        ! user.services.twitter.id)
       throw new Meteor.Error("User doesn't have a twitter account connected");
 
 
@@ -324,7 +338,8 @@ Meteor.methods({
         options.params.since_id = latestTweet.postId;
 
       try {
-        var tweets = cachedHttp('GET','https://api.twitter.com/1.1/statuses/user_timeline.json', options, force);
+        var tweets = cachedHttp('GET','https://api.twitter.com/1.1/statuses'+
+          '/user_timeline.json', options, force);
 
         _.each(tweets.data, function(item) {
           SocialStatuses.insert({
@@ -348,6 +363,7 @@ Meteor.methods({
 
   },
   postTweet: function(tweet) {
+    /*jshint camelcase: false */
     check(tweet, String);
 
     var user = Meteor.users.findOne(this.userId);
@@ -355,10 +371,13 @@ Meteor.methods({
     if (! user)
       throw new Meteor.Error("You are not logged in");
 
-    if (! user.services || ! user.services.twitter || ! user.services.twitter.id)
+    if (! user.services ||
+        ! user.services.twitter ||
+        ! user.services.twitter.id)
       throw new Meteor.Error("User doesn't have a twitter account connected");
 
-    if(! user.services.twitter.accessToken || ! user.services.twitter.accessTokenSecret) {
+    if(! user.services.twitter.accessToken ||
+       ! user.services.twitter.accessTokenSecret) {
       Meteor.users.update(user._id, {
         $unset: {
           'services.twitter': null
@@ -377,7 +396,7 @@ Meteor.methods({
       oauth_token: user.services.twitter.acces_token,
       oauth_version: '1.0',
       status: tweet
-    }
+    };
 
     var signature = SocialMedia.twitter.getSignature(oauthParams, user);
 
@@ -390,21 +409,31 @@ Meteor.methods({
         },
         headers: {
           'Authorization': 'OAuth ' +
-          'oauth_consumer_key="'+encodeURIComponent(oauthParams.oauth_consumer_key)+'", ' +
-          'oauth_nonce="'+encodeURIComponent(oauthParams.oauth_nonce)+'", ' +
-          'oauth_signature="'+encodeURIComponent(signature)+'", ' +
-          'oauth_signature_method="'+encodeURIComponent(oauthParams.oauth_signature_method)+'", ' +
-          'oauth_timestamp="'+encodeURIComponent(oauthParams.oauth_timestamp)+'", ' +
-          'oauth_token="'+encodeURIComponent(oauthParams.oauth_token)+'", ' +
-          'oauth_version="'+encodeURIComponent(oauthParams.oauth_version)+'"',
+          'oauth_consumer_key="'+
+            encodeURIComponent(oauthParams.oauth_consumer_key)+'", ' +
+          'oauth_nonce="'+
+            encodeURIComponent(oauthParams.oauth_nonce)+'", ' +
+          'oauth_signature="'+
+            encodeURIComponent(signature)+'", ' +
+          'oauth_signature_method="'+
+            encodeURIComponent(oauthParams.oauth_signature_method)+'", ' +
+          'oauth_timestamp="'+
+            encodeURIComponent(oauthParams.oauth_timestamp)+'", ' +
+          'oauth_token="'+
+            encodeURIComponent(oauthParams.oauth_token)+'", ' +
+          'oauth_version="'+
+            encodeURIComponent(oauthParams.oauth_version)+'"',
           'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8'
         }
       };
-      var tweets = HTTP.get('https://api.twitter.com/1.1/statuses/update.json?include_entities=true', options);
+      var tweets = HTTP.get('https://api.twitter.com/1.1/statuses/'+
+        'update.json?include_entities=true', options);
+
+      console.log(tweets);
 
     } catch (e) {
       console.log(e);
     }
   }
 
-})
+});

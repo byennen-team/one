@@ -1,3 +1,4 @@
+/* globals SocialStatuses: true */
 Template.profileActivity.events({
   'change #activity-image-upload': function (event) {
   	// get string of file path (fake)
@@ -39,14 +40,16 @@ Template.profileActivity.events({
       .addClass( 'grey' );
 
 	  $( '#activity-thumb' ).addClass( 'hidden' );
-    $( '#activity-textarea' ).removeClass( 'width-80' ).addClass( 'width-100' );
+    $( '#activity-textarea' ).removeClass( 'width-80' )
+      .addClass( 'width-100' );
 	}
 
 });
 Template.profileActivity.helpers({
   hasSocialMedia: function () {
     var user = Profile.currentUser();
-    return (user && user.services) && (user.services.twitter || user.services.facebook) ? true : false;
+    return (user && user.services) &&
+      (user.services.twitter || user.services.facebook) ? true : false;
   }
 });
 Template.socialMediaTemplate.rendered = function() {

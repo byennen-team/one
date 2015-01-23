@@ -9,7 +9,8 @@ var both = ['server','web'];
 Package.onUse(function(api) {
   api.versionsFrom('1.0.2.1');
 
-  api.use(['http', 'aldeed:simple-schema', 'service-configuration', 'mongo', 'oauth1', 'oauth', 'twitter',
+  api.use(['http', 'aldeed:simple-schema', 'service-configuration',
+    'mongo', 'oauth1', 'oauth', 'twitter',
     'facebook', 'templating', 'underscore', 'accounts-base'], both);
 
   api.use(['meteorhacks:async', 'settings'], 'server');
@@ -31,4 +32,4 @@ Package.onTest(function(api) {
 
 Npm.depends({
   'twitter-text': '1.10.0'
-})
+});
