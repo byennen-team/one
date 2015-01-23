@@ -25,7 +25,7 @@ Template.profileGallery.helpers({
 Template.profileGallery.events({
 	'click a[data-target="#picturesUploadModal"]': function(event) {
     if($(event.currentTarget).data("id")) {
-      $("#select-gallery-dropdown option").each(function(index) {
+      $("#select-gallery-dropdown option").each(function() {
         if ($(this).val() === $(event.currentTarget).data("id"))
           $(this).attr('selected','selected');
       });
@@ -103,9 +103,11 @@ Template.profileGallery.rendered = function () {
     var $galleryId = $(this).attr("album-id");
 
     var onComplete = function(result) {
-      var photoUrl = Meteor.settings.public.AWS_BUCKET_URL + '/' + result.filePath;
-        Meteor.call('addPictureToGallery',result.filePath, photoUrl, $galleryId,
-          function(error, result) {
+      var photoUrl = Meteor.settings.public.AWS_BUCKET_URL +
+        '/' + result.filePath;
+        Meteor.call('addPictureToGallery',result.filePath,
+          photoUrl, $galleryId,
+          function(error) {
           //removing the loading indicator
           $('.gallery-square[data-type="loader"]')[0].remove();
           if (error)
@@ -126,8 +128,10 @@ Template.profileGallery.rendered = function () {
     	if (!file.type.match('image.*'))
     		continue;
 
-    	$('.album[album-id="'+$galleryId+'"] .galleryHolder').append('<div data-type="loader" ' +
-        'class="gallery-square col-sm-2 half-gutter m-bottom-10 center picture-loader">' +
+    	$('.album[album-id="'+$galleryId+'"] .galleryHolder')
+        .append('<div data-type="loader" ' +
+        'class="gallery-square col-sm-2 half-gutter '+
+        'm-bottom-10 center picture-loader">' +
         '<img src="/photo-load.gif" /></div>');
 
       var options = {

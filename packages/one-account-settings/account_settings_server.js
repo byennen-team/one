@@ -57,13 +57,15 @@ Meteor.methods({
 
     var user = Meteor.user();
     if (!user) throw new Meteor.Error('Invalid credentials');
-    
+
     var pathToFile;
 
     if (filePath)
-      pathToFile = Folder.galleryPicture(user.profile.id) + '/' + filePath + '.' + FileTools.ext(fileName);
+      pathToFile = Folder.galleryPicture(user.profile.id) +
+        '/' + filePath + '.' + FileTools.ext(fileName);
     else
-      pathToFile = Folder.profilePicture(user.profile.id) + '/newUpload.' + FileTools.ext(fileName);
+      pathToFile = Folder.profilePicture(user.profile.id) +
+        '/newUpload.' + FileTools.ext(fileName);
 
     //Andreas: to discuss: does my modification from newUpload to Random.id()
     //impact the code in any way?

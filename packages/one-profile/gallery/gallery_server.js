@@ -11,7 +11,7 @@ Meteor.methods({
 			galleryName: name,
 			createdAt: new Date(),
 			userId: Meteor.userId()
-		}, function (error) {
+		}, function (error, result) {
 			if (error)
 				throw new Meteor.Error(500, 'Error in creating gallery');
 

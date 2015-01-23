@@ -1,5 +1,5 @@
 /* global Galleries: false */
-
+getAFreshBag = getAFreshBag();
 Template.picturesUploadModal.rendered = function(){
   $('.selectpicker').selectpicker();
 
@@ -29,7 +29,8 @@ Template.picturesUploadModal.events({
       '<label class="upload-input uploadCount">',
       '<i class="fa icon-addteam"></i>',
       '<span class="file-name"></span>',
-      '<input class="file-upload upload hidden" type="file" accept="image/*" >',
+      '<input class="file-upload upload hidden"'+
+      ' type="file" accept="image/*" >',
       '</label>',
       '<i class="fa fa-times-circle-o hidden"></i>',
       '</div>'
@@ -37,7 +38,8 @@ Template.picturesUploadModal.events({
     // Check to see if a file has been uploaded
     if( contents.length > 0 ){
       // swap icon if there is a file
-      $this.siblings( '.icon-addteam' ).removeClass( 'icon-addteam' ).addClass( 'fa-camera-retro' );
+      $this.siblings( '.icon-addteam' ).removeClass( 'icon-addteam' )
+        .addClass( 'fa-camera-retro' );
       // toggle close button
       $label.next( '.fa-times-circle-o' ).removeClass( 'hidden' );
       // Retrieve file name & display it
@@ -48,7 +50,8 @@ Template.picturesUploadModal.events({
     }
     else{
       // swap icon if there isn't a file
-      $this.siblings( '.fa-camera-retro' ).removeClass( 'fa-camera-retro' ).addClass( 'icon-addteam' );
+      $this.siblings( '.fa-camera-retro' ).removeClass( 'fa-camera-retro' )
+        .addClass( 'icon-addteam' );
       // clear input if there is not a file
       $this.siblings( '.file-name' ).text("");
       // hide x
@@ -82,9 +85,11 @@ Template.picturesUploadModal.events({
           //we have a file, let's add a loading indicator
           var $galleryId = $("#select-gallery-dropdown").val();
           var onComplete = function(result) {
-          var photoUrl = Meteor.settings.public.AWS_BUCKET_URL + '/' + result.filePath;
-          Meteor.call('addPictureToGallery',result.filePath, photoUrl, $galleryId,
-            function(error, result) {
+          var photoUrl = Meteor.settings.public.AWS_BUCKET_URL + '/' +
+            result.filePath;
+          Meteor.call('addPictureToGallery',result.filePath,
+            photoUrl, $galleryId,
+            function(error) {
             //removing the loading indicator
             $('.gallery-square[data-type="loader"]')[0].remove();
             if (error)
@@ -97,7 +102,10 @@ Template.picturesUploadModal.events({
           console.log(error);
         };
 
-        $('.album[album-id="'+$galleryId+'"] .galleryHolder').append('<div data-type="loader" class="gallery-square col-sm-2 half-gutter m-bottom-10 center picture-loader"><img src="/photo-load.gif" /></div>');
+        $('.album[album-id="'+$galleryId+'"] .galleryHolder')
+          .append('<div data-type="loader" class="gallery-square '+
+            'col-sm-2 half-gutter m-bottom-10 center picture-loader">'+
+            '<img src="/photo-load.gif" /></div>');
         var options = {
           onComplete: onComplete,
           onError: onError,
