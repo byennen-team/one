@@ -1,10 +1,9 @@
 /* global Galleries: false */
-getAFreshBag = getAFreshBag();
 Template.picturesUploadModal.rendered = function(){
   $('.selectpicker').selectpicker();
 
   $('#picturesUploadModal').on('hidden.bs.modal', function() {
-    getAFreshBag();
+    Gallery.getAFreshBag();
   });
 };
 
@@ -60,7 +59,7 @@ Template.picturesUploadModal.events({
     // Count number of fields with files
     var fileNum = $bag.find('.fa-camera-retro').length;
     var inputNum = $bag.find( '.uploadCount' ).length;
-    if( fileNum == inputNum){
+    if( fileNum === inputNum){
       // append a new input-box
       $bag.append(formHTML);
       $bag.find('.input-box:last').hide().slideDown(1000);

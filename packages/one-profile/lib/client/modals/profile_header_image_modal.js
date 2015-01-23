@@ -1,4 +1,3 @@
-getAFreshBag = getAFreshBag;
 Template.profileHeaderImageModal.events({
 
  'change .file-upload': function (event) {
@@ -103,6 +102,6 @@ Template.profileHeaderImageModal.events({
 
 Template.profileHeaderImageModal.rendered = function() {
   $('#add-image').on('hidden.bs.modal', function() {
-    getAFreshBag();
+    Gallery.getAFreshBag();
   });
 };

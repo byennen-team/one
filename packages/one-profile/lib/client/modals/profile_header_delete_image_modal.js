@@ -7,7 +7,11 @@ Template.profileHeaderDeleteImageModal.events({
 				if (err) {
 					alert(err);
 				} else {
-					Meteor.users.update(Meteor.userId(),{$pull: {'profile.coverUrl': {key:key}}}, function(e,r) {
+					Meteor.users.update(Meteor.userId(),{
+						$pull: {
+							'profile.coverUrl': {key:key}
+						}
+					}, function(e) {
 						if (e)
 							console.log(e);
 						else {

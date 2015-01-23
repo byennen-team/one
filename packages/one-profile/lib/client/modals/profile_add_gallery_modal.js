@@ -1,4 +1,4 @@
-getAFreshBag = getAFreshBag;
+
 Template.addGalleryModal.events({
 	'click #createGallery': function () {
 		var $name = $('#galleryNameField');
@@ -135,6 +135,6 @@ Template.addGalleryModal.rendered = function() {
 		$('#galleryNameField').focus();
 	});
   $('#addGaleryModal').on('hidden.bs.modal', function() {
-    getAFreshBag();
+    Gallery.getAFreshBag();
   });
 };
