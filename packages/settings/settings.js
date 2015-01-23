@@ -1,11 +1,12 @@
 /* global Settings: true */
 
-// lets complain to server command line if you forgot --settings when running Meteor
-if (Meteor.isServer) {  
+// lets complain to server command line if you
+// forgot --settings when running Meteor
+if (Meteor.isServer) {
   if (Object.keys(Meteor.settings).length === 0) {
     console.log("You forgot to run Meteor with --settings!");
-    console.log("Try this: meteor --settings settings.development.json")
-    console.log ("")
+    console.log("Try this: meteor --settings settings.development.json");
+    console.log ("");
   }
 }
 
