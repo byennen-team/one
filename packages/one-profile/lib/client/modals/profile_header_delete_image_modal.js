@@ -1,9 +1,9 @@
 Template.profileHeaderDeleteImageModal.events({
-	'click #header-delete-image': function(event) {
+	'click #header-delete-image': function () {
 		//getting the image's key (if set)
 		var key = $('.carousel-indicators li.active').data('key');
 		if (key && key.length > 0) {
-			FileTools.deleteStub('deleteFilesFromS3',key, function(err,result) {
+			FileTools.deleteStub('deleteFilesFromS3',key, function (err) {
 				if (err) {
 					alert(err);
 				} else {
@@ -15,7 +15,6 @@ Template.profileHeaderDeleteImageModal.events({
 							$('.carousel-inner .item').first().addClass('active');
 						}
 					});
-
 				}
 			});
 		} else {

@@ -1,3 +1,5 @@
+/* global Galleries: false */
+
 Template.picturesUploadModal.rendered = function(){
   $('.selectpicker').selectpicker();
 
@@ -24,13 +26,13 @@ Template.picturesUploadModal.events({
     var contents = $this.val();
     var formHTML = [
       '<div class="input-box">',
-      '            <label class="upload-input uploadCount">',
-      '              <i class="fa icon-addteam"></i>',
-      '              <span class="file-name"></span>',
-      '              <input class="file-upload upload hidden" type="file" accept="image/*" >',
-      '            </label>',
-      '            <i class="fa fa-times-circle-o hidden"></i>',
-      '           </div>'
+      '<label class="upload-input uploadCount">',
+      '<i class="fa icon-addteam"></i>',
+      '<span class="file-name"></span>',
+      '<input class="file-upload upload hidden" type="file" accept="image/*" >',
+      '</label>',
+      '<i class="fa fa-times-circle-o hidden"></i>',
+      '</div>'
       ].join('');
     // Check to see if a file has been uploaded
     if( contents.length > 0 ){
@@ -79,30 +81,28 @@ Template.picturesUploadModal.events({
         if ($contents && $contents.length > 0) {
           //we have a file, let's add a loading indicator
           var $galleryId = $("#select-gallery-dropdown").val();
+          var onComplete = function(result) {
+          var photoUrl = Meteor.settings.public.AWS_BUCKET_URL + '/' + result.filePath;
+          Meteor.call('addPictureToGallery',result.filePath, photoUrl, $galleryId,
+            function(error, result) {
+            //removing the loading indicator
+            $('.gallery-square[data-type="loader"]')[0].remove();
+            if (error)
+              return; // TODO: present an error to the user
 
-           var onComplete = function(result) {
-              var photoUrl = Meteor.settings.public.AWS_BUCKET_URL + '/' + result.filePath;
-                Meteor.call('addPictureToGallery',result.filePath, photoUrl, $galleryId,
-                  function(error, result) {
-                  //removing the loading indicator
-                  $('.gallery-square[data-type="loader"]')[0].remove();
-                  if (error)
-                    return; // TODO: present an error to the user
+          });
+        };
 
-                });
-            };
+        var onError = function(error) {
+          console.log(error);
+        };
 
-            var onError = function(error) {
-              console.log(error);
-            };
-
-          $('.album[album-id="'+$galleryId+'"] .galleryHolder').append('<div data-type="loader" class="gallery-square col-sm-2 half-gutter m-bottom-10 center picture-loader"><img src="/photo-load.gif" /></div>');
-          var options = {
-            onComplete: onComplete,
-            onError: onError,
-            filePath: Random.id()
-          };
-
+        $('.album[album-id="'+$galleryId+'"] .galleryHolder').append('<div data-type="loader" class="gallery-square col-sm-2 half-gutter m-bottom-10 center picture-loader"><img src="/photo-load.gif" /></div>');
+        var options = {
+          onComplete: onComplete,
+          onError: onError,
+          filePath: Random.id()
+        };
           FileTools.upload('signProfilePictureUpload', $contents[0], options);
         }
       }

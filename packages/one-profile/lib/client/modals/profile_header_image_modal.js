@@ -54,7 +54,6 @@ Template.profileHeaderImageModal.events({
       doomed.remove();
     });
   },
-
   'click #header-upload-image': function(){
     //Uploading the files
     $(".file-upload").each(function() {

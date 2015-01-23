@@ -8,30 +8,43 @@ Meteor.methods({
       var _ext = '.'+FileTools.ext(newUrl);
       Meteor._powerQ.pause();
       Meteor._powerQ.add(function(done) {
-        FileTools.fetch_to_temp(newUrl, done);
+        FileTools.fetchToTemp(newUrl, done);
       });
       Meteor._powerQ.add(function(done) {
-        FileTools.resize_temp('thumb_', done);
+        FileTools.resizeTemp('thumb_', done);
       });
       Meteor._powerQ.add(function(done){
-        FileTools.upload('thumb_', '/user/'+user.profile.id+'/profile-images/thumb_'+user.profile.id, done);
+        FileTools.upload(
+          'thumb_',
+          '/user/'+user.profile.id+'/profile-images/thumb_'+user.profile.id,
+          done
+        );
       });
       Meteor._powerQ.add(function(done) {
-        FileTools.resize_temp('full_', done);
+        FileTools.resizeTemp('full_', done);
       });
       Meteor._powerQ.add(function(done){
-        FileTools.upload('full_', '/user/'+user.profile.id+'/profile-images/full_'+user.profile.id, done);
+        FileTools.upload(
+          'full_',
+          '/user/'+user.profile.id+'/profile-images/full_'+user.profile.id,
+          done
+        );
       });
       Meteor._powerQ.add(function(done) {
-      var large_url_raw = 'user/'+user.profile.id+'/profile-images/full_'+user.profile.id+_ext;
-      var thumb_url_raw = 'user/'+user.profile.id+'/profile-images/thumb_'+user.profile.id+_ext;
-      var thumb_signed = FileTools.signedGet(thumb_url_raw);
-      var large_signed = FileTools.signedGet(large_url_raw);
+      var largeUrlRaw = 'user/'+user.profile.id+
+        '/profile-images/full_'+user.profile.id+_ext;
+      var thumbUrlRaw = 'user/'+user.profile.id+
+        '/profile-images/thumb_'+user.profile.id+_ext;
+      var thumbSigned = FileTools.signedGet(thumbUrlRaw);
+      var largeSigned = FileTools.signedGet(largeUrlRaw);
     user.profile.photoUrl = {
-        large: large_signed,
-        thumb: thumb_signed
+        large: largeSigned,
+        thumb: thumbSigned
     };
-    var update = Meteor.users.update(user._id, { "$set": { "profile.photoUrl": user.profile.photoUrl }});
+    Meteor.users.update(
+      user._id,
+      { "$set": { "profile.photoUrl": user.profile.photoUrl }}
+    );
     done();
     });
     Meteor._powerQ.resume();
@@ -44,7 +57,7 @@ Meteor.methods({
 
     var user = Meteor.user();
     if (!user) throw new Meteor.Error('Invalid credentials');
-
+    
     var pathToFile;
 
     if (filePath)

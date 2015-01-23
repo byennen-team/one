@@ -9,7 +9,7 @@ Package.onUse(function (api) {
     'less',
     'reactive-var',
     'jquery',
-    'stevezhu:velocity.js@0.1.0',
+    'velocityjs:velocityjs',
     'mquandalle:bower',
     'styles',
     'one-email',

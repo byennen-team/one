@@ -16,29 +16,36 @@ Template.messageInput.events({
 	},
 
 	// close the menu when an option is selected
-	'click #communication-message-input-options-post, click #communication-message-input-options-attachment, click #communication-message-input-options-task': function(){
+	'click #communication-message-input-options-post': function(){
 		Session.set("menuOpen", false);
+    // Open New Post menu
+    $('#communication-message-board').addClass('new-post');
 	},
+
+  // close the menu when an option is selected
+  'click #communication-message-input-options-attachment': function () {
+    Session.set("menuOpen", false);
+  },
+
+  // close the menu when an option is selected
+  'click #communication-message-input-options-task': function () {
+    Session.set("menuOpen", false);
+  },
 
 	// Check to see if the input holds an attachment when the value changes
 	'change #communication-message-input-attachment-input': function(){
 		var input = $('#communication-message-input-attachment-input');
 		if( input.val() ){
-			Session.set('attachment', true);	
+			Session.set('attachment', true);
 		}else{
 			Session.set('attachment', false);
 		}
 	},
-	
+
 	// Clear input value and resets session
 	'click #communication-message-attachment-delete': function(){
-		$('#communication-message-input-attachment-input').val('');		
+		$('#communication-message-input-attachment-input').val('');
 		Session.set('attachment', false);
-	},
-
-	// Open New Post menu
-	'click #communication-message-input-options-post': function(){
-		$('#communication-message-board').addClass('new-post');
 	}
 
 });

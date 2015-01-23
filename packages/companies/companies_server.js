@@ -1,5 +1,6 @@
 Companies.allow({
-  insert: function (userId, doc) {
+  insert: function () {
+    // TODO: Security
     return true;
   }
 });

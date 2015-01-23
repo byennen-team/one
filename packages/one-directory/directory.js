@@ -1,11 +1,12 @@
-// TODO: use bootstrap table for sorting: http://wenzhixin.net.cn/p/bootstrap-table/docs/index.html
+// TODO: use bootstrap table for sorting:
+//       http://wenzhixin.net.cn/p/bootstrap-table/docs/index.html
 
 Template.directory.events({
   'click .load-more': function () {
     Search.limit.set(Search.limit.get() + 100);
   },
   'click .user': function () {
-    user = Meteor.users.findOne({_id: this._id});
+    var user = Meteor.users.findOne({_id: this._id});
     Router.go(Routes.PROFILE, {slug: user.slug});
   }
 });

@@ -20,7 +20,8 @@ Template.profileContact.events({
     console.log("Type: " + buyOrSell);
     console.log("Message: " + message);
 
-    Meteor.call('sendProfileContactEmail', to, subject, senderName, sender, phone, buyOrSell, message, function(error, result) {
+    var args = [to, subject, senderName, sender, phone, buyOrSell, message];
+    Meteor.apply('sendProfileContactEmail', args, function (error) {
       if (error) {
         $('#contact-fail').modal('show');
       } else {

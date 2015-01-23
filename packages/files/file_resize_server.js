@@ -1,26 +1,20 @@
 var
 fs           = Npm.require('fs'), // for writing local (temp) files
 knox         = Npm.require('knox'),
-crypto       = Npm.require('crypto'), // used to create hash of image
-path         = Npm.require('path'),  // used for getting file extension
 request      = Npm.require('request'), // fetchin remote image data
 tmp          = Npm.require('tmp'), // creates temporary directory
-tmpath,
 im           = Npm.require('imagemagick'), // re-size images
-gm           = Npm.require('gm').subClass({ imageMagick: true }), // graphics magic
-encoding     = 'binary', // default encoding
 resizeWidths = { "mobile_":480, "thumb_":65, "full_":140 },
 resizeHeights = { "mobile_": 480, "thumb_": 65, "full_": 140 },
-img_tmp = 'imagetmp',
-img_ext = '.jpeg',
-imageremote = 'remoteimage.jpeg',
+imgTmp = 'imagetmp',
+imgExt = '.jpeg',
 flag404 = false,
-s3_params = {
+s3Params = {
   key: Meteor.settings.AWS_ACCESS_KEY_ID, //<api-key-here>'
   secret: Meteor.settings.AWS_SECRET_ACCESS_KEY,  //'<secret-here>'
   bucket: Meteor.settings.AWS_BUCKET
 },
-s3_client = knox.createClient(s3_params);
+s3Client = knox.createClient(s3Params);
 
 // set base for modulus in staging and beta enviroment
 if(Settings.isStaging || Settings.isBeta) {
@@ -28,42 +22,53 @@ if(Settings.isStaging || Settings.isBeta) {
 } else {
   var base = process.env.PWD+'/packages/files/img/';
 }
-
+FileTools.cleanupTemp =  function() {
+    var deleteImgs = ['thumb_imagetmp.jpg', 'imagetmp.jpg', 'full_imagetmp.jpg',
+    'imagetmp.JPG', 'thumb_imagetmp.JPG', 'imagetmp.jpeg'];
+    deleteImgs.forEach(function(img) {
+        console.log('unlink', img);
+        fs.unlink(base+img, function (error) {
+            if (error) { console.log('error', error); }
+            return;
+        });
+    });
+};
 //fetch temp image
-FileTools.fetch_to_temp = function(url, callback){
+FileTools.fetchToTemp = function(url, callback){
   flag404 = false;
   var originalName = url.substring(url.lastIndexOf('/')+1);
   var xpat = /\.([0-9a-z]+)(?:[\?#]|$)/i;
-  img_ext = originalName.match(xpat)[0];
+  imgExt = originalName.match(xpat)[0];
+  var writable = fs.createWriteStream(base+imgTmp+imgExt, {internal :  true})
+  .on('finish', Meteor.bindEnvironment(function() { callback(); }));
   request(url)
   .on('response',
       Meteor.bindEnvironment(function(response){
         response = response || { statusCode: 8888 };
-        if (response && response.statusCode == 404) {
+        if (response && response.statusCode === 404) {
             console.log(url, ' not found', response.statusCode);
             console.log('base', base);
             flag404 = true;
-            callback();
             }})
       )
   .on('end',
-      Meteor.bindEnvironment(function(error, response, body){
+      Meteor.bindEnvironment(function(error, response){
         if (error) console.log('end error', response.statusCode);
-        callback();
+        console.log('request end');
        }))
-  .pipe(fs.createWriteStream(base+img_tmp+img_ext, {internal :  true}));
+  .pipe(writable);
 };
 
 //resize
-FileTools.resize_temp = function(size, callback) {
+FileTools.resizeTemp = function(size, callback) {
     if (flag404) { return callback(); }
     Meteor.wrapAsync(im.resize({
-      srcPath: base+img_tmp+img_ext,
-      dstPath: base+size+img_tmp+img_ext,
+      srcPath: base+imgTmp+imgExt,
+      dstPath: base+size+imgTmp+imgExt,
       width:  resizeWidths[size],
       height: resizeHeights[size],
       quality: 0.6
-    }, Meteor.bindEnvironment(function(err, stdout, stderr){
+    }, Meteor.bindEnvironment(function(err) {
       if (err) {
         console.log('resized error: ', err);
       }
@@ -73,28 +78,18 @@ FileTools.resize_temp = function(size, callback) {
 
 //upload
 FileTools.upload = function (descriptor, remotefile, callback) {
-  var imagefile = base+descriptor+img_tmp+img_ext;
-  remotefile+=img_ext;
+  var imagefile = base+descriptor+imgTmp+imgExt;
+  remotefile+=imgExt;
   if (flag404) {
-      imagefile = base+descriptor+'NIA.jpg';
-      console.log('remote:', remotefile, '  : ', imagefile);
+    imagefile = base+descriptor+'NIA.jpg';
+    console.log('remote:', remotefile, '  : ', imagefile);
   }
-  Meteor.wrapAsync(s3_client.putFile(imagefile, remotefile, Meteor.bindEnvironment(function(err, response) {
-      if (err) { console.log('upload error:', remotefile); }
-      callback();
-    })));
+  var putFileCallback = Meteor.bindEnvironment(function(err) {
+    if (err) { console.log('upload error:', remotefile); }
+    callback();
+  });
+  Meteor.wrapAsync(s3Client.putFile(imagefile, remotefile, putFileCallback));
 };
-
-// creates an object with various urls to be sent back to client
-function imagesObject(filename){
-  // a hash containing all the links to images
-  var images = {
-    full:   s3baseurl+"full_"+filename,
-    mobile: s3baseurl+"mobile_"+filename,
-    thumb:  s3baseurl+"thumb_"+filename
-  };
-  return images;
-}
 
 // always clean up temporary files
 tmp.setGracefulCleanup();

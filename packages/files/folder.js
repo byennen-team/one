@@ -1,3 +1,5 @@
+/* global Folder: true */
+
 Folder = {};
 
 Folder.companyDocument = function (companyName) {
