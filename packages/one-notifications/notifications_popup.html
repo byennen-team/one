@@ -6,7 +6,7 @@
 <!-- TODO: Remove this static content -->
       <div class="notice">
         <div class="x">
-          <i class="fa icon-x"></i>
+          <i class="fa icon-x-blunt"></i>
         </div>
         <div class="clearfix"></div>
         <a href="#">
@@ -18,7 +18,7 @@
 
       <div class="notice">
         <div class="x">
-          <i class="fa icon-x"></i>
+          <i class="fa icon-x-blunt"></i>
         </div>
         <div class="clearfix"></div>
         <h5>Security Seminar</h5>
@@ -30,6 +30,10 @@
   <!-- Andreas: probably something like this     -->
 <!--       {{#each notifications}}
         <div class="notice">
+          <div class="x">
+            <i class="fa icon-x-blunt"></i>
+          </div>
+          <div class="clearfix"></div>
         {{#if notificationActionLink}}
           <a href="{{notificationActionLink}}">
             <h5>{{notificationTitle}}</h5>
@@ -37,7 +41,6 @@
           {{else}}
           <h5>{{notificationTitle}}</h5>
         {{/if}}
-
           <p class="date">{{date createdAt}}</p>
           <p class='text'>{{notificationText}}</p>
         </div>

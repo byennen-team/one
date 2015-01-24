@@ -11,7 +11,7 @@
     color: @white;
     position: relative;
     .title {
-      margin-top: 34px;
+      margin-top: 20px;
       color: white;
       letter-spacing: 2px;
       .weather {
@@ -19,6 +19,9 @@
         font-variant: small-caps;
         text-transform: lowercase;
         margin-left: 4px;
+        .skycon {
+          margin-bottom: -0.35em;
+        }
         .temp {
           font-size: 13px;
           font-family: @raleway-semibold;
@@ -124,9 +127,17 @@
       right: 1em;
       bottom: 1em;
       width: 50%;
+      .sleeve {
+        max-height: 350px;
+        overflow: hidden;
+        margin-right: 1em;
+      }
+      .sleeve.mCS_no_scrollbar { // only without scrollbar
+        margin-right: 0;
+      }
       .add-event {
         position: absolute;
-        right: 1em;
+        right: 2em;
         top: -1em;
         width: 1.25em;
         height: 1.25em;
@@ -136,20 +147,22 @@
           font-size: 18px;
         }
       }
+      .sleeve.mCS_no_scrollbar ~ .add-event { // only without scrollbar
+        right: 1em;
+      }
       .event {
         position: relative;
         height: 3em;
         .description-box {
           position: absolute;
           display: none;
-          right: 140px;
+          right: 120px;
           top: -0.25em;
           height: 4em;
-          // width: 0;
           font-size: 13px;
           font-family: @raleway-light;
           overflow: hidden;
-          z-index: 0;
+          z-index: 1;
           cursor: pointer;
           .description {
             position: relative;
@@ -183,15 +196,16 @@
         }
         .time {
           position: absolute;
-          right: 40px;
-          top: 1em;
+          right: -10px;
+          width: 105px;
+          top: 13px;
           font-size: 13px;
           font-family: @raleway-semibold;
           color: @med-grey;
           cursor: pointer;
           transition: color 350ms ease-out 50ms, font-size 350ms ease-out 50ms, top 350ms ease-out 50ms;
         }
-        .x {
+        .delete-event {
           position: absolute;
           font-size: 10px;
           right: 0;
@@ -199,29 +213,33 @@
           color: @white;
           opacity: 0;
           cursor: pointer;
+          transition: color 350ms ease-out 50ms, font-family 350ms ease-out 50ms;
         }
-        .x:hover {
+        .delete-event:hover {
           color: @red;
-        }
-      }
-      .event:hover {
-        .time {
-          top: 0.35em;
-          font-size: 21px;
-          font-family: @raleway-light;
-          color: @white;
-        }
-        .x {
           opacity: 1;
         }
+      }
+      .time:hover {
+        font-family: @raleway-light;
+        color: @white;
+      }
+      .time:hover ~ .delete-event {
+        opacity: 1;
+      }
+      .event:last-of-type {
+        margin-bottom: 0.5em;
       }
       .blue-line {
         position: absolute;
         top: 1em;
         bottom: 1em;
-        right: 1.5em;
+        right: 2.5em;
         width: 1px;
         background-color: @accent;
+      }
+      .sleeve.mCS_no_scrollbar ~ .blue-line { // only without scrollbar
+        right: 1.5em;
       }
     }
 

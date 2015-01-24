@@ -27,6 +27,8 @@ Package.onUse(function (api) {
     'dashboard_widget_search.html',
     'dashboard_widget_search.less',
     'dashboard_widget_search_client.js',
+    'dashboard_delete_event_modal.html',
+    'dashboard_skycons_client.js',
     //communication-sidebar
     'communication-sidebar/communication_sidebar.html',
     'communication-sidebar/communication_sidebar.less',

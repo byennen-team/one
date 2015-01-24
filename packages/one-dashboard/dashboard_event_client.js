@@ -15,13 +15,14 @@ Template.eventMenu.rendered = function () {
   if( location ){
     Session.set( 'notesOpen', true );
   }else {
-    $( '#event-menu-notes' ).css( 'display', 'none' );
+    $( '#event-menu-notebox' ).velocity({ height: 0 });
     Session.set( 'notesOpen', false );
   }
 
 // TODO: if the event already has a color defined, insert in instead of 'purple'
   $( '.colorselectpicker' ).selectpicker(); // use specific class to call first
   $( '.filter-option' ).addClass( 'purple dot-select' );
+
 };
 
 var roundTime = function( add ){
@@ -73,7 +74,7 @@ Template.eventMenu.helpers({
   },
 // TODO: if event has a location, return the address string, else return.
   eventLocation: function () {
-    return;
+    // return;
     return '575 Madison Ave, New York, NY';
   },
 // TODO: if event has a location, return open, else return.
@@ -120,10 +121,10 @@ Template.eventMenu.events({
     var open = Session.get( 'notesOpen' );
     if( open ){ // if box is currently open, close it and set session to false
       Session.set( 'notesOpen', false );
-      $( '#event-menu-notes' ).velocity("slideUp", { duration: 350 });
+      $( '#event-menu-notebox' ).velocity({ height: 0 });
     }else { // if box is currently closed, open it and set session to true
       Session.set( 'notesOpen', true );
-      $( '#event-menu-notes' ).velocity("slideDown", { duration: 350 }, 'ease-out');
+      $( '#event-menu-notebox' ).velocity({ height: 100 });
     }
   },
 
@@ -135,10 +136,16 @@ Template.eventMenu.events({
 // TODO: submit form here:
   'click .btn-submit': function (event) {
     event.preventDefault();
-    $( '#event-menu' ).velocity("fadeOut", { duration: 500 });
+    $( '#event-menu, #event-menu-clear' ).velocity("fadeOut", { duration: 500 });
+  },
+
+  'click #event-menu-clear': function () {
+    $( '#event-menu, #event-menu-clear' ).velocity("fadeOut", { duration: 500 });
   },
 
 // TODO: Also needs to remove the guest from the list
+//  The div .guest will need to be actually removed from the DOM to prevent
+//    positioning errors.
   'click .uninvite': function (event){
     var $this = $( event.currentTarget );
     $this.closest( '.guest' ).velocity( "slideUp", { duration: 350 });
@@ -167,6 +174,18 @@ Template.eventMenu.events({
         $this.addClass( classList[i] );
     }
     $this.addClass( 'dot-select' );
+  },
+
+  // Append street address to google map request
+  'click #event-menu-location-map': function (event) {
+    event.preventDefault();
+    var address = $( '#event-menu-location' ).val();
+    address = address.split(' ').join('+'); // replace spaces with '+'
+    var google = 'https://www.google.com/maps/?q=';
+    var url = google + address;
+    window.open( url );
   }
+
+
 
 });

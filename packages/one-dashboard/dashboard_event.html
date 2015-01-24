@@ -46,14 +46,14 @@
       </label>
       <div id="event-menu-location-box" class="location-box">
         <input id='event-menu-location' type="text" value="{{eventLocation}}" />
-        <a href='https://www.google.com/maps/' class="directions" target="_blank">get directions <i class="fa fa-location-arrow"></i></a>
+        <a id='event-menu-location-map' href='#' class="directions" target="_blank">get directions <i class="fa fa-location-arrow"></i></a>
       </div>
     </div>
 
     <div class="form-group invite-people">
       <label id='event-menu-invite-label' for="event-menu-invite">
         <i class="fa fa-user"></i>
-        <span>add people</span>
+        <span>add people <i class="fa icon-addteam" ></i></span>
       </label>
 <!-- TODO: Add invited Agents here -->
 <!-- Possible SAMPLE CODE: -->
@@ -67,7 +67,7 @@
         <div class="name">{{profile.name}}</div>
         {{#if creator}}
         <div class="uninvite">
-          <i class="fa icon-x"></i>
+          <i class="fa icon-x-blunt"></i>
         </div>
         {{/if}}
       </div>
@@ -81,7 +81,7 @@
         </div>
         <div class="name">Joy Avery</div>
         <div class="uninvite">
-          <i class="fa icon-x"></i>
+          <i class="fa icon-x-blunt"></i>
         </div>
       </div>
 
@@ -92,19 +92,19 @@
         </div>
         <div class="name">Dottie Herman</div>
         <div class="uninvite">
-          <i class="fa icon-x"></i>
+          <i class="fa icon-x-blunt"></i>
         </div>
       </div>
 <!-- /delete -->
       <div id="event-menu-invite-box" class="invite-box">
 
-        <div class="invite-people-btn">
+        <div class="invite-people-btn" data-toggle="modal" data-target="#communication-directory-modal">
           <i id="event-menu-invite" class="fa icon-addteam"></i>
-  <!-- TODO: This should search the directory -->
         </div>
 
         <label class='sr-only' for="task-menu-invite-search">Search for people to add</label>
         
+  <!-- TODO: This should search the directory -->
         <div class="invite-search" id="event-menu-invite-search">
           {{> widgetSearch}}
         </div>
@@ -124,12 +124,16 @@
         <i class="fa fa-file-text"></i>
         <span>notes</span>
       </label>
-      <textarea name="description" id="event-menu-notes" value="{{notes}}"></textarea>
+      <div id="event-menu-notebox" class="description-box">
+        <textarea name="description" id="event-menu-notes" value="{{notes}}"></textarea>
+      </div>
     </div>
 
     <button type="submit" class="btn btn-default btn-cancel">cancel</button>
     <button type="submit" class="btn btn-primary btn-create">create event</button>
 
   </form>
+
+  <div id="event-menu-clear" class="clear-click"></div>
 
 </template>

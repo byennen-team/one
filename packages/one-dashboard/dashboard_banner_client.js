@@ -1,22 +1,32 @@
+Template.dashboardBanner.rendered = function () {
+  $("#dashboard-schedule-sleeve").mCustomScrollbar({
+      theme:"one-dark",
+      scrollbarPosition: "outside"
+  });
+
+  // Skycons:
+  // Documentation here: http://darkskyapp.github.io/skycons/
+  var skycons = new Skycons({
+    "color": "white",
+    "resizeClear": true  // Android hack
+  });
+
+// TODO: need to plug in weather here. Examples:
+  // skycons.add("skycon", Skycons.PARTLY_CLOUDY_DAY);
+  // skycons.add("skycon", Skycons.CLOUDY);
+  // skycons.add("skycon", Skycons.CLEAR_DAY);
+  // more options in /dashboard_skycons_client.js
+  skycons.add("skycon", Skycons.SNOW);
+  // start animation
+  skycons.play();
+};
+
 Template.dashboardBanner.helpers({
 // TODO: should return current temperature
   temp: function() {
     return '34';
   },
-// TODO: should return icon code based on current weather
-  weather: function() {
-    return 'fa-sun-o';
-    // example: (need to create custom icons)
-    // if( sunny ){
-    //   return 'fa-sun-o';
-    // } else if ( cloudy ) {
-    //   return 'fa-cloud';
-    // } else if ( rain ) {
-    //   return 'fa-tint';
-    // } else if ( snow ) {
-    //   return 'fa-bug';
-    // }
-  },
+
 // TODO: should return the closes city to User's current location  
   city: function() {
     return 'new york';
@@ -70,6 +80,23 @@ Template.dashboardBanner.events({
     $description.velocity("fadeIn", { duration: 500 });
   },
 
+  'mouseenter .time': function (event) {
+    var $time = $( event.target );
+    $time.velocity( "stop", true ); // clear queue - no dancing!
+    $time.velocity({ 
+      scaleX: 1.3,
+      scaleY: 1.3
+    });
+  }, 
+
+  'mouseleave .time': function (event) {
+    var $time = $( event.target );
+    $time.velocity({ 
+      scaleX: 1.0,
+      scaleY: 1.0
+    });
+  },
+
   'mouseleave .event': function (event) {
     var $this = $( event.target );
     var $description = $this.find( '.description-box' );
@@ -77,9 +104,11 @@ Template.dashboardBanner.events({
   },
 
 // TODO: Should populate the event menu with data for event
+// TODO: #banner-add-event creates a new event.
   // Calls the event menu modal
-  'click .description': function () { // these events are different
-    $( '#event-menu' ).velocity("fadeIn", { duration: 500 });
-  },
+  'click .description, click #banner-add-event': function () { // these events are different
+    $( '#event-menu, #event-menu-clear' ).velocity("fadeIn", { duration: 500 });
+  }
+
 
 });
