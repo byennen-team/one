@@ -13,6 +13,10 @@
         <div class="options col-sm-12">
           <a href="#" class="folder" data-toggle="modal" data-target="#documentsFolderModal"><i class="fa fa-folder"></i> New Folder</a>
           <a href="#" class="" data-toggle="modal" data-target="#documentsUploadModal"><i class="fa fa-cloud-upload"></i> Upload File</a>
+          <a href="#" class="{{moveToActionState}}"
+             data-toggle="modal" data-target="#documentsMoveToModal">
+            <i class="fa fa-arrows"></i> Move to
+          </a>
         </div>
       </div>
       <div class="row">
@@ -95,6 +99,7 @@
           {{> emailDocumentModal}}
           {{> documentsFolderModal}}
           {{> documentsUploadModal}}
+          {{> documentsMoveToModal}}
           {{> documentsRenameModal}}
         </div>
       </div>

@@ -124,6 +124,11 @@ Template.documents.events({
 });
 
 Template.documents.helpers({
+  moveToActionState: function () {
+    var selectedDocuments = Session.get('selectedDocuments') || [];
+
+    return _.isEmpty(selectedDocuments) ? 'hidden' : '';
+  },
   isSelected: function (file) {
     var selectedDocuments = Session.get('selectedDocuments') || [];
 
