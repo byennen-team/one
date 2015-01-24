@@ -25,7 +25,7 @@
           <table class="table">
             <thead>
               <tr>
-                <!-- <th></th> -->
+                <th><span class="sr-only">Selected</span></th>
                 <th></th>
                 <th></th>
                 <th>Name</th>
@@ -37,9 +37,19 @@
             <tbody>
               {{#each files}}
                 <tr id="row-{{_id}}">
-                  <!-- <td><input type="checkbox" ></td> -->
+                  <td class="selectCheckbox">
+                    <label>
+                      <input type="checkbox"
+                             data-action="select"
+                             checked="{{isSelected this}}"
+                             aria-label="select document">
+                    </label>
+                  </td>
                   <td class="favoriteCheckbox">
-                    <input id="box-{{_id}}" type="checkbox" {{isFavoriteChecked this}}/>
+                    <input id="box-{{_id}}"
+                           type="checkbox"
+                           data-action="favorite"
+                           {{isFavoriteChecked this}}>
                     <label for="box-{{_id}}"></label>
                   </td>
                   <td>

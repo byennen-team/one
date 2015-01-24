@@ -6,7 +6,7 @@ Package.onUse(function (api) {
   var both = ['web', 'server'];
 
   api.use([
-    'less', 'jquery', 'session',
+    'less', 'jquery', 'session', 'underscore',
     'templating', 'mrt:moment', 'natestrauser:select2@3.4.9',
     'velocityjs:velocityjs', 'mquandalle:bower', 'routes', 'files'
     ], 'web');

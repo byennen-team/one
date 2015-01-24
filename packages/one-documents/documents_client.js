@@ -58,12 +58,25 @@ Template.documents.events({
   'click .upload': function (event, template) {
     template.find('input').click();
   },
-
   'change input[type=file]': function (event) {
     uploadFile(event.target.files[0]);
   },
+  'click [data-action="select"]': function (event) {
+    event.preventDefault(); // Don't select the checkbox automatically
 
-  'click input[type=checkbox]': function (event) {
+    var newSelectedDocument = Blaze.getData(event.target);
+    var newSelectedDocumentId = newSelectedDocument._id;
+    var selectedDocuments = Session.get('selectedDocuments') || [];
+
+    if (_.contains(selectedDocuments, newSelectedDocumentId)) {
+      selectedDocuments = _.without(selectedDocuments, newSelectedDocumentId);
+    } else {
+      selectedDocuments.push(newSelectedDocumentId);
+    }
+
+    Session.set('selectedDocuments', selectedDocuments);
+  },
+  'click [data-action="favorite"]': function (event) {
     var checkbox = event.target;
 
     var file = Blaze.getData(checkbox);
@@ -111,6 +124,11 @@ Template.documents.events({
 });
 
 Template.documents.helpers({
+  isSelected: function (file) {
+    var selectedDocuments = Session.get('selectedDocuments') || [];
+
+    return _.contains(selectedDocuments, file._id);
+  },
   isFavoriteChecked: function (file) {
     var user = Meteor.user();
     if (user &&
