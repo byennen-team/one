@@ -11,8 +11,8 @@ Template.eventMenu.rendered = function () {
   Session.set( 'addPeople', false );
 
   // If there is an address, show it
-  var location = $( '#event-menu-notes' ).val();
-  if( location ){
+  var haveNotes = $( '#event-menu-notes' ).val();
+  if( haveNotes ){
     Session.set( 'notesOpen', true );
   }else {
     $( '#event-menu-notebox' ).velocity({ height: 0 });
@@ -38,18 +38,18 @@ var roundTime = function( add ){
   }else {
     min = '00';
   }
-  if( min == '00' && hour < 12 ){ // if we've rounded down
+  if( min === '00' && hour < 12 ){ // if we've rounded down
     hour++;
-  }else if( hour == 12 ){ // if it's 12, to to 1 and switch am/pm
+  }else if( hour === 12 ){ // if it's 12, to to 1 and switch am/pm
     hour = 1;
-    if( ampm == 'am' ){ 
+    if( ampm === 'am' ){ 
       ampm = 'pm';
     }else {
       ampm = 'am';
     }
   }
 
-  if( add == null ){
+  if( add === null ){
     return hour + ':' + min + ' ' + ampm; // make it pretty
   }else {
     hour = parseInt(hour, 10);
@@ -57,7 +57,7 @@ var roundTime = function( add ){
     hour = hour + add;
     return hour + ':' + min + ' ' + ampm; // make it pretty
   }
-}
+};
 
 Template.eventMenu.helpers({
 
@@ -85,7 +85,7 @@ Template.eventMenu.helpers({
 
 // TODO: if event has notes, return notes, else return.
   notes: function () {
-    return "here are some notes about the event."
+    return "here are some notes about the event.";
     // return;
   }
 });
@@ -136,11 +136,13 @@ Template.eventMenu.events({
 // TODO: submit form here:
   'click .btn-submit': function (event) {
     event.preventDefault();
-    $( '#event-menu, #event-menu-clear' ).velocity("fadeOut", { duration: 500 });
+    $( '#event-menu, #event-menu-clear' )
+      .velocity( "fadeOut", { duration: 500 });
   },
 
   'click #event-menu-clear': function () {
-    $( '#event-menu, #event-menu-clear' ).velocity("fadeOut", { duration: 500 });
+    $( '#event-menu, #event-menu-clear' )
+      .velocity( "fadeOut", { duration: 500 });
   },
 
 // TODO: Also needs to remove the guest from the list

@@ -18,7 +18,8 @@
               global.msCancelAnimationFrame      ;
 
     if(raf && caf) {
-      requestInterval = function(fn, delay) {
+      // requestInterval = function(fn, delay) {
+      requestInterval = function(fn) { // JShint fix
         var handle = {value: null};
 
         function loop() {
@@ -235,7 +236,9 @@
 
     ctx.beginPath();
     ctx.arc(cx, cy, a, p + TAU / 8, p + TAU * 7 / 8, false);
-    ctx.arc(cx + Math.cos(p) * a * TWO_OVER_SQRT_2, cy + Math.sin(p) * a * TWO_OVER_SQRT_2, a, p + TAU * 5 / 8, p + TAU * 3 / 8, true);
+    ctx.arc(cx + Math.cos(p) * a * TWO_OVER_SQRT_2, 
+      cy + Math.sin(p) * a * TWO_OVER_SQRT_2,
+       a, p + TAU * 5 / 8, p + TAU * 3 / 8, true);
     ctx.closePath();
     ctx.stroke();
   }
@@ -265,8 +268,8 @@
     t /= 750;
 
     var a = cw * 0.1875,
-        b = TAU * 11 / 12,
-        c = TAU *  7 / 12,
+        // b = TAU * 11 / 12,    // JShint fix
+        // c = TAU *  7 / 12,    // JShint fix
         i, p, x, y;
 
     ctx.strokeStyle = color;
@@ -276,7 +279,8 @@
 
     for(i = 4; i--; ) {
       p = (t + i / 4) % 1;
-      x = Math.floor(cx + ((i - 1.5) / 1.5) * (i === 1 || i === 2 ? -1 : 1) * a) + 0.5;
+      x = Math.floor(cx + ((i - 1.5) / 1.5) 
+        * (i === 1 || i === 2 ? -1 : 1) * a) + 0.5;
       y = cy + p * cw;
       line(ctx, x, y - s * 1.5, x, y + s * 1.5);
     }
@@ -717,7 +721,7 @@
       }, 1000 / 60);
     },
     pause: function() {
-      var i;
+      // var i;           // JShint fix
 
       if(this.interval) {
         cancelInterval(this.interval);

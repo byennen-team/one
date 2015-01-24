@@ -6,6 +6,7 @@ Template.dashboardBanner.rendered = function () {
 
   // Skycons:
   // Documentation here: http://darkskyapp.github.io/skycons/
+  var Skycons;
   var skycons = new Skycons({
     "color": "white",
     "resizeClear": true  // Android hack
@@ -41,9 +42,8 @@ Template.dashboardBanner.helpers({
 
 Template.dashboardBanner.events({
   // Opens the com_hub when an avatar is clicked on
-  'click .avatar-box': function(event) {
+  'click .avatar-box': function() {
 // TODO: need to open a direct message conversation with the Agent clicked on
-    var $this = $( event.target );
     // expands the main dialog box t0 60% of full screen - task bar open
     $('#sidebar-scroll-target').velocity("scroll",600);
     $.Velocity.hook($('#communication-main'), "width", "100%");
@@ -106,7 +106,7 @@ Template.dashboardBanner.events({
 // TODO: Should populate the event menu with data for event
 // TODO: #banner-add-event creates a new event.
   // Calls the event menu modal
-  'click .description, click #banner-add-event': function () { // these events are different
+  'click .description, click #banner-add-event': function () {
     $( '#event-menu, #event-menu-clear' ).velocity("fadeIn", { duration: 500 });
   }
 
