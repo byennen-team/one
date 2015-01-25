@@ -7,18 +7,12 @@
             <i class='fa icon-x' aria-hidden="true"></i>
             <span class="sr-only">Close</span>
           </button>
-          <h4 class="modal-title" id="myModalLabel">Upload pictures</h4>
+          <h4 class="modal-title" id="myModalLabel">add pictures</h4>
         </div>
         <div class="modal-body">
           
           <div class="form-group">
-            <label class='m-top-20'>Upload to Gallery:</label>
-            <select class="selectpicker" id="select-gallery-dropdown" data-style="drop-select" data-width='100%'>
-              {{#each galleries}}
-                <option value="{{_id}}">{{galleryName}}</option>
-              {{/each}}
-            </select>
-            <label>pictures</label>
+            <label class='m-top-10'>upload pics</label>
             <div class="input-bag">
               <div class="input-box">
                 <label class='upload-input uploadCount'>
@@ -30,8 +24,18 @@
               </div>
             </div>
           </div>
+
+          <div class="form-group">
+            <label>album</label>
+            <select class="selectpicker" id="select-gallery-dropdown" data-style="drop-select" data-width='100%'>
+              {{#each galleries}}
+                <option value="{{_id}}">{{galleryName}}</option>
+              {{/each}}
+            </select>
+          </div>
+
         </div>
-        <div class="modal-footer m-top-20">
+        <div class="modal-footer m-top-50">
           <button type="button" class="btn btn-default" data-dismiss="modal">cancel</button>
           <button type="button" class="btn btn-primary upload-modal-btn" data-dismiss="modal">upload</button>
         </div>
