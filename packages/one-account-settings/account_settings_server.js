@@ -50,7 +50,8 @@ Meteor.methods({
     Meteor._powerQ.resume();
   },
   signProfilePictureUpload: function (fileName, mimeType, filePath) {
-    console.log('signProfilePictureUpload', fileName, ' mimeType ', mimeType, ' filePath ', filePath);
+    console.log('signProfilePictureUpload', fileName,
+    ' mimeType ', mimeType, ' filePath ', filePath );
     check(fileName, String);
     check(mimeType, String);
     if (filePath)
