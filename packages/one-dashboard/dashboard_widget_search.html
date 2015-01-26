@@ -1,8 +1,7 @@
-<template name="searchBox">
-    <div class="searchBox col-sm-3 hidden-xs">
-        <i class="fa fa-search"></i>
-        <i id='navbar-search-clear' class="fa icon-x"></i>
-        <input id='navbar-search-input' type="text" name="search" class="search" placeholder="Search anything...">
+<template name="widgetSearch">
+    <div class="widget-search">
+        <input type="text" name="search" class="search" placeholder="Name or email">
+        <i class="fa icon-x search-clear"></i>
     </div>
     {{#unless hide}}
         <div class="navbar-search-results col-sm-3 hidden-xs">

@@ -1,6 +1,7 @@
 .atom
 .DS_Store
 .idea
+node_modules
 tempImages
 chucksettings.json
 

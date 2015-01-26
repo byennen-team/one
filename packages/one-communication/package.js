@@ -37,6 +37,9 @@ Package.onUse(function (api) {
     'task/communication_task_board.html',
     'task/communication_task_board.less',
     'task/communication_task_board_client.js',
+    'task/communication_task_create.html',
+    'task/communication_task_create.less',
+    'task/communication_task_create_client.js',
     //library
     'library/communication_library_board.html',
     'library/communication_library_board.less',
