@@ -5,12 +5,16 @@ FileTools.upload = function (method, file, options) {
     onProgress: undefined,
     onError: noop,
     onComplete: noop,
-    parentFolderId: null
+    parentFolderId: null,
+    filePath: null
   });
 
   var args = [file.name, file.type];
   if (options.parentFolderId) {
     args.push(options.parentFolderId);
+  }
+  if (options.filePath) {
+    args.push(options.filePath);
   }
 
   // Heavily borrowed from http://stackoverflow.com/a/12378395/230462
@@ -19,6 +23,7 @@ FileTools.upload = function (method, file, options) {
       options.onError(error);
       return;
     }
+
     var formData = new FormData();
 
     formData.append('key', result.filePath);

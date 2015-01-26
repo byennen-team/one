@@ -1,4 +1,7 @@
 Template.taskBoard.rendered = function () {
-	// var currentHeight = $(window).height();
- //  $('#communication-task-board').css( 'height', currentHeight - 70 + 'px' );
+  // initialize maazalik:malihu-jquery-custom-scrollbar scrollbar plugin
+  $("#communication-task-board-sleeve").mCustomScrollbar({
+      theme:"one-light",
+      scrollbarPosition: "inside"
+  });
 };

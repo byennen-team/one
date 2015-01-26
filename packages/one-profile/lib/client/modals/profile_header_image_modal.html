@@ -10,18 +10,24 @@
           </button>
           <p class="modal-title">Select an image</p>
         </div>
-        <div class="modal-body">
+        <div class="modal-body p-bottom-20">
+        
           <div class="form-group">
-            <label>image file</label>
-            <label class='upload-input single'>
-              <span class='file-name'></span>
-              <i class="fa icon-addteam"></i>
-              <input class="image-upload hidden" type="file" name="pic" accept="image/*">
-            </label>
-            <i class="fa fa-times-circle-o hidden"></i>
+            <label>upload pics</label>
+            <div class="input-bag">
+              <div class="input-box">
+                <label class='upload-input uploadCount'>
+                  <i class="fa icon-addteam"></i>
+                  <span class='file-name'></span>
+                  <input class="file-upload upload hidden" type="file" accept="image/*" />
+                </label>
+                <i class="fa fa-times-circle-o hidden"></i>
+              </div>
+            </div>
           </div>
+
         </div>
-        <div class="modal-footer">
+        <div class="modal-footer m-top-10">
           <button type="button" class="btn btn-default" data-dismiss="modal">cancel</button>
           <button type="button" class="btn btn-primary" id="header-upload-image" data-dismiss="modal">add image</button>
         </div>

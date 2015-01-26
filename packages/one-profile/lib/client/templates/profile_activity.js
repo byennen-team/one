@@ -1,4 +1,5 @@
 /* globals SocialStatuses: true */
+
 Template.profileActivity.events({
   'change #activity-image-upload': function (event) {
   	// get string of file path (fake)

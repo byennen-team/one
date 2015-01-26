@@ -41,15 +41,16 @@ Package.onUse(function (api) {
   ], 'web');
 
 
+  api.addFiles([
+    'gallery/gallery.js'], ['server','web']);
   //server files
   api.addFiles([
     'gallery/gallery_server.js'], 'server');
 
-  api.addFiles([
-    'gallery/gallery.js'], ['server','web']);
 
   // modals
   api.addFiles([
+    'lib/client/modals/profile_common_modal.js',
     'lib/client/modals/profile_header_image_modal.html',
     'lib/client/modals/profile_header_image_modal.js',
     'lib/client/modals/profile_header_delete_image_modal.html',
@@ -99,5 +100,5 @@ Package.onUse(function (api) {
   // Bower packages
   api.addFiles(['smart.json'], 'web');
 
-  api.export('Profile', 'web');
+  api.export(['Profile'], 'web');
 });
