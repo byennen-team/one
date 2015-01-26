@@ -1,0 +1,15 @@
+{
+  "packages": {
+    "bower": {}
+  },
+  "bower": {
+    "jstree": {
+      "version": "3.0.9",
+      "additionalFiles": [
+        "dist/themes/default/32px.png",
+        "dist/themes/default/40px.png",
+        "dist/themes/default/throbber.gif"
+      ]
+    }
+  }
+}

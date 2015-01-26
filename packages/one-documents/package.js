@@ -8,7 +8,7 @@ Package.onUse(function (api) {
   api.use([
     'less', 'jquery', 'session', 'underscore',
     'templating', 'mrt:moment', 'natestrauser:select2@3.4.9',
-    'velocityjs:velocityjs', 'mquandalle:bower', 'routes', 'files'
+    'velocityjs:velocityjs', 'mquandalle:bower', 'routes', 'files', 'jstree'
     ], 'web');
   api.use('files', both);
 

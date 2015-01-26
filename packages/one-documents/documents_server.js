@@ -70,7 +70,7 @@ Meteor.methods({
 
     var user = Meteor.user();
     if (!user) throw new Meteor.Error('Invalid credentials');
-    validateParentFolderId(user, parentFolderId);
+    validateFolderId(user, parentFolderId);
 
     // TODO grab company name
     var filePath = Folder.companyDocument('elliman') + '/' + fileName;
@@ -94,7 +94,7 @@ Meteor.methods({
 
     var user = Meteor.user();
     if (!user) throw new Meteor.Error('Invalid credentials');
-    validateParentFolderId(user, parentFolderId);
+    validateFolderId(user, parentFolderId);
 
     var filePath = Folder.userDocument(user._id) + '/' + fileName;
 
@@ -117,7 +117,7 @@ Meteor.methods({
 
     var user = Meteor.user();
     if (!user) throw new Meteor.Error('Invalid credentials');
-    validateParentFolderId(user, parentFolderId);
+    validateFolderId(user, parentFolderId);
 
     return FileTools.createFolder(
       folderName,
@@ -125,11 +125,25 @@ Meteor.methods({
       parentFolderId,
       isCompanyDocument
     );
+  },
+
+  moveTo: function (documentIdsToMove, targetFolderId) {
+    check(documentIdsToMove, [String]);
+    check(targetFolderId, String);
+
+    var user = Meteor.user();
+    if (!user) throw new Meteor.Error('Invalid credentials');
+    validateFolderId(user, targetFolderId);
+
+    // TODO: Validate the ownership of the documents
+
+    return FileTools.moveTo(documentIdsToMove, targetFolderId);
   }
 });
 
-function validateParentFolderId(user, parentFolderId) {
-  if (parentFolderId && !isUserOwnerOfFile(user._id, parentFolderId)) {
+function validateFolderId(user, folderId) {
+  // TODO: Is this correct for company documents?
+  if (folderId && !isUserOwnerOfFile(user._id, folderId)) {
     throw new Meteor.Error('NOT_OWNER_OF_PARENT_FOLDER');
   }
 }

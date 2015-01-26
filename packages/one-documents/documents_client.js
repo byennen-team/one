@@ -55,6 +55,9 @@ var uploadFile = function (file) {
 };
 
 Template.documents.events({
+  'click [data-action="show-move-to-modal"]': function () {
+    Modal.show('documentsMoveToModal');
+  },
   'click .upload': function (event, template) {
     template.find('input').click();
   },

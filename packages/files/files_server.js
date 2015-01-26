@@ -130,6 +130,7 @@ FileTools.delete = function (filePath, callback) {
  * @param {Boolean} [isCompanyDocument] Is the folder a companyDocument?
  * @returns {String} The id of the created folder.
  */
+// TODO: Move to DocumentTools?
 FileTools.createFolder = function (
   folderName,
   userId,
@@ -146,4 +147,13 @@ FileTools.createFolder = function (
     isFolder: true,
     parent: parentFolderId
   });
+};
+
+// TODO: Move to DocumentTools?
+FileTools.moveTo = function (documentIdsToMove, targetFolderId) {
+  return Files.update(
+    {_id: {$in: documentIdsToMove}},
+    {$set: {parent: targetFolderId}},
+    {multi: true}
+  );
 };

@@ -14,15 +14,20 @@
         </div>
         <div class="modal-body">
           <div class="form-group">
-            <!-- TODO: Tree select for folder -->
+            <div class="documentsMoveToModal__currentFolder">
+              Items are currently in
+              <span class="documentsMoveToModal__currentFolderName">
+                <i class="fa fa-folder"></i> {{currentFolder}}
+              </span>
+            </div>
+            <div data-view="file-tree"></div>
           </div>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-default" data-dismiss="modal">
             Cancel
           </button>
-          <button type="button" class="btn btn-primary"
-                  data-action="move-documents">
+          <button type="button" class="btn btn-primary" data-action="move-to">
             Move
           </button>
         </div>
