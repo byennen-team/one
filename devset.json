@@ -1,0 +1,40 @@
+{ "AWS_BUCKETS": {
+    "goone": {
+        "env": "production",
+        "region": "us-standard", 
+        "url": "https://s3.amazonaws.com/goone/"
+    },
+    "goone-beta" : {
+        "env": "beta",
+        "region": "us-west-2", 
+        "url":  "https://goone-beta.s3.amazonaws.com"
+    },
+    "goone-dev" : {
+        "env": "development",
+        "region": "us-standard",
+        "url": "https://s3.amazonaws.com/goone-dev"
+    },
+    "goone-raw-upload-west-2": {
+        "env": "development",
+        "region": "us-west-2",
+        "url": "https://goone-raw-upload-west-2.s3.amazonaws.com"
+    },
+    "goone-resized-west-2": {
+        "env": "development",
+        "region": "us-west-2",
+        "url": "https://goone-raw-upload-west-2.s3.amazonaws.com"
+    }
+},
+  "AWS_BUCKET": "goone-dev", 
+  "AWS_BUCKET_RAW": "goone-raw-upload-west-2",
+  "AWS_ACCESS_KEY_ID": "AKIAIRIH744ERKEXHPOA",
+  "AWS_SECRET_ACCESS_KEY": "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",
+  "public": {
+    "AWS_BUCKET_URL": "https://goone-dev.s3.amazonaws.com",
+    "AWS_BUCKET_RAW": "https://goone-raw-upload-west-2.s3.amazonaws.com",
+    "ENVIRONMENT": "development"
+  },
+  "S3_URL_EXPIRATION_SECONDS": 604800,
+  "MANDRILL_USERNAME": "mandrill@gooneapp.com",
+  "MANDRILL_API_KEY": "SuSOTzzT5JI4ZCa-__HyPw"
+}

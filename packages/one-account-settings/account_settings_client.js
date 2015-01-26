@@ -4,7 +4,8 @@ Profile = {};
 
 Template.accountSettings.events({
   'change .upload': function (event) {
-FileTools.upload('signProfilePictureUpload', event.target.files[0], {
+    FileTools.upload('signProfilePictureUpload', event.target.files[0], {
+      bucket: Meteor.settings.public.AWS_BUCKET_RAW,
       onError: function (error) {
         // TODO error message
         alert(error);
@@ -12,7 +13,7 @@ FileTools.upload('signProfilePictureUpload', event.target.files[0], {
       onComplete: function (result) {
         var photoUrl = Meteor.settings.public.AWS_BUCKET_URL +
           '/' + result.filePath;
-        Meteor.call('resizeNewProfileImage', photoUrl);
+        //Meteor.call('resizeNewProfileImage', photoUrl);
         //Meteor.users.update(Meteor.userId(), {
         //  $set: {
         //    'profile.photoUrl': photoUrl,

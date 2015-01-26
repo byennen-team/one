@@ -50,6 +50,7 @@ Meteor.methods({
     Meteor._powerQ.resume();
   },
   signProfilePictureUpload: function (fileName, mimeType, filePath) {
+    console.log('signProfilePictureUpload', fileName, ' mimeType ', mimeType, ' filePath ', filePath);
     check(fileName, String);
     check(mimeType, String);
     if (filePath)
@@ -64,13 +65,15 @@ Meteor.methods({
       pathToFile = Folder.galleryPicture(user.profile.id) +
         '/' + filePath + '.' + FileTools.ext(fileName);
     else
-      pathToFile = Folder.profilePicture(user.profile.id) +
-        '/newUpload.' + FileTools.ext(fileName);
+      pathToFile = Folder.profilePicture(user.profile.id) + '/' + fileName;
 
     //Andreas: to discuss: does my modification from newUpload to Random.id()
-    //impact the code in any way?
+    //impact the code in any way? // Chuck: previously I used the static
+    //'newUpload' as an easy handle for the resize log. The AWS code we now use
+    //transform-pipes from raw-upload bucket to resized bucket.
 
-    return FileTools.signUpload(pathToFile, 'public-read', mimeType);
+    var bucket = Meteor.settings.public.AWS_BUCKET_RAW;
+    return FileTools.signUpload(pathToFile, 'public-read', mimeType, bucket);
   },
   deleteFilesFromS3: function(key) {
     check(key, String);

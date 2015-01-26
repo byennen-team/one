@@ -1,4 +1,5 @@
 FileTools.upload = function (method, file, options) {
+  console.log('FilteTools.upload \n method: ', method, '\n\n file \n', file, '\n\n options \n\n ', options);
   options = options || {};
   var noop = function () {};
   _.defaults(options, {
@@ -23,7 +24,7 @@ FileTools.upload = function (method, file, options) {
       options.onError(error);
       return;
     }
-
+    console.log('result', result);
     var formData = new FormData();
 
     formData.append('key', result.filePath);
@@ -46,8 +47,8 @@ FileTools.upload = function (method, file, options) {
 
     xhr.addEventListener('error', options.onError, false);
     xhr.addEventListener('abort', options.onError, false);
-
-    xhr.open('POST', Meteor.settings.public.AWS_BUCKET_URL, true);
+    var _bucket = options.bucket || Meteor.settings.public.AWS_BUCKET_URL;
+    xhr.open('POST', _bucket, true);
     xhr.send(formData);
   });
 };
