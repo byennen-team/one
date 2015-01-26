@@ -8,5 +8,9 @@
   },
   "S3_URL_EXPIRATION_SECONDS": 604800,
   "MANDRILL_USERNAME": "mandrill@gooneapp.com",
-  "MANDRILL_API_KEY": "SuSOTzzT5JI4ZCa-__HyPw"
+  "MANDRILL_API_KEY": "SuSOTzzT5JI4ZCa-__HyPw",
+  "twitter": {
+    "CONSUMER_KEY": "nDkvCzyuyJ30rgjBRfSbaMeB4",
+    "SECRET": "PqlvLrWuNDl4d1QXmRVgKayUPjBmTfsF6KGZuxqZGhQ8bygKFB"
+  }
 }
