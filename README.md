@@ -9,6 +9,11 @@ Go One is a real-time dashboard for real-estate apps built with [Meteor](http://
 
     `meteor --settings settings.development.json`
 
+3. Login:
+
+    agentId: 64
+    email: paltland@elliman.com
+
 ###Production & Staging Data
 https://www.compose.io/mongodb/
 
