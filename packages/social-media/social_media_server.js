@@ -384,6 +384,15 @@ Meteor.methods({
           'services.twitter': null
         }
       });
+      //notify
+      Notify.addNotification(user._id,{
+        message: Notify.generateMessageText(
+          Notify.messages.TWITTER_AUTHORIZATION_ERROR.message,
+          [user.services.twitter.screenName]
+        ),
+        title: Notify.messages.TWITTER_AUTHORIZATION_ERROR.title,
+        link: '/account-settings'
+      });
 
       throw new Meteor.Error("User credentials are not ok");
     }
@@ -429,6 +438,8 @@ Meteor.methods({
       HTTP.post('https://api.twitter.com/1.1/statuses/'+
         'update.json', options);
 
+      Meteor.call('getLatestTweets', user._id, true);
+
       return (null, true);
 
     } catch (e) {
@@ -438,6 +449,15 @@ Meteor.methods({
             'services.twitter': null
           }
         });
+      //notify
+      Notify.addNotification(user._id,{
+        message: Notify.generateMessageText(
+          Notify.messages.TWITTER_AUTHORIZATION_ERROR.message,
+          [user.services.twitter.screenName]
+        ),
+        title: Notify.messages.TWITTER_AUTHORIZATION_ERROR.title,
+        link: '/account-settings'
+      });
       return(e);
     }
   }
