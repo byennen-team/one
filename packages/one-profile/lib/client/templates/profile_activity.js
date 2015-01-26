@@ -1,3 +1,5 @@
+/* globals SocialStatuses: true */
+
 Template.profileActivity.events({
   'change #activity-image-upload': function (event) {
   	// get string of file path (fake)
@@ -39,9 +41,62 @@ Template.profileActivity.events({
       .addClass( 'grey' );
 
 	  $( '#activity-thumb' ).addClass( 'hidden' );
-    $( '#activity-textarea' ).removeClass( 'width-80' ).addClass( 'width-100' );
+    $( '#activity-textarea' ).removeClass( 'width-80' )
+      .addClass( 'width-100' );
 	}
 
 });
+Template.profileActivity.helpers({
+  hasSocialMedia: function () {
+    var user = Profile.currentUser();
+    return (user && user.services) &&
+      (user.services.twitter || user.services.facebook) ? true : false;
+  }
+});
+Template.socialMediaTemplate.rendered = function() {
+  var user = Profile.currentUser();
+
+  if (user && user.services && user.services.twitter)
+    Meteor.call('getLatestTweets', user._id);
+};
+Template.socialMediaTemplate.helpers({
+  socialStatuses: function() {
+    return SocialStatuses.find();
+  },
+  date: function(date) {
+    if (moment(date).diff(moment(new Date()), 'days') >= 1) {
+      return moment(date).format('MMM D, YYYY');
+    } else {
+      return moment(date).fromNow();
+    }
+  },
+  hasTwitter: function() {
+    var user = Profile.currentUser();
+    return (user && user.services && user.services.twitter) ? true : false;
+  },
+  hasFacebook: function() {
+    var user = Profile.currentUser();
+    return (user && user.services && user.services.facebook) ? true : false;
+  },
+  services: function() {
+    var user = Profile.currentUser();
+    return (user && user.services && user.services) ? user.services : false;
+  }
+});
+Template.socialMediaTemplate.events({
+  'submit form.comment-box': function(e) {
+    e.preventDefault();
+    var value = $('input.tweeter').val();
+
+    if (! value || value === '')
+      return false;
+
+    Meteor.call('postTweet', value, function(e) {
+      if (e)
+        console.log(e);
 
 
+      $('input.tweeter').val('');
+    });
+  }
+});
