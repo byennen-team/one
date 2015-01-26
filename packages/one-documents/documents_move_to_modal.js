@@ -13,6 +13,10 @@ Template.documentsMoveToModal.events({
       });
       Modal.hide();
     }
+  },
+
+  'click [data-action="toggle-dropdown"]': function (event, templateInstance) {
+    templateInstance.$('[data-view="dropdown"]').toggleClass('hidden');
   }
 });
 
@@ -27,11 +31,32 @@ Template.documentsMoveToModal.helpers({
         'Company Docs' :
         'My Library';
     }
+  },
+
+  selectedFolder: function () {
+    var selectedFolderId = Session.get('selectedFolderId');
+    if (selectedFolderId) {
+      if (selectedFolderId === '#companyDocuments') {
+        return 'Company Docs';
+      } else if (selectedFolderId === '#myDocuments') {
+        return 'My Library';
+      } else {
+        var selectedFolder = Files.findOne(selectedFolderId);
+        return selectedFolder ? selectedFolder.name : null;
+      }
+    } else {
+      return null;
+    }
   }
 });
 
+Template.documentsMoveToModal.created = function () {
+  selectCurrentFolder();
+};
+
 Template.documentsMoveToModal.rendered = function () {
-  var fileTree = this.$('[data-view="file-tree"]');
+  var templateInstance = this;
+  var fileTree = templateInstance.$('[data-view="file-tree"]');
   fileTree.jstree({
     core: {
       multiple: false,
@@ -41,8 +66,25 @@ Template.documentsMoveToModal.rendered = function () {
 
   fileTree.on('select_node.jstree', function (event, eventData) {
     Session.set('selectedFolderId', eventData.selected[0]);
+    templateInstance.$('[data-view="dropdown"]').addClass('hidden');
   });
 };
+
+function selectCurrentFolder() {
+  var currentFolderId = Session.get('currentFolderId');
+  var selectedFolderId;
+  if (currentFolderId) {
+    selectedFolderId = currentFolderId;
+  } else {
+    if (FileTools.isCompanyDocumentsActive()) {
+      selectedFolderId = '#companyDocuments';
+    } else {
+      selectedFolderId = '#myDocuments';
+    }
+  }
+
+  Session.set('selectedFolderId', selectedFolderId);
+}
 
 function getChildNodes(node, callback) {
   var fileTreeNodes;

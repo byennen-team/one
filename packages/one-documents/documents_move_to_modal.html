@@ -20,7 +20,22 @@
                 <i class="fa fa-folder"></i> {{currentFolder}}
               </span>
             </div>
-            <div data-view="file-tree"></div>
+            <div class="folderSelect">
+              <div class="folderSelect__selected"
+                   data-action="toggle-dropdown">
+                <i class="fa fa-folder-open folderSelect__selectedIcon"></i>
+                {{#if selectedFolder}}
+                  {{selectedFolder}}
+                {{else}}
+                  No folder selected
+                {{/if}}
+              </div>
+              <div class="folderSelect__dropdown hidden"
+                   data-view="dropdown">
+                <div class="folderSelect__tree"
+                     data-view="file-tree"></div>
+              </div>
+            </div>
           </div>
         </div>
         <div class="modal-footer">
