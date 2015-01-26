@@ -35,64 +35,7 @@ Template.documentsMoveToModal.rendered = function () {
   fileTree.jstree({
     core: {
       multiple: false,
-      data: function (node, callback) {
-        var fileTreeNodes;
-        if (node.id === '#') {
-          if (FileTools.isCompanyDocumentsActive()) {
-            fileTreeNodes = [
-              {
-                id: '#companyDocuments',
-                text: 'Company Docs',
-                icon: 'fa fa-folder',
-                state: {
-                  opened: true,
-                  selected: !Session.get('currentFolderId')
-                },
-                children: true
-              }
-            ];
-          } else {
-            fileTreeNodes = [
-              {
-                id: '#myDocuments',
-                text: 'My Library',
-                icon: 'fa fa-folder',
-                state: {
-                  opened: true,
-                  selected: !Session.get('currentFolderId')
-                },
-                children: true
-              }
-            ];
-          }
-        } else {
-          var filesCursor = Files.find(
-            {
-              companyDocument: FileTools.isCompanyDocumentsActive(),
-              isFolder: true,
-              archived: {$ne: true},
-              parent: node.id[0] === '#' ? null : node.id
-            },
-            {
-              sort: {name: 1}
-            }
-          );
-
-          fileTreeNodes = filesCursor.map(function (document) {
-            return {
-              id: document._id,
-              text: document.name,
-              icon: 'fa fa-folder',
-              state: {
-                selected: Session.equals('currentFolderId', document._id)
-              },
-              children: true
-            };
-          });
-        }
-
-        callback.call(this, fileTreeNodes);
-      }
+      data: getChildNodes
     }
   });
 
@@ -100,3 +43,68 @@ Template.documentsMoveToModal.rendered = function () {
     Session.set('selectedFolderId', eventData.selected[0]);
   });
 };
+
+function getChildNodes(node, callback) {
+  var fileTreeNodes;
+  if (node.id === '#') {
+    if (FileTools.isCompanyDocumentsActive()) {
+      fileTreeNodes = [getCompanyDocsNode()];
+    } else {
+      fileTreeNodes = [getMyLibraryNode()];
+    }
+  } else {
+    fileTreeNodes = getChildDocuments(node).map(documentToNode);
+  }
+
+  callback.call(this, fileTreeNodes);
+}
+
+function getCompanyDocsNode() {
+  return {
+    id: '#companyDocuments',
+    text: 'Company Docs',
+    icon: 'fa fa-folder',
+    state: {
+      opened: true,
+      selected: !Session.get('currentFolderId')
+    },
+    children: true
+  };
+}
+
+function getMyLibraryNode() {
+  return {
+    id: '#myDocuments',
+    text: 'My Library',
+    icon: 'fa fa-folder',
+    state: {
+      opened: true,
+      selected: !Session.get('currentFolderId')
+    },
+    children: true
+  };
+}
+
+function getChildDocuments(node) {
+  return Files.find(
+    {
+      companyDocument: FileTools.isCompanyDocumentsActive(),
+      isFolder: true,
+      archived: {$ne: true},
+      parent: node.id[0] === '#' ? null : node.id
+    }, {sort: {name: 1}}
+  );
+}
+
+
+function documentToNode(document) {
+  return {
+    id: document._id,
+    text: document.name,
+    icon: 'fa fa-folder',
+    state: {
+      selected: Session.equals('currentFolderId', document._id)
+    },
+    children: true
+  };
+}
