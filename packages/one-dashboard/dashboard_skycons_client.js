@@ -1,3 +1,7 @@
+/* 3rd party dependency. http://darkskyapp.github.io/skycons/
+TODO: we might want to rename and move this file under the lib folder
+of the package??? -Lance */
+
 (function(global) {
   "use strict";
 
@@ -236,7 +240,7 @@
 
     ctx.beginPath();
     ctx.arc(cx, cy, a, p + TAU / 8, p + TAU * 7 / 8, false);
-    ctx.arc(cx + Math.cos(p) * a * TWO_OVER_SQRT_2, 
+    ctx.arc(cx + Math.cos(p) * a * TWO_OVER_SQRT_2,
       cy + Math.sin(p) * a * TWO_OVER_SQRT_2,
        a, p + TAU * 5 / 8, p + TAU * 3 / 8, true);
     ctx.closePath();
