@@ -1,34 +1,64 @@
+var temp = new ReactiveVar();
 Template.dashboardBanner.rendered = function () {
   $("#dashboard-schedule-sleeve").mCustomScrollbar({
       theme:"one-dark",
       scrollbarPosition: "outside"
   });
 
-  // Skycons:
-  // Documentation here: http://darkskyapp.github.io/skycons/
-  var Skycons;
-  var skycons = new Skycons({
-    "color": "white",
-    "resizeClear": true  // Android hack
-  });
+  //geting geolocation
+  if(navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(function(position) {
+      //requesting position from Forecast
+      Meteor.call('getForecast', position, function(e,r) {
+        if (e)
+          console.log(e);
 
-// TODO: need to plug in weather here. Examples:
-  // skycons.add("skycon", Skycons.PARTLY_CLOUDY_DAY);
-  // skycons.add("skycon", Skycons.CLOUDY);
-  // skycons.add("skycon", Skycons.CLEAR_DAY);
-  // more options in /dashboard_skycons_client.js
-  skycons.add("skycon", Skycons.SNOW);
-  // start animation
-  skycons.play();
+        temp.set(Math.round(r.temperature));
+        var icon = r.icon;
+
+        // Skycons:
+        // Documentation here: http://darkskyapp.github.io/skycons/
+        //var Skycons;
+        var skycons = new Skycons({
+          "color": "white",
+          "resizeClear": true  // Android hack
+        });
+
+        skycons.add("skycon", r.icon);
+        // start animation
+        skycons.play();
+      })
+    }, function(error) {
+      switch (error.code) {
+        case error.PERMISSION_DENIED:
+          console.log("You have to allow access to your location in " +
+            "order to see the local weather");
+          break;
+        case error.POSITION_UNAVAILABLE:
+          console.log("Could not determine position");
+          break;
+        case error.TIMEOUT:
+          console.log("Timeout in requestin position");
+          break;
+        case error.UNKNOWN_ERROR:
+          console.log("Unknown error");
+          break;
+      }
+
+    });
+  }
 };
 
 Template.dashboardBanner.helpers({
 // TODO: should return current temperature
   temp: function() {
-    return '34';
+    if (temp.get())
+      return temp.get();
+    else
+      return null;
   },
 
-// TODO: should return the closes city to User's current location  
+// TODO: should return the closes city to User's current location
   city: function() {
     return 'new york';
   },
@@ -83,15 +113,15 @@ Template.dashboardBanner.events({
   'mouseenter .time': function (event) {
     var $time = $( event.target );
     $time.velocity( "stop", true ); // clear queue - no dancing!
-    $time.velocity({ 
+    $time.velocity({
       scaleX: 1.3,
       scaleY: 1.3
     });
-  }, 
+  },
 
   'mouseleave .time': function (event) {
     var $time = $( event.target );
-    $time.velocity({ 
+    $time.velocity({
       scaleX: 1.0,
       scaleY: 1.0
     });
