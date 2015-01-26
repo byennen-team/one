@@ -9,7 +9,7 @@ Package.onUse(function (api) {
     'session',
     'templating',
     'mrt:moment',
-    'stevezhu:velocity.js@0.1.0',
+    'velocityjs:velocityjs',
     'routes',
     'styles',
     'tracker',

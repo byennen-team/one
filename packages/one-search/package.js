@@ -8,7 +8,7 @@ Package.onUse(function (api) {
   api.use([
     'less', 'reactive-var', 'session',
     'templating', 'tracker', 'routes',
-    'stevezhu:velocity.js@0.1.0'
+    'velocityjs:velocityjs'
   ], 'web');
 
   api.addFiles('search.js', both);

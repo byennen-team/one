@@ -1,4 +1,47 @@
+// Variables
+@import "/packages/styles/variables.import.less";
+
 .profile {
+  .gallery-pane {
+    .fa {
+      vertical-align: middle;
+    }
+    .gallery-top-controls {
+      margin-left: -15px;
+      font-size: 16px;
+      padding: 0 5px;
+      .fa {
+        transition: none;
+      }
+    }
+    .album {
+      padding-left: 5px;
+      padding-right: 5px;
+      .controls {
+        font-family: @raleway-semibold;
+        clear: both;
+        a{
+          font-size: 16px;
+          color: @periwinkle;
+          font-variant: small-caps;
+          text-transform: lowercase;
+        }
+        a:hover {
+          color: darken(@periwinkle, 10%);
+        }
+        .add-pics {
+          margin-right: 1.0em;
+          .fa {
+            vertical-align: bottom;
+          }
+        }
+      }
+    }
+  }
+
+
+
+
   @media all and (min-width: 768px) {
     .gallery-square {
       height:90px;

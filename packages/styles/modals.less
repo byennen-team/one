@@ -84,11 +84,12 @@
 .modal-header {
   border: none;
   .modal-title {
-    font-size: 14px;
-    margin-top: 3em;
+    font-size: 16px;
+    margin-top: 2em;
     font-family: RalewayBold, Verdana, Geneva, sans-serif;
     text-align: center;
-    text-transform: uppercase;
+    font-variant: small-caps;
+    text-transform: lowercase;
     letter-spacing: 0.25em;
     color: #6c7798;
   }
@@ -109,12 +110,13 @@
   }
   .form-group {
     label {
-      font-size: 12px;
-      padding-left: 0.75em;
+      font-size: 14px;
+      padding-left: 0.5em;
       font-family: RalewayBold, Verdana, Geneva, sans-serif;
       text-align: center;
-      text-transform: uppercase;
-      letter-spacing: 0.25em;
+      font-variant: small-caps;
+      text-transform: lowercase;
+      letter-spacing: 0.125em;
       color: #6c7798;
     }
     .form-control {
@@ -175,13 +177,13 @@
       border-style: solid;
       // border-radius: 3px 3px 0 0;
       border-width: 2px;
-      border-color: #dcdfe9 #b4bbcf #dcdfe9 #b4bbcf;
+      border-color: #dcdfe9 @heather #dcdfe9 @heather;
     }
     .upload-input { // apply to wrapping label
       position: relative;
       width: 100%;
       height: 100%;
-      padding: 1em 1em;
+      padding: 0.8em 1em;
       color: #60ccb6;
       cursor: pointer;
       span {
@@ -208,10 +210,11 @@
       } 
       .file-name {
         float: left;
-        margin: 1em 0 0 2.5em;
+        margin: 0 0 0 2.5em;
         line-height: 180%;
         font-family: RalewayRegular, Verdana, Geneva, sans-serif;
         color: #78838e;
+        font-variant: normal;
         text-transform: none;
         letter-spacing: 0;
       }
@@ -222,7 +225,7 @@
       -webkit-border-bottom-right-radius: 3px;
       -moz-border-radius-bottomright: 3px;
       border-bottom-style: solid;
-      border-bottom-color: #b4bbcf;
+      border-bottom-color: @heather;
     }
     .input-box:first-of-type { 
       -webkit-border-top-left-radius: 3px;
@@ -230,22 +233,22 @@
       -webkit-border-top-right-radius: 3px;
       -moz-border-radius-topright: 3px;
       border-top-style: solid;
-      border-top-color: #b4bbcf;
+      border-top-color: @heather;
     }
     .fa-times-circle-o {
       position: absolute;
-      right: 1em;
-      top: 1em;
-      color: #b4bbcf;
-      font-size: 16px;
+      right: 10px;
+      top: 16px;
+      color: @heather;
+      font-size: 18px;
       cursor: pointer;
       z-index: 2;
     } 
     .fa-file-o,
     .icon-addteam {
       position: absolute;
-      left: 1.5em;
-      top: 1.4em;
+      left: 1.25em;
+      top: 1.15em;
     }
   }
 }
