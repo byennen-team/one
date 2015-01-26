@@ -1,5 +1,6 @@
 FileTools.upload = function (method, file, options) {
-  console.log('FilteTools.upload \n method: ', method, '\n\n file \n', file, '\n\n options \n\n ', options);
+  console.log('FilteTools.upload \n method: ', method, '\n\n file \n', file,
+  '\n\n options \n\n ', options);
   options = options || {};
   var noop = function () {};
   _.defaults(options, {
