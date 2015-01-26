@@ -6,21 +6,26 @@ Template.taskBoard.rendered = function () {
   });
 
   console.log('task board rendered'); // DAVE: remove this
-  Session.set( 'taskMenu', false );
+
+  // TODO: Remove this, if we don't need to use Session
+  // Session.set( 'taskMenu', false );
 };
 
 Template.taskBoard.events({
 
   // Toggle task menu when a dot is clicked
   'click .dot': function () {
-    var menuVisible = Session.get( 'taskMenu' );
-    if( ! menuVisible ) {
-      Session.set( 'taskMenu', true );
-      $( '#communication-task-menu' ).velocity( "fadeIn", { duration: 300 });
-    } else {
-      Session.set( 'taskMenu', false );
-      $( '#communication-task-menu' ).velocity( "fadeOut", { duration: 300 });
-    }
+    $( '#task-menu, #task-menu-clear' ).velocity( "fadeIn", { duration: 300 });
+
+    // TODO: Remove this, if we don't need to use Session
+    // var menuVisible = Session.get( 'taskMenu' );
+    // if( ! menuVisible ) {
+    //   Session.set( 'taskMenu', true );
+    //   $( '#task-menu, #task-menu-clear' ).velocity( "fadeIn", { duration: 300 });
+    // } else {
+    //   Session.set( 'taskMenu', false );
+    //   $( '#task-menu' ).velocity( "fadeOut", { duration: 300 });
+    // }
   }
 
 });
