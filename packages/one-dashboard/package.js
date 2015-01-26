@@ -14,6 +14,7 @@ Package.onUse(function (api) {
     'styles',
     'settings',
     'reactive-var',
+    'social-media',
     'maazalik:malihu-jquery-custom-scrollbar'
   ], 'web');
 

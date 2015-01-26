@@ -14,7 +14,10 @@ Template.dashboardBanner.rendered = function () {
         if (e)
           console.log(e);
 
-        temp.set(Math.round(r.temperature));
+        temp.set({
+          temperature: Math.round(r.temperature),
+          locality: r.locality
+        });
 
         // Skycons:
         // Documentation here: http://darkskyapp.github.io/skycons/
@@ -53,14 +56,17 @@ Template.dashboardBanner.helpers({
 // TODO: should return current temperature
   temp: function() {
     if (temp.get())
-      return temp.get();
+      return temp.get().temperature;
     else
       return null;
   },
 
 // TODO: should return the closes city to User's current location
   city: function() {
-    return 'new york';
+    if (temp.get())
+      return temp.get().locality;
+    else
+      return null;
   },
   month: function() {
     return moment().format('MMMM D');
