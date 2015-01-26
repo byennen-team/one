@@ -1,3 +1,4 @@
+/* globals Skycons: true */
 var temp = new ReactiveVar();
 Template.dashboardBanner.rendered = function () {
   $("#dashboard-schedule-sleeve").mCustomScrollbar({
@@ -14,7 +15,6 @@ Template.dashboardBanner.rendered = function () {
           console.log(e);
 
         temp.set(Math.round(r.temperature));
-        var icon = r.icon;
 
         // Skycons:
         // Documentation here: http://darkskyapp.github.io/skycons/
@@ -27,7 +27,7 @@ Template.dashboardBanner.rendered = function () {
         skycons.add("skycon", r.icon);
         // start animation
         skycons.play();
-      })
+      });
     }, function(error) {
       switch (error.code) {
         case error.PERMISSION_DENIED:

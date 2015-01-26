@@ -342,7 +342,8 @@ Meteor.methods({
         options.params.since_id = latestTweet.postId;
 
       try {
-        var tweets = SocialMedia.cachedHttp('GET','https://api.twitter.com/1.1/statuses'+
+        var tweets = SocialMedia.cachedHttp('GET',
+          'https://api.twitter.com/1.1/statuses'+
           '/user_timeline.json', options, force);
 
         _.each(tweets.data, function(item) {
