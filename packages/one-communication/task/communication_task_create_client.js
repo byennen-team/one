@@ -66,6 +66,11 @@ Template.communicationCreateTask.events({
       .velocity( "fadeOut", { duration: 500 });
   },
 
+  'click #task-menu-clear': function () {
+    $( '#task-menu, #task-menu-clear' )
+      .velocity( "fadeOut", { duration: 500 });
+  },
+
 // TODO: Also needs to remove the guest from the list
 //  The div .guest will need to be actually removed from the DOM to prevent
 //    positioning errors.
