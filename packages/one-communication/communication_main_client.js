@@ -23,11 +23,6 @@ Template.communicationMain.rendered = function () {
  //  $('#communication-main').css( 'height', currentHeight.height - 55 + 'px' );
 
   // initialize maazalik:malihu-jquery-custom-scrollbar scrollbar plugin
-  $("#communication-task-board").mCustomScrollbar({
-	  	theme:"one-light",
-	  	scrollbarPosition: "inside"
-  });
-
   var board = $("#communication-message-board-sleeve");
   board.mCustomScrollbar({
 	  	theme:"one-dark",

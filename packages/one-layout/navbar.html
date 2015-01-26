@@ -6,8 +6,27 @@
       <span class="icon-bar"></span>
     </a>
     <a id='navbar-logo' class="go-one" href="/dashboard">Go One</a>
-    <a class="company-apps-button {{ activeForRoute 'apps' }}" href="{{pathFor 'apps'}}"></a>
     {{> notifications}} 
     {{> searchBox}}
+
+    <div class="nav-links">
+      <a class="{{ activeForRoute 'directory' }}" href="{{pathFor 'directory'}}">
+        <i class="fa fa-user"></i>
+        <span>directory</span>
+      </a>
+      <a class="{{ activeForRoute 'myDocuments' }}" href="{{pathFor 'myDocuments'}}">
+        <i class="fa fa-folder-open"></i>
+        <span>library</span>
+      </a>
+      <a id='navbar-link-task' class="" href="/dashboard">
+        <i class="fa fa-th-list"></i>
+        <span>tasks</span>
+      </a>
+      <a class="{{ activeForRoute 'apps' }}" href="{{pathFor 'apps'}}">
+        <i class="fa icon-apps"></i>
+        <span>apps</span>
+      </a>
+      
+    </div>
   </div>
 </template>

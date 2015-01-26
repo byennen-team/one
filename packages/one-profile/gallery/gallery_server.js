@@ -7,15 +7,15 @@ Meteor.methods({
 		if (!this.userId)
 			throw new Meteor.Error(401,'You have to be logged in!');
 
-		Galleries.insert({
+		return Galleries.insert({
 			galleryName: name,
 			createdAt: new Date(),
 			userId: Meteor.userId()
-		}, function (error) {
+		}, function (error, result) {
 			if (error)
 				throw new Meteor.Error(500, 'Error in creating gallery');
 
-			return (null, 'Gallery created');
+			return (null, result);
 		});
 	},
 	deleteGallery: function (galleryId) {

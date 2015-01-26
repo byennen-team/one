@@ -23,7 +23,13 @@ Template.profileGallery.helpers({
 });
 
 Template.profileGallery.events({
-	'click a[data-target="#picturesUploadModal"]': function () {
+	'click a[data-target="#picturesUploadModal"]': function(event) {
+    if($(event.currentTarget).data("id")) {
+      $("#select-gallery-dropdown option").each(function() {
+        if ($(this).val() === $(event.currentTarget).data("id"))
+          $(this).attr('selected','selected');
+      });
+    }
 		$('.selectpicker').selectpicker('refresh');
 	},
 	'click .remove-gallery': function(event) {
@@ -35,7 +41,10 @@ Template.profileGallery.events({
 	},
 	'click .delete-photo': function(event) {
 		event.stopPropagation();
+    event.preventDefault();
+
 		var $photoKey = $(event.currentTarget).data("id");
+
 
 		if ($photoKey && $photoKey.length > 0) {
 			FileTools.deleteStub(
@@ -93,27 +102,24 @@ Template.profileGallery.rendered = function () {
     $(e.currentTarget).removeClass('draggedOver');
     var $galleryId = $(this).attr("album-id");
 
-    //this function is necessary to pass jslint tests :(
+    var onComplete = function(result) {
+      var photoUrl = Meteor.settings.public.AWS_BUCKET_URL +
+        '/' + result.filePath;
+        Meteor.call('addPictureToGallery',result.filePath,
+          photoUrl, $galleryId,
+          function(error) {
+          //removing the loading indicator
+          $('.gallery-square[data-type="loader"]')[0].remove();
+          if (error)
+            return; // TODO: present an error to the user
 
-    var callbackFunction = function (error, result) {
-            // TODO error message
-            if (error) throw new Meteor.Error(500, 'Error in uploading file');
+        });
+    };
 
-            var photoUrl = Meteor.settings.public.AWS_BUCKET_URL +
-              '/' + result.filePath;
-            Meteor.call('addPictureToGallery',
-              result.filePath,
-              photoUrl,
-              $galleryId,
-              function(error) {
-                //removing the loading indicator
-                $('.gallery-square[data-type="loader"]')[0].remove();
-                if (error)
-                  return; // TODO: present an error to the user
 
-              });
-          };
-
+    var onError = function(error) {
+      console.log(error);
+    };
 
     var files = e.originalEvent.dataTransfer.files;
     for (var i = 0; i < files.length; i++) {
@@ -122,17 +128,20 @@ Template.profileGallery.rendered = function () {
     	if (!file.type.match('image.*'))
     		continue;
 
-    	$('.album[album-id="'+$galleryId+'"] .galleryHolder').append(
-        '<div data-type="loader" class="gallery-square col-sm-2 half-gutter ' +
+    	$('.album[album-id="'+$galleryId+'"] .galleryHolder')
+        .append('<div data-type="loader" ' +
+        'class="gallery-square col-sm-2 half-gutter '+
         'm-bottom-10 center picture-loader">' +
-        '<img src="/photo-load.gif" />' +
-        '</div>'
-      );
-    	FileTools.temporaryUpload(
-        'signProfilePictureUpload',
-        file,
-        callbackFunction
-      );
+        '<img src="/photo-load.gif" /></div>');
+
+      var options = {
+        onComplete: onComplete,
+        onError: onError,
+        filePath: Random.id()
+      };
+
+    	FileTools.upload('signProfilePictureUpload', file, options);
+
     }
   });
 };

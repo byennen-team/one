@@ -7,10 +7,18 @@ Template.profileHeaderDeleteImageModal.events({
 				if (err) {
 					alert(err);
 				} else {
-					Meteor.users.update(
-            Meteor.userId(),
-            {$pull: {'profile.coverUrl': {key:key}}}
-          );
+					Meteor.users.update(Meteor.userId(),{
+						$pull: {
+							'profile.coverUrl': {key:key}
+						}
+					}, function(e) {
+						if (e)
+							console.log(e);
+						else {
+							$('.carousel-indicators li').first().addClass('active');
+							$('.carousel-inner .item').first().addClass('active');
+						}
+					});
 				}
 			});
 		} else {
