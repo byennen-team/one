@@ -129,7 +129,7 @@ Meteor.methods({
 
   moveTo: function (documentIdsToMove, targetFolderId) {
     check(documentIdsToMove, [String]);
-    check(targetFolderId, String);
+    check(targetFolderId, Match.OneOf(String, null));
 
     var user = Meteor.user();
     if (!user) throw new Meteor.Error('Invalid credentials');

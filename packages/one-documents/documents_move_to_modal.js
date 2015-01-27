@@ -6,6 +6,11 @@ Template.documentsMoveToModal.events({
 
     if (!_.isEmpty(selectedFolderIds) && !_.isEmpty(documentsToMove)) {
       var targetFolder = selectedFolderIds[0];
+      if (targetFolder === '#companyDocuments' ||
+          targetFolder === '#myDocuments'
+      ) {
+        targetFolder = null;
+      }
       Meteor.call('moveTo', documentsToMove, targetFolder, function (error) {
         if (error) {
           console.error(error);
@@ -133,7 +138,7 @@ function getChildDocuments(node) {
       companyDocument: FileTools.isCompanyDocumentsActive(),
       isFolder: true,
       archived: {$ne: true},
-      parent: node.id[0] === '#' ? null : node.id
+      parent: node.id.charAt(0) === '#' ? null : node.id
     }, {sort: {name: 1}}
   );
 }
