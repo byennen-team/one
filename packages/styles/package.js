@@ -23,6 +23,7 @@ Package.onUse(function (api) {
   	'modals.less',
     'tooltip.less',
     'positioning.less',
+    'select.less',
     'variables.import.less'
   ], 'web');
 

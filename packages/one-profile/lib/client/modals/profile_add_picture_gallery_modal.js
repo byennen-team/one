@@ -1,7 +1,10 @@
-/* global Galleries: false */
-
+/* global Galleries: false, Gallery: true */
 Template.picturesUploadModal.rendered = function(){
   $('.selectpicker').selectpicker();
+
+  $('#picturesUploadModal').on('hidden.bs.modal', function() {
+    Gallery.getAFreshBag();
+  });
 };
 
 Template.picturesUploadModal.helpers({
@@ -25,7 +28,8 @@ Template.picturesUploadModal.events({
       '<label class="upload-input uploadCount">',
       '<i class="fa icon-addteam"></i>',
       '<span class="file-name"></span>',
-      '<input class="file-upload upload hidden" type="file" accept="image/*" >',
+      '<input class="file-upload upload hidden"'+
+      ' type="file" accept="image/*" >',
       '</label>',
       '<i class="fa fa-times-circle-o hidden"></i>',
       '</div>'
@@ -33,10 +37,8 @@ Template.picturesUploadModal.events({
     // Check to see if a file has been uploaded
     if( contents.length > 0 ){
       // swap icon if there is a file
-      $this
-        .siblings( '.icon-addteam' )
-        .removeClass( 'icon-addteam' )
-        .addClass( 'fa-file-o' );
+      $this.siblings( '.icon-addteam' ).removeClass( 'icon-addteam' )
+        .addClass( 'fa-camera-retro' );
       // toggle close button
       $label.next( '.fa-times-circle-o' ).removeClass( 'hidden' );
       // Retrieve file name & display it
@@ -47,9 +49,7 @@ Template.picturesUploadModal.events({
     }
     else{
       // swap icon if there isn't a file
-      $this
-        .siblings( '.fa-file-o' )
-        .removeClass( 'fa-file-o' )
+      $this.siblings( '.fa-camera-retro' ).removeClass( 'fa-camera-retro' )
         .addClass( 'icon-addteam' );
       // clear input if there is not a file
       $this.siblings( '.file-name' ).text("");
@@ -57,8 +57,8 @@ Template.picturesUploadModal.events({
       $box.find( '.fa-times-circle-o' ).addClass( 'hidden' );
     }
     // Count number of fields with files
-    var fileNum = $('.fa-file-o').length;
-    var inputNum = $('.uploadCount').length;
+    var fileNum = $bag.find('.fa-camera-retro').length;
+    var inputNum = $bag.find( '.uploadCount' ).length;
     if( fileNum === inputNum){
       // append a new input-box
       $bag.append(formHTML);
@@ -83,54 +83,37 @@ Template.picturesUploadModal.events({
         if ($contents && $contents.length > 0) {
           //we have a file, let's add a loading indicator
           var $galleryId = $("#select-gallery-dropdown").val();
+          var onComplete = function(result) {
+          var photoUrl = Meteor.settings.public.AWS_BUCKET_URL + '/' +
+            result.filePath;
+          Meteor.call('addPictureToGallery',result.filePath,
+            photoUrl, $galleryId,
+            function(error) {
+            //removing the loading indicator
+            $('.gallery-square[data-type="loader"]')[0].remove();
+            if (error)
+              return; // TODO: present an error to the user
 
-          $('.album[album-id="'+$galleryId+'"] .galleryHolder').append(
-            '<div data-type="loader" class="gallery-square col-sm-2' +
-            'half-gutter m-bottom-10 center picture-loader">' +
-            '<img src="/photo-load.gif" />' +
-            '</div>'
-          );
-          FileTools.temporaryUpload(
-            'signProfilePictureUpload',
-            $contents[0],
-            function (error, result) {
-              if (error) throw new Meteor.Error(500, 'Error in uploading file');
-              // TODO error message
+          });
+        };
 
-              var photoUrl = Meteor.settings.public.AWS_BUCKET_URL +
-                '/' + result.filePath;
-              Meteor.call(
-                'addPictureToGallery',
-                result.filePath,
-                photoUrl,
-                $galleryId,
-                function(error) {
-                  //removing the loading indicator
-                  $('.gallery-square[data-type="loader"]')[0].remove();
-                  if (error)
-                    return; // TODO: present an error to the user
+        var onError = function(error) {
+          console.log(error);
+        };
 
-                }
-              );
-            }
-          );
+        $('.album[album-id="'+$galleryId+'"] .galleryHolder')
+          .append('<div data-type="loader" class="gallery-square '+
+            'col-sm-2 half-gutter m-bottom-10 center picture-loader">'+
+            '<img src="/photo-load.gif" /></div>');
+        var options = {
+          onComplete: onComplete,
+          onError: onError,
+          filePath: Random.id()
+        };
+          FileTools.upload('signProfilePictureUpload', $contents[0], options);
         }
       }
     });
-
-    var freshBag = [
-      '<div class="input-bgx">',
-      '<div class="input-box">',
-      '<label class="upload-input uploadCount">',
-      '<i class="fa icon-addteam"></i>',
-      '<span class="file-name"></span>',
-      '<input class="file-upload upload hidden" type="file" accept="image/*" >',
-      '</label>',
-      '<i class="fa fa-times-circle-o hidden"></i>',
-      '</div>',
-      '</div>'
-      ].join('');
-    $( '.input-bag' ).replaceWith( freshBag );
   }
 
 

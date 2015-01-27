@@ -1,0 +1,439 @@
+// Variables 
+@import "/packages/styles/variables.import.less"; 
+
+#event-menu {
+  position: absolute;
+  display: none;
+  top: -2em;
+  right: 7%;
+  width: 400px;
+  padding-top: 1em;
+  background-color: @very-lt-blue-grey;
+  z-index: 100;
+  -webkit-box-shadow: -10px -9px 27px -9px rgba(0,0,0,1);
+  -moz-box-shadow: -10px -9px 27px -9px rgba(0,0,0,1);
+  box-shadow: -10px -9px 27px -9px rgba(0,0,0,1);
+  label {
+    font-family: @raleway-semibold;
+    font-variant: small-caps;
+    text-transform: lowercase;
+    color: @blue-purple;
+    letter-spacing: 0.0625em;
+    margin-left: 3%;
+    .fa {
+      margin-right: 0.25em;
+    }
+  }
+  input {
+    color: @darkest-purple;
+    background-color: @white;
+    font-family: @raleway-light;
+    font-size: 16px;
+    border: none;
+    outline: none;
+    padding-left: 0.5em;
+    padding-right: 0.5em;
+    opacity: 1;
+  }
+  input::-webkit-input-placeholder {
+    color: @darkest-purple;
+    font-family: @raleway-light;
+    font-size: 16px;
+  }
+  input::-moz-placeholder { 
+    color: @darkest-purple;
+    font-family: @raleway-light;
+    font-size: 16px;
+  }
+  input:-ms-input-placeholder {  
+    color: @darkest-purple;
+    font-family: @raleway-light;
+    font-size: 16px;
+  }
+  .color-drop {
+    float: left;
+    clear: right;
+    width: 40px;
+    margin-left: 0.75em;
+    .bootstrap-select.btn-group { // this class/element is injected by plugin
+      width: 22px;
+      .btn {
+        width: 40px;
+        padding: 2px;
+        margin: 0;
+        background-color: transparent;
+        .caret {
+          right: 0;
+          border-color: @blue-purple transparent transparent transparent;
+        }
+      }
+      ul {
+        width: 30px;
+        overflow-y: hidden!important; // to overrule plugin inline style
+      }
+    }
+    // with selectpicker(), this class ends up on the button, list styles aren't nested
+    .select-color { 
+      .filter-option { // this class comes from the plugin
+        color: transparent;
+        width: 16px; // must match .dot-select
+        overflow: visible;
+      }
+    } 
+    .dot-select {
+      position: relative;
+      width: 16px;
+      height: 16px;
+      padding: 0;
+      margin: 7px;
+      border-radius: 50%;
+      z-index: 2;
+      span {
+        display: none!important;
+      }
+    }
+    .glow::after {
+      content: "";
+      position: absolute;
+      top: -5px;
+      bottom: -5px;
+      right: -5px;
+      left: -5px;
+      border-radius: 50%;
+      opacity: 0.2;
+      z-index: 1;
+    }
+    .purple.dot-select,
+    .purple.glow:after {
+      background-color: @purple;
+    }
+    .pink.dot-select,
+    .pink.glow:after {
+      background-color: @pink;
+    }
+    .orange.dot-select,
+    .orange.glow:after {
+      background-color: @cameo;
+    }
+    .teal.dot-select,
+    .teal.glow:after {
+      background-color: @teal;
+    }
+    .blue.dot-select,
+    .blue.glow:after {
+      background-color: @accent;
+    }
+    .red.dot-select,
+    .red.glow:after {
+      background-color: @red;
+    }
+  }
+  .event-date {
+    clear: both;
+    width: 100%;
+    padding: 1em 0.75em 1.25em 0.75em;
+    background-color: @white;
+    label {
+      min-width: 65px;
+      padding-top: 0.5em;
+      cursor: pointer;
+    }
+    span {
+      font-family: @raleway-semibold;
+      font-variant: small-caps;
+      text-transform: lowercase;
+      color: @blue-purple;
+    }
+    .event-date-input {
+      width: 200px;
+    }
+    .event-date-time {
+      width: 70px;
+      padding: 0 0 0 5px;
+    }
+  }
+  .event-title {
+    float: left;
+    clear: right;
+    width: 76%;
+    margin: 0.5em 0 0 0.5em;
+    input{
+      background-color: transparent;
+      border: none;
+      outline: none;
+      font-family: @raleway-semibold;
+      font-size: 18px;
+      color: @dk-purple;
+    }
+    ::-webkit-input-placeholder {
+      font-family: @raleway-semibold;
+      font-size: 18px;
+      color: @dk-purple;
+    }
+    ::-moz-placeholder { 
+      font-family: @raleway-semibold;
+      font-size: 18px;
+      color: @dk-purple;
+    }
+    :-ms-input-placeholder {  
+      font-family: @raleway-semibold;
+      font-size: 18px;
+      color: @dk-purple;
+    }
+  }
+  .event-location {
+    label {
+      margin-top: 0.75em;
+      cursor: pointer;
+    }
+    .location-box {
+      display: none;
+      float: right;
+      width: 72%;
+      margin-right: 1em;
+    }
+    input {
+      border: none;
+      outline: none;
+      height: 2.625em;
+      width: 100%;
+    }
+    .directions {
+      clear: both;
+      color: @blue-purple;
+      font-variant: small-caps;
+      text-transform: lowercase;
+      letter-spacing: 0.0625em;
+      opacity: 0.5;
+      float: right;
+      margin-right: 0.25em;
+      margin-top: 0.5em;
+    }
+  }
+  .event-location.open {
+    .location-box {
+      display: block;
+    }
+  }
+  .invite-people {
+    clear: both;
+    overflow: hidden;
+    label {
+      float: left;
+      cursor: pointer;
+      .icon-addteam {
+        vertical-align: bottom;
+        margin-left: 0.25em;
+      }
+    }
+    .guest {
+      position: relative;
+      width: 100%;
+      height: 68px;
+      background-color: @white;
+      .avatar-box{
+        float: left;
+        margin-left: 5.5%;
+        position: relative;
+        .avatar {
+          margin: 5px;
+          width: 50px;
+          height: 50px;
+          border-radius: 50%;
+        }
+        .status-dot {
+          position: absolute;
+          width: 10px;
+          height: 10px;
+          margin-top: -5px;
+          top: 50%;
+          left: 0;
+          border-radius: 50%;
+        }
+        .status-dot.active {
+          background-color: @green;
+        }
+        .status-dot.inactive {
+          background-color: @red;
+        }
+        .status-dot.mobile {
+          background-color: @accent;
+        }
+      }
+      .name {
+        float: left;
+        font-size: 16px;
+        padding: 1.25em 2em;
+        color: @darkest-purple;
+        background-color: @white;
+        font-family: @raleway-light;
+      }
+      .uninvite {
+        position: absolute;
+        right: 1em;
+        top: 50%;
+        margin-top: -0.5em;
+        cursor: pointer;
+        opacity: 0.5;
+        transition: opacity 350ms ease-out 50ms;
+        .icon-x-blunt {
+          color: @darkest-purple;
+        }
+      }
+      .uninvite:hover {
+        opacity: 1;
+      }
+    }
+    .guest:first-of-type {
+      margin-top: 2em;
+    }
+    .invite-box {
+      display: none;
+      width: 100%;
+      height: 8em;
+      margin-top: 1em;
+    }
+    .invite-people-btn {
+      font-size: 56px;
+      float: left;
+      clear: both;
+      width: 0.982em;
+      height: 0.982em;
+      margin-left: 6%;
+      color: @lt-teal;
+      cursor: pointer;
+    }
+    .invite-search {
+      // display: none;
+      margin-top: 0.9em;
+      float: right;
+      width: 72%;
+      margin-right: 1em;
+    }
+    .select-invite {
+      float: right;
+      background-color: transparent;
+      width: 160px;
+      margin-right: 1em;
+      .bootstrap-select.btn-group { // this class/element is injected by plugin
+        width: 160px;
+        background-color: transparent;
+        font-family: @raleway-bold;
+        font-variant: small-caps;
+        text-transform: lowercase;
+        letter-spacing: 0.125em;
+        color: @dk-blue-purple;
+        border: none;
+        outline: none;
+        box-shadow: none;
+        .btn {
+          position: relative;
+          width: 160px;
+          padding: 0.5em 1em;
+          margin: 0;
+          font-family: @raleway-bold;
+          font-variant: small-caps;
+          text-transform: lowercase;
+          letter-spacing: 0.125em;
+          color: @blue-purple;
+          border: none;
+          outline: none;
+          background-color: transparent;
+          box-shadow: none;
+          .caret {
+            right: 4px;
+            border-color: @blue-purple transparent @blue-purple transparent;
+          }
+        }
+        ul {
+          width: 25px;
+        }
+      }
+    }
+  }
+  .notes {
+    clear: both;
+    label {
+      cursor: pointer;
+    }
+    .description-box {
+      height: 100px;
+      width: 94%;
+      margin: 0 3%;
+      background-color: @white;
+      overflow: hidden;
+    }
+    textarea {
+      clear: both;
+      height: 70px;
+      width: 94%;
+      margin: 1em 3%;
+      border: none;
+      outline: none;
+      font-family: @raleway-light;
+      font-size: 14px;
+      color: @darkest-purple;
+    }
+    textarea:focus { // Had to clear this because of animation hack
+      box-shadow: none;
+    }
+  }
+
+  .btn {
+    float: left;
+    height: 3.5em;
+    width: 40%;
+    margin: 1em 1% 2em 9%; // for first botton
+    line-height: 120%;
+    font-size: 12px;
+    font-family: RalewayBold, Verdana, Geneva, sans-serif;
+    text-align: center;
+    text-transform: uppercase;
+    letter-spacing: 0.25em;
+  }
+  .btn + .btn { 
+    margin: 1em 9% 2em 1%; // for second botton
+  }
+  .btn-default {
+    border: solid 3px @lt-teal;
+    color: @lt-teal;
+    background-color: transparent;
+  }
+  .btn-default:hover,
+  .btn-default:active,
+  .btn-default:focus {
+    color: darken(@lt-teal, 10%);
+    boarder-color: darken(@lt-teal, 10%);
+  }
+  .btn-primary {
+    background-color: @lt-teal;
+    color: #fff;
+  }
+  .btn-primary:hover,
+  .btn-primary:active,
+  .btn-primary:focus {
+    background-color: darken(@lt-teal, 10%);
+  }
+
+  .btn-group.open .dropdown-toggle {
+    box-shadow: none;
+  }
+}
+.event-menu:after {
+  content: "";
+  position: absolute;
+  right: -8px;
+  top: 15px;
+  border-top: solid 8px transparent;
+  border-bottom: solid 8px transparent;
+  border-left: solid 8px @very-lt-blue-grey;
+}
+.clear-click {
+  display: none;
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  z-index: 99;
+}

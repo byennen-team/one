@@ -110,6 +110,7 @@ Router.route('/:slug', {
       Meteor.subscribe('followers', user._id);
       Meteor.subscribe('following', user._id);
       Meteor.subscribe('galleries', user._id);
+      Meteor.subscribe('socialStatuses', user._id);
     }
 
     return user;

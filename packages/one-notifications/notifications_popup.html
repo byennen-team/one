@@ -1,0 +1,27 @@
+<template name='notificationsPopup'>
+{{#if haveNotifications}}
+  <div class="notifications-popup">
+    <div id='notifications-popup-sleeve' class="sleeve">
+
+    {{#each notificationsUnread}}
+      <div class="notice">
+        <div class="x" data-id={{_id}}>
+          <i class="fa icon-x-blunt"></i>
+        </div>
+        <div class="clearfix"></div>
+        {{#if notificationActionLink}}
+        <a href="{{notificationActionLink}}">
+          <h5>{{notificationTitle}}<i class="fa fa-long-arrow-right"></i></h5>
+        </a>
+          {{else}}
+        <h5>{{notificationTitle}}</h5>
+        {{/if}}
+        <p class="date">{{date createdAt}}</p>
+        <p class='text'>{{notificationText}}</p>
+      </div>
+    {{/each}}
+
+    </div>
+  </div>
+{{/if}}
+</template>
