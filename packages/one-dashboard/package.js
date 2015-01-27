@@ -32,6 +32,9 @@ Package.onUse(function (api) {
     'dashboard_channel_widget.html',
     'dashboard_channel_widget.less',
     'dashboard_channel_widget_client.js',
+    'dashboard_twitter_widget.html',
+    'dashboard_twitter_widget.less',
+    'dashboard_twitter_widget_client.js',
     //communication-sidebar
     'communication-sidebar/communication_sidebar.html',
     'communication-sidebar/communication_sidebar.less',
