@@ -152,7 +152,7 @@ FileTools.createFolder = function (
 // TODO: Move to DocumentTools?
 FileTools.moveTo = function (documentIdsToMove, targetFolderId) {
   return Files.update(
-    {_id: {$in: documentIdsToMove}},
+    {_id: {$in: _.without(documentIdsToMove, targetFolderId)}},
     {$set: {parent: targetFolderId}},
     {multi: true}
   );
