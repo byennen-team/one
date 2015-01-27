@@ -8,7 +8,6 @@ Template.dashboardBanner.rendered = function () {
 
   // Skycons:
   // Documentation here: http://darkskyapp.github.io/skycons/
-  // var Skycons;
   var skycons = new Skycons({
     "color": "white",
     "resizeClear": true  // Android hack
