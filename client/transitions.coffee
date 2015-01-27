@@ -88,7 +88,7 @@ Transitioner.transition
   velocityAnimaton: fade
 
 
-slideRightBetween = [Routes.DASHBOARD, Routes.DIRECTORY, Routes.Apps]
+slideRightBetween = [Routes.DASHBOARD, Routes.DIRECTORY, Routes.APPS]
 
 for route in slideRightBetween
   others = _.without slideRightBetween, route
