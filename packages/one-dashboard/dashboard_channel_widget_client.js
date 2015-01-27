@@ -10,7 +10,7 @@ Template.channelWidget.rendered = function () {
   setTimeout(function(){
     sleeve.mCustomScrollbar( "scrollTo", "bottom" );
   }, 200);
-}
+};
 
 Template.channelWidget.helpers({
 // TODO: Return the channel type. String (company, message, rooms)
@@ -66,7 +66,7 @@ Template.channelWidget.helpers({
 
 // TODO: Return Message's text. String.
   messageText: function () {
-    return 'Updated Listing Agreement now in the Company Docs. Happy New Year everyone!';
+    return 'Updated Listing Agreement now in the Company Docs. Happy New Year!';
   },
 
 // TODO: Return true if the message has an attachment, false if it doesn't.
