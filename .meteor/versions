@@ -44,6 +44,7 @@ iron:url@1.0.7
 jonperl:match-ex@0.1.2
 joshowens:simple-form@0.2.2
 jquery@1.11.3
+jquery-ui@1.11.2
 json@1.0.2
 jstree@3.0.9
 launch-screen@1.0.1

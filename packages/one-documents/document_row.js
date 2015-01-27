@@ -88,3 +88,40 @@ Template.documentRow.helpers({
   }
 });
 
+Template.documentRow.rendered = function () {
+  // Make row draggable
+  $(this.firstNode).draggable({
+    cursor: 'move',
+    cursorAt: { top: -12, left: -20 },
+    helper: function () {
+      var selectedDocuments = Session.get('selectedDocuments');
+      var helperText;
+      if (_.isEmpty(selectedDocuments)) {
+        helperText = "Move '" + Blaze.getData(this).name + "'";
+      } else {
+        helperText = 'Move ' + selectedDocuments.length + ' items';
+      }
+
+      return $("<div class='documentRowDragHelper'>" + helperText + "</div>");
+    }
+  });
+
+  if (this.data.isFolder) {
+    // Make row droppable
+    $(this.firstNode).droppable({
+      hoverClass: "documentRow--dragHover",
+      drop: function(event, ui) {
+        var selectedDocuments = Session.get('selectedDocuments');
+        var documentsToMove = _.isEmpty(selectedDocuments) ?
+          [Blaze.getData(ui.draggable.get(0))._id] :
+          selectedDocuments;
+        var targetFolder = Blaze.getData(this)._id;
+        Meteor.call('moveTo', documentsToMove, targetFolder, function (error) {
+          if (error) {
+            console.error(error);
+          }
+        });
+      }
+    });
+  }
+};

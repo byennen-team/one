@@ -106,8 +106,10 @@ Template.documents.rendered = function () {
     e.stopPropagation();
     e.preventDefault();
 
-    var files = e.originalEvent.dataTransfer.files;
-    for (var i = 0; i < files.length; i++) uploadFile(files[i]);
+    if (e.originalEvent.dataTransfer) {
+      var files = e.originalEvent.dataTransfer.files;
+      for (var i = 0; i < files.length; i++) uploadFile(files[i]);
+    }
   });
 };
 
