@@ -16,10 +16,9 @@
       <h1>All your real estate applications under One roof.</h1>
       <form id="agentLogin">
         <div class="form-group">
+          <p class="error">{{error}}</p>
           <input type="text" class="agentID-input" id="agentID" placeholder="Enter Agent ID">
-          <p class="error">That Agent ID was not found.</p>
           <input type="email" class="agentID-input" id="agentEmail" placeholder="Enter Agent Email">
-          <p class="error">That Agent Email  was not found.</p>
         </div>
         <button type="submit" class="login-button">Login</button>
       </form>

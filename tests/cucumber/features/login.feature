@@ -15,4 +15,4 @@ Feature: Allow users to login and logout
     Given I am unauthenticated
     And I am on the home page
     When I enter incorrect authentication information
-    Then I should see an error saying "User not found"
+    Then I should see a user not found error

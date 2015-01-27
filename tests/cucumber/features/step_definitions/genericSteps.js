@@ -16,14 +16,15 @@ module.exports = function () {
       call(callback);
   });
 
-  this.Then(/^I should see the title of "([^"]*)"$/, function (expectedTitle, callback) {
-
-    helper.world.browser.
-      title(function (err, res) {
-        assert.equal(res.value, expectedTitle);
-        callback();
-      });
-  });
+  this.Then(/^I should see the title of "([^"]*)"$/,
+    function (expectedTitle, callback) {
+      helper.world.browser.
+        title(function (err, res) {
+          assert.equal(res.value, expectedTitle);
+          callback();
+        });
+    }
+  );
 
 
   this.Then(/^I should see "([^"]*)"$/, function (msg, callback) {
@@ -47,9 +48,15 @@ module.exports = function () {
       call(callback);
   });
 
-  this.Then(/^I should see an error saying "([^"]*)"$/, function (arg1, callback) {
+  this.Then(/^I should see a user not found error$/, function (callback) {
     // Write code here that turns the phrase above into concrete actions
-    callback.pending();
+    helper.world.browser.
+      waitForExist('.error', 5000).
+      waitForVisible('.error').
+      getText('.error', function (err, errorMessage) {
+        assert.equal(errorMessage, 'User not found');
+      }).
+      call(callback);
   });
 
   this.Given(/^I am unauthenticated$/, function (callback) {
@@ -67,13 +74,15 @@ module.exports = function () {
       call(callback);
   });
 
-  this.When(/^I enter incorrect authentication information$/, function (callback) {
-    helper.world.browser.
-      setValue('input#agentID', '555').
-      setValue('input#agentEmail', 'bad.email@elliman.com').
-      submitForm('#agentLogin').
-      call(callback);
-  });
+  this.When(/^I enter incorrect authentication information$/,
+    function (callback) {
+      helper.world.browser.
+        setValue('input#agentID', '555').
+        setValue('input#agentEmail', 'bad.email@elliman.com').
+        submitForm('#agentLogin').
+        call(callback);
+    }
+  );
 
 
 };
