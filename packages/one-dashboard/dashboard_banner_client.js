@@ -1,11 +1,11 @@
-/* globals Skycons: true */
+/* globals Skycons: false */
 var temp = new ReactiveVar();
+
 Template.dashboardBanner.rendered = function () {
   $("#dashboard-schedule-sleeve").mCustomScrollbar({
       theme:"one-dark",
       scrollbarPosition: "outside"
   });
-
   //geting geolocation
   if(navigator.geolocation) {
     navigator.geolocation.getCurrentPosition(function(position) {
@@ -47,7 +47,6 @@ Template.dashboardBanner.rendered = function () {
           console.log("Unknown error");
           break;
       }
-
     });
   }
 };
