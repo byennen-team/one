@@ -13,6 +13,9 @@ Package.onUse(function (api) {
   api.use('files', both);
 
   api.addFiles([
+    'document_row.html',
+    'document_row.js',
+    'document_row.less',
     'documents.html',
     'documents_client.js',
     'documents.less',

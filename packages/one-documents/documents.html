@@ -40,58 +40,7 @@
             </thead>
             <tbody>
               {{#each files}}
-                <tr id="row-{{_id}}">
-                  <td class="selectCheckbox">
-                    <label>
-                      <input type="checkbox"
-                             data-action="select"
-                             checked="{{isSelected this}}"
-                             aria-label="select document">
-                    </label>
-                  </td>
-                  <td class="favoriteCheckbox">
-                    <input id="box-{{_id}}"
-                           type="checkbox"
-                           data-action="favorite"
-                           {{isFavoriteChecked this}}>
-                    <label for="box-{{_id}}"></label>
-                  </td>
-                  <td>
-                    <i class="fa {{#if isFolder}}fa-folder{{else}}fa-file{{/if}} pdf"></i>
-                  </td>
-                  <td class="name">
-                    {{#if isFolder}}
-                      <a href="{{pathFor 'folder'}}" class="name">{{name}}</a>
-                    {{else}}
-                      <a href="{{url this}}" target="_blank" class="name">{{name}}</a>
-                      <i class="fa fa-pencil rename-document" data-toggle="modal" data-target="#documentsRenameModal"></i>
-                    {{/if}}
-                    <div class="progress hide">
-                      <div class="progress-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%;">
-                        0%
-                      </div>
-                    </div>
-                  </td>
-                  <td><span class="type">{{type this}}</span></td>
-                  <td>{{date this}}</td>
-                  <td>
-                    <div class="btn-group">
-                      <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
-                        More <span class="caret"></span>
-                      </button>
-                      <ul class="dropdown-menu" role="menu">
-                        <!-- <li><a href="#"><i class="fa fa-floppy-o"></i> Move to My Docs</a></li> -->
-                        <li><a href="{{url this}}" class="download"><i class="fa fa-download"></i> Download</a></li>
-                        <li class="share-document"><a href="#" data-toggle="modal" data-target="#shareDocumentModal"><i class="fa fa-share"></i> Share</a></li>
-                        <li><a href="{{url this}}" class="print"><i class="fa fa-print"></i> Print</a></li>
-                        {{#if isPersonalDocument this}}
-                          <li><a href="#" class="remove"><i class="fa fa-remove"></i> Remove</a></li>
-                        {{/if}}
-                        <li class="share-document"><a href="#" data-toggle="modal" data-target="#emailDocumentModal"><i class="fa fa-envelope-o"></i> Email</a></li>
-                      </ul>
-                    </div>
-                  </td>
-                </tr>
+                {{> documentRow}}
               {{/each}}
             </tbody>
           </table>
