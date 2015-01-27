@@ -1,14 +1,18 @@
-Template.messageWidget.rendered = function () {
+Template.channelWidget.rendered = function () {
   // initialize maazalik:malihu-jquery-custom-scrollbar scrollbar plugin
-  var sleeve = $( ".messageWidgetSleeve" );
+  var sleeve = $( ".conversation" );
   sleeve.mCustomScrollbar({
       theme:"one-dark",
-      scrollbarPosition: "inside"
+      scrollbarPosition: "inside",
+      autoHideScrollbar: true
   });
-  sleeve.mCustomScrollbar("scrollTo","bottom");
+  // Delay gives the plugin a change to load fully 
+  setTimeout(function(){
+    sleeve.mCustomScrollbar( "scrollTo", "bottom" );
+  }, 200);
 }
 
-Template.messageWidget.helpers({
+Template.channelWidget.helpers({
 // TODO: Return the channel type. String (company, message, rooms)
 //    (to be used as class name)
   channelType: function () {
@@ -19,7 +23,7 @@ Template.messageWidget.helpers({
 
 // TODO: Return the descriptive channel type. String
 //    (company channels, direct messaging, rooms)
-  channelType: function () {
+  channelTypeLong: function () {
     return 'company channels';
     // return 'direct messaging';
     // return 'rooms';
@@ -34,7 +38,7 @@ Template.messageWidget.helpers({
   },
 
 // TODO: Return the number of unread messages 
-  channelType: function () {
+  unread: function () {
     return 2;
   },
 
@@ -66,7 +70,7 @@ Template.messageWidget.helpers({
   },
 
 // TODO: Return true if the message has an attachment, false if it doesn't.
-  messageText: function () {
+  hasAttachment: function () {
     return true;
     // return false;
   },
@@ -77,7 +81,7 @@ Template.messageWidget.helpers({
   },
 
 // TODO: Return's attachment file name. String
-  attachmentURL: function () {
+  attachmentName: function () {
     return 'Leasing Agreement.pdf';
   },
 
@@ -88,12 +92,38 @@ Template.messageWidget.helpers({
 
 });
 
-Template.messageWidget.events({
+Template.channelWidget.events({
 
 // TODO: Open channel for the conversation
   // Opens channel of message clickec
   'click .view-chat': function () {
-
+    $('#sidebar-scroll-target').velocity("scroll",600);
+    $.Velocity.hook($('#communication-main'), "width", "100%");
+    $.Velocity.hook($('#communication-message-board'), "width", "60%");
+    $.Velocity.hook($('#communication-task-board'), "width", "0");
+    $.Velocity.hook($('#communication-library-board'), "width", "15.5%");
+    // force scrollbar on sidebar
+    var currentHeight = $(window).height();
+    $('.communication-sidebar-sleeve').css({
+      'height': currentHeight - 130 + 'px',
+      'position': 'fixed',
+      'top': '120px',
+      'width': '24%'
+    });
+    // lock scroll position, but retain settings for later
+    var scrollPosition = [
+      window.pageXOffset ||
+      document.documentElement.scrollLeft ||
+      document.body.scrollLeft,
+      window.pageYOffset ||
+      document.documentElement.scrollTop ||
+      document.body.scrollTop
+    ];
+    var body = $('body');
+    body.data('scroll-position', scrollPosition);
+    body.data('previous-overflow', body.css('overflow'));
+    body.css('overflow', 'hidden');
+    window.scrollTo(scrollPosition[0], scrollPosition[1]);
   }
 
 });

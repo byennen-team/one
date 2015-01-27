@@ -2,7 +2,11 @@
 @import "/packages/styles/variables.import.less";
 
 	// /* theme "one-light", "one-dark" */
-	
+	.mCS-one-light.mCSB_scrollTools,
+	.mCS-one-dark.mCSB_scrollTools { 
+		top: 16px; bottom: 16px; 
+	}
+
 	.mCS-one-light.mCSB_scrollTools .mCSB_draggerRail, 
 	.mCS-one-dark.mCSB_scrollTools .mCSB_draggerRail{
 		width: 2px;
@@ -46,13 +50,12 @@
 	
 	
 //	/* theme "one-dark" */
-	
-	.mCS-one-dark.mCSB_scrollTools .mCSB_dragger .mCSB_dragger_bar{ background-color: #6c8298; background-color: rgba(0,0,0,0.75); }
+	.mCS-one-dark.mCSB_scrollTools .mCSB_dragger .mCSB_dragger_bar{ background-color: @lt-blue-purple; background-color: rgba(150, 164, 194, 0.75); }
 
-	.mCS-one-dark.mCSB_scrollTools .mCSB_dragger:hover .mCSB_dragger_bar{ background-color: #6c8298; background-color: rgba(0,0,0,0.85); }
+	.mCS-one-dark.mCSB_scrollTools .mCSB_dragger:hover .mCSB_dragger_bar{ background-color: @lt-blue-purple; background-color: rgba(150, 164, 194, 0.85); }
 
 	.mCS-one-dark.mCSB_scrollTools .mCSB_dragger:active .mCSB_dragger_bar,
-	.mCS-one-dark.mCSB_scrollTools .mCSB_dragger.mCSB_dragger_onDrag .mCSB_dragger_bar{ background-color: #6c8298; background-color: rgba(0,0,0,0.9); }
+	.mCS-one-dark.mCSB_scrollTools .mCSB_dragger.mCSB_dragger_onDrag .mCSB_dragger_bar{ background-color: @lt-blue-purple; background-color: rgba(150, 164, 194, 0.9); }
 	
 	.mCS-one-dark.mCSB_scrollTools .mCSB_draggerRail{ background-color: #000; background-color: rgba(0,0,0,0.1); }
 	

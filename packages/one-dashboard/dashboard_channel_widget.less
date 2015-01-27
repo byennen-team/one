@@ -1,0 +1,265 @@
+// Variables 
+@import "/packages/styles/variables.import.less";
+
+.channel-widget {
+  height: 22em;
+  margin-top: 1em;
+  background-color: @white;
+  .header {
+    position: relative;
+    height: 4.375em;
+    width: 100%;
+    padding: 0.75em 0.75em 0.75em 1.25em;
+  }
+  .channel-type {
+    float: left;
+    width: auto;
+    font-family: @raleway-semibold;
+    margin-bottom: 0;
+    color: @white;
+    font-variant: small-caps;
+    text-transform: lowercase;
+    letter-spacing: 0.125em;
+  } 
+  .channel-name {
+    float: left;
+    clear: left; 
+    width: auto;
+    font-family: @raleway-regular;
+    color: @white;
+    font-size: 16px;
+    .notice {
+      font-size: 12px;
+      border-radius: 15px;
+      padding: 0.1em 0.43em;
+      margin-left: 3px;
+    }
+  }
+  .view-chat {
+    float: right;
+    font-size: 16px;
+    height: 2.5em;
+    width: 9.688em;
+    padding-top: 0.5em;
+    border-radius: 3px;
+    font-family: @raleway-bold;
+    margin-bottom: 0;
+    color: @white;
+    font-variant: small-caps;
+    text-transform: lowercase;
+    text-align: center;
+    letter-spacing: 0.125em;
+    cursor: pointer;
+  }
+  .conversation {
+    width: 100%;
+    height: 17.143em;
+    padding-left: 1em;
+    overflow: hidden;
+    background-color: @white;
+    .message {
+      position: relative;
+      padding: 1em 1em 1em 0;
+      overflow: hidden;
+      .avatar {
+        position: absolute;
+        width: 55px;
+        height: 55px;
+        margin-left: 20px;
+        img {
+          border-radius: 50%;
+          width: 100%;
+          height: auto;
+        }
+        .status {
+          position: absolute;
+          width: 10px;
+          height: 10px;
+          top: 50%;
+          left: -5px;
+          margin-top: -5px;
+          border-radius: 50%;
+          transition: background-color 350ms ease-out 50ms;
+        }
+        .status.active {
+          background-color: @green;
+        }
+        .status.inactive {
+          background-color: @red;
+        }
+        .status.mobile {
+          background-color: @accent;
+        }
+      }
+      .message-body {
+        float: left;
+        margin-left: 95px;
+        .name {
+          font-family: @raleway-bold;
+          color: @text-navy;
+        }
+        .time {
+          font-family: @raleway-regular;
+          font-size: 12px;
+          color: @blue-grey;
+        }
+        .text {
+          .blue-text {
+            font-size: 15px;
+            font-family: @raleway-bold;
+            font-variant: small-caps;
+            text-transform: lowercase;
+            letter-spacing: 0.125em;
+          }
+          .fa {
+            transition: none;
+          }
+        }
+        .subject {
+          font-family: @raleway-bold;
+          color: @accent;
+        }
+        .doc {
+          .thumbnail {
+            display: inline-block;
+            margin-bottom: 0.25em;
+          }
+          .title {
+            font-size: 12px;
+            font-family: @raleway-semibold;
+            color: @text-navy;
+            .fa {
+              font-size: 14px;
+              color: @accent;
+              margin-right: 0.5em;
+            }
+            .size {
+              font-family: @raleway-regular;
+              color: @blue-grey;
+              margin-left: 0.5em;
+            }
+          }
+          .action-bar {
+            a {
+              color: @teal;
+              margin-right: 1.5em;
+            }
+          }
+        }
+      }
+    }
+    .message.user {
+      background-color: @lt-grey;
+    }
+    .new-message-bar {
+      width: 96%;
+      margin: 1em 0 1em 4%;
+      text-align: right;
+      p {
+        position: relative;
+        display: inline-block;
+        padding: 0 0 0 1em;
+        font-family: @raleway-bold;
+        font-size: 10px;
+        text-transform: uppercase;
+        letter-spacing: 0.25em;
+        background-color: @white;
+        z-index: 1;
+      }
+      hr {
+        margin-top: -1.35em;
+      }
+    }
+  }
+}
+.channel-widget:first-of-type {
+  margin-top: 2em;
+}
+// Different channel types:
+.channel-widget.company {
+  .header {
+    background-color: @company-blue;
+    .view-chat {
+      background-color: @company-dk-blue;
+    }
+    .channel-name {
+      .notice {
+        background-color: lighten( @company-blue, 10%);
+      }
+    }
+  }
+  .new-message-bar {
+    p {
+      color: @company-blue;
+    }
+    hr {
+      background-color: @company-blue;
+    }
+  }
+}
+
+.channel-widget.message {
+  .header {
+    background-color: @message-purple;
+    .view-chat {
+      background-color: @message-dk-purple;
+    }
+    .channel-name {
+      .notice {
+        background-color: lighten( @message-purple, 10%);
+      }
+    }
+  }
+  .new-message-bar {
+    p {
+      color: @message-purple;
+    }
+    hr {
+      background-color: @message-purple;
+    }
+  }
+}
+
+.channel-widget.rooms {
+  .header {
+    background-color: @room-blue;
+    .view-chat {
+      background-color: @room-dk-blue;
+    }
+    .channel-name {
+      .notice {
+        background-color: lighten( @room-blue, 10%);
+      }
+    }
+  }
+  .new-message-bar {
+    p {
+      color: @room-blue;
+    }
+    hr {
+      background-color: @room-blue;
+    }
+  }
+}
+
+.channel-widget.personal {
+  .header {
+    background-color: @personal-green;
+    .view-chat {
+      background-color: @personal-dk-green;
+    }
+    .channel-name {
+      .notice {
+        background-color: lighten( @personal-green, 10%);
+      }
+    }
+  }
+  .new-message-bar {
+    p {
+      color: @personal-green;
+    }
+    hr {
+      background-color: @personal-green;
+    }
+  }
+}   
