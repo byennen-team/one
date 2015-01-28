@@ -4,22 +4,20 @@ Profile = {};
 
 Template.accountSettings.events({
   'change .upload': function (event) {
-    FileTools.upload('signProfilePictureUpload', event.target.files[0], {
-      bucket: Meteor.settings.public.AWS_BUCKET_RAW,
+    FileTools.s3Upload(event.target.files[0], 'profile-images', {
       onError: function (error) {
         // TODO error message
         alert(error);
       },
       onComplete: function (result) {
-        var photoUrl = Meteor.settings.public.AWS_BUCKET_URL +
-        '/' + result.filePath;
+        console.log('oncomplete', result);
 
         //Meteor.call('resizeNewProfileImage', photoUrl);
 
         Meteor.users.update(Meteor.userId(), {
           $set: {
-            'profile.photoUrl': photoUrl,
-            'profile.photoKey': result.filePath
+            'profile.photoUrl.large': result.fullUrl,
+            'profile.photoUrl.thumb': result.thumbUrl
           }
         });
       }
