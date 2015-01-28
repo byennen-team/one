@@ -96,4 +96,6 @@ for route in slideRightBetween
     Transitioner.transition
       fromRoute: route
       toRoute: other
-      velocityAnimaton: slideRight
+      velocityAnimaton:
+        in: 'transition.slideRightIn'
+        out: 'transition.slideLeftOut'

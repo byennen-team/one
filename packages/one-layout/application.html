@@ -21,18 +21,17 @@
           {{/if}}
 
           <div class="content">
-            {{#transitioner}}
-            {{> yield}}
-            {{/transitioner}}
-
+              {{#transitioner}}
+                {{> yield}}
+              {{/transitioner}}
           </div>
         </div>
       {{else}}
         <div class="wrap">
           <div class="content">
-            {{#transitioner}}
-            {{> yield}}
-            {{/transitioner}}
+              {{#transitioner}}
+                {{> yield}}
+              {{/transitioner}}
           </div>
         </div>
       {{/if}}
