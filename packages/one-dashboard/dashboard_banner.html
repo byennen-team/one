@@ -37,37 +37,13 @@
       </div> -->
 
 
-<!-- TODO: Remove: -->
-      <div class="avatar-box">
-        <img class="avatar" src="images/com-hub-main/dottie.jpg" />
-        <div class="status-dot active"></div>
-        <div class="message none">1</div>
-      </div>
-
-      <div class="avatar-box">
-        <img class="avatar" src="images/com-hub-main/howard.jpg" />
-        <div class="status-dot mobile"></div>
-        <div class="message none">1</div>
-      </div>
-
-      <div class="avatar-box">
-        <img class="avatar" src="images/com-hub-main/joy.jpg" />
-        <div class="status-dot active"></div>
-        <div class="message">1</div>
-      </div>
-
-      <div class="avatar-box">
-        <img class="avatar" src="images/com-hub-main/jon.jpg" />
-        <div class="status-dot inactive"></div>
-        <div class="message none">1</div>
-      </div>
-
-      <div class="avatar-box">
-        <img class="avatar" src="images/com-hub-main/brittany.jpg" />
-        <div class="status-dot active"></div>
-        <div class="message">1</div>
-      </div>
-<!-- /remove -->
+      {{#each teamMembers}}
+        <div class="avatar-box">
+          <img class="avatar" src="{{profile.photoUrl.thumb}}" />
+          <div class="status-dot {{status}}"></div>
+          <div class="message none">1</div>
+        </div>
+      {{/each}}
     </div>
 
     <div class="schedule">

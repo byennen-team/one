@@ -1,6 +1,12 @@
 /* globals Skycons: false */
 var temp = new ReactiveVar();
 
+Template.dashboardBanner.created = function() {
+  Tracker.autorun(function() {
+    Meteor.subscribe('userProfiles', Meteor.user().teamMembers);
+  });
+};
+
 Template.dashboardBanner.rendered = function () {
   $("#dashboard-schedule-sleeve").mCustomScrollbar({
       theme:"one-dark",
@@ -72,6 +78,14 @@ Template.dashboardBanner.helpers({
   },
   time: function() {
     return moment().format('h:mm a');
+  },
+  teamMembers: function() {
+    if(Meteor.user() && Meteor.user().teamMembers)
+      return Meteor.users.find({
+        _id: {
+          $in: Meteor.user().teamMembers
+        }
+      });
   }
 });
 
