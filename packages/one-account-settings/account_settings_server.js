@@ -49,6 +49,37 @@ Meteor.methods({
     });
     Meteor._powerQ.resume();
   },
+  s3Signature: function (fileName, mimeType, gallery, bucket) {
+    check(fileName, String);
+    check(mimeType, String);
+    if (gallery) {
+      check(gallery, String);
+    } else {
+      gallery = 'uploads'
+    };
+    if (bucket) {
+      check(bucket, String);
+    } else {
+      bucket = Meteor.settings.public.UPLOAD_BUCKET;
+    }
+    var resizedBucket = 'goone-resized-west-2';
+
+    console.log('s3Signature \n', fileName, '\n mimeType ', mimeType,
+    '\n gallery ', gallery );
+
+    var user = Meteor.user();
+
+    if(!user) throw new Meteor.Error('Must login to upload.');
+
+    var path = 'user/'+ user.profile.id + '/'+ gallery + '/'+ fileName;
+
+    var _upload = FileTools.signUpload(path, 'public-read', mimeType, bucket);
+    var _thumbUrl = FileTools.signedGet('/thumb/'+path, resizedBucket);
+    var _fullUrl = FileTools.signedGet('/full/'+path, resizedBucket);
+    _upload.thumbUrl = _thumbUrl;
+    _upload.fullUrl = _fullUrl;
+    return _upload;
+  },
   signProfilePictureUpload: function (fileName, mimeType, filePath) {
     console.log('signProfilePictureUpload', fileName,
     ' mimeType ', mimeType, ' filePath ', filePath );

@@ -1,6 +1,4 @@
-FileTools.upload = function (method, file, options) {
-  console.log('FilteTools.upload \n method: ', method, '\n\n file \n', file,
-  '\n\n options \n\n ', options);
+FileTools.s3Upload = function (file, gallery, options) {
   options = options || {};
   var noop = function () {};
   _.defaults(options, {
@@ -10,19 +8,16 @@ FileTools.upload = function (method, file, options) {
     parentFolderId: null,
     filePath: null
   });
-
-  var args = [file.name, file.type];
-  if (options.parentFolderId) {
-    args.push(options.parentFolderId);
-  }
-  if (options.filePath) {
-    args.push(options.filePath);
-  }
-
-  // Heavily borrowed from http://stackoverflow.com/a/12378395/230462
-  Meteor.apply(method, args, function (error, result) {
-    if (error) {
-      options.onError(error);
+  var bucket = Meteor.settings.public.UPLOAD_BUCKET;
+  var fileName = file.name;
+  var mimeType = file.type;
+  console.log('s3Upload', fileName, mimeType, gallery, options);
+  argArray = [fileName, mimeType, gallery, bucket];
+  Meteor.apply('s3Signature', argArray, options,
+  function(err, result){
+    if (err) {
+      console.log('error', err);
+      options.onError(err);
       return;
     }
     console.log('result', result);
@@ -48,8 +43,9 @@ FileTools.upload = function (method, file, options) {
 
     xhr.addEventListener('error', options.onError, false);
     xhr.addEventListener('abort', options.onError, false);
-    var _bucket = options.bucket || Meteor.settings.public.AWS_BUCKET_URL;
-    xhr.open('POST', _bucket, true);
+    var url = Meteor.settings.public.AWS_BUCKETS[bucket].url;
+    console.log('bucket url', url);
+    xhr.open('POST', url , true);
     xhr.send(formData);
   });
 };
