@@ -86,6 +86,20 @@ Template.dashboardBanner.helpers({
           $in: Meteor.user().teamMembers
         }
       });
+  },
+  status: function (status) {
+    if (status) {
+      switch (status.toUpperCase()) {
+        case 'MOBILE':
+          return 'mobile';
+        case 'OUT OF OFFICE':
+          return 'inactive';
+        case 'IN THE OFFICE':
+          return 'active';
+      }
+    } else {
+      return "inactive";
+    }
   }
 });
 
