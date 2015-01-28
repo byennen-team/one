@@ -1,3 +1,6 @@
+// Variables
+@import '/packages/styles/variables.import.less';
+
 // The styles are still in documents.less and must be refactored
 
 .documentRowDragHelper {
@@ -10,4 +13,16 @@
 
 .documentRow--dragHover {
   background: #caf6ee;
+}
+
+.document-row {
+  background-color: @white;
+  transition: background-color 350ms ease-out 50ms;
+
+}
+.document-row:hover {
+  background-color: @file-hover;
+}
+.document-row.selected {
+  background-color: @file-selected;
 }

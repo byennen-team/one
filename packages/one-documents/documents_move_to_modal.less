@@ -1,29 +1,235 @@
-.documentsMoveToModal__currentFolder {
-  margin-bottom: 8px;
+// Variables
+@import '/packages/styles/variables.import.less';
+
+#documentsMoveToModal {
+  .documentsMoveToModal__currentFolder {
+    margin-bottom: 8px;
+  }
+
+  .documentsMoveToModal__currentFolderName {
+    display: inline-block;
+    margin-left: 4px;
+  }
+
+
+  .folderSelect {
+
+    .folderSelect__selected {
+      font-size: 16px;
+      height: 3em;
+      padding: 0.75em 1em;
+      background-color: transparent;
+      border: 2px solid #b7bed1;
+      border-radius: 3px;
+      font-family: RalewayRegular, Verdana, Geneva, sans-serif;
+      letter-spacing: 0;
+      text-transform: none;
+      color: #78838e;
+      .fa {
+        margin-right: 0.5em;
+        color: @accent;
+      }
+      .caret {
+        float: right;
+        margin-top: 0.5em;
+      }
+    }
+
+    // .folderSelect__selectedIcon {
+
+    // }
+    .folderSelect__dropdown {
+      position: absolute;
+      width: 90%;
+      padding: 0;
+      background-color: @white;
+      border-radius: 0 0 3px 3px;
+      border: 2px solid #b7bed1;
+      border-style: none solid solid solid;
+      overflow: hidden;
+      // .folderSelect__tree {
+
+        // .jstree-container-ul.jstree-children {
+          
+          .jstree-node {
+            position: relative;
+            margin: 0;
+            background-image: none; // removes vertical dots
+            .jstree-icon.jstree-ocl { // dotted tree path
+              position: absolute;
+              top: 0.75em;
+              background-image: url( '/images/documents/jstree.png' );
+              z-index: 1;
+            }
+            .jstree-anchor { // <a>
+              display: block;
+              width: 100%;
+              height: 3em;
+              padding: 0.75em 1em;
+              background-color: @white;
+              transition: background-color 350ms ease-out 50ms;
+              z-index: 0;
+              
+              .jstree-icon:before { // <i> .fa .fa-folder also
+                content: "\f114"; // change .fa-folder to .fa-folder-o
+                font-size: 18px;
+                color: @accent;
+              }
+            }
+            .jstree-icon.jstree-ocl:hover ~ .jstree-anchor { 
+              background-color: @file-hover;
+            }
+            .jstree-anchor:hover {
+              position: relative;
+              background-color: @file-hover;
+              border-radius: 0;
+              border: none;
+              box-shadow: none;
+            }
+
+
+
+
+/* //  probably redundant
+            // .jstree-children { // <ul>
+              
+            //   .jstree-node { // <li>
+                
+            //     .jstree-icon.jstree-ocl {
+
+            //     }
+            //     .jstree-anchor { // <a>
+              
+            //       .jstree-icon.jstree-themeicon { // <i> .fa .fa-folder also
+
+            //       }
+            //     }
+            //   }
+            // } */
+          }
+          .jstree-children {
+            .jstree-anchor {
+              padding-left: 1.5em;
+            }
+            .jstree-icon.jstree-ocl {
+              left: 0; // 1.5em less than above
+            }
+            .jstree-children {
+              .jstree-anchor {
+                padding-left: 3em;
+              }
+              .jstree-icon.jstree-ocl {
+                left: 1.5em;
+              }
+              .jstree-children {
+                .jstree-anchor {
+                  padding-left: 4.5em;
+                }
+                .jstree-icon.jstree-ocl {
+                  left: 3em;
+                }
+                .jstree-children {
+                  .jstree-anchor {
+                    padding-left: 6em;
+                  }
+                  .jstree-icon.jstree-ocl {
+                    left: 4.5em;
+                  }
+                  .jstree-children {
+                    .jstree-anchor {
+                      padding-left: 7.5em;
+                    }
+                    .jstree-icon.jstree-ocl {
+                      left: 6em;
+                    }
+                    .jstree-children {
+                      .jstree-anchor {
+                        padding-left: 9em;
+                      }
+                      .jstree-icon.jstree-ocl {
+                        left: 7.5em;
+                      }
+                      .jstree-children {
+                        .jstree-anchor {
+                          padding-left: 10.5em;
+                        }
+                        .jstree-icon.jstree-ocl {
+                          left: 9em;
+                        }
+                        .jstree-children {
+                          .jstree-anchor {
+                            padding-left: 12em;
+                          }
+                          .jstree-icon.jstree-ocl {
+                            left: 10.5em;
+                          }
+                        }
+                        .jstree-children {
+                          .jstree-anchor {
+                            padding-left: 13.5em;
+                          }
+                          .jstree-icon.jstree-ocl {
+                            left: 12em;
+                          }
+                          .jstree-children {
+                            .jstree-anchor {
+                              padding-left: 15em;
+                            }
+                            .jstree-icon.jstree-ocl {
+                              left: 13.5em;
+                            }
+                            .jstree-children {
+                              .jstree-anchor {
+                                padding-left: 16.5em;
+                              }
+                              .jstree-icon.jstree-ocl {
+                                left: 15em;
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+      .jstree-default { 
+        .jstree-clicked {
+          background-color: transparent;
+          border-radius: 0;
+          box-shadow: none;
+        }
+
+
+      // } 
+    // }
+  }
 }
 
-.documentsMoveToModal__currentFolderName {
-  display: inline-block;
-  margin-left: 4px;
-}
-
-
-.folderSelect {
-
-}
-
-.folderSelect__selected {
-
-}
-
-.folderSelect__selectedIcon {
-
-}
-
-.folderSelect__dropdown {
-
-}
-
-.folderSelect__tree {
-
+// TODO: Remove:
+.bootstrap-select.btn-group {
+  .dropdown-toggle {
+    box-shadow: none;
+  }
+  .dropdown-menu {
+    margin-top: 0;
+    padding: 0;
+    border-radius: 0 0 3px 3px;
+    border: 2px solid #b7bed1;
+    border-style: none solid solid solid;
+  }
+  li {
+    a {
+      padding: 1em;
+      background-color: @white;
+      transition: background-color 350ms ease-out 50ms;
+    }
+    a:hover {
+      background-color: @file-hover;
+    }
+  }
 }

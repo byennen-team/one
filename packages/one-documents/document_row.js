@@ -58,7 +58,21 @@ Template.documentRow.events({
     // TODO: Lance finish front end
     console.log('hover');
     // $(".edit").show();
+  },
+
+  // Selects hidden checkbox when div is clicked
+  'click .document-row': function ( event ) {
+    var $this = $( event.currentTarget );
+    var $checkbox = $this.find( '.document-row-checkbox' );
+    if( $checkbox.is( ':checked' ) ){ // if row was selected, turn it off
+      $checkbox.prop( 'checked', false );
+      $this.removeClass( 'selected' );
+    }else {
+      $checkbox.prop( 'checked', true );
+      $this.addClass( 'selected' );
+    }
   }
+
 });
 
 Template.documentRow.helpers({

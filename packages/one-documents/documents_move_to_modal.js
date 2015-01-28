@@ -53,6 +53,7 @@ Template.documentsMoveToModal.helpers({
       return null;
     }
   }
+  
 });
 
 Template.documentsMoveToModal.created = function () {
