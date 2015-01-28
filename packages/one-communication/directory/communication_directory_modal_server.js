@@ -1,6 +1,8 @@
 Meteor.methods({
   'addTeamMember': function(userId) {
     check(userId, String);
+    if(! this.userId)
+      throw new Meteor.Error("You are not logged in");
 
     Meteor.users.update({
       _id: this.userId
@@ -12,6 +14,8 @@ Meteor.methods({
   },
   'removeTeamMember': function(userId) {
     check(userId, String);
+    if(! this.userId)
+      throw new Meteor.Error("You are not logged in");
 
     Meteor.users.update({
       _id: this.userId
