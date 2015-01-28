@@ -25,21 +25,20 @@ Template.communicationDirectoryModal.events({
       template.searchText.set({
         text: $('#modalDirectorySearchInput').val(),
         limit: currentLimit
-      })
+      });
     }
   },
   'click .load-more': function(event, template) {
     event.preventDefault();
 
     var currentLimit = template.searchText.get().limit;
-    var currentText = template.searchText.get().text
+    var currentText = template.searchText.get().text;
       template.searchText.set({
         text: currentText,
         limit: currentLimit + 5
-      })
+      });
   },
   'click input.userid-checkbox': function(event) {
-    console.log('hi')
     if ($(event.currentTarget).prop('checked') === true)
       Meteor.call('addTeamMember',$(event.currentTarget).val());
     else
