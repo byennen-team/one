@@ -17,6 +17,7 @@ Files.allow({
  * @returns {{accessKey: *, policy: string, signature: *}}
  */
 FileTools.signUpload = function (filePath, acl, mimeType, bucket) {
+  bucket = bucket || Meteor.settings.public.AWS_BUCKET;
   console.log('signupload bucket:', filePath, ' \n', acl, '\n', bucket);
   var policy = {
     // expire in 5 minutes
@@ -60,9 +61,13 @@ var awsSignature = function (str) {
  * Return a signed url to read the filePath.
  */
 FileTools.signedGet = function (filePath, _bucket) {
-  bucket = _bucket || Meteor.settings.AWS_BUCKET;
+  var bucket = _bucket || Meteor.settings.AWS_BUCKET;
+  if (!/^\//.test(filePath)) {
+    filePath = '/'+filePath;
+  }
   console.log('signed get', filePath, bucket);
-  fullPath = encodeURI('/' + bucket + filePath);
+
+  var fullPath = encodeURI('/' + bucket + filePath);
   var dateTime = Math.floor(new Date().getTime() / 1000) +
     Meteor.settings.S3_URL_EXPIRATION_SECONDS;
   var stringToSign = 'GET\n\n\n' + dateTime + '\n' + fullPath;
@@ -70,8 +75,9 @@ FileTools.signedGet = function (filePath, _bucket) {
   var queryString = '?AWSAccessKeyId=' + Meteor.settings.AWS_ACCESS_KEY_ID +
     '&Expires=' + dateTime +
     '&Signature=' + encodeURIComponent(signature);
-  var url = Meteor.settings.public.AWS_BUCKETS[bucket].url + filePath
-                                                           + queryString;
+  var url = Meteor.settings.public.AWS_BUCKETS[bucket].url + filePath +
+  queryString;
+
   console.log('signedGeturl', url);
   return url;
 };

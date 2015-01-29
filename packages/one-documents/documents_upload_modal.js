@@ -6,6 +6,8 @@ Template.documentsUploadModal.rendered = function(){
 Template.documentsUploadModal.events({
   'change .file-upload': function (event) {
     // get string of file path (fake)
+    console.log('change file-upload');
+    event.preventDefault();
     var $this = $(event.target);
     var $label = $this.closest('.upload-input');
     var $box = $this.closest('.input-box');

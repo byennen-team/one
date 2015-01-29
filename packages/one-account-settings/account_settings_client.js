@@ -13,7 +13,7 @@ Template.accountSettings.events({
         console.log('oncomplete', result);
         Meteor.users.update(Meteor.userId(), {
           $set: {
-            'profile.protoUrl.large': '/giphy.gif',
+            'profile.photoUrl.large': '/giphy.gif',
             'profile.photoUrl.thumb': '/giphy.gif'
           }
           }, function () {

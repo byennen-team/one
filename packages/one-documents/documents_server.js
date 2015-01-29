@@ -96,7 +96,7 @@ Meteor.methods({
     if (!user) throw new Meteor.Error('Invalid credentials');
     validateFolderId(user, parentFolderId);
 
-    var filePath = Folder.userDocument(user._id) + '/' + fileName;
+    var filePath = '/'+Folder.userDocument(user._id) + '/' + fileName;
 
     var fileId = Files.insert({
       companyDocument: false,
