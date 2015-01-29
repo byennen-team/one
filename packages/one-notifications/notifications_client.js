@@ -89,8 +89,6 @@ Tracker.autorun(function () {
   // otherwise show the notifications
   var statusPanel = Session.get( 'statusPanel' );
   if( statusPanel ){
-    // $( '#status-panel' ).velocity({ opacity: 1 }, { display: "block" });
-    // $( '#notification-panel' ).velocity({ opacity: 0 }, { display: "none" });
     $( '#status-panel' ).velocity("slideDown", {
       duration: 500,
       easing: "ease-out",
@@ -98,11 +96,6 @@ Tracker.autorun(function () {
     });
     $( '#notification-panel' ).velocity("slideUp", { duration: 500 });
   } else {
-    // $( '#notification-panel' ).velocity(
-    //   { opacity: 1 },
-    //   { display: "block" }
-    // );
-    // $( '#status-panel' ).velocity({ opacity: 0 }, { display: "none" });
     $( '#notification-panel' ).velocity("slideDown", {
       duration: 500,
       easing: "ease-out",

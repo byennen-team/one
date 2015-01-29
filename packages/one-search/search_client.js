@@ -48,11 +48,16 @@ Template.searchBox.events({
   'input input': function (event) {
     Search.text(event.target.value);
   },
+
   'click .user': function () {
     var user = Meteor.users.findOne({_id: this._id});
     console.log(user);
     $('.results').velocity("slideUp");
     Router.go(Routes.PROFILE, {slug: user.slug});
+  },
+// TODO: This needs to clear search results, not just the input value
+  'click #navbar-search-clear': function () {
+    $( '#navbar-search-input' ).val("");
   }
 });
 

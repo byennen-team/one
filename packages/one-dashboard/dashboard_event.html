@@ -1,0 +1,139 @@
+<template name='eventMenu'>
+  
+  <form id="event-menu" class="event-menu">
+
+    <div class="form-group color-drop">
+      <label class='sr-only' for="event-menu-color-select">Select a Color</label>
+      <select class="colorselectpicker" id="event-menu-color-select" data-style='select-color'>
+        <option class="dot-select purple">purple</option>
+        <option class="dot-select pink">pink</option>
+        <option class="dot-select orange">orange</option>
+        <option class="dot-select teal">teal</option>
+        <option class="dot-select blue">blue</option>
+        <option class="dot-select red">red</option>
+        <option class="dot-select glow purple">glow purple</option>
+        <option class="dot-select glow pink">glow pink</option>
+        <option class="dot-select glow orange">glow orange</option>
+        <option class="dot-select glow teal">glow teal</option>
+        <option class="dot-select glow blue">glow blue</option>
+        <option class="dot-select glow red">glow red</option>
+      </select>
+    </div>
+
+    <div class="form-group event-title">
+      <label class='sr-only' for="event-menu-name">Name your event</label>
+      <input id='event-menu-name' type="text" placeholder='Event name...'/>
+    </div>  
+
+    <div class="form-group event-date">
+      <label for="event-menu-start"><i class="fa fa-calendar"></i> starts</label>
+      <input class='event-date-input' name="start-date" id="event-menu-start" type='text' data-provide="datepicker" data-date-format="DD, MM d" data-start-date='{{day}}' value='{{day}}' />
+      <span>at</span>
+      <input class='event-date-time' name="start-time" type="text" value='{{time.start}}' />
+
+      <div class="clearfix"></div>
+
+      <label for="event-menu-end"><i class="fa fa-calendar"></i> ends</label>
+      <input class='event-date-input' name="end-date" id="event-menu-end" type='text' data-provide="datepicker" data-date-format="DD, MM d" data-start-date='{{day}}' value='{{day}}' />
+      <span>at</span>
+      <input class='event-date-time' name="end-time" type="text" value='{{time.end}}' />
+    </div>
+
+    <div class="form-group event-location {{hasLocation}}">
+      <label id='event-menu-location-label' for='event-menu-location'>
+        <i class="fa fa-map-marker"></i>
+        <span>where</span>
+      </label>
+      <div id="event-menu-location-box" class="location-box">
+        <input id='event-menu-location' type="text" value="{{eventLocation}}" />
+        <a id='event-menu-location-map' href='#' class="directions" target="_blank">get directions <i class="fa fa-location-arrow"></i></a>
+      </div>
+    </div>
+
+    <div class="form-group invite-people">
+      <label id='event-menu-invite-label' for="event-menu-invite">
+        <i class="fa fa-user"></i>
+        <span>add people <i class="fa icon-addteam" ></i></span>
+      </label>
+<!-- TODO: Add invited Agents here -->
+<!-- Possible SAMPLE CODE: -->
+ <!-- // only show the X if the viewer created the event -->
+      <!-- 
+      <div class="invited">
+        <div class="avatar-box">
+          <img class="avatar" src="{{profile.photoUrl.thumb}}" />
+          <div class="status-dot {{status profile.status}}"></div>
+        </div> 
+        <div class="name">{{profile.name}}</div>
+        {{#if creator}}
+        <div class="uninvite">
+          <i class="fa icon-x-blunt"></i>
+        </div>
+        {{/if}}
+      </div>
+    -->
+
+<!-- TODO: Delete this: -->
+      <div class="guest">
+        <div class="avatar-box">
+          <img class="avatar" src="images/com-hub-main/joy.jpg" />
+          <div class="status-dot active"></div>
+        </div>
+        <div class="name">Joy Avery</div>
+        <div class="uninvite">
+          <i class="fa icon-x-blunt"></i>
+        </div>
+      </div>
+
+      <div class="guest">
+        <div class="avatar-box">
+          <img class="avatar" src="images/com-hub-main/dottie.jpg" />
+          <div class="status-dot active"></div>
+        </div>
+        <div class="name">Dottie Herman</div>
+        <div class="uninvite">
+          <i class="fa icon-x-blunt"></i>
+        </div>
+      </div>
+<!-- /delete -->
+      <div id="event-menu-invite-box" class="invite-box">
+
+        <div class="invite-people-btn" data-toggle="modal" data-target="#communication-directory-modal">
+          <i id="event-menu-invite" class="fa icon-addteam"></i>
+        </div>
+
+        <label class='sr-only' for="event-menu-invite-search">Search for people to add</label>
+        
+  <!-- TODO: This should search the directory -->
+        <div class="invite-search" id="event-menu-invite-search">
+          {{> widgetSearch}}
+        </div>
+  <!-- TODO: Need to display search results here -->
+        <label class='sr-only' for="event-menu-user-status">Send invite</label>
+        <div class="select-invite">
+          <select class="selectpicker form-control" id='event-menu-user-status' data-style=''>
+            <option selected>send invite</option>
+            <option>don't send invite</option>
+          </select>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group notes">
+      <label id='event-menu-notes-label' for="event-menu-notes">
+        <i class="fa fa-file-text"></i>
+        <span>notes</span>
+      </label>
+      <div id="event-menu-notebox" class="description-box">
+        <textarea name="description" id="event-menu-notes" value="{{notes}}"></textarea>
+      </div>
+    </div>
+
+    <button type="submit" class="btn btn-default btn-cancel">cancel</button>
+    <button type="submit" class="btn btn-primary btn-create">create event</button>
+
+  </form>
+
+  <div id="event-menu-clear" class="clear-click"></div>
+
+</template>

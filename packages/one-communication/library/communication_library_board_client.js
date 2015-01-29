@@ -41,7 +41,6 @@ Template.libraryBoard.events({
 		$.Velocity.hook($('#communication-message-board'), "width", "0");
 		$.Velocity.hook($('#communication-task-board'), "width", "0");
 		$.Velocity.hook($('#communication-library-board'), "width", "0");
-		// force scrollbar on sidebar
 		$('.communication-sidebar-sleeve').css({
 			'height': 'inherit',
 			'position': 'static',
