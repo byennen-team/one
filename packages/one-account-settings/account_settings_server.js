@@ -55,8 +55,8 @@ Meteor.methods({
     if (gallery) {
       check(gallery, String);
     } else {
-      gallery = 'uploads'
-    };
+      gallery = 'uploads';
+    }
     if (bucket) {
       check(bucket, String);
     } else {

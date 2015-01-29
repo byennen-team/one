@@ -2,10 +2,6 @@
 
 Profile = {};
 
-Template.accountSettings.rendered = function () {
-
-}
-
 Template.accountSettings.events({
   'change .upload': function (event) {
     FileTools.s3Upload(event.target.files[0], 'profile-images', {
