@@ -28,11 +28,19 @@ Template.dashboardTwitterWidget.helpers({
 
 Template.tweetTemplate.helpers({
   media: function() {
-    if(this.media)
-      return this.media.slice(0,4);
+    if(this.payload.extended_entities.media)
+      return this.payload.extended_entities.media.slice(0,4);
+    else if (this.media)
+      return this.media;
   },
   mediaCount: function() {
-    switch (this.media.slice(0,4).length) {
+    var mediaToCount;
+    if (this.payload.extended_entities.media)
+      mediaToCount = this.payload.extended_entities.media;
+    else
+      mediaToCount = this.media;
+
+    switch (mediaToCount.slice(0,4).length) {
       case 1:
         return 'one';
       case 2:
