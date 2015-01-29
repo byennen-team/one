@@ -7,8 +7,8 @@ Package.onUse(function (api) {
 
   api.use(['aldeed:simple-schema'], both);
   api.use([
-    'cfs:reactive-list',
-    'cfs:power-queue',
+    'cfs:reactive-list@0.0.9',
+    'cfs:power-queue@0.9.11',
     'aws-sdk',
     'settings'
   ], 'server');

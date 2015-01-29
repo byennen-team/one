@@ -1,0 +1,196 @@
+// Variables 
+@import "/packages/styles/variables.import.less"; 
+
+.task-menu {
+  position: absolute;
+  display: none;
+  top: 5%;
+  right: 54.5%;
+  width: 300px;
+  background-color: @very-lt-blue-grey;
+  z-index: 5;
+  -webkit-box-shadow: -10px -9px 27px -9px rgba(0,0,0,1);
+  -moz-box-shadow: -10px -9px 27px -9px rgba(0,0,0,1);
+  box-shadow: -10px -9px 27px -9px rgba(0,0,0,1);
+  label {
+    font-family: @raleway-semibold;
+    font-variant: small-caps;
+    text-transform: lowercase;
+    color: @blue-purple;
+    margin-left: 3%;
+    .fa {
+      margin-right: 0.25em;
+    }
+  }
+  .due-date {
+    float: right;
+    font-family: @raleway-semibold;
+    font-variant: small-caps;
+    text-transform: lowercase;
+    color: @blue-purple;
+    padding: 0.5em 0.5em 0 0;
+    margin: 0;
+    letter-spacing: 0.0625em;
+  } 
+  .color-drop {
+    float: left;
+    clear: right;
+    width: 40px;
+    margin-left: 0.75em;
+    .bootstrap-select.btn-group { // this class/element is injected by plugin
+      width: 22px;
+      .btn {
+        width: 40px;
+        padding: 2px;
+        background-color: transparent;
+        .caret {
+          right: 4px;
+          border-color: @blue-purple transparent transparent transparent;
+        }
+      }
+      ul {
+        width: 25px;
+      }
+    }
+    // with selectpicker(), this class ends up on the button, list styles aren't nested
+    .select-color { 
+
+    } 
+    .dot,
+    .xdot {
+      position: relative;
+      width: 16px;
+      height: 16px;
+      padding: 0;
+      margin: 7px;
+      border-radius: 50%;
+      z-index: 2;
+      span {
+        display: none!important;
+      }
+    }
+    .xdot:after {
+      content: "";
+      position: absolute;
+      top: -5px;
+      bottom: -5px;
+      right: -5px;
+      left: -5px;
+      border-radius: 50%;
+      opacity: 0.2;
+      z-index: 1;
+    }
+    .purple.dot,
+    .purple.xdot,
+    .purple.xdot:after {
+      background-color: @purple;
+    }
+    .pink.dot,
+    .pink.xdot,
+    .pink.xdot:after {
+      background-color: @pink;
+    }
+    .orange.dot,
+    .orange.xdot,
+    .orange.xdot:after {
+      background-color: @cameo;
+    }
+    .teal.dot,
+    .teal.xdot,
+    .teal.xdot:after {
+      background-color: @teal;
+    }
+    .blue.dot,
+    .blue.xdot,
+    .blue.xdot:after {
+      background-color: @accent;
+    }
+    .red.dot,
+    .red.xdot,
+    .red.xdot:after {
+      background-color: @red;
+    }
+  }
+  .title {
+    float: left;
+    clear: right;
+    width: 76%;
+    margin-left: 0.5em;
+    input{
+      background-color: transparent;
+      border: none;
+      outline: none;
+      font-family: @raleway-bold;
+      font-size: 18px;
+      color: @dk-purple;
+    }
+    ::-webkit-input-placeholder {
+      font-family: @raleway-bold;
+      font-size: 18px;
+      color: @dk-purple;
+    }
+    ::-moz-placeholder { 
+      font-family: @raleway-bold;
+      font-size: 18px;
+      color: @dk-purple;
+    }
+    :-ms-input-placeholder {  
+      font-family: @raleway-bold;
+      font-size: 18px;
+      color: @dk-purple;
+    }
+  }
+  .description {
+    textarea {
+      width: 100%;
+      border: none;
+      padding: 1em;
+      height: 6.5em;
+      font-family: @raleway-light;
+      font-size: 16px;
+      color: @darkest-purple;
+    }
+    ::-webkit-input-placeholder {
+      font-family: @raleway-light;
+      font-size: 16px;
+      color: @darkest-purple;
+    }
+    ::-moz-placeholder { 
+      font-family: @raleway-light;
+      font-size: 16px;
+      color: @darkest-purple;
+    }
+    :-ms-input-placeholder {  
+      font-family: @raleway-light;
+      font-size: 16px;
+      color: @darkest-purple;
+    }
+  }
+  .task-list {
+    .form-control.bootstrap-select {
+      margin: 0 3%;
+      max-width: 94%;
+      .caret {
+        border-color: @blue-purple transparent transparent transparent;
+      }
+    }
+  }
+  .add-people {
+    .add-people-btn {
+      font-size: 56px;
+      width: 0.982em;
+      height: 0.982em;
+      margin-left: 6%;
+      color: @lt-teal;
+      cursor: pointer;
+    }
+  }
+  .attachments {
+
+  }
+  .private {
+
+  }
+
+
+}

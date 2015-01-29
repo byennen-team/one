@@ -24,6 +24,7 @@ Package.onUse(function (api) {
   	'modals.less',
     'tooltip.less',
     'positioning.less',
+    'select.less',
     'selectpicker.less',
     'variables.import.less'
   ], 'web');

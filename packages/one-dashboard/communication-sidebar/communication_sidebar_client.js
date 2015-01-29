@@ -42,12 +42,12 @@ Template.communicationSidebar.events({
 	'click #communication-sidebar-options': function(){
 		$('#sidebar-scroll-target').velocity("scroll",600);
 		// $('#main-wrap').addClass('blurry');
-		$.Velocity.hook($('#communication-main'), "width", "100%");
 	},
 
 	// Opens the Communication Hub
 	'click .channel': function(){
 		// expands the main dialog box to 80% of full screen
+		$.Velocity.hook($('#communication-main'), "width", "100%");
 		$.Velocity.hook($('#communication-message-board'), "width", "60%");
 		$.Velocity.hook($('#communication-task-board'), "width", "0%");
 		$.Velocity.hook($('#communication-library-board'), "width", "15.5%");
@@ -58,8 +58,8 @@ Template.communicationSidebar.events({
 		$('.communication-sidebar-sleeve').css({
 			'height': currentHeight - 130 + 'px',
 			'position': 'fixed',
-			'top': '130px',
-			'width': '25%'
+			'top': '120px',
+			'width': '24%'
 		});
 
 	  // lock scroll position, but retain settings for later
@@ -80,6 +80,7 @@ Template.communicationSidebar.events({
 
 	'click .room': function(){
 		// expands the main dialog box t0 60% of full screen
+		$.Velocity.hook($('#communication-main'), "width", "100%");
 		$.Velocity.hook($('#communication-message-board'), "width", "45%");
 		$.Velocity.hook($('#communication-task-board'), "width", "15%");
 		$.Velocity.hook($('#communication-library-board'), "width", "15.5%");
@@ -90,9 +91,24 @@ Template.communicationSidebar.events({
 		$('.communication-sidebar-sleeve').css({
 			'height': currentHeight - 130 + 'px',
 			'position': 'fixed',
-			'top': '130px',
-			'width': '25%'
+			'top': '120px',
+			'width': '24%'
 		});
+
+		// lock scroll position, but retain settings for later
+    var scrollPosition = [
+      window.pageXOffset ||
+      document.documentElement.scrollLeft ||
+      document.body.scrollLeft,
+      window.pageYOffset ||
+      document.documentElement.scrollTop ||
+      document.body.scrollTop
+    ];
+    var body = $('body');
+    body.data('scroll-position', scrollPosition);
+    body.data('previous-overflow', body.css('overflow'));
+    body.css('overflow', 'hidden');
+    window.scrollTo(scrollPosition[0], scrollPosition[1]);
 	}
 
 });
