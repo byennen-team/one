@@ -56,7 +56,11 @@ Router.route('/messages', {
 });
 
 Router.route('/dashboard', {
-  name: Routes.DASHBOARD
+  name: Routes.DASHBOARD,
+  waitOn: function() {
+    return Meteor.subscribe('companySocialStatuses',
+      Meteor.settings.public.twitter.COMPANY_USERID);
+    }
 });
 
 Router.route('/directory/:letter?', {

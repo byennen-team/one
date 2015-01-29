@@ -12,7 +12,8 @@ Package.onUse(function (api) {
     'velocityjs:velocityjs',
     'routes',
     'styles',
-    'maazalik:malihu-jquery-custom-scrollbar'
+    'maazalik:malihu-jquery-custom-scrollbar',
+    'social-media'
   ], 'web');
 
   api.addFiles([

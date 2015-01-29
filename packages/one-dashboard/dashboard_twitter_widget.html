@@ -1,89 +1,73 @@
 <template name="dashboardTwitterWidget">
-  
   <div class="twitter-widget">
-    
+
     <div class="header">
-      <a href='https://twitter.com/douglaselliman' target="_blank" class='channel-name'>  
+      <a href='https://twitter.com/{{twitterScreenName}}' target="_blank" class='channel-name'>
         <i class="fa fa-twitter"></i>
-        @DouglasElliman
+        @{{twitterScreenName}}
       </a>
-      <a href='https://twitter.com/douglaselliman' target="_blank" class="arrow">
+      <a href='https://twitter.com/{{twitterScreenName}}' target="_blank" class="arrow">
         <i class="fa fa-arrow-right"></i>
       </a>
     </div>
 
 <!-- TODO: Ten (or so) most recent tweets here -->
-    <div class="feed"> 
-    
-      <div class="tweet">
-        <div class="avatar">
-          <img src="{{avatarURL}}" alt="{{handle}} avatar" />
-        </div>
+    <div class="feed">
+      {{#each tweets}}
+        {{> tweetTemplate}}
+      {{/each}}
 
-        <div class="tweet-body">
-          <p class="name">
-            {{#if retweeted}}
-            <i class="fa fa-retweet"></i>
-            {{/if}}
-            {{handle}}
-            <span class="time">{{tweetTime}}</span>
-          </p>  
-          <p class="text">{{{tweetText}}}</p> 
-          {{#if image}}
-            <img src="{{imgURL}}" />
-          {{/if}}     
-          <div class="controls">
-            <a href="{{replyURL}}">
-              <i class="fa fa-reply"></i>
-            </a>
-            <a href="{{retweetURL}}">
-              <i class="fa fa-retweet"></i>
-              <span>{{retweets}}</span>
-            </a>
-            <a href="{{favoriteURL}}">
-              <i class="fa fa-star"></i>
-              <span>{{favorites}}</span>
-            </a>
-          </div>
-        </div>
-      </div>
-
-      <hr />
       <!-- <div class="clearfix"></div> -->
+    </div>
+  </div>
+</template>
 
-<!-- TODO: Remove. Repeated for style -->
-      <div class="tweet">
-        <div class="avatar">
-          <img src="images/dashboard/twitter-2.jpg" alt="@DottieHerman avatar" />
-        </div>
-        <div class="tweet-body">
-          <p class="name">
-            <i class="fa fa-retweet"></i>
-            @DottieHerman
-            <span class="time">Feb 9 </span>
-          </p>  
-          <p class="text">Is your home camera ready? Follow these <a href="https://twitter.com/search?q=%23photo" target="_blank">#photo</a> <a href="https://twitter.com/search?q=%23tips" target="_blank">#tips</a> from <a href="https://twitter.com/gothamnyc" target="_blank">@GothamNYC</a> &amp; <a href="https://twitter.com/bricku" target="_blank">@BrickU</a> <a href="http://www.brickunderground.com/blog/" target="_blank">http://www.brickunderground.com/blog/</a></p>   
-          
-          <img src="images/dashboard/twitter-pic.jpg" alt="" />
+<template name="tweetTemplate">
+  <div class="tweet">
+    <div class="avatar">
+    {{#if payload.retweeted_status}}
+      <img src="{{payload.retweeted_status.user.profile_image_url_https}}" alt="{{payload.retweeted_status.user.screen_name}} avatar" />
+    {{else}}
+      <img src="{{payload.user.profile_image_url_https}}" alt="{{payload.user.screen_name}} avatar" />
+    {{/if}}
+    </div>
 
-          <div class="controls">
-            <a href="https://twitter.com/DouglasElliman/status/560174040066056193">
-              <i class="fa fa-reply"></i>
-            </a>
-            <a href="https://twitter.com/DouglasElliman/status/560174040066056193">
-              <i class="fa fa-retweet"></i>
-              <span>7</span>
-            </a>
-            <a href="https://twitter.com/DouglasElliman/status/560174040066056193">
-              <i class="fa fa-star"></i>
-              <span>23</span>
-            </a>
-          </div>
+    <div class="tweet-body">
+      <p class="name">
+        {{#if payload.retweeted_status}}
+        <i class="fa fa-retweet"></i>
+        @{{payload.retweeted_status.user.screen_name}}
+        {{/if}}
+        <span class="time">{{date datePosted}}</span>
+      </p>
+      {{#if payload.retweeted_status}}
+        <p class="text">{{{payload.retweeted_status.text}}}</p>
+      {{else}}
+        <p class="text">{{{text}}}</p>
+      {{/if}}
+
+      {{#if media}}
+        <div class="mediaWrap {{mediaCount}}">
+          {{#each media}}
+            <img src="{{media_url_https}}:small" />
+          {{/each}}
         </div>
+      {{/if}}
+      <div class="controls">
+        <a href="https://twitter.com/intent/tweet?in_reply_to={{postId}}">
+          <i class="fa fa-reply"></i>
+        </a>
+        <a href="https://twitter.com/intent/retweet?tweet_id={{postId}}">
+          <i class="fa fa-retweet"></i>
+          <span>{{payload.retweet_count}}</span>
+        </a>
+        <a href="https://twitter.com/intent/favorite?tweet_id={{postId}}">
+          <i class="fa fa-star"></i>
+          <span>{{payload.favorite_count}}</span>
+        </a>
       </div>
-<!-- /style repeat -->
-
     </div>
   </div>
 
+  <hr />
 </template>

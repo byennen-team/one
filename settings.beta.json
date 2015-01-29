@@ -12,5 +12,11 @@
   "twitter": {
     "CONSUMER_KEY": "nDkvCzyuyJ30rgjBRfSbaMeB4",
     "SECRET": "PqlvLrWuNDl4d1QXmRVgKayUPjBmTfsF6KGZuxqZGhQ8bygKFB"
+  },
+  "public": {
+    "twitter": {
+      "COMPANY_SCREENNAME": "DouglasElliman",
+      "COMPANY_USERID": "10874182"
+    }
   }
 }
