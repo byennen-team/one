@@ -52,16 +52,11 @@ Meteor.methods({
   s3Signature: function (fileName, mimeType, gallery, bucket) {
     check(fileName, String);
     check(mimeType, String);
-    if (gallery) {
-      check(gallery, String);
-    } else {
-      gallery = 'uploads';
-    }
-    if (bucket) {
-      check(bucket, String);
-    } else {
-      bucket = Meteor.settings.public.UPLOAD_BUCKET;
-    }
+    gallery = gallery || 'uploads';
+    check(gallery, String);
+    bucket = bucket || Meteor.settings.public.UPLOAD_BUCKET;
+    check(bucket, String);
+
     var resizedBucket = 'goone-resized-west-2';
 
     console.log('s3Signature \n', fileName, '\n mimeType ', mimeType,

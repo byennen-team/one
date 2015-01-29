@@ -1,6 +1,7 @@
 // TODO folders
 
 var updateProgress = function (fileRow, progress) {
+  if (!fileRow) return;
   var element = fileRow.find('.progress');
 
   if (progress < 100) {
