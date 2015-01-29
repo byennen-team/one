@@ -23,15 +23,21 @@ if(Settings.isStaging || Settings.isBeta) {
   var base = process.env.PWD+'/packages/files/img/';
 }
 FileTools.cleanupTemp =  function() {
-    var deleteImgs = ['thumb_imagetmp.jpg', 'imagetmp.jpg', 'full_imagetmp.jpg',
-    'imagetmp.JPG', 'thumb_imagetmp.JPG', 'imagetmp.jpeg'];
-    deleteImgs.forEach(function(img) {
-        console.log('unlink', img);
-        fs.unlink(base+img, function (error) {
+  fs.readdir(base, function (err, results) {
+    var keepImg = ['No_image_available.jpg','full_NIA.jpg','thumb_NIA.jpg'];
+    if (err) throw err;
+    console.log('results', results);
+    if (_.isArray(results)) {
+      results.forEach(function(img) {
+        if (!_.contains(keepImg, img)) {
+          console.log('unlink', img);
+          fs.unlink(base+img, function (error) {
             if (error) { console.log('error', error); }
             return;
-        });
-    });
+            });
+          }});
+    }
+  });
 };
 //fetch temp image
 FileTools.fetchToTemp = function(url, callback){

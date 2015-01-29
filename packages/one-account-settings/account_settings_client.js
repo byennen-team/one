@@ -2,6 +2,10 @@
 
 Profile = {};
 
+Template.accountSettings.rendered = function () {
+
+}
+
 Template.accountSettings.events({
   'change .upload': function (event) {
     FileTools.s3Upload(event.target.files[0], 'profile-images', {
@@ -11,15 +15,22 @@ Template.accountSettings.events({
       },
       onComplete: function (result) {
         console.log('oncomplete', result);
-
-        //Meteor.call('resizeNewProfileImage', photoUrl);
-
         Meteor.users.update(Meteor.userId(), {
           $set: {
-            'profile.photoUrl.large': result.fullUrl,
-            'profile.photoUrl.thumb': result.thumbUrl
+            'profile.protoUrl.large': '/giphy.gif',
+            'profile.photoUrl.thumb': '/giphy.gif'
           }
-        });
+          }, function () {
+            Meteor.setTimeout(function(){
+              Meteor.users.update(Meteor.userId(), {
+                $set: {
+                  'profile.photoUrl.large': result.fullUrl,
+                  'profile.photoUrl.thumb': result.thumbUrl
+                  }
+                });
+              }, 8888);
+          }
+        );
       }
     });
   },
