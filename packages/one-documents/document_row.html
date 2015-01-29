@@ -1,5 +1,5 @@
 <template name="documentRow">
-  <tr id="row-{{_id}}" class='document-row' data-action="select">
+  <tr id="row-{{_id}}" class='document-file-row' data-action="select">
     <td class="selectCheckbox">
       <label>
         <input class="document-row-checkbox"
@@ -21,7 +21,7 @@
     </td>
     <td class="name">
       {{#if isFolder}}
-        <a href="{{pathFor 'folder'}}" class="name">{{name}}</a>
+        <a href="{{pathFor 'folder'}}" >{{name}}</a>
       {{else}}
         <a href="{{url this}}" target="_blank" class="name">{{name}}</a>
         <i class="fa fa-pencil rename-document" data-toggle="modal" data-target="#documentsRenameModal"></i>
@@ -45,7 +45,7 @@
           <li class="share-document"><a href="#" data-toggle="modal" data-target="#shareDocumentModal"><i class="fa fa-share"></i> Share</a></li>
           <li><a href="{{url this}}" class="print"><i class="fa fa-print"></i> Print</a></li>
           {{#if isPersonalDocument this}}
-            <li><a href="#" class="remove"><i class="fa fa-remove"></i> Remove</a></li>
+            <li><a href="#" class="remove"><i class="fa fa-trash"></i> Delete</a></li>
           {{/if}}
           <li class="share-document"><a href="#" data-toggle="modal" data-target="#emailDocumentModal"><i class="fa fa-envelope-o"></i> Email</a></li>
         </ul>

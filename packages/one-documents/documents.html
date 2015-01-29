@@ -1,6 +1,6 @@
 <template name="documents">
   <div class="container-fluid">
-    <div class="documents row">
+    <div id="documents-container" class="documents row">
       <div class="documentsMenu col-sm-12">
         {{> documentsMenu}}
       </div>
@@ -14,11 +14,33 @@
         </div> -->
         <div class="row">
           <div class="options col-sm-12">
-            <a href="#" class="folder" data-toggle="modal" data-target="#documentsFolderModal"><i class="fa fa-folder-o"></i> New Folder</a>
-            <a href="#" class="" data-toggle="modal" data-target="#documentsUploadModal"><i class="fa fa-cloud-upload"></i> Upload File</a>
+            <a href="#" class="folder" data-toggle="modal" data-target="#documentsFolderModal">
+              <i class="fa fa-folder-o"></i> 
+              New Folder
+            </a>
+            <a href="#" class="upload" data-toggle="modal" data-target="#documentsUploadModal">
+              <i class="fa fa-cloud-upload"></i> 
+              Upload File
+            </a>
             <a href="#" class="{{moveToActionState}}"
                data-action="show-move-to-modal">
-              <i class="fa fa-arrows"></i> Move to
+              <i class="fa fa-download"></i> 
+              download
+            </a>
+            <a href="#" class="{{moveToActionState}}"
+               data-action="show-move-to-modal">
+              <i class="fa fa-exchange"></i> 
+              Move to
+            </a>
+            <a href="#" class="{{moveToActionState}}"
+               data-action="show-move-to-modal">
+              <i class="fa fa-copy"></i> 
+              copy
+            </a>
+            <a href="#" class="{{moveToActionState}}"
+               data-action="show-move-to-modal">
+              <i class="fa fa-trash"></i> 
+              delete
             </a>
           </div>
         </div>

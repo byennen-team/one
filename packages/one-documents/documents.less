@@ -1,8 +1,9 @@
 // Variables
 @import '/packages/styles/variables.import.less';
 
-// set body background
-.myDocuments, .companyDocuments, .folder {
+// Not sure why all these selectors were used. Leaving them in in case I'm missing something.
+// .myDocuments, .companyDocuments, .folder {
+#documents-container {
   background: white;
 
   // left side background color 100% height
@@ -38,6 +39,7 @@
       font-variant: small-caps;
       text-transform: lowercase;
       letter-spacing: 0.2em;
+      color: @text-blue-grey;
     }
     i {
       font-size: 14px;
@@ -46,7 +48,7 @@
       color: #a4a0df;
     }
     .upload {
-      color: #5bb8d7;
+      color: @lt-teal;
     }
   }
 
@@ -70,17 +72,11 @@
     margin: 10px 2% 2%;
     // overwrite width for now. this should be looked at again.
     width: 95%;
-    a.name {
-      color: #78838e;
-    }
     .type {
       font-size: 12px;
       font-variant: small-caps;
       text-transform: lowercase;
       letter-spacing: 0.2em;
-    }
-    i.pdf {
-      color: #5bb8d7;
     }
     /*** custom stars for favorites ***/
     .favoriteCheckbox {
@@ -112,9 +108,9 @@
       }
     }
     .btn-default {
-      color: #74cfce;
+      color: @text-blue-grey;
       border: 0 none;
-      background-color: transparent;
+      background-color: transparent; 
       font-family: @raleway-bold;
       font-variant: small-caps;
       text-transform: lowercase;
@@ -129,7 +125,7 @@
       font-variant: small-caps;
       text-transform: lowercase;
       letter-spacing: 0.2em;
-      color: #74cfce;
+      color: @text-blue-grey;
       background: none;
       background-color: transparent;
       border-color: none;
@@ -151,13 +147,29 @@
         color: #78838e;
       }
       i {
-        color: #74cfce;
+        color: @text-blue-grey;
         padding-right: 5px;
       }
     }
     .btn-group.open .dropdown-toggle {
       -webkit-box-shadow: none;
       box-shadow: none;
+    }
+  }
+}
+// My Library mode styles
+.myDocuments {
+  #documents-container {
+    i.pdf { 
+      color: @lt-teal;
+    }
+  }
+}
+// Company Document mode styles
+.companyDocuments {
+  #documents-container {
+    i.pdf { 
+      color: @accent;
     }
   }
 }

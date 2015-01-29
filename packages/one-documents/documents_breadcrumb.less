@@ -2,12 +2,21 @@
 @import '/packages/styles/variables.import.less';
 
 .documents__breadcrumb {
+  margin-bottom: 0;
   .library { // This one is only in a link when it's not the top level
     a {
       color: @accent;
     }
   }
   .library.active {
+    color: transparent;
+  }
+  .company { // This one is only in a link when it's not the top level
+    a {
+      color: @lt-teal;
+    }
+  }
+  .company.active {
     color: transparent;
   }
   a {

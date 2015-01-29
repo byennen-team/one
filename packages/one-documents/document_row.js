@@ -1,4 +1,9 @@
 Template.documentRow.events({
+
+// Jonas, we need to combine these two functions. I was targeting the checkbox
+//  and changing the background color on .document-file-row click, but I didn't 
+//  realize you weren't using the checkbox.
+  // Original function - uses visible checkbox
   'click [data-action="select"]': function (event) {
     event.preventDefault(); // Don't select the checkbox automatically
 
@@ -14,6 +19,20 @@ Template.documentRow.events({
 
     Session.set('selectedDocuments', selectedDocuments);
   },
+
+  // //  Selects hidden checkbox when div is clicked
+  // 'click .document-file-row': function ( event ) {
+  //   var $this = $( event.currentTarget );
+  //   var $checkbox = $this.find( '.document-row-checkbox' );
+  //   if( $checkbox.is( ':checked' ) ){ // if row was selected, turn it off
+  //     $checkbox.prop( 'checked', false );
+  //     $this.removeClass( 'selected' );
+  //   }else {
+  //     $checkbox.prop( 'checked', true );
+  //     $this.addClass( 'selected' );
+  //   }
+  // },
+
   'click [data-action="favorite"]': function (event) {
     var checkbox = event.target;
 
@@ -58,19 +77,6 @@ Template.documentRow.events({
     // TODO: Lance finish front end
     console.log('hover');
     // $(".edit").show();
-  },
-
-  // Selects hidden checkbox when div is clicked
-  'click .document-row': function ( event ) {
-    var $this = $( event.currentTarget );
-    var $checkbox = $this.find( '.document-row-checkbox' );
-    if( $checkbox.is( ':checked' ) ){ // if row was selected, turn it off
-      $checkbox.prop( 'checked', false );
-      $this.removeClass( 'selected' );
-    }else {
-      $checkbox.prop( 'checked', true );
-      $this.addClass( 'selected' );
-    }
   }
 
 });

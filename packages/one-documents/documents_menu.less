@@ -1,6 +1,6 @@
 // Variables
 @import '/packages/styles/variables.import.less';
-
+// default styles are for Company Library mode
 .documentsMenu {
   height: 60px;
   margin: 0;
@@ -29,5 +29,21 @@
     background-color: @accent;
     color: @white;
   }
-
 }
+// My Library mode styles
+.myDocuments {
+  .documentsMenu {
+    background-color: @dk-teal;
+    .my-library,
+    .company-library {
+      color: @very-lt-teal;
+      background-color: @dk-teal;
+    }
+    .my-library.active,
+    .company-library.active {
+      background-color: @lt-teal;
+      color: @white;
+    }
+  }
+}
+
