@@ -27,6 +27,7 @@ Template.dashboardTwitterWidget.helpers({
 });
 
 Template.tweetTemplate.helpers({
+  /*jshint camelcase: false */
   media: function() {
     if(this.payload.extended_entities.media)
       return this.payload.extended_entities.media.slice(0,4);
