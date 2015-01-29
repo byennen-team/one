@@ -41,12 +41,14 @@
     .folderSelect__dropdown {
       position: absolute;
       width: 90%;
+      height: 300px;
       padding: 0;
       background-color: @white;
       border-radius: 0 0 3px 3px;
       border: 2px solid #b7bed1;
       border-style: none solid solid solid;
-      overflow: hidden;
+      overflow-y: scroll;
+      overflow-x: hidden;
       // .folderSelect__tree {
 
         // .jstree-container-ul.jstree-children {
@@ -86,26 +88,7 @@
               border: none;
               box-shadow: none;
             }
-
-
-
-
-/* //  probably redundant
-            // .jstree-children { // <ul>
-              
-            //   .jstree-node { // <li>
-                
-            //     .jstree-icon.jstree-ocl {
-
-            //     }
-            //     .jstree-anchor { // <a>
-              
-            //       .jstree-icon.jstree-themeicon { // <i> .fa .fa-folder also
-
-            //       }
-            //     }
-            //   }
-            // } */
+          // This is hacky, but I had to do it to get full width backgrounds.
           }
           .jstree-children {
             .jstree-anchor {
@@ -208,28 +191,7 @@
       // } 
     // }
   }
-}
-
-// TODO: Remove:
-.bootstrap-select.btn-group {
-  .dropdown-toggle {
-    box-shadow: none;
-  }
-  .dropdown-menu {
-    margin-top: 0;
-    padding: 0;
-    border-radius: 0 0 3px 3px;
-    border: 2px solid #b7bed1;
-    border-style: none solid solid solid;
-  }
-  li {
-    a {
-      padding: 1em;
-      background-color: @white;
-      transition: background-color 350ms ease-out 50ms;
-    }
-    a:hover {
-      background-color: @file-hover;
-    }
+  .modal-backdrop.in {
+    min-height: 200%; // prevents modal dropdown from breaking layout
   }
 }

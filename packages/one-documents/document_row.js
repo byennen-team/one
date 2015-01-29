@@ -20,18 +20,18 @@ Template.documentRow.events({
     Session.set('selectedDocuments', selectedDocuments);
   },
 
-  // //  Selects hidden checkbox when div is clicked
-  // 'click .document-file-row': function ( event ) {
-  //   var $this = $( event.currentTarget );
-  //   var $checkbox = $this.find( '.document-row-checkbox' );
-  //   if( $checkbox.is( ':checked' ) ){ // if row was selected, turn it off
-  //     $checkbox.prop( 'checked', false );
-  //     $this.removeClass( 'selected' );
-  //   }else {
-  //     $checkbox.prop( 'checked', true );
-  //     $this.addClass( 'selected' );
-  //   }
-  // },
+  //  Selects hidden checkbox when div is clicked
+  'click .document-file-row': function ( event ) {
+    var $this = $( event.currentTarget );
+    var $checkbox = $this.find( '.document-row-checkbox' );
+    if( $checkbox.is( ':checked' ) ){ // if row was selected, turn it off
+      $checkbox.prop( 'checked', false );
+      $this.removeClass( 'selected' );
+    }else {
+      $checkbox.prop( 'checked', true );
+      $this.addClass( 'selected' );
+    }
+  },
 
   'click [data-action="favorite"]': function (event) {
     var checkbox = event.target;
@@ -129,6 +129,7 @@ Template.documentRow.rendered = function () {
   if (this.data.isFolder) {
     // Make row droppable
     $(this.firstNode).droppable({
+      activeClass: "dropzone",
       hoverClass: "documentRow--dragHover",
       drop: function(event, ui) {
         var selectedDocuments = Session.get('selectedDocuments');
