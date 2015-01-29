@@ -52,6 +52,23 @@ Template.documentsMoveToModal.helpers({
     } else {
       return null;
     }
+  },
+
+// TODO: returns true if one file is selected, false if multiple
+  singleFile: function () {
+    return false;
+    // return true;
+  },
+
+// TODO: returns the file name. Only needed if only one file is selected.
+//    Or could return one name when multiple files are selected. String
+  fileName: function () {
+    return 'file name.doc'
+  },
+
+// TODO: returns the number of files selected. For multiple files selection.
+  numberOfFiles: function () {
+    return 3;
   }
   
 });

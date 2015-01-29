@@ -1,5 +1,5 @@
 <template name="documentRow">
-  <tr id="row-{{_id}}" class='document-row'>
+  <tr id="row-{{_id}}" class='document-row' data-action="select">
     <td class="selectCheckbox">
       <label>
         <input class="document-row-checkbox"
@@ -16,8 +16,8 @@
         {{isFavoriteChecked this}}>
       <label for="box-{{_id}}"></label>
     </td>
-    <td>
-      <i class="fa {{#if isFolder}}fa-folder{{else}}fa-file{{/if}} pdf"></i>
+    <td class="file-type">
+      <i class="fa {{#if isFolder}}fa-folder-o{{else}}fa-file{{/if}} pdf"></i>
     </td>
     <td class="name">
       {{#if isFolder}}

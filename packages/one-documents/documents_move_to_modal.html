@@ -9,6 +9,11 @@
             <span class="sr-only">Close</span>
           </button>
           <h4 class="modal-title">Move to</h4>
+          {{#if singleFile}}
+            <p>{{fileName}}</p>
+          {{else}}
+            <p>{{numberOfFiles}} files selected</p>
+          {{/if}}
         </div>
         <div class="modal-body">
           <div class="form-group">

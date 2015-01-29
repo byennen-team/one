@@ -1,10 +1,9 @@
+// Variables
+@import '/packages/styles/variables.import.less';
+
 // set body background
 .myDocuments, .companyDocuments, .folder {
   background: white;
-  // Fix leftnav margin
-  .documents {
-    margin-left: 0;
-  }
 
   // left side background color 100% height
   .leftside {
@@ -35,6 +34,10 @@
     text-transform: lowercase;
     a {
       padding-left: 20px;
+      font-family: @raleway-bold;
+      font-variant: small-caps;
+      text-transform: lowercase;
+      letter-spacing: 0.2em;
     }
     i {
       font-size: 14px;
@@ -49,13 +52,17 @@
 
   //table
   .table > tbody > tr > td {
-    padding: 30px 8px;
+    padding: 16px 8px;
     color: #78838e;
   }
   .table > thead > tr > th {
+    font-size: 12px;
     border-bottom: 2px solid #eaeef4;
-    text-transform: uppercase;
-    color: #b8c4d0;
+    text-transform: lowercase;
+    font-variant: small-caps;
+    font-family: @raleway-bold;
+    letter-spacing: 0.2em;
+    color: @grey;
   }
   // dee4ed
   table {
@@ -67,7 +74,10 @@
       color: #78838e;
     }
     .type {
-      text-transform: uppercase;
+      font-size: 12px;
+      font-variant: small-caps;
+      text-transform: lowercase;
+      letter-spacing: 0.2em;
     }
     i.pdf {
       color: #5bb8d7;
@@ -105,14 +115,20 @@
       color: #74cfce;
       border: 0 none;
       background-color: transparent;
-      text-transform: uppercase;
-      letter-spacing: 2px;
+      font-family: @raleway-bold;
+      font-variant: small-caps;
+      text-transform: lowercase;
+      letter-spacing: 0.2em;
       margin: 0;
       padding: 0;
     }
     .btn-default:hover, .btn-default:focus, .btn-default.focus,
     .btn-default:active, .btn-default.active,
     .open .dropdown-toggle.btn-default {
+      font-family: @raleway-bold;
+      font-variant: small-caps;
+      text-transform: lowercase;
+      letter-spacing: 0.2em;
       color: #74cfce;
       background: none;
       background-color: transparent;
@@ -125,9 +141,13 @@
       box-shadow: none;
       border-color: #d9e4ee;
       -webkit-box-shadow: none;
-      text-transform: uppercase;
-      letter-spacing: 2px;
+      font-family: @raleway-bold;
+      font-variant: small-caps;
+      text-transform: lowercase;
+      letter-spacing: 0.2em;
       a {
+        padding: 8px 15px;
+        line-height: 140%;
         color: #78838e;
       }
       i {

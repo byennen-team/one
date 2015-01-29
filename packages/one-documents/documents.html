@@ -1,54 +1,57 @@
 <template name="documents">
-  <div class="documents row">
-    <div class="leftside col-sm-3">
-      {{> documentsMenu}}
-      {{> favoriteDocuments}}
-    </div>
-    <div class="col-sm-9">
-      <!-- <div class="row">
-        <div class="header-border-blue col-sm-12">
-        </div>
-      </div> -->
-      <div class="row">
-        <div class="options col-sm-12">
-          <a href="#" class="folder" data-toggle="modal" data-target="#documentsFolderModal"><i class="fa fa-folder-o"></i> New Folder</a>
-          <a href="#" class="" data-toggle="modal" data-target="#documentsUploadModal"><i class="fa fa-cloud-upload"></i> Upload File</a>
-          <a href="#" class="{{moveToActionState}}"
-             data-action="show-move-to-modal">
-            <i class="fa fa-arrows"></i> Move to
-          </a>
-        </div>
+  <div class="container-fluid">
+    <div class="documents row">
+      <div class="documentsMenu col-sm-12">
+        {{> documentsMenu}}
       </div>
-      <div class="row">
-        <div class="col-sm-12">
-          {{> documentsBreadcrumb}}
-        </div>
+      <div class="leftside col-sm-3">
+        {{> favoriteDocuments}}
       </div>
-      <div class="row">
-        <div class="col-sm-12">
-          <table class="table">
-            <thead>
-              <tr>
-                <th><span class="sr-only">Selected</span></th>
-                <th></th>
-                <th></th>
-                <th>Name</th>
-                <th>Type</th>
-                <th>Date</th>
-                <th></th>
-              </tr>
-            </thead>
-            <tbody>
-              {{#each files}}
-                {{> documentRow}}
-              {{/each}}
-            </tbody>
-          </table>
-          {{> shareDocumentModal}}
-          {{> emailDocumentModal}}
-          {{> documentsFolderModal}}
-          {{> documentsUploadModal}}
-          {{> documentsRenameModal}}
+      <div class="col-sm-9">
+        <!-- <div class="row">
+          <div class="header-border-blue col-sm-12">
+          </div>
+        </div> -->
+        <div class="row">
+          <div class="options col-sm-12">
+            <a href="#" class="folder" data-toggle="modal" data-target="#documentsFolderModal"><i class="fa fa-folder-o"></i> New Folder</a>
+            <a href="#" class="" data-toggle="modal" data-target="#documentsUploadModal"><i class="fa fa-cloud-upload"></i> Upload File</a>
+            <a href="#" class="{{moveToActionState}}"
+               data-action="show-move-to-modal">
+              <i class="fa fa-arrows"></i> Move to
+            </a>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-sm-12">
+            {{> documentsBreadcrumb}}
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-sm-12">
+            <table class="table">
+              <thead>
+                <tr>
+                  <th><span class="sr-only">Selected</span></th>
+                  <th></th>
+                  <th>Name</th>
+                  <th>Type</th>
+                  <th>Date</th>
+                  <th></th>
+                </tr>
+              </thead>
+              <tbody>
+                {{#each files}}
+                  {{> documentRow}}
+                {{/each}}
+              </tbody>
+            </table>
+            {{> shareDocumentModal}}
+            {{> emailDocumentModal}}
+            {{> documentsFolderModal}}
+            {{> documentsUploadModal}}
+            {{> documentsRenameModal}}
+          </div>
         </div>
       </div>
     </div>
