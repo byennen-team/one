@@ -14,5 +14,11 @@
     "SECRET": "PqlvLrWuNDl4d1QXmRVgKayUPjBmTfsF6KGZuxqZGhQ8bygKFB"
   },
   "FORECAST_API_KEY": "14825320e632a4c6c1aa9cc827bc7a94",
-  "GOOGLE_API_KEY": "AIzaSyBf1mUne6CU0ZGFGOEwCv4wyojCl0XRzO4"
+  "GOOGLE_API_KEY": "AIzaSyBf1mUne6CU0ZGFGOEwCv4wyojCl0XRzO4",
+  "public": {
+    "twitter": {
+      "COMPANY_SCREENNAME": "DouglasElliman",
+      "COMPANY_USERID": "10874182"
+    }
+  }
 }

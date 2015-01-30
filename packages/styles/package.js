@@ -10,6 +10,7 @@ Package.onUse(function (api) {
 
   api.addFiles([
     'colors.less',
+    'breadcrumbs.less',
     'scrollbar.less',
     'main.less',
     'one_strap.less',
@@ -24,6 +25,7 @@ Package.onUse(function (api) {
     'tooltip.less',
     'positioning.less',
     'select.less',
+    'selectpicker.less',
     'variables.import.less'
   ], 'web');
 

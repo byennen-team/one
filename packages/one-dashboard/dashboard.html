@@ -10,7 +10,7 @@
     </div>
 
     <div class="row">
-      <div class="container-xs-height">
+      <div class="row-same-height">
 
         <div id="left-column" class="col-sm-3 col-xs-height col-top left-column">
           {{> communicationSidebar}}
@@ -19,16 +19,21 @@
         <div id="main" class="col-sm-9 col-xs-height no-float col-top">
           {{> communicationMain}}
           <div id="main-wrap">
-            <div class="col-sm-8">
-              {{> calendar}}
-              {{> news}}
-              {{> supportWidget}}
+            <div class="col-sm-6">
+              
+<!-- TODO: A widget for each unread message should populate here. The most recent messages 
+should be on top -->
+              {{> channelWidget}}
+<!-- TODO: Delete this template tag -->
+              {{> channelWidgetStyle}}
+
             </div>
-            <div class="col-sm-4">
-              {{> messagesWidget}}
-              <div class="appsWidget">
-                <a href="{{pathFor 'apps'}}"><img src="../../images/dashboard/apps.png" class="img-responsive" alt="Chat" /></a>
-              </div>
+            <div class="col-sm-6">
+        
+              {{> calendar}}
+              <!-- {{> newsWidget}} -->
+              {{> dashboardTwitterWidget}}
+              
             </div>
           </div>
         </div>
