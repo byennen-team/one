@@ -6,13 +6,17 @@ Package.onUse(function (api) {
   var both = ['web', 'server'];
 
   api.use([
-    'less', 'jquery', 'session',
+    'less', 'jquery', 'session', 'underscore',
     'templating', 'mrt:moment', 'natestrauser:select2@3.4.9',
-    'velocityjs:velocityjs', 'mquandalle:bower', 'routes', 'files'
+    'velocityjs:velocityjs', 'mquandalle:bower', 'routes', 'files', 'jstree',
+    'jquery-ui'
     ], 'web');
   api.use('files', both);
 
   api.addFiles([
+    'document_row.html',
+    'document_row.js',
+    'document_row.less',
     'documents.html',
     'documents_client.js',
     'documents.less',
@@ -29,6 +33,9 @@ Package.onUse(function (api) {
     'documents_upload_modal.html',
     'documents_upload_modal.js',
     'documents_upload_modal.less',
+    'documents_move_to_modal.html',
+    'documents_move_to_modal.js',
+    'documents_move_to_modal.less',
     'share_document_modal.html',
     'share_document_modal.js',
     'share_document_modal.less',
