@@ -1,6 +1,7 @@
 /* globals SocialStatuses: true, ServiceConfiguration: true,
-SocialMedia: true, Twitter: true, OAuth: true, Facebook: true */
-var CACHE_INTERVAL_MINUTES = 1 * 60000;
+SocialMedia: true, Twitter: true, OAuth: true, Facebook: true,
+cachedHttp: true */
+var CACHE_INTERVAL_MINUTES = 5 * 60000;
 
 Meteor.publish('socialStatuses', function(userId) {
   check(userId, String);
@@ -76,7 +77,7 @@ var _socialMediaTokens = new Mongo.Collection("_socialMediaTokens");
 //internal collection to cache responses from social networks
 var _socialMediaCache = new Mongo.Collection("_socialMediaCache");
 
-var cachedHttp = function(method, url, options, force) {
+SocialMedia.cachedHttp = function(method, url, options, force, cacheTime) {
   check(method, String);
   check(url, String);
   check(options, Object);
@@ -85,13 +86,20 @@ var cachedHttp = function(method, url, options, force) {
     check(force, Boolean);
   else
     force = false;
+
+  if (cacheTime) {
+    check(cacheTime, Number);
+    cacheTime = cacheTime * 60000;
+  }
+  else
+    cacheTime = CACHE_INTERVAL_MINUTES;
   //check if it's already a cached response
   var stringToCheck = method + url + JSON.stringify(options);
 
   var cachedResponse = _socialMediaCache.findOne({
     requestString: stringToCheck,
     createdAt: {
-      $gt: new Date(new Date().getTime() - CACHE_INTERVAL_MINUTES)
+      $gt: new Date(new Date().getTime() - cacheTime)
     }
   });
 
@@ -346,7 +354,8 @@ Meteor.methods({
         options.params.since_id = latestTweet.postId;
 
       try {
-        var tweets = cachedHttp('GET','https://api.twitter.com/1.1/statuses'+
+        var tweets = SocialMedia.cachedHttp('GET',
+          'https://api.twitter.com/1.1/statuses'+
           '/user_timeline.json', options, force);
 
         _.each(tweets.data, function(item) {
@@ -466,6 +475,15 @@ Meteor.methods({
           'services.twitter': null
         }
       });
+      //notify
+      Notify.addNotification(user._id,{
+        message: Notify.generateMessageText(
+          Notify.messages.TWITTER_AUTHORIZATION_ERROR.message,
+          [user.services.twitter.screenName]
+        ),
+        title: Notify.messages.TWITTER_AUTHORIZATION_ERROR.title,
+        link: '/account-settings'
+      });
 
       throw new Meteor.Error("User credentials are not ok");
     }
@@ -511,6 +529,8 @@ Meteor.methods({
       HTTP.post('https://api.twitter.com/1.1/statuses/'+
         'update.json', options);
 
+      Meteor.call('getLatestTweets', user._id, true);
+
       return (null, true);
 
     } catch (e) {
@@ -520,6 +540,15 @@ Meteor.methods({
             'services.twitter': null
           }
         });
+      //notify
+      Notify.addNotification(user._id,{
+        message: Notify.generateMessageText(
+          Notify.messages.TWITTER_AUTHORIZATION_ERROR.message,
+          [user.services.twitter.screenName]
+        ),
+        title: Notify.messages.TWITTER_AUTHORIZATION_ERROR.title,
+        link: '/account-settings'
+      });
       return(e);
     }
   }

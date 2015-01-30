@@ -5,6 +5,6 @@ Package.describe({
 	debugOnly: true
 });
 
-Package.onUse(function (api) {
+Package.on_use(function (api) {
 	api.use("coffeescript", ["client", "server"]);
 });
