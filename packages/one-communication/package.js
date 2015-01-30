@@ -3,7 +3,7 @@ Package.describe({
 });
 
 Package.onUse(function (api) {
-  api.use('dburles:collection-helpers', ['server','client']);
+
   api.use([
     'less',
     'jquery',
@@ -19,7 +19,22 @@ Package.onUse(function (api) {
     'reactive-var'
     ], 'web');
 
-  api.addFiles('directory/communication_directory_modal_server.js', 'server');
+  api.use([
+    'underscore',
+    'aldeed:simple-schema'
+    ]);
+
+  api.addFiles([
+    'directory/communication_directory_modal_server.js',
+    'messages/messages_server.js',
+    'rooms/rooms_server.js'
+    ], 'server');
+
+  api.addFiles([
+    'messages/messages.js',
+    'rooms/rooms.js'
+    ], ['server', 'web']);
+
   api.addFiles([
     'communication_main.html',
     'communication_main.less',

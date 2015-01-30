@@ -20,7 +20,6 @@ cfs:reactive-property@0.0.4
 check@1.0.4
 coffeescript@1.0.5
 companies@0.0.0
-dburles:collection-helpers@0.1.0
 ddp@1.0.14
 deps@1.0.6
 digilord:roles@1.2.12

@@ -1,3 +1,4 @@
+/* globals Messages: true */
 Messages = new Meteor.Collection('messages');
 
 Messages.simpleSchema = new SimpleSchema({
@@ -5,6 +6,7 @@ Messages.simpleSchema = new SimpleSchema({
   creatorId: { type: String },
   dateCreated: { type: Date },
   message: { type: String },
-  messageType: { type: String, optional: true}
-  messagePayload: {type: [Object], optional: true, blackbox: true}
+  messageType: { type: String, defaultValue: 'message' },
+  messagePayload: { type: [Object], optional: true, blackbox: true}
 });
+
