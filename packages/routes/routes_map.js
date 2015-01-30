@@ -68,8 +68,9 @@ Router.route('/messages', {
 
 Router.route('/dashboard', {
   name: Routes.DASHBOARD,
-  waitOn: function () {
-    return Meteor.subscribe('files');
+  waitOn: function() {
+    return Meteor.subscribe('companySocialStatuses', 'files',
+      Meteor.settings.public.twitter.COMPANY_USERID);
   }
 });
 

@@ -1,0 +1,73 @@
+<template name="dashboardTwitterWidget">
+  <div class="twitter-widget">
+
+    <div class="header">
+      <a href='https://twitter.com/{{twitterScreenName}}' target="_blank" class='channel-name'>
+        <i class="fa fa-twitter"></i>
+        @{{twitterScreenName}}
+      </a>
+      <a href='https://twitter.com/{{twitterScreenName}}' target="_blank" class="arrow">
+        <i class="fa fa-arrow-right"></i>
+      </a>
+    </div>
+
+<!-- TODO: Ten (or so) most recent tweets here -->
+    <div class="feed">
+      {{#each tweets}}
+        {{> tweetTemplate}}
+      {{/each}}
+
+      <!-- <div class="clearfix"></div> -->
+    </div>
+  </div>
+</template>
+
+<template name="tweetTemplate">
+  <div class="tweet">
+    <div class="avatar">
+    {{#if payload.retweeted_status}}
+      <img src="{{payload.retweeted_status.user.profile_image_url_https}}" alt="{{payload.retweeted_status.user.screen_name}} avatar" />
+    {{else}}
+      <img src="{{payload.user.profile_image_url_https}}" alt="{{payload.user.screen_name}} avatar" />
+    {{/if}}
+    </div>
+
+    <div class="tweet-body">
+      <p class="name">
+        {{#if payload.retweeted_status}}
+        <i class="fa fa-retweet"></i>
+        @{{payload.retweeted_status.user.screen_name}}
+        {{/if}}
+        <span class="time">{{date datePosted}}</span>
+      </p>
+      {{#if payload.retweeted_status}}
+        <p class="text">{{{payload.retweeted_status.text}}}</p>
+      {{else}}
+        <p class="text">{{{text}}}</p>
+      {{/if}}
+
+      {{#if media}}
+        <div class="mediaWrap {{mediaCount}}">
+          {{#each media}}
+            <img src="{{media_url_https}}:small" />
+          {{/each}}
+        </div>
+      {{/if}}
+      <div class="controls">
+        <a href="https://twitter.com/intent/tweet?in_reply_to={{postId}}">
+          <i class="fa fa-reply"></i>
+        </a>
+        <a href="https://twitter.com/intent/retweet?tweet_id={{postId}}">
+          <i class="fa fa-retweet"></i>
+          <span>{{payload.retweet_count}}</span>
+        </a>
+        <a href="https://twitter.com/intent/favorite?tweet_id={{postId}}">
+          <i class="fa fa-star"></i>
+          <span>{{payload.favorite_count}}</span>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <hr />
+</template>

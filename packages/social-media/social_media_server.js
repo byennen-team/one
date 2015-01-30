@@ -52,6 +52,17 @@ Meteor.publish('socialStatuses', function(userId) {
   }
 });
 
+Meteor.publish('companySocialStatuses', function(twitterId) {
+  check(twitterId, String);
+
+  return SocialStatuses.find({userNetworkId: twitterId },{
+      limit: 10,
+      sort: {
+        datePosted: -1
+      }
+    });
+});
+
 // Load Twitter settings from Settings file
 ServiceConfiguration.configurations.upsert(
   { service: 'twitter' },
@@ -339,12 +350,83 @@ Meteor.methods({
           '/user_timeline.json', options, force);
 
         _.each(tweets.data, function(item) {
+          if (item.retweeted_status)
+            item.retweet_status.text =
+              SocialMedia.twitterParser.autoLink(item.retweeted_status.text);
+
           SocialStatuses.insert({
             userNetworkId: user.services.twitter.id,
             text: SocialMedia.twitterParser.autoLink(item.text),
+            media: item.entities.media,
             datePosted: new Date(item.created_at),
             network: 'twitter',
-            postId: item.id_str
+            postId: item.id_str,
+            payload: item
+          });
+        });
+
+        return(null, tweets);
+
+      } catch (e) {
+        if (e.statusCode === 401) //token invalid, should delete
+          _socialMediaTokens.remove({
+            type: 'twitter'
+          });
+        return(e);
+      }
+
+  },
+  getLatestCompanyTweets: function(twitterId, force) {
+    /*jshint camelcase: false */
+    check(twitterId, String);
+
+    if(force)
+      check(force,Boolean);
+    else
+      force = false;
+
+    var token = SocialMedia.twitter.getApplicationBearerToken();
+      var options = {
+        params: {
+          user_id: twitterId,
+          count: 10
+        },
+        headers: {
+          'Authorization': 'Bearer ' + token,
+          'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8'
+        }
+      };
+      //get latest tweet stored
+      var latestTweet = SocialStatuses.findOne({
+        network: 'twitter',
+        userNetworkId: twitterId
+      },{
+        sort: {
+          datePosted: -1
+        },
+        limit: 1
+      });
+
+      if(latestTweet)
+        options.params.since_id = latestTweet.postId;
+
+      try {
+        var tweets = cachedHttp('GET','https://api.twitter.com/1.1/statuses'+
+          '/user_timeline.json', options, force);
+
+        _.each(tweets.data, function(item) {
+          if (item.retweeted_status)
+            item.retweet_status.text =
+              SocialMedia.twitterParser.autoLink(item.retweeted_status.text);
+
+          SocialStatuses.insert({
+            userNetworkId: twitterId,
+            text: SocialMedia.twitterParser.autoLink(item.text),
+            media: item.entities.media,
+            datePosted: new Date(item.created_at),
+            network: 'twitter',
+            postId: item.id_str,
+            payload: item
           });
         });
 

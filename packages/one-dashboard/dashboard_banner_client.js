@@ -29,7 +29,7 @@ Template.dashboardBanner.helpers({
     return '34';
   },
 
-// TODO: should return the closes city to User's current location  
+// TODO: should return the closes city to User's current location
   city: function() {
     return 'new york';
   },
@@ -84,15 +84,15 @@ Template.dashboardBanner.events({
   'mouseenter .time': function (event) {
     var $time = $( event.target );
     $time.velocity( "stop", true ); // clear queue - no dancing!
-    $time.velocity({ 
+    $time.velocity({
       scaleX: 1.3,
       scaleY: 1.3
     });
-  }, 
+  },
 
   'mouseleave .time': function (event) {
     var $time = $( event.target );
-    $time.velocity({ 
+    $time.velocity({
       scaleX: 1.0,
       scaleY: 1.0
     });
