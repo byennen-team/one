@@ -9,3 +9,6 @@ chucksettings.json
 packages/files/img/full_imagetmp.jpg
 packages/files/img/imagetmp.JPG
 packages/files/img/thumb_imagetmp.JPG
+
+# For Testing
+packages/tests-proxy
