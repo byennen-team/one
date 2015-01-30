@@ -1,5 +1,6 @@
 /* globals SocialStatuses: true, ServiceConfiguration: true,
-SocialMedia: true, Twitter: true, OAuth: true, Facebook: true */
+SocialMedia: true, Twitter: true, OAuth: true, Facebook: true,
+cachedHttp: true */
 var CACHE_INTERVAL_MINUTES = 5 * 60000;
 
 Meteor.publish('socialStatuses', function(userId) {
