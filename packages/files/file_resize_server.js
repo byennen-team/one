@@ -92,7 +92,7 @@ FileTools.resizeTemp = function(size, callback) {
           }
           callback();
          })
-        )
+        );
      })
     ));
 };
