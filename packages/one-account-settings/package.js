@@ -9,7 +9,7 @@ Package.onUse(function (api) {
 
   api.use('random', 'server');
 
-  api.use(['templating', 'joshowens:simple-form', 'less'], 'web');
+  api.use(['templating', 'joshowens:simple-form@0.2.2', 'less'], 'web');
 
   api.addFiles(['account_settings.html', 'account_settings.less'], 'web');
   api.addFiles('account_settings_client.js', 'web');

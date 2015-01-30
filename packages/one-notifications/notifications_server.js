@@ -129,6 +129,11 @@ Notify.messages = {
 	ADDED_TO_A_TEAM: {
 		message: '{arg1} added you to team {arg2}',
 		title: 'New team'
+	},
+	TWITTER_AUTHORIZATION_ERROR: {
+		message: 'Your twitter account {arg1} authorization token was rejected.' +
+		'Please reconnect your twitter account in your account settings',
+		title: 'Twitter Error'
 	}
 };
 

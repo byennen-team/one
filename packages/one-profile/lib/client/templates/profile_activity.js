@@ -61,7 +61,11 @@ Template.socialMediaTemplate.rendered = function() {
 };
 Template.socialMediaTemplate.helpers({
   socialStatuses: function() {
-    return SocialStatuses.find();
+    return SocialStatuses.find({},{
+      sort: {
+            datePosted: -1
+          }
+    });
   },
   date: function(date) {
     if (moment(date).diff(moment(new Date()), 'days') >= 1) {

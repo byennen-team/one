@@ -6,11 +6,21 @@ Package.onUse(function (api) {
   var both = ['web', 'server'];
 
   api.use([
-    'less', 'jquery', 'session', 'underscore',
-    'templating', 'mrt:moment', 'natestrauser:select2@3.4.9',
-    'velocityjs:velocityjs', 'mquandalle:bower', 'routes', 'files', 'jstree',
+    'less',
+    'jquery',
+    'session',
+    'underscore',
+    'templating',
+    'mrt:moment',
+    'natestrauser:select2@3.4.9',
+    'velocityjs:velocityjs',
+    'mquandalle:bower@0.1.11',
+    'routes',
+    'files',
+    'jstree',
     'jquery-ui'
     ], 'web');
+
   api.use('files', both);
 
   api.addFiles([

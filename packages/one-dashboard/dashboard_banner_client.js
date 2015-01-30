@@ -1,43 +1,106 @@
 /* globals Skycons: false */
+var temp = new ReactiveVar();
+
+Template.dashboardBanner.created = function() {
+  Tracker.autorun(function() {
+    if(Meteor.user().teamMembers)
+      Meteor.subscribe('userProfiles', Meteor.user().teamMembers);
+  });
+};
 
 Template.dashboardBanner.rendered = function () {
   $("#dashboard-schedule-sleeve").mCustomScrollbar({
       theme:"one-dark",
       scrollbarPosition: "outside"
   });
+  //geting geolocation
+  if(navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(function(position) {
+      //requesting position from Forecast
+      Meteor.call('getForecast', position, function(e,r) {
+        if (e)
+          console.log(e);
 
-  // Skycons:
-  // Documentation here: http://darkskyapp.github.io/skycons/
-  var skycons = new Skycons({
-    "color": "white",
-    "resizeClear": true  // Android hack
-  });
+        temp.set({
+          temperature: Math.round(r.temperature),
+          locality: r.locality
+        });
 
-// TODO: need to plug in weather here. Examples:
-  // skycons.add("skycon", Skycons.PARTLY_CLOUDY_DAY);
-  // skycons.add("skycon", Skycons.CLOUDY);
-  // skycons.add("skycon", Skycons.CLEAR_DAY);
-  // more options in /dashboard_skycons_client.js
-  skycons.add("skycon", Skycons.SNOW);
-  // start animation
-  skycons.play();
+        // Skycons:
+        // Documentation here: http://darkskyapp.github.io/skycons/
+        //var Skycons;
+        var skycons = new Skycons({
+          "color": "white",
+          "resizeClear": true  // Android hack
+        });
+
+        skycons.add("skycon", r.icon);
+        // start animation
+        skycons.play();
+      });
+    }, function(error) {
+      switch (error.code) {
+        case error.PERMISSION_DENIED:
+          console.log("You have to allow access to your location in " +
+            "order to see the local weather");
+          break;
+        case error.POSITION_UNAVAILABLE:
+          console.log("Could not determine position");
+          break;
+        case error.TIMEOUT:
+          console.log("Timeout in requestin position");
+          break;
+        case error.UNKNOWN_ERROR:
+          console.log("Unknown error");
+          break;
+      }
+    });
+  }
 };
 
 Template.dashboardBanner.helpers({
 // TODO: should return current temperature
   temp: function() {
-    return '34';
+    if (temp.get())
+      return temp.get().temperature;
+    else
+      return null;
   },
 
 // TODO: should return the closes city to User's current location
   city: function() {
-    return 'new york';
+    if (temp.get())
+      return temp.get().locality;
+    else
+      return null;
   },
   month: function() {
     return moment().format('MMMM D');
   },
   time: function() {
     return moment().format('h:mm a');
+  },
+  teamMembers: function() {
+    if(Meteor.user() && Meteor.user().teamMembers)
+      return Meteor.users.find({
+        _id: {
+          $in: Meteor.user().teamMembers
+        }
+      });
+  },
+  status: function (status) {
+    if (status) {
+      switch (status.toUpperCase()) {
+        case 'MOBILE':
+          return 'mobile';
+        case 'OUT OF OFFICE':
+          return 'inactive';
+        case 'IN THE OFFICE':
+          return 'active';
+      }
+    } else {
+      return "inactive";
+    }
   }
 });
 

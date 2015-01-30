@@ -12,14 +12,18 @@ Package.onUse(function (api) {
     'velocityjs:velocityjs',
     'routes',
     'styles',
-    'maazalik:malihu-jquery-custom-scrollbar',
-    'social-media'
+    'settings',
+    'reactive-var',
+    'social-media',
+    'maazalik:malihu-jquery-custom-scrollbar'
   ], 'web');
 
-  api.addFiles([
+   api.addFiles(['dashboard.js'], 'server');
+    api.addFiles([
     'dashboard.html',
     'dashboard.less',
     'dashboard_banner.html',
+    'dashboard_skycons_client.js',
     'dashboard_banner_client.js',
     'dashboard_banner.less',
     'dashboard_event.html',

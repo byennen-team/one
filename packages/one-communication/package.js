@@ -13,10 +13,12 @@ Package.onUse(function (api) {
     'routes',
     'styles',
     'tracker',
-    'mquandalle:bower',
-    'maazalik:malihu-jquery-custom-scrollbar'
+    'mquandalle:bower@0.1.11',
+    'maazalik:malihu-jquery-custom-scrollbar',
+    'reactive-var'
     ], 'web');
 
+  api.addFiles('directory/communication_directory_modal_server.js', 'server');
   api.addFiles([
     'communication_main.html',
     'communication_main.less',
@@ -51,7 +53,8 @@ Package.onUse(function (api) {
     'library/communication_library_files.less',
     'library/communication_library_files_client.js',
     //directory
-    'directory/communication_directory_modal.html'
+    'directory/communication_directory_modal.html',
+    'directory/communication_directory_modal.js'
   ], 'web');
 
   // Bower packages

@@ -7,18 +7,48 @@
             <i class='fa icon-x' aria-hidden="true"></i>
             <span class="sr-only">Close</span>
           </button>
-          <p class="modal-title raleway-semibold white text-uppercase spacing-250 m-left-05">Invite Someone to Your Team</p>
+          <p class="modal-title raleway-semibold white text-uppercase spacing-250 m-left-05">Invite People</p>
         </div>
         <div class="modal-body">
           <div class="form-group">
-            {{> directory}}
+              <input id="modalDirectorySearchInput" type="text" placeholder="Enter name to search" />
+
+              <div class="row">
+              <div class="col-sm-12">
+                <table class="table table-striped">
+                  <tbody>
+                  {{#each people}}
+                    {{> person}}
+                  {{/each}}
+                  </tbody>
+                </table>
+              </div>
+            </div>
+            <!-- <div class="row">
+              <div class="col-sm-12 text-center">
+                <a href="#" class="load-more"><i class="fa fa-lg fa-refresh"></i> Load More</a>
+              </div>
+            </div> -->
+
           </div>
         </div>
-        <div class="modal-footer">
+        <!-- These are not needed anymore. Checking a checkbox adds them to the team or removes them -->
+        <!-- <div class="modal-footer">
           <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-          <button id='linked-content' type="button" class="btn btn-primary">Add</button>
-        </div>
+          <button id='add-team-members' type="button" class="btn btn-primary">Add</button>
+        </div> -->
       </form>
     </div>
   </div>
+</template>
+
+<template name="person">
+  <tr class="user">
+    <td><img src="{{profile.photoUrl.thumb}}" class="profile-image img-circle"/></td>
+    <td>
+      <div class="name">{{profile.firstName}} {{profile.lastName}}</div>
+      <div class="job">{{profile.title}}</div>
+    </td>
+    <td><input type="checkbox" class="userid-checkbox" {{isChecked this}} value="{{_id}}" /></td>
+  </tr>
 </template>
