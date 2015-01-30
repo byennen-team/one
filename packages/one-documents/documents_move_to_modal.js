@@ -23,7 +23,7 @@ Template.documentsMoveToModal.events({
   'click [data-action="toggle-dropdown"]': function (event, templateInstance) {
     templateInstance.$('[data-view="dropdown"]').toggleClass('hidden');
   }
-  
+
 });
 
 Template.documentsMoveToModal.helpers({
@@ -64,14 +64,14 @@ Template.documentsMoveToModal.helpers({
 // TODO: returns the file name. Only needed if only one file is selected.
 //    Or could return one name when multiple files are selected. String
   fileName: function () {
-    return 'file name.doc'
+    return 'file name.doc';
   },
 
 // TODO: returns the number of files selected. For multiple files selection.
   numberOfFiles: function () {
     return 3;
   }
-  
+
 });
 
 Template.documentsMoveToModal.created = function () {
