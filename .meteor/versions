@@ -69,11 +69,7 @@ mobile-status-bar@1.0.2
 mongo@1.0.11
 mongo-livedata@1.0.7
 mquandalle:bower@0.1.11
-<<<<<<< HEAD
 mrt:moment@2.8.1
-=======
-mrt:moment@1.7.0
->>>>>>> master
 mrt:underscore-string-latest@2.3.3
 natestrauser:select2@3.4.9
 not-found@0.0.0
