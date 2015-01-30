@@ -14,9 +14,11 @@ Package.onUse(function (api) {
     'styles',
     'tracker',
     'mquandalle:bower',
-    'maazalik:malihu-jquery-custom-scrollbar'
+    'maazalik:malihu-jquery-custom-scrollbar',
+    'reactive-var'
     ], 'web');
 
+  api.addFiles('directory/communication_directory_modal_server.js', 'server');
   api.addFiles([
     'communication_main.html',
     'communication_main.less',
@@ -37,6 +39,9 @@ Package.onUse(function (api) {
     'task/communication_task_board.html',
     'task/communication_task_board.less',
     'task/communication_task_board_client.js',
+    'task/communication_task_create.html',
+    'task/communication_task_create.less',
+    'task/communication_task_create_client.js',
     //library
     'library/communication_library_board.html',
     'library/communication_library_board.less',
@@ -48,7 +53,8 @@ Package.onUse(function (api) {
     'library/communication_library_files.less',
     'library/communication_library_files_client.js',
     //directory
-    'directory/communication_directory_modal.html'
+    'directory/communication_directory_modal.html',
+    'directory/communication_directory_modal.js'
   ], 'web');
 
   // Bower packages

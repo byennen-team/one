@@ -4,6 +4,10 @@
   "AWS_ACCESS_KEY_ID": "AKIAIRIH744ERKEXHPOA",
   "AWS_SECRET_ACCESS_KEY": "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",
   "public": {
+    "twitter": {
+      "COMPANY_SCREENNAME": "DouglasElliman",
+      "COMPANY_USERID": "10874182"
+    },
     "AWS_DEFAULT_BUCKET": "goone-staging",
     "AWS_BUCKET_URL": "https://goone-staging.s3.amazonaws.com",
     "UPLOAD_BUCKET": "goone-raw-upload-west-2",
@@ -40,5 +44,11 @@
   "MANDRILL_USERNAME": "mandrill@gooneapp.com",
   "MANDRILL_API_KEY": "SuSOTzzT5JI4ZCa-__HyPw",
   "AWS_BUCKET_URL": "https://s3.amazonaws.com",
-  "AWS_BUCKET_RAW": "https://goone-raw-upload-west-2.s3.amazonaws.com"
+  "AWS_BUCKET_RAW": "https://goone-raw-upload-west-2.s3.amazonaws.com",
+  "twitter": {
+    "CONSUMER_KEY": "nDkvCzyuyJ30rgjBRfSbaMeB4",
+    "SECRET": "PqlvLrWuNDl4d1QXmRVgKayUPjBmTfsF6KGZuxqZGhQ8bygKFB"
+  },
+  "FORECAST_API_KEY": "14825320e632a4c6c1aa9cc827bc7a94",
+  "GOOGLE_API_KEY": "AIzaSyBf1mUne6CU0ZGFGOEwCv4wyojCl0XRzO4"
 }

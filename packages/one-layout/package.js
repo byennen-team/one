@@ -13,7 +13,6 @@ Package.onUse(function (api) {
     'application.html', 'application_client.js',
     'navbar.html', 'navbar_client.js', 'navbar.less',
     'left_nav.html', 'leftNav.js', 'left_nav_client.js',
-    'left_nav.less',
+    'left_nav.less'
     ], 'web');
-
 });

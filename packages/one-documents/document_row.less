@@ -1,0 +1,132 @@
+// Variables
+@import '/packages/styles/variables.import.less';
+
+// The styles are still in documents.less and must be refactored
+
+
+.documentRowDragHelper {
+  border: 1px solid #b3bbcd;
+  border-radius: 3px;
+  color: #78838e;
+  padding: 4px 8px;
+  background: #fff;
+}
+.documentRow--dragHover {
+  background: @file-drop-target;
+}
+
+.document-file-row {
+  background-color: @white;
+  transition: background-color 350ms ease-out 50ms;
+  .dropzone {
+    background-color: @file-dropzone;
+  }
+  .selectCheckbox {
+    display: none;
+  }
+  .favoriteCheckbox {
+    width: 4%;
+  }
+  .file-type {
+
+  }
+  .name {
+    a {
+      position: relative;
+      color: @grey;
+      z-index: 1;
+      border-bottom: solid 1px transparent;
+      transition: color 350ms ease-out 50ms, border-color 350ms ease-out 50ms;
+    }
+    a:hover {
+      color: @dark-grey;
+      border-bottom: solid 1px @grey;
+    }
+  }
+  .type {
+    font-size: 12px;
+    font-family: @raleway-bold;
+    font-variant: small-caps;
+    text-transform: lowercase;
+    letter-spacing: 0.2em;
+  }
+  .date {
+    font-size: 12px;
+    line-height: 200%;
+  }
+  .rename-document { 
+    margin-left: 1em;
+    opacity: 0;
+    transition: opacity 350ms ease-out 50ms;
+  }
+  .btn-default {
+      color: @text-blue-grey;
+      border: 0 none;
+      background-color: transparent; 
+      font-family: @raleway-bold;
+      font-variant: small-caps;
+      text-transform: lowercase;
+      letter-spacing: 0.2em;
+      margin: 0;
+      padding: 0;
+    }
+    .btn-default:hover, 
+    .btn-default:focus, 
+    .btn-default.focus,
+    .btn-default:active, 
+    .btn-default.active,
+    .open .dropdown-toggle.btn-default {
+      font-family: @raleway-bold;
+      font-variant: small-caps;
+      text-transform: lowercase;
+      letter-spacing: 0.2em;
+      color: @text-blue-grey;
+      background: none;
+      background-color: transparent;
+      border-color: none;
+      box-shadow: none;
+      -webkit-box-shadow: none;
+    }
+    .dropdown-menu {
+      position: absolute;
+      left: -50px;  // to keep menu on screen at all times
+      background: #f4fafa;
+      box-shadow: none;
+      border-color: #d9e4ee;
+      -webkit-box-shadow: none;
+      font-family: @raleway-bold;
+      font-variant: small-caps;
+      text-transform: lowercase;
+      letter-spacing: 0.2em;
+      a {
+        padding: 8px 15px;
+        line-height: 140%;
+        color: @text-blue-grey;
+      }
+      a:hover {
+        color: darken( @text-blue-grey, 15% );
+        background-color: @cornflower;
+      }
+      i {
+        color: @text-blue-grey;
+        padding-right: 5px;
+      }
+      a:hover i {
+        color: darken( @text-blue-grey, 15% );
+        transition: none;
+      }
+    }
+    .btn-group.open .dropdown-toggle {
+      -webkit-box-shadow: none;
+      box-shadow: none;
+    }
+}
+.document-file-row:hover {
+  background-color: @file-hover;
+}
+.document-file-row:hover .rename-document {
+  opacity: 1;
+}
+.document-file-row.selected {
+  background-color: @file-selected;
+}

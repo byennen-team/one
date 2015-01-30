@@ -139,68 +139,9 @@
         </div>
 
       </div>
-
-      <div class='row social-media m-top-20'>
-        <div class="col-sm-12 half-gutter">
-          <p class='raleway-semibold auto-width m-left-05 text-uppercase facebook pull-left spacing-125'>social media</p>
-          <!-- TEMPLATE - link to User's Facebook page	  		 -->
-          <a href='facebook.com' target='_blank'>
-            <div class="pull-right m-right-10">
-              <span class="sr-only">link to Facebook</span>
-              <i class="fa fa-facebook fa-lg facebook"></i>
-            </div>
-          </a>
-          <!-- TEMPLATE - link to User's Twitter page	  		 -->
-          <a href='twitter.com' target='_blank'>
-            <div class="pull-right m-right-10">
-              <span class="sr-only">link to Twitter</span>
-              <i class="fa fa-twitter fa-lg twitter"></i>
-            </div>
-          </a>
-
-          <div class='clearfix'></div>
-          <!-- TEMPLATE - Form needs to be plugged in  		 -->
-          <form role="form" class='comment-box'>
-            <!-- TEMPLATE - When User is not logged in, placeholder should be the user's twitter handle  		 -->
-            <input class='tweeter' type="text" placeholder='Write message...' >
-
-            <input id='social-facebook' type="checkbox" name="facebook" class='hidden'/>
-            <span class="sr-only user-only">facebook checkbox</span>
-            <label id='social-facebook-label' for='social-facebook' class="fa fa-facebook fa-lg fb-checkbox grey user-only"></label>
-
-            <input id='social-twitter' type="checkbox" name="twitter" class='hidden'/>
-            <span class="sr-only user-only">twitter checkbox</span>
-            <label id='social-twitter-label' for='social-twitter' class="fa fa-twitter fa-lg twitter-checkbox grey user-only"></label>
-
-          </form>
-
-
-          <div class='m-top-05 m-bottom-15 p-left-05 p-right-05'>
-            <!-- TEMPLATE - text from social media post 		 -->
-            <p class='raleway-light m-bottom-0'>New listing for 500 N Wabash!  Beautiful penthouse <a href='http://de.ly/wker' target='_blank' class='facebook' >de.ly/wker</a></p>
-            <!-- TEMPLATE - Post's date 		 -->
-            <span class='h6 raleway-semibold text-uppercase navy spacing-125'>2 hours ago</span>
-            <!-- TEMPLATE - include the spans that correspond to the networks for the post 		 -->
-            <span class="fa fa-facebook navy"></span>
-            <span class="fa fa-twitter navy"></span>
-          </div>
-
-          <!-- Next 2 divs are repeated for context 		 -->
-          <div class='m-top-05 m-bottom-15 p-left-05 p-right-05'>
-            <p class='raleway-light m-bottom-0'>Just took a  quick jog around Central Park. Love this city in the fall!  <a href='http://twitter.com/nyc' target='_blank' class='facebook' >#nyc</a></p>
-            <span class='h6 raleway-semibold text-uppercase navy spacing-125'>2 hours ago</span>
-            <span class="fa fa-twitter navy"></span>
-          </div>
-
-          <div class='m-top-05 m-bottom-15 p-left-05 p-right-05'>
-            <p class='raleway-light m-bottom-0'>Unbelievable rental available in historic SOHO rehab de.ly/2352 <a href='http://de.ly/wker' target='_blank' class='facebook' >de.ly/wker</a></p>
-            <span class='h6 raleway-semibold text-uppercase navy spacing-125'>1 day ago</span>
-            <span class="fa fa-facebook navy"></span>
-          </div>
-
-        </div>
-
-      </div>
+      {{#if hasSocialMedia}}
+        {{> socialMediaTemplate}}
+      {{/if}}
     </div>
 
 
@@ -452,4 +393,64 @@
       </div>
     </div>
   </section>
+</template>
+
+
+<template name="socialMediaTemplate">
+  <div class='row social-media m-top-20'>
+    <div class="col-sm-12 half-gutter">
+      <p class='raleway-semibold auto-width m-left-05 text-uppercase facebook pull-left spacing-125'>social media</p>
+
+      {{#if hasFacebook}}
+        <!-- TEMPLATE - link to User's Facebook page         -->
+        <a href='facebook.com' target='_blank'>
+          <div class="pull-right m-right-10">
+            <span class="sr-only">link to Facebook</span>
+            <i class="fa fa-facebook fa-lg facebook"></i>
+          </div>
+        </a>
+      {{/if}}
+
+      {{#if hasTwitter}}
+        <!-- TEMPLATE - link to User's Twitter page        -->
+        <a href='https://www.twitter.com/{{services.twitter.screenName}}' target='_blank'>
+          <div class="pull-right m-right-10">
+            <span class="sr-only">link to Twitter</span>
+            <i class="fa fa-twitter fa-lg twitter"></i>
+          </div>
+        </a>
+      {{/if}}
+
+      <div class='clearfix'></div>
+      <!-- TEMPLATE - Form needs to be plugged in      -->
+      <form role="form" class='comment-box'>
+        <!-- TEMPLATE - When User is not logged in, placeholder should be the user's twitter handle      -->
+        <input class='tweeter' type="text" placeholder='Write message...' >
+
+        {{#if hasFacebook}}
+          <input id='social-facebook' type="checkbox" name="facebook" class='hidden'/>
+          <span class="sr-only user-only">facebook checkbox</span>
+          <label id='social-facebook-label' for='social-facebook' class="fa fa-facebook fa-lg fb-checkbox grey user-only"></label>
+        {{/if}}
+
+        {{#if hasTwitter}}
+          <input id='social-twitter' type="checkbox" name="twitter" class='hidden'/>
+          <span class="sr-only user-only">twitter checkbox</span>
+          <label id='social-twitter-label' for='social-twitter' class="fa fa-twitter fa-lg twitter-checkbox twitter user-only"></label>
+        {{/if}}
+
+      </form>
+      {{#each socialStatuses}}
+        <div class='m-top-05 m-bottom-15 p-left-05 p-right-05'>
+          <!-- TEMPLATE - text from social media post      -->
+          <p class='raleway-light m-bottom-0'>{{{text}}}</p>
+          <!-- TEMPLATE - Post's date      -->
+          <span class='h6 raleway-semibold text-uppercase navy spacing-125'>{{date datePosted}}</span>
+          <!-- TEMPLATE - include the spans that correspond to the networks for the post     -->
+          <span class="fa fa-{{network}} navy"></span>
+        </div>
+      {{/each}}
+    </div>
+
+  </div>
 </template>
