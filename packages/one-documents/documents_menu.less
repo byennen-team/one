@@ -1,41 +1,49 @@
+// Variables
+@import '/packages/styles/variables.import.less';
+// default styles are for Company Library mode
 .documentsMenu {
+  height: 60px;
   margin: 0;
   padding: 0;
   position: relative;
-  ul{
-    margin: 0;
-    padding: 0;
-    list-style: none;
-    li {
-      padding: 20px 0 0 20px;
-      height: 70px;
-      background: #50a9c7;
-      a {
-        font-family: RalewayLight, Verdana, Geneva, sans-serif;
-        font-size: 26px;
-        color: white;
-        letter-spacing: .1em;
-        display: block;
-        i {
-          float: right;
-          margin-right: 15px;
-        }
-        img {
-          margin-top: -6px;
-        }
-      }
-      .caret {
-        float: right;
-        margin: 15px 20px 0 0;
-      }
-    }
+  background-color: @fountain-blue;
+  .my-library,
+  .company-library {
+    float: left;
+    height: 40px;
+    margin: 10px;
+    padding: 0.65em 2em;
+    font-size: 14px;
+    font-family: @raleway-semibold;
+    color: @sky;
+    font-variant: small-caps;
+    text-transform: lowercase;
+    text-align: center;
+    letter-spacing: 0.2em;
+    border-radius: 3px;
+    background-color: @fountain-blue;
+    transition: background-color 350ms ease-out 50ms;
   }
-  .dropdown {
-    display: none;
-    position: absolute;
-    z-index: 10;
-    li {
-      background: #5bb8d7;
+  .my-library.active,
+  .company-library.active {
+    background-color: @accent;
+    color: @white;
+  }
+}
+// My Library mode styles
+.myDocuments {
+  .documentsMenu {
+    background-color: @dk-teal;
+    .my-library,
+    .company-library {
+      color: @very-lt-teal;
+      background-color: @dk-teal;
+    }
+    .my-library.active,
+    .company-library.active {
+      background-color: @lt-teal;
+      color: @white;
     }
   }
 }
+
