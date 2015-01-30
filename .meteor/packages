@@ -15,6 +15,7 @@ mizzao:bootstrap-3 #TODO: refactory to bootstrap-less
 aldeed:simple-schema
 velocityjs:velocityjs
 ccorcos:transitioner
+coffeescript
 
 
 # Our Packages

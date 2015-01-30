@@ -3,8 +3,8 @@
   <form id="event-menu" class="event-menu">
 
     <div class="form-group color-drop">
-      <label class='sr-only' for="task-menu-color-select">Select a Color</label>
-      <select class="colorselectpicker" id="task-menu-color-select" data-style='select-color'>
+      <label class='sr-only' for="event-menu-color-select">Select a Color</label>
+      <select class="colorselectpicker" id="event-menu-color-select" data-style='select-color'>
         <option class="dot-select purple">purple</option>
         <option class="dot-select pink">pink</option>
         <option class="dot-select orange">orange</option>
@@ -21,7 +21,7 @@
     </div>
 
     <div class="form-group event-title">
-      <label class='sr-only' for="task-menu-name">Name your event</label>
+      <label class='sr-only' for="event-menu-name">Name your event</label>
       <input id='event-menu-name' type="text" placeholder='Event name...'/>
     </div>  
 
@@ -102,14 +102,14 @@
           <i id="event-menu-invite" class="fa icon-addteam"></i>
         </div>
 
-        <label class='sr-only' for="task-menu-invite-search">Search for people to add</label>
+        <label class='sr-only' for="event-menu-invite-search">Search for people to add</label>
         
   <!-- TODO: This should search the directory -->
         <div class="invite-search" id="event-menu-invite-search">
           {{> widgetSearch}}
         </div>
   <!-- TODO: Need to display search results here -->
-        <label class='sr-only' for="task-menu-user-status">Send invite</label>
+        <label class='sr-only' for="event-menu-user-status">Send invite</label>
         <div class="select-invite">
           <select class="selectpicker form-control" id='event-menu-user-status' data-style=''>
             <option selected>send invite</option>

@@ -17,6 +17,6 @@ Template.application.helpers({
       return true;
   },
   loginLayout: function() {
-    return Router.current().route.getName() === Routes.LOGIN
+    return Router.current().route.getName() === Routes.LOGIN;
   }
 });
