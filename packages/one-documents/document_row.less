@@ -101,11 +101,19 @@
       a {
         padding: 8px 15px;
         line-height: 140%;
-        color: #78838e;
+        color: @text-blue-grey;
+      }
+      a:hover {
+        color: darken( @text-blue-grey, 15% );
+        background-color: @cornflower;
       }
       i {
         color: @text-blue-grey;
         padding-right: 5px;
+      }
+      a:hover i {
+        color: darken( @text-blue-grey, 15% );
+        transition: none;
       }
     }
     .btn-group.open .dropdown-toggle {

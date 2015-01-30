@@ -41,13 +41,38 @@
         </button>
         <ul class="dropdown-menu" role="menu">
           <!-- <li><a href="#"><i class="fa fa-floppy-o"></i> Move to My Docs</a></li> -->
-          <li><a href="{{url this}}" class="download"><i class="fa fa-download"></i> Download</a></li>
-          <li class="share-document"><a href="#" data-toggle="modal" data-target="#shareDocumentModal"><i class="fa fa-share"></i> Share</a></li>
-          <li><a href="{{url this}}" class="print"><i class="fa fa-print"></i> Print</a></li>
+          <li>
+            <a href="{{url this}}" class="download">
+              <i class="fa fa-download"></i> 
+              Download
+            </a>
+          </li>
+          <li class="share-document">
+            <a href="#" data-toggle="modal" data-target="#shareDocumentModal">
+              <i class="fa fa-share"></i> 
+              Share
+            </a>
+          </li>
+          <li>
+            <a href="{{url this}}" class="print">
+              <i class="fa fa-print"></i> 
+              Print
+            </a>
+          </li>
           {{#if isPersonalDocument this}}
-            <li><a href="#" class="remove"><i class="fa fa-trash"></i> Delete</a></li>
+            <li>
+              <a href="#" class="remove">
+                <i class="fa fa-trash"></i> 
+                Delete
+              </a>
+            </li>
           {{/if}}
-          <li class="share-document"><a href="#" data-toggle="modal" data-target="#emailDocumentModal"><i class="fa fa-envelope-o"></i> Email</a></li>
+          <li class="share-document">
+            <a href="#" data-toggle="modal" data-target="#emailDocumentModal">
+              <i class="fa fa-envelope-o"></i> 
+              Email
+            </a>
+          </li>
         </ul>
       </div>
     </td>

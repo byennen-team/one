@@ -23,6 +23,7 @@ Template.documentsMoveToModal.events({
   'click [data-action="toggle-dropdown"]': function (event, templateInstance) {
     templateInstance.$('[data-view="dropdown"]').toggleClass('hidden');
   }
+  
 });
 
 Template.documentsMoveToModal.helpers({
