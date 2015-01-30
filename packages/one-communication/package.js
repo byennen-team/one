@@ -13,7 +13,7 @@ Package.onUse(function (api) {
     'routes',
     'styles',
     'tracker',
-    'mquandalle:bower',
+    'mquandalle:bower@0.1.11',
     'maazalik:malihu-jquery-custom-scrollbar',
     'reactive-var'
     ], 'web');
