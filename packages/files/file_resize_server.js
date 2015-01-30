@@ -41,6 +41,7 @@ FileTools.cleanupTemp =  function() {
 };
 //fetch temp image
 FileTools.fetchToTemp = function(url, callback){
+  console.log('fetch to temp', url);
   flag404 = false;
   var originalName = url.substring(url.lastIndexOf('/')+1);
   var xpat = /\.([0-9a-z]+)(?:[\?#]|$)/i;
@@ -68,18 +69,32 @@ FileTools.fetchToTemp = function(url, callback){
 //resize
 FileTools.resizeTemp = function(size, callback) {
     if (flag404) { return callback(); }
-    Meteor.wrapAsync(im.resize({
-      srcPath: base+imgTmp+imgExt,
-      dstPath: base+size+imgTmp+imgExt,
-      width:  resizeWidths[size],
-      height: resizeHeights[size],
-      quality: 0.6
-    }, Meteor.bindEnvironment(function(err) {
-      if (err) {
-        console.log('resized error: ', err);
-      }
-      callback();
-    })));
+    console.log('resizeTemp', size);
+    Meteor.wrapAsync(im.identify(base+imgTmp+imgExt, Meteor.bindEnvironment(
+    function(err, features) {
+      console.log('identify h ', features.height, ' w ', features.width);
+      var scalingFactor = Math.min(
+        resizeWidths[size] / features.width,
+        resizeHeights[size] / features.height
+        );
+      var width = scalingFactor * features.width;
+      var height = scalingFactor * features.height;
+      console.log('height ', height, ' width ', width);
+      im.resize({
+        srcPath: base+imgTmp+imgExt,
+        dstPath: base+size+imgTmp+imgExt,
+        width:  width,
+        height: height,
+        quality: 0.6
+        }, Meteor.bindEnvironment(function(err) {
+          if (err) {
+            console.log('resized error: ', err);
+          }
+          callback();
+         })
+        )
+     })
+    ));
 };
 
 //upload
