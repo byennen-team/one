@@ -3,6 +3,7 @@ Package.describe({
 });
 
 Package.onUse(function (api) {
+  api.use('dburles:collection-helpers', ['server','client']);
   api.use([
     'less',
     'jquery',
