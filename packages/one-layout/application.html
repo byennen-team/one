@@ -1,5 +1,5 @@
 <template name="application">
-  {{#transitioner}}
+  <!-- {{#transitioner}} -->
     {{#if loginLayout}}
       <head>
         <title>Go One</title>
@@ -21,20 +21,20 @@
           {{/if}}
 
           <div class="content">
-              {{#transitioner}}
+              <!-- {{#transitioner}} -->
                 {{> yield}}
-              {{/transitioner}}
+              <!-- {{/transitioner}} -->
           </div>
         </div>
       {{else}}
         <div class="wrap">
           <div class="content">
-              {{#transitioner}}
+              <!-- {{#transitioner}} -->
                 {{> yield}}
-              {{/transitioner}}
+              <!-- {{/transitioner}} -->
           </div>
         </div>
       {{/if}}
     {{/if}}
-  {{/transitioner}}
+  <!-- {{/transitioner}} -->
 </template>
