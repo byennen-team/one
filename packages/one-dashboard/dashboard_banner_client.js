@@ -3,7 +3,8 @@ var temp = new ReactiveVar();
 
 Template.dashboardBanner.created = function() {
   Tracker.autorun(function() {
-    Meteor.subscribe('userProfiles', Meteor.user().teamMembers);
+    if(Meteor.user().teamMembers)
+      Meteor.subscribe('userProfiles', Meteor.user().teamMembers);
   });
 };
 
