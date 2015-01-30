@@ -1,4 +1,5 @@
 /* globals Skycons: false */
+
 Template.dashboardBanner.rendered = function () {
   $("#dashboard-schedule-sleeve").mCustomScrollbar({
       theme:"one-dark",
@@ -7,7 +8,6 @@ Template.dashboardBanner.rendered = function () {
 
   // Skycons:
   // Documentation here: http://darkskyapp.github.io/skycons/
-  //var Skycons;
   var skycons = new Skycons({
     "color": "white",
     "resizeClear": true  // Android hack

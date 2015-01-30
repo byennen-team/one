@@ -124,7 +124,7 @@ Meteor.startup(function () {
     qFetchResizeAndUpload(user);
   });
   console.log('Ready to run queue');
-  
+
   Meteor._powerQ.run();
   Meteor._powerQ.add(function(done){
     FileTools.cleanupTemp(done);

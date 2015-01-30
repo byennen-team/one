@@ -1,12 +1,10 @@
 <template name="documentsMenu">
-  <div class="row">
-    <div class="documentsMenu col-sm-12">
-      <ul>
-        <li class="dropdown-active">{{{currentPage}}}</li>
-        <ul class="dropdown col-sm-12">
-          <li>{{{nextPage}}}</li>
-        </ul>
-      </ul>
-    </div>
-  </div>
+  
+  <a href='/documents'>
+    <div class="my-library {{myActive}}">my library</div>
+  </a>
+  <a href='/documents/company'>
+    <div class="company-library {{companyActive}}">company library</div>
+  </a>
+
 </template>

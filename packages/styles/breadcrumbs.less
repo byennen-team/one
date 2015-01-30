@@ -1,0 +1,23 @@
+// Mods to bootstrap breadcrumbs
+
+// Variables
+@import '/packages/styles/variables.import.less';
+
+.breadcrumb {
+  background-color: transparent;
+  border-radius: 0;
+
+  > li {
+
+    + li:before {
+      content: "\f0da"; 
+      font-family: FontAwesome;
+      padding: 0 10px;
+      color: @lt-dk-grey;
+    }
+  }
+
+  > .active {
+    color: @grey;
+  }
+}
