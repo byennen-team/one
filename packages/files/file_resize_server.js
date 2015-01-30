@@ -72,7 +72,7 @@ FileTools.resizeTemp = function(size, callback) {
     Meteor.wrapAsync(im.identify(base+imgTmp+imgExt, Meteor.bindEnvironment(
     function(err, features) {
       console.log('identify h ', features.height, ' w ', features.width);
-      var scalingFactor = Math.min(
+      var scalingFactor = Math.max(
         resizeWidths[size] / features.width,
         resizeHeights[size] / features.height
         );
