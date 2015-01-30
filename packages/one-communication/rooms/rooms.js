@@ -12,3 +12,5 @@ Rooms.simpleSchema = new SimpleSchema({
   dateCreated: { type: Date },
   roomType: { type: String, optional: true}
 });
+
+
