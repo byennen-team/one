@@ -9,7 +9,7 @@ Template.dashboardTwitterWidget.rendered = function () {
       scrollbarPosition: "inside",
       autoHideScrollbar: true
   });
-  // Delay gives the plugin a change to load fully
+  // Delay gives the plugin a change to load fully 
   setTimeout(function(){
     sleeve.mCustomScrollbar( "scrollTo", "bottom" );
   }, 200);
