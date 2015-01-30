@@ -1,10 +1,10 @@
-// set body background
-.myDocuments, .companyDocuments, .folder {
+// Variables
+@import '/packages/styles/variables.import.less';
+
+// Not sure why all these selectors were used. Leaving them in in case I'm missing something.
+// .myDocuments, .companyDocuments, .folder {
+#documents-container {
   background: white;
-  // Fix leftnav margin
-  .documents {
-    margin-left: 0;
-  }
 
   // left side background color 100% height
   .leftside {
@@ -26,35 +26,56 @@
   .options {
     height: 70px;
     font-family: RalewaySemibold, Verdana, Geneva, sans-serif;
-    font-size: 12px;
+    font-size: 14px;
     border-bottom: 2px solid #ededed;
     display: block;
     padding: 42px 0 5px 2%;
     letter-spacing: .2em;
-    text-transform: uppercase;
+    font-variant: small-caps;
+    text-transform: lowercase;
     a {
       padding-left: 20px;
+      font-family: @raleway-bold;
+      font-variant: small-caps;
+      text-transform: lowercase;
+      letter-spacing: 0.2em;
+      color: @text-blue-grey;
+    }
+    a:hover {
+      color: darken( @text-blue-grey, 15% );
     }
     i {
-      font-size: 16px;
+      font-size: 14px;
+      vertical-align: middle;
+      transition: none;
     }
     .folder {
-      color: #a4a0df;
+      color: @lavender;
+    }
+    .folder:hover {
+      color: darken( @lavender, 15% );
     }
     .upload {
-      color: #5bb8d7;
+      color: @lt-teal;
+    }
+    .upload:hover {
+      color: @teal;
     }
   }
 
   //table
   .table > tbody > tr > td {
-    padding: 30px 8px;
+    padding: 19px 8px 13px 8px; 
     color: #78838e;
   }
   .table > thead > tr > th {
+    font-size: 12px;
     border-bottom: 2px solid #eaeef4;
-    text-transform: uppercase;
-    color: #b8c4d0;
+    text-transform: lowercase;
+    font-variant: small-caps;
+    font-family: @raleway-bold;
+    letter-spacing: 0.2em;
+    color: @grey;
   }
   // dee4ed
   table {
@@ -62,15 +83,6 @@
     margin: 10px 2% 2%;
     // overwrite width for now. this should be looked at again.
     width: 95%;
-    a.name {
-      color: #78838e;
-    }
-    .type {
-      text-transform: uppercase;
-    }
-    i.pdf {
-      color: #5bb8d7;
-    }
     /*** custom stars for favorites ***/
     .favoriteCheckbox {
       /* to hide the checkbox */
@@ -100,41 +112,21 @@
         letter-spacing: 5px;
       }
     }
-    .btn-default {
-      color: #74cfce;
-      border: 0 none;
-      text-transform: uppercase;
-      letter-spacing: 2px;
-      margin: 0;
-      padding: 0;
+  }
+}
+// My Library mode styles
+.myDocuments {
+  #documents-container {
+    i.pdf { 
+      color: @lt-teal;
     }
-    .btn-default:hover, .btn-default:focus, .btn-default.focus,
-    .btn-default:active, .btn-default.active,
-    .open .dropdown-toggle.btn-default {
-      color: #74cfce;
-      background: none;
-      border-color: none;
-      box-shadow: none;
-      -webkit-box-shadow: none;
-    }
-    .dropdown-menu {
-      background: #f4fafa;
-      box-shadow: none;
-      border-color: #d9e4ee;
-      -webkit-box-shadow: none;
-      text-transform: uppercase;
-      letter-spacing: 2px;
-      a {
-        color: #78838e;
-      }
-      i {
-        color: #74cfce;
-        padding-right: 5px;
-      }
-    }
-    .btn-group.open .dropdown-toggle {
-      -webkit-box-shadow: none;
-      box-shadow: none;
+  }
+}
+// Company Document mode styles
+.companyDocuments {
+  #documents-container {
+    i.pdf { 
+      color: @accent;
     }
   }
 }

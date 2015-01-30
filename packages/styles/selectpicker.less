@@ -1,0 +1,33 @@
+// These are styles for the bootstrap-selectpicker plugin. Custom styled 
+//    select boxes.
+
+// Variables 
+@import "/packages/styles/variables.import.less";
+
+.bootstrap-select.btn-group {
+  .dropdown-toggle {
+    box-shadow: none;
+  }
+  .dropdown-menu {
+    margin-top: 0;
+    padding: 0;
+    border-radius: 0 0 3px 3px;
+    border: 2px solid #b7bed1;
+    border-style: none solid solid solid;
+  }
+  li {
+    a {
+      padding: 1em;
+      background-color: @white;
+      transition: background-color 350ms ease-out 50ms;
+    }
+    a:hover {
+      background-color: @file-hover;
+    }
+  }
+}
+.bootstrap-select.open {
+  .dropdown-toggle {
+    box-shadow: none;
+  }
+}

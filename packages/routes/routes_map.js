@@ -26,7 +26,11 @@ Router.route('/apps', {
 Router.route('/documents', {
   name: Routes.MY_DOCUMENTS,
   template: 'documents',
+  waitOn: function () {
+    return Meteor.subscribe('files');
+  },
   action: function () {
+    resetDocumentSelection();
     Session.set('currentFolderId', null);
     this.render();
   }
@@ -35,7 +39,11 @@ Router.route('/documents', {
 Router.route('/documents/company', {
   name: Routes.COMPANY_DOCUMENTS,
   template: 'documents',
+  waitOn: function () {
+    return Meteor.subscribe('files');
+  },
   action: function () {
+    resetDocumentSelection();
     Session.set('currentFolderId', null);
     this.render();
   }
@@ -44,7 +52,11 @@ Router.route('/documents/company', {
 Router.route('/folders/:_id', {
   name: Routes.FOLDER,
   template: 'documents',
+  waitOn: function () {
+    return Meteor.subscribe('files');
+  },
   action: function () {
+    resetDocumentSelection();
     Session.set('currentFolderId', this.params._id);
     this.render();
   }
@@ -55,7 +67,10 @@ Router.route('/messages', {
 });
 
 Router.route('/dashboard', {
-  name: Routes.DASHBOARD
+  name: Routes.DASHBOARD,
+  waitOn: function () {
+    return Meteor.subscribe('files');
+  }
 });
 
 Router.route('/directory/:letter?', {
@@ -133,4 +148,8 @@ if (Meteor.isClient) {
 
     Meteor.subscribe('following');
   });
+}
+
+function resetDocumentSelection() {
+  Session.set('selectedDocuments', []);
 }
