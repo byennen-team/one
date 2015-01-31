@@ -55,15 +55,13 @@ Template.messageInput.events({
     if(message && message.length > 0)
       RoomsController.addSimpleMessageToRoom(
         Session.get('openRoomId'),
-        message
-        )
+        message)
 
     $('#addMessageInput').val("");
 
-    Meteor.setTimeout(function() {
-      $("#communication-message-board-sleeve")
-      .mCustomScrollbar("scrollTo","bottom");
-    },100);
+    //also mark room as read
+
+    RoomsController.updateTimestamp(Session.get('openRoomId'));
 
   }
 });

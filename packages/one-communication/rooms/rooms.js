@@ -68,7 +68,7 @@ RoomsController.removeUserFromRoom = function(roomId, userId) {
   });
 };
 
-RoomsController.addSimpleMessageToRoom = function(roomId, message) {
+RoomsController.addSimpleMessageToRoom = function(roomId, message, callback) {
   Meteor.call('addSimpleMessageToRoom', roomId, message, function(e,r) {
     if (e)
       console.log(e);
@@ -114,4 +114,13 @@ RoomsController.getUnreadMessagesCount = function(roomId) {
       query.dateCreated = { $gt: currentParticipant.lastReadTimestamp };
 
     return Messages.find(query).count();
+};
+
+RoomsController.updateTimestamp = function(roomId) {
+  Meteor.call('updateTimestamp', roomId, function(e, r) {
+    if(e)
+      console.log(e);
+
+    console.log(r);
+  })
 };

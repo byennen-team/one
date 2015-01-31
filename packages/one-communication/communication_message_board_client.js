@@ -4,6 +4,11 @@ Template.messageBoard.events({
 
 });
 
+Template.messageBoard.rendered = function() {
+  $("#communication-message-board-sleeve")
+    .mCustomScrollbar("scrollTo","bottom");
+  };
+
 Template.messageBoard.helpers({
   room: function() {
     return Rooms.findOne(Session.get('openRoomId'));
@@ -15,6 +20,32 @@ Template.messageBoard.helpers({
   },
   isSimpleMessage: function() {
     return (this.messageType === 'message' || ! this.messageType);
+  },
+  isFirstUnread: function(room) {
+    var latestTimestamp = null;
+    var currentParticipant = _.where(room.participants,{
+      participantId: Meteor.userId()
+    });
+
+    if (currentParticipant[0]) {
+      latestTimestamp = currentParticipant[0].lastReadTimestamp;
+    }
+    if (! latestTimestamp )
+      return false;
+
+    var latestUnreadMessage = Messages.findOne({
+      roomId: room._id,
+      dateCreated: {
+        $gt: latestTimestamp
+      }
+    },{
+      sort: {
+        dateCreated: 1
+      },
+      limit: 1
+    });
+    console.log(latestUnreadMessage);
+    return (latestUnreadMessage._id === this._id);
   }
 });
 
@@ -42,4 +73,9 @@ Template.message.helpers({
       return "inactive";
     }
   }
-})
+});
+
+Template.message.rendered = function() {
+  $("#communication-message-board-sleeve")
+    .mCustomScrollbar("scrollTo","bottom");
+}

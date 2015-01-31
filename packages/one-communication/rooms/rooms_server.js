@@ -5,9 +5,19 @@ Meteor.publish('room', function (roomId) {
   if (! this.userId)
     throw new Meteor.Error(401, "You are not logged in!");
 
+  var room = Rooms.findOne(roomId);
+
+  if (! room)
+    return [];
+
   return [
     Rooms.findOne(roomId),
-    Messages.find({ roomId: roomId })
+    Messages.find({ roomId: roomId }),
+    Meteor.users.find({
+      _id: {
+        $in: _.pluck(room.participants, 'participantId')
+      }
+    })
     ];
 });
 
@@ -177,6 +187,32 @@ Meteor.methods({
       multi: true
     }, function(e,r) {
       return (e, r);
+    });
+  },
+  updateTimestamp: function(roomId) {
+    check(roomId, String);
+    var room = Rooms.findOne(roomId);
+    var userId = this.userId;
+
+    if(! room)
+      throw new Meteor.Error(404, "Room not found");
+
+    var currentParticipant = _.find(room.participants, function(item) {
+        return (item.participantId === userId);
+      });
+
+    if (! currentParticipant)
+      throw new Meteor.Error(403, 'You are not in this room.');
+
+    Rooms.update({
+      _id: roomId,
+      'participants.participantId': userId
+    }, {
+      $set: {
+        "participants.$.lastReadTimestamp": new Date()
+      }
+    }, function(e,r) {
+      return (e,r);
     });
   }
 });
