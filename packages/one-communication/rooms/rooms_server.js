@@ -2,10 +2,13 @@
 Meteor.publish('room', function (roomId) {
   check(roomId, String);
 
-  if(this.userId)
-    return Rooms.findOne(roomId);
-  else
-    return [];
+  if (! this.userId)
+    throw new Meteor.Error(401, "You are not logged in!");
+
+  return [
+    Rooms.findOne(roomId),
+    Messages.find({ roomId: roomId })
+    ];
 });
 
 Meteor.publish('rooms', function() {

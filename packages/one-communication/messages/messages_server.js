@@ -30,9 +30,12 @@ Meteor.publish('unreadMessages', function() {
         messageIdArray.push(query)
       });
 
-      return Messages.find({
-        $or: messageIdArray
-      });
+      if(messageIdArray.length > 0)
+        return Messages.find({
+          $or: messageIdArray
+        });
+      else
+        return [];
     }
 });
 

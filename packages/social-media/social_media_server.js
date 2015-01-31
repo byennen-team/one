@@ -56,12 +56,7 @@ Meteor.publish('socialStatuses', function(userId) {
 Meteor.publish('companySocialStatuses', function(twitterId) {
   check(twitterId, String);
 
-  return SocialStatuses.find({ userNetworkId: twitterId },{
-      limit: 10,
-      sort: {
-        datePosted: -1
-      }
-    });
+  return SocialStatuses.find({ userNetworkId: twitterId });
 });
 
 // Load Twitter settings from Settings file

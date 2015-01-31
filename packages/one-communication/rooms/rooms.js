@@ -73,6 +73,10 @@ RoomsController.addSimpleMessageToRoom = function(roomId, message) {
     if (e)
       console.log(e);
 
+  //this is needed to capture new messages in freshly created or joined rooms
+  //might be a resource killer, but will have to check how it works with many
+  //users.
+  Meteor.subscribe('unreadMessages');
     console.log(r);
   });
 };

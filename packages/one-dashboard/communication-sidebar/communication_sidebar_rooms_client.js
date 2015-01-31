@@ -9,6 +9,13 @@ Template.communicationSidebarRooms.rendered = function(){
 
 };
 
+Template.communicationSidebarRooms.created = function() {
+  Session.set('roomOpenId', false);
+  Tracher.autorun(function() {
+    Meteor.subscribe('room', Session.get('roomOpenId'));
+  });
+};
+
 Template.communicationSidebarRoomsFill.helpers({
   rooms: function() {
     return Rooms.find({

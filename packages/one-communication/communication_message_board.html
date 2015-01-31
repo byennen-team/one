@@ -1,9 +1,10 @@
 <template name='messageBoard'>
-	
+
+{{#with room}}
 <div class="header">
 	<div class="col-xs-6">
 <!-- TODO: Need to put Channel name here -->
-		<h1>General</h1>
+		<h1>{{roomName}}</h1>
 	</div>
 <!-- TODO: Install search, and add animation -->
 	<div class="col-xs-6"></div>
@@ -12,10 +13,23 @@
 		<i class="fa fa-lg fa-search"></i>
 	</div>
 </div>
-	
-<div id='communication-message-board-sleeve' class="sleeve">
 
-<!-- TODO: add "user" class if message is by User -->
+<div id='communication-message-board-sleeve' class="sleeve">
+	{{#each messages}}
+		{{#if isSimpleMessage}}
+			{{>message}}
+		{{/if}}
+		<!-- TODO: add more message types as requested -->
+		{{#if isDocumentMessage}}
+			{{> documentMessage}}
+		{{/if}}
+	{{/each}}
+</div>
+{{/with}}
+</template>
+
+<template name="documentMessage">
+	<!-- TODO: add "user" class if message is by User -->
 	<div class="message">
 		<div class="avatar">
 <!-- TODO: Agent's status (not the User's) -->
@@ -30,9 +44,9 @@
 				Joy Avery
 <!-- TODO: message time stamp -->
 				<span class="time">8:45am</span>
-			</p>	
+			</p>
 <!-- TODO: message text -->
-			<p class="text">Updated Listing Agreement now in the Company Docs.  Happy New Year everyone!</p>			
+			<p class="text">Updated Listing Agreement now in the Company Docs.  Happy New Year everyone!</p>
 <!-- TODO: '.doc' should only show up when there's an attachment -->
 			<div class="doc">
 				<div class="thumbnail">
@@ -67,32 +81,30 @@
 		</div>
 	</div>
 	<div class="clearfix"></div>
+</template>
 
-<!-- Repeated for style -->
-	<div class="message user">
+<template name="message">
+	<!-- Repeated for style -->
+	<div class="message {{isUserClass}}">
 		<div class="avatar">
-			<div class="status active"></div>
-			<img src="/images/com-hub-main/jon.jpg" alt="Agent's name here" />
+			<div class="status {{status user.profile.status}}"></div>
+			<img src="{{user.profile.photoUrl.thumb}}" alt="Agent's name here" />
 		</div>
 		<div class="message-body">
 			<p class="name">
-				Jon Evans
-				<span class="time">8:48am</span>
-			</p>	
+				{{user.profile.firstName}} {{user.profile.lastName}}
+				<span class="time">{{date createdAt}}</span>
+			</p>
 <!-- TODO:	@name needs to be plugged in		 -->
-			<p class="text">Thanks <a href='#'>@JoyAvery</a>!</p>		
-		</div>	
+			<p class="text">{{{message}}}</p>
+		</div>
 	</div>
 	<div class="clearfix"></div>
 <!-- /style repeat -->
+</template>
 
-	<div class="new-message-bar">
-		<p>New message</p>
-		<hr/>
-	</div>
-	<div class="clearfix"></div>
-
-	<!-- Repeated for style -->
+<template name="newsMessage">
+		<!-- Repeated for style -->
 	<div class="message">
 		<div class="avatar">
 			<div class="status inactive"></div>
@@ -103,13 +115,19 @@
 			<p class="name">
 				Dottie Herman
 				<span class="time">8:52am</span>
-			</p>	
+			</p>
 <!-- TODO:	link expands text		 -->
 <!-- TODO: Text should be limited to one line, no matter the with (just for messages with subjects) -->
-			<p class="text">DouglasElliman Real Estate and KnightFrank Residential, two of the biggest names in real estate <a href='#'>...<span class="blue-text">read <i class="fa fa-arrow-circle-right"></i></span></a></p>			
+			<p class="text">DouglasElliman Real Estate and KnightFrank Residential, two of the biggest names in real estate <a href='#'>...<span class="blue-text">read <i class="fa fa-arrow-circle-right"></i></span></a></p>
 		</div>
 	</div>
 	<div class="clearfix"></div>
-<!-- /style repeat -->
-</div>
+</template>
+
+<template name="newBar">
+	<div class="new-message-bar">
+		<p>New message</p>
+		<hr/>
+	</div>
+	<div class="clearfix"></div>
 </template>
