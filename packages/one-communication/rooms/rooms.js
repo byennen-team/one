@@ -92,3 +92,22 @@ RoomsController.editSimpleMessage = function(messageId, message) {
     console.log(r);
   });
 };
+
+RoomsController.getUnreadMessagesCount = function(roomId) {
+  var room = Rooms.findOne(roomId);
+
+  if(! room)
+    throw new Meteor.Error(404, "Room not found");
+
+  var currentParticipant = _.find(room.participants, function(item) {
+      return (item.participantId === Meteor.userId());
+    });
+
+    var query = {};
+    query.roomId = room._id;
+
+    if(currentParticipant.lastReadTimestamp)
+      query.dateCreated = { $gt: currentParticipant.lastReadTimestamp };
+
+    return Messages.find(query).count();
+};

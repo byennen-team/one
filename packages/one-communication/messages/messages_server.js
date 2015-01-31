@@ -10,8 +10,30 @@ Meteor.publish('messagesForRoom', function(roomId) {
   });
 });
 
-Meteor.publish('unreadMessages', function(roomId) {
+Meteor.publish('unreadMessages', function() {
+  if(this.userId) {
+      var rooms = Rooms.find({
+        'participants.participantId': this.userId
+      }).fetch();
+      var messageIdArray = [];
 
+      _.each(rooms, function(item) {
+        var currentParticipant = _.where(item.participants,
+          { participantId: this.userId });
+
+        var query = {};
+        query.roomId = item._id;
+
+        if(currentParticipant.lastReadTimestamp)
+          query.dateCreated = { $gt: currentParticipant.lastReadTimestamp };
+
+        messageIdArray.push(query)
+      });
+
+      return Messages.find({
+        $or: messageIdArray
+      });
+    }
 });
 
 Meteor.methods({

@@ -72,7 +72,8 @@ Router.route('/dashboard', {
     return [Meteor.subscribe('companySocialStatuses',
       Meteor.settings.public.twitter.COMPANY_USERID),
       Meteor.subscribe('files'),
-      Meteor.subscribe('rooms')];
+      Meteor.subscribe('rooms'),
+      Meteor.subscribe('unreadMessages')];
   },
   action: function() {
     this.render();
