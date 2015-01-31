@@ -1,5 +1,4 @@
 <template name='messageBoard'>
-
 {{#with room}}
 <div class="header">
 	<div class="col-xs-6">
@@ -15,6 +14,7 @@
 </div>
 
 <div id='communication-message-board-sleeve' class="sleeve">
+	<div>
 	{{#each messages}}
 		{{#if isSimpleMessage}}
 			{{>message}}
@@ -24,6 +24,7 @@
 			{{> documentMessage}}
 		{{/if}}
 	{{/each}}
+	</div>
 </div>
 {{/with}}
 </template>
@@ -93,7 +94,7 @@
 		<div class="message-body">
 			<p class="name">
 				{{user.profile.firstName}} {{user.profile.lastName}}
-				<span class="time">{{date createdAt}}</span>
+				<span class="time">{{date dateCreated}}</span>
 			</p>
 <!-- TODO:	@name needs to be plugged in		 -->
 			<p class="text">{{{message}}}</p>

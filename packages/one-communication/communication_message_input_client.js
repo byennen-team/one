@@ -46,8 +46,26 @@ Template.messageInput.events({
 	'click #communication-message-attachment-delete': function(){
 		$('#communication-message-input-attachment-input').val('');
 		Session.set('attachment', false);
-	}
+	},
 
+  'submit #addMessageForm': function(event) {
+    event.preventDefault();
+    var message = $('#addMessageInput').val();
+
+    if(message && message.length > 0)
+      RoomsController.addSimpleMessageToRoom(
+        Session.get('openRoomId'),
+        message
+        )
+
+    $('#addMessageInput').val("");
+
+    Meteor.setTimeout(function() {
+      $("#communication-message-board-sleeve")
+      .mCustomScrollbar("scrollTo","bottom");
+    },100);
+
+  }
 });
 
 Tracker.autorun(function () {

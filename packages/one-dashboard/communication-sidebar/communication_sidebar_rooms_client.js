@@ -13,6 +13,7 @@ Template.communicationSidebarRooms.created = function() {
   Session.set('roomOpenId', false);
   Tracher.autorun(function() {
     Meteor.subscribe('room', Session.get('roomOpenId'));
+    console.log('resubscribe')
   });
 };
 
