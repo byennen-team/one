@@ -2,24 +2,28 @@
 Meteor.publish('room', function (roomId) {
   check(roomId, String);
 
-  if(! this.userId)
-    throw new Meteor.Error(401, "You are not logged in");
-
-  return Rooms.findOne(roomId);
+  if(this.userId)
+    return Rooms.findOne(roomId);
+  else
+    return [];
 });
 
 Meteor.publish('rooms', function() {
-  if(! this.userId)
-    throw new Meteor.Error(401, "You are not logged in");
+  if(this.userId)
+    return Rooms.find({
+      'participants.participantId': this.userId
+    });
+  else
+    return [];
 
-  return Rooms.find({
-    participants: this.userId
-  });
 });
 Meteor.methods({
+  logRooms: function() {
+    console.log(JSON.stringify(Rooms.find().fetch()));
+  },
   createRoom: function(context) {
     check(context, {
-      participants: [String],
+      participants: [Object],
       roomType: Match.Optional(String),
       roomName: Match.Optional(String),
       roomStatus: Match.Optional(String)

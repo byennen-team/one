@@ -3,7 +3,7 @@ Rooms = new Meteor.Collection('rooms');
 
 var participantsSchema = new SimpleSchema({
   participantId: { type: String },
-  dateJoined: { type: Date },
+  dateJoined: { type: Date, defaultValue: new Date() },
   lastReadTimestamp: { type: Date, optional: true }
 });
 
@@ -19,7 +19,11 @@ Rooms.simpleSchema = new SimpleSchema({
 RoomsController = {};
 
 RoomsController.createRoom = function(participants, roomType, roomName) {
-  Meteor.call('createRoom', participants, roomType, roomName, function(e,r) {
+  Meteor.call('createRoom', {
+    participants: participants,
+    roomType: roomType,
+    roomName: roomName
+  }, function(e,r) {
     if (e)
       console.log(e);
 

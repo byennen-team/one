@@ -75,4 +75,6 @@ Package.onUse(function (api) {
 
   // Bower packages
   api.addFiles(['smart.json'], 'web');
+
+  api.export(['Rooms','Messages','RoomsController'], ['server','web']);
 });

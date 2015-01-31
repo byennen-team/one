@@ -8,3 +8,24 @@ Template.communicationSidebarRooms.rendered = function(){
   });
 
 };
+
+Template.communicationSidebarRoomsFill.helpers({
+  rooms: function() {
+    return Rooms.find({
+      roomType: 'room'
+    });
+  },
+  unreadMessages: function() {
+    var currentParticipant = _.find(this.participants, function(item) {
+      return (item.participantId === Meteor.userId());
+    });
+
+    return Messages.find({
+      roomId: this._id,
+      creatorId: Meteor.userId(),
+      dateCreated: {
+        $gt: currentParticipant.lastReadTimestamp
+      }
+    }).count();
+  }
+});

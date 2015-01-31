@@ -10,6 +10,9 @@ Meteor.publish('messagesForRoom', function(roomId) {
   });
 });
 
+Meteor.publish('unreadMessages', function(roomId) {
+
+});
 
 Meteor.methods({
   addSimpleMessageToRoom: function(roomId, message) {
@@ -21,12 +24,14 @@ Meteor.methods({
 
     var room = Rooms.findOne(roomId);
 
-    if(room)
+    if(! room)
       throw new Meteor.Error(404, "Room not found!");
 
-    if(! _.find(room.participants, function(item) {
-      return item.participantId === this.userId;
-      }))
+    console.log(room.participants, this.userId)
+    var participant = _.where(room.participants, {participantId: this.userId});
+    console.log(participant)
+
+    if(! participant)
       throw new Meteor.Error(403, "You can only post in rooms you are in");
 
     Messages.insert({
@@ -47,7 +52,7 @@ Meteor.methods({
 
     var message = Messages.findOne(messageId);
 
-    if(message)
+    if(! message)
       throw new Meteor.Error(404, "Message not found!");
 
     if(message.ownerId !== this.userId) //TODO: allow admin
@@ -70,7 +75,7 @@ Meteor.methods({
 
     var message = Messages.findOne(messageId);
 
-    if(message)
+    if(! message)
       throw new Meteor.Error(404, "Message not found!");
 
     if(message.type !== 'message')
