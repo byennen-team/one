@@ -70,7 +70,9 @@ Package.onUse(function (api) {
     'library/communication_library_files_client.js',
     //directory
     'directory/communication_directory_modal.html',
-    'directory/communication_directory_modal.js'
+    'directory/communication_directory_modal.js',
+    'directory/communication_add_teammember_modal.html',
+    'directory/communication_add_teammember_modal.js'
   ], 'web');
 
   // Bower packages

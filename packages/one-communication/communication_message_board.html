@@ -16,7 +16,7 @@
 <div id='communication-message-board-sleeve' class="sleeve">
 	<div>
 	{{#each messages}}
-		{{#if isFirstUnread room}}
+		{{#if isFirstUnread ../_id}}
 			{{> newBar}}
 		{{/if}}
 		{{#if isSimpleMessage}}

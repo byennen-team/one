@@ -21,7 +21,8 @@ Template.messageBoard.helpers({
   isSimpleMessage: function() {
     return (this.messageType === 'message' || ! this.messageType);
   },
-  isFirstUnread: function(room) {
+  isFirstUnread: function(roomId) {
+    var room = Rooms.findOne(roomId);
     var latestTimestamp = null;
     var currentParticipant = _.where(room.participants,{
       participantId: Meteor.userId()
@@ -34,7 +35,7 @@ Template.messageBoard.helpers({
       return false;
 
     var latestUnreadMessage = Messages.findOne({
-      roomId: room._id,
+      roomId: roomId,
       dateCreated: {
         $gt: latestTimestamp
       }
@@ -44,8 +45,7 @@ Template.messageBoard.helpers({
       },
       limit: 1
     });
-    console.log(latestUnreadMessage);
-    return (latestUnreadMessage._id === this._id);
+    return (latestUnreadMessage && latestUnreadMessage._id === this._id);
   }
 });
 

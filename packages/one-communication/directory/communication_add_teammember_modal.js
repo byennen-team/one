@@ -7,6 +7,12 @@ Template.communicationAddTeammemberModal.created = function () {
   });
   this.teamMembers = new ReactiveVar([]);
 
+  if(Session.get('teamModalPurpose') === 'editTeam') {
+    var room = Rooms.findOne('openRoomId');
+    var members = _.pluck(room.participants, 'participantId');
+    this.teamMembers.set(members);
+  }
+
   Tracker.autorun(function () {
     return Meteor.subscribe('searchResults', self.searchText.get());
   });
@@ -19,16 +25,26 @@ Template.communicationAddTeammemberModal.created = function () {
 Template.communicationAddTeammemberModal.helpers({
   people: function() {
     return Search.cursor(Template.instance().searchText.get());
+  },
+  teamMembers: function() {
+    return Meteor.users.find({
+      _id: {
+        $in: Template.instance().teamMembers.get()
+      }
+    });
+  },
+  teamMembersArray: function() {
+    return Template.instance().teamMembers.get();
   }
 });
 
 Template.communicationAddTeammemberModal.events({
-  'keyup #modalDirectorySearchInput': function(event, template) {
+  'keyup #modalAddMembersSearchInput': function(event, template) {
     event.preventDefault();
-    if( $('#modalDirectorySearchInput').val().length > 2 ) {
+    if( $('#modalAddMembersSearchInput').val().length > 2 ) {
       var currentLimit = template.searchText.get().limit;
       template.searchText.set({
-        text: $('#modalDirectorySearchInput').val(),
+        text: $('#modalAddMembersSearchInput').val(),
         limit: currentLimit
       });
     }
@@ -44,23 +60,27 @@ Template.communicationAddTeammemberModal.events({
       });
   },
   'click input.userid-checkbox': function(event) {
-    if ($(event.currentTarget).prop('checked') === true)
-      Meteor.call('addTeamMember',$(event.currentTarget).val());
-    else
-      Meteor.call('removeTeamMember',$(event.currentTarget).val());
+    if ($(event.currentTarget).prop('checked') === true) {
+      var currentMembers = Template.instance().teamMembers.get();
+      currentMembers.push($(event.currentTarget).val());
+      Template.instance().teamMembers.set(currentMembers);
+    } else {
+      var currentMembers = Template.instance().teamMembers.get();
+      var parsedMembers = _.reject(currentMembers, function(item) {
+        return (item === $(event.currentTarget).val());
+      });
+      Template.instance().teamMembers.set(parsedMembers);
+    }
   }
 });
 
 Template.teamMember.helpers({
-  isChecked: function(user) {
-    var isInChannel = Meteor.users.findOne({
-      $and: [{
-              _id: Meteor.userId()
-            },
-            {
-              teamMembers: user._id
-            }]
-    });
+  isChecked: function(userIdArray) {
+    var user = this;
+    var isInChannel = _.find(userIdArray,
+      function(item) {
+        return (item === user._id)
+      });
 
     if(isInChannel)
       return 'checked';
