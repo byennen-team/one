@@ -10,7 +10,7 @@ Package.onUse(function (api) {
     'reactive-var',
     'jquery',
     'velocityjs:velocityjs',
-    'mquandalle:bower',
+    'mquandalle:bower@0.1.11',
     'styles',
     'one-email',
     'mrt:moment',
