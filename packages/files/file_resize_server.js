@@ -13,7 +13,7 @@ s3Params = {
   key: Meteor.settings.AWS_ACCESS_KEY_ID, //<api-key-here>'
   secret: Meteor.settings.AWS_SECRET_ACCESS_KEY,  //'<secret-here>'
   bucket: Meteor.settings.AWS_BUCKET_RAW
-}
+};
 
 console.log('s3Params', s3Params);
 var s3Client = knox.createClient(s3Params);
