@@ -9,10 +9,10 @@
             <span class="sr-only">Close</span>
           </button>
           <h4 class="modal-title">Move to</h4>
-          {{#if singleFile}}
-            <p>{{fileName}}</p>
+          {{#if isSingleFileSelected}}
+            <p>{{firstDocumentName}}</p>
           {{else}}
-            <p>{{numberOfFiles}} files selected</p>
+            <p>{{numberOfDocuments}} files selected</p>
           {{/if}}
         </div>
         <div class="modal-body">
