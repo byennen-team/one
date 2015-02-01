@@ -27,7 +27,7 @@ if(Settings.isStaging || Settings.isBeta) {
 FileTools.cleanupTemp =  function() {
    fs.readdir(base, function (err, results) {
       var keepImg = ['No_image_available.jpg','full_NIA.jpg','thumb_NIA.jpg'];
-      if (err) throw err;
+      if (err) throw new Meteor.Error(err);
       console.log('results', results);
       if (_.isArray(results)) {
         results.forEach(function(img) {
