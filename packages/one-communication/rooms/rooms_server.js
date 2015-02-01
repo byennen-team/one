@@ -53,8 +53,8 @@ Meteor.methods({
 
     context.dateCreated = new Date();
     context.ownerId = this.userId;
-
     Rooms.insert(context, function(e,r) {
+      console.log(e,r)
       return(e,r);
     });
   },

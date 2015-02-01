@@ -3,14 +3,14 @@ Template.communicationAddTeammemberModal.created = function () {
   this.searchText = new ReactiveVar();
   this.searchText.set({
     text: '',
-    limit: 5
+    limit: 3
   });
-  this.teamMembers = new ReactiveVar([]);
+  Session.set("teamMembers",[]);
 
   if(Session.get('teamModalPurpose') === 'editTeam') {
     var room = Rooms.findOne('openRoomId');
     var members = _.pluck(room.participants, 'participantId');
-    this.teamMembers.set(members);
+    Session.set("teamMembers",members);
   }
 
   Tracker.autorun(function () {
@@ -18,7 +18,17 @@ Template.communicationAddTeammemberModal.created = function () {
   });
 
   Tracker.autorun(function () {
-    return Meteor.subscribe('userProfiles', self.teamMembers.get());
+    return Meteor.subscribe('userProfiles', Session.get("teamMembers"));
+  });
+
+  $("#communication-add-teammember-modal").on("hidden.bs.modal", function(){
+    Session.set("teamMembers",[]);
+    $('input#new-room-name').val("");
+    $('input#modalAddMembersSearchInput').val("");
+    self.searchText.set({
+      text: '',
+      limit: 3
+    });
   });
 };
 
@@ -29,12 +39,12 @@ Template.communicationAddTeammemberModal.helpers({
   teamMembers: function() {
     return Meteor.users.find({
       _id: {
-        $in: Template.instance().teamMembers.get()
+        $in: Session.get("teamMembers")
       }
     });
   },
-  teamMembersArray: function() {
-    return Template.instance().teamMembers.get();
+  isNewRoom: function() {
+    return (Session.get('teamModalPurpose') === 'newTeam');
   }
 });
 
@@ -61,23 +71,68 @@ Template.communicationAddTeammemberModal.events({
   },
   'click input.userid-checkbox': function(event) {
     if ($(event.currentTarget).prop('checked') === true) {
-      var currentMembers = Template.instance().teamMembers.get();
+      var currentMembers = Session.get("teamMembers");
       currentMembers.push($(event.currentTarget).val());
-      Template.instance().teamMembers.set(currentMembers);
+      Session.set("teamMembers", currentMembers);
     } else {
-      var currentMembers = Template.instance().teamMembers.get();
+      var currentMembers = Session.get("teamMembers");
       var parsedMembers = _.reject(currentMembers, function(item) {
         return (item === $(event.currentTarget).val());
       });
-      Template.instance().teamMembers.set(parsedMembers);
+      Session.set("teamMembers", parsedMembers);
     }
+  },
+  'click #add-team-members': function(event) {
+    var newRoomMembers = Session.get("teamMembers");
+    //adding current user to the room
+    var currentUserExists = _.find(newRoomMembers,function(item){
+      return item === Meteor.userId();
+    });
+    console.log(currentUserExists)
+    if(! currentUserExists)
+      newRoomMembers.push(Meteor.userId());
+
+    var roomName = $('input#new-room-name').val();
+
+    if(! roomName || roomName.length === 0 )
+      return;
+
+    var participants = [];
+
+    _.each(newRoomMembers, function(item) {
+      participants.push({
+        participantId: item,
+        dateJoined: new Date()
+      });
+    });
+
+    RoomsController.createRoom(participants, 'room', roomName);
+
+    Session.set("teamMembers",[]);
+    $('input#new-room-name').val("");
+    $('input#modalAddMembersSearchInput').val("");
+    Template.instance().searchText.set({
+      text: '',
+      limit: 3
+    });
+    $("#communication-add-teammember-modal").hide();
+
+  },
+  'click #cancel-team-members': function(event) {
+    Session.set("teamMembers",[]);
+    $('input#new-room-name').val("");
+    $('input#modalAddMembersSearchInput').val("");
+    self.searchText.set({
+      text: '',
+      limit: 3
+    });
   }
 });
 
 Template.teamMember.helpers({
-  isChecked: function(userIdArray) {
+  isChecked: function() {
     var user = this;
-    var isInChannel = _.find(userIdArray,
+    var isInChannel = _.find(Session.get("teamMembers"),
       function(item) {
         return (item === user._id)
       });

@@ -80,7 +80,6 @@ Template.communicationSidebar.events({
 
 	'click .room': function(event){
     Session.set('openRoomId', $(event.currentTarget).data('id'));
-    Session.set('teamModalPurpose','newTeam');
 		// expands the main dialog box t0 60% of full screen
 		$.Velocity.hook($('#communication-main'), "width", "100%");
 		$.Velocity.hook($('#communication-message-board'), "width", "45%");
@@ -111,7 +110,10 @@ Template.communicationSidebar.events({
     body.data('previous-overflow', body.css('overflow'));
     body.css('overflow', 'hidden');
     window.scrollTo(scrollPosition[0], scrollPosition[1]);
-	}
+	},
+  'click #addRoom': function(event) {
+    Session.set('teamModalPurpose','newTeam');
+  }
 
 });
 
