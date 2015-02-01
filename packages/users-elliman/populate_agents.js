@@ -66,18 +66,19 @@ var qFetchResizeAndUpload = function(user){
   Meteor._powerQ.add(function(done){
     FileTools.upload(
       '',
-      '/user/'+user.profile.id+'/profile-images/'+user.profile.id,
+      '/user/' + user.profile.id + '/profile-images/' + user.profile.id,
       done
     );
   });
   //
   Meteor._powerQ.add(function(done) {
-      var fullUrlRaw = '/full/user/'+user.profile.id+
-        '/profile-images/'+user.profile.id+_ext;
-      var thumbUrlRaw = '/thumb/user/'+user.profile.id+
-        '/profile-images/'+user.profile.id+_ext;
-      var thumbSign = FileTools.signedGet(thumbUrlRaw, 'goone-resized-west-2');
-      var fullSign = FileTools.signedGet(fullUrlRaw, 'goone-resized-west-2');
+      var BUCKET_RESIZED = Meteor.settings.AWS_BUCKET_RESIZED;
+      var fullUrlRaw = '/full/user/'+ user.profile.id +
+        '/profile-images/' + user.profile.id+_ext;
+      var thumbUrlRaw = '/thumb/user/' + user.profile.id +
+        '/profile-images/' + user.profile.id+_ext;
+      var thumbSign = FileTools.signedGet(thumbUrlRaw, BUCKET_RESIZED);
+      var fullSign = FileTools.signedGet(fullUrlRaw, BUCKET_RESIZED);
     user.profile.photoUrl = {
         large: fullSign,
         thumb: thumbSign
