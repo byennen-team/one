@@ -7,28 +7,13 @@ Template.communicationAddTeammemberModal.created = function () {
   });
   Session.set("teamMembers",[]);
 
-  if(Session.get('teamModalPurpose') === 'editTeam') {
-    var room = Rooms.findOne('openRoomId');
-    var members = _.pluck(room.participants, 'participantId');
-    Session.set("teamMembers",members);
-  }
-
   Tracker.autorun(function () {
     return Meteor.subscribe('searchResults', self.searchText.get());
   });
 
   Tracker.autorun(function () {
-    return Meteor.subscribe('userProfiles', Session.get("teamMembers"));
-  });
-
-  $("#communication-add-teammember-modal").on("hidden.bs.modal", function(){
-    Session.set("teamMembers",[]);
-    $('input#new-room-name').val("");
-    $('input#modalAddMembersSearchInput').val("");
-    self.searchText.set({
-      text: '',
-      limit: 3
-    });
+    if(Session.get('openRoomId'))
+      return Meteor.subscribe('roomMembers', Session.get("openRoomId"));
   });
 };
 
@@ -88,13 +73,13 @@ Template.communicationAddTeammemberModal.events({
     var currentUserExists = _.find(newRoomMembers,function(item){
       return item === Meteor.userId();
     });
-    console.log(currentUserExists)
     if(! currentUserExists)
       newRoomMembers.push(Meteor.userId());
 
     var roomName = $('input#new-room-name').val();
 
-    if(! roomName || roomName.length === 0 )
+    if((! roomName || roomName.length === 0)
+      && Session.get('teamModalPurpose') === 'newTeam')
       return;
 
     var participants = [];
@@ -106,7 +91,13 @@ Template.communicationAddTeammemberModal.events({
       });
     });
 
-    RoomsController.createRoom(participants, 'room', roomName);
+    if(Session.get('teamModalPurpose') === 'newTeam') {
+      RoomsController.createRoom(participants, 'room', roomName);
+    } else {
+      RoomsController.adjustParticipantsInRoom(
+        Session.get('openRoomId'), newRoomMembers
+        );
+    }
 
     Session.set("teamMembers",[]);
     $('input#new-room-name').val("");
@@ -122,7 +113,7 @@ Template.communicationAddTeammemberModal.events({
     Session.set("teamMembers",[]);
     $('input#new-room-name').val("");
     $('input#modalAddMembersSearchInput').val("");
-    self.searchText.set({
+    Template.instance().searchText.set({
       text: '',
       limit: 3
     });

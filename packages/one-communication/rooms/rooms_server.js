@@ -121,9 +121,9 @@ Meteor.methods({
     if (!room)
       throw new Meteor.Error(404, "Room not found!");
 
-    if (this.userId !== userId || !this.userId) //TODO: add admin check
-      throw new Meteor.Error(403,
-        "You can only add yourself to a room if you are not an admin");
+    // if (this.userId !== userId || !this.userId) //TODO: add admin check
+    //   throw new Meteor.Error(403,
+    //     "You can only add yourself to a room if you are not an admin");
 
     if (this.userId !== userId) {
       var user = Meteor.users.findOne(userId);
@@ -164,9 +164,11 @@ Meteor.methods({
       }))
       throw new Meteor.Error(404, "User is not in that room!");
 
-    if (this.userId !== userId || !this.userId) //TODO: add admin check
-      throw new Meteor.Error(403,
-        "You can only remove yourself from a room if you are not an admin");
+    // if (!this.userId ||
+    //   this.userId !== userId ||
+    //   this.userId !== room.ownerId) //TODO: add admin check
+    //   throw new Meteor.Error(403,
+    //     "You can only remove yourself from a room if you are not an admin");
 
     if (this.userId !== userId) {
       var user = Meteor.users.findOne(userId);
@@ -187,6 +189,26 @@ Meteor.methods({
       multi: true
     }, function(e,r) {
       return (e, r);
+    });
+  },
+  adjustParticipantsInRoom: function(roomId, participantsArray) {
+    console.log(roomId,participantsArray)
+    check(roomId, String);
+    check(participantsArray, [String]);
+
+    var currentParticipants =
+      _.pluck(Rooms.findOne(roomId).participants, 'participantId');
+
+    var toRemove = _.difference(currentParticipants, participantsArray);
+
+    var toAdd = _.difference(participantsArray, currentParticipants);
+
+    _.each(toRemove, function(item) {
+      Meteor.call('removeUserFromRoom', roomId, item);
+    });
+
+    _.each(toAdd, function(item) {
+      Meteor.call('addUserToRoom', roomId, item);
     });
   },
   updateTimestamp: function(roomId) {

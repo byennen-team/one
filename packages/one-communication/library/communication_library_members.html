@@ -1,63 +1,31 @@
 <template name='libraryMembers'>
-	
-	<div class='library-board-sleeve members'>
 
+	<div class='library-board-sleeve members'>
+	<div>
+	{{#each members}}
 		<div class="member">
 			<div class="avatar">
 <!-- TODO: Agent's status -->
-				<div class="status active"></div>
+				<div class="status {{status profile.status}}"></div>
 <!-- TODO: Agent's Avatar and name. Avatar should be square, and about 50x50px -->
-				<img src="images/com-hub-main/joy.jpg" alt="Agent's name here" />
+				<img src="{{profile.photoUrl.thumb}}" alt="{{profile.firstName}} {{profile.lastName}}" />
 			</div>
 <!-- TODO: Agent's name  -->
-			<div class="name">Joy Avery</div>
+			<div class="name">{{profile.firstName}} {{profile.lastName}}</div>
 <!-- TODO: Agent's title -->
-			<div class="title">Seller</div>
+			<div class="title">{{profile.title}}</div>
 <!-- TODO: Plug in phone button -->
 			<div class="phone"><i class="fa fa-phone"></i></div>
 <!-- TODO: Plug in video chat -->
 			<div class="video-chat"><i class="fa fa-video-camera"></i></div>
-		</div>	
-
-<!-- repeated for style -->
-		<div class="member">
-			<div class="avatar">
-				<div class="status mobile"></div>
-				<img src="images/com-hub-main/jon.jpg" alt="Agent's name here" />
-			</div>
-			<div class="name">Jon Evans</div>
-			<div class="title">Marketing Directory</div>
-			<div class="phone"><i class="fa fa-phone"></i></div>
-			<div class="video-chat"><i class="fa fa-video-camera"></i></div>
-		</div>	
-		
-		<div class="member">
-			<div class="avatar">
-				<div class="status inactive"></div>
-				<img src="images/com-hub-main/dottie.jpg" alt="Agent's name here" />
-			</div>
-			<div class="name">Dottie Herman</div>
-			<div class="title">Realtor</div>
-			<div class="phone"><i class="fa fa-phone"></i></div>
-			<div class="video-chat"><i class="fa fa-video-camera"></i></div>
-		</div>	
-
-		<div class="member">
-			<div class="avatar">
-				<div class="status active"></div>
-				<img src="images/com-hub-main/michael.jpg" alt="Agent's name here" />
-			</div>
-			<div class="name">Michael Graves</div>
-			<div class="title">Seller's Attorney</div>
-			<div class="phone"><i class="fa fa-phone"></i></div>
-			<div class="video-chat"><i class="fa fa-video-camera"></i></div>
-		</div>	
-<!-- /style repeat -->
+		</div>
+	{{/each}}
+	</div>
 
 		<div class="invite-button">
 			<i id="communication-library-invite" class="fa icon-addteam"></i>
 			<input id="communication-library-invite-input" type="text" placeholder='Invite someone' />
-			<i id="communication-library-invite-directory" class="fa fa-user" data-toggle="modal" data-target="#communication-directory-modal"></i>
+			<i id="communication-library-invite-directory" class="fa fa-user" data-toggle="modal" data-target="#communication-add-teammember-modal"></i>
 		</div>
 	</div>
 

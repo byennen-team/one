@@ -122,5 +122,17 @@ RoomsController.updateTimestamp = function(roomId) {
       console.log(e);
 
     console.log(r);
-  })
+  });
+};
+
+RoomsController.adjustParticipantsInRoom = function(
+  roomId, participantsArray
+  ) {
+  Meteor.call('adjustParticipantsInRoom', roomId, participantsArray,
+    function(e, r) {
+      if(e)
+        console.log(e);
+
+      console.log(r);
+    });
 };
