@@ -12,8 +12,13 @@ Template.communicationAddTeammemberModal.created = function () {
   });
 
   Tracker.autorun(function () {
-    if(Session.get('openRoomId'))
-      return Meteor.subscribe('roomMembers', Session.get("openRoomId"));
+    var currentRoom = Rooms.findOne(Session.get('openRoomId'));
+    if(currentRoom) {
+      var roomParticipants = _.pluck(
+        currentRoom.participants,
+          'participantId');
+      return Meteor.subscribe('roomMembers', roomParticipants);
+    }
   });
 };
 
@@ -106,6 +111,12 @@ Template.communicationAddTeammemberModal.events({
       text: '',
       limit: 3
     });
+
+    //trick to rerun subscription
+    var currentRoomId = Session.get('openRoomId');
+    Session.set('openRoomId', null);
+    Session.set('openRoomId', currentRoomId);
+
     $("#communication-add-teammember-modal").hide();
 
   },

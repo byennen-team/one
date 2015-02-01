@@ -5,14 +5,10 @@
 	{{#each members}}
 		<div class="member">
 			<div class="avatar">
-<!-- TODO: Agent's status -->
 				<div class="status {{status profile.status}}"></div>
-<!-- TODO: Agent's Avatar and name. Avatar should be square, and about 50x50px -->
 				<img src="{{profile.photoUrl.thumb}}" alt="{{profile.firstName}} {{profile.lastName}}" />
 			</div>
-<!-- TODO: Agent's name  -->
 			<div class="name">{{profile.firstName}} {{profile.lastName}}</div>
-<!-- TODO: Agent's title -->
 			<div class="title">{{profile.title}}</div>
 <!-- TODO: Plug in phone button -->
 			<div class="phone"><i class="fa fa-phone"></i></div>

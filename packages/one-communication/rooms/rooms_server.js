@@ -7,10 +7,10 @@ Meteor.publish('room', function (roomId) {
 
   var room = Rooms.findOne(roomId);
 
-  if (! room)
-    return [];
-
-  return [
+  if (! room){
+    this.ready();
+  } else {
+    return [
     Rooms.findOne(roomId),
     Messages.find({ roomId: roomId }),
     Meteor.users.find({
@@ -19,6 +19,7 @@ Meteor.publish('room', function (roomId) {
       }
     })
     ];
+  }
 });
 
 Meteor.publish('rooms', function() {
@@ -27,7 +28,7 @@ Meteor.publish('rooms', function() {
       'participants.participantId': this.userId
     });
   else
-    return [];
+    this.ready();
 
 });
 Meteor.methods({

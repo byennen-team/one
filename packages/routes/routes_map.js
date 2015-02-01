@@ -74,9 +74,6 @@ Router.route('/dashboard', {
       Meteor.subscribe('files'),
       Meteor.subscribe('rooms'),
       Meteor.subscribe('unreadMessages')];
-  },
-  action: function() {
-    this.render();
   }
 });
 

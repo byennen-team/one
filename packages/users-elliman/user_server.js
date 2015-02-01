@@ -35,19 +35,13 @@ Meteor.publish('userProfiles', function (userIds) {
   );
 });
 
-Meteor.publish('roomMembers', function (roomId) {
-  check(roomId, String);
-  if(roomId) {
-    var room = Rooms.findOne(roomId);
-    var userIds = _.pluck(room.participants, 'participantId');
-    return Meteor.users.find(
-      {_id: {$in: userIds}},
-      {fields: {slug: 1, profile: 1}}
-    );
-  } else {
-    return []
-  }
+Meteor.publish('roomMembers', function (userIds) {
+  check(userIds, [String]);
 
+  return Meteor.users.find(
+    {_id: {$in: userIds}},
+    {fields: {slug: 1, profile: 1}}
+  );
 });
 
 Meteor.methods({
