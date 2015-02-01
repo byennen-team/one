@@ -1,4 +1,4 @@
-/* globals Rooms: true, RoomsController: true */
+/* globals Rooms: true, Messages: true, RoomsController: true */
 Rooms = new Meteor.Collection('rooms');
 
 var participantsSchema = new SimpleSchema({
@@ -77,7 +77,9 @@ RoomsController.addSimpleMessageToRoom = function(roomId, message, callback) {
   //might be a resource killer, but will have to check how it works with many
   //users.
   Meteor.subscribe('unreadMessages');
-    console.log(r);
+
+  if(callback)
+    callback(e,r);
   });
 };
 RoomsController.deleteMessage = function(messageId) {

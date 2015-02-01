@@ -27,7 +27,7 @@ Meteor.publish('unreadMessages', function() {
         if(currentParticipant.lastReadTimestamp)
           query.dateCreated = { $gt: currentParticipant.lastReadTimestamp };
 
-        messageIdArray.push(query)
+        messageIdArray.push(query);
       });
 
       if(messageIdArray.length > 0)
@@ -52,9 +52,7 @@ Meteor.methods({
     if(! room)
       throw new Meteor.Error(404, "Room not found!");
 
-    console.log(room.participants, this.userId)
     var participant = _.where(room.participants, {participantId: this.userId});
-    console.log(participant)
 
     if(! participant)
       throw new Meteor.Error(403, "You can only post in rooms you are in");

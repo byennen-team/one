@@ -76,6 +76,12 @@ Template.communicationSidebar.events({
     body.data('previous-overflow', body.css('overflow'));
     body.css('overflow', 'hidden');
     window.scrollTo(scrollPosition[0], scrollPosition[1]);
+
+    $("#communication-message-board-sleeve")
+      .mCustomScrollbar({
+        theme:"one-dark",
+        scrollbarPosition: "inside"
+    });
 	},
 
 	'click .room': function(event){
@@ -110,8 +116,14 @@ Template.communicationSidebar.events({
     body.data('previous-overflow', body.css('overflow'));
     body.css('overflow', 'hidden');
     window.scrollTo(scrollPosition[0], scrollPosition[1]);
+
+    $("#communication-message-board-sleeve")
+      .mCustomScrollbar({
+        theme:"one-dark",
+        scrollbarPosition: "inside"
+    });
 	},
-  'click #addRoom': function(event) {
+  'click #addRoom': function() {
     Session.set('teamModalPurpose','newTeam');
   }
 

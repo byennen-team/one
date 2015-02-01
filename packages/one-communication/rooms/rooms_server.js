@@ -1,4 +1,4 @@
-/* globals Rooms: true */
+/* globals Rooms: true, Messages: true */
 Meteor.publish('room', function (roomId) {
   check(roomId, String);
 
@@ -32,9 +32,6 @@ Meteor.publish('rooms', function() {
 
 });
 Meteor.methods({
-  logRooms: function() {
-    console.log(JSON.stringify(Rooms.find().fetch()));
-  },
   createRoom: function(context) {
     check(context, {
       participants: [Object],
@@ -55,7 +52,6 @@ Meteor.methods({
     context.dateCreated = new Date();
     context.ownerId = this.userId;
     Rooms.insert(context, function(e,r) {
-      console.log(e,r)
       return(e,r);
     });
   },
@@ -193,7 +189,6 @@ Meteor.methods({
     });
   },
   adjustParticipantsInRoom: function(roomId, participantsArray) {
-    console.log(roomId,participantsArray)
     check(roomId, String);
     check(participantsArray, [String]);
 

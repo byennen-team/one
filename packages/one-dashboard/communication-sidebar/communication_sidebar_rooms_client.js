@@ -1,3 +1,4 @@
+/* globals Rooms: true, RoomsController: true */
 Template.communicationSidebarRooms.rendered = function(){
 
   // initialize maazalik:malihu-jquery-custom-scrollbar scrollbar plugin
@@ -11,9 +12,8 @@ Template.communicationSidebarRooms.rendered = function(){
 
 Template.communicationSidebarRooms.created = function() {
   Session.set('roomOpenId', false);
-  Tracher.autorun(function() {
+  Tracker.autorun(function() {
     Meteor.subscribe('room', Session.get('roomOpenId'));
-    console.log('resubscribe')
   });
 };
 

@@ -1,6 +1,5 @@
 /* globals SocialStatuses: true, ServiceConfiguration: true,
-SocialMedia: true, Twitter: true, OAuth: true, Facebook: true,
-cachedHttp: true */
+SocialMedia: true, Twitter: true, OAuth: true, Facebook: true */
 var CACHE_INTERVAL_MINUTES = 5 * 60000;
 
 Meteor.publish('socialStatuses', function(userId) {
@@ -411,7 +410,8 @@ Meteor.methods({
         options.params.since_id = latestTweet.postId;
 
       try {
-        var tweets = SocialMedia.cachedHttp('GET','https://api.twitter.com/1.1/statuses'+
+        var tweets = SocialMedia.cachedHttp('GET',
+          'https://api.twitter.com/1.1/statuses'+
           '/user_timeline.json', options, force);
 
         _.each(tweets.data, function(item) {
@@ -427,7 +427,7 @@ Meteor.methods({
             network: 'twitter',
             postId: item.id_str,
             payload: item
-          }, function(e,r) {
+          }, function(e) {
             if(e)
               throw new Meteor.Error(e.statusCode);
 

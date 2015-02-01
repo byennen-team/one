@@ -1,3 +1,4 @@
+/* globals Rooms:true */
 Template.libraryMembers.rendered = function(){
   $(".library-board-sleeve").mCustomScrollbar({
   	theme:"one-light",
@@ -35,7 +36,7 @@ Template.libraryMembers.helpers({
         _id: {
           $in: participantsIds
         }
-      })
+      });
     } else return [];
   },
   status: function (status) {
@@ -52,4 +53,4 @@ Template.libraryMembers.helpers({
       return "inactive";
     }
   }
-})
+});

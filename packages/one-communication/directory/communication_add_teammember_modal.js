@@ -1,3 +1,4 @@
+/* globals RoomsController: true */
 Template.communicationAddTeammemberModal.created = function () {
   var self = this;
   this.searchText = new ReactiveVar();
@@ -9,16 +10,6 @@ Template.communicationAddTeammemberModal.created = function () {
 
   Tracker.autorun(function () {
     return Meteor.subscribe('searchResults', self.searchText.get());
-  });
-
-  Tracker.autorun(function () {
-    var currentRoom = Rooms.findOne(Session.get('openRoomId'));
-    if(currentRoom) {
-      var roomParticipants = _.pluck(
-        currentRoom.participants,
-          'participantId');
-      return Meteor.subscribe('roomMembers', roomParticipants);
-    }
   });
 };
 
@@ -60,19 +51,20 @@ Template.communicationAddTeammemberModal.events({
       });
   },
   'click input.userid-checkbox': function(event) {
+    var currentMembers;
     if ($(event.currentTarget).prop('checked') === true) {
-      var currentMembers = Session.get("teamMembers");
+      currentMembers = Session.get("teamMembers");
       currentMembers.push($(event.currentTarget).val());
       Session.set("teamMembers", currentMembers);
     } else {
-      var currentMembers = Session.get("teamMembers");
+      currentMembers = Session.get("teamMembers");
       var parsedMembers = _.reject(currentMembers, function(item) {
         return (item === $(event.currentTarget).val());
       });
       Session.set("teamMembers", parsedMembers);
     }
   },
-  'click #add-team-members': function(event) {
+  'click #add-team-members': function() {
     var newRoomMembers = Session.get("teamMembers");
     //adding current user to the room
     var currentUserExists = _.find(newRoomMembers,function(item){
@@ -83,8 +75,8 @@ Template.communicationAddTeammemberModal.events({
 
     var roomName = $('input#new-room-name').val();
 
-    if((! roomName || roomName.length === 0)
-      && Session.get('teamModalPurpose') === 'newTeam')
+    if((! roomName || roomName.length === 0) &&
+      Session.get('teamModalPurpose') === 'newTeam')
       return;
 
     var participants = [];
@@ -120,7 +112,7 @@ Template.communicationAddTeammemberModal.events({
     $("#communication-add-teammember-modal").hide();
 
   },
-  'click #cancel-team-members': function(event) {
+  'click #cancel-team-members': function() {
     Session.set("teamMembers",[]);
     $('input#new-room-name').val("");
     $('input#modalAddMembersSearchInput').val("");
@@ -136,7 +128,7 @@ Template.teamMember.helpers({
     var user = this;
     var isInChannel = _.find(Session.get("teamMembers"),
       function(item) {
-        return (item === user._id)
+        return (item === user._id);
       });
 
     if(isInChannel)

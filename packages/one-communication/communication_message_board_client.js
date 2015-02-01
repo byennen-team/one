@@ -1,9 +1,33 @@
+/* globals Messages: true, Rooms: true */
 Template.messageBoard.events({
 
 
 
 });
+Template.messageBoard.created = function() {
+  Tracker.autorun(function () {
+    var currentRoom = Rooms.findOne(Session.get('openRoomId'));
+    if(currentRoom) {
+      var roomMessages = Messages.find({
+        roomId: currentRoom._id
+      }).fetch();
 
+      var allParticipants = _.pluck(roomMessages, 'creatorId');
+      var roomParticipants = _.pluck(
+        currentRoom.participants,
+          'participantId');
+
+      var participants = _.uniq(allParticipants.concat(roomParticipants));
+      return Meteor.subscribe('roomMembers', participants);
+    }
+  });
+
+  $("#communication-message-board-sleeve")
+    .mCustomScrollbar({
+      theme:"one-dark",
+      scrollbarPosition: "inside"
+  });
+};
 Template.messageBoard.rendered = function() {
   $("#communication-message-board-sleeve")
     .mCustomScrollbar("scrollTo","bottom");
@@ -78,4 +102,4 @@ Template.message.helpers({
 Template.message.rendered = function() {
   $("#communication-message-board-sleeve")
     .mCustomScrollbar("scrollTo","bottom");
-}
+};

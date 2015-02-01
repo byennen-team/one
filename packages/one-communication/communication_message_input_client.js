@@ -1,3 +1,4 @@
+/* globals RoomsController: true */
 Template.messageInput.rendered = function(){
 	Session.set('menuOpen', false);
 	Session.set('attachment', false);
@@ -55,7 +56,7 @@ Template.messageInput.events({
     if(message && message.length > 0)
       RoomsController.addSimpleMessageToRoom(
         Session.get('openRoomId'),
-        message)
+        message);
 
     $('#addMessageInput').val("");
 
