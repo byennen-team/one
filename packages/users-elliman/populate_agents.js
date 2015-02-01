@@ -63,37 +63,24 @@ var qFetchResizeAndUpload = function(user){
   Meteor._powerQ.add(function(done) {
     FileTools.fetchToTemp(user.profile.photoUrl, done);
   });
-  Meteor._powerQ.add(function(done) {
-    FileTools.resizeTemp('thumb_', done);
-  });
   Meteor._powerQ.add(function(done){
     FileTools.upload(
-      'thumb_',
-      '/user/'+user.profile.id+'/profile-images/thumb_'+user.profile.id,
-      done
-    );
-  });
-  Meteor._powerQ.add(function(done) {
-    FileTools.resizeTemp('full_', done);
-  });
-  Meteor._powerQ.add(function(done){
-    FileTools.upload(
-      'full_',
-      '/user/'+user.profile.id+'/profile-images/full_'+user.profile.id,
+      '',
+      '/user/'+user.profile.id+'/profile-images/'+user.profile.id,
       done
     );
   });
   //
   Meteor._powerQ.add(function(done) {
-      var largeUrlRaw = '/user/'+user.profile.id+
-        '/profile-images/full_'+user.profile.id+_ext;
-      var thumbUrlRaw = '/user/'+user.profile.id+
-        '/profile-images/thumb_'+user.profile.id+_ext;
-      var thumbSigned = FileTools.signedGet(thumbUrlRaw);
-      var largeSigned = FileTools.signedGet(largeUrlRaw);
+      var fullUrlRaw = '/full/user/'+user.profile.id+
+        '/profile-images/'+user.profile.id+_ext;
+      var thumbUrlRaw = '/thumb/user/'+user.profile.id+
+        '/profile-images/'+user.profile.id+_ext;
+      var thumbSign = FileTools.signedGet(thumbUrlRaw, 'goone-resized-west-2');
+      var fullSign = FileTools.signedGet(fullUrlRaw, 'goone-resized-west-2');
     user.profile.photoUrl = {
-        large: largeSigned,
-        thumb: thumbSigned
+        large: fullSign,
+        thumb: thumbSign
     };
     Meteor.users.insert(user);
     console.log('X:', countJobs++, ' email: ',  user.emails[0].address);

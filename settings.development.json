@@ -45,7 +45,6 @@
   "MANDRILL_USERNAME": "mandrill@gooneapp.com",
   "MANDRILL_API_KEY": "SuSOTzzT5JI4ZCa-__HyPw",
   "AWS_BUCKET_URL": "https://s3.amazonaws.com",
-  "AWS_BUCKET_RAW": "https://goone-raw-upload-west-2.s3.amazonaws.com",
   "twitter": {
     "CONSUMER_KEY": "nDkvCzyuyJ30rgjBRfSbaMeB4",
     "SECRET": "PqlvLrWuNDl4d1QXmRVgKayUPjBmTfsF6KGZuxqZGhQ8bygKFB"

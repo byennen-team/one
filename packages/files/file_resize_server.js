@@ -12,9 +12,11 @@ flag404 = false,
 s3Params = {
   key: Meteor.settings.AWS_ACCESS_KEY_ID, //<api-key-here>'
   secret: Meteor.settings.AWS_SECRET_ACCESS_KEY,  //'<secret-here>'
-  bucket: Meteor.settings.AWS_BUCKET
-},
-s3Client = knox.createClient(s3Params);
+  bucket: Meteor.settings.AWS_BUCKET_RAW
+}
+
+console.log('s3Params', s3Params);
+var s3Client = knox.createClient(s3Params);
 
 // set base for modulus in staging and beta enviroment
 if(Settings.isStaging || Settings.isBeta) {
@@ -103,7 +105,7 @@ FileTools.upload = function (descriptor, remotefile, callback) {
   var imagefile = base+descriptor+imgTmp+imgExt;
   remotefile+=imgExt;
   if (flag404) {
-    imagefile = base+descriptor+'NIA.jpg';
+    imagefile = base+'No_image_available.jpg';
     console.log('remote:', remotefile, '  : ', imagefile);
   }
   var putFileCallback = Meteor.bindEnvironment(function(err) {
