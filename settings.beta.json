@@ -1,6 +1,7 @@
 {
   "AWS_BUCKET": "one-beta",
   "AWS_BUCKET_RAW": "goone-raw-upload-west-2",
+  "AWS_BUCKET_RESIZED": "goone-resized-west-2",
   "AWS_ACCESS_KEY_ID": "AKIAIRIH744ERKEXHPOA",
   "AWS_SECRET_ACCESS_KEY": "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",
   "public": {
@@ -43,7 +44,6 @@
   "MANDRILL_USERNAME": "mandrill@gooneapp.com",
   "MANDRILL_API_KEY": "SuSOTzzT5JI4ZCa-__HyPw",
   "AWS_BUCKET_URL": "https://s3.amazonaws.com",
-  "AWS_BUCKET_RAW": "https://goone-raw-upload-west-2.s3.amazonaws.com",
   "ENVIRONMENT": "beta"
   "twitter": {
     "CONSUMER_KEY": "nDkvCzyuyJ30rgjBRfSbaMeB4",

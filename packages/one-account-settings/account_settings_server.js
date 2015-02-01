@@ -19,7 +19,7 @@ Meteor.methods({
 
     if(!user) throw new Meteor.Error('Must login to upload.');
 
-    var path = 'user/'+ user.profile.id + '/'+ gallery + '/'+ fileName;
+    var path = 'user/' + user.profile.id + '/'+ gallery + '/'+ fileName;
 
     var _upload = FileTools.signUpload(path, 'public-read', mimeType, bucket);
     var _thumbUrl = FileTools.signedGet('/thumb/'+path, resizedBucket);
