@@ -17,6 +17,7 @@ Template.documentsMoveToModal.events({
         }
       });
       Modal.hide();
+      Session.set('selectedDocuments', []);
     }
   },
 
