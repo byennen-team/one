@@ -10,6 +10,10 @@ Template.documentsMenu.helpers({
     if (! FileTools.isMyDocumentsActive()) {
       return "active";
     }
+  },
+
+  documentsMenuClass: function () {
+    return FileTools.isMyDocumentsActive() ? 'myDocuments' : '';
   }
 
 });
