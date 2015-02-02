@@ -1,4 +1,49 @@
 /* globals Rooms: true, Messages: true */
+
+Meteor.publishComposite('roomData', function(roomId) {
+  check(roomId, String);
+  return {
+    //getting the room
+    find: function() {
+      return Rooms.find({
+        _id: roomId
+      });
+    },
+    children: [
+      {
+        //getting current room members
+        find: function (room) {
+          //getting all current participants
+          var currentParticipants = _.pluck(room.participants,
+            'participantId');
+          return Meteor.users.find({
+            _id: {
+              $in: currentParticipants
+            }
+          });
+        }
+      },
+      {
+        find: function(room) {
+          //getting room messages. TODO: add limits
+          return Messages.find({
+            roomId: room._id
+          })
+        },
+        children: [
+          {
+            find: function(message) {
+              //getting message authors
+              return Meteor.users.find({
+                _id: message.creatorId
+              });
+            }
+          }
+        ]
+      }
+    ]
+  };
+});
 Meteor.publish('room', function (roomId) {
   check(roomId, String);
 
