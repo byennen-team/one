@@ -16,15 +16,25 @@ Template.messageBoard.created = function() {
       scrollbarPosition: "inside"
   });
 };
-Template.messageBoard.rendered = function() {
-  $("#communication-message-board-sleeve")
-    .mCustomScrollbar("scrollTo","bottom");
-  };
+Template.communicationMessageBoardSleeve.rendered = function() {
+    // initialize maazalik:malihu-jquery-custom-scrollbar scrollbar plugin
+  var board = $("#communication-message-board-sleeve");
+  board.mCustomScrollbar({
+      theme:"one-dark",
+      scrollbarPosition: "inside"
+  });
+  Meteor.setTimeout(function() {
+    board.mCustomScrollbar("scrollTo","bottom");
+  },500);
+};
 
 Template.messageBoard.helpers({
   room: function() {
     return Rooms.findOne(Session.get('openRoomId'));
-  },
+  }
+});
+
+Template.communicationMessageBoardSleeve.helpers({
   messages: function() {
     return Messages.find({
       roomId: Session.get('openRoomId')
@@ -59,7 +69,7 @@ Template.messageBoard.helpers({
     });
     return (latestUnreadMessage && latestUnreadMessage._id === this._id);
   }
-});
+})
 
 Template.message.helpers({
   isUserClass: function() {

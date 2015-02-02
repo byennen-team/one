@@ -13,7 +13,13 @@
 	</div>
 </div>
 
-<div id='communication-message-board-sleeve' class="sleeve">
+{{> communicationMessageBoardSleeve }}
+
+{{/with}}
+</template>
+
+<template name="communicationMessageBoardSleeve">
+	<div id='communication-message-board-sleeve' class="sleeve">
 	<div>
 	{{#each messages}}
 		{{#if isFirstUnread ../_id}}
@@ -29,9 +35,7 @@
 	{{/each}}
 	</div>
 </div>
-{{/with}}
 </template>
-
 <template name="documentMessage">
 	<!-- TODO: add "user" class if message is by User -->
 	<div class="message">
