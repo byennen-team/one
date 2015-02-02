@@ -28,7 +28,7 @@ Meteor.publishComposite('roomData', function(roomId) {
           //getting room messages. TODO: add limits
           return Messages.find({
             roomId: room._id
-          })
+          });
         },
         children: [
           {

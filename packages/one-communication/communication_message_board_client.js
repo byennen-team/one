@@ -69,7 +69,7 @@ Template.communicationMessageBoardSleeve.helpers({
     });
     return (latestUnreadMessage && latestUnreadMessage._id === this._id);
   }
-})
+});
 
 Template.message.helpers({
   isUserClass: function() {
