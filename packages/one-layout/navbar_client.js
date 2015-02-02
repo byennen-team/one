@@ -9,7 +9,7 @@ Template.navbar.helpers({
 Template.navbar.events({
 
 	// closes the Communication Hub
-	'click #navbar-logo': function(){
+	'click #navbar-logo': function () {
 		// expands the main dialog box to 80% of full screen
 		$.Velocity.hook($('#communication-main'), "width", "0");
 		$.Velocity.hook($('#communication-message-board'), "width", "0");
@@ -19,7 +19,7 @@ Template.navbar.events({
 		$('.communication-sidebar-sleeve').css({
 			'height': 'inherit',
 			'position': 'static',
-			'top': '130px',
+			'top': '120px',
 			'width': '100%'
 		});
     // un-lock scroll position
@@ -27,6 +27,42 @@ Template.navbar.events({
     var scrollPosition = body.data('scroll-position');
     body.css('overflow', body.data('previous-overflow'));
     window.scrollTo(scrollPosition[0], scrollPosition[1]);
-	}
+	},
+
+  'click #navbar-link-task': function () {
+    // expands the main dialog box t0 60% of full screen - task bar open
+    $('#sidebar-scroll-target').velocity("scroll",600);
+    $.Velocity.hook($('#communication-main'), "width", "100%");
+    $.Velocity.hook($('#communication-message-board'), "width", "45%");
+    $.Velocity.hook($('#communication-task-board'), "width", "15%");
+    $.Velocity.hook($('#communication-library-board'), "width", "15.5%");
+    // opens task menu itself
+    Session.set( 'taskMenu', true );
+    $( '#communication-task-menu' ).velocity( "fadeIn", { duration: 300 });
+    // add class to main chat window
+    $('#communication-main').addClass('tasks');
+    // force scrollbar on sidebar
+    var currentHeight = $(window).height();
+    $('.communication-sidebar-sleeve').css({
+      'height': currentHeight - 130 + 'px',
+      'position': 'fixed',
+      'top': '120px',
+      'width': '24%'
+    });
+    // lock scroll position, but retain settings for later
+    var scrollPosition = [
+      window.pageXOffset ||
+      document.documentElement.scrollLeft ||
+      document.body.scrollLeft,
+      window.pageYOffset ||
+      document.documentElement.scrollTop ||
+      document.body.scrollTop
+    ];
+    var body = $('body');
+    body.data('scroll-position', scrollPosition);
+    body.data('previous-overflow', body.css('overflow'));
+    body.css('overflow', 'hidden');
+    window.scrollTo(scrollPosition[0], scrollPosition[1]);
+  }
 
 });

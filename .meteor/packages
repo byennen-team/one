@@ -12,8 +12,13 @@ meteor-platform
 
 iron:router
 mizzao:bootstrap-3 #TODO: refactory to bootstrap-less
+peppelg:bootstrap-3-modal
 aldeed:simple-schema
 velocityjs:velocityjs
+ccorcos:transitioner
+coffeescript
+xolvio:cucumber@0.3.8
+
 
 # Our Packages
 
@@ -44,4 +49,4 @@ routes
 settings
 users-elliman
 styles
-
+social-media

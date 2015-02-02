@@ -1,21 +1,40 @@
 <template name="application">
-  {{#if currentUser}}
-    {{> leftNav}}
-  {{/if}}
-  {{#if isPublic}}
-  <div class="wrap push">
-    {{#if currentUser}}
-      {{> navbar}}
-    {{/if}}
-    <div class="content">
-      {{> yield}}
-    </div>
-  </div>
+  <!-- {{#transitioner}} -->
+    {{#if loginLayout}}
+      <head>
+        <title>Go One</title>
+        <meta content='width=device-width, initial-scale=1.0' name='viewport'>
+      </head>
+      <body>
+        {{> yield}}
+      </body>
     {{else}}
-    <div class="wrap">
-      <div class="content">
-      {{> yield}}
-    </div>
-  </div>
-  {{/if}}
+
+      {{#if currentUser}}
+        {{> leftNav}}
+      {{/if}}
+
+      {{#if isPublic}}
+        <div class="wrap push">
+          {{#if currentUser}}
+            {{> navbar}}
+          {{/if}}
+
+          <div class="content">
+              <!-- {{#transitioner}} -->
+                {{> yield}}
+              <!-- {{/transitioner}} -->
+          </div>
+        </div>
+      {{else}}
+        <div class="wrap">
+          <div class="content">
+              <!-- {{#transitioner}} -->
+                {{> yield}}
+              <!-- {{/transitioner}} -->
+          </div>
+        </div>
+      {{/if}}
+    {{/if}}
+  <!-- {{/transitioner}} -->
 </template>

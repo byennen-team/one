@@ -6,7 +6,12 @@ Meteor.users._ensureIndex({'profile.id': 1}, {unique: true});
 Meteor.publish('user', function () {
   if (!this.userId) return [];
   // TODO cut down what fields we publish
-  return Meteor.users.find(this.userId);
+  return Meteor.users.find(this.userId, {
+    fields: {
+      'services.twitter.accessToken': 0,
+      'services.twitter.accessTokenSecret': 0
+    }
+  });
 });
 
 /**

@@ -7,5 +7,12 @@ Template.favoriteDocuments.helpers({
   },
   date: function (file) {
     return moment(file.uploadDate).format('MMM D, YYYY');
+  },
+
+// TODO: Returns "company" if document is a company document. String.
+//        Returns nothing if it is not a company document.
+  docType: function () {
+    // return "company";
   }
+  
 });

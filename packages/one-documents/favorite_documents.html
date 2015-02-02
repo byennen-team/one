@@ -1,20 +1,16 @@
 <template name="favoriteDocuments">
-  <div class="favorites row">
-    <div class="col-sm-12">
-      <h2><i class="fa fa-star"></i> Favorites</h2>
-      <ul>
-        {{#each favorites}}
-          <li>
-            <div class="row">
-              <div class="col-lg-12">
-                <i class="fa {{#if isFolder}}fa-folder{{else}}fa-file{{/if}} filetype"></i>
-                <p>{{name}}</p>
-                <span>{{date this}}</span>
-              </div>
-            </div>
-          </li>
-        {{/each}}
-      </ul>
-    </div>
+
+  <div class="favorites">
+    <h2><i class="fa fa-star"></i> Favorites</h2>
+    <ul>
+      {{#each favorites}}
+        <li>
+          <i class="fa {{#if isFolder}}fa-folder{{else}}fa-file{{/if}} filetype {{docType}}"></i>
+          <p>{{name}}</p>
+          <span>{{date this}}</span>
+        </li>
+      {{/each}}
+    </ul>
   </div>
+
 </template>

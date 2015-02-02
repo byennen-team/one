@@ -10,11 +10,12 @@ Package.onUse(function (api) {
     'reactive-var',
     'jquery',
     'velocityjs:velocityjs',
-    'mquandalle:bower',
+    'mquandalle:bower@0.1.11',
     'styles',
     'one-email',
     'mrt:moment',
-    'horka:swipebox'
+    'horka:swipebox',
+    'social-media'
     ], 'web');
 
   api.use(['aldeed:simple-schema','files'], ['server','client']);
