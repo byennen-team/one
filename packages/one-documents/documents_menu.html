@@ -1,10 +1,12 @@
 <template name="documentsMenu">
-  
-  <a href='/documents'>
-    <div class="my-library {{myActive}}">my library</div>
-  </a>
-  <a href='/documents/company'>
-    <div class="company-library {{companyActive}}">company library</div>
-  </a>
+
+  <div class="documentsMenu col-sm-12 {{documentsMenuClass}}">
+    <a href='/documents'>
+      <div class="my-library {{myActive}}">my library</div>
+    </a>
+    <a href='/documents/company'>
+      <div class="company-library {{companyActive}}">company library</div>
+    </a>
+  </div>
 
 </template>
