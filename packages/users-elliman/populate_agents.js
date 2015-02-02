@@ -92,6 +92,13 @@ Meteor.startup(function () {
   Meteor._powerQ = new PowerQueue({
       isPaused: true
     });
+  Meteor._powerQ.add(function(done) {
+    Meteor.setTimeout(function() {
+      console.log('delay for cucumber');
+      done();
+    }, 3333);
+    });
+
   var numUsers = Meteor.users.find().count();
   console.log('Total Users', numUsers);
   if (numUsers > 0) return;
