@@ -84,7 +84,8 @@ var qFetchResizeAndUpload = function(user){
         thumb: thumbSign
     };
     Meteor.users.insert(user);
-    console.log('X:', countJobs++, ' email: ',  user.emails[0].address);
+    var uEmail = user.emails[0] || { address: 'noEmail' };
+    console.log('X:', countJobs++, ' email: ',  uEmail.address);
     done();
   });
 };
