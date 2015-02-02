@@ -6,21 +6,9 @@ Template.messageBoard.events({
 });
 Template.messageBoard.created = function() {
   Tracker.autorun(function () {
-    var currentRoom = Rooms.findOne(Session.get('openRoomId'));
-    if(currentRoom) {
-      var roomMessages = Messages.find({
-        roomId: currentRoom._id
-      }).fetch();
-
-      var allParticipants = _.pluck(roomMessages, 'creatorId');
-      var roomParticipants = _.pluck(
-        currentRoom.participants,
-          'participantId');
-
-      var participants = _.uniq(allParticipants.concat(roomParticipants));
-      return Meteor.subscribe('roomMembers', participants);
-    }
-  });
+    if(Session.get('openRoomId'))
+      return Meteor.subscribe('roomData', Session.get('openRoomId'));
+    });
 
   $("#communication-message-board-sleeve")
     .mCustomScrollbar({
