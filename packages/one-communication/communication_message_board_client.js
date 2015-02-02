@@ -5,7 +5,7 @@ Template.messageBoard.events({
 
 });
 Template.messageBoard.created = function() {
-  Tracker.autorun(function () {
+  this.autorun(function () {
     if(Session.get('openRoomId'))
       return Meteor.subscribe('roomData', Session.get('openRoomId'));
     });
