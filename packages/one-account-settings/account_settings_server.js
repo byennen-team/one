@@ -10,7 +10,7 @@ Meteor.methods({
     bucket = bucket || Meteor.settings.public.UPLOAD_BUCKET;
     check(bucket, String);
 
-    var resizedBucket = 'goone-resized-west-2';
+    var resizedBucket = Meteor.settings.AWS_BUCKET_RESIZED;
 
     console.log('s3Signature \n', fileName, '\n mimeType ', mimeType,
     '\n gallery ', gallery );
