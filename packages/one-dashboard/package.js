@@ -15,7 +15,8 @@ Package.onUse(function (api) {
     'settings',
     'reactive-var',
     'social-media',
-    'maazalik:malihu-jquery-custom-scrollbar'
+    'maazalik:malihu-jquery-custom-scrollbar',
+    'mquandalle:bower@0.1.11'
   ], 'web');
 
    api.addFiles(['dashboard.js'], 'server');
