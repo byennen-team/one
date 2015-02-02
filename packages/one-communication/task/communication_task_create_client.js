@@ -1,5 +1,7 @@
 Template.communicationCreateTask.rendered = function () {
   console.log('task menu rendered'); // DAVE: remove this
+  // call bootstrap3-datetimepicker plugin 
+  $('.datetimepicker').datetimepicker();
 
   // TODO: if the event already has a color defined, insert in instead of 'purple'
   $( '.taskcolorselectpicker' ).selectpicker(); // use specific class to call first
@@ -7,39 +9,39 @@ Template.communicationCreateTask.rendered = function () {
 
 };
 
-var roundTime = function( add ){
-  // Returns the current time, rounded to the nearest half hour
-  // add = number of hours to add to result (1 for an hour in the future)
-  var hour = moment().format('h');
-  var min = moment().format('mm');
-  var ampm = moment().format('a');
+// var roundTime = function( add ){
+//   // Returns the current time, rounded to the nearest half hour
+//   // add = number of hours to add to result (1 for an hour in the future)
+//   var hour = moment().format('h');
+//   var min = moment().format('mm');
+//   var ampm = moment().format('a');
 
-  // round the time up to the nearest half hour
-  if( min < 30 ){
-    min = 30;
-  }else {
-    min = '00';
-  }
-  if( min === '00' && hour < 12 ){ // if we've rounded down
-    hour++;
-  }else if( hour === 12 ){ // if it's 12, to to 1 and switch am/pm
-    hour = 1;
-    if( ampm === 'am' ){ 
-      ampm = 'pm';
-    }else {
-      ampm = 'am';
-    }
-  }
+//   // round the time up to the nearest half hour
+//   if( min < 30 ){
+//     min = 30;
+//   }else {
+//     min = '00';
+//   }
+//   if( min === '00' && hour < 12 ){ // if we've rounded down
+//     hour++;
+//   }else if( hour === 12 ){ // if it's 12, to to 1 and switch am/pm
+//     hour = 1;
+//     if( ampm === 'am' ){ 
+//       ampm = 'pm';
+//     }else {
+//       ampm = 'am';
+//     }
+//   }
 
-  if( add === null ){
-    return hour + ':' + min + ' ' + ampm; // make it pretty
-  }else {
-    hour = parseInt(hour, 10);
-    add = parseInt(add, 10);
-    hour = hour + add;
-    return hour + ':' + min + ' ' + ampm; // make it pretty
-  }
-};
+//   if( add === null ){
+//     return hour + ':' + min + ' ' + ampm; // make it pretty
+//   }else {
+//     hour = parseInt(hour, 10);
+//     add = parseInt(add, 10);
+//     hour = hour + add;
+//     return hour + ':' + min + ' ' + ampm; // make it pretty
+//   }
+// };
 
 Template.communicationCreateTask.events({
 
@@ -116,13 +118,35 @@ Template.communicationCreateTask.helpers({
 //    false if it already exists.
   notNew: function () {
     return true;
-  }
-//   // returns today's date
-//   day: function () {
-//     var weekday = moment().format('dddd');
-//     var date = moment().format('MMMM D');
-//     return weekday + ', ' + date;
-//   },
+  },
+
+  // Returns the task's due date. If one is not defined, returns today's date
+  calendarStartDate: function () {
+// TODO: Return due date below. If one is not defined, return false.
+    var deadline = '2:00 pm on 2/18';
+    // var deadline = false;
+// end TODO
+    if( deadline ){
+      return deadline;
+    } else {
+      var weekday = moment().format('dddd');
+      var date = moment().format('MMMM D');
+      return weekday + ', ' + date;
+    }
+  },
+
+  // Returns the task's due date. If one is not defined, returns "".
+  dueDate: function () {
+// TODO: Return due date below. If one is not defined, return false.
+    var deadline = '2:00 pm on 2/18';
+    // var deadline = false;
+// /TODO
+    if( deadline ){
+      return deadline;
+    } else {
+      return "";
+    }
+  },
 
 //   time: {
 //     start: roundTime(),
