@@ -35,6 +35,15 @@ Meteor.publish('userProfiles', function (userIds) {
   );
 });
 
+Meteor.publish('roomMembers', function (userIds) {
+  check(userIds, [String]);
+
+  return Meteor.users.find(
+    {_id: {$in: userIds}},
+    {fields: {slug: 1, profile: 1}}
+  );
+});
+
 Meteor.methods({
   /**
    * Setup a custom login method for elliman.

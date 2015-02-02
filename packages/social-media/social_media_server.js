@@ -1,6 +1,5 @@
 /* globals SocialStatuses: true, ServiceConfiguration: true,
-SocialMedia: true, Twitter: true, OAuth: true, Facebook: true,
-cachedHttp: true */
+SocialMedia: true, Twitter: true, OAuth: true, Facebook: true */
 var CACHE_INTERVAL_MINUTES = 5 * 60000;
 
 Meteor.publish('socialStatuses', function(userId) {
@@ -56,12 +55,7 @@ Meteor.publish('socialStatuses', function(userId) {
 Meteor.publish('companySocialStatuses', function(twitterId) {
   check(twitterId, String);
 
-  return SocialStatuses.find({userNetworkId: twitterId },{
-      limit: 10,
-      sort: {
-        datePosted: -1
-      }
-    });
+  return SocialStatuses.find({ userNetworkId: twitterId });
 });
 
 // Load Twitter settings from Settings file
@@ -388,11 +382,7 @@ Meteor.methods({
   getLatestCompanyTweets: function(twitterId, force) {
     /*jshint camelcase: false */
     check(twitterId, String);
-
-    if(force)
-      check(force,Boolean);
-    else
-      force = false;
+    check(force, Match.Optional(Boolean));
 
     var token = SocialMedia.twitter.getApplicationBearerToken();
       var options = {
@@ -420,7 +410,8 @@ Meteor.methods({
         options.params.since_id = latestTweet.postId;
 
       try {
-        var tweets = cachedHttp('GET','https://api.twitter.com/1.1/statuses'+
+        var tweets = SocialMedia.cachedHttp('GET',
+          'https://api.twitter.com/1.1/statuses'+
           '/user_timeline.json', options, force);
 
         _.each(tweets.data, function(item) {
@@ -436,11 +427,13 @@ Meteor.methods({
             network: 'twitter',
             postId: item.id_str,
             payload: item
+          }, function(e) {
+            if(e)
+              throw new Meteor.Error(e.statusCode);
+
+            return(null, tweets);
           });
         });
-
-        return(null, tweets);
-
       } catch (e) {
         if (e.statusCode === 401) //token invalid, should delete
           _socialMediaTokens.remove({
