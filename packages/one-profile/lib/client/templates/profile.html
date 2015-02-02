@@ -1,4 +1,5 @@
 <template name="profile">
+  <div class="content">
   {{#if isPrivate}}
     {{> profileBanner isPrivate=isPrivate profile=profile isMyProfile=isMyProfile}}
     <div class='container p-bottom-40'>
@@ -21,6 +22,7 @@
     {{> profileContact}}
     {{> profileFooter}}
   {{/if}}
+  </div>
 </template>
 
 <!-- Example:
