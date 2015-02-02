@@ -4,7 +4,8 @@ Template.channelWidget.rendered = function () {
   sleeve.mCustomScrollbar({
       theme:"one-dark",
       scrollbarPosition: "inside",
-      autoHideScrollbar: true
+      autoHideScrollbar: true,
+      scrollInertia: 0
   });
   // Delay gives the plugin a change to load fully 
   setTimeout(function(){
