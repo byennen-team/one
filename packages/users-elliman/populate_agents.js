@@ -125,7 +125,11 @@ Meteor.startup(function () {
   });
   console.log('Ready to run queue');
 
+
+  console.log("Environemtn is" +  Meteor.settings.public.ENVIRONMENT);
   Meteor._powerQ.run();
+
+  console.log('Queue is running');
   Meteor._powerQ.add(function(done){
     FileTools.cleanupTemp(done);
   });
