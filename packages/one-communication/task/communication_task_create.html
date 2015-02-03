@@ -1,18 +1,11 @@
 <template name='communicationCreateTask'>
   
   <form id="task-menu" class="task-menu">
-    
+    <div id="task-menu-sleeve" class="sleeve">
     <div class="due-date form-group datetimepicker">
       <label for="task-menu-due"><i class="fa fa-calendar"></i></label>
-      <input class='task-due' name="task-due" id="task-menu-due" type='text' data-date-format="DD, MM d" data-start-date='{{calendarStartDate}}' value='{{dueDate}}' placeholder="due date"/>
-     <!--  <input class='task-due' name="task-due" id="task-menu-due" type='text' data-provide="datepicker" data-date-format="DD, MM d" data-start-date='{{calendarStartDate}}' value='{{dueDate}}' placeholder="due date"/> -->
-<!--       <div class="input-group datetimepicker">
-        <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
-        <input class="set-due-date form-control" type="text"/>
-      </div> -->
+      <input class='task-due' name="task-due" id="task-menu-due" type='text' value='{{dueDate}}' placeholder="due date"/>
     </div>
-
-
 
     <div class="form-group color-drop">
       <label class='sr-only' for="task-menu-color-select">Select a Color</label>
@@ -39,7 +32,7 @@
 
     <div class="form-group description">
       <label class='sr-only' for="task-menu-name">Task's description</label>
-      <textarea name="description" id="task-menu-description" cols="30" rows="10" placeholder='Description...'></textarea>
+      <textarea name="description" id="task-menu-description" cols="30" rows="10" placeholder='Description...'>{{description}}</textarea>
     </div>
 
     <div class="form-group task-list">
@@ -75,7 +68,7 @@
         </div> 
         <div class="name">{{profile.name}}</div>
         {{#if creator}}
-        <div class="uninvite">
+        <div class="unassign">
           <i class="fa icon-x-blunt"></i>
         </div>
         {{/if}}
@@ -89,7 +82,7 @@
           <div class="status-dot active"></div>
         </div>
         <div class="name">Joy Avery</div>
-        <div class="uninvite">
+        <div class="unassign">
           <i class="fa icon-x-blunt"></i>
         </div>
       </div>
@@ -100,7 +93,7 @@
           <div class="status-dot active"></div>
         </div>
         <div class="name">Dottie Herman</div>
-        <div class="uninvite">
+        <div class="unassign">
           <i class="fa icon-x-blunt"></i>
         </div>
       </div> -->
@@ -168,9 +161,11 @@
       delete task
     </div>
     {{/if}}
-
+    </div>
+    <div id="task-menu-caret" class="menu-caret"></div>
   </form>
     
+
   <div id="task-menu-clear" class="clear-click" ></div>
   
   <!-- TODO: may need to copy and rewire this modal -->

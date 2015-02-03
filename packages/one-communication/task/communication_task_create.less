@@ -6,7 +6,7 @@
   display: none;
   top: 5%;
   right: 54.5%;
-  width: 375   px;
+  width: 375px;
   background-color: @very-lt-blue-grey;
   z-index: 100;
   -webkit-box-shadow: -10px -9px 27px -9px rgba(0,0,0,1);
@@ -39,9 +39,14 @@
       border: none;
       background-color: transparent;
       text-align: right;
+      cursor: pointer;
+    }
+    input:focus {
+      box-shadow: none;
     }
     label {
       float: right;
+      cursor: pointer;
     }
   } 
   .color-drop {
@@ -204,6 +209,7 @@
     }
     .assigned {
       position: relative;
+      clear: both;
       width: 100%;
       height: 68px;
       background-color: @white;
@@ -471,9 +477,7 @@
   }
 }
 
-// The caret
-.event-menu:after {
-  content: "";
+.menu-caret {
   position: absolute;
   right: -8px;
   top: 15px;
