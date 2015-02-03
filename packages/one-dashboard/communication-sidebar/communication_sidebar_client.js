@@ -40,7 +40,8 @@ Template.communicationSidebar.events({
 
 	// Scroll to top when communication sidebar is clicked, to appear full screen
 	'click #communication-sidebar-options': function(){
-		$('#sidebar-scroll-target').velocity("scroll",600);
+  // TODO: Scroll has stopped working. click event is firing.  
+    $( '#sidebar-scroll-target' ).velocity( "scroll", 600 );
 		// $('#main-wrap').addClass('blurry');
 	},
 

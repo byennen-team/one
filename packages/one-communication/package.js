@@ -46,6 +46,7 @@ Package.onUse(function (api) {
     'communication_room.html',
     'communication_room.less',
     'communication_room_client.js',
+    'communication_room_welcome.html',
     'communication_message_board.html',
     'communication_message_board.less',
     'communication_message_board_client.js',
@@ -59,6 +60,7 @@ Package.onUse(function (api) {
     'task/communication_task_create.html',
     'task/communication_task_create.less',
     'task/communication_task_create_client.js',
+    'task/communication_task_welcome.html',
     //library
     'library/communication_library_board.html',
     'library/communication_library_board.less',
