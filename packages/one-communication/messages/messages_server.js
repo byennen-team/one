@@ -66,6 +66,71 @@ Meteor.methods({
       return(e, r);
     });
   },
+  addAttachmentMessageToRoom: function(roomId, documentId) {
+    check(roomId, String);
+    check(documentId, String);
+
+    if (! this.userId)
+      throw new Meteor.Error(401, "You are not logged in!");
+
+    var room = Rooms.findOne(roomId);
+
+    if(! room)
+      throw new Meteor.Error(404, "Room not found!");
+
+    var file = Files.findOne(documentId);
+
+    if(! file)
+      throw new Meteor.Error(404, "Document not found!");
+
+    var participant = _.where(room.participants, {participantId: this.userId});
+
+    if(! participant)
+      throw new Meteor.Error(403, "You can only post in rooms you are in");
+
+    Messages.insert({
+      roomId: roomId,
+      creatorId: this.userId,
+      dateCreated: new Date(),
+      messageType: 'attachment',
+      messagePayload: {
+        documentId: documentId
+      }
+    }, function(e, r) {
+      return(e, r);
+    });
+  },
+  addPostMessageToRoom: function(roomId, postContent, title) {
+    check(roomId, String);
+    check(postContent, String);
+    check(title, String);
+
+    if (! this.userId)
+      throw new Meteor.Error(401, "You are not logged in!");
+
+    var room = Rooms.findOne(roomId);
+
+    if(! room)
+      throw new Meteor.Error(404, "Room not found!");
+
+    var participant = _.where(room.participants, {participantId: this.userId});
+
+    if(! participant)
+      throw new Meteor.Error(403, "You can only post in rooms you are in");
+
+    Messages.insert({
+      roomId: roomId,
+      creatorId: this.userId,
+      dateCreated: new Date(),
+      message: postContent,
+      messageType: 'post',
+      messagePayload: {
+        title: title
+      }
+    }, function(e, r) {
+      return(e, r);
+    });
+  },
   deleteMessage: function(messageId) {
     //can only delete if owner or admin
     check(messageId, String);

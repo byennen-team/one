@@ -82,6 +82,37 @@ RoomsController.addSimpleMessageToRoom = function(roomId, message, callback) {
     callback(e,r);
   });
 };
+
+RoomsController.addAttachmentMessageToRoom = function(roomId, documentId, callback) {
+  Meteor.call('addAttachmentMessageToRoom', roomId, documentId, function(e,r) {
+    if (e)
+      console.log(e);
+
+  //this is needed to capture new messages in freshly created or joined rooms
+  //might be a resource killer, but will have to check how it works with many
+  //users.
+  Meteor.subscribe('unreadMessages');
+
+  if(callback)
+    callback(e,r);
+  });
+};
+
+RoomsController.addPostMessageToRoom = function(roomId, postContent, title, callback) {
+  Meteor.call('addPostMessageToRoom', roomId, postContent, title, function(e,r) {
+    if (e)
+      console.log(e);
+
+  //this is needed to capture new messages in freshly created or joined rooms
+  //might be a resource killer, but will have to check how it works with many
+  //users.
+  Meteor.subscribe('unreadMessages');
+
+  if(callback)
+    callback(e,r);
+  });
+};
+
 RoomsController.deleteMessage = function(messageId) {
   Meteor.call('deleteMessage', messageId, function(e,r) {
     if (e)
