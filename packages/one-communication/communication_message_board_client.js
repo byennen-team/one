@@ -2,7 +2,6 @@
 Template.messageBoard.events({
 
 
-
 });
 Template.messageBoard.created = function() {
   this.autorun(function () {

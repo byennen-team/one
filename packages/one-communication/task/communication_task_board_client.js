@@ -5,22 +5,19 @@ Template.taskBoard.rendered = function () {
       scrollbarPosition: "inside"
   });
 
-  console.log('task board rendered'); // DAVE: remove this
-  Session.set( 'taskMenu', false );
 };
 
 Template.taskBoard.events({
 
-  // Toggle task menu when a dot is clicked
-  'click .dot': function () {
-    var menuVisible = Session.get( 'taskMenu' );
-    if( ! menuVisible ) {
-      Session.set( 'taskMenu', true );
-      $( '#communication-task-menu' ).velocity( "fadeIn", { duration: 300 });
-    } else {
-      Session.set( 'taskMenu', false );
-      $( '#communication-task-menu' ).velocity( "fadeOut", { duration: 300 });
-    }
+  // Show task menu when a dot is clicked
+  'click .dot': function ( event ) {
+    // Set caret height
+    var $this = $( event.currentTarget );
+    var position = $this.offset();
+    $( "#task-menu-caret" ).css( 'top', ( position.top - 89 ) + "px" );
+
+    // show menu
+    $( '#task-menu, #task-menu-clear' ).velocity( "fadeIn", { duration: 300 });
   }
 
 });
