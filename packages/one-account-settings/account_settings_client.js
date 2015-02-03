@@ -4,21 +4,29 @@ Profile = {};
 
 Template.accountSettings.events({
   'change .upload': function (event) {
-FileTools.upload('signProfilePictureUpload', event.target.files[0], {
+    FileTools.s3Upload(event.target.files[0], 'profile-images', {
       onError: function (error) {
         // TODO error message
         alert(error);
       },
       onComplete: function (result) {
-        var photoUrl = Meteor.settings.public.AWS_BUCKET_URL +
-          '/' + result.filePath;
-        Meteor.call('resizeNewProfileImage', photoUrl);
-        //Meteor.users.update(Meteor.userId(), {
-        //  $set: {
-        //    'profile.photoUrl': photoUrl,
-        //    'profile.photoKey': result.filePath
-        //  }
-        //});
+        console.log('oncomplete', result);
+        Meteor.users.update(Meteor.userId(), {
+          $set: {
+            'profile.photoUrl.large': '/giphy.gif',
+            'profile.photoUrl.thumb': '/giphy.gif'
+          }
+          }, function () {
+            Meteor.setTimeout(function(){
+              Meteor.users.update(Meteor.userId(), {
+                $set: {
+                  'profile.photoUrl.large': result.fullUrl,
+                  'profile.photoUrl.thumb': result.thumbUrl
+                  }
+                });
+              }, 8888);
+          }
+        );
       }
     });
   },

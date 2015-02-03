@@ -23,6 +23,17 @@
     "imagemagick": {
       "version": "0.1.3"
     },
+    "intimidate": {
+      "version": "1.0.0",
+      "dependencies": {
+        "mime": {
+          "version": "1.2.11"
+        },
+        "waitress": {
+          "version": "0.1.5"
+        }
+      }
+    },
     "knox": {
       "version": "0.9.1",
       "dependencies": {

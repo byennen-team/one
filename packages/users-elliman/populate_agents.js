@@ -57,77 +57,80 @@ var qFetchResizeAndUpload = function(user){
   var _URL = user.profile.photoUrl;
   var _ext = _URL.match(xpat)[0];
   Meteor._powerQ.add(function(done){
-    console.log('#: ', countJobs, ' : ', user.profile.id);
+    //console.log('#: ', countJobs, ' : ', user.profile.id);
     done();
   });
   Meteor._powerQ.add(function(done) {
     FileTools.fetchToTemp(user.profile.photoUrl, done);
   });
-  Meteor._powerQ.add(function(done) {
-    FileTools.resizeTemp('thumb_', done);
-  });
   Meteor._powerQ.add(function(done){
     FileTools.upload(
-      'thumb_',
-      '/user/'+user.profile.id+'/profile-images/thumb_'+user.profile.id,
-      done
-    );
-  });
-  Meteor._powerQ.add(function(done) {
-    FileTools.resizeTemp('full_', done);
-  });
-  Meteor._powerQ.add(function(done){
-    FileTools.upload(
-      'full_',
-      '/user/'+user.profile.id+'/profile-images/full_'+user.profile.id,
+      '',
+      '/user/' + user.profile.id + '/profile-images/' + user.profile.id,
       done
     );
   });
   //
   Meteor._powerQ.add(function(done) {
-      var largeUrlRaw = 'user/'+user.profile.id+
-        '/profile-images/full_'+user.profile.id+_ext;
-      var thumbUrlRaw = 'user/'+user.profile.id+
-        '/profile-images/thumb_'+user.profile.id+_ext;
-      var thumbSigned = FileTools.signedGet(thumbUrlRaw);
-      var largeSigned = FileTools.signedGet(largeUrlRaw);
+      var BUCKET_RESIZED = Meteor.settings.AWS_BUCKET_RESIZED;
+      var fullUrlRaw = '/full/user/'+ user.profile.id +
+        '/profile-images/' + user.profile.id+_ext;
+      var thumbUrlRaw = '/thumb/user/' + user.profile.id +
+        '/profile-images/' + user.profile.id+_ext;
+      var thumbSign = FileTools.signedGet(thumbUrlRaw, BUCKET_RESIZED);
+      var fullSign = FileTools.signedGet(fullUrlRaw, BUCKET_RESIZED);
     user.profile.photoUrl = {
-        large: largeSigned,
-        thumb: thumbSigned
+        large: fullSign,
+        thumb: thumbSign
     };
-    Meteor.users.insert(user);
-    console.log('X:', countJobs++, ' email: ',  user.emails[0].address);
+    Meteor.users.insert(user, function(err) {
+      if (err) throw new Meteor.Error(err);
+    });
+    var uEmail = user.emails[0] || { address: 'noEmail' };
+    console.log('X:', countJobs++, ' email: ',  uEmail.address);
     done();
   });
 };
 Meteor.startup(function () {
-  Meteor._powerQ = new PowerQueue({
-      isPaused: true
-    });
-  var numUsers = Meteor.users.find().count();
-  console.log('Total Users', numUsers);
-  if (numUsers > 0) return;
-  console.log('PQ', Meteor._powerQ.title);
-  var ellimanAgents = JSON.parse(
-    Assets.getText('elliman_agents_production.json')
-  );
-  if (Settings.isDevelopment || Settings.isStaging) {
-      ellimanAgents = ellimanAgents.slice(14,33);
-  }
-  var count = 1;
-  _.each(ellimanAgents, function (row) {
-    console.log('begin insert:', row.FIRST_NAME, ' : ', row.EM_ADDRESS);
-    var user = userFromEllimanRow(row);
-    if (!user.profile.photoUrl || (user.profile.photoUrl.length === 0))
-      return '';
-    console.log('PQing: ', count++, row.FIRST_NAME);
-    qFetchResizeAndUpload(user);
-  });
-  console.log('Ready to run queue');
+  if(Meteor.settings.public.processUsersElliman === true) {
+    Meteor._powerQ = new PowerQueue({
+        isPaused: true
+      });
+    Meteor._powerQ.add(function(done) {
+      Meteor.setTimeout(function() {
+        console.log('delay for cucumber');
+        done();
+      }, 4444);
+      });
 
-  Meteor._powerQ.run();
-  Meteor._powerQ.add(function(done){
-    FileTools.cleanupTemp(done);
-  });
+    var numUsers = Meteor.users.find().count();
+    console.log('Total Users', numUsers);
+    //if (numUsers > 0) return;
+    console.log('PQ', Meteor._powerQ.title);
+    var ellimanAgents = JSON.parse(
+      Assets.getText('elliman_agents_production.json')
+    );
+    if (Settings.isDevelopment || Settings.isStaging) {
+        return;
+        //ellimanAgents = ellimanAgents.slice(1000);
+    }
+    //var count = 1;
+    _.each(ellimanAgents, function (row) {
+      //console.log('begin insert:', row.FIRST_NAME, ' : ', row.EM_ADDRESS);
+      var user = userFromEllimanRow(row);
+      if (!user.profile.photoUrl || (user.profile.photoUrl.length === 0))
+        return '';
+     // console.log('PQing: ', count++, row.FIRST_NAME);
+      qFetchResizeAndUpload(user);
+    });
+    console.log('Ready to run queue');
+
+    Meteor._powerQ.run();
+    Meteor._powerQ.add(function(done){
+      FileTools.cleanupTemp(done);
+    });
   console.log('queue running', ellimanAgents.length, 'elliman agents');
+  } else {
+    return;
+  }
 });
