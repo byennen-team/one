@@ -97,7 +97,7 @@ Meteor.startup(function () {
     Meteor.setTimeout(function() {
       console.log('delay for cucumber');
       done();
-    }, 3333);
+    }, 7777);
     });
 
   var numUsers = Meteor.users.find().count();
@@ -108,7 +108,7 @@ Meteor.startup(function () {
     Assets.getText('elliman_agents_production.json')
   );
   if (Settings.isDevelopment || Settings.isStaging) {
-      ellimanAgents = ellimanAgents.slice(14,33);
+      ellimanAgents = ellimanAgents.slice(300,320);
   }
   var count = 1;
   _.each(ellimanAgents, function (row) {

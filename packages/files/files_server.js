@@ -65,8 +65,6 @@ FileTools.signedGet = function (filePath, _bucket) {
   if (!/^\//.test(filePath)) {
     filePath = '/'+filePath;
   }
-  console.log('signed get', filePath, bucket);
-
   var fullPath = encodeURI('/' + bucket + filePath);
   var dateTime = Math.floor(new Date().getTime() / 1000) +
     Meteor.settings.S3_URL_EXPIRATION_SECONDS;
@@ -77,8 +75,6 @@ FileTools.signedGet = function (filePath, _bucket) {
     '&Signature=' + encodeURIComponent(signature);
   var url = Meteor.settings.public.AWS_BUCKETS[bucket].url + filePath +
   queryString;
-
-  console.log('signedGeturl', url);
   return url;
 };
 

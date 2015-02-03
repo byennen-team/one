@@ -1,6 +1,7 @@
 var
 fs           = Npm.require('fs'), // for writing local (temp) files
 knox         = Npm.require('knox'),
+intimidate   = Npm.require('intimidate'),
 request      = Npm.require('request'), // fetchin remote image data
 tmp          = Npm.require('tmp'), // creates temporary directory
 im           = Npm.require('imagemagick'), // re-size images
@@ -12,11 +13,12 @@ flag404 = false,
 s3Params = {
   key: Meteor.settings.AWS_ACCESS_KEY_ID, //<api-key-here>'
   secret: Meteor.settings.AWS_SECRET_ACCESS_KEY,  //'<secret-here>'
-  bucket: Meteor.settings.AWS_BUCKET_RAW
+  bucket: Meteor.settings.AWS_BUCKET_RAW,
+  maxRetries: 7
 };
 
 console.log('s3Params', s3Params);
-var s3Client = knox.createClient(s3Params);
+var s3Client = new intimidate(s3Params);
 
 // set base for modulus in staging and beta enviroment
 if(Settings.isStaging || Settings.isBeta) {
@@ -50,7 +52,10 @@ FileTools.fetchToTemp = function(url, callback){
   var xpat = /\.([0-9a-z]+)(?:[\?#]|$)/i;
   imgExt = originalName.match(xpat)[0];
   var writable = fs.createWriteStream(base+imgTmp+imgExt, {internal :  true})
-  .on('finish', Meteor.bindEnvironment(function() { callback(); }));
+  .on('finish', Meteor.bindEnvironment(function(err, response) {
+    if (err) throw new Meteor.Error(err);
+    callback();
+    }));
   request(url)
   .on('response',
       Meteor.bindEnvironment(function(response){
@@ -104,15 +109,19 @@ FileTools.resizeTemp = function(size, callback) {
 FileTools.upload = function (descriptor, remotefile, callback) {
   var imagefile = base+descriptor+imgTmp+imgExt;
   remotefile+=imgExt;
+  console.log('remote file: ', remotefile);
   if (flag404) {
     imagefile = base+'No_image_available.jpg';
-    console.log('remote:', remotefile, '  : ', imagefile);
+    console.log('remote:', remotefile, '\n 404 imagefile: ', imagefile);
   }
-  var putFileCallback = Meteor.bindEnvironment(function(err) {
+  var putFileCallback = Meteor.bindEnvironment(function(err, response) {
     if (err) { console.log('upload error:', remotefile); }
-    callback();
+    console.log('response: ', response.statusCode);
+    if (response.statusCode == 200) {
+      callback();
+    }
   });
-  Meteor.wrapAsync(s3Client.putFile(imagefile, remotefile, putFileCallback));
+  var _upload = s3Client.upload(imagefile, remotefile, putFileCallback);
 };
 
 // always clean up temporary files
