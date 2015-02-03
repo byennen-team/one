@@ -1,7 +1,7 @@
 <template name='messageInput'>
-	
+
 	<div id='communication-message-input' class="message-input">
-	
+
 		<div id='communication-message-input-btn' class="message-btn">
 			<i class="fa fa-bars"></i>
 		</div>
@@ -34,8 +34,9 @@
 				<i id="communication-message-attachment-delete" class="fa fa-close"></i>
 			</div>
 		</div>
-
-		<input class='input' type="text" placeholder="Type your message..." />
+		<form id="addMessageForm">
+			<input class='input' id="addMessageInput" type="text" placeholder="Type your message..." />
+		</form>
 
 <!-- TODO: needs to be plugged in -->
 		<form action="" id="communication-message-post" class="new-post-form">

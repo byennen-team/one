@@ -1,3 +1,4 @@
+/* globals RoomsController: true */
 Template.messageInput.rendered = function(){
 	Session.set('menuOpen', false);
 	Session.set('attachment', false);
@@ -46,8 +47,24 @@ Template.messageInput.events({
 	'click #communication-message-attachment-delete': function(){
 		$('#communication-message-input-attachment-input').val('');
 		Session.set('attachment', false);
-	}
+	},
 
+  'submit #addMessageForm': function(event) {
+    event.preventDefault();
+    var message = $('#addMessageInput').val();
+
+    if(message && message.length > 0)
+      RoomsController.addSimpleMessageToRoom(
+        Session.get('openRoomId'),
+        message);
+
+    $('#addMessageInput').val("");
+
+    //also mark room as read
+
+    RoomsController.updateTimestamp(Session.get('openRoomId'));
+
+  }
 });
 
 Tracker.autorun(function () {

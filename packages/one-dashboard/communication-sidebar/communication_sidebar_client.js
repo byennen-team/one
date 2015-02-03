@@ -77,9 +77,16 @@ Template.communicationSidebar.events({
     body.data('previous-overflow', body.css('overflow'));
     body.css('overflow', 'hidden');
     window.scrollTo(scrollPosition[0], scrollPosition[1]);
+
+    $("#communication-message-board-sleeve")
+      .mCustomScrollbar({
+        theme:"one-dark",
+        scrollbarPosition: "inside"
+    });
 	},
 
-	'click .room': function(){
+	'click .room': function(event){
+    Session.set('openRoomId', $(event.currentTarget).data('id'));
 		// expands the main dialog box t0 60% of full screen
 		$.Velocity.hook($('#communication-main'), "width", "100%");
 		$.Velocity.hook($('#communication-message-board'), "width", "45%");
@@ -110,7 +117,16 @@ Template.communicationSidebar.events({
     body.data('previous-overflow', body.css('overflow'));
     body.css('overflow', 'hidden');
     window.scrollTo(scrollPosition[0], scrollPosition[1]);
-	}
+
+    $("#communication-message-board-sleeve")
+      .mCustomScrollbar({
+        theme:"one-dark",
+        scrollbarPosition: "inside"
+    });
+	},
+  'click #addRoom': function() {
+    Session.set('teamModalPurpose','newTeam');
+  }
 
 });
 

@@ -23,10 +23,12 @@ Package.onUse(function (api) {
     'typography.less',
   	'modals.less',
     'tooltip.less',
+    'transitioner.less',
     'positioning.less',
     'select.less',
     'selectpicker.less',
-    'variables.import.less'
+    'variables.import.less',
+    'velocity_html_reporter.less'
   ], 'web');
 
   //style guide

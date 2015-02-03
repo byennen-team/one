@@ -3,6 +3,7 @@ Package.describe({
 });
 
 Package.onUse(function (api) {
+
   api.use([
     'less',
     'jquery',
@@ -18,7 +19,23 @@ Package.onUse(function (api) {
     'reactive-var'
     ], 'web');
 
-  api.addFiles('directory/communication_directory_modal_server.js', 'server');
+  api.use([
+    'underscore',
+    'aldeed:simple-schema',
+    'reywood:publish-composite'
+    ]);
+
+  api.addFiles([
+    'directory/communication_directory_modal_server.js',
+    'messages/messages_server.js',
+    'rooms/rooms_server.js'
+    ], 'server');
+
+  api.addFiles([
+    'messages/messages.js',
+    'rooms/rooms.js'
+    ], ['server', 'web']);
+
   api.addFiles([
     'communication_main.html',
     'communication_main.less',
@@ -56,9 +73,13 @@ Package.onUse(function (api) {
     'library/communication_library_files_client.js',
     //directory
     'directory/communication_directory_modal.html',
-    'directory/communication_directory_modal.js'
+    'directory/communication_directory_modal.js',
+    'directory/communication_add_teammember_modal.html',
+    'directory/communication_add_teammember_modal.js'
   ], 'web');
 
   // Bower packages
   api.addFiles(['smart.json'], 'web');
+
+  api.export(['Rooms','Messages','RoomsController'], ['server','web']);
 });

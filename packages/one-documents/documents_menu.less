@@ -31,19 +31,17 @@
   }
 }
 // My Library mode styles
-.myDocuments {
-  .documentsMenu {
+.documentsMenu.myDocuments {
+  background-color: @dk-teal;
+  .my-library,
+  .company-library {
+    color: @very-lt-teal;
     background-color: @dk-teal;
-    .my-library,
-    .company-library {
-      color: @very-lt-teal;
-      background-color: @dk-teal;
-    }
-    .my-library.active,
-    .company-library.active {
-      background-color: @lt-teal;
-      color: @white;
-    }
+  }
+  .my-library.active,
+  .company-library.active {
+    background-color: @lt-teal;
+    color: @white;
   }
 }
 
