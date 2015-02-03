@@ -20,7 +20,8 @@ Messages.simpleSchema = new SimpleSchema({
   //different depending on the type of message above:
   //message - left empty
   //attachment: 'documentId': String - the id of the document attached
-  //post: 'title': String - the title of the post
+  //post: 'title': String - the title of the post, 'image': image for the ->
+  // -> post (optional)
   //event: TBD
   //listing: TBD
   messagePayload: { type: [Object], optional: true, blackbox: true}

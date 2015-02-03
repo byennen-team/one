@@ -100,10 +100,13 @@ Meteor.methods({
       return(e, r);
     });
   },
-  addPostMessageToRoom: function(roomId, postContent, title) {
+  addPostMessageToRoom: function(roomId, context, fileId) {
     check(roomId, String);
-    check(postContent, String);
-    check(title, String);
+    check(context, {
+      postContent: String,
+      title: String,
+      fileId: Match.Optional(String)
+    });
 
     if (! this.userId)
       throw new Meteor.Error(401, "You are not logged in!");
@@ -118,7 +121,7 @@ Meteor.methods({
     if(! participant)
       throw new Meteor.Error(403, "You can only post in rooms you are in");
 
-    Messages.insert({
+    var query = {
       roomId: roomId,
       creatorId: this.userId,
       dateCreated: new Date(),
@@ -127,7 +130,13 @@ Meteor.methods({
       messagePayload: {
         title: title
       }
-    }, function(e, r) {
+    };
+
+    if(fileId) {
+      query.messagePayload.image = fileId;
+    }
+
+    Messages.insert(query, function(e, r) {
       return(e, r);
     });
   },

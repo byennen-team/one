@@ -98,8 +98,11 @@ RoomsController.addAttachmentMessageToRoom = function(roomId, documentId, callba
   });
 };
 
-RoomsController.addPostMessageToRoom = function(roomId, postContent, title, callback) {
-  Meteor.call('addPostMessageToRoom', roomId, postContent, title, function(e,r) {
+// context.postContent: String, context.title: String,
+// context.fileId: String optional
+RoomsController.addPostMessageToRoom = function(roomId, context, callback) {
+  Meteor.call('addPostMessageToRoom',
+    roomId, postContent, title, function(e,r) {
     if (e)
       console.log(e);
 
