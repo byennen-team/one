@@ -3,6 +3,7 @@ Template.messageInput.rendered = function(){
 	Session.set('menuOpen', false);
 	Session.set('attachment', false);
 	$('.selectpicker').selectpicker();
+  var editor = new MediumEditor('#communication-message-post-textarea');
 };
 
 Template.messageInput.events({

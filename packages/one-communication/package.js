@@ -16,7 +16,8 @@ Package.onUse(function (api) {
     'tracker',
     'mquandalle:bower@0.1.11',
     'maazalik:malihu-jquery-custom-scrollbar',
-    'reactive-var'
+    'reactive-var',
+    'citizenkevin:medium-editor'
     ], 'web');
 
   api.use([
