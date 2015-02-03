@@ -105,7 +105,8 @@ Meteor.methods({
     check(context, {
       postContent: String,
       title: String,
-      fileId: Match.Optional(String)
+      fileId: Match.Optional(String),
+      draft: Match.Optional(Boolean)
     });
 
     if (! this.userId)
@@ -125,16 +126,21 @@ Meteor.methods({
       roomId: roomId,
       creatorId: this.userId,
       dateCreated: new Date(),
-      message: postContent,
+      message: context.postContent,
       messageType: 'post',
       messagePayload: {
-        title: title
+        title: context.title
       }
     };
 
     if(fileId) {
-      query.messagePayload.image = fileId;
+      query.messagePayload.image = context.fileId;
     }
+
+    if(! context.draft)
+      query.messagePayload.draft = false;
+    else
+      query.messagePayload.draft = context.draft;
 
     Messages.insert(query, function(e, r) {
       return(e, r);
