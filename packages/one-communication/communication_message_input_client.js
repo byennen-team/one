@@ -65,6 +65,33 @@ Template.messageInput.events({
 
     RoomsController.updateTimestamp(Session.get('openRoomId'));
 
+  },
+  'click #communication-message-post-btn': function() {
+
+    var context = {
+      title: $('#new-post-subject').val(),
+      postContent: $('#communication-message-post-textarea').html()
+    }
+
+    var postImage = null;
+
+    if(postImage)
+      context.fileId = postImage;
+
+    var draft = null;
+    if(draft)
+      context.draft = draft;
+    else
+      context.draft = false;
+
+    console.log(context)
+    if (context.title !== '' && context.postContent !== '') {
+      RoomsController.addPostMessageToRoom(Session.get('openRoomId'),
+        //TODO: multiple room selector
+        context);
+    } else {
+      return null;
+    }
   }
 });
 

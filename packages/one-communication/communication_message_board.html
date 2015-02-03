@@ -28,6 +28,9 @@
 		{{#if isSimpleMessage}}
 			{{>message}}
 		{{/if}}
+		{{#if isPostMessage}}
+			{{>postMessage}}
+		{{/if}}
 		<!-- TODO: add more message types as requested -->
 		{{#if isDocumentMessage}}
 			{{> documentMessage}}
@@ -96,7 +99,7 @@
 	<div class="message {{isUserClass}}">
 		<div class="avatar">
 			<div class="status {{status user.profile.status}}"></div>
-			<img src="{{user.profile.photoUrl.thumb}}" alt="Agent's name here" />
+			<img src="{{user.profile.photoUrl.thumb}}" alt="{{user.profile.firstName}} {{user.profile.lastName}}" />
 		</div>
 		<div class="message-body">
 			<p class="name">
@@ -111,22 +114,22 @@
 <!-- /style repeat -->
 </template>
 
-<template name="newsMessage">
+<template name="postMessage">
 		<!-- Repeated for style -->
-	<div class="message">
+	<div class="message {{isUserClass}}">
 		<div class="avatar">
-			<div class="status inactive"></div>
-			<img src="/images/com-hub-main/dottie.jpg" alt="Agent's name here" />
+			<div class="status {{status user.profile.status}}"></div>
+			<img src="{{user.profile.photoUrl.thumb}}" alt="{{user.profile.firstName}} {{user.profile.lastName}}" />
 		</div>
 		<div class="message-body">
-			<p class="subject">News Update</p>
+			<p class="subject">{{payload.title}}</p>
 			<p class="name">
-				Dottie Herman
-				<span class="time">8:52am</span>
+				{{user.profile.firstName}} {{user.profile.lastName}}
+				<span class="time">{{date dateCreated}}</span>
 			</p>
 <!-- TODO:	link expands text		 -->
 <!-- TODO: Text should be limited to one line, no matter the with (just for messages with subjects) -->
-			<p class="text">DouglasElliman Real Estate and KnightFrank Residential, two of the biggest names in real estate <a href='#'>...<span class="blue-text">read <i class="fa fa-arrow-circle-right"></i></span></a></p>
+			<p class="text">{{{message}}} <a href='#'>...<span class="blue-text">read <i class="fa fa-arrow-circle-right"></i></span></a></p>
 		</div>
 	</div>
 	<div class="clearfix"></div>

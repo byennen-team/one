@@ -43,6 +43,9 @@ Template.communicationMessageBoardSleeve.helpers({
   isSimpleMessage: function() {
     return (this.messageType === 'message' || ! this.messageType);
   },
+  isPostMessage: function() {
+    return (this.messageType === 'post' || ! this.messageType);
+  },
   isFirstUnread: function(roomId) {
     var room = Rooms.findOne(roomId);
     var latestTimestamp = null;
@@ -72,6 +75,32 @@ Template.communicationMessageBoardSleeve.helpers({
 });
 
 Template.message.helpers({
+  isUserClass: function() {
+    return (this.creatorId === Meteor.userId())?'user':'';
+  },
+  user: function() {
+    return Meteor.users.findOne(this.creatorId);
+  },
+  date: function(dateToFormat) {
+    return moment(dateToFormat).calendar();
+  },
+  status: function (status) {
+    if (status) {
+      switch (status.toUpperCase()) {
+        case 'MOBILE':
+          return 'mobile';
+        case 'OUT OF OFFICE':
+          return 'inactive';
+        case 'IN THE OFFICE':
+          return 'active';
+      }
+    } else {
+      return "inactive";
+    }
+  }
+});
+
+Template.postMessage.helpers({
   isUserClass: function() {
     return (this.creatorId === Meteor.userId())?'user':'';
   },

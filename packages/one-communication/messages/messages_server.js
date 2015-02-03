@@ -100,7 +100,7 @@ Meteor.methods({
       return(e, r);
     });
   },
-  addPostMessageToRoom: function(roomId, context, fileId) {
+  addPostMessageToRoom: function(roomId, context) {
     check(roomId, String);
     check(context, {
       postContent: String,
@@ -133,7 +133,7 @@ Meteor.methods({
       }
     };
 
-    if(fileId) {
+    if(context.fileId) {
       query.messagePayload.image = context.fileId;
     }
 
