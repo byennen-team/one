@@ -22,6 +22,7 @@ Package.onUse(function (api) {
 });
 
 Npm.depends({
+  "intimidate": "1.0.0",
   "imagemagick": "0.1.3",
   "gm": "1.16.0",
   "knox": "0.9.1",
