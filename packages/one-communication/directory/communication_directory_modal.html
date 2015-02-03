@@ -11,18 +11,12 @@
         </div>
         <div class="modal-body">
           <div class="form-group">
-              <input id="modalDirectorySearchInput" type="text" placeholder="Enter name to search" />
+            <input id="modalDirectorySearchInput" class='form-control' type="text" placeholder="Search directory" />
 
-              <div class="row">
-              <div class="col-sm-12">
-                <table class="table table-striped">
-                  <tbody>
-                  {{#each people}}
-                    {{> person}}
-                  {{/each}}
-                  </tbody>
-                </table>
-              </div>
+            <div class="people">
+              {{#each people}}
+                {{> person}}
+              {{/each}}
             </div>
             <!-- <div class="row">
               <div class="col-sm-12 text-center">
@@ -43,12 +37,15 @@
 </template>
 
 <template name="person">
-  <tr class="user">
-    <td><img src="{{profile.photoUrl.thumb}}" class="profile-image img-circle"/></td>
-    <td>
-      <div class="name">{{profile.firstName}} {{profile.lastName}}</div>
-      <div class="job">{{profile.title}}</div>
-    </td>
-    <td><input type="checkbox" class="userid-checkbox" {{isChecked this}} value="{{_id}}" /></td>
-  </tr>
+  <div class="user">
+    <div class="avatar-box">
+      <div class="avatar" style="background-image: url({{profile.photoUrl.thumb}});"></div>
+    </div>
+    <div class="name">{{profile.firstName}} {{profile.lastName}}</div>
+    <div class="job">{{profile.title}}</div>
+    <label class="checkbox">
+      <input type="checkbox" class="userid-checkbox" {{isChecked this}} value="{{_id}}" />
+      <i class="fa fa-plus"></i>
+    </label>
+  </div>
 </template>
