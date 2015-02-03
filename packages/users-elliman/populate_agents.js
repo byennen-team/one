@@ -83,7 +83,7 @@ var qFetchResizeAndUpload = function(user){
         large: fullSign,
         thumb: thumbSign
     };
-    Meteor.users.insert(user, function(err, result) {
+    Meteor.users.insert(user, function(err) {
       if (err) throw new Meteor.Error(err);
     });
     var uEmail = user.emails[0] || { address: 'noEmail' };
@@ -114,7 +114,7 @@ Meteor.startup(function () {
         return;
         //ellimanAgents = ellimanAgents.slice(1000);
     }
-    var count = 1;
+    //var count = 1;
     _.each(ellimanAgents, function (row) {
       //console.log('begin insert:', row.FIRST_NAME, ' : ', row.EM_ADDRESS);
       var user = userFromEllimanRow(row);
