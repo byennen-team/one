@@ -18,7 +18,7 @@ velocityjs:velocityjs
 ccorcos:transitioner
 coffeescript
 xolvio:cucumber@0.3.8
-
+tsega:bootstrap3-datetimepicker
 
 # Our Packages
 
@@ -50,4 +50,4 @@ settings
 users-elliman
 styles
 social-media
-tsega:bootstrap3-datetimepicker
+

@@ -15,6 +15,15 @@
 	
 <div id='communication-message-board-sleeve' class="sleeve">
 
+<!-- Show welcome text here. Always the top of the conversation -->
+	{{#if taskChannel}}
+		{{> welcomeTask}}
+	{{else}}
+		{{#if roomChannel}}
+			{{> welcomeRoom}}
+		{{/if}}
+	{{/if}}
+	
 <!-- TODO: add "user" class if message is by User -->
 	<div class="message">
 		<div class="avatar">
