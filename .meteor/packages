@@ -17,7 +17,6 @@ aldeed:simple-schema
 velocityjs:velocityjs
 ccorcos:transitioner
 coffeescript
-xolvio:cucumber@0.3.8
 
 
 # Our Packages
@@ -50,3 +49,4 @@ settings
 users-elliman
 styles
 social-media
+xolvio:cucumber

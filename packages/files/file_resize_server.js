@@ -1,6 +1,5 @@
 var
 fs           = Npm.require('fs'), // for writing local (temp) files
-knox         = Npm.require('knox'),
 intimidate   = Npm.require('intimidate'),
 request      = Npm.require('request'), // fetchin remote image data
 tmp          = Npm.require('tmp'), // creates temporary directory
@@ -17,7 +16,6 @@ s3Params = {
   maxRetries: 7
 };
 
-console.log('s3Params', s3Params);
 var s3Client = new intimidate(s3Params);
 
 // set base for modulus in staging and beta enviroment
@@ -45,14 +43,14 @@ FileTools.cleanupTemp =  function() {
     });
 };
 //fetch temp image
+
 FileTools.fetchToTemp = function(url, callback){
-  console.log('fetch to temp', url);
   flag404 = false;
   var originalName = url.substring(url.lastIndexOf('/')+1);
   var xpat = /\.([0-9a-z]+)(?:[\?#]|$)/i;
   imgExt = originalName.match(xpat)[0];
   var writable = fs.createWriteStream(base+imgTmp+imgExt, {internal :  true})
-  .on('finish', Meteor.bindEnvironment(function(err, response) {
+  .on('finish', Meteor.bindEnvironment(function(err) {
     if (err) throw new Meteor.Error(err);
     callback();
     }));
@@ -61,15 +59,12 @@ FileTools.fetchToTemp = function(url, callback){
       Meteor.bindEnvironment(function(response){
         response = response || { statusCode: 8888 };
         if (response && response.statusCode === 404) {
-            console.log(url, ' not found', response.statusCode);
-            console.log('base', base);
             flag404 = true;
             }})
       )
   .on('end',
-      Meteor.bindEnvironment(function(error, response){
-        if (error) console.log('end error', response.statusCode);
-        console.log('request end');
+     Meteor.bindEnvironment(function(error, response){
+     if (error) console.log('end error', response.statusCode, '\n url: ', url);
        }))
   .pipe(writable);
 };
@@ -77,17 +72,14 @@ FileTools.fetchToTemp = function(url, callback){
 //resize
 FileTools.resizeTemp = function(size, callback) {
     if (flag404) { return callback(); }
-    console.log('resizeTemp', size);
     Meteor.wrapAsync(im.identify(base+imgTmp+imgExt, Meteor.bindEnvironment(
     function(err, features) {
-      console.log('identify h ', features.height, ' w ', features.width);
       var scalingFactor = Math.max(
         resizeWidths[size] / features.width,
         resizeHeights[size] / features.height
         );
       var width = scalingFactor * features.width;
       var height = scalingFactor * features.height;
-      console.log('height ', height, ' width ', width);
       im.resize({
         srcPath: base+imgTmp+imgExt,
         dstPath: base+size+imgTmp+imgExt,
@@ -109,19 +101,18 @@ FileTools.resizeTemp = function(size, callback) {
 FileTools.upload = function (descriptor, remotefile, callback) {
   var imagefile = base+descriptor+imgTmp+imgExt;
   remotefile+=imgExt;
-  console.log('remote file: ', remotefile);
   if (flag404) {
     imagefile = base+'No_image_available.jpg';
-    console.log('remote:', remotefile, '\n 404 imagefile: ', imagefile);
   }
   var putFileCallback = Meteor.bindEnvironment(function(err, response) {
     if (err) { console.log('upload error:', remotefile); }
-    console.log('response: ', response.statusCode);
-    if (response.statusCode == 200) {
+    if (200 === response.statusCode) {
       callback();
+    } else {
+      console.log('??? : ', remotefile, ' : code : ', response.statusCode);
     }
   });
-  var _upload = s3Client.upload(imagefile, remotefile, putFileCallback);
+  Meteor.wrapAsync(s3Client.upload(imagefile, remotefile, putFileCallback));
 };
 
 // always clean up temporary files
