@@ -7,8 +7,9 @@ Template.communicationCreateTask.rendered = function () {
     showClear: true  // this option doesn't seem to work
   });
 
-  $( '.taskcolorselectpicker' ).selectpicker(); // use specific class to call first
-  // TODO: if the event already has a color defined, insert in instead of 'purple'
+  // use specific class to call first
+  $( '.taskcolorselectpicker' ).selectpicker(); 
+// TODO: if the event already has a color defined, insert it instead of 'purple'
   $( '.filter-option' ).addClass( 'purple dot-select' );
 
   var currentHeight = $(window).height();
