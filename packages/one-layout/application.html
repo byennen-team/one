@@ -1,5 +1,5 @@
 <template name="application">
-  <!-- {{#transitioner}} --> <!-- transition from login to layout -->
+  {{#transitioner}} <!-- transition from login to layout -->
     {{#if loginLayout}}
       {{> yield}}
     {{else}}
@@ -14,18 +14,22 @@
             {{> navbar}}
           {{/if}}
           <div class="pusher"></div>
-          <!-- {{#transitioner}} -->
-            {{> yield}}
-          <!-- {{/transitioner}} -->
+          {{#transitioner}}
+            <div class="transitioner-container">
+              {{> yield}}
+            </div>
+          {{/transitioner}}
         </div>
       {{else}}
         <div class="wrap">
           <div class="pusher"></div>
-          <!-- {{#transitioner}} -->
-            {{> yield}}
-          <!-- {{/transitioner}} -->
+          {{#transitioner}}
+            <div class="transitioner-container">
+              {{> yield}}
+            </div>
+          {{/transitioner}}
         </div>
       {{/if}}
     {{/if}}
-  <!-- {{/transitioner}} -->
+  {{/transitioner}}
 </template>
