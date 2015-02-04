@@ -7,22 +7,16 @@
             <i class='fa icon-x' aria-hidden="true"></i>
             <span class="sr-only">Close</span>
           </button>
-          <p class="modal-title raleway-semibold white text-uppercase spacing-250 m-left-05">Invite People</p>
+          <p class="modal-title raleway-semibold white text-uppercase spacing-250 m-left-05">Your team</p>
         </div>
         <div class="modal-body">
           <div class="form-group">
-              <input id="modalDirectorySearchInput" type="text" placeholder="Enter name to search" />
+            <input id="modalDirectorySearchInput" class='form-control' type="text" placeholder="Search directory" />
 
-              <div class="row">
-              <div class="col-sm-12">
-                <table class="table table-striped">
-                  <tbody>
-                  {{#each people}}
-                    {{> person}}
-                  {{/each}}
-                  </tbody>
-                </table>
-              </div>
+            <div class="people">
+              {{#each people}}
+                {{> person}}
+              {{/each}}
             </div>
             <!-- <div class="row">
               <div class="col-sm-12 text-center">
@@ -32,23 +26,25 @@
 
           </div>
         </div>
-        <!-- These are not needed anymore. Checking a checkbox adds them to the team or removes them -->
-        <!-- <div class="modal-footer">
-          <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-          <button id='add-team-members' type="button" class="btn btn-primary">Add</button>
-        </div> -->
+        <div class="modal-footer">
+  <!--         <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button> -->
+          <button id='add-team-members' type="button" class="btn btn-primary" data-dismiss="modal">Invite</button>
+        </div>
       </form>
     </div>
   </div>
 </template>
 
 <template name="person">
-  <tr class="user">
-    <td><img src="{{profile.photoUrl.thumb}}" class="profile-image img-circle"/></td>
-    <td>
-      <div class="name">{{profile.firstName}} {{profile.lastName}}</div>
-      <div class="job">{{profile.title}}</div>
-    </td>
-    <td><input type="checkbox" class="userid-checkbox" {{isChecked this}} value="{{_id}}" /></td>
-  </tr>
+  <div class="user">
+    <div class="avatar-box">
+      <div class="avatar" style="background-image: url({{profile.photoUrl.thumb}});"></div>
+    </div>
+    <div class="name">{{profile.firstName}} {{profile.lastName}}</div>
+    <div class="job">{{profile.title}}</div>
+    <label class="checkbox icon-circle">
+      <input type="checkbox" class="userid-checkbox" {{isChecked this}} value="{{_id}}" />
+      <i class="fa icon-plus"></i>
+    </label>
+  </div>
 </template>
