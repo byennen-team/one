@@ -12,7 +12,7 @@ FileTools.upload = function (method, file, options) {
   });
   var args = [file.name, file.type];
   if (options.parentFolderId) {
-    args.push(options.parentFolerId);
+    args.push(options.parentFolderId);
   }
   if (options.filePath) {
     args.push(options.filePath);
