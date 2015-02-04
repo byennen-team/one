@@ -80,6 +80,7 @@
         right: 0;
         top: 0.3em;
         color: @lt-blue-grey;
+        cursor: pointer;
         .fa {
           position: absolute;
           font-size: 16px;
@@ -98,6 +99,16 @@
         content: "\f00c";
         font-family: FontAwesome!important; 
         color: @lt-teal;
+      }
+      .hovered .userid-checkbox:checked + .icon-plus {
+        font-size: 34px;
+        left: 15px;
+        top: -1px;
+      }
+      .hovered .userid-checkbox:checked + .icon-plus:before {
+        content: "\f056";
+        font-family: FontAwesome!important; 
+        color: @red;
       }
     }
     .user:first-of-type {
