@@ -11,6 +11,7 @@ Routes = {
   MY_DOCUMENTS: 'myDocuments',
   COMPANY_DOCUMENTS: 'companyDocuments',
   FOLDER: 'folder',
+  SHARED_DOCUMENT: 'shardDocument',
   SUPPORT: 'support',
   MESSAGES: 'messages',
   STYLE_GUIDE: 'styleGuide'

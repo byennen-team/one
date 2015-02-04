@@ -66,9 +66,30 @@ Meteor.methods({
 
 });
 
-Meteor.publish('sharedDocument', function (sharedDocumentId, accessToken) {
-  return SharedDocuments.find({
-    _id: sharedDocumentId,
-    accessToken: accessToken
-  });
-});
+/**
+ * Publishes a sharedDocument and its associated file.
+ * The publication is secured by the accessToken.
+ */
+Meteor.publishComposite(
+  'sharedDocument',
+  function (sharedDocumentId, accessToken) {
+    check(sharedDocumentId, String);
+    check(accessToken, String);
+
+    return {
+      find: function () {
+        return SharedDocuments.find({
+          _id: sharedDocumentId,
+          accessToken: accessToken
+        });
+      },
+      children: [
+        {
+          find: function (sharedDocument) {
+            return Files.find({_id: sharedDocument.sharedDocumentId});
+          }
+        }
+      ]
+    };
+  }
+);

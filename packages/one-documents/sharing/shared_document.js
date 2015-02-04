@@ -11,7 +11,7 @@ _.extend(SharedDocument.prototype, {
 
   getShareUrl: function () {
     var path = 'documents/shared/' +
-      this.sharedDocumentId + '/' +
+      this._id + '/' +
       this.accessToken;
 
     return Meteor.absoluteUrl(path);

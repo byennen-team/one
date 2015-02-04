@@ -81,16 +81,30 @@ Template.documents.helpers({
     });
   },
   files: function () {
-    return Files.find(
-      {
-        companyDocument: FileTools.isCompanyDocumentsActive(),
-        archived: {$ne: true},
-        parent: Session.get('currentFolderId')
-      },
-      {
-        sort: {uploadDate: -1}
-      }
-    );
+    // TODO: Refactor shared document into own template
+    if (Routes.getName() === Routes.SHARED_DOCUMENT) {
+      var sharedDocumentFileIds = SharedDocuments
+        .find()
+        .map(function (sharedDocument) {
+          return sharedDocument.sharedDocumentId;
+        });
+
+      return Files.find(
+        {_id: {$in: sharedDocumentFileIds}},
+        {sort: {uploadDate: -1}}
+      );
+    } else {
+      return Files.find(
+        {
+          companyDocument: FileTools.isCompanyDocumentsActive(),
+          archived: {$ne: true},
+          parent: Session.get('currentFolderId')
+        },
+        {
+          sort: {uploadDate: -1}
+        }
+      );
+    }
   }
 });
 
