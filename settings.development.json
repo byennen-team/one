@@ -1,10 +1,46 @@
 {
   "AWS_BUCKET": "goone-dev",
+  "AWS_BUCKET_RAW": "goone-raw-upload-west-2",
+  "AWS_BUCKET_RESIZED": "goone-resized-west-2",
   "AWS_ACCESS_KEY_ID": "AKIAIRIH744ERKEXHPOA",
   "AWS_SECRET_ACCESS_KEY": "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",
   "public": {
+    "AWS_DEFAULT_BUCKET": "goone-dev",
     "AWS_BUCKET_URL": "https://goone-dev.s3.amazonaws.com",
-    "ENVIRONMENT": "development"
+    "UPLOAD_BUCKET": "goone-raw-upload-west-2",
+    "ENVIRONMENT": "development",
+     "twitter": {
+      "COMPANY_SCREENNAME": "DouglasElliman",
+      "COMPANY_USERID": "10874182"
+    },
+    "AWS_BUCKETS": {
+        "goone": {
+            "env": "production",
+            "region": "us-standard", 
+            "url": "https://s3.amazonaws.com/goone"
+        },
+        "goone-beta" : {
+            "env": "beta",
+            "region": "us-west-2", 
+            "url":  "https://goone-beta.s3.amazonaws.com"
+        },
+        "goone-dev" : {
+            "env": "development",
+            "region": "us-standard",
+            "url": "https://s3.amazonaws.com/goone-dev"
+        },
+        "goone-raw-upload-west-2": {
+            "env": "development",
+            "region": "us-west-2",
+            "url": "https://goone-raw-upload-west-2.s3.amazonaws.com"
+        },
+        "goone-resized-west-2": {
+            "env": "development",
+            "region": "us-west-2",
+            "url": "https://goone-resized-west-2.s3.amazonaws.com"
+        }
+ 
+     }
   },
   "S3_URL_EXPIRATION_SECONDS": 604800,
   "MANDRILL_USERNAME": "mandrill@gooneapp.com",
@@ -15,10 +51,5 @@
   },
   "FORECAST_API_KEY": "14825320e632a4c6c1aa9cc827bc7a94",
   "GOOGLE_API_KEY": "AIzaSyBf1mUne6CU0ZGFGOEwCv4wyojCl0XRzO4",
-  "public": {
-    "twitter": {
-      "COMPANY_SCREENNAME": "DouglasElliman",
-      "COMPANY_USERID": "10874182"
-    }
-  }
+  "AWS_BUCKET_URL": "https://s3.amazonaws.com"
 }
