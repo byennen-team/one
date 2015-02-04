@@ -19,11 +19,6 @@ Template.documentRow.events({
     Meteor.call('favoriteDocument', file._id, checkbox.checked);
   },
 
-  'click [data-action="more"]': function (event) {
-    event.stopPropagation(); // Don't toggle the document selection
-    $(event.target).dropdown('toggle');
-  },
-
   'click .print': function (event) {
     event.preventDefault();
     var file = window.open(event.target.getAttribute("href"));
