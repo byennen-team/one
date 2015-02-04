@@ -8,3 +8,28 @@ Template.communicationSidebarDirect.rendered = function(){
   });
 
 };
+
+Template.communicationSidebarDirectFill.created = function() {
+  Session.set('roomOpenId', false);
+  Tracker.autorun(function() {
+    Meteor.subscribe('room', Session.get('roomOpenId'));
+  });
+};
+
+Template.communicationSidebarDirectFill.helpers({
+  rooms: function() {
+    return Rooms.find({
+      roomType: 'dm'
+    });
+  },
+  partner: function() {
+    var dmWith = _.find(this.participants, function(item) {
+      return item.participantId != Meteor.userId();
+    })
+
+    return Meteor.users.findOne(dmWith.participantId);
+  },
+  unreadMessages: function() {
+    return RoomsController.getUnreadMessagesCount(this._id);
+  }
+});

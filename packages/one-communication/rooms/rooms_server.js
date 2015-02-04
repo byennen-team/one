@@ -100,6 +100,45 @@ Meteor.methods({
       return(e,r);
     });
   },
+  createDMRoom: function(userId) {
+    check(userId, String);
+
+    if(! this.userId)
+      throw new Meteor.Error(401, "You are not logged in!");
+
+    console.log(this.userId, userId);
+    var ifRoomExists = Rooms.findOne({
+      roomType: 'dm',
+      $and: [
+        {'participants.participantId': this.userId},
+        {'participants.participantId': userId}
+      ]
+    });
+
+    console.log(ifRoomExists);
+
+    if (ifRoomExists)
+      throw new Meteor.Error(403, "Room already exists!");
+
+    query = {
+      participants: [
+        {
+          participantId: this.userId
+        },
+        {
+          participantId: userId
+        }
+      ],
+      roomType: 'dm',
+      roomStatus: 'private',
+      dateCreated: new Date(),
+      ownerId: this.userId
+    };
+
+    return Rooms.insert(query, function(e,r) {
+      return(e,r);
+    });
+  },
   deleteRoom: function(roomId) {
     check(roomId, String);
     //only admins and owners can delete rooms?
@@ -163,6 +202,10 @@ Meteor.methods({
     if (!room)
       throw new Meteor.Error(404, "Room not found!");
 
+    if(room.roomType === 'dm')
+      throw new Meteor.Error(404, "You cannot add or remove "+
+        " users from a dm room!");
+
     // if (this.userId !== userId || !this.userId) //TODO: add admin check
     //   throw new Meteor.Error(403,
     //     "You can only add yourself to a room if you are not an admin");
@@ -201,6 +244,10 @@ Meteor.methods({
     if (!room)
       throw new Meteor.Error(404, "Room not found!");
 
+    if(room.roomType === 'dm')
+      throw new Meteor.Error(404, "You cannot add or remove "+
+        " users from a dm room!");
+
     if (! _.find(room.participants, function(item) {
       return item.participantId === userId;
       }))
@@ -237,8 +284,17 @@ Meteor.methods({
     check(roomId, String);
     check(participantsArray, [String]);
 
+    var room = Rooms.findOne(roomId);
+
+    if (!room)
+      throw new Meteor.Error(404, "Room not found!");
+
+    if(room.roomType === 'dm')
+      throw new Meteor.Error(404, "You cannot add or remove "+
+        " users from a dm room!");
+
     var currentParticipants =
-      _.pluck(Rooms.findOne(roomId).participants, 'participantId');
+      _.pluck(room.participants, 'participantId');
 
     var toRemove = _.difference(currentParticipants, participantsArray);
 
