@@ -50,6 +50,5 @@
   },
   "FORECAST_API_KEY": "14825320e632a4c6c1aa9cc827bc7a94",
   "GOOGLE_API_KEY": "AIzaSyBf1mUne6CU0ZGFGOEwCv4wyojCl0XRzO4",
-  "AWS_BUCKET_URL": "https://s3.amazonaws.com",
-  "AWS_BUCKET_RAW": "https://goone-raw-upload-west-2.s3.amazonaws.com"
+  "AWS_BUCKET_URL": "https://s3.amazonaws.com"
 }
