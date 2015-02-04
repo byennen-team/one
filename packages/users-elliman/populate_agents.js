@@ -74,9 +74,9 @@ var qFetchResizeAndUpload = function(user){
   Meteor._powerQ.add(function(done) {
       var BUCKET_RESIZED = Meteor.settings.AWS_BUCKET_RESIZED;
       var fullUrlRaw = '/full/user/'+ user.profile.id +
-        '/profile-images/' + user.profile.id+_ext;
+        '/profile-images/' + 'full'+ _ext;
       var thumbUrlRaw = '/thumb/user/' + user.profile.id +
-        '/profile-images/' + user.profile.id+_ext;
+        '/profile-images/' + 'thumb' + _ext;
       var thumbSign = FileTools.signedGet(thumbUrlRaw, BUCKET_RESIZED);
       var fullSign = FileTools.signedGet(fullUrlRaw, BUCKET_RESIZED);
     user.profile.photoUrl = {
