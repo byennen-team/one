@@ -38,8 +38,8 @@ module.exports = function () {
 
   this.Then(/^I should be logged in$/, function (callback) {
     helper.world.browser.
-      waitForExist('.current-user', 5000).
-      // saveScreenshot(process.env.PWD + '/auth1.png').
+      waitForExist('.current-user', 7000).
+      saveScreenshot(process.env.PWD + '/auth1.png').
       click('.menu-link').
       waitForVisible('.current-user').
       getText('.current-user', function (err, username) {
@@ -62,7 +62,7 @@ module.exports = function () {
   this.Given(/^I am unauthenticated$/, function (callback) {
     helper.world.browser.
       url(helper.world.cucumber.mirror.rootUrl + 'logout').
-      waitForExist('.login-button').
+      waitForExist('.login-button', 2000).
       call(callback);
   });
 
