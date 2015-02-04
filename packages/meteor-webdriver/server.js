@@ -19,10 +19,12 @@ DEBUG = !!process.env.VELOCITY_DEBUG;
 
   var phantom = Npm.require('phantomjs');
 
+  var phantomPath;
+
   if (process.env.PHANTOM_PATH) {
-    var phantomPath = process.env.PHANTOM_PATH;
+    phantomPath = process.env.PHANTOM_PATH;
   } else {
-    var phantomPath = phantom.path;
+    phantomPath = phantom.path;
   }
 
   var defaultOptions = {
@@ -56,9 +58,6 @@ DEBUG = !!process.env.VELOCITY_DEBUG;
       next();
       return;
     }
-
-    console.log("PHANTOM PATH:");
-    console.log(phantomPath);
 
     phantomChild.spawn({
       command: phantomPath,

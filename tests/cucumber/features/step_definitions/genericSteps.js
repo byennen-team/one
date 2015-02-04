@@ -62,7 +62,7 @@ module.exports = function () {
   this.Given(/^I am unauthenticated$/, function (callback) {
     helper.world.browser.
       url(helper.world.cucumber.mirror.rootUrl + 'logout').
-      waitForExist('.login-button').
+      waitForExist('.login-button', 2000).
       call(callback);
   });
 
