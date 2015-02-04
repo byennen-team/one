@@ -78,12 +78,12 @@
         position: absolute;
         font-size: 30px;
         right: 0;
-        top: 0.2em;
+        top: 0.3em;
         color: @lt-blue-grey;
         .fa {
           position: absolute;
-          font-size: 15px;
-          top: 13px;
+          font-size: 16px;
+          top: 8px;
           left: 22px;
           color: @lt-blue-grey;
         }
@@ -91,20 +91,42 @@
           display: none;
         }
       }
-      .checkbox:before {
-        content: "\f10c";
-        font-family: FontAwesome;
+      .userid-checkbox:checked + .icon-plus {
+        top: 9px;
       }
-      .userid-checkbox:checked + .fa:before {
+      .userid-checkbox:checked + .icon-plus:before {
         content: "\f00c";
-        font-family: FontAwesome;
+        font-family: FontAwesome!important; 
         color: @lt-teal;
-
       }
-
     }
     .user:first-of-type {
       border-top: none;
     }
+  }
+  .modal-header {
+    .teamMembers {
+      text-align: center;
+      height: 60px;
+      transition: height 350ms ease-out 50ms;
+      .member-avatar {
+        display: inline-block;
+        margin: 5px;
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        background-position: top center;
+        background-size: cover;
+      }
+    }
+  }
+  .modal-footer {
+    padding: 0 0 1em;
+  }
+}
+
+#communication-add-teammember-modal {
+  .modal-title {
+    margin-top: 0;
   }
 }

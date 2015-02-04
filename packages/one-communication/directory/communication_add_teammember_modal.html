@@ -7,14 +7,14 @@
             <i class='fa icon-x' aria-hidden="true"></i>
             <span class="sr-only">Close</span>
           </button>
+          <div class="teamMembers">
+            {{#each teamMembers}}
+            <div class="member-avatar" style="background-image: url({{profile.photoUrl.thumb}});"></div>
+            {{/each}}
+          </div>
           <p class="modal-title raleway-semibold white text-uppercase spacing-250 m-left-05">Add Team Member</p>
         </div>
         <div class="modal-body">
-          <div class="teamMembers">
-            {{#each teamMembers}}
-              <img src="{{profile.photoUrl.thumb}}" class="profile-image img-circle" title="{{profile.firstName}} {{profile.lastName}}" />
-            {{/each}}
-          </div>
           <div class="form-group">
             <input id="modalAddMembersSearchInput" class="form-control" type="text" placeholder="Search directory" />
 
@@ -23,12 +23,13 @@
                 {{> teamMember}}
               {{/each}}
             </div>
+
+            {{#if isNewRoom}}
+              <input class="form-control" type="text" id="new-room-name" placeholder="Name your room" />
+            {{/if}}
           </div>
         </div>
         <div class="modal-footer">
-          {{#if isNewRoom}}
-            <input class="form-control" type="text" id="new-room-name" placeholder="Name your room" />
-          {{/if}}
           <button type="button" id="cancel-team-members" class="btn btn-default" data-dismiss="modal">Cancel</button>
           <button id='add-team-members' type="button" class="btn btn-primary">done</button>
         </div>
@@ -44,9 +45,9 @@
     </div>
     <div class="name">{{profile.firstName}} {{profile.lastName}}</div>
     <div class="job">{{profile.title}}</div>
-    <label class="checkbox">
+    <label class="checkbox icon-circle">
       <input type="checkbox" class="userid-checkbox" {{isChecked ../teamMembersArray}} value="{{_id}}" />
-      <i class="fa fa-plus"></i>
+      <i class="fa icon-plus"></i>
     </label>
   </div>
 </template>

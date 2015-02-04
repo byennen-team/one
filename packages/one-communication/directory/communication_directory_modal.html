@@ -26,11 +26,10 @@
 
           </div>
         </div>
-        <!-- These are not needed anymore. Checking a checkbox adds them to the team or removes them -->
-        <!-- <div class="modal-footer">
-          <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-          <button id='add-team-members' type="button" class="btn btn-primary">Add</button>
-        </div> -->
+        <div class="modal-footer">
+  <!--         <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button> -->
+          <button id='add-team-members' type="button" class="btn btn-primary" data-dismiss="modal">Invite</button>
+        </div>
       </form>
     </div>
   </div>
@@ -43,9 +42,9 @@
     </div>
     <div class="name">{{profile.firstName}} {{profile.lastName}}</div>
     <div class="job">{{profile.title}}</div>
-    <label class="checkbox">
+    <label class="checkbox icon-circle">
       <input type="checkbox" class="userid-checkbox" {{isChecked this}} value="{{_id}}" />
-      <i class="fa fa-plus"></i>
+      <i class="fa icon-plus"></i>
     </label>
   </div>
 </template>
