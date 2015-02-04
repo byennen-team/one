@@ -94,6 +94,7 @@ slideRightBetween = [Routes.DASHBOARD,
                      Routes.MY_DOCUMENTS,
                      Routes.COMPANY_DOCUMENTS,
                      Routes.ACCOUNT_SETTINGS,
+                     Routes.PROFILE,
                      Routes.SUPPORT,
                      Routes.MESSAGES #TODO: remove messages
                     ]
