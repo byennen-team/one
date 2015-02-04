@@ -1,48 +1,50 @@
 <template name="directory">
-  <h1 class="header-green">Directory</h1>
-  <div class="container">
-    <div class="row hidden-xs">
-      <div class="col-sm-12">
-        <ul class="alphabet">
-          {{#each alphabetLetters}}
-            <li><a href="/directory/{{this}}">{{this}}</a></li>
-          {{/each}}
-        </ul>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-sm-12">
-        <table class="table table-striped">
-          <thead>
-            <tr>
-              <th></th>
-              <th>First Name</th>
-              <th>Last Name</th>
-              <th>Title</th>
-              <th>Status</th>
-              <th></th>
-              <th></th>
-            </tr>
-          </thead>
-          <tbody>
-            {{#each users}}
-              <tr class="user">
-                <td><img src="{{profile.photoUrl.thumb}}" class="profile-image img-circle"/></td>
-                <td>{{profile.firstName}}</td>
-                <td>{{profile.lastName}}</td>
-                <td>{{profile.title}}</td>
-                <td>{{profile.status}}</td>
-                <td><i class="fa fa-lg fa-comment"></i></td>
-                <td><i class="fa fa-lg fa-info-circle"></i></td>
-              </tr>
+  <div class="transitioner-container">
+    <h1 class="header-green">Directory</h1>
+    <div class="container">
+      <div class="row hidden-xs">
+        <div class="col-sm-12">
+          <ul class="alphabet">
+            {{#each alphabetLetters}}
+              <li><a href="/directory/{{this}}">{{this}}</a></li>
             {{/each}}
-          </tbody>
-        </table>
+          </ul>
+        </div>
       </div>
-    </div>
-    <div class="row">
-      <div class="col-sm-12 text-center">
-        <a href="#" class="load-more"><i class="fa fa-lg fa-refresh"></i> Load More</a>
+      <div class="row">
+        <div class="col-sm-12">
+          <table class="table table-striped">
+            <thead>
+              <tr>
+                <th></th>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Title</th>
+                <th>Status</th>
+                <th></th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody>
+              {{#each users}}
+                <tr class="user">
+                  <td><img src="{{profile.photoUrl.thumb}}" class="profile-image img-circle"/></td>
+                  <td>{{profile.firstName}}</td>
+                  <td>{{profile.lastName}}</td>
+                  <td>{{profile.title}}</td>
+                  <td>{{profile.status}}</td>
+                  <td><i class="fa fa-lg fa-comment"></i></td>
+                  <td><i class="fa fa-lg fa-info-circle"></i></td>
+                </tr>
+              {{/each}}
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm-12 text-center">
+          <a href="#" class="load-more"><i class="fa fa-lg fa-refresh"></i> Load More</a>
+        </div>
       </div>
     </div>
   </div>
