@@ -85,9 +85,9 @@ var qFetchResizeAndUpload = function(user){
   });
   //
   Meteor._powerQ.add(function(done) {
-      var largeUrlRaw = 'user/'+user.profile.id+
+      var largeUrlRaw = '/user/'+user.profile.id+
         '/profile-images/full_'+user.profile.id+_ext;
-      var thumbUrlRaw = 'user/'+user.profile.id+
+      var thumbUrlRaw = '/user/'+user.profile.id+
         '/profile-images/thumb_'+user.profile.id+_ext;
       var thumbSigned = FileTools.signedGet(thumbUrlRaw);
       var largeSigned = FileTools.signedGet(largeUrlRaw);
