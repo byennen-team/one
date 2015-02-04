@@ -1,7 +1,10 @@
 // TODO folders
 
 var updateProgress = function (fileRow, progress) {
-  if (!fileRow) return;
+  if (!fileRow) {
+    throw new Meteor.Error('fileRow undefined');
+    return;
+  }
   var element = fileRow.find('.progress');
 
   if (progress < 100) {
