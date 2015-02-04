@@ -38,7 +38,7 @@ module.exports = function () {
 
   this.Then(/^I should be logged in$/, function (callback) {
     helper.world.browser.
-      waitForExist('.current-user', 5000).
+      waitForExist('.current-user', 7000).
       saveScreenshot(process.env.PWD + '/auth1.png').
       click('.menu-link').
       waitForVisible('.current-user').
