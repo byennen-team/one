@@ -1,5 +1,5 @@
 
-slideRight = 
+slideRight =
   in: (node, next) ->
     $node = $(node)
     $.Velocity.hook($node, "translateX", "100%");
@@ -14,10 +14,10 @@ slideRight =
       duration: 500
       easing: 'ease-in-out'
       queue: false
-      complete: -> 
+      complete: ->
         $node.remove()
 
-slideLeft = 
+slideLeft =
   in: (node, next) ->
     $node = $(node)
     $.Velocity.hook($node, "translateX", "-100%");
@@ -32,10 +32,10 @@ slideLeft =
       duration: 500
       easing: 'ease-in-out'
       queue: false
-      complete: -> 
+      complete: ->
         $node.remove()
 
-slideUp = 
+slideUp =
   in: (node, next) ->
     $node = $(node)
     $.Velocity.hook($node, "translateY", "100%");
@@ -50,10 +50,10 @@ slideUp =
       duration: 500
       easing: 'ease-in-out'
       queue: false
-      complete: -> 
+      complete: ->
         $node.remove()
 
-slideDown = 
+slideDown =
   in: (node, next) ->
     $node = $(node)
     $.Velocity.hook($node, "translateY", "-100%");
@@ -68,11 +68,11 @@ slideDown =
       duration: 500
       easing: 'ease-in-out'
       queue: false
-      complete: -> 
+      complete: ->
         $node.remove()
 
 
-fade = 
+fade =
   in: 'transition.fadeIn'
   out: 'transition.fadeOut'
 
@@ -88,7 +88,15 @@ Transitioner.transition
   velocityAnimaton: fade
 
 
-slideRightBetween = [Routes.DASHBOARD, Routes.DIRECTORY, Routes.APPS]
+slideRightBetween = [Routes.DASHBOARD,
+                     Routes.DIRECTORY,
+                     Routes.APPS,
+                     Routes.MY_DOCUMENTS,
+                     Routes.COMPANY_DOCUMENTS,
+                     Routes.ACCOUNT_SETTINGS,
+                     Routes.SUPPORT,
+                     Routes.MESSAGES #TODO: remove messages
+                    ]
 
 for route in slideRightBetween
   others = _.without slideRightBetween, route

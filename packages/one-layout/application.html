@@ -1,34 +1,22 @@
 <template name="application">
-  {{#transitioner}} <!-- transition from login to layout -->
+  {{#transitioner}}
     {{#if loginLayout}}
       {{> yield}}
     {{else}}
-
       {{#if currentUser}}
         {{> leftNav}}
       {{/if}}
-
-      {{#if isPublic}}
-        <div class="wrap push">
-          {{#if currentUser}}
+      <div class="wrap push">
+        {{#if currentUser}}
+          {{#if isPublic}}
             {{> navbar}}
+            <div class="pusher"></div>
           {{/if}}
-          <div class="pusher"></div>
-          {{#transitioner}}
-            <div class="transitioner-container">
-              {{> yield}}
-            </div>
-          {{/transitioner}}
-        </div>
-      {{else}}
-        <div class="wrap">
-          {{#transitioner}}
-            <div class="transitioner-container">
-              {{> yield}}
-            </div>
-          {{/transitioner}}
-        </div>
-      {{/if}}
+        {{/if}}
+        {{#transitioner}}
+          {{> yield}}
+        {{/transitioner}}
+      </div>
     {{/if}}
   {{/transitioner}}
 </template>
