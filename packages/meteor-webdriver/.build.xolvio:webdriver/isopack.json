@@ -1,0 +1,25 @@
+{
+  "isopack-1": {
+    "name": "xolvio:webdriver",
+    "summary": "Webdriver for Velocity",
+    "version": "0.0.1+a9671fac326f6a34f4b3b0ce2c58061bc95f2d2c",
+    "earliestCompatibleVersion": "0.0.0",
+    "isTest": false,
+    "builds": [
+      {
+        "arch": "os",
+        "path": "os.json"
+      },
+      {
+        "arch": "web.browser",
+        "path": "web.browser.json"
+      },
+      {
+        "arch": "web.cordova",
+        "path": "web.cordova.json"
+      }
+    ],
+    "plugins": [],
+    "debugOnly": true
+  }
+}
