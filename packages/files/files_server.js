@@ -16,9 +16,10 @@ Files.allow({
  * a public readable file in our S3 bucket.
  * @returns {{accessKey: *, policy: string, signature: *}}
  */
-FileTools.signUpload = function (filePath, acl, mimeType) {
-  var bucket = Meteor.settings.AWS_BUCKET;
-  console.log('signupload bucket:', bucket);
+FileTools.signUpload = function (filePath, acl, mimeType, optBucket) {
+  console.log('signupload bucket:', filePath, ' \n', acl, '\n', optBucket);
+  var bucket = Meteor.settings.AWS_BUCKET_RAW;
+  console.log('bucket: ', bucket);
   var policy = {
     // expire in 5 minutes
     expiration: new Date(new Date().getTime() + 1000 * 60 * 5).toISOString(),

@@ -15,7 +15,7 @@ Template.login.events({
     var agentEmail = template.find('#agentEmail').value;
     agentId = parseInt(agentId);
     Meteor.loginWithElliman(agentId, agentEmail, function (error) {
-      // console.log('error', error); return;
+      console.assert(!error, 'error', error); return;
       //TODO: better error messages. Maybe setup flash notications.
       if (error) {
         template.error.set(error.error);
