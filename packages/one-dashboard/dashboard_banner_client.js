@@ -106,36 +106,45 @@ Template.dashboardBanner.helpers({
 
 Template.dashboardBanner.events({
   // Opens the com_hub when an avatar is clicked on
-  'click .avatar-box': function() {
-// TODO: need to open a direct message conversation with the Agent clicked on
-    // expands the main dialog box t0 60% of full screen - task bar open
-    $('#sidebar-scroll-target').velocity("scroll",600);
-    $.Velocity.hook($('#communication-main'), "width", "100%");
-    $.Velocity.hook($('#communication-message-board'), "width", "60%");
-    $.Velocity.hook($('#communication-task-board'), "width", "0");
-    $.Velocity.hook($('#communication-library-board'), "width", "15.5%");
-    // force scrollbar on sidebar
-    var currentHeight = $(window).height();
-    $('.communication-sidebar-sleeve').css({
-      'height': currentHeight - 130 + 'px',
-      'position': 'fixed',
-      'top': '120px',
-      'width': '24%'
-    });
-    // lock scroll position, but retain settings for later
-    var scrollPosition = [
-      window.pageXOffset ||
-      document.documentElement.scrollLeft ||
-      document.body.scrollLeft,
-      window.pageYOffset ||
-      document.documentElement.scrollTop ||
-      document.body.scrollTop
-    ];
-    var body = $('body');
-    body.data('scroll-position', scrollPosition);
-    body.data('previous-overflow', body.css('overflow'));
-    body.css('overflow', 'hidden');
-    window.scrollTo(scrollPosition[0], scrollPosition[1]);
+  'click .avatar-box': function(event) {
+    var id = $(event.currentTarget).data("id");
+    if (id) {
+      RoomsController.createOrGetDMRoom(id, function(e,r) {
+        if (! e) {
+          Session.set('openRoomId',r);
+          // TODO: need to open a direct message conversation with the Agent clicked on
+          // expands the main dialog box t0 60% of full screen - task bar open
+          $('#sidebar-scroll-target').velocity("scroll",600);
+          $.Velocity.hook($('#communication-main'), "width", "100%");
+          $.Velocity.hook($('#communication-message-board'), "width", "60%");
+          $.Velocity.hook($('#communication-task-board'), "width", "0");
+          $.Velocity.hook($('#communication-library-board'), "width", "15.5%");
+          // force scrollbar on sidebar
+          var currentHeight = $(window).height();
+          $('.communication-sidebar-sleeve').css({
+            'height': currentHeight - 130 + 'px',
+            'position': 'fixed',
+            'top': '120px',
+            'width': '24%'
+          });
+          // lock scroll position, but retain settings for later
+          var scrollPosition = [
+            window.pageXOffset ||
+            document.documentElement.scrollLeft ||
+            document.body.scrollLeft,
+            window.pageYOffset ||
+            document.documentElement.scrollTop ||
+            document.body.scrollTop
+          ];
+          var body = $('body');
+          body.data('scroll-position', scrollPosition);
+          body.data('previous-overflow', body.css('overflow'));
+          body.css('overflow', 'hidden');
+          window.scrollTo(scrollPosition[0], scrollPosition[1]);
+        }
+      })
+    }
+
   },
 
   'click .event': function (event) { // these events are different

@@ -127,6 +127,26 @@ RoomsController.updateTimestamp = function(roomId) {
   });
 };
 
+RoomsController.createOrGetDMRoom = function(userId, callback) {
+  var ifRoomExists = Rooms.findOne({
+      roomType: 'dm',
+      $and: [
+        {'participants.participantId': Meteor.userId()},
+        {'participants.participantId': userId}
+      ]
+    });
+
+  if (ifRoomExists) {
+    callback(null, ifRoomExists._id);
+    return;
+  }
+
+  Meteor.call('createDMRoom', userId, function(e, r) {
+    if(callback)
+      callback(e,r);
+    });
+};
+
 RoomsController.adjustParticipantsInRoom = function(
   roomId, participantsArray
   ) {
