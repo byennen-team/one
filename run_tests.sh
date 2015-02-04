@@ -1,4 +1,4 @@
 #!/bin//bash
 
 jshint .
-meteor run --test --once --settings settings.staging.json
+meteor run --test --once --settings settings.development.json
