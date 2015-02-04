@@ -21,6 +21,15 @@
 <template name="communicationMessageBoardSleeve">
 	<div id='communication-message-board-sleeve' class="sleeve">
 	<div>
+		
+	{{#if roomChannel}}
+		{{> welcomeRoom}}
+	{{else}}
+		{{#if taskChannel}}
+			{{> welcomeTask}}
+		{{/if}}
+	{{/if}}
+
 	{{#each messages}}
 		{{#if isFirstUnread ../_id}}
 			{{> newBar}}
