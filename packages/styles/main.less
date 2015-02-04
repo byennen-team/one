@@ -1,8 +1,6 @@
 // Variables
 @import "/packages/styles/variables.import.less";
 
-
-
 .raleway-bold {
   font-family: @raleway-bold;
 }
@@ -22,10 +20,11 @@
   font-family: @raleway-extralight;
 }
 
-body, html, .wrap, .content {
+body, html, .wrap {
   height: 100%;
   width: 100%;
-  overflow: hidden;
+  position: relative;
+  overflow-y: auto;
 }
 
 body {
@@ -33,7 +32,10 @@ body {
   font-family: 'Raleway', sans-serif;
 }
 
-.wrap {
+.transitioner {
+  height: 100%;
+  width: 100%;
+  overflow: auto;
   position: relative;
 }
 
