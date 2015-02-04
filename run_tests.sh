@@ -1,4 +1,4 @@
 #!/bin//bash
 
 jshint .
-meteor run --test --once --settings settings.development.json
+VELOCITY_DEBUG=1 meteor run --test --once --settings settings.staging.json
