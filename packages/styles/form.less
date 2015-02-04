@@ -1,6 +1,8 @@
 // Variables 
 @import "/packages/styles/variables.import.less";
 
+// TODO: Refactor this so it can come out of .profile wrapper. Will need to 
+//    address profile LESS
 .profile {
   
    .form-control {
@@ -49,4 +51,18 @@
       color: #65809b;
       background-color: transparent;
     }
+}
+
+// Modify bootstrap's blue glow on input focus. 
+input[type=text],
+textarea {
+  -webkit-transition: all 0.3s ease-in-out;
+  -moz-transition: all 0.3s ease-in-out;
+  -ms-transition: all 0.3s ease-in-out;
+  -o-transition: all 0.3s ease-in-out;
+}
+input[type=text]:focus,
+textarea:focus {
+  box-shadow: 0 0 1px #5bb8d7;
+  outline: none;
 }

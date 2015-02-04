@@ -1,36 +1,15 @@
 Template.documentRow.events({
 
-// Jonas, we need to combine these two functions. I was targeting the checkbox
-//  and changing the background color on .document-file-row click, but I didn't 
-//  realize you weren't using the checkbox.
-  // Original function - uses visible checkbox
-  'click [data-action="select"]': function (event) {
+  'click [data-action="toggle-checkbox"]': function (event) {
     event.preventDefault(); // Don't select the checkbox automatically
-
-    var newSelectedDocument = Blaze.getData(event.target);
-    var newSelectedDocumentId = newSelectedDocument._id;
-    var selectedDocuments = Session.get('selectedDocuments') || [];
-
-    if (_.contains(selectedDocuments, newSelectedDocumentId)) {
-      selectedDocuments = _.without(selectedDocuments, newSelectedDocumentId);
-    } else {
-      selectedDocuments.push(newSelectedDocumentId);
-    }
-
-    Session.set('selectedDocuments', selectedDocuments);
+    var toggledDocument = Blaze.getData(event.target);
+    toggleSelection(toggledDocument);
   },
 
   //  Selects hidden checkbox when div is clicked
-  'click .document-file-row': function ( event ) {
-    var $this = $( event.currentTarget );
-    var $checkbox = $this.find( '.document-row-checkbox' );
-    if( $checkbox.is( ':checked' ) ){ // if row was selected, turn it off
-      $checkbox.prop( 'checked', false );
-      $this.removeClass( 'selected' );
-    }else {
-      $checkbox.prop( 'checked', true );
-      $this.addClass( 'selected' );
-    }
+  'click [data-action="toggle-row"]': function (event) {
+    var toggledDocument = Blaze.getData(event.target);
+    toggleSelection(toggledDocument);
   },
 
   'click [data-action="favorite"]': function (event) {
@@ -39,11 +18,18 @@ Template.documentRow.events({
     var file = Blaze.getData(checkbox);
     Meteor.call('favoriteDocument', file._id, checkbox.checked);
   },
+
+  'click [data-action="more"]': function (event) {
+    event.stopPropagation(); // Don't toggle the document selection
+    $(event.target).dropdown('toggle');
+  },
+
   'click .print': function (event) {
     event.preventDefault();
     var file = window.open(event.target.getAttribute("href"));
     file.print();
   },
+
   'click .download': function (event) {
     event.preventDefault();
     var a = $('<a target="_blank">')
@@ -53,26 +39,33 @@ Template.documentRow.events({
     a[0].click();
     a.remove();
   },
-  'click .share-document': function (event) {
-    Session.set('sharedDocumentUrl');
 
-    var file = Blaze.getData(event.target);
-    Meteor.call('sharedDocumentUrl', file._id, function (error, result) {
-      Session.set('sharedDocumentUrl', result);
-    });
+  'click [data-action="share-document"]': function (event) {
+    var document = Blaze.getData(event.target);
+    updateSharedDocumentUrl(document);
+    Modal.show('shareDocumentModal');
   },
+
   'click .rename-document': function (event) {
-    var file = Blaze.getData(event.target);
-    Session.set('selectedFileId', file._id);
+    var document = Blaze.getData(event.target);
+    Session.set('selectedFileId', document._id);
   },
+
   'click .remove': function (event) {
     event.preventDefault();
-    var file = Blaze.getData(event.target);
-    Meteor.call('archiveDocument',file._id, true, function(error) {
+    var document = Blaze.getData(event.target);
+    Meteor.call('archiveDocument',document._id, true, function(error) {
       if (error)
-        alert ("could not delete file");
+        alert("could not delete document");
     });
   },
+
+  'click [data-action="email-document"]': function (event) {
+    var document = Blaze.getData(event.target);
+    updateSharedDocumentUrl(document);
+    Modal.show('emailDocumentModal');
+  },
+
   'mouseover td.name': function () {
     // TODO: Lance finish front end
     console.log('hover');
@@ -80,6 +73,29 @@ Template.documentRow.events({
   }
 
 });
+
+function toggleSelection(document) {
+  var documentId = document._id;
+  var selectedDocuments = Session.get('selectedDocuments') || [];
+
+  if (_.contains(selectedDocuments, documentId)) {
+    selectedDocuments = _.without(selectedDocuments, documentId);
+  } else {
+    selectedDocuments.push(documentId);
+  }
+
+  Session.set('selectedDocuments', selectedDocuments);
+}
+
+function updateSharedDocumentUrl(document) {
+  Session.set('sharedDocumentUrl');
+
+  Meteor.call(
+    'sharedDocumentUrl', document._id, function (error, result) {
+      Session.set('sharedDocumentUrl', result);
+    }
+  );
+}
 
 Template.documentRow.helpers({
   isSelected: function (file) {
