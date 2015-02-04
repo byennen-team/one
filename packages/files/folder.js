@@ -11,8 +11,8 @@ Folder.profilePicture = function (userId) {
 };
 
 Folder.galleryPicture = function (userId, gallery) {
-  var g = gallery || 'uploads';
-  return 'user/' + userId + '/'+ g;
+  var gallery = gallery || 'uploads';
+  return 'user/' + userId + '/'+ gallery;
 };
 
 Folder.coverPicture = function (userId) {
