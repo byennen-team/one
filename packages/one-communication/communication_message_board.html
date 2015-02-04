@@ -22,13 +22,7 @@
 	<div id='communication-message-board-sleeve' class="sleeve">
 	<div>
 		
-	{{#if roomChannel}}
-		{{> welcomeRoom}}
-	{{else}}
-		{{#if taskChannel}}
-			{{> welcomeTask}}
-		{{/if}}
-	{{/if}}
+	{{> welcomeRoom}}
 
 	{{#each messages}}
 		{{#if isFirstUnread ../_id}}

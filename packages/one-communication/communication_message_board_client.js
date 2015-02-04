@@ -28,8 +28,11 @@ Template.communicationMessageBoardSleeve.rendered = function() {
 };
 
 Template.messageBoard.helpers({
+  // room: function() {
+  //   return Rooms.findOne(Session.get('openRoomId'));
+  // }
   room: function() {
-    return Rooms.findOne(Session.get('openRoomId'));
+    return true;
   }
 });
 
@@ -67,6 +70,14 @@ Template.communicationMessageBoardSleeve.helpers({
       limit: 1
     });
     return (latestUnreadMessage && latestUnreadMessage._id === this._id);
+  },
+// TODO: returns true if current channel is a room
+  roomChannel: function () {
+    return true;
+  },
+// TODO: returns true if current channel is a task
+  taskChannel: function () {
+    return false;
   }
 });
 
