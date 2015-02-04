@@ -39,8 +39,12 @@ Meteor.methods({
               "content": senderName
             },
             {
-              "phone": "PHONE",
+              "name": "PHONE",
               "content": phone
+            },
+            {
+              "name": "TEXT",
+              "content": message
             }
           ]
         }]

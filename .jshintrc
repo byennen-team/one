@@ -151,6 +151,8 @@
     "Search": false,
     "Routes": false,
     "Settings": false,
-    "User": false
+    "User": false,
+    "SharedDocument": false,
+    "SharedDocuments": false
   }
 }

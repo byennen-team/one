@@ -1,3 +1,8 @@
+/**
+ * This templace should be invoked with data that contains:
+ * {document: <DOCUMENT>}
+ */
+
 // TODO: replace this with something useful.
 // function copyToClipboard(text) {
 //   window.prompt("Copy to clipboard: Ctrl+C, Enter", text);
@@ -38,6 +43,27 @@ Template.shareDocumentModal.events({
   //   console.log(url);
   //   document.execCommand('copy', url );
   // },
+
+  'submit form': function (event, templateInstance) {
+    event.preventDefault(); // Don't do the default form submit
+
+    var receiverEmail = templateInstance.$('input[name="receiver"]').val();
+    var receiver = {
+      email: receiverEmail
+    };
+    Meteor.call(
+      'shareDocuments',
+      [templateInstance.data.document._id],
+      receiver,
+      function (error) {
+        if (error) {
+          console.error(error);
+        } else {
+          Modal.hide();
+        }
+      }
+    );
+  },
 
   'click .display-link': function (event) {
     var displayLink = event.currentTarget;

@@ -1,14 +1,23 @@
-/* globals SharedDocuments: true, SharedDocument: true */
-
-SharedDocuments = new Meteor.Collection('sharedDocuments', {
-  transform: function (data) {
-    return new SharedDocument(data);
-  }
-});
+/* globals
+   SharedDocument: true,
+   SecureRandomToken: false
+*/
 
 SharedDocument = function (data) {
   _.extend(this, data);
 };
+
+_.extend(SharedDocument.prototype, {
+
+  getShareUrl: function () {
+    var path = 'documents/shared/' +
+      this.sharedDocumentId + '/' +
+      this.accessToken;
+
+    return Meteor.absoluteUrl(path);
+  }
+
+});
 
 SharedDocument.schema = new SimpleSchema({
   sharedDocumentId: {
@@ -36,6 +45,10 @@ SharedDocument.schema = new SimpleSchema({
   },
   accessToken: {
     type: String,
-    optional: true
+    autoValue: function () {
+      if (!this.isSet) {
+        return SecureRandomToken.generate();
+      }
+    }
   }
 });

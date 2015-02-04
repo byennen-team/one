@@ -38,7 +38,7 @@ Template.documentRow.events({
   'click [data-action="share-document"]': function (event) {
     var document = Blaze.getData(event.target);
     updateSharedDocumentUrl(document);
-    Modal.show('shareDocumentModal');
+    Modal.show('shareDocumentModal', {document: document});
   },
 
   'click .rename-document': function (event) {
@@ -76,6 +76,17 @@ function toggleSelection(document) {
   if (_.contains(selectedDocuments, documentId)) {
     selectedDocuments = _.without(selectedDocuments, documentId);
   } else {
+    selectedDocuments.push(documentId);
+  }
+
+  Session.set('selectedDocuments', selectedDocuments);
+}
+
+function selectDocument(document) {
+  var documentId = document._id;
+  var selectedDocuments = Session.get('selectedDocuments') || [];
+
+  if (!_.contains(selectedDocuments, documentId)) {
     selectedDocuments.push(documentId);
   }
 
