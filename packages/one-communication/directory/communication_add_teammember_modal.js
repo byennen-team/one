@@ -135,3 +135,19 @@ Template.teamMember.helpers({
       return 'checked';
   }
 });
+
+Template.teamMember.events({
+  // adds class on mousenter if checkbox is checked
+  'mouseenter .checkbox': function ( event ) {
+    var $this = $( event.currentTarget );
+    var $input = $this.find( '.userid-checkbox' );
+    if( $input.is( ":checked" ) ){
+      $this.addClass( 'hovered' );
+    }
+  },
+  // removes class on mouseleave
+  'mouseleave .checkbox': function ( event ) {
+    var $this = $( event.currentTarget );
+    $this.removeClass( 'hovered' );
+  }
+});
