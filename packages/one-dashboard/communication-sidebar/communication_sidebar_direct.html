@@ -19,7 +19,11 @@
 <!-- TODO: Add dynamic list of direct message conversations here -->
 <!-- TODO: clicking on the names needs to bring up the conversation -->
 					{{#each rooms}}
-						<li class='room {{selectedClass}}' data-id="{{_id}}">{{partner.profile.firstName}} {{partner.profile.lastName}}<span class='unread-num'>{{unreadMessages}}</span></li>
+						<li class='room {{selectedClass}}' data-id="{{_id}}">{{partner.profile.firstName}} {{partner.profile.lastName}}
+							{{#if unreadMessages}}
+								<span class='unread-num'>{{unreadMessages}}</span>
+							{{/if}}
+						</li>
 					{{/each}}
 
 					<li class="add"><i class="fa fa-lg icon-addteam" data-toggle="modal" data-target="#communication-directory-modal"></i></li>

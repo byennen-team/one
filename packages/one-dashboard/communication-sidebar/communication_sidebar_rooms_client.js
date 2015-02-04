@@ -24,6 +24,7 @@ Template.communicationSidebarRoomsFill.helpers({
     });
   },
   unreadMessages: function() {
-    return RoomsController.getUnreadMessagesCount(this._id);
+    var roomCount = RoomsController.getUnreadMessagesCount(this._id);
+    return (roomCount > 0) ? roomCount : false;
   }
 });

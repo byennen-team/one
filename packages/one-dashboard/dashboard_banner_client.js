@@ -101,6 +101,21 @@ Template.dashboardBanner.helpers({
     } else {
       return "inactive";
     }
+  },
+  unreadMessages: function() {
+    //getting dm room if it exists
+    var dm = Rooms.findOne({
+      roomType: 'dm',
+      $and: [
+      { 'participants.participantId': this._id },
+      { 'participants.participantId': Meteor.userId() }
+      ]
+    });
+
+    if(dm)
+      return RoomsController.getUnreadMessagesCount(dm._id);
+    else
+      return false;
   }
 });
 

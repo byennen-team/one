@@ -105,9 +105,6 @@ Template.communicationAddTeammemberModal.events({
     });
 
     //trick to rerun subscription
-    var currentRoomId = Session.get('openRoomId');
-    Session.set('openRoomId', null);
-    Session.set('openRoomId', currentRoomId);
 
     $("#communication-add-teammember-modal").hide();
 

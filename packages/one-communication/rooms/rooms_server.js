@@ -67,14 +67,38 @@ Meteor.publish('room', function (roomId) {
   }
 });
 
-Meteor.publish('rooms', function() {
-  if(this.userId)
-    return Rooms.find({
-      'participants.participantId': this.userId
-    });
-  else
-    this.ready();
+Meteor.publishComposite('rooms', function() {
+  var self = this;
+  return {
+    find: function() {
+      if(! this.userId)
+        return;
 
+      return Rooms.find({
+        'participants.participantId': self.userId
+      });
+    },
+    children: [
+      {
+        find: function(room) {
+          if(room && room.roomType && room.roomType === 'dm') {
+            var otherParticipant = _.find(room.participants,
+              function(item) {
+                return item.participantId !== self.userId;
+              });
+
+            if (otherParticipant) {
+              return Meteor.users.find(otherParticipant.participantId);
+              } else {
+                return;
+              }
+          } else {
+            return;
+          }
+        }
+      }
+    ]
+  }
 });
 Meteor.methods({
   createRoom: function(context) {
