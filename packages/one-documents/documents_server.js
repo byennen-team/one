@@ -97,7 +97,6 @@ Meteor.methods({
     validateFolderId(user, parentFolderId);
 
     var filePath = Folder.userDocument(user._id) + '/' + fileName;
-
     var fileId = Files.insert({
       companyDocument: false,
       name: fileName,

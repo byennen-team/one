@@ -7,11 +7,12 @@ Folder.companyDocument = function (companyName) {
 };
 
 Folder.profilePicture = function (userId) {
-  return 'user/' + userId;
+  return 'user/' + userId +'/profile';
 };
 
-Folder.galleryPicture = function (userId) {
-  return 'user/' + userId + '/galleries';
+Folder.galleryPicture = function (userId, gallery) {
+  gallery = gallery || 'uploads';
+  return 'user/' + userId + '/'+ gallery;
 };
 
 Folder.coverPicture = function (userId) {
