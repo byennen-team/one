@@ -43,7 +43,7 @@ Template.communicationMessageBoardSleeve.helpers({
     return (this.messageType === 'message' || ! this.messageType);
   },
   isPostMessage: function() {
-    return (this.messageType === 'post' || ! this.messageType);
+    return (this.messageType === 'post');
   },
   isFirstUnread: function(roomId) {
     var room = Rooms.findOne(roomId);
