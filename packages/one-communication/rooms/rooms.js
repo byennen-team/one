@@ -13,17 +13,14 @@ Rooms.simpleSchema = new SimpleSchema({
   participants: { type: participantsSchema },
   dateCreated: { type: Date },
   roomType: { type: String, optional: true},
-  roomStatus: { type: String, defaultValue: 'private'}
+  roomStatus: { type: String, defaultValue: 'private'},
+  officeNo: { type: Number, optional: true }
 });
 
 RoomsController = {};
 
-RoomsController.createRoom = function(participants, roomType, roomName) {
-  Meteor.call('createRoom', {
-    participants: participants,
-    roomType: roomType,
-    roomName: roomName
-  }, function(e,r) {
+RoomsController.createRoom = function(context) {
+  Meteor.call('createRoom', context, function(e,r) {
     if (e)
       console.log(e);
 

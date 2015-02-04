@@ -89,7 +89,11 @@ Template.communicationAddTeammemberModal.events({
     });
 
     if(Session.get('teamModalPurpose') === 'newTeam') {
-      RoomsController.createRoom(participants, 'room', roomName);
+      RoomsController.createRoom({
+        participants: participants,
+        roomType: 'room',
+        roomName: roomName
+      });
     } else {
       RoomsController.adjustParticipantsInRoom(
         Session.get('openRoomId'), newRoomMembers

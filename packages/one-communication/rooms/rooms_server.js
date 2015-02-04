@@ -1,5 +1,71 @@
 /* globals Rooms: true, Messages: true */
 
+Meteor.startup(function() {
+  //checking if rooms are created for general and for offices
+  //if not we create them
+
+  var companyChannels = ['General', 'News', 'Events', 'Training'];
+  var officeChannels = ['General', 'Water Cooler', 'Listings', 'Open Houses'];
+
+  //placeholder until we get the real office names
+  var officeNames = [
+    '233 Opera Road',
+    '122 Kansas City',
+    '321 Road Street',
+    '143 Blocked Road',
+    '45 Hempshey St.',
+    '33 Office Road',
+    '99 NY',
+    '18 Venice St.',
+    '575 Madisson'
+  ];
+
+
+  _.each(companyChannels, function(item) {
+    var room = Rooms.findOne({
+      roomName: item,
+      roomType: 'company'
+    });
+
+    if(room)
+      return;
+
+    var context = {
+      participants: [],
+      roomType: 'company',
+      roomName: item,
+      roomStatus: 'public'
+    };
+
+    RoomsController.createRoom(context);
+
+    });
+
+  _.each(officeNames, function(item, index) {
+    _.each(officeChannels, function(channel) {
+      var room = Rooms.findOne({
+        roomName: channel,
+        roomType: 'office',
+        officeNo: index + 1
+      });
+
+      if(room)
+        return;
+
+      var context = {
+        participants: [],
+        roomType: 'office',
+        roomName: channel,
+        roomStatus: 'public',
+        officeNo: index + 1
+      };
+
+      RoomsController.createRoom(context);
+      })
+    });
+
+});
+
 Meteor.publishComposite('roomData', function(roomId) {
   check(roomId, String);
   return {
@@ -74,8 +140,20 @@ Meteor.publishComposite('rooms', function() {
       if(! this.userId)
         return;
 
+      var user = Meteor.users.findOne(self.userId);
+
       return Rooms.find({
-        'participants.participantId': self.userId
+        $or: [
+            { 'participants.participantId': self.userId },
+            { roomType: 'company' },
+            {
+              $and: [
+                { roomType: 'office' },
+                { officeNo: user.profile.officeId }
+                ]
+            }
+            ]
+
       });
     },
     children: [
@@ -106,20 +184,26 @@ Meteor.methods({
       participants: [Object],
       roomType: Match.Optional(String),
       roomName: Match.Optional(String),
-      roomStatus: Match.Optional(String)
+      roomStatus: Match.Optional(String),
+      officeNo: Match.Optional(Number)
     });
 
-    if(! this.userId)
-      throw new Meteor.Error(401, "You are not logged in!");
+    // if(! this.userId)
+    //   throw new Meteor.Error(401, "You are not logged in!");
 
-    if(context.roomType &&
-        context.roomType === 'office' &&
-        this.userId) //TODO: check if admin
-      throw new Meteor.Error(403,
-        "You are not allowed to create Office channels!");
+    // if(context.roomType &&
+    //     context.roomType === 'office' &&
+    //     this.userId) //TODO: check if admin
+    //   throw new Meteor.Error(403,
+    //     "You are not allowed to create Office channels!");
 
     context.dateCreated = new Date();
-    context.ownerId = this.userId;
+
+    if(this.userId)
+      context.ownerId = this.userId;
+    else
+      context.ownerId = 'public-room';
+
     Rooms.insert(context, function(e,r) {
       return(e,r);
     });
@@ -344,7 +428,8 @@ Meteor.methods({
         return (item.participantId === userId);
       });
 
-    if (! currentParticipant)
+    if (! currentParticipant && room.roomType !== 'office' &&
+      room.roomType !== 'company')
       throw new Meteor.Error(403, 'You are not in this room.');
 
     Rooms.update({

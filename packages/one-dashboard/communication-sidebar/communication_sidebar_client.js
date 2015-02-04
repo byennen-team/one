@@ -40,13 +40,14 @@ Template.communicationSidebar.events({
 
 	// Scroll to top when communication sidebar is clicked, to appear full screen
 	'click #communication-sidebar-options': function(){
-  // TODO: Scroll has stopped working. click event is firing.  
+  // TODO: Scroll has stopped working. click event is firing.
     $( '#sidebar-scroll-target' ).velocity( "scroll", 600 );
 		// $('#main-wrap').addClass('blurry');
 	},
 
 	// Opens the Communication Hub
-	'click .channel': function(){
+	'click .channel': function(event){
+    Session.set('openRoomId', $(event.currentTarget).data('id'));
 		// expands the main dialog box to 80% of full screen
 		$.Velocity.hook($('#communication-main'), "width", "100%");
 		$.Velocity.hook($('#communication-message-board'), "width", "60%");

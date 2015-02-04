@@ -11,7 +11,7 @@ Template.communicationSidebarRooms.rendered = function(){
 };
 
 Template.communicationSidebarRooms.created = function() {
-  Session.set('roomOpenId', false);
+  Session.set('roomOpenId', null);
   Tracker.autorun(function() {
     Meteor.subscribe('room', Session.get('roomOpenId'));
   });

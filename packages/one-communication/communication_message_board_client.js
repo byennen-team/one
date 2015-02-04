@@ -1,7 +1,6 @@
 /* globals Messages: true, Rooms: true */
 Template.messageBoard.events({
 
-
 });
 Template.messageBoard.created = function() {
   this.autorun(function () {
@@ -17,7 +16,7 @@ Template.messageBoard.created = function() {
   });
 };
 Template.communicationMessageBoardSleeve.rendered = function() {
-    // initialize maazalik:malihu-jquery-custom-scrollbar scrollbar plugin
+  // initialize maazalik:malihu-jquery-custom-scrollbar scrollbar plugin
   var board = $("#communication-message-board-sleeve");
   board.mCustomScrollbar({
       theme:"one-dark",

@@ -1,5 +1,5 @@
 <template name='libraryMembers'>
-
+{{#if isNotACompanyRoom}}
 	<div class='library-board-sleeve members'>
 	<div>
 	{{#each members}}
@@ -18,11 +18,13 @@
 	{{/each}}
 	</div>
 
+	{{#if isNotADMRoom}}
 		<div class="invite-button">
 			<i id="communication-library-invite" class="fa icon-addteam" ></i>
 			<input id="communication-library-invite-input" type="text" placeholder='Invite someone' />
 			<i id="communication-library-invite-directory" class="fa fa-user" data-toggle="modal" data-target="#communication-add-teammember-modal"></i>
 		</div>
+	{{/if}}
 	</div>
-
+{{/if}}
 </template>
