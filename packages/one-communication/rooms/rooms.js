@@ -149,6 +149,40 @@ RoomsController.getUnreadMessagesCount = function(roomId) {
     return Messages.find(query).count();
 };
 
+RoomsController.getRoomsWithUnreadMessages = function() {
+  var rooms = Rooms.find().fetch();
+  var roomsIds = [];
+
+  _.each(rooms, function(room) {
+    if(! room.participants)
+      return false; //TODO: add checking for public channels too
+
+    var currentParticipant = _.find(room.participants, function(item) {
+      return (item.participantId === Meteor.userId());
+    });
+
+    var query = {};
+    query.roomId = room._id;
+
+    if(currentParticipant && currentParticipant.lastReadTimestamp)
+      query.dateCreated = { $gt: currentParticipant.lastReadTimestamp };
+
+    var roomUnreadMessages = Messages.find(query).count();
+
+    if(roomUnreadMessages > 0)
+      roomsIds.push(room._id);
+
+  });
+  console.log(roomsIds)
+
+  return Rooms.find({
+    _id: {
+      $in: roomsIds
+    }
+  });
+
+};
+
 RoomsController.updateTimestamp = function(roomId) {
   Meteor.call('updateTimestamp', roomId, function(e, r) {
     if(e)

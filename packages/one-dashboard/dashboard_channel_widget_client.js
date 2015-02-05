@@ -6,42 +6,113 @@ Template.channelWidget.rendered = function () {
       scrollbarPosition: "inside",
       autoHideScrollbar: true
   });
-  // Delay gives the plugin a change to load fully 
+  // Delay gives the plugin a change to load fully
   setTimeout(function(){
     sleeve.mCustomScrollbar( "scrollTo", "bottom" );
   }, 200);
 };
 
 Template.channelWidget.helpers({
+  unreadRooms: function() {
+    //getting all unread messages first
+    return RoomsController.getRoomsWithUnreadMessages();
+  },
 // TODO: Return the channel type. String (company, message, rooms)
 //    (to be used as class name)
   channelType: function () {
-    return 'company';
-    // return 'message';
-    // return 'rooms';
+    switch (this.roomType) {
+      case 'office':
+        return 'company';
+        break;
+      case 'company':
+        return 'company';
+        break;
+      case 'dm':
+        return 'message';
+        break;
+      default:
+        return 'rooms';
+      }
   },
 
 // TODO: Return the descriptive channel type. String
 //    (company channels, direct messaging, rooms)
   channelTypeLong: function () {
-    return 'company channels';
-    // return 'direct messaging';
-    // return 'rooms';
+    switch (this.roomType) {
+      case 'office':
+        return 'company channels';
+        break;
+      case 'company':
+        return 'company channels';
+        break;
+      case 'dm':
+        return 'direct messaging';
+        break;
+      default:
+        return 'rooms';
+      }
   },
 
 // TODO: Return the channel name. String. Title case
 //    (Events, Listings, Dottie Herman, 575 Madison Ave)
   channelName: function () {
-    return 'Events';
-    // return 'Dottie Herman';
-    // return 'Team Awesome';
+    if(this.roomType === 'dm') {
+      var dmWith = _.find(this.participants, function(item) {
+        return item.participantId != Meteor.userId();
+      })
+
+      var user = Meteor.users.findOne(dmWith.participantId);
+    }
+   switch (this.roomType) {
+    case 'dm':
+      return user.profile.firstName + ' ' + user.profile.lastName;
+      break;
+    default:
+      return this.roomName;
+    };
   },
 
-// TODO: Return the number of unread messages 
+// TODO: Return the number of unread messages
   unread: function () {
-    return 2;
+    return RoomsController.getUnreadMessagesCount(this._id);;
   },
+  messages: function() {
+    return Messages.find({
+      roomId: this._id
+    });
+  },
+  isSimpleMessage: function() {
+    return (this.messageType === 'message' || ! this.messageType);
+  },
+  isPostMessage: function() {
+    return (this.messageType === 'post');
+  },
+  isFirstUnread: function(roomId) {
+    var room = Rooms.findOne(roomId);
+    var latestTimestamp = null;
+    var currentParticipant = _.where(room.participants,{
+      participantId: Meteor.userId()
+    });
 
+    if (currentParticipant[0]) {
+      latestTimestamp = currentParticipant[0].lastReadTimestamp;
+    }
+    if (! latestTimestamp )
+      return false;
+
+    var latestUnreadMessage = Messages.findOne({
+      roomId: roomId,
+      dateCreated: {
+        $gt: latestTimestamp
+      }
+    },{
+      sort: {
+        dateCreated: 1
+      },
+      limit: 1
+    });
+    return (latestUnreadMessage && latestUnreadMessage._id === this._id);
+  },
 // TODO: return Message Author's status. String.
   status: function () {
     return 'active';
