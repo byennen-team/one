@@ -19,28 +19,36 @@ DocumentSharing = {
   },
 
   acceptDocument: function (sharedDocumentId) {
-    SharedDocuments.update(sharedDocumentId, {$set: {isAccepted: true}});
+    var sharedDocument = SharedDocuments.findOne(sharedDocumentId);
+    if (sharedDocument) {
+      Files.update(
+        sharedDocument.sharedDocumentId,
+        {$addToSet: {sharedWith: Meteor.userId()}}
+      );
+      SharedDocuments.update(sharedDocumentId, {$set: {isAccepted: true}});
+    } else {
+      throw new Meteor.Error('SHARED_DOCUMENT_NOT_FOUND');
+    }
   },
 
-  sendDocumentsSharedEmail: function (sharedDocuments, receiver) {
-    var title = sharedDocuments.length === 1 ?
+  sendDocumentsSharedEmail: function (sharedDocuments, sender, receiver) {
+    var subject = sharedDocuments.length === 1 ?
       'A document' :
       sharedDocuments.length + ' documents';
-    title += ' have been shared with you';
+    subject += ' have been shared with you';
 
-    var message = _.map(sharedDocuments, function (sharedDocument) {
+    var sharedDocumentsText = _.map(sharedDocuments, function (sharedDocument) {
       return '* ' + sharedDocument.getShareUrl();
     }).join('\n\n');
 
     Meteor.call(
-      'sendProfileContactEmail',
-      receiver.email,
-      title,
-      'Go One',
-      '',
-      '',
-      '',
-      message
+      'sendSharedDocumentsNotification',
+      {
+        subject: subject,
+        to: receiver.email,
+        senderName: sender.profile.firstName, // TODO: Full name
+        sharedDocuments: sharedDocumentsText
+      }
     );
   }
 };
@@ -61,7 +69,19 @@ Meteor.methods({
     var sharedDocuments = SharedDocuments
       .find({_id: {$in: sharedDocumentIds}})
       .fetch();
-    DocumentSharing.sendDocumentsSharedEmail(sharedDocuments, receiver);
+    DocumentSharing.sendDocumentsSharedEmail(
+      sharedDocuments,
+      Meteor.user(),
+      receiver
+    );
+  },
+
+  acceptSharedDocuments: function (sharedDocumentIds) {
+    check(sharedDocumentIds, [String]);
+
+    _.forEach(sharedDocumentIds, function (sharedDocumentId) {
+      DocumentSharing.acceptDocument(sharedDocumentId);
+    });
   }
 
 });
@@ -93,3 +113,11 @@ Meteor.publishComposite(
     };
   }
 );
+
+Meteor.publish('sharedDocuments', function () {
+  if (!this.userId) {
+    throw new Meteor.Error('USER_MUST_BE_LOGGED_IN');
+  }
+
+  return Files.find({sharedWith: this.userId});
+});

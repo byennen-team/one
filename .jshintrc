@@ -153,6 +153,7 @@
     "Settings": false,
     "User": false,
     "SharedDocument": false,
-    "SharedDocuments": false
+    "SharedDocuments": false,
+    "SharedDocumentsStore": false
   }
 }

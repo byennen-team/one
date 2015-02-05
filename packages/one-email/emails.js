@@ -50,5 +50,41 @@ Meteor.methods({
         }]
       }
     });
+  },
+
+  'sendSharedDocumentsNotification': function (options) {
+    check(options, {
+      subject: String,
+      to: String,
+      senderName: String,
+      sharedDocuments: String
+    });
+
+    // TODO: Text version of the mail
+    return Meteor.Mandrill.sendTemplate({
+      "template_name": "SharedDocumentsNotification",
+      "template_content": [],
+      "message": {
+        "from_email": defaultEmail,
+        "subject": options.subject,
+        "merge": "true",
+        "to": [{
+          "email": options.to
+        }],
+        "merge_vars": [{
+          "rcpt": options.to,
+          "vars": [
+            {
+              "name": "SENDER_NAME",
+              "content": options.senderName
+            },
+            {
+              "name": "SHARED_DOCUMENTS",
+              "content": options.sharedDocuments
+            }
+          ]
+        }]
+      }
+    });
   }
 });

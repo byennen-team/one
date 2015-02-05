@@ -66,6 +66,19 @@ Router.route('/documents/shared/:sharedDocumentId/:accessToken', {
   }
 });
 
+Router.route('/documents/shared', {
+  name: Routes.SHARED_DOCUMENTS,
+  template: 'documents',
+  waitOn: function () {
+    return Meteor.subscribe('sharedDocuments');
+  },
+  action: function () {
+    resetDocumentSelection();
+    Session.set('currentFolderId', null);
+    this.render();
+  }
+});
+
 Router.route('/folders/:_id', {
   name: Routes.FOLDER,
   template: 'documents',

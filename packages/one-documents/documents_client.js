@@ -58,6 +58,14 @@ Template.documents.events({
   'click [data-action="show-move-to-modal"]': function () {
     Modal.show('documentsMoveToModal');
   },
+  'click [data-action="accept-shared-document"]': function () {
+    var sharedDocumentIds = SharedDocuments
+      .find()
+      .map(function (sharedDocument) {
+        return sharedDocument._id;
+      });
+    Meteor.call('acceptSharedDocuments', sharedDocumentIds);
+  },
   'click .upload': function (event, template) {
     template.find('input').click();
   },
@@ -71,6 +79,15 @@ Template.documents.helpers({
     var selectedDocuments = Session.get('selectedDocuments') || [];
 
     return _.isEmpty(selectedDocuments) ? 'hidden' : '';
+  },
+  acceptSharedDocumentState: function () {
+    if (Routes.getName() !== Routes.SHARED_DOCUMENT ||
+        SharedDocumentsStore.haveAllBeenAccepted()
+    ) {
+      return 'hidden';
+    } else {
+      return '';
+    }
   },
   favorite: function () {
     var user = Meteor.user();
@@ -91,6 +108,11 @@ Template.documents.helpers({
 
       return Files.find(
         {_id: {$in: sharedDocumentFileIds}},
+        {sort: {uploadDate: -1}}
+      );
+    } else if (Routes.getName() === Routes.SHARED_DOCUMENTS) {
+      return Files.find(
+        {sharedWith: Meteor.userId()},
         {sort: {uploadDate: -1}}
       );
     } else {
