@@ -112,62 +112,15 @@ Template.channelWidget.helpers({
       limit: 1
     });
     return (latestUnreadMessage && latestUnreadMessage._id === this._id);
-  },
-// TODO: return Message Author's status. String.
-  status: function () {
-    return 'active';
-    // return 'inactive';
-    // return 'mobile';
-  },
-
-// TODO: Return Message Author's avatar url. String. At least 55x55px
-  avatarURL: function () {
-    return 'images/com-hub-main/joy.jpg';
-  },
-
-// TODO: Return Message Author's name. String.
-  authorName: function () {
-    return 'Joy Avery';
-  },
-
-// TODO: Return Message's timestamp. String.
-  messageTime: function () {
-    return '8:45am';
-  },
-
-// TODO: Return Message's text. String.
-  messageText: function () {
-    return 'Updated Listing Agreement now in the Company Docs. Happy New Year!';
-  },
-
-// TODO: Return true if the message has an attachment, false if it doesn't.
-  hasAttachment: function () {
-    return true;
-    // return false;
-  },
-
-// TODO: Return's url of attachment thumbnail. String
-  attachmentURL: function () {
-    return '/images/com-hub-main/doc.jpg';
-  },
-
-// TODO: Return's attachment file name. String
-  attachmentName: function () {
-    return 'Leasing Agreement.pdf';
-  },
-
-// TODO: Return's attachment file size. String. Include kb/mb.
-  attachmentSize: function () {
-    return '380kb';
   }
-
 });
 
 Template.channelWidget.events({
 
 // TODO: Open channel for the conversation
   // Opens channel of message clickec
-  'click .view-chat': function () {
+  'click .view-chat': function (event) {
+    Session.set('openRoomId', $(event.currentTarget).data("id"));
     $('#sidebar-scroll-target').velocity("scroll",600);
     $.Velocity.hook($('#communication-main'), "width", "100%");
     $.Velocity.hook($('#communication-message-board'), "width", "60%");
