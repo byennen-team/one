@@ -2,8 +2,6 @@
 Template.messageInput.rendered = function(){
 	Session.set('menuOpen', false);
 	Session.set('attachment', false);
-	$('.selectpicker').selectpicker();
-  var editor = new MediumEditor('#communication-message-post-textarea');
 };
 
 Template.messageInput.events({
@@ -21,7 +19,8 @@ Template.messageInput.events({
 	'click #communication-message-input-options-post': function(){
 		Session.set("menuOpen", false);
     // Open New Post menu
-    $('#communication-message-board').addClass('new-post');
+    $( '#communication-message-post' )
+      .velocity( "slideDown", { duration: 500 } );
 	},
 
   // close the menu when an option is selected
@@ -71,7 +70,7 @@ Template.messageInput.events({
     var context = {
       title: $('#new-post-subject').val(),
       postContent: $('#communication-message-post-textarea').html()
-    }
+    };
 
     var postImage = null;
 
@@ -84,7 +83,7 @@ Template.messageInput.events({
     else
       context.draft = false;
 
-    console.log(context)
+    console.log(context);
     if (context.title !== '' && context.postContent !== '') {
       RoomsController.addPostMessageToRoom(Session.get('openRoomId'),
         //TODO: multiple room selector

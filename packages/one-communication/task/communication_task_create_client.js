@@ -10,7 +10,7 @@ Template.communicationCreateTask.rendered = function () {
   // use specific class to call first
   $( '.taskcolorselectpicker' ).selectpicker(); 
 // TODO: if the event already has a color defined, insert it instead of 'purple'
-  $( '.filter-option' ).addClass( 'purple dot-select' );
+  $( '#task-menu .filter-option' ).addClass( 'purple dot-select' );
 
   var currentHeight = $(window).height();
   var taskHeight = currentHeight - 110;
