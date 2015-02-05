@@ -1,0 +1,195 @@
+// Variables 
+@import "/packages/styles/variables.import.less";
+
+#communication-message-post {
+  position: absolute;
+  display: none;
+  // bottom: -400px;
+  bottom: 0;
+  right: 33%;
+  width: 600px;
+  background-color: @white;
+  -webkit-box-shadow: -2px -2px 25px -1px rgba(0, 0, 0, 0.5);
+  -moz-box-shadow: -2px -2px 25px -1px rgba(0, 0, 0, 0.5);
+  box-shadow: -2px -2px 25px -1px rgba(0, 0, 0, 0.5);
+  z-index: 8;
+  transition: width 300ms ease-out;
+  .header {
+    float: left;
+    font-size: 22px;
+    height: 45px;
+    width: 100%;
+    background-color: @lime;
+  }
+  .post-form-body {
+    height: 400px;
+    padding: 1em;
+  }
+  .icon {
+    float: left;
+    margin: 0.5em 0.75em;
+    text-align: center;
+    color: @white;
+  }
+  .close-x,
+  .minimize {
+    position: absolute;
+    font-size: 16px;
+    color: @periwinkle;
+    right: 1em;
+    top: 1em;
+    cursor: pointer;
+  }
+  .close-x:hover,
+  .minimize:hover {
+    color: @dk-periwinkle;
+  }
+  .minimize {
+    right: 3.5em;
+    top: 0.9em;
+  }
+  .bootstrap-select {
+    width: auto;
+    max-width: 80%;
+  }
+  .in {
+    float: left;
+    font-size: 20px;
+    margin-top: 14px;
+    margin-left: 0.75em;
+    font-family: @raleway-bold;
+    font-variant: small-caps;
+    text-transform: lowercase;
+    color: @text;
+  }
+  .select-style {
+    float: left;
+    margin-top: 13px;
+    outline: none;
+    border: none;
+  }
+  .selectpicker {
+    overflow-x: hidden;
+  }
+  .subject {
+    display: block;
+    clear: both;
+    border: none;
+    margin-top: 1em;
+    margin-left: 1em;
+    color:@text;
+    font-family: @raleway-bold;
+    font-size: 16px;
+    letter-spacing: 0.0625em;
+  }
+  .subject:focus {
+    box-shadow: none;
+    color: @text-hover;
+  }
+  ::-webkit-input-placeholder {
+    color:@text;
+    font-family: @raleway-bold;
+    font-size: 16px;
+    letter-spacing: 0.0625em;
+  }
+  ::-moz-placeholder { 
+    color: @text;
+    font-family: @raleway-bold;
+    font-size: 16px; 
+    letter-spacing: 0.0625em;
+  }
+  :focus:-ms-input-placeholder {  
+    color: @text-hover;
+  }
+  :focus::-webkit-input-placeholder {
+    color:@text-hover;
+  }
+  :focus::-moz-placeholder { 
+    color: @text-hover;
+  }
+  :focus:-ms-input-placeholder {  
+    color: @text-hover;
+  }
+  .fake-textarea {
+    height: 200px;
+    margin-top: 1.5em;
+    margin-left: 1em;
+    font-family: @raleway-regular;
+    color: @text-navy;
+    font-size: 15px;
+  }
+  .fake-textarea:focus {
+    outline: none;
+    box-shadow: none;
+    color: darken( @text-navy, 10% );
+  }
+  .paperclip,
+  .trash {
+    position: absolute;
+    bottom: 15px;
+    left: 1.5em;
+    font-size: 20px;
+    color: @med-navy;
+    cursor: pointer;
+  }
+  .trash {
+    left: 240px;
+  }
+  .paperclip:hover,
+  .trash:hover {
+    color: @navy;
+  }
+  .dropdown {
+    position: absolute;
+    bottom: 10px;
+    left: 145px;
+    font-size: 20px;
+    color: @med-navy;
+  }
+  .btn-secondary,
+  .btn-primary  {
+    position: absolute;
+    font-size: 15px;
+    bottom: 10px;
+    width: 150px;
+    height: 40px;
+    padding: 5px;
+    line-height: 140%;
+    letter-spacing: 0.2em;
+    font-size: 17px;
+    font-variant: small-caps;
+    text-transform: lowercase;
+    font-family: @raleway-semibold;
+  }
+  .btn-primary {
+    right: 15px;
+    padding-top: 7px;
+    background-color: @accent;
+    color: @white;
+  }
+  .btn-secondary {
+    right: 180px;
+    border: 3px solid @accent;
+    border-radius: 3px;
+    color: @accent;
+    background-color: transparent;
+  }
+  .btn-primary:hover {
+    background-color: @accent-hover;
+  }
+  .btn-secondary:hover {
+    border: 3px solid @accent-hover;
+    color: @accent-hover;
+  }
+}
+
+// Minimized styles 
+#communication-message-post.little {
+  width: 315px;
+  .minimize {
+    display: none;
+  }
+  .icon {
+    cursor: pointer;
+  }
+}

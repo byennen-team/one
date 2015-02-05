@@ -54,6 +54,9 @@ Package.onUse(function (api) {
     'communication_message_input.html',
     'communication_message_input.less',
     'communication_message_input_client.js',
+    'communication_post.html',
+    'communication_post.less',
+    'communication_post_client.js',
     //task
     'task/communication_task_board.html',
     'task/communication_task_board.less',
