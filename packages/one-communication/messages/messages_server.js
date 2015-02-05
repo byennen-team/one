@@ -1,14 +1,5 @@
 /* globals Messages: true, Rooms: true */
-Meteor.publish('messagesForRoom', function(roomId) {
-  check(roomId, String);
 
-  if (! this.userId)
-    throw new Meteor.Error(401, "You are not logged in!");
-
-  return Messages.find({
-    roomId: roomId
-  });
-});
 
 Meteor.publish('unreadMessages', function() {
   if(this.userId) {
@@ -30,12 +21,16 @@ Meteor.publish('unreadMessages', function() {
         messageIdArray.push(query);
       });
 
+      console.log(messageIdArray)
       if(messageIdArray.length > 0)
         return Messages.find({
+          'messagePayload.draft': {
+            $ne: true
+          },
           $or: messageIdArray
         });
       else
-        return [];
+        this.ready();
     }
 });
 

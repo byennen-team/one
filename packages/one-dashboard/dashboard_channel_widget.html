@@ -10,6 +10,7 @@
 
 <!-- TODO: All of the conversation history (old messages too) should be rendered in .conversation -->
     <div class="conversation">
+    <div>
       {{#each messages}}
         {{#if isFirstUnread ../_id}}
           {{> newBar}}
@@ -25,9 +26,10 @@
           {{> documentMessage}}
         {{/if}}
       {{/each}}
-      </div>
     </div>
-    {{/each}}
+    </div>
+  </div>
+  {{/each}}
 </template>
 
 <!-- TODO: Delete everything after this comment. Just here for styling.

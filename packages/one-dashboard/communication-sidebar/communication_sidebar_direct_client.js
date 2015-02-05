@@ -11,9 +11,6 @@ Template.communicationSidebarDirect.rendered = function(){
 
 Template.communicationSidebarDirectFill.created = function() {
   Session.set('roomOpenId', false);
-  Tracker.autorun(function() {
-    Meteor.subscribe('room', Session.get('roomOpenId'));
-  });
 };
 
 Template.communicationSidebarDirectFill.helpers({

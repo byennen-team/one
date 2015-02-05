@@ -93,7 +93,10 @@ Meteor.publishComposite('roomData', function(roomId) {
         find: function(room) {
           //getting room messages. TODO: add limits
           return Messages.find({
-            roomId: room._id
+            roomId: room._id,
+            'messagePayload.draft': {
+              $ne: true
+            }
           });
         },
         children: [
@@ -110,28 +113,7 @@ Meteor.publishComposite('roomData', function(roomId) {
     ]
   };
 });
-Meteor.publish('room', function (roomId) {
-  check(roomId, String);
 
-  if (! this.userId)
-    throw new Meteor.Error(401, "You are not logged in!");
-
-  var room = Rooms.findOne(roomId);
-
-  if (! room){
-    this.ready();
-  } else {
-    return [
-    Rooms.findOne(roomId),
-    Messages.find({ roomId: roomId }),
-    Meteor.users.find({
-      _id: {
-        $in: _.pluck(room.participants, 'participantId')
-      }
-    })
-    ];
-  }
-});
 
 Meteor.publishComposite('rooms', function() {
   var self = this;

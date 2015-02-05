@@ -85,11 +85,6 @@ RoomsController.addAttachmentMessageToRoom = function(roomId, documentId, callba
     if (e)
       console.log(e);
 
-  //this is needed to capture new messages in freshly created or joined rooms
-  //might be a resource killer, but will have to check how it works with many
-  //users.
-  Meteor.subscribe('unreadMessages');
-
   if(callback)
     callback(e,r);
   });
@@ -102,11 +97,6 @@ RoomsController.addPostMessageToRoom = function(roomId, context, callback) {
     roomId, context, function(e,r) {
     if (e)
       console.log(e);
-
-  //this is needed to capture new messages in freshly created or joined rooms
-  //might be a resource killer, but will have to check how it works with many
-  //users.
-  Meteor.subscribe('unreadMessages');
 
   if(callback)
     callback(e,r);
@@ -142,6 +132,9 @@ RoomsController.getUnreadMessagesCount = function(roomId) {
 
     var query = {};
     query.roomId = room._id;
+    query.draft = {
+        $ne: true
+      };
 
     if(currentParticipant.lastReadTimestamp)
       query.dateCreated = { $gt: currentParticipant.lastReadTimestamp };
@@ -163,6 +156,9 @@ RoomsController.getRoomsWithUnreadMessages = function() {
 
     var query = {};
     query.roomId = room._id;
+    query.draft = {
+        $ne: true
+      };
 
     if(currentParticipant && currentParticipant.lastReadTimestamp)
       query.dateCreated = { $gt: currentParticipant.lastReadTimestamp };

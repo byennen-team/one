@@ -26,4 +26,3 @@ Messages.simpleSchema = new SimpleSchema({
   //listing: TBD
   messagePayload: { type: [Object], optional: true, blackbox: true}
 });
-

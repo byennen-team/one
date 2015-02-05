@@ -78,7 +78,10 @@ Template.channelWidget.helpers({
   },
   messages: function() {
     return Messages.find({
-      roomId: this._id
+      roomId: this._id,
+      'messagePayload.draft': {
+        $ne: true
+      }
     });
   },
   isSimpleMessage: function() {
@@ -102,6 +105,9 @@ Template.channelWidget.helpers({
 
     var latestUnreadMessage = Messages.findOne({
       roomId: roomId,
+      'messagePayload.draft': {
+        $ne: true
+      },
       dateCreated: {
         $gt: latestTimestamp
       }

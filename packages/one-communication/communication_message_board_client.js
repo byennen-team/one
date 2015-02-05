@@ -4,8 +4,9 @@ Template.messageBoard.events({
 });
 Template.messageBoard.created = function() {
   this.autorun(function () {
-    if(Session.get('openRoomId')) {
-      return Meteor.subscribe('roomData', Session.get('openRoomId'));
+    var openRoomId = Session.get('openRoomId');
+    if (openRoomId) {
+      return Meteor.subscribe('roomData', openRoomId);
     }
     });
 
@@ -36,7 +37,10 @@ Template.messageBoard.helpers({
 Template.communicationMessageBoardSleeve.helpers({
   messages: function() {
     return Messages.find({
-      roomId: Session.get('openRoomId')
+      roomId: Session.get('openRoomId'),
+      'messagePayload.draft': {
+        $ne: true
+      }
     });
   },
   isSimpleMessage: function() {
@@ -60,6 +64,9 @@ Template.communicationMessageBoardSleeve.helpers({
 
     var latestUnreadMessage = Messages.findOne({
       roomId: roomId,
+      'messagePayload.draft': {
+        $ne: true
+      },
       dateCreated: {
         $gt: latestTimestamp
       }
@@ -126,6 +133,10 @@ Template.postMessage.helpers({
 });
 
 Template.message.rendered = function() {
+  $("#communication-message-board-sleeve")
+    .mCustomScrollbar("scrollTo","bottom");
+};
+Template.postMessage.rendered = function() {
   $("#communication-message-board-sleeve")
     .mCustomScrollbar("scrollTo","bottom");
 };
