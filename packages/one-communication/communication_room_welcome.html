@@ -1,41 +1,46 @@
 <template name="welcomeRoom">
   
-  <div class="message">
+  <div class="message welcome">
     <div class="avatar">
-      <div class="status active"></div>
-      <img src="images/com-hub-main/joy.jpg" alt="Agent's name here" />
+      <i class="fa fa-magic"></i>
     </div>
 
     <div class="message-body">
       <p class="name">
-        Joy Avery
+        New Room Created!
+<!-- // TODO: time room was created should go here -->
         <span class="time">8:45am</span>
       </p>
-      <p class="text">Updated Listing Agreement now in the Company Docs.  Happy New Year everyone!</p>
-      <div class="doc">
-        <div class="thumbnail">
-          <img src="/images/com-hub-main/doc.jpg" alt="" class="doc-thumb">
-        </div>
-        <p class="title">
-          <span class="fa fa-file"></span>
-          Leasing Agreement.pdf
-          <span class="size">380kb</span>
-        </p>
-        <div class="action-bar">
-          <a href="#" class="download">
-            <i class="fa fa-arrow-circle-down"></i>
-            download
-          </a>
-          <a href="#" class="print">
-            <i class="fa fa-print"></i>
-            print
-          </a>
-          <a href="#" class="view">
-            <i class="fa fa-view"></i>
-            view
-          </a>
-        </div>
-      </div>
+
+      <h4>Here are some ways to get started.</h4>
+
+      <p class="sub-header aqua" data-toggle="modal" data-target="#communication-add-teammember-modal">
+        <i class="fa fa-user"></i>
+        Invite Others to Join.
+        <i class="fa icon-addteam"></i>
+      </p>
+      <p class="text">Search the <span class='bold' data-toggle="modal" data-target="#communication-add-teammember-modal">directory</span> or send and invite to an <span class='bold' data-toggle="modal" data-target="#communication-add-teammember-modal">email address.</span></p>
+
+      <p class="sub-header welcome-task seafoam">
+        <i class="fa fa-th-list"></i>
+        Create a Task for the Task List.
+        <i class="fa icon-addteam"></i>
+      </p>
+      <p class="text"><span class='bold welcome-task'>Add a Task</span> and attach files, people, due dates, and lables, to keep things organized and on track.</p>
+
+      <p class="sub-header welcome-library lt-blue-purple">
+        <i class="fa fa-folder-open"></i>
+        Add Files to the Rooms Library.
+        <i class="fa icon-addteam"></i>
+      </p>
+      <p class="text"><span class='bold welcome-library-span'>Drag Files into the Room Library</span> in the side bar to add them. Files are also added automatically when attached to a task or message.</p>
+
+      <p class="sub-header welcome-help sky-blue" data-toggle="modal" data-target="#communication-add-teammember-modal">
+        <i class="fa fa-at"></i>
+        Need help?
+        <i class="fa icon-addteam"></i>
+      </p>
+      <p class="text">Mention <span class='bot'>@RoomBot</span> to <span class='bold'>ask a question</span> or <span class="bold">find information</span> inside this room.</p>
     </div>
   </div>
   <div class="clearfix"></div>

@@ -21,8 +21,10 @@
 <template name="communicationMessageBoardSleeve">
 	<div id='communication-message-board-sleeve' class="sleeve">
 	<div>
-		
+<!-- 	TODO: the welcome messages need to be shown as the first message of the 
+	Room channel or	My Tasks channel.  -->
 	{{> welcomeRoom}}
+	<!-- {{> welcomeTask}} -->
 
 	{{#each messages}}
 		{{#if isFirstUnread ../_id}}

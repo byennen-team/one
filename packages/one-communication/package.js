@@ -47,6 +47,7 @@ Package.onUse(function (api) {
     'communication_room.less',
     'communication_room_client.js',
     'communication_room_welcome.html',
+    'communication_room_welcome_client.js',
     'communication_message_board.html',
     'communication_message_board.less',
     'communication_message_board_client.js',

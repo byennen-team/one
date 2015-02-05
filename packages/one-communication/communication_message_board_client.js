@@ -28,11 +28,8 @@ Template.communicationMessageBoardSleeve.rendered = function() {
 };
 
 Template.messageBoard.helpers({
-  // room: function() {
-  //   return Rooms.findOne(Session.get('openRoomId'));
-  // }
   room: function() {
-    return true;
+    return Rooms.findOne(Session.get('openRoomId'));
   }
 });
 
