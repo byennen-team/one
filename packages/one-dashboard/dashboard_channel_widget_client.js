@@ -1,4 +1,5 @@
 Template.channelWidget.rendered = function () {
+  Session.set('unreadDirty', true);
   // initialize maazalik:malihu-jquery-custom-scrollbar scrollbar plugin
   var sleeve = $( ".conversation" );
   sleeve.mCustomScrollbar({
@@ -74,13 +75,17 @@ Template.channelWidget.helpers({
 
 // TODO: Return the number of unread messages
   unread: function () {
-    return RoomsController.getUnreadMessagesCount(this._id);;
+    return RoomsController.getUnreadMessagesCount(this._id);
   },
   messages: function() {
     return Messages.find({
       roomId: this._id,
       'messagePayload.draft': {
         $ne: true
+      }
+    },{
+      sort: {
+        dateCreated: 1
       }
     });
   },

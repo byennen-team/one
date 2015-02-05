@@ -133,10 +133,10 @@ Template.postMessage.helpers({
 });
 
 Template.message.rendered = function() {
-  $("#communication-message-board-sleeve")
+  $("#communication-message-board-sleeve,.conversation")
     .mCustomScrollbar("scrollTo","bottom");
 };
 Template.postMessage.rendered = function() {
-  $("#communication-message-board-sleeve")
+  $("#communication-message-board-sleeve,.conversation")
     .mCustomScrollbar("scrollTo","bottom");
 };

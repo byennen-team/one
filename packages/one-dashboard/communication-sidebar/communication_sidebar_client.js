@@ -127,6 +127,9 @@ Template.communicationSidebar.events({
 	},
   'click #addRoom': function() {
     Session.set('teamModalPurpose','newTeam');
+  },
+  'click #addDM': function() {
+    Session.set('teamModalPurpose','newDM');
   }
 
 });

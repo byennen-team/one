@@ -15,7 +15,7 @@ Template.communicationAddTeammemberModal.created = function () {
 
 Template.communicationAddTeammemberModal.helpers({
   people: function() {
-    return Search.cursor(Template.instance().searchText.get());
+    return Search.cursor(Template.instance().searchText.get(),{ limit:5 });
   },
   teamMembers: function() {
     return Meteor.users.find({
@@ -51,10 +51,16 @@ Template.communicationAddTeammemberModal.events({
       });
   },
   'click input.userid-checkbox': function(event) {
+
     var currentMembers;
     if ($(event.currentTarget).prop('checked') === true) {
       currentMembers = Session.get("teamMembers");
-      currentMembers.push($(event.currentTarget).val());
+      if (Session.get('teamModalPurpose') === 'newDM') {
+        currentMembers = [$(event.currentTarget).val()];
+      } else {
+        currentMembers.push($(event.currentTarget).val());
+      }
+
       Session.set("teamMembers", currentMembers);
     } else {
       currentMembers = Session.get("teamMembers");
@@ -66,38 +72,43 @@ Template.communicationAddTeammemberModal.events({
   },
   'click #add-team-members': function() {
     var newRoomMembers = Session.get("teamMembers");
-    //adding current user to the room
-    var currentUserExists = _.find(newRoomMembers,function(item){
-      return item === Meteor.userId();
-    });
-    if(! currentUserExists)
-      newRoomMembers.push(Meteor.userId());
 
-    var roomName = $('input#new-room-name').val();
-
-    if((! roomName || roomName.length === 0) &&
-      Session.get('teamModalPurpose') === 'newTeam')
-      return;
-
-    var participants = [];
-
-    _.each(newRoomMembers, function(item) {
-      participants.push({
-        participantId: item,
-        dateJoined: new Date()
-      });
-    });
-
-    if(Session.get('teamModalPurpose') === 'newTeam') {
-      RoomsController.createRoom({
-        participants: participants,
-        roomType: 'room',
-        roomName: roomName
-      });
+    if (Session.get('teamModalPurpose') === 'newDM') {
+      RoomsController.createOrGetDMRoom(Session.get("teamMembers")[0]);
     } else {
-      RoomsController.adjustParticipantsInRoom(
-        Session.get('openRoomId'), newRoomMembers
-        );
+      //adding current user to the room
+      var currentUserExists = _.find(newRoomMembers,function(item){
+        return item === Meteor.userId();
+      });
+      if(! currentUserExists)
+        newRoomMembers.push(Meteor.userId());
+
+      var roomName = $('input#new-room-name').val();
+
+      if((! roomName || roomName.length === 0) &&
+        Session.get('teamModalPurpose') === 'newTeam')
+        return;
+
+      var participants = [];
+
+      _.each(newRoomMembers, function(item) {
+        participants.push({
+          participantId: item,
+          dateJoined: new Date()
+        });
+      });
+
+      if(Session.get('teamModalPurpose') === 'newTeam') {
+        RoomsController.createRoom({
+          participants: participants,
+          roomType: 'room',
+          roomName: roomName
+        });
+      } else {
+        RoomsController.adjustParticipantsInRoom(
+          Session.get('openRoomId'), newRoomMembers
+          );
+      }
     }
 
     Session.set("teamMembers",[]);

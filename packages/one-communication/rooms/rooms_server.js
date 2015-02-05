@@ -406,23 +406,44 @@ Meteor.methods({
     if(! room)
       throw new Meteor.Error(404, "Room not found");
 
-    var currentParticipant = _.find(room.participants, function(item) {
+    if(room.roomType !== 'company' && room.roomType !== 'office') {
+      var currentParticipant = _.find(room.participants, function(item) {
         return (item.participantId === userId);
       });
 
-    if (! currentParticipant && room.roomType !== 'office' &&
-      room.roomType !== 'company')
-      throw new Meteor.Error(403, 'You are not in this room.');
+      if (! currentParticipant && room.roomType !== 'office' &&
+        room.roomType !== 'company')
+        throw new Meteor.Error(403, 'You are not in this room.');
 
-    Rooms.update({
-      _id: roomId,
-      'participants.participantId': userId
-    }, {
-      $set: {
-        "participants.$.lastReadTimestamp": new Date()
-      }
-    }, function(e,r) {
-      return (e,r);
-    });
+      Rooms.update({
+        _id: roomId,
+        'participants.participantId': userId
+      }, {
+        $set: {
+          "participants.$.lastReadTimestamp": new Date()
+        }
+      });
+    } else {
+      var roomsSeenByUser = Meteor.users.findOne(this.userId).roomsSeen;
+      var dirty = false;
+
+      var mappedRooms = _.map(roomsSeenByUser, function(item) {
+        if (item.roomId === roomId) {
+          item.timestamp = new Date();
+          dirty = true;
+        }
+        return item;
+      });
+      if(! dirty)
+        mappedRooms.push({
+          roomId: roomId,
+          timestamp: new Date()
+        });
+      Meteor.users.update(this.userId,{
+        $set: {
+          roomsSeen: mappedRooms
+        }
+      });
+    }
   }
 });

@@ -40,8 +40,8 @@ Template.communicationSidebarCompanyFill.helpers({
 
     return officeNames[index - 1];
   },
-  // unreadMessages: function() {
-  //   var roomCount = RoomsController.getUnreadMessagesCount(this._id);
-  //   return (roomCount > 0) ? roomCount : false;
-  // }
+  unreadMessages: function() {
+    var roomCount = RoomsController.getUnreadMessagesCount(this._id);
+    return (roomCount > 0) ? roomCount : false;
+  }
 });

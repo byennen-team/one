@@ -20,6 +20,35 @@ Meteor.publish('unreadMessages', function() {
 
         messageIdArray.push(query);
       });
+      var user = Meteor.users.findOne(this.userId);
+
+      var publicRooms = Rooms.find({
+        $or: [
+          {
+            roomType: 'office',
+            officeNo: user.profile.officeId
+          },
+          {
+            roomType: 'company'
+          }
+        ]
+      }).fetch();
+
+      _.each(publicRooms, function(item) {
+        var query = {};
+        query.roomId = item._id;
+        if(user.roomsSeen) {
+          var isSeen = _.find(user.roomsSeen, function(room) {
+            return room.roomId === item._id
+          });
+
+          if(isSeen)
+            query.dateCreated = { $gt: isSeen.timestamp };
+
+        }
+
+        messageIdArray.push(query);
+      });
 
       console.log(messageIdArray)
       if(messageIdArray.length > 0)
