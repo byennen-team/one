@@ -75,7 +75,6 @@ Template.communicationPostInput.events({
         .serialize()['communication-message-post-textarea'].value,
       draft: false
     };
-    console.log(context.postContent)
 
     var roomsArray = $("#roomSelect").val();
 
@@ -121,7 +120,6 @@ Template.communicationPostInput.events({
     if(postImage)
       context.fileId = postImage;
 
-    console.log(context);
     if (context.title !== '' && context.postContent !== '') {
       RoomsController.addPostMessageToRoom(Session.get('openRoomId'),
         //TODO: multiple room selector

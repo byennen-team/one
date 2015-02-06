@@ -721,7 +721,6 @@
       uploadFile: function ($placeholder, file, that) {
         var options = {
           onComplete: function (jqxhr) {
-            console.log('calling complete', jqxhr)
             that.uploadCompleted(jqxhr, $placeholder);
           },
           onError: function(error) {
@@ -741,7 +740,6 @@
       * @return {void}
       */
       deleteFile: function (file, that) {
-        console.log(file)
         var root = Meteor.settings.public.AWS_BUCKET_URL + '/';
         var filekey = file.replace(root,'');
         FileTools.deleteStub('deleteFilesFromS3',filekey);
