@@ -17,7 +17,7 @@ Package.onUse(function (api) {
     'mquandalle:bower@0.1.11',
     'maazalik:malihu-jquery-custom-scrollbar',
     'reactive-var',
-    'citizenkevin:medium-editor'
+    'one:medium-editor'
     ], 'web');
 
   api.use([

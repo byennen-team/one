@@ -18,7 +18,6 @@ cfs:power-queue@0.9.11
 cfs:reactive-list@0.0.9
 cfs:reactive-property@0.0.4
 check@1.0.4
-citizenkevin:medium-editor@1.0.1
 coffeescript@1.0.5
 companies@0.0.0
 ddp@1.0.14
@@ -95,6 +94,7 @@ one-notifications@1.0.0
 one-profile@0.0.0
 one-search@0.0.0
 one-support@0.0.0
+one:medium-editor@1.0.1
 ordered-dict@1.0.2
 peppelg:bootstrap-3-modal@1.0.3
 practicalmeteor:chai@1.9.2_3

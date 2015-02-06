@@ -3,6 +3,9 @@ Template.communicationPostInput.rendered = function(){
 // defining global var here doesn't fix JSHint error, since editor isn't used.
 /* jshint ignore:start */
   var editor = new MediumEditor('#communication-message-post-textarea');
+  $('#communication-message-post-textarea').mediumInsert({
+        editor: editor
+    });
 /* jshint ignore:end */
 };
 
