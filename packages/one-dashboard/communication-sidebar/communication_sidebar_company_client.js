@@ -1,3 +1,4 @@
+/* globals Rooms: false, RoomsController: false */
 Template.communicationSidebarCompany.rendered = function(){
 
   // initialize maazalik:malihu-jquery-custom-scrollbar scrollbar plugin

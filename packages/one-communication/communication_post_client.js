@@ -1,13 +1,11 @@
+/* globals Rooms: false, RoomsController: false, MediumEditor: false */
 Template.communicationPostInput.rendered = function(){
   $('.selectpicker').selectpicker();
-// defining global var here doesn't fix JSHint error, since editor isn't used.
-/* jshint ignore:start */
   this.editor = new MediumEditor('#communication-message-post-textarea');
-  that = this;
+  var that = this;
   $('#communication-message-post-textarea').mediumInsert({
         editor: that.editor
     });
-/* jshint ignore:end */
 };
 
 Template.communicationPostInput.helpers({
@@ -68,7 +66,7 @@ Template.communicationPostInput.events({
       .removeClass( 'little' );
   },
 
-  'click #communication-message-post-btn': function(event) {
+  'click #communication-message-post-btn': function() {
     var context = {
       title: $('#new-post-subject').val(),
       postContent: Template.instance().editor
@@ -93,7 +91,7 @@ Template.communicationPostInput.events({
           context);
         //also mark room as read
         RoomsController.updateTimestamp(Session.get('openRoomId'));
-      })
+      });
 
 
       //and cleanup
@@ -108,7 +106,7 @@ Template.communicationPostInput.events({
     }
 
   },
-  'click #communication-message-post-save': function(event) {
+  'click #communication-message-post-save': function() {
     var context = {
       title: $('#new-post-subject').val(),
       postContent: $('#communication-message-post-textarea').html(),
@@ -151,7 +149,7 @@ Template.communicationPostInput.events({
     $( '#communication-message-post' )
     .velocity( "slideUp", { duration: 500 } );
   },
-  'click #communication-message-post-attachment-btn': function(event) {
+  'click #communication-message-post-attachment-btn': function() {
     //TODO: add attachments (cover photo)
   }
 });

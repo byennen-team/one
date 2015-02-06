@@ -39,7 +39,7 @@ Meteor.publish('unreadMessages', function() {
         query.roomId = item._id;
         if(user.roomsSeen) {
           var isSeen = _.find(user.roomsSeen, function(room) {
-            return room.roomId === item._id
+            return room.roomId === item._id;
           });
 
           if(isSeen)

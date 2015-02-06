@@ -1,3 +1,4 @@
+/* jshint ignore:start */
 MediumEditor = function MediumEditor(elements, options) {
     'use strict';
     return this.init(elements, options);
@@ -278,7 +279,7 @@ if (typeof module === 'object') {
                 var node = getSelectionStart(),
                     tagName,
                     editorElement;
-                    
+
                 if (node && node.getAttribute('data-medium-element') && node.children.length === 0 && !(self.options.disableReturn || node.getAttribute('data-disable-return'))) {
                     document.execCommand('formatBlock', false, 'p');
                 }
@@ -565,7 +566,8 @@ if (typeof module === 'object') {
 
             this.checkSelectionWrapper = function (e) {
 
-                // Do not close the toolbar when bluring the editable area and clicking into the anchor form
+                // Do not close the toolbar when bluring the
+                // editable area and clicking into the anchor form
                 if (e && self.clickingIntoArchorForm(e)) {
                     return false;
                 }
@@ -727,7 +729,8 @@ if (typeof module === 'object') {
                 this.activateButton(parentNode.tagName.toLowerCase());
                 this.callExtensions('checkState', parentNode);
 
-                // we can abort the search upwards if we leave the contentEditable element
+                // we can abort the search upwards if we leave
+                //  the contentEditable element
                 if (elements.indexOf(parentNode) !== -1) {
                     break;
                 }
@@ -1063,7 +1066,8 @@ if (typeof module === 'object') {
                     }
                     var durr = (new Date()).getTime() - lastOver;
                     if (durr > self.options.anchorPreviewHideDelay) {
-                        // hide the preview 1/2 second after mouse leaves the link
+                        // hide the preview 1/2 second
+                        // after mouse leaves the link
                         self.hideAnchorPreview();
 
                         // cleanup
@@ -1139,7 +1143,8 @@ if (typeof module === 'object') {
 
                 // Detect empty href attributes
                 // The browser will make href="" or href="#top"
-                // into absolute urls when accessed as e.targed.href, so check the html
+                // into absolute urls when accessed as
+                // e.targed.href, so check the html
                 if (!/href=["']\S+["']/.test(e.target.outerHTML) || /href=["']#\S+["']/.test(e.target.outerHTML)) {
                     return true;
                 }
@@ -1300,8 +1305,10 @@ if (typeof module === 'object') {
         },
 
         htmlEntities: function (str) {
-            // converts special characters (like <) into their escaped/encoded values (like &lt;).
-            // This allows you to show to display the string without the browser reading it as HTML.
+            // converts special characters (like <) into
+            // their escaped/encoded values (like &lt;).
+            // This allows you to show to display the
+            // string without the browser reading it as HTML.
             return String(str).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
         },
 
@@ -1392,19 +1399,23 @@ if (typeof module === 'object') {
                     [new RegExp(/<span class="Apple-converted-space">\s+<\/span>/g), ' '],
                     [new RegExp(/<br class="Apple-interchange-newline">/g), '<br>'],
 
-                    // replace google docs italics+bold with a span to be replaced once the html is inserted
+                    // replace google docs italics+bold with a
+                    // span to be replaced once the html is inserted
                     [new RegExp(/<span[^>]*(font-style:italic;font-weight:bold|font-weight:bold;font-style:italic)[^>]*>/gi), '<span class="replace-with italic bold">'],
 
-                    // replace google docs italics with a span to be replaced once the html is inserted
+                    // replace google docs italics with a span to be
+                    // replaced once the html is inserted
                     [new RegExp(/<span[^>]*font-style:italic[^>]*>/gi), '<span class="replace-with italic">'],
 
-                    //[replace google docs bolds with a span to be replaced once the html is inserted
+                    //[replace google docs bolds with a span to be
+                    // replaced once the html is inserted
                     [new RegExp(/<span[^>]*font-weight:bold[^>]*>/gi), '<span class="replace-with bold">'],
 
                      // replace manually entered b/i/a tags with real ones
                     [new RegExp(/&lt;(\/?)(i|b|a)&gt;/gi), '<$1$2>'],
 
-                     // replace manually a tags with real ones, converting smart-quotes from google docs
+                     // replace manually a tags with real ones,
+                     // converting smart-quotes from google docs
                     [new RegExp(/&lt;a\s+href=(&quot;|&rdquo;|&ldquo;|“|”)([^&]+)(&quot;|&rdquo;|&ldquo;|“|”)&gt;/gi), '<a href="$2">']
 
                 ];
@@ -1416,7 +1427,8 @@ if (typeof module === 'object') {
 
             if (multiline) {
 
-                // double br's aren't converted to p tags, but we want paragraphs.
+                // double br's aren't converted to p
+                // tags, but we want paragraphs.
                 elList = text.split('<br><br>');
 
                 this.pasteHTML('<p>' + elList.join('</p><p>') + '</p>');
@@ -1504,7 +1516,8 @@ if (typeof module === 'object') {
 
         },
 
-        // remove an element, including its parent, if it is the only element within its parent
+        // remove an element, including its parent,
+        // if it is the only element within its parent
         removeWithParent: function (el) {
             if (el && el.parentNode) {
                 if (el.parentNode.parentNode && el.parentNode.childElementCount === 1) {
@@ -1560,3 +1573,4 @@ if (typeof module === 'object') {
     };
 
 }(window, document));
+/* jshint ignore:end */

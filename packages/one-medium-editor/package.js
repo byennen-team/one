@@ -1,11 +1,12 @@
 Package.describe({
 	name: "one-medium-editor",
-	summary: "MediumEditor with Default Theme + MediumEditor Jquery Insert Plugin",
+	summary: "MediumEditor with Default Theme "+
+	"+ MediumEditor Jquery Insert Plugin",
 	version: "1.0.1",
 	git: 'https://github.com/CitizenKevin/meteor-medium-editor'
 });
 
-Package.on_use(function (api) {
+Package.onUse(function (api) {
 	api.versionsFrom('METEOR@0.9.0');
   api.use('files','web');
 	var files = [
@@ -16,7 +17,7 @@ Package.on_use(function (api) {
 		'insert-plugin/css/medium-editor-insert-plugin.css'
 	];
 
-	api.add_files(files, 'client');
+	api.addFiles(files, 'client');
 
 	if(api.export)
 		api.export('MediumEditor', 'client');

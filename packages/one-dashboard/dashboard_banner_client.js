@@ -1,4 +1,4 @@
-/* globals Skycons: false */
+/* globals Skycons: false, RoomsController: false, Rooms: false */
 var temp = new ReactiveVar();
 
 Template.dashboardBanner.created = function() {
@@ -127,8 +127,6 @@ Template.dashboardBanner.events({
       RoomsController.createOrGetDMRoom(id, function(e,r) {
         if (! e) {
           Session.set('openRoomId',r);
-          // TODO: need to open a direct message conversation with the Agent clicked on
-          // expands the main dialog box t0 60% of full screen - task bar open
           $('#sidebar-scroll-target').velocity("scroll",600);
           $.Velocity.hook($('#communication-main'), "width", "100%");
           $.Velocity.hook($('#communication-message-board'), "width", "60%");
@@ -157,7 +155,7 @@ Template.dashboardBanner.events({
           body.css('overflow', 'hidden');
           window.scrollTo(scrollPosition[0], scrollPosition[1]);
         }
-      })
+      });
     }
 
   },

@@ -1,3 +1,4 @@
+/* globals RoomsController: false, Messages: false, Rooms: false */
 Template.channelWidget.rendered = function () {
   Session.set('unreadDirty', true);
   // initialize maazalik:malihu-jquery-custom-scrollbar scrollbar plugin
@@ -24,13 +25,10 @@ Template.channelWidget.helpers({
     switch (this.roomType) {
       case 'office':
         return 'company';
-        break;
       case 'company':
         return 'company';
-        break;
       case 'dm':
         return 'message';
-        break;
       default:
         return 'rooms';
       }
@@ -42,13 +40,10 @@ Template.channelWidget.helpers({
     switch (this.roomType) {
       case 'office':
         return 'company channels';
-        break;
       case 'company':
         return 'company channels';
-        break;
       case 'dm':
         return 'direct messaging';
-        break;
       default:
         return 'rooms';
       }
@@ -59,18 +54,13 @@ Template.channelWidget.helpers({
   channelName: function () {
     if(this.roomType === 'dm') {
       var dmWith = _.find(this.participants, function(item) {
-        return item.participantId != Meteor.userId();
-      })
+        return item.participantId !== Meteor.userId();
+      });
 
       var user = Meteor.users.findOne(dmWith.participantId);
-    }
-   switch (this.roomType) {
-    case 'dm':
       return user.profile.firstName + ' ' + user.profile.lastName;
-      break;
-    default:
-      return this.roomName;
-    };
+    }
+    return this.roomName;
   },
 
 // TODO: Return the number of unread messages

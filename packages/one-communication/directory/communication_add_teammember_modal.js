@@ -32,7 +32,7 @@ Template.communicationAddTeammemberModal.helpers({
 Template.communicationAddTeammemberModal.events({
   'click .member-avatar': function(event) {
     var userId = $(event.currentTarget).data("id");
-    currentMembers = Session.get("teamMembers");
+    var currentMembers = Session.get("teamMembers");
     var parsedMembers = _.reject(currentMembers, function(item) {
       return (item === userId);
     });

@@ -1,4 +1,4 @@
-/* globals Rooms: true, Messages: true */
+/* globals Rooms: true, Messages: true, RoomsController: true */
 
 Meteor.startup(function() {
   //checking if rooms are created for general and for offices
@@ -61,7 +61,7 @@ Meteor.startup(function() {
       };
 
       RoomsController.createRoom(context);
-      })
+      });
     });
 
 });
@@ -158,7 +158,7 @@ Meteor.publishComposite('rooms', function() {
         }
       }
     ]
-  }
+  };
 });
 Meteor.methods({
   createRoom: function(context) {
@@ -192,7 +192,7 @@ Meteor.methods({
   },
   createDMRoom: function(userId) {
     check(userId, String);
-
+    var query = {};
     if(! this.userId)
       throw new Meteor.Error(401, "You are not logged in!");
 

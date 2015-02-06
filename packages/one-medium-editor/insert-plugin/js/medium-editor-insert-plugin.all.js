@@ -1,3 +1,4 @@
+/* jshint ignore:start */
 /*!
  * medium-editor-insert-plugin v0.2.15 - jQuery insert plugin for MediumEditor
  *
@@ -7,7 +8,6 @@
  * Released under the MIT license
  */
 
-/* global MediumEditor */
 
 (function ($) {
   /*
@@ -321,7 +321,8 @@
             i;
 
         // Fix #39
-        // After deleting all content (ctrl+A and delete) in Firefox, all content is deleted and only <br> appears
+        // After deleting all content (ctrl+A and delete) in Firefox,
+        // all content is deleted and only <br> appears
         // To force placeholder to appear, set <p><br></p> as content of the $el
         if ($el.html() === '' || $el.html() === '<br>') {
           $el.html('<p><br></p>');
@@ -394,7 +395,8 @@
 
 
       // Fix #29
-      // Sometimes in Firefox when you hit enter, <br type="_moz"> appears instead of <p><br></p>
+      // Sometimes in Firefox when you hit enter,
+      // <br type="_moz"> appears instead of <p><br></p>
       // If it happens, force to wrap the <br> into a paragraph
       $el.on('keypress', function (e) {
         if (that.isFirefox) {
@@ -420,8 +422,10 @@
       });
 
       // Fix #39
-      // For some reason Chrome doesn't "select-all", when the last placeholder is visible.
-      // So it's needed to hide it when the user "selects all", and show it again when they presses any other key.
+      // For some reason Chrome doesn't "select-all",
+      // when the last placeholder is visible.
+      // So it's needed to hide it when the user "selects all",
+      // and show it again when they presses any other key.
       $el.on('keydown', function (e) {
         // Fix Select-all using (ctrl + a) in chrome
         if (navigator.userAgent.match(/chrome/i)) {
@@ -572,7 +576,8 @@
           that.removeToolbar();
         })
         // Fix #72
-        // Workaround for CTRL+V not working in FF, when cleanPastedHTML and forcePlainText options on editor are set to true,
+        // Workaround for CTRL+V not working in FF, when cleanPastedHTML
+        // and forcePlainText options on editor are set to true,
         // because editor steals the event and doesn't pass it to the plugin
         // https://github.com/orthes/medium-editor-insert-plugin/issues/72
         .on('paste', '.mediumInsert-embedsText', function (e) {
@@ -662,7 +667,11 @@
 
           var embed_tag = url.replace(/\n?/g, '').replace(/^((http(s)?:\/\/)?(www\.)?(youtube\.com|youtu\.be)\/(watch\?v=|v\/)?)([a-zA-Z0-9\-_]+)(.*)?$/, '<div class="video"><iframe width="420" height="315" src="//www.youtube.com/embed/$7" frameborder="0" allowfullscreen></iframe></div>')
               .replace(/^http:\/\/vimeo\.com(\/.+)?\/([0-9]+)$/, '<iframe src="//player.vimeo.com/video/$2" width="500" height="281" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>')
-              //.replace(/^https:\/\/twitter\.com\/(\w+)\/status\/(\d+)\/?$/, '<blockquote class="twitter-tweet" align="center" lang="en"><a href="https://twitter.com/$1/statuses/$2"></a></blockquote><script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>')
+              //.replace(/^https:\/\/twitter\.com\/(\w+)\/status\/(\d+)\/?$/,
+              //'<blockquote class="twitter-tweet" align="center" lang="en">
+              //<a href="https://twitter.com/$1/statuses/$2"></a></blockquote>
+              //<script async src="//platform.twitter.com/widgets.js"
+              //charset="utf-8"></script>')
               .replace(/^https:\/\/www\.facebook\.com\/(video.php|photo.php)\?v=(\d+).+$/, '<div class="fb-post" data-href="https://www.facebook.com/photo.php?v=$2"><div class="fb-xfbml-parse-ignore"><a href="https://www.facebook.com/photo.php?v=$2">Post</a></div></div>')
               .replace(/^http:\/\/instagram\.com\/p\/(.+)\/?$/, '<span class="instagram"><iframe src="//instagram.com/p/$1/embed/" width="612" height="710" frameborder="0" scrolling="no" allowtransparency="true"></iframe></span>');
 
@@ -1362,3 +1371,4 @@
   });
 
 }(jQuery));
+/* jshint ignore:end */

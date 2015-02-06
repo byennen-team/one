@@ -75,7 +75,8 @@ RoomsController.addSimpleMessageToRoom = function(roomId, message, callback) {
   });
 };
 
-RoomsController.addAttachmentMessageToRoom = function(roomId, documentId, callback) {
+RoomsController.addAttachmentMessageToRoom =
+  function(roomId, documentId, callback) {
   Meteor.call('addAttachmentMessageToRoom', roomId, documentId, function(e,r) {
     if (e)
       console.log(e);
@@ -160,6 +161,7 @@ RoomsController.getRoomsWithUnreadMessages = function() {
   _.each(rooms, function(room) {
     var user = Meteor.user();
     var query = {};
+    var roomUnreadMessages;
     query.roomId = room._id;
     query['messagePayload.draft'] = {
         $ne: true
@@ -168,7 +170,8 @@ RoomsController.getRoomsWithUnreadMessages = function() {
       $ne: Meteor.userId()
     };
     if(room.roomType &&
-      ((room.roomType === 'office' && room.officeNo === user.profile.officeId) ||
+      ((room.roomType === 'office' &&
+        room.officeNo === user.profile.officeId) ||
         room.roomType === 'company')) {
 
       var thisRoomSeenAt;
@@ -181,7 +184,7 @@ RoomsController.getRoomsWithUnreadMessages = function() {
           query.dateCreated = { $gt: thisRoomSeenAt.timestamp };
       }
 
-      var roomUnreadMessages = Messages.find(query).count();
+      roomUnreadMessages = Messages.find(query).count();
 
       if(roomUnreadMessages > 0)
         roomsIds.push(room._id);
@@ -194,7 +197,7 @@ RoomsController.getRoomsWithUnreadMessages = function() {
       if(currentParticipant && currentParticipant.lastReadTimestamp)
         query.dateCreated = { $gt: currentParticipant.lastReadTimestamp };
 
-      var roomUnreadMessages = Messages.find(query).count();
+      roomUnreadMessages = Messages.find(query).count();
 
       if(roomUnreadMessages > 0)
         roomsIds.push(room._id);
@@ -239,7 +242,7 @@ RoomsController.getOfficeRoomsWithUnreadMessages = function() {
 
       if(user.roomsSeen) {
         thisRoomSeenAt = _.find(user.roomsSeen, function(item) {
-          return (item.roomId === roomId);
+          return (item.roomId === room._id);
         });
         if(thisRoomSeenAt && thisRoomSeenAt.timestamp)
           query.dateCreated = { $gt: thisRoomSeenAt.timestamp };

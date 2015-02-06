@@ -122,7 +122,7 @@ Template.message.helpers({
 });
 
 Template.postMessage.events({
-  'click .readMore': function(e) {
+  'click .readMore': function() {
     if(Template.instance().expanded.get()) {
       //compressing
       Template.instance().expanded.set(false);
@@ -137,10 +137,10 @@ Template.postMessage.helpers({
   anchorText: function() {
     if(Template.instance().expanded.get()) {
       return '...<span class="blue-text">collapse <i class="fa ' +
-      'fa-arrow-circle-left"></i></span>'
+      'fa-arrow-circle-left"></i></span>';
     } else {
       return '...<span class="blue-text">read <i class="fa ' +
-      'fa-arrow-circle-right"></i></span>'
+      'fa-arrow-circle-right"></i></span>';
     }
 
   },
@@ -178,7 +178,7 @@ Template.postMessage.helpers({
 
 Template.postMessage.created = function() {
   this.expanded = new ReactiveVar(false);
-}
+};
 
 Template.message.rendered = function() {
   $("#communication-message-board-sleeve,.conversation")
