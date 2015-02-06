@@ -11,11 +11,15 @@ Go One is a real-time dashboard for real-estate apps built with [Meteor](http://
 1. Install [meteor](https://docs.meteor.com/#/full/quickstart)
    and [imagemagick](http://www.imagemagick.org/script/binary-releases.php)
 
-2. Run the application
+2. Seed the application for the first time
+
+    `SEED=true meteor --settings settings.development.json`
+
+3. Run the application
 
     `meteor --settings settings.development.json`
 
-3. Login:
+4. Login:
 
     agentId: 64
     email: paltland@elliman.com
