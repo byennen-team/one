@@ -30,6 +30,14 @@ Template.communicationAddTeammemberModal.helpers({
 });
 
 Template.communicationAddTeammemberModal.events({
+  'click .member-avatar': function(event) {
+    var userId = $(event.currentTarget).data("id");
+    currentMembers = Session.get("teamMembers");
+    var parsedMembers = _.reject(currentMembers, function(item) {
+      return (item === userId);
+    });
+    Session.set("teamMembers", parsedMembers);
+  },
   'keyup #modalAddMembersSearchInput': function(event, template) {
     event.preventDefault();
     if( $('#modalAddMembersSearchInput').val().length > 2 ) {
@@ -49,26 +57,6 @@ Template.communicationAddTeammemberModal.events({
         text: currentText,
         limit: currentLimit + 5
       });
-  },
-  'click input.userid-checkbox': function(event) {
-
-    var currentMembers;
-    if ($(event.currentTarget).prop('checked') === true) {
-      currentMembers = Session.get("teamMembers");
-      if (Session.get('teamModalPurpose') === 'newDM') {
-        currentMembers = [$(event.currentTarget).val()];
-      } else {
-        currentMembers.push($(event.currentTarget).val());
-      }
-
-      Session.set("teamMembers", currentMembers);
-    } else {
-      currentMembers = Session.get("teamMembers");
-      var parsedMembers = _.reject(currentMembers, function(item) {
-        return (item === $(event.currentTarget).val());
-      });
-      Session.set("teamMembers", parsedMembers);
-    }
   },
   'click #add-team-members': function() {
     var newRoomMembers = Session.get("teamMembers");
@@ -161,5 +149,27 @@ Template.teamMember.events({
   'mouseleave .checkbox': function ( event ) {
     var $this = $( event.currentTarget );
     $this.removeClass( 'hovered' );
+  },
+  'click .user': function(event) {
+    event.preventDefault();
+    event.stopPropagation();
+    var template = Template.instance();
+    var checkbox = template.$('input.userid-checkbox');
+
+    var currentMembers;
+    if (checkbox.prop('checked') === false) {
+      currentMembers = Session.get("teamMembers");
+      if (Session.get('teamModalPurpose') === 'newDM') {
+        currentMembers = [checkbox.val()];
+      } else {
+        currentMembers.push(checkbox.val());
+      }
+      Session.set("teamMembers", currentMembers);
+    } else {
+      currentMembers = Session.get("teamMembers");
+      var parsedMembers = _.reject(currentMembers, function(item) {
+        return (item === checkbox.val());
+      });
+      Session.set("teamMembers", parsedMembers);    }
   }
 });
