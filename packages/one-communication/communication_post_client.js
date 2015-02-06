@@ -41,7 +41,6 @@ Template.communicationPostInput.helpers({
     var participant = _.find(this.participants, function(item){
       return (item.participantId !== Meteor.userId());
     });
-    console.log(participant)
     var partner = Meteor.users.findOne(participant.participantId);
     return partner.profile.firstName + ' ' + partner.profile.lastName;
   }

@@ -50,7 +50,6 @@ Meteor.publish('unreadMessages', function() {
         messageIdArray.push(query);
       });
 
-      console.log(messageIdArray)
       if(messageIdArray.length > 0)
         return Messages.find({
           'messagePayload.draft': {

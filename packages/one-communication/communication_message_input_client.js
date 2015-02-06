@@ -84,7 +84,6 @@ Template.messageInput.events({
     else
       context.draft = false;
 
-    console.log(context);
     if (context.title !== '' && context.postContent !== '') {
       RoomsController.addPostMessageToRoom(Session.get('openRoomId'),
         //TODO: multiple room selector

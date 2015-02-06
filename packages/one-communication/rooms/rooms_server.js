@@ -196,7 +196,6 @@ Meteor.methods({
     if(! this.userId)
       throw new Meteor.Error(401, "You are not logged in!");
 
-    console.log(this.userId, userId);
     var ifRoomExists = Rooms.findOne({
       roomType: 'dm',
       $and: [
@@ -205,7 +204,6 @@ Meteor.methods({
       ]
     });
 
-    console.log(ifRoomExists);
 
     if (ifRoomExists)
       throw new Meteor.Error(403, "Room already exists!");
