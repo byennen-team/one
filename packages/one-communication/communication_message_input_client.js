@@ -70,7 +70,7 @@ Template.messageInput.events({
 
     var context = {
       title: $('#new-post-subject').val(),
-      postContent: $('#communication-message-post-textarea').html()
+      postContent: $('#communication-message-post-textarea').serialize()
     };
 
     var postImage = null;

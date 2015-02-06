@@ -2,9 +2,10 @@ Template.communicationPostInput.rendered = function(){
   $('.selectpicker').selectpicker();
 // defining global var here doesn't fix JSHint error, since editor isn't used.
 /* jshint ignore:start */
-  var editor = new MediumEditor('#communication-message-post-textarea');
+  this.editor = new MediumEditor('#communication-message-post-textarea');
+  that = this;
   $('#communication-message-post-textarea').mediumInsert({
-        editor: editor
+        editor: that.editor
     });
 /* jshint ignore:end */
 };
@@ -71,9 +72,11 @@ Template.communicationPostInput.events({
   'click #communication-message-post-btn': function(event) {
     var context = {
       title: $('#new-post-subject').val(),
-      postContent: $('#communication-message-post-textarea').html(),
+      postContent: Template.instance().editor
+        .serialize()['communication-message-post-textarea'].value,
       draft: false
     };
+    console.log(context.postContent)
 
     var roomsArray = $("#roomSelect").val();
 

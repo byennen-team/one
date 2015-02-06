@@ -31,10 +31,10 @@ Template.communicationMessageBoardSleeve.rendered = function() {
 Template.messageBoard.helpers({
   room: function() {
     return Rooms.findOne(Session.get('openRoomId'));
-  }
-});
-
-Template.communicationMessageBoardSleeve.helpers({
+  },
+  isDM: function() {
+    return this.roomType === 'dm';
+  },
   partnerName: function() {
     var room = Rooms.findOne(Session.get('openRoomId'));
     var participant = _.find(room.participants, function(item){
@@ -42,7 +42,10 @@ Template.communicationMessageBoardSleeve.helpers({
     });
     var partner = Meteor.users.findOne(participant.participantId);
     return partner.profile.firstName + ' ' + partner.profile.lastName;
-  },
+  }
+});
+
+Template.communicationMessageBoardSleeve.helpers({
   messages: function() {
     return Messages.find({
       roomId: Session.get('openRoomId'),
@@ -118,7 +121,36 @@ Template.message.helpers({
   }
 });
 
+Template.postMessage.events({
+  'click .readMore': function(e) {
+    if(Template.instance().expanded.get()) {
+      //compressing
+      Template.instance().expanded.set(false);
+    } else {
+      //expanding
+      Template.instance().expanded.set(true);
+    }
+  }
+});
+
 Template.postMessage.helpers({
+  anchorText: function() {
+    if(Template.instance().expanded.get()) {
+      return '...<span class="blue-text">collapse <i class="fa ' +
+      'fa-arrow-circle-left"></i></span>'
+    } else {
+      return '...<span class="blue-text">read <i class="fa ' +
+      'fa-arrow-circle-right"></i></span>'
+    }
+
+  },
+  expandMessage: function(text) {
+    if(Template.instance().expanded.get()) {
+      return text;
+    } else {
+      return $(text).text().slice(0,50);
+    }
+  },
   isUserClass: function() {
     return (this.creatorId === Meteor.userId())?'user':'';
   },
@@ -143,6 +175,10 @@ Template.postMessage.helpers({
     }
   }
 });
+
+Template.postMessage.created = function() {
+  this.expanded = new ReactiveVar(false);
+}
 
 Template.message.rendered = function() {
   $("#communication-message-board-sleeve,.conversation")
