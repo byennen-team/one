@@ -1,5 +1,5 @@
 <template name="communicationPostInput">
-  
+
 <!-- TODO: needs to be plugged in -->
     <form action="" id="communication-message-post" class="new-post-form">
 
@@ -46,13 +46,14 @@
           </optgroup>
         </select>
 
+        <input type="hidden" id="fileId" />
         <input type="text" class="subject" id="new-post-subject" placeholder="Subject...">
 
         <div id="communication-message-post-textarea" class="fake-textarea" contenteditable='true'>Type a post...</div>
 
-        <div id="communication-message-post-attachment-btn" class="paperclip">
+        <!-- <div id="communication-message-post-attachment-btn" class="paperclip">
           <i class="fa fa-paperclip"></i>
-        </div>
+        </div> -->
 
         <div id="communication-message-post-trash" class="trash">
           <i class="fa fa-trash-o"></i>

@@ -964,12 +964,20 @@
         }
 
         if ($img.length > 0) {
-          $(this).append('<a class="mediumInsert-imageRemove"></a>');
+          $(this).append('<a class="mediumInsert-imageRemove"><i class="fa fa-remove"></i></a>');
+
+
+
+          if ($(this).parent().parent().hasClass('selected')) {
+            $(this).append('<a class="mediumInsert-imageSetCover"><i class="fa fa-check-square-o"></i></a>');
+          } else {
+            $(this).append('<a class="mediumInsert-imageSetCover"><i class="fa fa-square-o"></i></a>');
+          }
 
           if ($(this).parent().parent().hasClass('small')) {
-            $(this).append('<a class="mediumInsert-imageResizeBigger"></a>');
+            $(this).append('<a class="mediumInsert-imageResizeBigger"><i class="fa fa-expand"></i></a>');
           } else {
-            $(this).append('<a class="mediumInsert-imageResizeSmaller"></a>');
+            $(this).append('<a class="mediumInsert-imageResizeSmaller"><i class="fa fa-compress"></i></a>');
           }
 
           positionTop = $img.position().top + parseInt($img.css('margin-top'), 10);
@@ -978,6 +986,11 @@
             'right': 'auto',
             'top': positionTop,
             'left': positionLeft
+          });
+          $('.mediumInsert-imageSetCover', this).css({
+            'right': 'auto',
+            'top': positionTop,
+            'left': positionLeft - 62
           });
           $('.mediumInsert-imageResizeBigger, .mediumInsert-imageResizeSmaller', this).css({
             'right': 'auto',
@@ -988,7 +1001,7 @@
       });
 
       this.$el.on('mouseleave', '.mediumInsert-images', function () {
-        $('.mediumInsert-imageRemove, .mediumInsert-imageResizeSmaller, .mediumInsert-imageResizeBigger', this).remove();
+        $('.mediumInsert-imageRemove, .mediumInsert-imageSetCover, .mediumInsert-imageResizeSmaller, .mediumInsert-imageResizeBigger', this).remove();
       });
 
       this.$el.on('click', '.mediumInsert-imageResizeSmaller', function () {
@@ -1005,6 +1018,25 @@
 
         $.fn.mediumInsert.insert.deselect();
         that.$el.trigger('keyup').trigger('input');
+      });
+
+      this.$el.on('click', '.mediumInsert-imageSetCover', function(ev) {
+        var img = $(this).siblings('img').attr('src');
+        if($('#fileId').val() === img) {
+          //remove
+          $('#fileId').val('');
+          $(ev.currentTarget).html('<i class="fa fa-square-o">');
+          $('.mediumInsert').removeClass('selected');
+          $(this).parent().parent().parent().removeClass('selected');
+        } else {
+          //add
+          $('#fileId').val(img);
+          $(ev.currentTarget).html('<i class="fa fa-check-square-o">');
+          $('.mediumInsert').removeClass('selected');
+          $(this).parent().parent().parent().addClass('selected');
+        }
+
+
       });
 
       this.$el.on('click', '.mediumInsert-imageRemove', function () {

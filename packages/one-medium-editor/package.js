@@ -1,5 +1,5 @@
 Package.describe({
-	name: "one:medium-editor",
+	name: "one-medium-editor",
 	summary: "MediumEditor with Default Theme + MediumEditor Jquery Insert Plugin",
 	version: "1.0.1",
 	git: 'https://github.com/CitizenKevin/meteor-medium-editor'

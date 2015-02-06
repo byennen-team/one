@@ -1,8 +1,8 @@
-/*! 
+/*!
  * medium-editor-insert-plugin v0.2.15 - jQuery insert plugin for MediumEditor
  *
  * https://github.com/orthes/medium-editor-insert-plugin
- * 
+ *
  * Copyright (c) 2014 Pavel Linkesch (http://linkesch.sk)
  * Released under the MIT license
  */
@@ -176,14 +176,13 @@
     background-repeat: no-repeat;
     background-position: center center;
     cursor: pointer; }
+  .mediumInsert .mediumInsert-imageAddCover {
+    right: 62px;}
   .mediumInsert .mediumInsert-imageRemove {
-    right: 0;
-    background-image: url(../images/remove.png); }
+    right: 0;}
   .mediumInsert .mediumInsert-imageResizeSmaller, .mediumInsert .mediumInsert-imageResizeBigger, .mediumInsert .mediumInsert-imageResizeBigger {
-    right: 31px;
-    background-image: url(../images/resize-smaller.png); }
-  .mediumInsert .mediumInsert-imageResizeBigger {
-    background-image: url(../images/resize-bigger.png); }
+    right: 31px;}
+  .mediumInsert .mediumInsert-imageResizeBigger {}
   .mediumInsert .mediumInsert-error {
     background-color: #f2dede;
     border: 1px solid #ebccd1;
