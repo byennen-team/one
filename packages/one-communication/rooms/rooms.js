@@ -147,6 +147,9 @@ RoomsController.getUnreadMessagesCount = function(roomId) {
   query['messagePayload.draft'] = {
       $ne: true
   };
+  query.creatorId = {
+    $ne: Meteor.userId()
+  };
   return Messages.find(query).count();
 };
 
@@ -157,10 +160,13 @@ RoomsController.getRoomsWithUnreadMessages = function() {
   _.each(rooms, function(room) {
     var user = Meteor.user();
     var query = {};
-      query.roomId = room._id;
-      query['messagePayload.draft'] = {
-          $ne: true
-        };
+    query.roomId = room._id;
+    query['messagePayload.draft'] = {
+        $ne: true
+      };
+    query.creatorId = {
+      $ne: Meteor.userId()
+    };
     if(room.roomType &&
       ((room.roomType === 'office' && room.officeNo === user.profile.officeId) ||
         room.roomType === 'company')) {
@@ -184,12 +190,6 @@ RoomsController.getRoomsWithUnreadMessages = function() {
       var currentParticipant = _.find(room.participants, function(item) {
         return (item.participantId === Meteor.userId());
       });
-
-      var query = {};
-      query.roomId = room._id;
-      query.draft = {
-          $ne: true
-        };
 
       if(currentParticipant && currentParticipant.lastReadTimestamp)
         query.dateCreated = { $gt: currentParticipant.lastReadTimestamp };
@@ -232,6 +232,10 @@ RoomsController.getOfficeRoomsWithUnreadMessages = function() {
       query.draft = {
           $ne: true
         };
+
+      query.creatorId = {
+        $ne: Meteor.userId()
+      };
 
       if(user.roomsSeen) {
         thisRoomSeenAt = _.find(user.roomsSeen, function(item) {

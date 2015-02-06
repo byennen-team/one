@@ -3,7 +3,11 @@
 <div class="header">
 	<div class="col-xs-6">
 <!-- TODO: Need to put Channel name here -->
-		<h1>{{roomName}}</h1>
+		{{#if isDM}}
+			<h1>{{partnerName}}</h1>
+		{{else}}
+			<h1>{{roomName}}</h1>
+		{{/if}}
 	</div>
 <!-- TODO: Install search, and add animation -->
 	<div class="col-xs-6"></div>
@@ -122,7 +126,7 @@
 			<img src="{{user.profile.photoUrl.thumb}}" alt="{{user.profile.firstName}} {{user.profile.lastName}}" />
 		</div>
 		<div class="message-body">
-			<p class="subject">{{payload.title}}</p>
+			<p class="subject">{{messagePayload.title}}</p>
 			<p class="name">
 				{{user.profile.firstName}} {{user.profile.lastName}}
 				<span class="time">{{date dateCreated}}</span>

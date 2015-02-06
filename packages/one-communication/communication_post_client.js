@@ -9,6 +9,43 @@ Template.communicationPostInput.rendered = function(){
 /* jshint ignore:end */
 };
 
+Template.communicationPostInput.helpers({
+  isSelected: function() {
+    return (Session.get('openRoomId') === this._id)?'selected':'';
+  },
+  companyChannels: function() {
+    return Rooms.find({
+      roomType: 'company'
+    });
+  },
+  officeChannels: function() {
+    return Rooms.find({
+      roomType: 'office'
+    });
+  },
+  dmChannels: function() {
+    return Rooms.find({
+      roomType: 'dm'
+    });
+  },
+  roomChannels: function() {
+    return Rooms.find({
+      roomType: 'room'
+    });
+  },
+  partnerName: function() {
+    if(this.roomType !== 'dm')
+      return;
+
+    var participant = _.find(this.participants, function(item){
+      return (item.participantId !== Meteor.userId());
+    });
+    console.log(participant)
+    var partner = Meteor.users.findOne(participant.participantId);
+    return partner.profile.firstName + ' ' + partner.profile.lastName;
+  }
+});
+
 Template.communicationPostInput.events({
 
   // close the post window
@@ -38,20 +75,25 @@ Template.communicationPostInput.events({
       draft: false
     };
 
-    var postImage = null;
+    var roomsArray = $("#roomSelect").val();
+
+    if (roomsArray.length <= 0)
+      return null;
+
+    var postImage = $("#fileId").val();
 
     if(postImage)
       context.fileId = postImage;
 
-    console.log(context);
     if (context.title !== '' && context.postContent !== '') {
-      RoomsController.addPostMessageToRoom(Session.get('openRoomId'),
-        //TODO: multiple room selector
-        context);
 
-      //also mark room as read
+      _.each(roomsArray, function(room) {
+        RoomsController.addPostMessageToRoom(room,
+          context);
+        //also mark room as read
+        RoomsController.updateTimestamp(Session.get('openRoomId'));
+      })
 
-      RoomsController.updateTimestamp(Session.get('openRoomId'));
 
       //and cleanup
       $('#new-post-subject').val("");

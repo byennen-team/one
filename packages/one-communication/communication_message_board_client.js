@@ -35,11 +35,23 @@ Template.messageBoard.helpers({
 });
 
 Template.communicationMessageBoardSleeve.helpers({
+  partnerName: function() {
+    var room = Rooms.findOne(Session.get('openRoomId'));
+    var participant = _.find(room.participants, function(item){
+      return (item.participantId !== Meteor.userId());
+    });
+    var partner = Meteor.users.findOne(participant.participantId);
+    return partner.profile.firstName + ' ' + partner.profile.lastName;
+  },
   messages: function() {
     return Messages.find({
       roomId: Session.get('openRoomId'),
       'messagePayload.draft': {
         $ne: true
+      }
+    },{
+      sort: {
+        dateCreated: 1
       }
     });
   },

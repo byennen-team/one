@@ -19,6 +19,7 @@ Template.messageInput.events({
 	'click #communication-message-input-options-post': function(){
 		Session.set("menuOpen", false);
     // Open New Post menu
+    $('.selectpicker').selectpicker('render');
     $( '#communication-message-post' )
       .velocity( "slideDown", { duration: 500 } );
 	},
