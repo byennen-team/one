@@ -6,6 +6,12 @@ Template.communicationPostInput.rendered = function(){
   $('#communication-message-post-textarea').mediumInsert({
         editor: that.editor
     });
+
+  // initialize maazalik:malihu-jquery-custom-scrollbar scrollbar plugin
+  $( "#communication-message-post-textarea" ).mCustomScrollbar({
+      theme:"one-dark",
+      scrollbarPosition: "inside"
+  });
 };
 
 Template.communicationPostInput.helpers({
@@ -59,10 +65,32 @@ Template.communicationPostInput.events({
       .addClass( 'little' );
   },
 
+   // maximize the post window
+  'click .maximize': function () {
+    var $win = $( window );
+    var currentHeight = $win.height();
+    var currentWidth = $win.width();
+    var tall = currentHeight - 160;
+    var wide = currentWidth - 100;
+    $( '#communication-message-post' )
+      .velocity( { 
+        bottom: 0, 
+        height: tall, 
+        width: wide, 
+        right: 50 
+      }, 300 )
+      .removeClass( 'little' );
+  },
+
    // expand the post window
   'click .icon': function () {
     $( '#communication-message-post' )
-      .velocity( { bottom: 0 }, 300 )
+      .velocity( { 
+        bottom: 0, 
+        height: 400, 
+        width: 600, 
+        right: 100 
+      }, 300 )
       .removeClass( 'little' );
   },
 

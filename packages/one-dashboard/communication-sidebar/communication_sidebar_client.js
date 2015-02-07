@@ -50,6 +50,7 @@ Template.communicationSidebar.events({
     Session.set('openRoomId', $(event.currentTarget).data('id'));
     Session.set('messageLimit',20);
 		// expands the main dialog box to 80% of full screen
+    $.Velocity.hook($('#communication-main'), "overflow", "visible");
 		$.Velocity.hook($('#communication-main'), "width", "100%");
 		$.Velocity.hook($('#communication-message-board'), "width", "60%");
 		$.Velocity.hook($('#communication-task-board'), "width", "0%");
@@ -86,6 +87,7 @@ Template.communicationSidebar.events({
     Session.set('openRoomId', $(event.currentTarget).data('id'));
     Session.set('messageLimit',20);
 		// expands the main dialog box t0 60% of full screen
+    $.Velocity.hook($('#communication-main'), "overflow", "visible");
 		$.Velocity.hook($('#communication-main'), "width", "100%");
 		$.Velocity.hook($('#communication-message-board'), "width", "45%");
 		$.Velocity.hook($('#communication-task-board'), "width", "15%");
