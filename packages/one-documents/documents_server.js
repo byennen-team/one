@@ -137,7 +137,7 @@ Meteor.methods({
 
     // TODO: Validate the ownership of the documents
 
-    return FileTools.moveTo(documentIdsToMove, targetFolderId);
+    return FileTools.moveDocumentsTo(documentIdsToMove, targetFolderId);
   }
 });
 

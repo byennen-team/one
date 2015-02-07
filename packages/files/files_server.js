@@ -139,21 +139,101 @@ FileTools.createFolder = function (
 ) {
   parentFolderId = parentFolderId || null;
 
+  var ancestors = [];
+  if (parentFolderId) {
+    var parentFolder = Files.findOne(parentFolderId);
+    if (!parentFolder) {
+      throw new Meteor.Error('PARENT_FOLDER_NOT_FOUND');
+    } else if (!parentFolder.isFolder) {
+      throw new Meteor.Error('PARENT_FOLDER_IS_NOT_A_FOLDER');
+    } else {
+      ancestors = (parentFolder.ancestors || []).concat([parentFolderId]);
+    }
+  }
+
   return Files.insert({
     companyDocument: !!isCompanyDocument,
     name: folderName,
     uploadDate: new Date(),
     userId: userId,
     isFolder: true,
-    parent: parentFolderId
+    parent: parentFolderId,
+    ancetors: ancestors
   });
 };
 
 // TODO: Move to DocumentTools?
-FileTools.moveTo = function (documentIdsToMove, targetFolderId) {
-  return Files.update(
-    {_id: {$in: _.without(documentIdsToMove, targetFolderId)}},
-    {$set: {parent: targetFolderId}},
-    {multi: true}
-  );
+FileTools.moveDocumentsTo = function (documentsToMoveIds, targetFolderId) {
+  documentsToMoveIds = _.without(documentsToMoveIds, targetFolderId);
+
+  _.forEach(documentsToMoveIds, function (documentToMoveId) {
+    FileTools.moveDocumentTo(documentToMoveId, targetFolderId);
+  });
 };
+
+/**
+ * Moves a document (file or folder) into a new target folder.
+ * When the targetFolderId is null it means that the document
+ * is moved into the root.
+ * @param documentToMoveId
+ * @param targetFolderId
+ */
+FileTools.moveDocumentTo = function (documentToMoveId, targetFolderId) {
+  if (documentToMoveId === targetFolderId) {
+    throw new Meteor.Error('DOCUMENT_CANNOT_BE_MOVED_INTO_ITSELF');
+  }
+
+  var documentToMove = Files.findOne(documentToMoveId);
+
+  if (!documentToMove) {
+    throw new Meteor.Error('DOCUMENT_TO_MOVE_NOT_FOUND');
+  }
+
+  var newAncestors = [];
+  if (targetFolderId) {
+    var targetFolder = Files.findOne(targetFolderId);
+
+    if (!targetFolder) {
+      throw new Meteor.Error('TARGET_FOLDER_NOT_FOUND');
+    } else if (!targetFolder.isFolder) {
+      throw new Meteor.Error('TARGET_FOLDER_IS_NOT_A_FOLDER');
+    }
+
+    newAncestors = (targetFolder.ancestors || []).concat([targetFolderId]);
+  }
+
+  Files.update(
+    {_id: documentToMoveId},
+    {$set: {
+      parent: targetFolderId,
+      ancestors: newAncestors
+    }}
+  );
+
+  if (documentToMove.isFolder) {
+    updateAncestorsOfFolderChildren(
+      documentToMoveId,
+      newAncestors
+    );
+  }
+};
+
+function updateAncestorsOfFolderChildren(parentFolderId, newParentAncestors) {
+  Files
+    .find({ancestors: parentFolderId})
+    .forEach(function (childDocumentToMove) {
+      // Remove the ancestor part above the parent folder
+      // and replace it with the newParentAncestors
+      var index = childDocumentToMove.ancestors.indexOf(parentFolderId);
+      var newAncestors = newParentAncestors.concat(
+        childDocumentToMove.ancestors.slice(index)
+      );
+
+      Files.update(
+        childDocumentToMove,
+        {$set: {
+          ancestors: newAncestors
+        }}
+      );
+    });
+}

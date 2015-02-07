@@ -14,6 +14,10 @@ Files.schema = new SimpleSchema({
    * Files that have no parent value are in the root folder.
    */
   parent: {type: String, optional: true},
+  /**
+   * An array of folder ids that are the ancestors from top to bottom.
+   */
+  ancestors: {type: [String], defaultValue: []},
   sharedWith: {type: [SharedWithRule.schema], defaultValue: []}
 });
 
