@@ -48,6 +48,7 @@ Template.communicationSidebar.events({
 	// Opens the Communication Hub
 	'click .channel': function(event){
     Session.set('openRoomId', $(event.currentTarget).data('id'));
+    Session.set('messageLimit',20);
 		// expands the main dialog box to 80% of full screen
 		$.Velocity.hook($('#communication-main'), "width", "100%");
 		$.Velocity.hook($('#communication-message-board'), "width", "60%");
@@ -79,15 +80,11 @@ Template.communicationSidebar.events({
     body.css('overflow', 'hidden');
     window.scrollTo(scrollPosition[0], scrollPosition[1]);
 
-    $("#communication-message-board-sleeve")
-      .mCustomScrollbar({
-        theme:"one-dark",
-        scrollbarPosition: "inside"
-    });
 	},
 
 	'click .room': function(event){
     Session.set('openRoomId', $(event.currentTarget).data('id'));
+    Session.set('messageLimit',20);
 		// expands the main dialog box t0 60% of full screen
 		$.Velocity.hook($('#communication-main'), "width", "100%");
 		$.Velocity.hook($('#communication-message-board'), "width", "45%");
@@ -119,11 +116,6 @@ Template.communicationSidebar.events({
     body.css('overflow', 'hidden');
     window.scrollTo(scrollPosition[0], scrollPosition[1]);
 
-    $("#communication-message-board-sleeve")
-      .mCustomScrollbar({
-        theme:"one-dark",
-        scrollbarPosition: "inside"
-    });
 	},
   'click #addRoom': function() {
     Session.set('teamModalPurpose','newTeam');

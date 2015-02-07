@@ -3,28 +3,49 @@ Template.messageBoard.events({
 
 });
 Template.messageBoard.created = function() {
+  Session.set('messageLimit',20);
   this.autorun(function () {
     var openRoomId = Session.get('openRoomId');
     if (openRoomId) {
-      return Meteor.subscribe('roomData', openRoomId);
+      return Meteor.subscribe('roomData', openRoomId,
+        Session.get('messageLimit'));
     }
     });
 
-  $("#communication-message-board-sleeve")
-    .mCustomScrollbar({
-      theme:"one-dark",
-      scrollbarPosition: "inside"
-  });
+
 };
 Template.communicationMessageBoardSleeve.rendered = function() {
   // initialize maazalik:malihu-jquery-custom-scrollbar scrollbar plugin
   var board = $("#communication-message-board-sleeve");
   board.mCustomScrollbar({
+      callbacks: {
+        onTotalScrollBack: function() {
+          var loadedMessages = Messages.find({
+            roomId: Session.get('openRoomId'),
+            'messagePayload.draft': {
+              $ne: true
+            }
+          },{
+            sort: {
+              dateCreated: 1
+            }
+          }).count();
+
+          if(loadedMessages <= Session.get("messageLimit")) {
+            var newLimit = Session.get("messageLimit") + 20;
+            Session.set("messageLimit", newLimit);
+          }
+        }
+      },
+      onTotalScrollOffset: 100,
+      alwaysTriggerOffsets: false,
       theme:"one-dark",
       scrollbarPosition: "inside"
   });
   Meteor.setTimeout(function() {
-    board.mCustomScrollbar("scrollTo","bottom");
+    board.mCustomScrollbar("scrollTo","bottom",{
+      scrollInertia: 0
+    });
   },500);
 };
 
@@ -181,10 +202,16 @@ Template.postMessage.created = function() {
 };
 
 Template.message.rendered = function() {
-  $("#communication-message-board-sleeve,.conversation")
+  if ($("#communication-message-board-sleeve").scrollTop + 100 >=
+    $("#communication-message-board-sleeve").height()) {
+    $("#communication-message-board-sleeve, .conversation}")
     .mCustomScrollbar("scrollTo","bottom");
+  }
 };
 Template.postMessage.rendered = function() {
-  $("#communication-message-board-sleeve,.conversation")
+  if ($("#communication-message-board-sleeve").scrollTop + 100 >=
+    $("#communication-message-board-sleeve").height()) {
+    $("#communication-message-board-sleeve, .conversation}")
     .mCustomScrollbar("scrollTo","bottom");
+  }
 };

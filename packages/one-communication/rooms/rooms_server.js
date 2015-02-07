@@ -66,8 +66,13 @@ Meteor.startup(function() {
 
 });
 
-Meteor.publishComposite('roomData', function(roomId) {
+Meteor.publishComposite('roomData', function(roomId, limit) {
   check(roomId, String);
+  check(limit, Match.Optional(Number));
+
+  if(! limit)
+    limit = 20;
+
   return {
     //getting the room
     find: function() {
@@ -96,6 +101,11 @@ Meteor.publishComposite('roomData', function(roomId) {
             roomId: room._id,
             'messagePayload.draft': {
               $ne: true
+            }
+          },{
+            limit: limit,
+            sort: {
+              dateCreated: - 1
             }
           });
         },
