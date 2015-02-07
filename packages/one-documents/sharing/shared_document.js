@@ -23,6 +23,14 @@ SharedDocument.schema = new SimpleSchema({
   sharedDocumentId: {
     type: String
   },
+  sharedAt: {
+    type: Date,
+    autoValue: function () {
+      if (!this.isSet) {
+        return new Date();
+      }
+    }
+  },
   senderId: {
     type: String
   },

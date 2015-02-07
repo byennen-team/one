@@ -258,3 +258,20 @@ SyncedCron.add({
     return sharedDocumentsThatNeedReminder.count();
   }
 });
+
+SyncedCron.add({
+  name: 'Expire shared documents that have been shared with users outside of ' +
+        ' Go One after 30 days',
+  schedule: function(parser) {
+    return parser.text('every 1 days');
+  },
+  job: function() {
+    return SharedDocuments.remove(
+      {
+        receiverId: null,
+        sharedAt: {$lt: moment().subtract(30, 'days').toDate()}
+      },
+      {multi: true}
+    );
+  }
+});
