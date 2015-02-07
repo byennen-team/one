@@ -1,5 +1,5 @@
 <template name="communicationAddTeammemberModal">
-  <div class="modal fade hide" id="communication-add-teammember-modal" tabindex="-1" role="dialog" aria-labelledby="content-link-maodal" aria-hidden="true">
+  <div class="modal fade" id="communication-add-teammember-modal" tabindex="-1" role="dialog" aria-labelledby="content-link-maodal" aria-hidden="true">
     <div class="modal-dialog">
       <form class="modal-content" id='content-link-form' role="form">
         <div class="modal-header">
@@ -7,36 +7,31 @@
             <i class='fa icon-x' aria-hidden="true"></i>
             <span class="sr-only">Close</span>
           </button>
-          <p class="modal-title raleway-semibold white text-uppercase spacing-250 m-left-05">Invite People</p>
-        </div>
-        <div class="modal-body">
           <div class="teamMembers">
             {{#each teamMembers}}
-              <img src="{{profile.photoUrl.thumb}}" class="profile-image img-circle" title="{{profile.firstName}} {{profile.lastName}}" />
+            <div class="member-avatar" style="background-image: url({{profile.photoUrl.thumb}});"></div>
             {{/each}}
           </div>
+          <p class="modal-title raleway-semibold white text-uppercase spacing-250 m-left-05">invite</p>
+        </div>
+        <div class="modal-body">
           <div class="form-group">
-              <input id="modalAddMembersSearchInput" class="form-control" type="text" placeholder="Enter name to search" />
+            <input id="modalAddMembersSearchInput" class="form-control" type="text" placeholder="Search directory" />
 
-              <div class="row">
-              <div class="col-sm-12">
-                <table class="table table-striped">
-                  <tbody>
-                  {{#each people}}
-                    {{> teamMember}}
-                  {{/each}}
-                  </tbody>
-                </table>
-              </div>
+            <div class="people">
+              {{#each people}}
+                {{> teamMember}}
+              {{/each}}
             </div>
+
+            {{#if isNewRoom}}
+              <input class="form-control" type="text" id="new-room-name" placeholder="Name your room" />
+            {{/if}}
           </div>
         </div>
         <div class="modal-footer">
-          {{#if isNewRoom}}
-            <input class="form-control" type="text" id="new-room-name" placeholder="Name your room" />
-          {{/if}}
           <button type="button" id="cancel-team-members" class="btn btn-default" data-dismiss="modal">Cancel</button>
-          <button id='add-team-members' type="button" class="btn btn-primary">Add</button>
+          <button id='add-team-members' type="button" class="btn btn-primary">done</button>
         </div>
       </form>
     </div>
@@ -44,12 +39,15 @@
 </template>
 
 <template name="teamMember">
-  <tr class="user">
-    <td><img src="{{profile.photoUrl.thumb}}" class="profile-image img-circle"/></td>
-    <td>
-      <div class="name">{{profile.firstName}} {{profile.lastName}}</div>
-      <div class="job">{{profile.title}}</div>
-    </td>
-    <td><input type="checkbox" class="userid-checkbox" {{isChecked ../teamMembersArray}} value="{{_id}}" /></td>
-  </tr>
+  <div class="user">
+    <div class="avatar-box">
+      <div class="avatar" style="background-image: url({{profile.photoUrl.thumb}});"></div>
+    </div>
+    <div class="name">{{profile.firstName}} {{profile.lastName}}</div>
+    <div class="job">{{profile.title}}</div>
+    <label class="checkbox icon-circle">
+      <input type="checkbox" class="userid-checkbox" {{isChecked ../teamMembersArray}} value="{{_id}}" />
+      <i class="fa icon-plus"></i>
+    </label>
+  </div>
 </template>

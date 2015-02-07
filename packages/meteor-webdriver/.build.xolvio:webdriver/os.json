@@ -1,0 +1,32 @@
+{
+  "format": "unipackage-unibuild-pre1",
+  "packageVariables": [
+    {
+      "name": "wdio",
+      "export": true
+    },
+    {
+      "name": "DEBUG"
+    }
+  ],
+  "uses": [
+    {
+      "package": "meteor"
+    },
+    {
+      "package": "velocity:core",
+      "constraint": "1.0.0-rc.1"
+    }
+  ],
+  "node_modules": "npm/node_modules",
+  "resources": [
+    {
+      "type": "prelink",
+      "file": "os/packages/xolvio:webdriver.js",
+      "length": 3887,
+      "offset": 0,
+      "servePath": "/packages/xolvio:webdriver.js",
+      "sourceMap": "os/packages/xolvio:webdriver.js.map"
+    }
+  ]
+}
