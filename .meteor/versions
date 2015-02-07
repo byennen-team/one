@@ -97,6 +97,7 @@ one-search@0.0.0
 one-support@0.0.0
 ordered-dict@1.0.2
 peppelg:bootstrap-3-modal@1.0.3
+percolate:synced-cron@1.1.1
 practicalmeteor:chai@1.9.2_3
 practicalmeteor:loglevel@1.1.0_3
 random@1.0.2

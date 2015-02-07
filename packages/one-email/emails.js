@@ -92,7 +92,6 @@ Meteor.methods({
     check(options, {
       subject: String,
       to: String,
-      senderName: String,
       sharedDocuments: String
     });
 
@@ -124,7 +123,7 @@ Meteor.methods({
     check(options, {
       subject: String,
       to: String,
-      senderName: String,
+      sharedWithName: String,
       sharedDocuments: String
     });
 

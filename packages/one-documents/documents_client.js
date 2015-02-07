@@ -101,6 +101,7 @@ Template.documents.helpers({
     // TODO: Refactor shared document into own template
     if (Routes.getName() === Routes.SHARED_DOCUMENT) {
       var sharedDocumentFileIds = SharedDocuments
+        .find()
         .map(function (sharedDocument) {
           return sharedDocument.sharedDocumentId;
         });
