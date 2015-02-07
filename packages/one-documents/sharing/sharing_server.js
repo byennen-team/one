@@ -83,25 +83,54 @@ DocumentSharing = {
     );
   },
 
-  sendDocumentsSharedEmail: function (sharedDocuments, sender, receiver) {
+  sendDocumentsSharedWithYouEmail: function (
+    sharedDocuments,
+    sender,
+    receiver
+  ) {
     var subject = sharedDocuments.length === 1 ?
       'A document' :
       sharedDocuments.length + ' documents';
     subject += ' have been shared with you';
 
-    var sharedDocumentsText = _.map(sharedDocuments, function (sharedDocument) {
-      return '* ' + sharedDocument.getShareUrl();
-    }).join('\n\n');
-
     Meteor.call(
-      'sendSharedDocumentsNotification',
+      'sendDocumentsSharedWithYouNotification',
       {
         subject: subject,
         to: receiver.email,
         senderName: sender.profile.firstName, // TODO: Full name
-        sharedDocuments: sharedDocumentsText
+        sharedDocuments: this._getSharedDocumentsEmailBlock(sharedDocuments)
       }
     );
+  },
+
+  sendYouSharedDocumentsEmail: function (
+    sharedDocuments,
+    sharer,
+    receiver
+  ) {
+    var subject = 'You shared ';
+    subject += sharedDocuments.length === 1 ?
+      'a document' :
+      sharedDocuments.length + ' documents';
+
+    Meteor.call(
+      'sendYouSharedDocumentsNotification',
+      {
+        subject: subject,
+        to: sharer.emails[0].address,
+        sharedWithName: receiver.email,
+        sharedDocuments: this._getSharedDocumentsEmailBlock(sharedDocuments)
+      }
+    );
+  },
+
+  _getSharedDocumentsEmailBlock: function (sharedDocuments) {
+    var sharedDocumentsText = _.map(sharedDocuments, function (sharedDocument) {
+      return '* ' + sharedDocument.getShareUrl();
+    }).join('\n\n');
+
+    return sharedDocumentsText;
   }
 };
 
@@ -121,7 +150,14 @@ Meteor.methods({
     var sharedDocuments = SharedDocuments
       .find({_id: {$in: sharedDocumentIds}})
       .fetch();
-    DocumentSharing.sendDocumentsSharedEmail(
+
+    DocumentSharing.sendDocumentsSharedWithYouEmail(
+      sharedDocuments,
+      Meteor.user(),
+      receiver
+    );
+
+    DocumentSharing.sendYouSharedDocumentsEmail(
       sharedDocuments,
       Meteor.user(),
       receiver
