@@ -14,7 +14,7 @@ Files.schema = new SimpleSchema({
    * Files that have no parent value are in the root folder.
    */
   parent: {type: String, optional: true},
-  sharedWith: {type: [String], defaultValue: []}
+  sharedWith: {type: [SharedWithRule.schema], defaultValue: []}
 });
 
 // Can't name this File or it will conflict with the HTML5 File.

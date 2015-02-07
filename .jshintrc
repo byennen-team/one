@@ -140,6 +140,8 @@
     // Go One package exports
     "AWS": false,
     "Companies": false,
+    "FileAccess": false,
+    "SharedWithRule": false,
     "Files": false,
     "FileTools": false,
     "Folder": false,
