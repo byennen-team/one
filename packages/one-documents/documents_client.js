@@ -101,7 +101,6 @@ Template.documents.helpers({
     // TODO: Refactor shared document into own template
     if (Routes.getName() === Routes.SHARED_DOCUMENT) {
       var sharedDocumentFileIds = SharedDocuments
-        .find()
         .map(function (sharedDocument) {
           return sharedDocument.sharedDocumentId;
         });
@@ -112,7 +111,10 @@ Template.documents.helpers({
       );
     } else if (Routes.getName() === Routes.SHARED_DOCUMENTS) {
       return Files.find(
-        {sharedWith: Meteor.userId()},
+        {
+          'sharedWith.userId': Meteor.userId(),
+          'sharedWith.isInherited': false
+        },
         {sort: {uploadDate: -1}}
       );
     } else {

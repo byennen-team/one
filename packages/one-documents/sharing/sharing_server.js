@@ -20,15 +20,67 @@ DocumentSharing = {
 
   acceptDocument: function (sharedDocumentId) {
     var sharedDocument = SharedDocuments.findOne(sharedDocumentId);
-    if (sharedDocument) {
-      Files.update(
-        sharedDocument.sharedDocumentId,
-        {$addToSet: {sharedWith: Meteor.userId()}}
-      );
-      SharedDocuments.update(sharedDocumentId, {$set: {isAccepted: true}});
-    } else {
+    if (!sharedDocument) {
       throw new Meteor.Error('SHARED_DOCUMENT_NOT_FOUND');
     }
+
+    if (!sharedDocument.isAccepted) {
+      var sharedDocumentFile = Files.findOne(sharedDocument.sharedDocumentId);
+
+      if (sharedDocumentFile) {
+        var shareRule = {
+          userId: Meteor.userId(),
+          access: FileAccess.WRITE, // TODO: Make this an option
+        };
+
+        DocumentSharing._updateShareRuleForDocument(
+          sharedDocument.sharedDocumentId,
+          _.defaults({isInherited: false}, shareRule)
+        );
+
+        if (sharedDocumentFile.isFolder) {
+          DocumentSharing._updateShareRuleForChildDocuments(
+            sharedDocument.sharedDocumentId,
+            _.defaults({isInherited: true}, shareRule)
+          );
+        }
+      }
+      // TODO: Handle case when shared file has been deleted
+
+      SharedDocuments.update(sharedDocumentId, {$set: {isAccepted: true}});
+    }
+  },
+
+  _updateShareRuleForDocument: function (documentId, shareRule) {
+    // First remove the old share rule for the user
+    Files.update(
+      documentId,
+      {$pull: {sharedWith: {
+        userId: shareRule.userId
+      }}}
+    );
+
+    // Then add the new share rule for the user
+    Files.update(
+      documentId,
+      {$push: {sharedWith: shareRule}}
+    );
+  },
+
+  _updateShareRuleForChildDocuments: function (parentDocumentId, shareRule) {
+    // First remove the old share rule for the user
+    Files.update(
+      {ancestors: parentDocumentId},
+      {$pull: {sharedWith: {
+        userId: shareRule.userId
+      }}}
+    );
+
+    // Then add the new share rule for the user
+    Files.update(
+      {ancestors: parentDocumentId},
+      {$push: {sharedWith: shareRule}}
+    );
   },
 
   sendDocumentsSharedEmail: function (sharedDocuments, sender, receiver) {
@@ -119,5 +171,5 @@ Meteor.publish('sharedDocuments', function () {
     throw new Meteor.Error('USER_MUST_BE_LOGGED_IN');
   }
 
-  return Files.find({sharedWith: this.userId});
+  return Files.find({'sharedWith.userId': this.userId});
 });
