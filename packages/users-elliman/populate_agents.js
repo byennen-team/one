@@ -1,6 +1,5 @@
 /* global PowerQueue: false */
 if (process.env.SEED) {
-
   var userFromEllimanRow = function (row) {
     var profile = {
       id: row.ID,
@@ -18,8 +17,7 @@ if (process.env.SEED) {
     };
 
     if (row.PHONE_NUMBER) profile.numbers.phone = row.PHONE_NUMBER;
-    if (row.PHONE_EXTENSION)
-      profile.numbers.phoneExtension = row.PHONE_EXTENSION;
+    if (row.PHONE_EXTENSION) profile.numbers.phoneExtension = row.PHONE_EXTENSION;
     if (row.FAX_NUMBER) profile.numbers.fax = row.FAX_NUMBER;
     if (row.MOBILE) profile.numbers.mobile = row.MOBILE;
 
@@ -114,7 +112,7 @@ if (process.env.SEED) {
       Assets.getText('elliman_agents_production.json')
     );
     if (Settings.isDevelopment || Settings.isStaging) {
-        ellimanAgents = ellimanAgents.slice(14,33);
+        ellimanAgents = ellimanAgents.slice(14,20);
     }
     var count = 1;
     _.each(ellimanAgents, function (row) {
@@ -127,11 +125,7 @@ if (process.env.SEED) {
     });
     console.log('Ready to run queue');
 
-
-    console.log("Environemtn is" +  Meteor.settings.public.ENVIRONMENT);
     Meteor._powerQ.run();
-
-    console.log('Queue is running');
     Meteor._powerQ.add(function(done){
       FileTools.cleanupTemp(done);
     });
