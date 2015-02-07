@@ -202,16 +202,13 @@ Template.postMessage.created = function() {
 };
 
 Template.message.rendered = function() {
-  if ($("#communication-message-board-sleeve").scrollTop + 100 >=
-    $("#communication-message-board-sleeve").height()) {
-    $("#communication-message-board-sleeve, .conversation}")
-    .mCustomScrollbar("scrollTo","bottom");
-  }
+  // var board = $("#communication-message-board-sleeve");
+  // var container = this.$(".message").parent().parent();
+  // if (board.position().top + 100 >= board.height()) {
+  //   $("#communication-message-board-sleeve, .conversation")
+  //   .mCustomScrollbar("scrollTo","bottom");
+  // }
 };
 Template.postMessage.rendered = function() {
-  if ($("#communication-message-board-sleeve").scrollTop + 100 >=
-    $("#communication-message-board-sleeve").height()) {
-    $("#communication-message-board-sleeve, .conversation}")
-    .mCustomScrollbar("scrollTo","bottom");
-  }
+
 };
