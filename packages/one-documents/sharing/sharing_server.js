@@ -104,6 +104,26 @@ DocumentSharing = {
     );
   },
 
+  sendDocumentsSharedWithYouReminderEmail: function (
+    sharedDocuments,
+    receiver
+  ) {
+    var subject = 'You need to accept ';
+    subject += sharedDocuments.length === 1 ?
+      'a document that has' :
+      sharedDocuments.length + ' documents that have';
+    subject += ' been shared with you';
+
+    Meteor.call(
+      'sendDocumentsSharedWithYouReminderNotification',
+      {
+        subject: subject,
+        to: receiver.email,
+        sharedDocuments: this._getSharedDocumentsEmailBlock(sharedDocuments)
+      }
+    );
+  },
+
   sendYouSharedDocumentsEmail: function (
     sharedDocuments,
     sharer,
@@ -133,6 +153,7 @@ DocumentSharing = {
     return sharedDocumentsText;
   }
 };
+
 
 Meteor.methods({
 
@@ -174,6 +195,7 @@ Meteor.methods({
 
 });
 
+
 /**
  * Publishes a sharedDocument and its associated file.
  * The publication is secured by the accessToken.
@@ -208,4 +230,31 @@ Meteor.publish('sharedDocuments', function () {
   }
 
   return Files.find({'sharedWith.userId': this.userId});
+});
+
+
+SyncedCron.add({
+  name: 'Send accept reminders for shared documents',
+  schedule: function(parser) {
+    return parser.text('every 1 hours');
+  },
+  job: function() {
+    var sharedDocumentsThatNeedReminder = SharedDocuments.find({
+      isAccepted: false,
+      reminderSendCount: {$lt: 1},
+      lastReminderSentAt: {$lt: moment().subtract(48, 'hours').toDate()}
+    }).fetch();
+
+    _(sharedDocumentsThatNeedReminder)
+      .groupBy('receiverEmail')
+      .forEach(function (sharedDocuments, receiverEmail) {
+        DocumentSharing.sendDocumentsSharedWithYouReminderEmail(
+          sharedDocuments,
+          {email: receiverEmail}
+        );
+      }
+    );
+
+    return sharedDocumentsThatNeedReminder.count();
+  }
 });

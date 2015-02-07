@@ -33,7 +33,8 @@ Package.onUse(function (api) {
     ], 'web');
 
   api.use([
-    'secure-random-token'
+    'secure-random-token',
+    'percolate:synced-cron@1.1.1'
   ], 'server');
 
   api.addFiles([

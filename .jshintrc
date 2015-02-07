@@ -136,6 +136,7 @@
     "MatchEx": false,         // jonperl:match-ex
     "i18n": false,            // anti:i18n
     "Modal": false,           // peppelg:bootstrap-3-modal
+    "SyncedCron": false,      // percolate:synced-cron
 
     // Go One package exports
     "AWS": false,

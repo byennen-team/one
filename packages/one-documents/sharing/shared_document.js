@@ -43,6 +43,10 @@ SharedDocument.schema = new SimpleSchema({
     type: Date,
     optional: true
   },
+  reminderSendCount: {
+    type: Number,
+    defaultValue: 0
+  },
   accessToken: {
     type: String,
     autoValue: function () {
