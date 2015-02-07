@@ -73,13 +73,15 @@ DocumentSharing = {
       {ancestors: parentDocumentId},
       {$pull: {sharedWith: {
         userId: shareRule.userId
-      }}}
+      }}},
+      {multi: true}
     );
 
     // Then add the new share rule for the user
     Files.update(
       {ancestors: parentDocumentId},
-      {$push: {sharedWith: shareRule}}
+      {$push: {sharedWith: shareRule}},
+      {multi: true}
     );
   },
 
@@ -255,7 +257,7 @@ SyncedCron.add({
       }
     );
 
-    return sharedDocumentsThatNeedReminder.count();
+    return sharedDocumentsThatNeedReminder.length;
   }
 });
 
