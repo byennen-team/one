@@ -282,7 +282,7 @@ SyncedCron.add({
       lastReminderSentAt: {$lt: moment().subtract(48, 'hours').toDate()}
     }).fetch();
 
-    _(sharedDocumentsThatNeedReminder)
+    _.chain(sharedDocumentsThatNeedReminder)
       .groupBy('receiverEmail')
       .forEach(function (sharedDocuments, receiverEmail) {
         DocumentSharing.sendDocumentsSharedWithYouReminderEmail(
