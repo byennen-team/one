@@ -122,22 +122,8 @@ FileTools.delete = function (filePath, callback) {
     });
 };
 
-/**
- * Creates a folder.
- * @param {String} folderName The name of the folder.
- * @param {String} userId The user id of the owner.
- * @param {String} [parentFolderId] The id of the parentFolderId folder.
- * @param {Boolean} [isCompanyDocument] Is the folder a companyDocument?
- * @returns {String} The id of the created folder.
- */
-// TODO: Move to DocumentTools?
-FileTools.createFolder = function (
-  folderName,
-  userId,
-  parentFolderId,
-  isCompanyDocument
-) {
-  parentFolderId = parentFolderId || null;
+FileTools.createDocument = function (data) {
+  var parentFolderId = data.parent || null;
 
   var ancestors = [];
   var sharedWith = [];
@@ -153,15 +139,38 @@ FileTools.createFolder = function (
     }
   }
 
-  return Files.insert({
-    companyDocument: !!isCompanyDocument,
-    name: folderName,
+  data = _.extend({
     uploadDate: new Date(),
-    userId: userId,
-    isFolder: true,
+    userId: Meteor.userId(),
     parent: parentFolderId,
     ancetors: ancestors,
     sharedWith: sharedWith
+  }, data);
+
+  return Files.insert(data);
+};
+
+/**
+ * Creates a folder.
+ * @param {String} folderName The name of the folder.
+ * @param {String} userId The user id of the owner.
+ * @param {String} [parentFolderId] The id of the parentFolderId folder.
+ * @param {Boolean} [isCompanyDocument] Is the folder a companyDocument?
+ * @returns {String} The id of the created folder.
+ */
+// TODO: Move to DocumentTools?
+FileTools.createFolder = function (
+  folderName,
+  userId,
+  parentFolderId,
+  isCompanyDocument
+) {
+  return FileTools.createDocument({
+    companyDocument: !!isCompanyDocument,
+    name: folderName,
+    userId: userId,
+    isFolder: true,
+    parent: parentFolderId
   });
 };
 
