@@ -47,9 +47,11 @@ Template.shareDocumentModal.events({
   'submit form': function (event, templateInstance) {
     event.preventDefault(); // Don't do the default form submit
 
-    var receiverEmail = templateInstance.$('input[name="receiver"]').val();
+    var selectedReceiver = templateInstance.$('input[name="receiver"]')
+      .select2('data');
     var receiver = {
-      email: receiverEmail
+      _id: selectedReceiver.id,
+      email: selectedReceiver.text
     };
     Meteor.call(
       'shareDocuments',
