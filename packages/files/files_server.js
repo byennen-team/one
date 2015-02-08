@@ -140,6 +140,7 @@ FileTools.createFolder = function (
   parentFolderId = parentFolderId || null;
 
   var ancestors = [];
+  var sharedWith = [];
   if (parentFolderId) {
     var parentFolder = Files.findOne(parentFolderId);
     if (!parentFolder) {
@@ -148,6 +149,7 @@ FileTools.createFolder = function (
       throw new Meteor.Error('PARENT_FOLDER_IS_NOT_A_FOLDER');
     } else {
       ancestors = (parentFolder.ancestors || []).concat([parentFolderId]);
+      sharedWith = parentFolder.sharedWith;
     }
   }
 
@@ -158,7 +160,8 @@ FileTools.createFolder = function (
     userId: userId,
     isFolder: true,
     parent: parentFolderId,
-    ancetors: ancestors
+    ancetors: ancestors,
+    sharedWith: sharedWith
   });
 };
 

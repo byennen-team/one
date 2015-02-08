@@ -72,6 +72,20 @@ Meteor.methods({
     if (!user) throw new Meteor.Error('Invalid credentials');
     validateFolderId(user, parentFolderId);
 
+    var ancestors = [];
+    var sharedWith = [];
+    if (parentFolderId) {
+      var parentFolder = Files.findOne(parentFolderId);
+      if (!parentFolder) {
+        throw new Meteor.Error('PARENT_FOLDER_NOT_FOUND');
+      } else if (!parentFolder.isFolder) {
+        throw new Meteor.Error('PARENT_FOLDER_IS_NOT_A_FOLDER');
+      } else {
+        ancestors = (parentFolder.ancestors || []).concat([parentFolderId]);
+        sharedWith = parentFolder.sharedWith;
+      }
+    }
+
     // TODO grab company name
     var filePath = Folder.companyDocument('elliman') + '/' + fileName;
 
@@ -80,7 +94,9 @@ Meteor.methods({
       name: fileName,
       uploadDate: new Date(),
       userId: user._id,
-      parent: parentFolderId
+      parent: parentFolderId,
+      ancetors: ancestors,
+      sharedWith: sharedWith
     });
     var signed = FileTools.signUpload(filePath, 'private', mimeType);
     signed.fileId = fileId;
@@ -96,6 +112,20 @@ Meteor.methods({
     if (!user) throw new Meteor.Error('Invalid credentials');
     validateFolderId(user, parentFolderId);
 
+    var ancestors = [];
+    var sharedWith = [];
+    if (parentFolderId) {
+      var parentFolder = Files.findOne(parentFolderId);
+      if (!parentFolder) {
+        throw new Meteor.Error('PARENT_FOLDER_NOT_FOUND');
+      } else if (!parentFolder.isFolder) {
+        throw new Meteor.Error('PARENT_FOLDER_IS_NOT_A_FOLDER');
+      } else {
+        ancestors = (parentFolder.ancestors || []).concat([parentFolderId]);
+        sharedWith = parentFolder.sharedWith;
+      }
+    }
+
     var filePath = Folder.userDocument(user._id) + '/' + fileName;
 
     var fileId = Files.insert({
@@ -103,7 +133,9 @@ Meteor.methods({
       name: fileName,
       uploadDate: new Date(),
       userId: user._id,
-      parent: parentFolderId
+      parent: parentFolderId,
+      ancetors: ancestors,
+      sharedWith: sharedWith
     });
     var signed = FileTools.signUpload(filePath, 'private', mimeType);
     signed.fileId = fileId;
