@@ -12,6 +12,7 @@ Package.onUse(function (api) {
 
   api.use([
     'underscore',
+    'momentjs:moment@2.8.4',
     'aldeed:simple-schema@1.3.0',
     'aldeed:collection2@2.3.1',
     'files'
@@ -22,7 +23,6 @@ Package.onUse(function (api) {
     'jquery',
     'session',
     'templating',
-    'mrt:moment',
     'natestrauser:select2@3.5.1',
     'velocityjs:velocityjs',
     'mquandalle:bower@0.1.11',
