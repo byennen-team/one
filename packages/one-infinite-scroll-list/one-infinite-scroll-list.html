@@ -1,0 +1,14 @@
+<template name="oneInfiniteScrollList">
+  {{#each items}}
+    {{> Template.contentBlock this}}
+  {{/each}}
+  {{#if moreAvailable}}
+    <button
+      data-action="load-more"
+      type="button"
+      class="btn btn-default"
+    >
+      Load more
+    </button>
+  {{/if}}
+</template>

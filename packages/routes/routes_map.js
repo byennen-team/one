@@ -26,9 +26,6 @@ Router.route('/apps', {
 Router.route('/documents', {
   name: Routes.MY_DOCUMENTS,
   template: 'documents',
-  waitOn: function () {
-    return Meteor.subscribe('files');
-  },
   action: function () {
     resetDocumentSelection();
     Session.set('currentFolderId', null);

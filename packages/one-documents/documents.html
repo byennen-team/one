@@ -61,9 +61,9 @@
                   </tr>
                 </thead>
                 <tbody>
-                  {{#each files}}
-                    {{> documentRow}}
-                  {{/each}}
+                {{#oneInfiniteScrollList documentsListOptions}}
+                  {{> documentRow}}
+                {{/oneInfiniteScrollList}}
                 </tbody>
               </table>
               {{> documentsFolderModal}}

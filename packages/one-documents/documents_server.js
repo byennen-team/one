@@ -152,6 +152,36 @@ Meteor.methods({
   }
 });
 
+
+Meteor.publish('myLibraryDocuments', function (parentFolderId, limit) {
+  check(parentFolderId, Match.OneOf(null, String));
+  check(limit, Number);
+
+  return Files.find(
+    {
+      companyDocument: false,
+      archived: {$ne: true},
+      parent: parentFolderId
+    },
+    {limit: limit}
+  );
+});
+
+Meteor.publish('companyLibraryDocuments', function (parentFolderId, limit) {
+  check(parentFolderId, Match.OneOf(null, String));
+  check(limit, Number);
+
+  return Files.find(
+    {
+      companyDocument: true,
+      archived: {$ne: true},
+      parent: parentFolderId
+    },
+    {limit: limit}
+  );
+});
+
+
 function escapeRegExp(str) {
   return str.replace(/[\-\[\]\/\{\}\(\)\*\+\?\.\\\^\$\|]/g, "\\$&");
 }

@@ -29,7 +29,8 @@ Package.onUse(function (api) {
     'routes',
     'files',
     'jstree',
-    'jquery-ui'
+    'jquery-ui',
+    'one-infinite-scroll-list'
     ], 'web');
 
   api.use([
