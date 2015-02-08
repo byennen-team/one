@@ -3,19 +3,54 @@
 DocumentSharing = {
 
   shareDocuments: function (documentIds, receiver) {
-    var sharedDocumentsIds = [];
+    return _.map(documentIds, function (documentId) {
+      return DocumentSharing.shareDocument(documentId, receiver);
+    });
+  },
 
-    _.forEach(documentIds, function (documentId) {
-      var sharedDocumentId = SharedDocuments.insert({
-        sharedDocumentId: documentId,
-        senderId: Meteor.userId(),
-        receiverId: receiver._id,
-        receiverEmail: receiver.email
-      });
-      sharedDocumentsIds.push(sharedDocumentId);
+  shareDocument: function (documentId, receiver) {
+    var document = Files.findOne(documentId);
+
+    if (!document) {
+      throw new Meteor.Error('DOCUMENT_DOES_NOT_EXIST', null, documentId);
+    }
+
+    var sharedDocumentId = SharedDocuments.insert({
+      sharedDocumentId: documentId,
+      senderId: Meteor.userId(),
+      receiverId: receiver._id,
+      receiverEmail: receiver.email
     });
 
-    return sharedDocumentsIds;
+    if (receiver._id) {
+      var sharedDocument = SharedDocuments.findOne(sharedDocumentId);
+      DocumentSharing._createNotification(
+        sharedDocument,
+        document,
+        Meteor.user(),
+        receiver._id
+      );
+    }
+
+    return sharedDocumentId;
+  },
+
+  _createNotification: function (sharedDocument, document, sender, receiverId) {
+    var notification = document.isFolder ?
+      Notify.messages.FOLDER_SHARED_WITH_YOU :
+      Notify.messages.DOCUMENT_SHARED_WITH_YOU;
+
+    Notify.addNotification(
+      receiverId,
+      {
+        message: Notify.generateMessageText(
+          notification.message,
+          [sender.profile.firstName + ' ' + sender.profile.lastName]
+        ),
+        title: notification.title,
+        link: sharedDocument.getShareUrl()
+      }
+    );
   },
 
   acceptDocument: function (sharedDocumentId) {
