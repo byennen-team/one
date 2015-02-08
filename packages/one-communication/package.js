@@ -23,7 +23,8 @@ Package.onUse(function (api) {
   api.use([
     'underscore',
     'aldeed:simple-schema',
-    'reywood:publish-composite'
+    'reywood:publish-composite',
+    'files'
     ]);
 
   api.addFiles([

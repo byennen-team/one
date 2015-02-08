@@ -76,14 +76,16 @@ RoomsController.addSimpleMessageToRoom = function(roomId, message, callback) {
 };
 
 RoomsController.addAttachmentMessageToRoom =
-  function(roomId, documentId, callback) {
-  Meteor.call('addAttachmentMessageToRoom', roomId, documentId, function(e,r) {
-    if (e)
-      console.log(e);
+  function(roomId, message, documentId, callback) {
+  Meteor.call('addAttachmentMessageToRoom', roomId, message, documentId,
+    function(e,r) {
+      if (e)
+        console.log(e);
 
-  if(callback)
-    callback(e,r);
-  });
+      if(callback)
+        callback(e,r);
+    }
+  );
 };
 
 // context.postContent: String, context.title: String,

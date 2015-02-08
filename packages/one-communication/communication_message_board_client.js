@@ -85,6 +85,9 @@ Template.communicationMessageBoardSleeve.helpers({
   isPostMessage: function() {
     return (this.messageType === 'post');
   },
+  isDocumentMessage: function () {
+    return (this.messageType === 'attachment');
+  },
   isFirstUnread: function(roomId) {
     var room = Rooms.findOne(roomId);
     var latestTimestamp = null;
