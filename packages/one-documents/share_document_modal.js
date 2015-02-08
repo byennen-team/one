@@ -76,23 +76,29 @@ Template.shareDocumentModal.events({
   }
 });
 
-// Template.shareDocumentModal.rendered = function () {
-//   var input = this.$('.selectpicker');
-//   input.select2({
-//     formatNoMatches: function () {
-//       return 'Type a full email address';
-//     },
-//     multiple: false,
-//     query: function (query) {
-//       var data = {results: []};
-
-
-
-//       //if (Match.test(query.term, MatchEx.Email()))
-//       //  data.results.push({id: i++, text: query.term});
-
-//       query.callback(data);
-//     },
-//     width: 'element'
-//   });
-// };
+Template.shareDocumentModal.rendered = function () {
+  var input = this.$('input[name="receiver"]');
+  input.select2({
+    formatNoMatches: function () {
+      return 'Type a full email address';
+    },
+    multiple: false,
+    minimumInputLength: 3,
+    query: function (query) {
+      Meteor.call('searchUser', query.term, function (error, results) {
+        if (error) {
+          console.error(error);
+          results = [];
+        } else {
+          results = _.map(results, function (result) {
+            return {
+              id: result._id,
+              text: result.emails[0].address
+            };
+          });
+        }
+        query.callback({results: results});
+      });
+    }
+  });
+};

@@ -138,8 +138,25 @@ Meteor.methods({
     // TODO: Validate the ownership of the documents
 
     return FileTools.moveDocumentsTo(documentIdsToMove, targetFolderId);
+  },
+
+  searchUser: function (queryTerm) {
+    check(queryTerm, String);
+
+    var regExp = new RegExp("^" + escapeRegExp(queryTerm));
+    return Meteor.users.find(
+      {'emails.address': {$regex: regExp}},
+      {
+        fields: {emails: 1, 'profile.firstName': 1, 'profile.lastName': 1},
+        limit: 50
+      }
+    ).fetch();
   }
 });
+
+function escapeRegExp(str) {
+  return str.replace(/[\-\[\]\/\{\}\(\)\*\+\?\.\\\^\$\|]/g, "\\$&");
+}
 
 function validateFolderId(user, folderId) {
   // TODO: Is this correct for company documents?

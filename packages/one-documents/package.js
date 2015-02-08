@@ -23,7 +23,7 @@ Package.onUse(function (api) {
     'session',
     'templating',
     'mrt:moment',
-    'natestrauser:select2@3.4.9',
+    'natestrauser:select2@3.5.1',
     'velocityjs:velocityjs',
     'mquandalle:bower@0.1.11',
     'routes',
