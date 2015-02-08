@@ -166,7 +166,7 @@ DocumentSharing = {
     sharer,
     receiver
   ) {
-    var subject = 'You shared ';
+    var subject = 'You have shared ';
     subject += sharedDocuments.length === 1 ?
       'a document' :
       sharedDocuments.length + ' documents';
