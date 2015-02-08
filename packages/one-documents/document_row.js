@@ -58,7 +58,7 @@ Template.documentRow.events({
   'click [data-action="email-document"]': function (event) {
     var document = Blaze.getData(event.target);
     updateSharedDocumentUrl(document);
-    Modal.show('emailDocumentModal');
+    Modal.show('emailDocumentModal', {document: document});
   },
 
   'mouseover td.name': function () {
