@@ -6,8 +6,9 @@
   display: none;
   // bottom: -400px;
   bottom: 0;
-  right: 33%;
+  right: 20%;
   width: 600px;
+  overflow: hidden;
   background-color: @white;
   -webkit-box-shadow: -2px -2px 25px -1px rgba(0, 0, 0, 0.5);
   -moz-box-shadow: -2px -2px 25px -1px rgba(0, 0, 0, 0.5);
@@ -15,11 +16,19 @@
   z-index: 8;
   transition: width 300ms ease-out;
   .header {
+    position: relative;
     float: left;
     font-size: 22px;
     height: 45px;
     width: 100%;
     background-color: @lime;
+  }
+  .medium-btn { // opens minimized window when clicked
+    position: absolute;
+    width: 85%;
+    top: 0;
+    bottom: 0;
+    left: 0;
   }
   .post-form-body {
     height: 400px;
@@ -32,21 +41,38 @@
     color: @white;
   }
   .close-x,
-  .minimize {
+  .minimize,
+  .mediumize,
+  .maximize {
     position: absolute;
     font-size: 16px;
-    color: @periwinkle;
+    color: @dk-green;
     right: 1em;
     top: 1em;
     cursor: pointer;
+    z-index: 1;
   }
-  .close-x:hover,
-  .minimize:hover {
-    color: @dk-periwinkle;
+  .maximize {
+    width: 1em;
+    height: 1em;
+    right: 3.3em;
+    border: solid 3px @dk-green;
+    border-radius: 3px;
+  }
+  .mediumize {
+    display: none;
+    font-size: 22px;
+    right: 53px;
+    top: 9px;
   }
   .minimize {
-    right: 3.5em;
+    right: 6em;
     top: 0.9em;
+  }
+  .close-x:hover,
+  .minimize:hover,
+  .maximize:hover {
+    color: darken( @dk-green, 10% );
   }
   .bootstrap-select {
     width: auto;
@@ -111,31 +137,34 @@
     color: @text-hover;
   }
   .fake-textarea {
-    height: 200px;
+    height: 180px;
     margin-top: 1.5em;
     margin-left: 1em;
     font-family: @raleway-regular;
     color: @text-navy;
     font-size: 15px;
+    overflow: hidden;
   }
   .fake-textarea:focus {
     outline: none;
     box-shadow: none;
     color: darken( @text-navy, 10% );
   }
-  .paperclip,
+  .font,
   .trash {
     position: absolute;
     bottom: 15px;
-    left: 1.5em;
     font-size: 20px;
     color: @med-navy;
     cursor: pointer;
   }
-  .trash {
-    left: 240px;
+  .font {
+    left: 1.5em;
   }
-  .paperclip:hover,
+  .trash {
+    right: 350px;
+  }
+  .font:hover,
   .trash:hover {
     color: @navy;
   }
@@ -189,7 +218,21 @@
   .minimize {
     display: none;
   }
-  .icon {
+  .maximize {
+    display: none;
+  }
+  .header {
     cursor: pointer;
+  }
+}
+
+// Maximized styles 
+#communication-message-post.big {
+  width: 315px;
+  .maximize {
+    display: none;
+  }
+  .mediumize {
+    display: block;
   }
 }

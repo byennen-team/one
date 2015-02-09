@@ -123,10 +123,10 @@ Template.channelWidget.events({
   'click .view-chat': function (event) {
     Session.set('openRoomId', $(event.currentTarget).data("id"));
     $('#sidebar-scroll-target').velocity("scroll",600);
-    $.Velocity.hook($('#communication-main'), "width", "100%");
-    $.Velocity.hook($('#communication-message-board'), "width", "60%");
+    $.Velocity.hook($('#communication-main'), "width", "76%");
+    $.Velocity.hook($('#communication-message-board'), "width", "78%");
     $.Velocity.hook($('#communication-task-board'), "width", "0");
-    $.Velocity.hook($('#communication-library-board'), "width", "15.5%");
+    $.Velocity.hook($('#communication-library-board'), "width", "22%");
     // force scrollbar on sidebar
     var currentHeight = $(window).height();
     $('.communication-sidebar-sleeve').css({

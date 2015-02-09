@@ -57,6 +57,7 @@ Package.onUse(function (api) {
     'communication_post.html',
     'communication_post.less',
     'communication_post_client.js',
+    'communication_post_trash_modal.html',
     //task
     'task/communication_task_board.html',
     'task/communication_task_board.less',

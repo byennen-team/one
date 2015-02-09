@@ -6,6 +6,12 @@ Template.communicationPostInput.rendered = function(){
   $('#communication-message-post-textarea').mediumInsert({
         editor: that.editor
     });
+
+  // initialize maazalik:malihu-jquery-custom-scrollbar scrollbar plugin
+  $( "#communication-message-post-textarea" ).mCustomScrollbar({
+      theme:"one-dark",
+      scrollbarPosition: "inside"
+  });
 };
 
 Template.communicationPostInput.helpers({
@@ -55,15 +61,48 @@ Template.communicationPostInput.events({
    // minimize the post window
   'click .minimize': function () {
     $( '#communication-message-post' )
-      .velocity( { bottom: -355 }, 300 )
+      .velocity( { 
+        bottom: -355,
+        height: 400,
+        width: 315,
+        right: '20%'
+      }, 300 )
+      .removeClass( 'big' )
       .addClass( 'little' );
   },
 
-   // expand the post window
-  'click .icon': function () {
+   // maximize the post window
+  'click .maximize': function () {
+    var $win = $( window );
+    var currentHeight = $win.height();
+    var currentWidth = $win.width();
+    var tall = currentHeight - 100;
+    if( tall < 400 ){ // don't shrink the window when expanding it!
+      tall = 400;
+    }
+    var wide = currentWidth * 0.9;    // 90% of window
+    var margin = currentWidth * 0.05; // 5% of window
     $( '#communication-message-post' )
-      .velocity( { bottom: 0 }, 300 )
-      .removeClass( 'little' );
+      .velocity( { 
+        bottom: 0, 
+        width: wide, 
+        height: tall, 
+        right: margin
+      }, 300 )
+      .removeClass( 'little' )
+      .addClass( 'big' );
+  },
+
+   // medium post window
+  'click .little .medium-btn, click .mediumize': function () {
+    $( '#communication-message-post' )
+      .velocity( { 
+        bottom: 0, 
+        width: 600, 
+        height: 400, 
+        right: '20%'
+      }, 300 )
+      .removeClass( 'little big' );
   },
 
   'click #communication-message-post-btn': function() {
