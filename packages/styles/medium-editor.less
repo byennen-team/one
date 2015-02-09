@@ -59,7 +59,10 @@ body .medium-toolbar-arrow-over:before {
 // body .medium-editor-anchor-preview {
 body .medium-editor-toolbar {
   border: none;
-  border-radius: 3px;
+  border-radius: 1px;
+  -webkit-box-shadow: 0px 1px 6px -1px rgba(0,0,0,0.75);
+  -moz-box-shadow: 0px 1px 6px -1px rgba(0,0,0,0.75);
+  box-shadow: 0px 1px 6px -1px rgba(0,0,0,0.75);
   // position: absolute;
   // top: 0;
   // left: 0;
@@ -77,9 +80,13 @@ body .medium-editor-toolbar {
     // padding: 0;
     // list-style: none; 
     button {
-      background: @lt-blue-grey;
-      color: @med-navy;
+      font-size: 18px;
+      padding: 13px 15px 15px 15px;
+      background: @lt-grey;
+      color: @grey;
       border: none;
+      box-shadow: none;
+      transition: color 350ms ease-out 50ms;
       // display: block;
       // margin: 0;
       // padding: 15px;
@@ -90,20 +97,20 @@ body .medium-editor-toolbar {
       // box-sizing: border-box; 
     }
     button:hover {
-      background-color: darken( @lt-blue-grey, 10% );
-      color: @navy;
+      background-color: @lt-grey;
+      color: @dark-grey;
     }
     .medium-editor-button-active {
-      background: darken( @lt-blue-grey, 10% );
-      color: @navy;
+      background: @lt-grey;
+      color: @black;  // may want to go color here
     }
     .medium-editor-button-first {
-      border-top-left-radius: 3px;
-      border-bottom-left-radius: 3px;
+      border-top-left-radius: 1px;
+      border-bottom-left-radius: 1px;
     }
     .medium-editor-button-last {
-      border-top-right-radius: 3px;
-      border-bottom-right-radius: 3px;
+      border-top-right-radius: 1px;
+      border-bottom-right-radius: 1px;
     }
     // .medium-editor-action-underline {
     //   // text-decoration: underline; 
@@ -114,6 +121,30 @@ body .medium-editor-toolbar {
     //   // font-size: 12px;
     //   // font-family: 'Menlo', monospace; 
     // }
+    .medium-editor-action-bold,
+    .medium-editor-action-italic,
+    .medium-editor-action-underline,
+    .medium-editor-action-anchor {
+      b {
+        display: none;
+      }
+    }
+    .medium-editor-action-bold:after {
+      content: "\f032";
+      font-family: FontAwesome;
+    }
+    .medium-editor-action-italic:after {
+      content: "\f033";
+      font-family: FontAwesome;
+    }
+    .medium-editor-action-underline:after {
+      content: "\f0cd";
+      font-family: FontAwesome;
+    }
+    .medium-editor-action-anchor:after {
+      content: "\f0c1";
+      font-family: FontAwesome;
+    }
   }
 }
 

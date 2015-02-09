@@ -6,8 +6,9 @@
   display: none;
   // bottom: -400px;
   bottom: 0;
-  right: 33%;
+  right: 20%;
   width: 600px;
+  overflow: hidden;
   background-color: @white;
   -webkit-box-shadow: -2px -2px 25px -1px rgba(0, 0, 0, 0.5);
   -moz-box-shadow: -2px -2px 25px -1px rgba(0, 0, 0, 0.5);
@@ -15,11 +16,19 @@
   z-index: 8;
   transition: width 300ms ease-out;
   .header {
+    position: relative;
     float: left;
     font-size: 22px;
     height: 45px;
     width: 100%;
     background-color: @lime;
+  }
+  .medium-btn { // opens minimized window when clicked
+    position: absolute;
+    width: 85%;
+    top: 0;
+    bottom: 0;
+    left: 0;
   }
   .post-form-body {
     height: 400px;
@@ -33,6 +42,7 @@
   }
   .close-x,
   .minimize,
+  .mediumize,
   .maximize {
     position: absolute;
     font-size: 16px;
@@ -40,6 +50,7 @@
     right: 1em;
     top: 1em;
     cursor: pointer;
+    z-index: 1;
   }
   .maximize {
     width: 1em;
@@ -47,6 +58,12 @@
     right: 3.3em;
     border: solid 3px @dk-green;
     border-radius: 3px;
+  }
+  .mediumize {
+    display: none;
+    font-size: 22px;
+    right: 53px;
+    top: 9px;
   }
   .minimize {
     right: 6em;
@@ -137,13 +154,15 @@
   .trash {
     position: absolute;
     bottom: 15px;
-    left: 1.5em;
     font-size: 20px;
     color: @med-navy;
     cursor: pointer;
   }
+  .font {
+    left: 1.5em;
+  }
   .trash {
-    left: 240px;
+    right: 350px;
   }
   .font:hover,
   .trash:hover {
@@ -199,7 +218,21 @@
   .minimize {
     display: none;
   }
-  .icon {
+  .maximize {
+    display: none;
+  }
+  .header {
     cursor: pointer;
+  }
+}
+
+// Maximized styles 
+#communication-message-post.big {
+  width: 315px;
+  .maximize {
+    display: none;
+  }
+  .mediumize {
+    display: block;
   }
 }

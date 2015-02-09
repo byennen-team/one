@@ -61,7 +61,13 @@ Template.communicationPostInput.events({
    // minimize the post window
   'click .minimize': function () {
     $( '#communication-message-post' )
-      .velocity( { bottom: -355 }, 300 )
+      .velocity( { 
+        bottom: -355,
+        height: 400,
+        width: 315,
+        right: '20%'
+      }, 300 )
+      .removeClass( 'big' )
       .addClass( 'little' );
   },
 
@@ -70,28 +76,33 @@ Template.communicationPostInput.events({
     var $win = $( window );
     var currentHeight = $win.height();
     var currentWidth = $win.width();
-    var tall = currentHeight - 160;
-    var wide = currentWidth - 100;
+    var tall = currentHeight - 100;
+    if( tall < 400 ){ // don't shrink the window when expanding it!
+      tall = 400;
+    }
+    var wide = currentWidth * 0.9;    // 90% of window
+    var margin = currentWidth * 0.05; // 5% of window
     $( '#communication-message-post' )
       .velocity( { 
         bottom: 0, 
-        height: tall, 
         width: wide, 
-        right: 50 
+        height: tall, 
+        right: margin
       }, 300 )
-      .removeClass( 'little' );
+      .removeClass( 'little' )
+      .addClass( 'big' );
   },
 
-   // expand the post window
-  'click .icon': function () {
+   // medium post window
+  'click .little .medium-btn, click .mediumize': function () {
     $( '#communication-message-post' )
       .velocity( { 
         bottom: 0, 
-        height: 400, 
         width: 600, 
-        right: 100 
+        height: 400, 
+        right: '20%'
       }, 300 )
-      .removeClass( 'little' );
+      .removeClass( 'little big' );
   },
 
   'click #communication-message-post-btn': function() {

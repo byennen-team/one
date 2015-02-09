@@ -4,6 +4,7 @@
     <form action="" id="communication-message-post" class="new-post-form">
 
       <div class="header">
+        <div class="medium-btn"></div>
         <div class="icon">
           <i class="fa fa-pencil-square-o"></i>
         </div>
@@ -13,7 +14,10 @@
         </div>
 
         <div class="maximize">
-          <!-- <i class="fa fa-square-o"></i> -->
+        </div>
+
+        <div class="mediumize">
+          <i class="fa fa-toggle-down"></i>
         </div>
 
         <div class="minimize">
@@ -66,7 +70,7 @@
           <i class="fa fa-font"></i>
         </div>
 
-        <div id="communication-message-post-trash" class="trash">
+        <div class="trash" data-toggle="modal" data-target="#communication-message-post-confirm">
           <i class="fa fa-trash-o"></i>
         </div>
 
@@ -104,5 +108,7 @@
       </div>
 
     </form>
+
+    {{> postTrashModal}}
 
 </template>

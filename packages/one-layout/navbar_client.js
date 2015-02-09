@@ -32,10 +32,10 @@ Template.navbar.events({
   'click #navbar-link-task': function () {
     // expands the main dialog box t0 60% of full screen - task bar open
     $('#sidebar-scroll-target').velocity("scroll",600);
-    $.Velocity.hook($('#communication-main'), "width", "100%");
-    $.Velocity.hook($('#communication-message-board'), "width", "45%");
-    $.Velocity.hook($('#communication-task-board'), "width", "15%");
-    $.Velocity.hook($('#communication-library-board'), "width", "15.5%");
+    $.Velocity.hook($('#communication-main'), "width", "76%");
+    $.Velocity.hook($('#communication-message-board'), "width", "66%");
+    $.Velocity.hook($('#communication-task-board'), "width", "22%");
+    $.Velocity.hook($('#communication-library-board'), "width", "22%");
     // opens task menu itself
     Session.set( 'taskMenu', true );
     $( '#communication-task-menu' ).velocity( "fadeIn", { duration: 300 });
