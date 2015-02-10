@@ -89,7 +89,7 @@ Template.communicationSidebar.events({
 		// expands the main dialog box t0 60% of full screen
     $.Velocity.hook($('#communication-main'), "overflow", "visible");
 		$.Velocity.hook($('#communication-main'), "width", "76%");
-		$.Velocity.hook($('#communication-message-board'), "width", "66%");
+		$.Velocity.hook($('#communication-message-board'), "width", "56%");
 		$.Velocity.hook($('#communication-task-board'), "width", "22%");
 		$.Velocity.hook($('#communication-library-board'), "width", "22%");
 		// add class to main chat window

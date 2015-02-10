@@ -33,7 +33,7 @@ Template.navbar.events({
     // expands the main dialog box t0 60% of full screen - task bar open
     $('#sidebar-scroll-target').velocity("scroll",600);
     $.Velocity.hook($('#communication-main'), "width", "76%");
-    $.Velocity.hook($('#communication-message-board'), "width", "66%");
+    $.Velocity.hook($('#communication-message-board'), "width", "56%");
     $.Velocity.hook($('#communication-task-board'), "width", "22%");
     $.Velocity.hook($('#communication-library-board'), "width", "22%");
     // opens task menu itself
