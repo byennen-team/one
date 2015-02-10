@@ -59,13 +59,15 @@ Template.messageInput.events({
       });
 		}else{
 			Session.set('attachment', false);
-		}
+      Session.set('attachmentId', null);
+    }
 	},
 
 	// Clear input value and resets session
 	'click #communication-message-attachment-delete': function(){
 		$('#communication-message-input-attachment-input').val('');
 		Session.set('attachment', false);
+    Session.set('attachmentId', null);
 	},
 
   'submit #addMessageForm': function(event) {

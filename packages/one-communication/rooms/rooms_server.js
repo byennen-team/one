@@ -117,6 +117,13 @@ Meteor.publishComposite('roomData', function(roomId, limit) {
                 _id: message.creatorId
               });
             }
+          },
+          {
+            find: function (message) {
+              if (message.type === 'attachment') {
+                return Files.find({_id: message.messagePayload.documentId});
+              }
+            }
           }
         ]
       }
