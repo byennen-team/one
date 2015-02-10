@@ -136,14 +136,18 @@
   :focus:-ms-input-placeholder {
     color: @text-hover;
   }
-  .fake-textarea {
+  .fake-textarea { 
     height: 180px;
-    margin-top: 1.5em;
-    margin-left: 1em;
     font-family: @raleway-regular;
     color: @text-navy;
     font-size: 15px;
     overflow: hidden;
+    b {
+      font-family: @raleway-bold;
+    }
+    img {
+      max-width: 100%;
+    }
   }
   .fake-textarea:focus {
     outline: none;
@@ -210,8 +214,61 @@
     border: 3px solid @accent-hover;
     color: @accent-hover;
   }
+  // wysiwyg editor styles
+  .wysiwyg-container {
+    position: relative;
+    border: none;
+    margin-top: 1em;
+    margin-left: 0.5em;
+    .wysiwyg-toolbar {
+      display: none;
+      position: absolute;
+      height: 4em;
+      margin: -2.5em 0 0 -0.5em;
+      padding: 0.5em;
+      overflow: visible;
+      border-radius: 1px;
+      background-color: @lt-grey;
+      -webkit-box-shadow: 0px 1px 6px -1px rgba(0,0,0,0.75);
+      -moz-box-shadow: 0px 1px 6px -1px rgba(0,0,0,0.75);
+      box-shadow: 0px 1px 6px -1px rgba(0,0,0,0.75);
+      .wysiwyg-toolbar-icon {
+        margin: 0.25em;
+        color: @lt-blue-purple;
+        border: none;
+        box-shadow: none;
+        transition: color 350ms ease-out 50ms;
+      }
+      .wysiwyg-toolbar-icon:hover {
+        background-color: @lt-grey;
+        color: @med-navy;
+      }
+      .wysiwyg-toolbar-icon.active {
+        color: @med-navy;
+      }
+    }
+    .wysiwyg-toolbar:after {
+      content: "";
+      position: absolute;
+      left: 15px;
+      bottom: -8px;
+      width: 18px;
+      height: 9px;
+      background-image: url( '../../../images/com-hub-main/triangle.png' );
+    }
+  }
 }
 
+// WYSIWYG plugin modal styles
+.wysiwyg-popup {
+  .wysiwyg-browse {
+    height: 4.5em;
+  }
+  .wysiwyg-input {
+    height: 2.5em;
+    padding-left: 0.75em;
+  }
+}
 // Minimized styles
 #communication-message-post.little {
   width: 315px;
@@ -234,5 +291,9 @@
   }
   .mediumize {
     display: block;
+  }
+  // wysiwyg editor styles
+  .wysiwyg-container {
+    height: 85%;
   }
 }

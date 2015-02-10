@@ -7,15 +7,6 @@ Template.communicationPostInput.rendered = function(){
     toolbar: 'bottom',
     //selection'|'top'|'top-selection'|'bottom'|'bottom-selection
     buttons: {
-      insertimage: {
-        title: 'Insert image',
-        image: '\uf030',
-        showselection: false
-      },
-      insertlink: {
-        title: 'Insert link',
-        image: '\uf08e'
-      },
       bold: {
           title: 'Bold (Ctrl+B)',
           image: '\uf032',
@@ -33,28 +24,37 @@ Template.communicationPostInput.rendered = function(){
       },
       forecolor: {
           title: 'Text color',
-          image: '\uf1fc'
-      },
-      orderedList: {
-          title: 'Ordered list',
-          image: '\uf0cb',
-          showselection: false
+          image: '\uf1fb'
       },
       unorderedList: {
           title: 'Unordered list',
           image: '\uf0ca',
           showselection: false
       },
-      removeformat: {
-          title: 'Remove format',
-          image: '\uf12d'
+      orderedList: {
+          title: 'Ordered list',
+          image: '\uf0cb',
+          showselection: false
+      },
+      insertimage: {
+        title: 'Insert image',
+        image: '\uf03e',
+        showselection: false
+      },
+      insertlink: {
+        title: 'Insert link',
+        image: '\uf0c1'
       }
+      // removeformat: {
+      //     title: 'Remove format',
+      //     image: '\uf12d'
+      // }
     },
     submit: {
       title: 'Submit',
       image: '\uf00c'
     },
-    placeholder: 'Type your text here...',
+    placeholder: 'Type a post...',
     dropfileclick: 'Click or drop image',
     placeholderUrl: 'www.example.com',
     /* jshint camelcase: false */
@@ -77,13 +77,12 @@ Template.communicationPostInput.rendered = function(){
   });
 
   // initialize maazalik:malihu-jquery-custom-scrollbar scrollbar plugin
-  // $( "#communication-message-post-textarea" ).mCustomScrollbar({
+  // $( "#communication-message-post-textarea-sleeve" ).mCustomScrollbar({
   //     theme:"one-dark",
   //     scrollbarPosition: "inside"
   // });
-  // unfortunately we cannot use scrollbar in the post area
-  // because it will appear
-  // in the posted message. Maybe if we wrap it in another container.
+  // Can't use scrollbar (plugin or native) with the WYSIWYG because it 
+  // scrolls the tools out of sight.
 };
 
 Template.communicationPostInput.helpers({
@@ -163,6 +162,9 @@ Template.communicationPostInput.events({
       }, 300 )
       .removeClass( 'little' )
       .addClass( 'big' );
+    $( '#communication-message-post-textarea' ).velocity({ 
+      height: tall - 234
+    });
   },
 
    // medium post window
@@ -175,6 +177,9 @@ Template.communicationPostInput.events({
         right: '20%'
       }, 300 )
       .removeClass( 'little big' );
+    $( '#communication-message-post-textarea' ).velocity({ 
+      height: 180
+    });
   },
 
   'click #communication-message-post-btn': function() {
@@ -267,5 +272,16 @@ Template.communicationPostInput.events({
   },
   'click #communication-message-post-attachment-btn': function() {
     $('.wysiwyg-toolbar').toggle();
+  },
+// ANDREAS: can't get this click event to fire. I guess it's not in this 
+// template?
+  'click .wysiwyg-toolbar-icon': function ( event ) {
+    console.log( 'click' );
+    var $this = $( event.currentTarget );
+    if( $this.hasClass( 'active' ) ){
+      $this.removeClass( 'active' );
+    }else {
+      $this.addClass( 'active' );
+    }
   }
 });
