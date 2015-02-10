@@ -5,14 +5,25 @@ Package.describe({
 Package.onUse(function (api) {
   var both = ['web', 'server'];
 
+  api.export([
+    'SharedDocument',
+    'SharedDocuments'
+  ], both);
+
+  api.use([
+    'underscore',
+    'momentjs:moment@2.8.4',
+    'aldeed:simple-schema@1.3.0',
+    'aldeed:collection2@2.3.1',
+    'files'
+  ], both);
+
   api.use([
     'less',
     'jquery',
     'session',
-    'underscore',
     'templating',
-    'mrt:moment',
-    'natestrauser:select2@3.4.9',
+    'natestrauser:select2@3.5.1',
     'velocityjs:velocityjs',
     'mquandalle:bower@0.1.11',
     'routes',
@@ -22,7 +33,15 @@ Package.onUse(function (api) {
     'one-documents-core'
     ], 'web');
 
-  api.use('files', both);
+  api.use([
+    'secure-random-token',
+    'percolate:synced-cron@1.1.1'
+  ], 'server');
+
+  api.addFiles([
+    'sharing/shared_document.js',
+    'sharing/shared_documents.js'
+  ], both);
 
   api.addFiles([
     'document_row.html',
@@ -57,12 +76,16 @@ Package.onUse(function (api) {
     'favorite_documents.less',
     'documents_menu.html',
     'documents_menu_client.js',
-    'documents_menu.less'
+    'documents_menu.less',
+    'sharing/sharing_client.js'
 
   ], 'web');
 
   // Bower packages
   api.addFiles(['smart.json'], 'web');
 
-  api.addFiles('documents_server.js', 'server');
+  api.addFiles([
+    'documents_server.js',
+    'sharing/sharing_server.js'
+  ], 'server');
 });

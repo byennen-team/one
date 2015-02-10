@@ -1,3 +1,4 @@
+
 Template.libraryBoard.rendered = function () {
 	Session.setDefault('members', true);
 	$('#communication-library-board .top-btn').removeClass('active');
@@ -36,18 +37,27 @@ Template.libraryBoard.events({
 
 		// closes the Communication Hub
 	'click #communication-library-close': function(){
+
 		// expands the main dialog box to 80% of full screen
 		$.Velocity.hook($('#communication-main'), "overflow", "hidden");
 		$.Velocity.hook($('#communication-main'), "width", "0");
 		$.Velocity.hook($('#communication-message-board'), "width", "0");
 		$.Velocity.hook($('#communication-task-board'), "width", "0");
 		$.Velocity.hook($('#communication-library-board'), "width", "0");
-		$('.communication-sidebar-sleeve').css({
-			'height': 'inherit',
-			'position': 'static',
-			'top': '130px',
-			'width': '100%'
-		});
+		// release scrollbar on sidebar
+    var $sleeve = $('.communication-sidebar-sleeve');
+    $sleeve.css({
+    	'position': 'static',
+    	'height': 'auto',
+    	'top': 'auto',
+    	'width': '100%'
+    });
+    // this would probably work with a global variable
+    // $sleeve.velocity( {
+    //   top: 130,
+    //   width: '100%'
+    // });
+
     // un-lock scroll position
     var body = $('body');
     var scrollPosition = body.data('scroll-position');

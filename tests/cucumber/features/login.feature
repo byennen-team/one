@@ -8,11 +8,11 @@ Feature: Allow users to login and logout
     Given I am unauthenticated
 
   Scenario: A user can login
-    And I am on the home page
+    Given I am on the home page
     When I enter my authentication information
     Then I should be logged in
 
   Scenario: Errors on bad login
-    And I am on the home page
+    Given I am on the home page
     When I enter incorrect authentication information
     Then I should see a user not found error

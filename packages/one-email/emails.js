@@ -39,8 +39,115 @@ Meteor.methods({
               "content": senderName
             },
             {
-              "phone": "PHONE",
+              "name": "PHONE",
               "content": phone
+            },
+            {
+              "name": "TEXT",
+              "content": message
+            }
+          ]
+        }]
+      }
+    });
+  },
+
+  'sendDocumentsSharedWithYouNotification': function (options) {
+    check(options, {
+      subject: String,
+      to: String,
+      senderName: String,
+      sharedDocuments: String
+    });
+
+    // TODO: Text version of the mail
+    return Meteor.Mandrill.sendTemplate({
+      "template_name": "DocumentsSharedWithYouNotification",
+      "template_content": [],
+      "message": {
+        "from_email": defaultEmail,
+        "subject": options.subject,
+        "merge": "true",
+        "to": [{
+          "email": options.to
+        }],
+        "merge_vars": [{
+          "rcpt": options.to,
+          "vars": [
+            {
+              "name": "SENDER_NAME",
+              "content": options.senderName
+            },
+            {
+              "name": "SHARED_DOCUMENTS",
+              "content": options.sharedDocuments
+            }
+          ]
+        }]
+      }
+    });
+  },
+
+  'sendDocumentsSharedWithYouReminderNotification': function (options) {
+    check(options, {
+      subject: String,
+      to: String,
+      sharedDocuments: String
+    });
+
+    // TODO: Text version of the mail
+    return Meteor.Mandrill.sendTemplate({
+      "template_name": "DocumentsSharedWithYouReminderNotification",
+      "template_content": [],
+      "message": {
+        "from_email": defaultEmail,
+        "subject": options.subject,
+        "merge": "true",
+        "to": [{
+          "email": options.to
+        }],
+        "merge_vars": [{
+          "rcpt": options.to,
+          "vars": [
+            {
+              "name": "SHARED_DOCUMENTS",
+              "content": options.sharedDocuments
+            }
+          ]
+        }]
+      }
+    });
+  },
+
+  'sendYouSharedDocumentsNotification': function (options) {
+    check(options, {
+      subject: String,
+      to: String,
+      sharedWithName: String,
+      sharedDocuments: String
+    });
+
+    // TODO: Text version of the mail
+    return Meteor.Mandrill.sendTemplate({
+      "template_name": "YouSharedDocumentsNotification",
+      "template_content": [],
+      "message": {
+        "from_email": defaultEmail,
+        "subject": options.subject,
+        "merge": "true",
+        "to": [{
+          "email": options.to
+        }],
+        "merge_vars": [{
+          "rcpt": options.to,
+          "vars": [
+            {
+              "name": "SHARED_WITH_NAME",
+              "content": options.sharedWithName
+            },
+            {
+              "name": "SHARED_DOCUMENTS",
+              "content": options.sharedDocuments
             }
           ]
         }]

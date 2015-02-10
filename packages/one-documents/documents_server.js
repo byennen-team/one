@@ -72,16 +72,15 @@ Meteor.methods({
     if (!user) throw new Meteor.Error('Invalid credentials');
     validateFolderId(user, parentFolderId);
 
-    // TODO grab company name
-    var filePath = Folder.companyDocument('elliman') + '/' + fileName;
-
-    var fileId = Files.insert({
+    var fileId = FileTools.createDocument({
       companyDocument: true,
       name: fileName,
-      uploadDate: new Date(),
       userId: user._id,
       parent: parentFolderId
     });
+
+    // TODO grab company name
+    var filePath = Folder.companyDocument('elliman') + '/' + fileName;
     var signed = FileTools.signUpload(filePath, 'private', mimeType);
     signed.fileId = fileId;
     return signed;
@@ -96,15 +95,14 @@ Meteor.methods({
     if (!user) throw new Meteor.Error('Invalid credentials');
     validateFolderId(user, parentFolderId);
 
-    var filePath = Folder.userDocument(user._id) + '/' + fileName;
-
-    var fileId = Files.insert({
+    var fileId = FileTools.createDocument({
       companyDocument: false,
       name: fileName,
-      uploadDate: new Date(),
       userId: user._id,
       parent: parentFolderId
     });
+
+    var filePath = Folder.userDocument(user._id) + '/' + fileName;
     var signed = FileTools.signUpload(filePath, 'private', mimeType);
     signed.fileId = fileId;
     return signed;
@@ -137,9 +135,26 @@ Meteor.methods({
 
     // TODO: Validate the ownership of the documents
 
-    return FileTools.moveTo(documentIdsToMove, targetFolderId);
+    return FileTools.moveDocumentsTo(documentIdsToMove, targetFolderId);
+  },
+
+  searchUser: function (queryTerm) {
+    check(queryTerm, String);
+
+    var regExp = new RegExp("^" + escapeRegExp(queryTerm));
+    return Meteor.users.find(
+      {'emails.address': {$regex: regExp}},
+      {
+        fields: {emails: 1, 'profile.firstName': 1, 'profile.lastName': 1},
+        limit: 50
+      }
+    ).fetch();
   }
 });
+
+function escapeRegExp(str) {
+  return str.replace(/[\-\[\]\/\{\}\(\)\*\+\?\.\\\^\$\|]/g, "\\$&");
+}
 
 function validateFolderId(user, folderId) {
   // TODO: Is this correct for company documents?

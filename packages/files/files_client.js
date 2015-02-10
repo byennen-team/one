@@ -89,3 +89,7 @@ FileTools.isMyDocumentsActive = function () {
     !currentFolder.companyDocument :
     Routes.getName() === Routes.MY_DOCUMENTS;
 };
+
+FileTools.isSharedWithMeActive = function () {
+  return Routes.getName() === Routes.SHARED_DOCUMENTS;
+};

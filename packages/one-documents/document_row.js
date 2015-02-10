@@ -19,11 +19,6 @@ Template.documentRow.events({
     Meteor.call('favoriteDocument', file._id, checkbox.checked);
   },
 
-  'click [data-action="more"]': function (event) {
-    event.stopPropagation(); // Don't toggle the document selection
-    $(event.target).dropdown('toggle');
-  },
-
   'click .print': function (event) {
     event.preventDefault();
     var href = event.target.getAttribute('href');
@@ -39,7 +34,7 @@ Template.documentRow.events({
   'click [data-action="share-document"]': function (event) {
     var document = Blaze.getData(event.target);
     updateSharedDocumentUrl(document);
-    Modal.show('shareDocumentModal');
+    Modal.show('shareDocumentModal', {document: document});
   },
 
   'click .rename-document': function (event) {
@@ -59,7 +54,7 @@ Template.documentRow.events({
   'click [data-action="email-document"]': function (event) {
     var document = Blaze.getData(event.target);
     updateSharedDocumentUrl(document);
-    Modal.show('emailDocumentModal');
+    Modal.show('emailDocumentModal', {document: document});
   },
 
   'mouseover td.name': function () {
@@ -77,6 +72,17 @@ function toggleSelection(document) {
   if (_.contains(selectedDocuments, documentId)) {
     selectedDocuments = _.without(selectedDocuments, documentId);
   } else {
+    selectedDocuments.push(documentId);
+  }
+
+  Session.set('selectedDocuments', selectedDocuments);
+}
+
+function selectDocument(document) {
+  var documentId = document._id;
+  var selectedDocuments = Session.get('selectedDocuments') || [];
+
+  if (!_.contains(selectedDocuments, documentId)) {
     selectedDocuments.push(documentId);
   }
 

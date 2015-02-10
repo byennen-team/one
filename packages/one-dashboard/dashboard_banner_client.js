@@ -127,7 +127,7 @@ Template.dashboardBanner.events({
       RoomsController.createOrGetDMRoom(id, function(e,r) {
         if (! e) {
           Session.set('openRoomId',r);
-          $('#sidebar-scroll-target').velocity("scroll",600);
+          $( "#transitioner-1" ).animate( { scrollTop: 400 } );
           $.Velocity.hook($('#communication-main'), "width", "76%");
           $.Velocity.hook($('#communication-message-board'), "width", "78%");
           $.Velocity.hook($('#communication-task-board'), "width", "0");
@@ -157,7 +157,6 @@ Template.dashboardBanner.events({
         }
       });
     }
-
   },
 
   'click .event': function (event) { // these events are different
