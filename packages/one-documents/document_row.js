@@ -77,7 +77,7 @@ function toggleSelection(document) {
 
   Session.set('selectedDocuments', selectedDocuments);
 }
-
+/* jshint ignore:start */
 function selectDocument(document) {
   var documentId = document._id;
   var selectedDocuments = Session.get('selectedDocuments') || [];
@@ -88,6 +88,7 @@ function selectDocument(document) {
 
   Session.set('selectedDocuments', selectedDocuments);
 }
+/* jshint ignore:end */
 
 function updateSharedDocumentUrl(document) {
   Session.set('sharedDocumentUrl');
