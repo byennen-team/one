@@ -89,8 +89,9 @@ Meteor.methods({
       return(e, r);
     });
   },
-  addAttachmentMessageToRoom: function(roomId, documentId) {
+  addAttachmentMessageToRoom: function(roomId, message, documentId) {
     check(roomId, String);
+    check(message, String);
     check(documentId, String);
 
     if (! this.userId)
@@ -115,6 +116,7 @@ Meteor.methods({
       roomId: roomId,
       creatorId: this.userId,
       dateCreated: new Date(),
+      message: message,
       messageType: 'attachment',
       messagePayload: {
         documentId: documentId

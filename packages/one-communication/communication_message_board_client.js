@@ -85,6 +85,9 @@ Template.communicationMessageBoardSleeve.helpers({
   isPostMessage: function() {
     return (this.messageType === 'post');
   },
+  isDocumentMessage: function () {
+    return (this.messageType === 'attachment');
+  },
   isFirstUnread: function(roomId) {
     var room = Rooms.findOne(roomId);
     var latestTimestamp = null;
@@ -212,3 +215,41 @@ Template.message.rendered = function() {
 Template.postMessage.rendered = function() {
 
 };
+
+
+Template.documentMessage.helpers({
+
+  document: function () {
+    var data = Template.instance().data;
+    return getMessageDocument(data);
+  },
+
+  documentUrl: function () {
+    var data = Template.instance().data;
+    var document = getMessageDocument(data);
+    return FileTools.url(document);
+  }
+
+});
+
+function getMessageDocument(message) {
+  var documentId = message.messagePayload.documentId;
+  return Files.findOne(documentId);
+}
+
+Template.documentMessage.events({
+
+  'click [data-action="download"]': function (event) {
+    event.preventDefault();
+    var href = event.target.getAttribute('href');
+    DocumentTools.download(href);
+  },
+
+  'click [data-action="print"]': function (event) {
+    event.preventDefault();
+    var href = event.target.getAttribute('href');
+    DocumentTools.print(href);
+  }
+
+});
+

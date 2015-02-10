@@ -35,19 +35,39 @@ Template.messageInput.events({
   },
 
 	// Check to see if the input holds an attachment when the value changes
-	'change #communication-message-input-attachment-input': function(){
+	'change #communication-message-input-attachment-input': function (event) {
 		var input = $('#communication-message-input-attachment-input');
 		if( input.val() ){
 			Session.set('attachment', true);
+      var file = event.target.files[0];
+      FileTools.upload('signUserDocumentUpload', file, {
+        parentFolderId: null,
+        // TODO: Gandle error
+        //onError: function (error) {
+        //
+        //},
+        // TODO: Progress
+        //onProgress: function (progressEvent) {
+        //  var progress = Math.floor(
+        //    progressEvent.loaded / progressEvent.total * 100
+        //  );
+        //
+        //},
+        onComplete: function (fileInfo) {
+          Session.set('attachmentId', fileInfo.fileId);
+        }
+      });
 		}else{
 			Session.set('attachment', false);
-		}
+      Session.set('attachmentId', null);
+    }
 	},
 
 	// Clear input value and resets session
 	'click #communication-message-attachment-delete': function(){
 		$('#communication-message-input-attachment-input').val('');
 		Session.set('attachment', false);
+    Session.set('attachmentId', null);
 	},
 
   'submit #addMessageForm': function(event) {
@@ -55,9 +75,20 @@ Template.messageInput.events({
     var message = $('#addMessageInput').val();
 
     if(message && message.length > 0)
-      RoomsController.addSimpleMessageToRoom(
-        Session.get('openRoomId'),
-        message);
+      if (Session.get('attachment')) {
+        RoomsController.addAttachmentMessageToRoom(
+          Session.get('openRoomId'),
+          message,
+          Session.get('attachmentId')
+        );
+        Session.set('attachment', false);
+        Session.set('attachmentId', null);
+      } else {
+        RoomsController.addSimpleMessageToRoom(
+          Session.get('openRoomId'),
+          message);
+      }
+
 
     $('#addMessageInput').val("");
 

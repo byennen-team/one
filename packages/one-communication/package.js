@@ -18,13 +18,14 @@ Package.onUse(function (api) {
     'maazalik:malihu-jquery-custom-scrollbar',
     'reactive-var',
     'afruth:wysiwygjs',
-    'files'
+    'one-documents-core',
     ], 'web');
 
   api.use([
     'underscore',
     'aldeed:simple-schema',
-    'reywood:publish-composite'
+    'reywood:publish-composite',
+    'files'
     ]);
 
   api.addFiles([
