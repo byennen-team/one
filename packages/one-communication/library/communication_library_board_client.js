@@ -39,6 +39,7 @@ Template.libraryBoard.events({
 	'click #communication-library-close': function(){
 
 		// expands the main dialog box to 80% of full screen
+		$.Velocity.hook($('#communication-main'), "overflow", "hidden");
 		$.Velocity.hook($('#communication-main'), "width", "0");
 		$.Velocity.hook($('#communication-message-board'), "width", "0");
 		$.Velocity.hook($('#communication-task-board'), "width", "0");

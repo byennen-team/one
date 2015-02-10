@@ -4,6 +4,7 @@
 node_modules
 tempImages
 chucksettings.json
+auth1.png
 
 #TODO: Remove these after there created.
 packages/files/img/full_imagetmp.jpg
@@ -12,3 +13,5 @@ packages/files/img/thumb_imagetmp.JPG
 
 # For Testing
 packages/tests-proxy
+
+auth1.png

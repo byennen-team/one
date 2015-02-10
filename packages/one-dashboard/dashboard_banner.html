@@ -38,10 +38,10 @@
 
 
       {{#each teamMembers}}
-        <div class="avatar-box">
+        <div class="avatar-box" data-id="{{_id}}">
           <img class="avatar" src="{{profile.photoUrl.thumb}}" />
           <div class="status-dot {{status profile.status}}"></div>
-          <div class="message none">1</div>
+          <div class="message {{#unless unreadMessages}}none{{/unless}}">{{unreadMessages}}</div>
         </div>
       {{/each}}
     </div>

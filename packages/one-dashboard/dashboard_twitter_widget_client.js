@@ -22,6 +22,10 @@ Template.dashboardTwitterWidget.helpers({
   tweets: function() {
     return SocialStatuses.find({
       userNetworkId: Meteor.settings.public.twitter.COMPANY_USERID
+    },{
+      sort: {
+        datePosted: 1
+      }
     });
   }
 });
