@@ -49,6 +49,36 @@ Router.route('/documents/company', {
   }
 });
 
+Router.route('/documents/shared/:sharedDocumentId/:accessToken', {
+  name: Routes.SHARED_DOCUMENT,
+  template: 'documents',
+  waitOn: function () {
+    return Meteor.subscribe(
+      'sharedDocument',
+      this.params.sharedDocumentId,
+      this.params.accessToken
+    );
+  },
+  action: function () {
+    resetDocumentSelection();
+    Session.set('currentFolderId', null);
+    this.render();
+  }
+});
+
+Router.route('/documents/shared', {
+  name: Routes.SHARED_DOCUMENTS,
+  template: 'documents',
+  waitOn: function () {
+    return Meteor.subscribe('sharedDocuments');
+  },
+  action: function () {
+    resetDocumentSelection();
+    Session.set('currentFolderId', null);
+    this.render();
+  }
+});
+
 Router.route('/folders/:_id', {
   name: Routes.FOLDER,
   template: 'documents',

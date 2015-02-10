@@ -19,7 +19,9 @@ Router.onBeforeAction(function () {
     Router.go(Routes.LOGIN);
   }
   this.next();
-}, {except: [Routes.LOGIN, Routes.LOGOUT, Routes.PROFILE]});
+}, {
+  except: [Routes.LOGIN, Routes.LOGOUT, Routes.PROFILE, Routes.SHARED_DOCUMENT]
+});
 
 Router.onBeforeAction(function () {
   Search.limit.set(6);

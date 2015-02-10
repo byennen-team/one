@@ -13,7 +13,12 @@ Files.schema = new SimpleSchema({
    * The parent folder id.
    * Files that have no parent value are in the root folder.
    */
-  parent: {type: String, optional: true}
+  parent: {type: String, optional: true},
+  /**
+   * An array of folder ids that are the ancestors from top to bottom.
+   */
+  ancestors: {type: [String], defaultValue: []},
+  sharedWith: {type: [SharedWithRule.schema], defaultValue: []}
 });
 
 // Can't name this File or it will conflict with the HTML5 File.
