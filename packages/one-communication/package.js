@@ -71,6 +71,8 @@ Package.onUse(function (api) {
     'library/communication_library_files.html',
     'library/communication_library_files.less',
     'library/communication_library_files_client.js',
+    'library/communication_library_room_files.html',
+    'library/communication_library_room_files_client.js',
     //directory
     'directory/communication_directory_modal.html',
     'directory/communication_directory_modal.less',
