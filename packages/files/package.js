@@ -13,12 +13,23 @@ Package.onUse(function (api) {
     'settings'
   ], 'server');
 
-  api.addFiles(['files.js', 'folder.js'], both);
+  api.addFiles([
+    'file_access.js',
+    'shared_with_rule.js',
+    'files.js',
+    'folder.js'
+  ], both);
   api.addFiles(['files_server.js', 'file_resize_server.js'], 'server');
   api.addFiles(['img/thumb_NIA.jpg', 'img/full_NIA.jpg'], 'server');
   api.addFiles('files_client.js', 'web');
 
-  api.export(['Files', 'FileTools', 'Folder'], both);
+  api.export([
+    'FileAccess',
+    'SharedWithRule',
+    'Files',
+    'FileTools',
+    'Folder'
+  ], both);
 });
 
 Npm.depends({

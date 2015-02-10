@@ -1,7 +1,7 @@
 {
   "AWS_BUCKET": "one-beta",
-  "AWS_ACCESS_KEY_ID": "AKIAIRIH744ERKEXHPOA",
-  "AWS_SECRET_ACCESS_KEY": "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",
+  "AWS_ACCESS_KEY_ID": "AKIAJ2ED7QHQWODAJ37A",
+  "AWS_SECRET_ACCESS_KEY": "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",
   "public": {
     "AWS_BUCKET_URL": "https://goone-beta.s3.amazonaws.com",
     "ENVIRONMENT": "beta",
@@ -18,5 +18,7 @@
     "SECRET": "PqlvLrWuNDl4d1QXmRVgKayUPjBmTfsF6KGZuxqZGhQ8bygKFB"
   },
   "FORECAST_API_KEY": "14825320e632a4c6c1aa9cc827bc7a94",
-  "GOOGLE_API_KEY": "AIzaSyBf1mUne6CU0ZGFGOEwCv4wyojCl0XRzO4"
+  "GOOGLE_API_KEY": "AIzaSyBf1mUne6CU0ZGFGOEwCv4wyojCl0XRzO4",
+  "HTTP_USERNAME": "elliman",
+  "HTTP_PASSWORD": "elliman"
 }
