@@ -18,7 +18,10 @@
 	{{#if libraryCard}}
 		{{> libraryMembers}}
 	{{else}}
-		{{> libraryFiles}}
+		<div class="library-board-files">
+			{{> roomFiles}}
+			{{> libraryFiles}}
+		</div>
 	{{/if}}
 
 
