@@ -1,51 +1,38 @@
 <template name="dashboardNewsWidget">
-  
+
    <div class="news-widget">
 
+   {{#with stickyNews}}
     <div class="sticky">
-      <img src="{{bannerURL}}" alt="{{bannerName}}" />
+      <img src="{{messagePayload.image}}" alt="{{messagePayload.title}}" />
       <div class="title-box">
         <p class="category">Company news</p>
-        <p class="title">{{stickyTitle}}</p>
+        <p class="title">{{messagePayload.title}}</p>
         <a href="#" class="view-news btn btn-default">view news</a>
       </div>
-      
+
       <div class="textbox">
-        <p class="text">{{{stickyText}}}</p>
+        <p class="text">{{{message}}}</p>
         <a href="#" class="read-more">
-          read 
+          read
           <i class="fa fa-arrow-circle-right"></i>
         </a>
       </div>
     </div>
-
+  {{/with}}
+  {{#each otherNews}}
     <div class="article">
-      <p class="title">{{article1Title}}</p>
-      <p class="date">{{article1Date}}</p>
+      <p class="title">{{messagePayload.title}}</p>
+      <p class="date">{{date}}</p>
       <div class="textbox">
-        <p class="text">{{{article1Text}}}</p>
+        <p class="text">{{{message}}}</p>
         <a href="#" class="read-more">
-          read 
+          read
           <i class="fa fa-arrow-circle-right"></i>
         </a>
       </div>
     </div>
-
-    <div class="article">
-      <p class="title">{{article2Title}}</p>
-      <p class="date">{{article2Date}}</p>
-      <div class="textbox">
-        <p class="text">{{{article2Text}}}</p>
-        <a href="#" class="read-more">
-          read 
-          <i class="fa fa-arrow-circle-right"></i>
-        </a>
-      </div>
-    </div>
-
-
-
-
+  {{/each}}
   </div>
 </template>
 

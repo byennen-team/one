@@ -169,7 +169,14 @@ RoomsController.getUnreadMessagesCount = function(roomId) {
 };
 
 RoomsController.getRoomsWithUnreadMessages = function() {
-  var rooms = Rooms.find().fetch();
+  var rooms = Rooms.find({
+    roomType: {
+      $ne: 'company'
+    },
+    roomName: {
+      $ne: 'News'
+    }
+  }).fetch();
   var roomsIds = [];
 
   _.each(rooms, function(room) {
