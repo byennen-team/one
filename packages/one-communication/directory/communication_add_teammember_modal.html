@@ -9,7 +9,7 @@
           </button>
           <div class="teamMembers">
             {{#each teamMembers}}
-            <div class="member-avatar" style="background-image: url({{profile.photoUrl.thumb}});"></div>
+            <div class="member-avatar" style="background-image: url({{profile.photoUrl.thumb}});" data-id="{{_id}}"></div>
             {{/each}}
           </div>
           <p class="modal-title raleway-semibold white text-uppercase spacing-250 m-left-05">invite</p>

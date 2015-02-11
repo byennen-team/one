@@ -32,6 +32,11 @@ Template.communicationSidebarFilter.events({
 			'pretty': pretty
 		};
 		Session.set('filter', json);
+	},
+
+	// Scroll to com-hub position when filter is clicked
+	'click #communication-filter': function () {
+		$( "#transitioner-1" ).animate( { scrollTop: 400 } );
 	}
 
 });

@@ -2,10 +2,10 @@
 	<div class='communication-sidebar-sleeve'>
 		{{> communicationSidebarCompanyFill}}
 	</div>
-</template>	
+</template>
 
 <template name='communicationSidebarCompanyFill'>
-	
+
 	<div class="dropdown company">
 	  <div  class="dropdown-header" data-toggle="collapse" href="#communication-company-header" aria-expanded="true" aria-controls="communication-company-header">
 			Company Channels
@@ -14,34 +14,34 @@
 		<div class="collapse in" id="communication-company-header">
 		  <div class="well">
 			  <ul role="menu">
-		<!-- TODO - number of unread messages in this category in span -->
-			    <li class="channel">General <span class='unread-num'>2</span></li>
-		<!-- TODO - number of unread messages in this category in span -->
-			    <li class="channel">News <span class='unread-num'>2</span></li>
-		<!-- TODO - number of unread messages in this category in span -->
-			    <li class="channel">Events <span class='unread-num'>2</span></li>
-		<!-- TODO - number of unread messages in this category in span -->
-			    <li class="channel">Training <span class='unread-num'>2</span></li>
+				  {{#each companyRooms}}
+				    <li class="channel" data-id="{{_id}}">{{roomName}}
+					    {{#if unreadMessages}}
+					    	<span class='unread-num'>{{unreadMessages}}</span>
+					    {{/if}}
+				    </li>
+				  {{/each}}
 			  </ul>
 
+
 			  <div class="dropdown secondary">
-		<!-- TODO: for each location added, .dropdown-header's #ID goes in 'aria-controls'		   --> 		
-				  <div  class="dropdown-header" data-toggle="collapse" href="#communication-575-madison-header" aria-expanded="false" aria-controls="communication-575-madison-header">
-						575 Madison
+		<!-- TODO: for each location added, .dropdown-header's #ID goes in 'aria-controls'		   -->
+				  <div class="dropdown-header" data-toggle="collapse" href="#communication-575-madison-header" aria-expanded="false" aria-controls="communication-575-madison-header">
+						{{officeName}}
 				    <span class="caret"></span>
 				  </div>
 		<!-- TODO: for each location added, a unique #ID is needed	  	 -->
 					<div class="collapse in" id="communication-575-madison-header">
 					  <div class="well">
 						  <ul role="menu">
-				<!-- TODO - number of unread messages in this category in span -->
-						    <li class="channel">General <span class='unread-num'>2</span></li>
-				<!-- TODO - number of unread messages in this category in span -->
-						    <li class="channel">Water Cooler <span class='unread-num'>2</span></li>
-				<!-- TODO - number of unread messages in this category in span -->
-						    <li class="channel">Listings <span class='unread-num'>2</span></li>
-				<!-- TODO - number of unread messages in this category in span -->
-						    <li class="channel">Open Houses <span class='unread-num'>2</span></li>
+							  {{#each officeRooms}}
+						<!-- TODO - number of unread messages in this category in span -->
+							    <li class="channel" data-id="{{_id}}">{{roomName}}
+								    {{#if unreadMessages}}
+								    	<span class='unread-num'>{{unreadMessages}}</span>
+								    {{/if}}
+							    </li>
+							  {{/each}}
 						  </ul>
 						</div>
 					</div>
@@ -53,5 +53,5 @@
 
 
 	</div>
-	
+
 </template>

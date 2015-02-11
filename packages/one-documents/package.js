@@ -30,6 +30,7 @@ Package.onUse(function (api) {
     'files',
     'jstree',
     'jquery-ui',
+    'one-documents-core',
     'one-infinite-scroll-list'
     ], 'web');
 

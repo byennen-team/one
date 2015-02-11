@@ -1,0 +1,114 @@
+<template name="communicationPostInput">
+
+<!-- TODO: needs to be plugged in -->
+    <form action="" id="communication-message-post" class="new-post-form">
+
+      <div class="header">
+        <div class="medium-btn"></div>
+        <div class="icon">
+          <i class="fa fa-pencil-square-o"></i>
+        </div>
+
+        <div class="close-x">
+          <i class="fa icon-x-blunt"></i>
+        </div>
+
+        <div class="maximize">
+        </div>
+
+        <div class="mediumize">
+          <i class="fa fa-toggle-down"></i>
+        </div>
+
+        <div class="minimize">
+          <i class="fa fa-minus"></i>
+        </div>
+      </div>
+
+      <div id='communication-post-form-body' class="post-form-body">
+        <div class='in'>in</div>
+<!-- TODO: needs to include all possible channels/rooms/conversations -->
+<!-- TODO: whatever room the user is in should be preselected (not General) -->
+        <select id="roomSelect" class="selectpicker" data-style='select-style' multiple>
+          {{#if companyChannels.count}}
+            <optgroup label="Company Channels">
+            {{#each companyChannels}}
+              <option value="{{_id}}" {{isSelected}}>{{roomName}}</option>
+            {{/each}}
+            </optgroup>
+          {{/if}}
+<!-- TODO: label needs name of office -->
+          {{#if officeChannels.count}}
+            <optgroup label="575 Madison">
+            {{#each officeChannels}}
+              <option value="{{_id}}" {{isSelected}}>{{roomName}}</option>
+            {{/each}}
+            </optgroup>
+          {{/if}}
+          {{#if dmChannels.count}}
+            <optgroup label="Direct Messaging">
+            {{#each dmChannels}}
+              <option value="{{_id}}" {{isSelected}}>{{partnerName}}</option>
+            {{/each}}
+            </optgroup>
+          {{/if}}
+          {{#if roomChannels.count}}
+            <optgroup label="Rooms">
+            {{#each roomChannels}}
+              <option value="{{_id}}" {{isSelected}}>{{roomName}}</option>
+            {{/each}}
+            </optgroup>
+          {{/if}}
+        </select>
+
+        <input type="hidden" id="fileId" />
+        <input type="text" class="subject" id="new-post-subject" placeholder="Subject...">
+        
+        <div id="communication-message-post-textarea" class="fake-textarea" contenteditable='true' data-placeholder="Type a post..."></div>
+
+        <div id="communication-message-post-attachment-btn" class="font">
+          <i class="fa fa-font"></i>
+        </div>
+
+        <div class="trash" data-toggle="modal" data-target="#communication-message-post-confirm">
+          <i class="fa fa-trash-o"></i>
+        </div>
+
+<!-- TODO: Saves a post as a draft -->
+        <div id='communication-message-post-save' class="btn btn-secondary">save draft</div>
+<!-- TODO: posts the post -->
+        <div id='communication-message-post-btn' class="btn btn-primary">post</div>
+
+<!-- TODO: put emoticon selector back in once it's thought out (needs bank of emoticons) -->
+<!-- TODO: style emoticon dropdown - once installed -->
+  <!--  <div class="dropdown pull-right">
+        <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-expanded="true">
+          <i class="fa fa-smile-o"></i>
+          <span class="caret"></span>
+        </button>
+        <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
+          <li role="presentation">
+            <a role="menuitem" tabindex="-1" href="#">
+              <i class="fa fa-smile-o"></i>
+            </a>
+          </li>
+          <li role="presentation">
+            <a role="menuitem" tabindex="-1" href="#">
+              <i class="fa fa-smile-o"></i>
+            </a>
+          </li>
+          <li role="presentation">
+            <a role="menuitem" tabindex="-1" href="#">
+              <i class="fa fa-smile-o"></i>
+            </a>
+          </li>
+        </ul>
+      </div> -->
+
+      </div>
+
+    </form>
+
+    {{> postTrashModal}}
+
+</template>

@@ -21,18 +21,14 @@ Template.documentRow.events({
 
   'click .print': function (event) {
     event.preventDefault();
-    var file = window.open(event.target.getAttribute("href"));
-    file.print();
+    var href = event.target.getAttribute('href');
+    DocumentTools.print(href);
   },
 
   'click .download': function (event) {
     event.preventDefault();
-    var a = $('<a target="_blank">')
-      .attr("href", event.target.getAttribute("href"))
-      .attr("download", "img.png")
-      .appendTo("body");
-    a[0].click();
-    a.remove();
+    var href = event.target.getAttribute('href');
+    DocumentTools.download(href);
   },
 
   'click [data-action="share-document"]': function (event) {
@@ -81,7 +77,7 @@ function toggleSelection(document) {
 
   Session.set('selectedDocuments', selectedDocuments);
 }
-
+/* jshint ignore:start */
 function selectDocument(document) {
   var documentId = document._id;
   var selectedDocuments = Session.get('selectedDocuments') || [];
@@ -92,6 +88,7 @@ function selectDocument(document) {
 
   Session.set('selectedDocuments', selectedDocuments);
 }
+/* jshint ignore:end */
 
 function updateSharedDocumentUrl(document) {
   Session.set('sharedDocumentUrl');

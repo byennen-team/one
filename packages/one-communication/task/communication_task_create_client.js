@@ -10,7 +10,7 @@ Template.communicationCreateTask.rendered = function () {
   // use specific class to call first
   $( '.taskcolorselectpicker' ).selectpicker(); 
 // TODO: if the event already has a color defined, insert it instead of 'purple'
-  $( '.filter-option' ).addClass( 'purple dot-select' );
+  $( '#task-menu .filter-option' ).addClass( 'purple dot-select' );
 
   var currentHeight = $(window).height();
   var taskHeight = currentHeight - 110;
@@ -27,32 +27,27 @@ Template.communicationCreateTask.rendered = function () {
 
 Template.communicationCreateTask.events({
 
-  'click .btn-cancel': function (event) {
-    event.preventDefault();
-    $( '#task-menu' ).velocity("fadeOut", { duration: 500 });
-  },
-
-// TODO: submit form here:
-  'click .btn-submit': function (event) {
-    event.preventDefault();
-    $( '#task-menu, #task-menu-clear' )
-      .velocity( "fadeOut", { duration: 500 });
-  },
-
+// // TODO: submit form here:
   'click #task-menu-create': function () {
+    // Closes menu
     $( '#task-menu, #task-menu-clear' )
       .velocity( "fadeOut", { duration: 500 });
+    $( '#communication-task-board .task' ).removeClass( 'open' );
   },
 
 // TODO: Needs to delete the current task
   'click #task-menu-delete': function () {
+    // Closes menu
     $( '#task-menu, #task-menu-clear' )
       .velocity( "fadeOut", { duration: 500 });
+    $( '#communication-task-board .task' ).removeClass( 'open' );
   },
 
   'click #task-menu-clear': function () {
+    // Closes menu
     $( '#task-menu, #task-menu-clear' )
       .velocity( "fadeOut", { duration: 500 });
+    $( '#communication-task-board .task' ).removeClass( 'open' );
   },
 
 // TODO: Also needs to remove the guest from the list

@@ -1,0 +1,93 @@
+<template name='roomFiles'>
+  
+  <div class="room-files">
+    <p>Files in This Room</p>
+  
+    <div class="search">
+      <div class="fa fa-search"></div>
+<!-- TODO: search within shown documents folder, maybe other as a secondary search -->
+      <input type="text" placeholder='Find file in room...' />
+    </div>
+      
+    <div class='room-files-sleeve'>
+
+  <!-- TODO: insert "company" or "personal" for document type
+  class="file {{company/personal}}" -->
+      <div class="file company">
+        <div class="file-icon">
+  <!-- TODO: file icon goes here, determined by file type:
+    for .xls file:          <i class="fa fa-table"></i>
+    for .jpg, .png, .gif :  <img src="path_to_thumbnail" alt="title_of_file"/>
+    for all other files:    <i class="fa fa-file"></i> 
+     -->
+          <i class="fa fa-file"></i>
+  <!-- TODO: file's title -->
+        </div>
+        <div class="title">Listing Agreement.doc</div>
+  <!-- TODO: file's date modified -->
+        <div class="date">Dec 17, 2013</div>
+      </div>
+
+  <!-- Repeated for style -->
+      <div class="file company">
+        <div class="file-icon">
+          <i class="fa fa-file"></i>
+        </div>
+        <div class="title">Blank Offer to Purchase.doc</div>
+        <div class="date">Dec 17, 2013</div>
+      </div>
+
+      <div class="file company">
+        <div class="file-icon">
+          <i class="fa fa-table"></i>
+        </div>
+        <div class="title">Broker Settlement Statement.xls</div>
+        <div class="date">Dec 17, 2013</div>
+      </div>
+
+      <div class="file personal">
+        <div class="file-icon">
+          <i class="fa fa-table"></i>
+        </div>
+        <div class="title">Business plan 5 Step Agent...xls</div>
+        <div class="date">Dec 17, 2013</div>
+      </div>
+
+      <div class="file company">
+        <div class="file-icon">
+          <i class="fa fa-file"></i>
+        </div>
+        <div class="title">Broker Settlement Statement.doc</div>
+        <div class="date">Dec 17, 2013</div>
+      </div>
+
+      <div class="file personal">
+        <div class="file-icon">
+          <img src="images/com-hub-main/interior.jpg" alt="title_of_file"/>
+        </div>
+        <div class="title">Staging Idea.jpg</div>
+        <div class="date">Dec 17, 2013</div>
+      </div>
+
+      <div class="file personal">
+        <div class="file-icon">
+          <i class="fa fa-file"></i>
+        </div>
+        <div class="title">575 Madison Ave description.doc</div>
+        <div class="date">Dec 17, 2013</div>
+      </div>
+
+      <div class="file company">
+        <div class="file-icon">
+          <img src="images/com-hub-main/de-mark.png" alt="title_of_file"/>
+        </div>
+        <div class="title">DE Mark.png</div>
+        <div class="date">Dec 17, 2013</div>
+      </div>
+  <!-- /style repeat -->
+
+    </div>
+  </div>
+
+
+</template>
