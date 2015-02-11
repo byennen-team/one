@@ -6,14 +6,6 @@ Template.profileGallery.helpers({
 			createdAt: -1
 		}});
 	},
-	date: function(date) {
-		if (moment(date).diff(moment(new Date()), 'days') >= 1) {
-			return moment(date).format('MMM D, YYYY');
-		} else {
-			return moment(date).fromNow();
-		}
-
-	},
 	pictureCount: function() {
 		return (this.pictures)?this.pictures.length:0;
 	},

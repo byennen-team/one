@@ -5,3 +5,10 @@ Template.libraryFiles.rendered = function(){
   });
 };
 
+Template.libraryFiles.helpers({
+
+  documents: function () {
+    return Files.find();
+  }
+
+});

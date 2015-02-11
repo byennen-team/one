@@ -25,8 +25,9 @@ Package.onUse(function (api) {
     'underscore',
     'aldeed:simple-schema',
     'reywood:publish-composite',
+    'one-core',
     'files'
-    ]);
+  ]);
 
   api.addFiles([
     'directory/communication_directory_modal_server.js',
@@ -74,6 +75,9 @@ Package.onUse(function (api) {
     'library/communication_library_members.html',
     'library/communication_library_members.less',
     'library/communication_library_members_client.js',
+    'library/communication_library_file.html',
+    'library/communication_library_file.less',
+    'library/communication_library_file_client.js',
     'library/communication_library_files.html',
     'library/communication_library_files.less',
     'library/communication_library_files_client.js',

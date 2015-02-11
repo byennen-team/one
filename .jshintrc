@@ -152,6 +152,7 @@
     "Routes": false,
     "Settings": false,
     "User": false,
-    "DocumentTools": false
+    "DocumentTools": false,
+    "Helpers": false
   }
 }
