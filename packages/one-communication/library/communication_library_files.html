@@ -5,15 +5,28 @@
 		<div class="drop-box">
 			<div class="dropdown">
 			  <div class="dropdown-toggle" type="button" id="communication-library-files-folders" data-toggle="dropdown" aria-expanded="true">
-			<!-- TODO: Should show currently selectec/shown folder -->
-			    My Docs
+			    {{selectedCategory}}
 			    <span class="caret"></span>
 			  </div>
 			  <ul class="dropdown-menu" role="menu" aria-labelledby="communication-library-files-folders">
-			<!-- TODO: List folders -->
-			<!-- TODO: Selecting one of these brings up files in folder -->
-			    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">My Docs</a></li>
-			    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Company Docs</a></li>
+			    <li role="presentation">
+            <a role="menuitem"
+               tabindex="-1"
+               href="#"
+               data-action="select-my-docs"
+            >
+              My Docs
+            </a>
+          </li>
+			    <li role="presentation">
+            <a role="menuitem"
+               tabindex="-1"
+               href="#"
+               data-action="select-company-docs"
+            >
+              Company Docs
+            </a>
+          </li>
 			  </ul>
 			</div>
 		</div>
@@ -24,11 +37,16 @@
 			<input type="text" placeholder='Find file...' />
 		</div>
 
-    <div class='library-files-sleeve'>
-      {{#each documents}}
-        {{> libraryFile}}
-      {{/each}}
-    </div>  
+    <div class="library-files-sleeve">
+      {{!-- We need this extra container so that Blaze throws no errors
+            because of the scrollbar DOM transformation.
+      --}}
+      <div>
+        {{#each documents}}
+          {{> libraryFile}}
+        {{/each}}
+      </div>
+    </div>
 
 	</div>
 
