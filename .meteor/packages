@@ -18,11 +18,12 @@ velocityjs:velocityjs
 ccorcos:transitioner
 coffeescript
 xolvio:cucumber@0.3.8
+percolate:synced-cron
+settinghead:auto-nprogress
+meteorhacks:kadira
 
 #TODO: add these packages inside the packages that our using them.
 tsega:bootstrap3-datetimepicker
-percolate:synced-cron
-settinghead:auto-nprogress
 afruth:wysiwygjs
 
 
