@@ -64,6 +64,51 @@ Meteor.startup(function() {
       });
     });
 
+    // creating three placeholder stories if they don't exist already
+  var titles = [
+    'Douglas Eliman REINVENT',
+    'Global Brand Alliance Party',
+    'New Offices in CT'
+  ];
+
+  var text = "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit." +
+             "Duis euismod tortor a fermentum ornare. In justo libero, " +
+             "fermentum quis eros at, accumsan bibendum risus. Duis " +
+             "sollicitudin facilisis eleifend. Suspendisse tempor metus " +
+             "vitae finibus luctus. Etiam tristique enim eu pretium " +
+             "condimentum. Sed scelerisque lectus ac mi sollicitudin " +
+             "accumsan. Aenean nec finibus ex. Cras tincidunt risus eget " +
+             "tellus eleifend, eu consequat dolor tincidunt. Cum sociis " +
+             "natoque penatibus et magnis dis parturient montes, nascetur " +
+             "ridiculus mus. In ac augue tortor. Etiam ut orci finibus, " +
+             "fringilla est quis, vestibulum sem. Nam sit amet dignissim " +
+             "mauris.</p>";
+
+  text = text + text + text;
+
+  var news = Messages.find({
+    messageType: 'news',
+    'messagePayload.newsType': 'fake'
+  }).count();
+  var user = Meteor.users.findOne();
+  var room = Rooms.findOne({
+    roomType: 'company',
+    roomName: 'News'
+  });
+
+  if (news < 3) {
+    _.each(titles, function(item){
+      RoomsController.addNewsMessageToRoom(
+        room._id, {
+          postContent: text,
+          title: item,
+          fileUrl: '/images/dashboard/news-banner.jpg',
+          author: user._id,
+          newsType: 'fake'
+        });
+    });
+  }
+
 });
 
 Meteor.publishComposite('roomData', function(roomId, limit) {
