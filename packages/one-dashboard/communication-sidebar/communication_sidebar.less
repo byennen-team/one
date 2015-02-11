@@ -26,24 +26,57 @@
 			letter-spacing: 0.25em;
 			cursor: pointer;
 		}
-		li {
-			font-family: @raleway-medium;
-			color: @white;
-			list-style: none;
-			margin: 1em 0;
-		}
 		.well {
 			background-color: @blue-grey;
 			box-shadow: none;
 			border: none;
-			padding: 0 19px;
+			padding: 0;  // 0 19px;
+		}
+		ul {
+			padding-left: 0;
+		}
+		.delete-channel {
+			font-size: 12px;
+			float: right;
+			padding: 0.25em 1em;
+			cursor: pointer;
+			opacity: 0;
+			transition: opacity 350ms ease-out 50ms;
+			.icon-x-blunt {
+				color: lighten( @blue-grey, 30% );
+			}
+		}
+		.delete-channel:hover {
+			.icon-x-blunt {
+				color: @white;
+			}
+		}
+		li {
+			font-family: @raleway-light;
+			color: @white;
+			list-style: none;
+			height: 34px;
+			width: 90%;
+			margin: 0.5em 0;
+			padding: 7px 0 7px 3em;
+			-moz-border-radius: 0 17px 17px 0;
+			-webkit-border-radius: 0 17px 17px 0;
+			border-radius: 0 17px 17px 0;
+			background-color: @blue-grey;
+			transition: background-color 350ms ease-out 50ms;
+		}
+		li:hover {
+			background-color: @dk-blue-grey;
+			.delete-channel {
+				opacity: 1;
+			}
 		}
 		.secondary {
 			.dropdown-header {
 				margin-top: 2em;
 			}
-			ul {
-				padding-left: 19px;
+			li {
+				padding-left: 4em;
 			}
 		}
 	}
