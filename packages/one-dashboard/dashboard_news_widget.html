@@ -1,0 +1,51 @@
+<template name="dashboardNewsWidget">
+  
+   <div class="news-widget">
+
+    <div class="sticky">
+      <img src="{{bannerURL}}" alt="{{bannerName}}" />
+      <div class="title-box">
+        <p class="category">Company news</p>
+        <p class="title">{{stickyTitle}}</p>
+        <a href="#" class="view-news btn btn-default">view news</a>
+      </div>
+      
+      <div class="textbox">
+        <p class="text">{{{stickyText}}}</p>
+        <a href="#" class="read-more">
+          read 
+          <i class="fa fa-arrow-circle-right"></i>
+        </a>
+      </div>
+    </div>
+
+    <div class="article">
+      <p class="title">{{article1Title}}</p>
+      <p class="date">{{article1Date}}</p>
+      <div class="textbox">
+        <p class="text">{{{article1Text}}}</p>
+        <a href="#" class="read-more">
+          read 
+          <i class="fa fa-arrow-circle-right"></i>
+        </a>
+      </div>
+    </div>
+
+    <div class="article">
+      <p class="title">{{article2Title}}</p>
+      <p class="date">{{article2Date}}</p>
+      <div class="textbox">
+        <p class="text">{{{article2Text}}}</p>
+        <a href="#" class="read-more">
+          read 
+          <i class="fa fa-arrow-circle-right"></i>
+        </a>
+      </div>
+    </div>
+
+
+
+
+  </div>
+</template>
+

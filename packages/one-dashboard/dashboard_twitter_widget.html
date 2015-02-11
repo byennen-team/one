@@ -23,6 +23,9 @@
 </template>
 
 <template name="tweetTemplate">
+
+  <hr class='tweet-divider'/>
+
   <div class="tweet">
     <div class="avatar">
     {{#if payload.retweeted_status}}
@@ -49,10 +52,11 @@
       {{#if media}}
         <div class="mediaWrap {{mediaCount}}">
           {{#each media}}
-            <img src="{{media_url_https}}" />
+          <div class="twitpic" style="background-image: url({{media_url_https}}:small)"></div>
           {{/each}}
         </div>
       {{/if}}
+
       <div class="controls">
         <a href="https://twitter.com/intent/tweet?in_reply_to={{postId}}">
           <i class="fa fa-reply"></i>
@@ -69,5 +73,4 @@
     </div>
   </div>
 
-  <hr />
 </template>

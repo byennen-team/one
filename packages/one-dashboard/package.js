@@ -12,14 +12,19 @@ Package.onUse(function (api) {
     'velocityjs:velocityjs',
     'routes',
     'styles',
+    'settings',
+    'reactive-var',
+    'social-media',
     'maazalik:malihu-jquery-custom-scrollbar',
-    'social-media'
+    'mquandalle:bower@0.1.11'
   ], 'web');
 
-  api.addFiles([
+   api.addFiles(['dashboard.js'], 'server');
+    api.addFiles([
     'dashboard.html',
     'dashboard.less',
     'dashboard_banner.html',
+    'dashboard_skycons_client.js',
     'dashboard_banner_client.js',
     'dashboard_banner.less',
     'dashboard_event.html',
@@ -36,6 +41,9 @@ Package.onUse(function (api) {
     'dashboard_twitter_widget.html',
     'dashboard_twitter_widget.less',
     'dashboard_twitter_widget_client.js',
+    'dashboard_news_widget.html',
+    'dashboard_news_widget.less',
+    'dashboard_news_widget_client.js',
     //communication-sidebar
     'communication-sidebar/communication_sidebar.html',
     'communication-sidebar/communication_sidebar.less',
