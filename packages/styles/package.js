@@ -27,8 +27,7 @@ Package.onUse(function (api) {
     'select.less',
     'selectpicker.less',
     'variables.import.less',
-    'velocity_html_reporter.less',
-    'medium-editor.less'
+    'velocity_html_reporter.less'
   ], 'web');
 
   //style guide
