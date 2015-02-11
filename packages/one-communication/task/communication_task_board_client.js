@@ -22,9 +22,9 @@ Template.taskBoard.rendered = function () {
   }
 
   // utility function to rotate a jQuery element
-  // takes element and the degree of rotation (from the top) 
+  // takes element and the degree of rotation (from the top)
   function rotate( el, degrees ) {
-    var degrees = topAlign( degrees || 0 );
+    degrees = topAlign( degrees || 0 );
     el.css(
       'transform', 'rotate('+degrees+'deg)',
       '-webkit-transform', 'rotate('+degrees+'deg)',
@@ -39,15 +39,15 @@ Template.taskBoard.rendered = function () {
   // element must contain four .arc_q elements
   function circle(el, normalisedValue) {
     // turn normalised value into degrees
-    var degrees = normalisedValue * 360;  
-    // keeps track of which quarter we're working with           
-    var counter = 1;                                 
-    el.find('.arc_q').each(function(){      
-      // limit angle to maximum allowed for this quarter         
-      var angle = Math.min(counter * 90, degrees); 
+    var degrees = normalisedValue * 360;
+    // keeps track of which quarter we're working with
+    var counter = 1;
+    el.find('.arc_q').each(function(){
+      // limit angle to maximum allowed for this quarter
+      var angle = Math.min(counter * 90, degrees);
       // rotate from the hiding place
-      rotate($(this), fromHidden + angle);         
-      counter++;  
+      rotate($(this), fromHidden + angle);
+      counter++;
     });
     if (degrees > 90) {   // hide the cover-up square when not needed
       el.find('.arc_cover').css('display', 'none');
@@ -57,7 +57,7 @@ Template.taskBoard.rendered = function () {
   // uses the the circle function to 'animate' drawing of the semi-circle
   // incrementally increses the value passed by 0.01 up to the value required
   function animateCircle( el, normalisedValue, current ) {
-    var current = current || 0;
+    current = current || 0;
     circle(el, current);
     if (current < normalisedValue) {
       current += 0.01;

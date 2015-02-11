@@ -13,17 +13,14 @@ Rooms.simpleSchema = new SimpleSchema({
   participants: { type: participantsSchema },
   dateCreated: { type: Date },
   roomType: { type: String, optional: true},
-  roomStatus: { type: String, defaultValue: 'private'}
+  roomStatus: { type: String, defaultValue: 'private'},
+  officeNo: { type: Number, optional: true }
 });
 
 RoomsController = {};
 
-RoomsController.createRoom = function(participants, roomType, roomName) {
-  Meteor.call('createRoom', {
-    participants: participants,
-    roomType: roomType,
-    roomName: roomName
-  }, function(e,r) {
+RoomsController.createRoom = function(context) {
+  Meteor.call('createRoom', context, function(e,r) {
     if (e)
       console.log(e);
 
@@ -73,15 +70,37 @@ RoomsController.addSimpleMessageToRoom = function(roomId, message, callback) {
     if (e)
       console.log(e);
 
-  //this is needed to capture new messages in freshly created or joined rooms
-  //might be a resource killer, but will have to check how it works with many
-  //users.
-  Meteor.subscribe('unreadMessages');
+  if(callback)
+    callback(e,r);
+  });
+};
+
+RoomsController.addAttachmentMessageToRoom =
+  function(roomId, message, documentId, callback) {
+  Meteor.call('addAttachmentMessageToRoom', roomId, message, documentId,
+    function(e,r) {
+      if (e)
+        console.log(e);
+
+      if(callback)
+        callback(e,r);
+    }
+  );
+};
+
+// context.postContent: String, context.title: String,
+// context.fileId: String optional
+RoomsController.addPostMessageToRoom = function(roomId, context, callback) {
+  Meteor.call('addPostMessageToRoom',
+    roomId, context, function(e,r) {
+    if (e)
+      console.log(e);
 
   if(callback)
     callback(e,r);
   });
 };
+
 RoomsController.deleteMessage = function(messageId) {
   Meteor.call('deleteMessage', messageId, function(e,r) {
     if (e)
@@ -105,17 +124,144 @@ RoomsController.getUnreadMessagesCount = function(roomId) {
   if(! room)
     throw new Meteor.Error(404, "Room not found");
 
-  var currentParticipant = _.find(room.participants, function(item) {
+  var query = {};
+
+  if(room.roomType === 'office' || room.roomType === 'company') {
+    var user = Meteor.user();
+
+    var thisRoomSeenAt;
+    if(user.roomsSeen) {
+      thisRoomSeenAt = _.find(user.roomsSeen, function(item) {
+        return (item.roomId === roomId);
+      });
+      if(thisRoomSeenAt && thisRoomSeenAt.timestamp)
+        query.dateCreated = { $gt: thisRoomSeenAt.timestamp };
+    }
+
+  } else {
+    var currentParticipant = _.find(room.participants, function(item) {
       return (item.participantId === Meteor.userId());
     });
-
-    var query = {};
-    query.roomId = room._id;
-
     if(currentParticipant.lastReadTimestamp)
       query.dateCreated = { $gt: currentParticipant.lastReadTimestamp };
+  }
 
-    return Messages.find(query).count();
+  query.roomId = room._id;
+  query['messagePayload.draft'] = {
+      $ne: true
+  };
+  query.creatorId = {
+    $ne: Meteor.userId()
+  };
+  return Messages.find(query).count();
+};
+
+RoomsController.getRoomsWithUnreadMessages = function() {
+  var rooms = Rooms.find().fetch();
+  var roomsIds = [];
+
+  _.each(rooms, function(room) {
+    var user = Meteor.user();
+    var query = {};
+    var roomUnreadMessages;
+    query.roomId = room._id;
+    query['messagePayload.draft'] = {
+        $ne: true
+      };
+    query.creatorId = {
+      $ne: Meteor.userId()
+    };
+    if(room.roomType &&
+      ((room.roomType === 'office' &&
+        room.officeNo === user.profile.officeId) ||
+        room.roomType === 'company')) {
+
+      var thisRoomSeenAt;
+
+      if(user.roomsSeen) {
+        thisRoomSeenAt = _.find(user.roomsSeen, function(item) {
+          return (item.roomId === room._id);
+        });
+        if(thisRoomSeenAt && thisRoomSeenAt.timestamp)
+          query.dateCreated = { $gt: thisRoomSeenAt.timestamp };
+      }
+
+      roomUnreadMessages = Messages.find(query).count();
+
+      if(roomUnreadMessages > 0)
+        roomsIds.push(room._id);
+
+    } else {
+      var currentParticipant = _.find(room.participants, function(item) {
+        return (item.participantId === Meteor.userId());
+      });
+
+      if(currentParticipant && currentParticipant.lastReadTimestamp)
+        query.dateCreated = { $gt: currentParticipant.lastReadTimestamp };
+
+      roomUnreadMessages = Messages.find(query).count();
+
+      if(roomUnreadMessages > 0)
+        roomsIds.push(room._id);
+    }
+  });
+  return Rooms.find({
+    _id: {
+      $in: roomsIds
+    }
+  });
+
+};
+
+RoomsController.getOfficeRoomsWithUnreadMessages = function() {
+  var rooms = Rooms.find({
+    $or: [
+      {
+        roomType: 'office',
+        officeNo: Meteor.user().profile.officeId
+      },
+      {
+        roomType: 'company'
+      }
+    ]
+  }).fetch();
+  var roomsIds = [];
+
+  _.each(rooms, function(room) {
+      var user = Meteor.user();
+
+      var thisRoomSeenAt;
+
+      var query = {};
+      query.roomId = room._id;
+      query.draft = {
+          $ne: true
+        };
+
+      query.creatorId = {
+        $ne: Meteor.userId()
+      };
+
+      if(user.roomsSeen) {
+        thisRoomSeenAt = _.find(user.roomsSeen, function(item) {
+          return (item.roomId === room._id);
+        });
+        if(thisRoomSeenAt && thisRoomSeenAt.timestamp)
+          query.dateCreated = { $gt: thisRoomSeenAt.timestamp };
+      }
+
+      var roomUnreadMessages = Messages.find(query).count();
+
+      if(roomUnreadMessages > 0)
+        roomsIds.push(room._id);
+
+  });
+  return Rooms.find({
+    _id: {
+      $in: roomsIds
+    }
+  });
+
 };
 
 RoomsController.updateTimestamp = function(roomId) {
@@ -125,6 +271,26 @@ RoomsController.updateTimestamp = function(roomId) {
 
     console.log(r);
   });
+};
+
+RoomsController.createOrGetDMRoom = function(userId, callback) {
+  var ifRoomExists = Rooms.findOne({
+      roomType: 'dm',
+      $and: [
+        {'participants.participantId': Meteor.userId()},
+        {'participants.participantId': userId}
+      ]
+    });
+
+  if (ifRoomExists && callback) {
+    callback(null, ifRoomExists._id);
+    return;
+  }
+
+  Meteor.call('createDMRoom', userId, function(e, r) {
+    if(callback)
+      callback(e,r);
+    });
 };
 
 RoomsController.adjustParticipantsInRoom = function(

@@ -27,7 +27,7 @@
 
 		<div id="communication-message-attachment-display" class='attachment-display'>
 			<div class="caret-left"></div>
-			<div class="background">
+			<div class="background shorten-text">
 				<i class="fa fa-file"></i>
 				<span id="communication-message-attachment-name" class="name"></span>
 				<span id="communication-message-attachment-size" class="size"></span>
@@ -38,90 +38,6 @@
 			<input class='input' id="addMessageInput" type="text" placeholder="Type your message..." />
 		</form>
 
-<!-- TODO: needs to be plugged in -->
-		<form action="" id="communication-message-post" class="new-post-form">
-			<span>in</span>
-<!-- TODO: needs to include all possible channels/rooms/conversations -->
-<!-- TODO: whatever room the user is in should be preselected (not General) -->
-			<select class="selectpicker" data-style='select-style' multiple>
-		    <optgroup label="Company Channels">
-		      <option selected>General</option>
-		      <option>News</option>
-		      <option>Events</option>
-		      <option>Training</option>
-		    </optgroup>
-<!-- TODO: label needs name of office -->
-		    <optgroup label="575 Madison">
-		      <option>General</option>
-		      <option>Water Cooler</option>
-		      <option>Listings</option>
-		      <option>Open Houses</option>
-		    </optgroup>
-		    <optgroup label="Direct Messaging">
-		      <option>Dottie Herman</option>
-		      <option>Marie Espinal</option>
-		    </optgroup>
-		    <optgroup label="Rooms">
-		      <option>Team Awesome</option>
-		      <option>111 4th Ave, 4h</option>
-		      <option>575 Madison Ave</option>
-		    </optgroup>
-  		</select>
-
-  		<input type="text" class="subject" placeholder="Subject...">
-
-  		<div id="communication-message-post-textarea" class="fake-textarea" contenteditable='true'>Type a post...</div>
-
-  		<div id="communication-message-post-attachment-btn" class="paperclip">
-  			<i class="fa fa-paperclip"></i>
-  		</div>
-
-  		<div class="dropdown">
-			  <button id="communication-message-post-style" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-			    <i class="fa fa-font"></i>
-			    <span class="caret"></span>
-			  </button>
-			  <ul class="dropdown-menu dropup" role="menu" aria-labelledby="dLabel">
-			    <li id='communication-message-post-style-link'><i class="fa fa-link"></i></li>
-			    <li id='communication-message-post-style-link'><i class="fa fa-bold"></i></li>
-			    <li id='communication-message-post-style-link'><i class="fa fa-italic"></i></li>
-			    <li id='communication-message-post-style-link'><i class="fa fa-underline"></i></li>
-			  </ul>
-			</div>
-<!-- TODO: Saves a post as a draft -->
-			<div id='communication-message-post-save' class="btn btn-secondary">save draft</div>
-<!-- TODO: posts the post -->
-			<div id='communication-message-post-btn' class="btn btn-primary">post</div>
-
-		</form>
-
-
-
-<!-- TODO: put emoticon selector back in once it's thought out (needs bank of emoticons) -->
-<!-- TODO: style emoticon dropdown - once installed -->
-<!-- 	<div class="dropdown pull-right">
-		  <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-expanded="true">
-		    <i class="fa fa-smile-o"></i>
-		    <span class="caret"></span>
-		  </button>
-		  <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
-		    <li role="presentation">
-		    	<a role="menuitem" tabindex="-1" href="#">
-		    		<i class="fa fa-smile-o"></i>
-		    	</a>
-		    </li>
-		    <li role="presentation">
-		    	<a role="menuitem" tabindex="-1" href="#">
-		    		<i class="fa fa-smile-o"></i>
-		    	</a>
-		    </li>
-		    <li role="presentation">
-		    	<a role="menuitem" tabindex="-1" href="#">
-		    		<i class="fa fa-smile-o"></i>
-		    	</a>
-		    </li>
-		  </ul>
-		</div> -->
 	</div>
 
 </template>

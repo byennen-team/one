@@ -40,19 +40,23 @@ Template.communicationSidebar.events({
 
 	// Scroll to top when communication sidebar is clicked, to appear full screen
 	'click #communication-sidebar-options': function(){
+  // TODO: Scroll has stopped working. click event is firing.
+    //$( '#sidebar-scroll-target' ).velocity( "scroll", 600 );
   // Velocity.js is unable to scroll a specific div to a point
     $( "#transitioner-1" ).animate( { scrollTop: 400 } );
-
 		// $('#main-wrap').addClass('blurry');
 	},
 
 	// Opens the Communication Hub
-	'click .channel': function(){
+	'click .channel': function(event){
+    Session.set('openRoomId', $(event.currentTarget).data('id'));
+    Session.set('messageLimit',20);
 		// expands the main dialog box to 80% of full screen
-		$.Velocity.hook($('#communication-main'), "width", "100%");
-		$.Velocity.hook($('#communication-message-board'), "width", "60%");
+    $.Velocity.hook($('#communication-main'), "overflow", "visible");
+		$.Velocity.hook($('#communication-main'), "width", "76%");
+		$.Velocity.hook($('#communication-message-board'), "width", "78%");
 		$.Velocity.hook($('#communication-task-board'), "width", "0%");
-		$.Velocity.hook($('#communication-library-board'), "width", "15.5%");
+		$.Velocity.hook($('#communication-library-board'), "width", "22%");
 		// remove class from main chat window
 		$('#communication-main').removeClass('tasks');
 		// force scrollbar on sidebar
@@ -80,20 +84,17 @@ Template.communicationSidebar.events({
     body.css('overflow', 'hidden');
     window.scrollTo(scrollPosition[0], scrollPosition[1]);
 
-    $("#communication-message-board-sleeve")
-      .mCustomScrollbar({
-        theme:"one-dark",
-        scrollbarPosition: "inside"
-    });
 	},
 
 	'click .room': function(event){
     Session.set('openRoomId', $(event.currentTarget).data('id'));
+    Session.set('messageLimit',20);
 		// expands the main dialog box t0 60% of full screen
-		$.Velocity.hook($('#communication-main'), "width", "100%");
-		$.Velocity.hook($('#communication-message-board'), "width", "45%");
-		$.Velocity.hook($('#communication-task-board'), "width", "15%");
-		$.Velocity.hook($('#communication-library-board'), "width", "15.5%");
+    $.Velocity.hook($('#communication-main'), "overflow", "visible");
+		$.Velocity.hook($('#communication-main'), "width", "76%");
+		$.Velocity.hook($('#communication-message-board'), "width", "56%");
+		$.Velocity.hook($('#communication-task-board'), "width", "22%");
+		$.Velocity.hook($('#communication-library-board'), "width", "22%");
 		// add class to main chat window
 		$('#communication-main').addClass('tasks');
     // force scrollbar on sidebar
@@ -121,14 +122,12 @@ Template.communicationSidebar.events({
     body.css('overflow', 'hidden');
     window.scrollTo(scrollPosition[0], scrollPosition[1]);
 
-    $("#communication-message-board-sleeve")
-      .mCustomScrollbar({
-        theme:"one-dark",
-        scrollbarPosition: "inside"
-    });
 	},
   'click #addRoom': function() {
     Session.set('teamModalPurpose','newTeam');
+  },
+  'click #addDM': function() {
+    Session.set('teamModalPurpose','newDM');
   }
 
 });
