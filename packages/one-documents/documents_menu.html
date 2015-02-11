@@ -1,10 +1,19 @@
 <template name="documentsMenu">
-  
-  <a href='/documents'>
-    <div class="my-library {{myActive}}">my library</div>
-  </a>
-  <a href='/documents/company'>
-    <div class="company-library {{companyActive}}">company library</div>
-  </a>
+
+  <div class="documents-menu col-sm-12 {{documentsMenuClass}}">
+    <a href='/documents'>
+      <div class="documents-menu-item {{myActive}}">my library</div>
+    </a>
+    <a href='/documents/company'>
+      <div class="documents-menu-item {{companyActive}}">
+        company library
+      </div>
+    </a>
+    <a href='/documents/shared'>
+      <div class="documents-menu-item {{sharedWithMeActive}}">
+        shared with me
+      </div>
+    </a>
+  </div>
 
 </template>

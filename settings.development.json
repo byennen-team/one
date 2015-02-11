@@ -1,10 +1,14 @@
 {
   "AWS_BUCKET": "goone-dev",
-  "AWS_ACCESS_KEY_ID": "AKIAIRIH744ERKEXHPOA",
-  "AWS_SECRET_ACCESS_KEY": "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",
+  "AWS_ACCESS_KEY_ID": "AKIAJ2ED7QHQWODAJ37A",
+  "AWS_SECRET_ACCESS_KEY": "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",
   "public": {
     "AWS_BUCKET_URL": "https://goone-dev.s3.amazonaws.com",
-    "ENVIRONMENT": "development"
+    "ENVIRONMENT": "development",
+    "twitter": {
+      "COMPANY_SCREENNAME": "DouglasElliman",
+      "COMPANY_USERID": "10874182"
+    }
   },
   "S3_URL_EXPIRATION_SECONDS": 604800,
   "MANDRILL_USERNAME": "mandrill@gooneapp.com",
@@ -14,11 +18,5 @@
     "SECRET": "PqlvLrWuNDl4d1QXmRVgKayUPjBmTfsF6KGZuxqZGhQ8bygKFB"
   },
   "FORECAST_API_KEY": "14825320e632a4c6c1aa9cc827bc7a94",
-  "GOOGLE_API_KEY": "AIzaSyBf1mUne6CU0ZGFGOEwCv4wyojCl0XRzO4",
-  "public": {
-    "twitter": {
-      "COMPANY_SCREENNAME": "DouglasElliman",
-      "COMPANY_USERID": "10874182"
-    }
-  }
+  "GOOGLE_API_KEY": "AIzaSyBf1mUne6CU0ZGFGOEwCv4wyojCl0XRzO4"
 }

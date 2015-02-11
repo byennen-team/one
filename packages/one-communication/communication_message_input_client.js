@@ -1,7 +1,7 @@
+/* globals RoomsController: true */
 Template.messageInput.rendered = function(){
 	Session.set('menuOpen', false);
 	Session.set('attachment', false);
-	$('.selectpicker').selectpicker();
 };
 
 Template.messageInput.events({
@@ -19,7 +19,9 @@ Template.messageInput.events({
 	'click #communication-message-input-options-post': function(){
 		Session.set("menuOpen", false);
     // Open New Post menu
-    $('#communication-message-board').addClass('new-post');
+    $('.selectpicker').selectpicker('render');
+    $( '#communication-message-post' )
+      .velocity( "slideDown", { duration: 500 } );
 	},
 
   // close the menu when an option is selected
@@ -33,21 +35,94 @@ Template.messageInput.events({
   },
 
 	// Check to see if the input holds an attachment when the value changes
-	'change #communication-message-input-attachment-input': function(){
+	'change #communication-message-input-attachment-input': function (event) {
 		var input = $('#communication-message-input-attachment-input');
 		if( input.val() ){
 			Session.set('attachment', true);
+      var file = event.target.files[0];
+      FileTools.upload('signUserDocumentUpload', file, {
+        parentFolderId: null,
+        // TODO: Gandle error
+        //onError: function (error) {
+        //
+        //},
+        // TODO: Progress
+        //onProgress: function (progressEvent) {
+        //  var progress = Math.floor(
+        //    progressEvent.loaded / progressEvent.total * 100
+        //  );
+        //
+        //},
+        onComplete: function (fileInfo) {
+          Session.set('attachmentId', fileInfo.fileId);
+        }
+      });
 		}else{
 			Session.set('attachment', false);
-		}
+      Session.set('attachmentId', null);
+    }
 	},
 
 	// Clear input value and resets session
 	'click #communication-message-attachment-delete': function(){
 		$('#communication-message-input-attachment-input').val('');
 		Session.set('attachment', false);
-	}
+    Session.set('attachmentId', null);
+	},
 
+  'submit #addMessageForm': function(event) {
+    event.preventDefault();
+    var message = $('#addMessageInput').val();
+
+    if(message && message.length > 0)
+      if (Session.get('attachment')) {
+        RoomsController.addAttachmentMessageToRoom(
+          Session.get('openRoomId'),
+          message,
+          Session.get('attachmentId')
+        );
+        Session.set('attachment', false);
+        Session.set('attachmentId', null);
+      } else {
+        RoomsController.addSimpleMessageToRoom(
+          Session.get('openRoomId'),
+          message);
+      }
+
+
+    $('#addMessageInput').val("");
+
+    //also mark room as read
+
+    RoomsController.updateTimestamp(Session.get('openRoomId'));
+
+  },
+  'click #communication-message-post-btn': function() {
+
+    var context = {
+      title: $('#new-post-subject').val(),
+      postContent: $('#communication-message-post-textarea').serialize()
+    };
+
+    var postImage = null;
+
+    if(postImage)
+      context.fileId = postImage;
+
+    var draft = null;
+    if(draft)
+      context.draft = draft;
+    else
+      context.draft = false;
+
+    if (context.title !== '' && context.postContent !== '') {
+      RoomsController.addPostMessageToRoom(Session.get('openRoomId'),
+        //TODO: multiple room selector
+        context);
+    } else {
+      return null;
+    }
+  }
 });
 
 Tracker.autorun(function () {

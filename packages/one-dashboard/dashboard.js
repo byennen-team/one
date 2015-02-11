@@ -4,6 +4,9 @@ Meteor.methods({
     /*jshint camelcase: false */
     check(position, Object);
 
+    if (_.isEmpty(position))
+      return;
+
     var lon = Math.round(position.coords.longitude * 100) / 100;
     var lat = Math.round(position.coords.latitude * 100) / 100;
     //using the cache function from social-media in order to

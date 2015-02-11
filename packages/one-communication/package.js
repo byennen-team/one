@@ -3,6 +3,7 @@ Package.describe({
 });
 
 Package.onUse(function (api) {
+
   api.use([
     'less',
     'jquery',
@@ -15,10 +16,29 @@ Package.onUse(function (api) {
     'tracker',
     'mquandalle:bower@0.1.11',
     'maazalik:malihu-jquery-custom-scrollbar',
-    'reactive-var'
+    'reactive-var',
+    'afruth:wysiwygjs',
+    'one-documents-core',
     ], 'web');
 
-  api.addFiles('directory/communication_directory_modal_server.js', 'server');
+  api.use([
+    'underscore',
+    'aldeed:simple-schema',
+    'reywood:publish-composite',
+    'files'
+    ]);
+
+  api.addFiles([
+    'directory/communication_directory_modal_server.js',
+    'messages/messages_server.js',
+    'rooms/rooms_server.js'
+    ], 'server');
+
+  api.addFiles([
+    'messages/messages.js',
+    'rooms/rooms.js'
+    ], ['server', 'web']);
+
   api.addFiles([
     'communication_main.html',
     'communication_main.less',
@@ -29,12 +49,17 @@ Package.onUse(function (api) {
     'communication_room.html',
     'communication_room.less',
     'communication_room_client.js',
+    'communication_room_welcome.html',
     'communication_message_board.html',
     'communication_message_board.less',
     'communication_message_board_client.js',
     'communication_message_input.html',
     'communication_message_input.less',
     'communication_message_input_client.js',
+    'communication_post.html',
+    'communication_post.less',
+    'communication_post_client.js',
+    'communication_post_trash_modal.html',
     //task
     'task/communication_task_board.html',
     'task/communication_task_board.less',
@@ -42,6 +67,7 @@ Package.onUse(function (api) {
     'task/communication_task_create.html',
     'task/communication_task_create.less',
     'task/communication_task_create_client.js',
+    'task/communication_task_welcome.html',
     //library
     'library/communication_library_board.html',
     'library/communication_library_board.less',
@@ -52,11 +78,18 @@ Package.onUse(function (api) {
     'library/communication_library_files.html',
     'library/communication_library_files.less',
     'library/communication_library_files_client.js',
+    'library/communication_library_room_files.html',
+    'library/communication_library_room_files_client.js',
     //directory
     'directory/communication_directory_modal.html',
-    'directory/communication_directory_modal.js'
+    'directory/communication_directory_modal.less',
+    'directory/communication_directory_modal.js',
+    'directory/communication_add_teammember_modal.html',
+    'directory/communication_add_teammember_modal.js'
   ], 'web');
 
   // Bower packages
   api.addFiles(['smart.json'], 'web');
+
+  api.export(['Rooms','Messages','RoomsController'], ['server','web']);
 });

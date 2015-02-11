@@ -1,10 +1,11 @@
 <template name="documentRow">
-  <tr id="row-{{_id}}" class='document-file-row' data-action="select">
+  <tr id="row-{{_id}}"
+      class="document-file-row {{#if isSelected this}}selected{{/if}}">
     <td class="selectCheckbox">
       <label>
         <input class="document-row-checkbox"
                type="checkbox"
-               data-action="select"
+               data-action="toggle-checkbox"
                checked="{{isSelected this}}"
                aria-label="select document">
       </label>
@@ -19,7 +20,7 @@
     <td class="file-type">
       <i class="fa {{#if isFolder}}fa-folder-o{{else}}fa-file{{/if}} pdf"></i>
     </td>
-    <td class="name">
+    <td class="name" data-action="toggle-row">
       {{#if isFolder}}
         <a href="{{pathFor 'folder'}}" >{{name}}</a>
       {{else}}
@@ -35,8 +36,10 @@
     <td><span class="type">{{type this}}</span></td>
     <td class='date'>{{date this}}</td>
     <td>
-      <div class="btn-group">
-        <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+      <div class="btn-group" data-action="more">
+        <button type="button"
+                class="btn btn-default dropdown-toggle"
+                data-toggle="dropdown">
           More <span class="caret"></span>
         </button>
         <ul class="dropdown-menu" role="menu">
@@ -48,7 +51,7 @@
             </a>
           </li>
           <li class="share-document">
-            <a href="#" data-toggle="modal" data-target="#shareDocumentModal">
+            <a href="#" data-action="share-document">
               <i class="fa fa-share"></i> 
               Share
             </a>
@@ -67,8 +70,8 @@
               </a>
             </li>
           {{/if}}
-          <li class="share-document">
-            <a href="#" data-toggle="modal" data-target="#emailDocumentModal">
+          <li class="email-document">
+            <a href="#" data-action="email-document">
               <i class="fa fa-envelope-o"></i> 
               Email
             </a>

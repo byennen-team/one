@@ -1,0 +1,100 @@
+#login {
+  margin-right:0;
+  margin-left:0;
+  img.bg {
+    min-height: 563px;
+    min-width: 900px;
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+  }
+
+  .inside {
+    background: url(../../images/login/login-overlay.png) repeat;
+    height: 100%;
+    /*width: 100%;
+    min-width: 300px;
+    max-width: 734px;*/
+    position: absolute;
+    color: white;
+  }
+
+  .logo {
+    margin-top: 40%;
+    margin-bottom: 20px;
+    width: 40%;
+    height: auto;
+  }
+
+  h1 {
+    font-size: 18px;
+    line-height: 30px;
+    margin-bottom: 60px;
+  }
+
+  #agentID {
+    margin-bottom: 15px;
+  }
+
+  input {
+    border: none;
+    background: #1d2047;
+    text-align: center;
+    width: 90%;
+    height: 60px;
+    letter-spacing: 2px;
+    font-size: 18px;
+    outline: 0;
+  }
+
+  .agentID-input:focus {
+    outline: 0;
+  }
+
+  .login-button {
+    position: relative;
+    vertical-align: top;
+    width: 90%;
+    height: 60px;
+    padding: 0;
+    font-size: 18px;
+    font-weight: 600;
+    color: white;
+    text-align: center;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.25);
+    background: #5bb8d7;
+    border: 0;
+    border-bottom: none;
+    cursor: pointer;
+  }
+  .login-button:active {
+    top: 1px;
+    outline: none;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+  }
+  .error {
+    display: none;
+    color: #ff714d;
+  }
+  placeholder {
+    color: white;
+  }
+  ::-webkit-input-placeholder {
+    color: white;
+  }
+
+  :-moz-placeholder { /* Firefox 18- */
+    color: white;
+  }
+
+  ::-moz-placeholder {  /* Firefox 19+ */
+    color: white;
+  }
+
+  :-ms-input-placeholder {
+    color: white;
+  }
+}

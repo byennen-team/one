@@ -1,124 +1,48 @@
 <template name="channelWidget">
-  
+  {{#each unreadRooms}}
   <div class="channel-widget {{channelType}}">
-    
+
     <div class="header">
-      <div class="view-chat">view chat</div>
+      <div class="view-chat" data-id="{{_id}}">view chat</div>
       <p class='channel-type'>{{channelTypeLong}}</p>
       <p class='channel-name'>{{channelName}} <span class="notice">{{unread}}</span></p>
     </div>
 
-<!-- TODO: All of the conversation history (old messages too) should be rendered in .conversation -->
-    <div class="conversation"> 
-    
-      <div class="message">
-        <div class="avatar">
-          <div class="status {{status}}"></div>
-          <img src="{{avatarURL}}" alt="{{authorName}}" />
-        </div>
-
-        <div class="message-body">
-          <p class="name">
-            {{authorName}}
-            <span class="time">{{messageTime}}</span>
-          </p>  
-          {{#if subject}}
-          <p class="subject">{{subject}}</p>
-          {{/if}}
-          <p class="text">{{messageText}}</p>      
-          {{#if hasAttachment}}
-          <div class="doc">
-            <div class="thumbnail">
-              <img src="{{attachmentURL}}" alt="{{attachmentName}}" class="doc-thumb">
-            </div>
-            <p class="title">
-              <span class="fa fa-file"></span>
-              {{attachmentName}}
-              <span class="size">{{attachmentSize}}</span>
-            </p>
-            <div class="action-bar">
-<!-- TODO: download file -->
-              <a href="#" class="download">
-                <i class="fa fa-arrow-circle-down"></i>
-                download
-              </a>
-<!-- TODO: call print controls, with doc loaded      -->
-              <a href="#" class="print">
-                <i class="fa fa-print"></i>
-                print
-              </a>
-<!-- TODO: this should call modal with document viewer -->
-              <a href="#" class="view">
-                <i class="fa fa-view"></i>
-                view
-              </a>
-            </div>
-          </div>
-          {{/if}}
-        </div>
-      </div>
-      <div class="clearfix"></div>
-
-<!-- TODO: Remove. Repeated for style -->
-      <div class="message user">
-        <div class="avatar">
-          <div class="status active"></div>
-          <img src="/images/com-hub-main/jon.jpg" alt="Agent's name here" />
-        </div>
-        <div class="message-body">
-          <p class="name">
-            Jon Evans
-            <span class="time">8:48am</span>
-          </p>  
-          <p class="text">Thanks <a href='#'>@JoyAvery</a>!</p>   
-        </div>  
-      </div>
-      <div class="clearfix"></div>
-<!-- /style repeat -->
-
-<!-- TODO: New message bar should be inserted before any new messages -->
-      <div class="new-message-bar">
-        <p>New messages</p>
-        <hr/>
-      </div>
-      <div class="clearfix"></div>
-
-<!-- TODO: Remove. Repeated for style - But s     ee notes about read more link -->
-      <div class="message">
-        <div class="avatar">
-          <div class="status inactive"></div>
-          <img src="/images/com-hub-main/dottie.jpg" alt="Agent's name here" />
-        </div>
-        <div class="message-body">
-          <p class="name">
-            Dottie Herman
-            <span class="time">8:52am</span>
-          </p>  
-          <p class="subject">News Update</p>
-<!-- TODO:  link expands text    -->
-<!-- TODO: Text should be limited to one line, no matter the with (just for messages with subjects) -->
-          <p class="text">DouglasElliman Real Estate and KnightFrank Residential, two of the biggest names in real estate <a href='#' class="read-more">read <i class="fa fa-arrow-circle-right"></i></a></p>        
-        </div>
-      </div>
-      <div class="clearfix"></div>
-
+    <div class="conversation">
+    <div>
+      {{#each messages}}
+        {{#if isFirstUnread ../_id}}
+          {{> newBar}}
+        {{/if}}
+        {{#if isSimpleMessage}}
+          {{>message}}
+        {{/if}}
+        {{#if isPostMessage}}
+          {{>postMessage}}
+        {{/if}}
+        <!-- TODO: add more message types as requested -->
+        {{#if isDocumentMessage}}
+          {{> documentMessage}}
+        {{/if}}
+      {{/each}}
+    </div>
     </div>
   </div>
-
+  {{/each}}
 </template>
 
 <!-- TODO: Delete everything after this comment. Just here for styling.
       Delete handlebar tag in dashboard.html too. -->
 <template name="channelWidgetStyle">
-  
+
   <div class="channel-widget message">
     <div class="header">
       <div class="view-chat">view chat</div>
       <p class='channel-type'>direct messaging</p>
       <p class='channel-name'>Dottie Herman <span class="notice">1</span></p>
     </div>
-    <div class="conversation"> 
-    
+    <div class="conversation">
+
       <div class="message">
         <div class="avatar">
           <div class="status mobile"></div>
@@ -129,8 +53,8 @@
           <p class="name">
             Joy Avery
             <span class="time">7:30am</span>
-          </p>  
-          <p class="text">Updated Listing Agreement now in the Company Docs. Happy New Year everyone!</p>      
+          </p>
+          <p class="text">Updated Listing Agreement now in the Company Docs. Happy New Year everyone!</p>
           <div class="doc">
             <div class="thumbnail">
               <img src="/images/com-hub-main/doc.jpg" alt="Leasing Agreement.pdf" class="doc-thumb">
@@ -167,9 +91,9 @@
           <p class="name">
             Jon Evans
             <span class="time">8:48am</span>
-          </p>  
-          <p class="text">Thanks <a href='#'>@JoyAvery</a>!</p>   
-        </div>  
+          </p>
+          <p class="text">Thanks <a href='#'>@JoyAvery</a>!</p>
+        </div>
       </div>
       <div class="clearfix"></div>
       <div class="new-message-bar">
@@ -186,9 +110,9 @@
           <p class="name">
             Dottie Herman
             <span class="time">8:52am</span>
-          </p>  
+          </p>
           <p class="subject">News Update</p>
-          <p class="text">DouglasElliman Real Estate and KnightFrank Residential, two of the biggest names in real estate <a href='#' class="read-more">read <i class="fa fa-arrow-circle-right"></i></a></p>        
+          <p class="text">DouglasElliman Real Estate and KnightFrank Residential, two of the biggest names in real estate <a href='#'>...<span class="blue-text">read <i class="fa fa-arrow-circle-right"></i></span></a></p>
         </div>
       </div>
       <div class="clearfix"></div>
@@ -201,8 +125,8 @@
       <p class='channel-type'>rooms</p>
       <p class='channel-name'>Team Awesome <span class="notice">23</span></p>
     </div>
-    <div class="conversation"> 
-    
+    <div class="conversation">
+
       <div class="message">
         <div class="avatar">
           <div class="status mobile"></div>
@@ -213,8 +137,8 @@
           <p class="name">
             Joy Avery
             <span class="time">7:30am</span>
-          </p>  
-          <p class="text">Updated Listing Agreement now in the Company Docs. Happy New Year everyone!</p>      
+          </p>
+          <p class="text">Updated Listing Agreement now in the Company Docs. Happy New Year everyone!</p>
           <div class="doc">
             <div class="thumbnail">
               <img src="/images/com-hub-main/doc.jpg" alt="Leasing Agreement.pdf" class="doc-thumb">
@@ -251,9 +175,9 @@
           <p class="name">
             Jon Evans
             <span class="time">8:48am</span>
-          </p>  
-          <p class="text">Thanks <a href='#'>@JoyAvery</a>!</p>   
-        </div>  
+          </p>
+          <p class="text">Thanks <a href='#'>@JoyAvery</a>!</p>
+        </div>
       </div>
       <div class="clearfix"></div>
       <div class="new-message-bar">
@@ -270,9 +194,9 @@
           <p class="name">
             Dottie Herman
             <span class="time">8:52am</span>
-          </p>  
+          </p>
           <p class="subject">News Update</p>
-          <p class="text">DouglasElliman Real Estate and KnightFrank Residential, two of the biggest names in real estate <a href='#' class="read-more">read <i class="fa fa-arrow-circle-right"></i></a></p>        
+          <p class="text">DouglasElliman Real Estate and KnightFrank Residential, two of the biggest names in real estate <a href='#'>...<span class="blue-text">read <i class="fa fa-arrow-circle-right"></i></span></a></p>
         </div>
       </div>
       <div class="clearfix"></div>
@@ -285,8 +209,8 @@
       <p class='channel-type'>personal   </p>
       <p class='channel-name'>John Evans <span class="notice">1</span></p>
     </div>
-    <div class="conversation"> 
-    
+    <div class="conversation">
+
       <div class="message">
         <div class="avatar">
           <div class="status mobile"></div>
@@ -297,8 +221,8 @@
           <p class="name">
             Joy Avery
             <span class="time">7:30am</span>
-          </p>  
-          <p class="text">Updated Listing Agreement now in the Company Docs. Happy New Year everyone!</p>      
+          </p>
+          <p class="text">Updated Listing Agreement now in the Company Docs. Happy New Year everyone!</p>
           <div class="doc">
             <div class="thumbnail">
               <img src="/images/com-hub-main/doc.jpg" alt="Leasing Agreement.pdf" class="doc-thumb">
@@ -335,9 +259,9 @@
           <p class="name">
             Jon Evans
             <span class="time">8:48am</span>
-          </p>  
-          <p class="text">Thanks <a href='#'>@JoyAvery</a>!</p>   
-        </div>  
+          </p>
+          <p class="text">Thanks <a href='#'>@JoyAvery</a>!</p>
+        </div>
       </div>
       <div class="clearfix"></div>
       <div class="new-message-bar">
@@ -354,9 +278,9 @@
           <p class="name">
             Dottie Herman
             <span class="time">8:52am</span>
-          </p>  
+          </p>
           <p class="subject">News Update</p>
-          <p class="text">DouglasElliman Real Estate and KnightFrank Residential, two of the biggest names in real estate <a href='#' class="read-more">read <i class="fa fa-arrow-circle-right"></i></a></p>        
+          <p class="text">DouglasElliman Real Estate and KnightFrank Residential, two of the biggest names in real estate <a href='#'>...<span class="blue-text">read <i class="fa fa-arrow-circle-right"></i></span></a></p>
         </div>
       </div>
       <div class="clearfix"></div>

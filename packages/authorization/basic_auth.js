@@ -29,6 +29,8 @@ HttpBasicAuth = (function () {
 
 // Setup HTTP password for dev.gooneapp.com
 if(Settings.isStaging || Settings.isBeta) {
- var basicAuth = new HttpBasicAuth('one', 'one');
+ var basicAuth = new HttpBasicAuth(
+   Meteor.settings.HTTP_USERNAME,
+   Meteor.settings.HTTP_PASSWORD);
  basicAuth.protect();
 }

@@ -26,7 +26,9 @@ Package.onUse(function (api) {
     'positioning.less',
     'select.less',
     'selectpicker.less',
-    'variables.import.less'
+    'variables.import.less',
+    'velocity_html_reporter.less',
+    'medium-editor.less'
   ], 'web');
 
   //style guide

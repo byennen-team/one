@@ -1,5 +1,5 @@
 <template name='communicationMain'>
-	
+
 	<div id='communication-main' class="communication-main">
 
 		<div id='communication-message-board' class="message-board">
@@ -16,9 +16,11 @@
 		</div>
 
 		{{> communicationCreateTask}}
-
-		<div class="blurry"></div>
+		{{> communicationPostInput}}
 		
+		
+		<div class="blurry"></div>
+
 	</div>
 
 </template>

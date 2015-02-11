@@ -1,0 +1,22 @@
+{
+  "format": "unipackage-unibuild-pre1",
+  "packageVariables": [],
+  "uses": [
+    {
+      "package": "meteor"
+    },
+    {
+      "package": "templating"
+    }
+  ],
+  "resources": [
+    {
+      "type": "prelink",
+      "file": "web.browser/packages/xolvio:webdriver.js",
+      "length": 0,
+      "offset": 0,
+      "servePath": "/packages/xolvio:webdriver.js",
+      "sourceMap": "web.browser/packages/xolvio:webdriver.js.map"
+    }
+  ]
+}

@@ -58,6 +58,14 @@ Template.documents.events({
   'click [data-action="show-move-to-modal"]': function () {
     Modal.show('documentsMoveToModal');
   },
+  'click [data-action="accept-shared-document"]': function () {
+    var sharedDocumentIds = SharedDocuments
+      .find()
+      .map(function (sharedDocument) {
+        return sharedDocument._id;
+      });
+    Meteor.call('acceptSharedDocuments', sharedDocumentIds);
+  },
   'click .upload': function (event, template) {
     template.find('input').click();
   },
@@ -72,6 +80,15 @@ Template.documents.helpers({
 
     return _.isEmpty(selectedDocuments) ? 'hidden' : '';
   },
+  acceptSharedDocumentState: function () {
+    if (Routes.getName() !== Routes.SHARED_DOCUMENT ||
+        SharedDocumentsStore.haveAllBeenAccepted()
+    ) {
+      return 'hidden';
+    } else {
+      return '';
+    }
+  },
   favorite: function () {
     var user = Meteor.user();
     if (!user || !user.favoriteDocumentIds) return [];
@@ -81,16 +98,38 @@ Template.documents.helpers({
     });
   },
   files: function () {
-    return Files.find(
-      {
-        companyDocument: FileTools.isCompanyDocumentsActive(),
-        archived: {$ne: true},
-        parent: Session.get('currentFolderId')
-      },
-      {
-        sort: {uploadDate: -1}
-      }
-    );
+    // TODO: Refactor shared document into own template
+    if (Routes.getName() === Routes.SHARED_DOCUMENT) {
+      var sharedDocumentFileIds = SharedDocuments
+        .find()
+        .map(function (sharedDocument) {
+          return sharedDocument.sharedDocumentId;
+        });
+
+      return Files.find(
+        {_id: {$in: sharedDocumentFileIds}},
+        {sort: {uploadDate: -1}}
+      );
+    } else if (Routes.getName() === Routes.SHARED_DOCUMENTS) {
+      return Files.find(
+        {
+          'sharedWith.userId': Meteor.userId(),
+          'sharedWith.isInherited': false
+        },
+        {sort: {uploadDate: -1}}
+      );
+    } else {
+      return Files.find(
+        {
+          companyDocument: FileTools.isCompanyDocumentsActive(),
+          archived: {$ne: true},
+          parent: Session.get('currentFolderId')
+        },
+        {
+          sort: {uploadDate: -1}
+        }
+      );
+    }
   }
 });
 

@@ -1,0 +1,41 @@
+{
+  "builtBy": "meteor/14",
+  "buildDependencies": {
+    "os.json": {
+      "files": {
+        "/Users/josh/Code/Velocity/velocity-examples/leaderboard-cucumber/packages/meteor-webdriver/package.js": "d6e81d2d827ac110c88eea60708560abe9d5c07e",
+        "/Users/josh/Code/Velocity/velocity-examples/leaderboard-cucumber/packages/meteor-webdriver/.npm/package/npm-shrinkwrap.json": "8577e10428bd3435dd766d7c118979809cdd0da3",
+        "/Users/josh/Code/Velocity/velocity-examples/leaderboard-cucumber/packages/meteor-webdriver/server.js": "c1834bfdd715ce1c20cae8961b2d6c4f663efa66"
+      },
+      "directories": []
+    },
+    "web.browser.json": {
+      "files": {
+        "/Users/josh/Code/Velocity/velocity-examples/leaderboard-cucumber/packages/meteor-webdriver/package.js": "d6e81d2d827ac110c88eea60708560abe9d5c07e",
+        "/Users/josh/Code/Velocity/velocity-examples/leaderboard-cucumber/packages/meteor-webdriver/.npm/package/npm-shrinkwrap.json": "8577e10428bd3435dd766d7c118979809cdd0da3"
+      },
+      "directories": []
+    },
+    "web.cordova.json": {
+      "files": {
+        "/Users/josh/Code/Velocity/velocity-examples/leaderboard-cucumber/packages/meteor-webdriver/package.js": "d6e81d2d827ac110c88eea60708560abe9d5c07e",
+        "/Users/josh/Code/Velocity/velocity-examples/leaderboard-cucumber/packages/meteor-webdriver/.npm/package/npm-shrinkwrap.json": "8577e10428bd3435dd766d7c118979809cdd0da3"
+      },
+      "directories": []
+    }
+  },
+  "pluginDependencies": {
+    "files": {
+      "/Users/josh/Code/Velocity/velocity-examples/leaderboard-cucumber/packages/meteor-webdriver/package.js": "d6e81d2d827ac110c88eea60708560abe9d5c07e"
+    },
+    "directories": []
+  },
+  "source": "/Users/josh/Code/Velocity/velocity-examples/leaderboard-cucumber/packages/meteor-webdriver",
+  "buildTimeDirectDependencies": {
+    "templating": "1.0.9",
+    "velocity:core": "1.0.0-rc.2",
+    "meteor": "1.1.3"
+  },
+  "buildTimePluginDependencies": {},
+  "cordovaDependencies": null
+}

@@ -1,7 +1,7 @@
 <template name="dashboard">
-
+  <div class="content">
   {{> notificationsPopup}}
-  
+
   <div class="container-fluid">
     <div class="row">
       <div class="dashboard-banner ">
@@ -20,20 +20,21 @@
           {{> communicationMain}}
           <div id="main-wrap">
             <div class="col-sm-6">
-              
-<!-- TODO: A widget for each unread message should populate here. The most recent messages 
+
+<!-- TODO: A widget for each unread message should populate here. The most recent messages
 should be on top -->
+
               {{> channelWidget}}
 <!-- TODO: Delete this template tag -->
-              {{> channelWidgetStyle}}
+              <!-- {{> channelWidgetStyle}} -->
 
             </div>
             <div class="col-sm-6">
-        
+
               {{> calendar}}
               {{> dashboardNewsWidget}}
               {{> dashboardTwitterWidget}}
-              
+
             </div>
           </div>
         </div>
@@ -43,4 +44,7 @@ should be on top -->
   </div>
 
   {{> communicationDirectoryModal}}
+  {{> communicationAddTeammemberModal}}
+  {{> calendarModal}}
+  </div>
 </template>

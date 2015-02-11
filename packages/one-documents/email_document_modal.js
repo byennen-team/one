@@ -38,6 +38,27 @@ Template.emailDocumentModal.events({
     var displayLink = event.currentTarget;
     console.log(displayLink);
     selectElementText(displayLink);
+  },
+
+  'submit form': function (event, templateInstance) {
+    event.preventDefault(); // Prevent default form submit
+
+    var receiverEmail = templateInstance.$('[name="receiverEmail"]').val();
+    var receiver = {
+      email: receiverEmail
+    };
+    Meteor.call(
+      'shareDocuments',
+      [templateInstance.data.document._id],
+      receiver,
+      function (error) {
+        if (error) {
+          console.error(error);
+        } else {
+          Modal.hide();
+        }
+      }
+    );
   }
 });
 

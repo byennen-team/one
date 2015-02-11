@@ -19,6 +19,12 @@ ccorcos:transitioner
 coffeescript
 xolvio:cucumber@0.3.8
 
+#TODO: add these packages inside the packages that our using them.
+tsega:bootstrap3-datetimepicker
+percolate:synced-cron
+settinghead:auto-nprogress
+afruth:wysiwygjs
+
 
 # Our Packages
 

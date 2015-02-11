@@ -3,7 +3,7 @@ Package.describe({
 });
 
 Package.onUse(function (api) {
-  api.use('templating', 'web');
+  api.use(['templating', 'less'], 'web');
 
-  api.addFiles('loading.html', 'web');
+  api.addFiles(['loading.html', 'loading.less', 'loading.gif'], 'web');
 });

@@ -17,6 +17,7 @@ Template.documentsMoveToModal.events({
         }
       });
       Modal.hide();
+      Session.set('selectedDocuments', []);
     }
   },
 
@@ -55,21 +56,31 @@ Template.documentsMoveToModal.helpers({
     }
   },
 
-// TODO: returns true if one file is selected, false if multiple
-  singleFile: function () {
-    return false;
-    // return true;
+  isSingleFileSelected: function () {
+    var selectedDocuments = Session.get('selectedDocuments') || [];
+
+    return selectedDocuments.length === 1;
   },
 
-// TODO: returns the file name. Only needed if only one file is selected.
-//    Or could return one name when multiple files are selected. String
-  fileName: function () {
-    return 'file name.doc';
+  firstDocumentName: function () {
+    var selectedDocuments = Session.get('selectedDocuments') || [];
+    var firstDocumentName = '';
+
+    if (selectedDocuments.length > 0) {
+      var firstDocumentId = selectedDocuments[0];
+      var firstDocument = Files.findOne(firstDocumentId);
+      if (firstDocument) {
+        firstDocumentName = firstDocument.name;
+      }
+    }
+
+    return firstDocumentName;
   },
 
-// TODO: returns the number of files selected. For multiple files selection.
-  numberOfFiles: function () {
-    return 3;
+  numberOfDocuments: function () {
+    var selectedDocuments = Session.get('selectedDocuments') || [];
+
+    return selectedDocuments.length;
   }
 
 });
