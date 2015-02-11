@@ -15,7 +15,8 @@ Package.onUse(function (api) {
     'settings',
     'reactive-var',
     'social-media',
-    'maazalik:malihu-jquery-custom-scrollbar'
+    'maazalik:malihu-jquery-custom-scrollbar',
+    'mquandalle:bower@0.1.11'
   ], 'web');
 
    api.addFiles(['dashboard.js'], 'server');
@@ -40,7 +41,9 @@ Package.onUse(function (api) {
     'dashboard_twitter_widget.html',
     'dashboard_twitter_widget.less',
     'dashboard_twitter_widget_client.js',
-
+    'dashboard_news_widget.html',
+    'dashboard_news_widget.less',
+    'dashboard_news_widget_client.js',
     //communication-sidebar
     'communication-sidebar/communication_sidebar.html',
     'communication-sidebar/communication_sidebar.less',

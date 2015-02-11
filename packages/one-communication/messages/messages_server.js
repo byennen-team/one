@@ -1,6 +1,5 @@
 /* globals Messages: true, Rooms: true */
 
-
 Meteor.publish('unreadMessages', function() {
   if(this.userId) {
       var rooms = Rooms.find({
@@ -166,6 +165,41 @@ Meteor.methods({
       query.messagePayload.draft = false;
     else
       query.messagePayload.draft = context.draft;
+
+    Messages.insert(query, function(e, r) {
+      return(e, r);
+    });
+  },
+  addNewsMessageToRoom: function(roomId, context) {
+    check(roomId, String);
+    check(context, {
+      postContent: String,
+      title: String,
+      fileUrl: String,
+      newsType: String,
+      author: Match.Optional(String)
+    });
+
+    var room = Rooms.findOne(roomId);
+
+    if(! room)
+      throw new Meteor.Error(404, "Room not found!");
+
+    if(! context.author)
+      context.author = this.userId;
+
+    var query = {
+      roomId: roomId,
+      creatorId: context.author,
+      dateCreated: new Date(),
+      message: context.postContent,
+      messageType: 'news',
+      messagePayload: {
+        title: context.title,
+        image: context.fileUrl,
+        newsType: context.newsType
+      }
+    };
 
     Messages.insert(query, function(e, r) {
       return(e, r);
