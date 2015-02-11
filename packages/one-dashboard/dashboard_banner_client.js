@@ -113,7 +113,7 @@ Template.dashboardBanner.events({
     $.Velocity.hook($('#communication-main'), "width", "100%");
     $.Velocity.hook($('#communication-message-board'), "width", "60%");
     $.Velocity.hook($('#communication-task-board'), "width", "0");
-    $.Velocity.hook($('#communication-library-board'), "width", "15.5%");
+    $.Velocity.hook($('#communication-library-board'), "width", "15.75%");
     // force scrollbar on sidebar
     var currentHeight = $(window).height();
     var $sleeve = $('.communication-sidebar-sleeve');

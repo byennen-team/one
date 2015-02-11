@@ -35,7 +35,7 @@ Template.navbar.events({
     $.Velocity.hook($('#communication-main'), "width", "100%");
     $.Velocity.hook($('#communication-message-board'), "width", "45%");
     $.Velocity.hook($('#communication-task-board'), "width", "15%");
-    $.Velocity.hook($('#communication-library-board'), "width", "15.5%");
+    $.Velocity.hook($('#communication-library-board'), "width", "15.75%");
     // opens task menu itself
     Session.set( 'taskMenu', true );
     $( '#communication-task-menu' ).velocity( "fadeIn", { duration: 300 });

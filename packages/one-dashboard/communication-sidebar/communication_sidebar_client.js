@@ -1,3 +1,23 @@
+Template.communicationSidebar.rendered = function () {
+  // Set height on sidebar for scrollbar
+  var currentHeight = $( window ).height();
+  $( '.communication-sidebar-sleeve' ).css( 'height', currentHeight - 120 );
+  // add/remove sticky class on sidebar based on scroll position
+  var $sidebar = $( '#communication-sidebar' );
+  var sidebarWidth = $sidebar.width();
+  var stickyHeight = 400;
+  $( '#transitioner-1' ).on( 'scroll', function() {         
+    var scrollPosition = $( '#transitioner-1' ).scrollTop();
+    if ( scrollPosition > stickyHeight ) { 
+      $sidebar.addClass( 'sticky' );  
+      $sidebar.css( "width", sidebarWidth );
+    }else {
+      $sidebar.removeClass( 'sticky' );  
+      $sidebar.css( "width", "auto" );
+    }
+  }); 
+};
+
 Template.communicationSidebar.helpers({
 
 	// Presentation logic
@@ -52,7 +72,7 @@ Template.communicationSidebar.events({
 		$.Velocity.hook($('#communication-main'), "width", "100%");
 		$.Velocity.hook($('#communication-message-board'), "width", "60%");
 		$.Velocity.hook($('#communication-task-board'), "width", "0%");
-		$.Velocity.hook($('#communication-library-board'), "width", "15.5%");
+		$.Velocity.hook($('#communication-library-board'), "width", "15.75%");
 		// remove class from main chat window
 		$('#communication-main').removeClass('tasks');
 		// force scrollbar on sidebar
@@ -93,7 +113,7 @@ Template.communicationSidebar.events({
 		$.Velocity.hook($('#communication-main'), "width", "100%");
 		$.Velocity.hook($('#communication-message-board'), "width", "45%");
 		$.Velocity.hook($('#communication-task-board'), "width", "15%");
-		$.Velocity.hook($('#communication-library-board'), "width", "15.5%");
+		$.Velocity.hook($('#communication-library-board'), "width", "15.75%");
 		// add class to main chat window
 		$('#communication-main').addClass('tasks');
     // force scrollbar on sidebar
