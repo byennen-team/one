@@ -91,6 +91,8 @@ Meteor.startup(function() {
     'messagePayload.newsType': 'fake'
   }).count();
   var user = Meteor.users.findOne();
+  if (! user)
+    return;
   var room = Rooms.findOne({
     roomType: 'company',
     roomName: 'News'
