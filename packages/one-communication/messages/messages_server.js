@@ -1,4 +1,4 @@
-/* globals Messages: true, Rooms: true */
+/* globals Messages: true, Rooms: true, RoomsController: true */
 Meteor.startup(function(){
   // creating three placeholder stories if they don't exist already
   var titles = [
@@ -18,7 +18,7 @@ Meteor.startup(function(){
              "natoque penatibus et magnis dis parturient montes, nascetur " +
              "ridiculus mus. In ac augue tortor. Etiam ut orci finibus, " +
              "fringilla est quis, vestibulum sem. Nam sit amet dignissim " +
-             "mauris.</p>"
+             "mauris.</p>";
 
   text = text + text + text;
 
@@ -41,7 +41,7 @@ Meteor.startup(function(){
           fileUrl: '/images/dashboard/news-banner.jpg',
           author: user._id,
           newsType: 'fake'
-        })
+        });
     });
   }
 

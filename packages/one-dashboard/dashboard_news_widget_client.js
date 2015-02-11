@@ -1,3 +1,4 @@
+/* globals Messages: true, Rooms: true */
 Template.dashboardNewsWidget.helpers({
   stickyNews: function() {
     return Messages.findOne({
@@ -19,7 +20,7 @@ Template.dashboardNewsWidget.helpers({
       skip: 1
     });
   },
-  date: function(dateToFormat) {
+  date: function() {
     return moment(this.dateCreated).format('MMM DD');
   }
 
