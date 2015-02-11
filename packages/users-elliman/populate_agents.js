@@ -17,7 +17,8 @@ if (process.env.SEED) {
     };
 
     if (row.PHONE_NUMBER) profile.numbers.phone = row.PHONE_NUMBER;
-    if (row.PHONE_EXTENSION) profile.numbers.phoneExtension = row.PHONE_EXTENSION;
+    if (row.PHONE_EXTENSION) profile.numbers.phoneExtension =
+      row.PHONE_EXTENSION;
     if (row.FAX_NUMBER) profile.numbers.fax = row.FAX_NUMBER;
     if (row.MOBILE) profile.numbers.mobile = row.MOBILE;
 

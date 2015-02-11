@@ -1,4 +1,4 @@
-/* globals Skycons: false */
+/* globals Skycons: false, RoomsController: false, Rooms: false */
 var temp = new ReactiveVar();
 
 Template.dashboardBanner.created = function() {
@@ -101,42 +101,54 @@ Template.dashboardBanner.helpers({
     } else {
       return "inactive";
     }
+  },
+  unreadMessages: function() {
+    //getting dm room if it exists
+    var dm = Rooms.findOne({
+      roomType: 'dm',
+      $and: [
+      { 'participants.participantId': this._id },
+      { 'participants.participantId': Meteor.userId() }
+      ]
+    });
+
+    if(dm)
+      return RoomsController.getUnreadMessagesCount(dm._id);
+    else
+      return false;
   }
 });
 
 Template.dashboardBanner.events({
   // Opens the com_hub when an avatar is clicked on
-  'click .avatar-box': function() {
-// TODO: need to open a direct message conversation with the Agent clicked on
-    // expands the main dialog box t0 60% of full screen - task bar open
-    $( "#transitioner-1" ).animate( { scrollTop: 400 } );
-    $.Velocity.hook($('#communication-main'), "width", "100%");
-    $.Velocity.hook($('#communication-message-board'), "width", "60%");
-    $.Velocity.hook($('#communication-task-board'), "width", "0");
-    $.Velocity.hook($('#communication-library-board'), "width", "15.75%");
-    // force scrollbar on sidebar
-    var currentHeight = $(window).height();
-    var $sleeve = $('.communication-sidebar-sleeve');
-    $sleeve.css( 'position', 'fixed' );
-    $sleeve.velocity( {
-      height: currentHeight - 130,
-      top: 120,
-      width: '24%'
-    });
-    // lock scroll position, but retain settings for later
-    var scrollPosition = [
-      window.pageXOffset ||
-      document.documentElement.scrollLeft ||
-      document.body.scrollLeft,
-      window.pageYOffset ||
-      document.documentElement.scrollTop ||
-      document.body.scrollTop
-    ];
-    var body = $('body');
-    body.data('scroll-position', scrollPosition);
-    body.data('previous-overflow', body.css('overflow'));
-    body.css('overflow', 'hidden');
-    window.scrollTo(scrollPosition[0], scrollPosition[1]);
+  'click .avatar-box': function(event) {
+    var id = $(event.currentTarget).data("id");
+    if (id) {
+      RoomsController.createOrGetDMRoom(id, function(e,r) {
+        if (! e) {
+          Session.set('openRoomId',r);
+          $( "#transitioner-1" ).animate( { scrollTop: 400 } );
+          $.Velocity.hook($('#communication-main'), "width", "76%");
+          $.Velocity.hook($('#communication-message-board'), "width", "78%");
+          $.Velocity.hook($('#communication-task-board'), "width", "0");
+          $.Velocity.hook($('#communication-library-board'), "width", "22%");
+          // lock scroll position, but retain settings for later
+          var scrollPosition = [
+            window.pageXOffset ||
+            document.documentElement.scrollLeft ||
+            document.body.scrollLeft,
+            window.pageYOffset ||
+            document.documentElement.scrollTop ||
+            document.body.scrollTop
+          ];
+          var body = $('body');
+          body.data('scroll-position', scrollPosition);
+          body.data('previous-overflow', body.css('overflow'));
+          body.css('overflow', 'hidden');
+          window.scrollTo(scrollPosition[0], scrollPosition[1]);
+        }
+      });
+    }
   },
 
   'click .event': function (event) { // these events are different

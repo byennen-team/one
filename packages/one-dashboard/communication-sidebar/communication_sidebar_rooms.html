@@ -16,7 +16,14 @@
 		  <div class="well">
 	 			<ul role="menu" >
 	 			{{#each rooms}}
-			    <li class="room" data-id="{{_id}}">{{roomName}} <span class='unread-num'>{{unreadMessages}}</span></li>
+			    <li class="room" data-id="{{_id}}">{{roomName}}
+				    {{#if unreadMessages}}
+				    	<span class='unread-num'>{{unreadMessages}}</span>
+				    {{/if}}
+				    <span class="delete-channel">
+				    	<i class="fa icon-x-blunt"></i>
+				    </span>
+			    </li>
 			  {{/each}}
 					<li class="add"><i class="fa fa-lg icon-addteam" id="addRoom" data-toggle="modal" data-target="#communication-add-teammember-modal"></i></li>
 			  </ul>

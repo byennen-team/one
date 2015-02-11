@@ -15,13 +15,6 @@ Template.navbar.events({
 		$.Velocity.hook($('#communication-message-board'), "width", "0");
 		$.Velocity.hook($('#communication-task-board'), "width", "0");
 		$.Velocity.hook($('#communication-library-board'), "width", "0");
-		// force scrollbar on sidebar
-		$('.communication-sidebar-sleeve').css({
-			'height': 'inherit',
-			'position': 'static',
-			'top': '120px',
-			'width': '100%'
-		});
     // un-lock scroll position
     var body = $('body');
     var scrollPosition = body.data('scroll-position');
@@ -41,15 +34,6 @@ Template.navbar.events({
     $( '#communication-task-menu' ).velocity( "fadeIn", { duration: 300 });
     // add class to main chat window
     $('#communication-main').addClass('tasks');
-    // force scrollbar on sidebar
-    var currentHeight = $(window).height();
-    var $sleeve = $('.communication-sidebar-sleeve');
-    $sleeve.css( 'position', 'fixed' );
-    $sleeve.velocity( {
-      height: currentHeight - 130,
-      top: 120,
-      width: '24%'
-    });
     // lock scroll position, but retain settings for later
     var scrollPosition = [
       window.pageXOffset ||

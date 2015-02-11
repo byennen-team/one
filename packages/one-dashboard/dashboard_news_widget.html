@@ -1,0 +1,38 @@
+<template name="dashboardNewsWidget">
+
+   <div class="news-widget">
+
+   {{#with stickyNews}}
+    <div class="sticky">
+      <img src="{{messagePayload.image}}" alt="{{messagePayload.title}}" />
+      <div class="title-box">
+        <p class="category">Company news</p>
+        <p class="title">{{messagePayload.title}}</p>
+        <a href="#" class="view-news btn btn-default">view news</a>
+      </div>
+
+      <div class="textbox">
+        <p class="text">{{{message}}}</p>
+        <a href="#" class="read-more">
+          read
+          <i class="fa fa-arrow-circle-right"></i>
+        </a>
+      </div>
+    </div>
+  {{/with}}
+  {{#each otherNews}}
+    <div class="article">
+      <p class="title">{{messagePayload.title}}</p>
+      <p class="date">{{date}}</p>
+      <div class="textbox">
+        <p class="text">{{{message}}}</p>
+        <a href="#" class="read-more">
+          read
+          <i class="fa fa-arrow-circle-right"></i>
+        </a>
+      </div>
+    </div>
+  {{/each}}
+  </div>
+</template>
+

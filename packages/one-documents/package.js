@@ -29,7 +29,8 @@ Package.onUse(function (api) {
     'routes',
     'files',
     'jstree',
-    'jquery-ui'
+    'jquery-ui',
+    'one-documents-core'
     ], 'web');
 
   api.use([

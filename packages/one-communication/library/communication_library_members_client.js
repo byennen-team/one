@@ -52,5 +52,18 @@ Template.libraryMembers.helpers({
     } else {
       return "inactive";
     }
+  },
+  isNotACompanyRoom: function() {
+    var room = Rooms.findOne(Session.get('openRoomId'));
+    return (room &&
+            room.roomType &&
+            room.roomType !== 'office' &&
+            room.roomType !== 'company') ? true : false;
+  },
+  isNotADMRoom: function() {
+    var room = Rooms.findOne(Session.get('openRoomId'));
+    return (room &&
+            room.roomType &&
+            room.roomType !== 'dm') ? true : false;
   }
 });

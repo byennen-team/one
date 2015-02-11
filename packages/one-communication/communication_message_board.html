@@ -3,7 +3,11 @@
 <div class="header">
 	<div class="col-xs-6">
 <!-- TODO: Need to put Channel name here -->
-		<h1>{{roomName}}</h1>
+		{{#if isDM}}
+			<h1>{{partnerName}}</h1>
+		{{else}}
+			<h1>{{roomName}}</h1>
+		{{/if}}
 	</div>
 <!-- TODO: Install search, and add animation -->
 	<div class="col-xs-6"></div>
@@ -28,6 +32,12 @@
 		{{#if isSimpleMessage}}
 			{{>message}}
 		{{/if}}
+    {{#if isNewsMessage}}
+      {{>newsMessage}}
+    {{/if}}
+		{{#if isPostMessage}}
+			{{>postMessage}}
+		{{/if}}
 		<!-- TODO: add more message types as requested -->
 		{{#if isDocumentMessage}}
 			{{> documentMessage}}
@@ -37,58 +47,39 @@
 </div>
 </template>
 <template name="documentMessage">
-	<!-- TODO: add "user" class if message is by User -->
-	<div class="message">
-		<div class="avatar">
-<!-- TODO: Agent's status (not the User's) -->
-			<div class="status active"></div>
-<!-- TODO: Agent's Avatar and name. Avatar should be square, and about 50x50px -->
-			<img src="images/com-hub-main/joy.jpg" alt="Agent's name here" />
-		</div>
-
-		<div class="message-body">
-			<p class="name">
-<!-- TODO: Agent's first and last name -->
-				Joy Avery
-<!-- TODO: message time stamp -->
-				<span class="time">8:45am</span>
-			</p>
-<!-- TODO: message text -->
-			<p class="text">Updated Listing Agreement now in the Company Docs.  Happy New Year everyone!</p>
-<!-- TODO: '.doc' should only show up when there's an attachment -->
-			<div class="doc">
-				<div class="thumbnail">
-<!-- TODO: doc thumbnail -->
-					<img src="/images/com-hub-main/doc.jpg" alt="" class="doc-thumb">
-				</div>
-				<p class="title">
-					<span class="fa fa-file"></span>
-<!-- TODO: file name -->
-					Leasing Agreement.pdf
-<!-- TODO: file size -->
-					<span class="size">380kb</span>
-				</p>
-				<div class="action-bar">
-<!-- TODO: download file -->
-					<a href="#" class="download">
-						<i class="fa fa-arrow-circle-down"></i>
-						download
-					</a>
-<!-- TODO: call print controls, with doc loaded			 -->
-					<a href="#" class="print">
-						<i class="fa fa-print"></i>
-						print
-					</a>
-<!-- TODO: this should call modal with document viewer -->
-					<a href="#" class="view">
-						<i class="fa fa-view"></i>
-						view
-					</a>
-				</div>
-			</div>
-		</div>
-	</div>
-	<div class="clearfix"></div>
+	{{#message this}}
+    <div class="doc">
+      <div class="thumbnail">
+        <!-- TODO: doc thumbnail -->
+        <img src="/images/com-hub-main/doc.jpg" alt="" class="doc-thumb">
+      </div>
+      <p class="title">
+        <span class="fa fa-file"></span>
+        {{document.name}}
+        <!-- TODO: file size -->
+        <!--<span class="size">380kb</span>-->
+      </p>
+      <div class="action-bar">
+        <!-- TODO: download file -->
+        <a href="{{documentUrl}}" data-action="download" class="download">
+          <i class="fa fa-arrow-circle-down"></i>
+          download
+        </a>
+        <!-- TODO: call print controls, with doc loaded			 -->
+        <a href="{{documentUrl}}" data-action="print" class="print">
+          <i class="fa fa-print"></i>
+          print
+        </a>
+        <!-- TODO: this should call modal with document viewer -->
+        <!--
+        <a href="{{documentUrl}}" class="view">
+          <i class="fa fa-view"></i>
+          view
+        </a>
+        -->
+      </div>
+    </div>
+  {{/message}}
 </template>
 
 <template name="message">
@@ -96,7 +87,7 @@
 	<div class="message {{isUserClass}}">
 		<div class="avatar">
 			<div class="status {{status user.profile.status}}"></div>
-			<img src="{{user.profile.photoUrl.thumb}}" alt="Agent's name here" />
+			<img src="{{user.profile.photoUrl.thumb}}" alt="{{user.profile.firstName}} {{user.profile.lastName}}" />
 		</div>
 		<div class="message-body">
 			<p class="name">
@@ -105,31 +96,56 @@
 			</p>
 <!-- TODO:	@name needs to be plugged in		 -->
 			<p class="text">{{{message}}}</p>
+      {{> Template.contentBlock}}
 		</div>
 	</div>
 	<div class="clearfix"></div>
 <!-- /style repeat -->
 </template>
 
-<template name="newsMessage">
+<template name="postMessage">
 		<!-- Repeated for style -->
-	<div class="message">
+	<div class="message {{isUserClass}}">
 		<div class="avatar">
-			<div class="status inactive"></div>
-			<img src="/images/com-hub-main/dottie.jpg" alt="Agent's name here" />
+			<div class="status {{status user.profile.status}}"></div>
+			<img src="{{user.profile.photoUrl.thumb}}" alt="{{user.profile.firstName}} {{user.profile.lastName}}" />
 		</div>
 		<div class="message-body">
-			<p class="subject">News Update</p>
+			<p class="subject">{{messagePayload.title}}</p>
 			<p class="name">
-				Dottie Herman
-				<span class="time">8:52am</span>
+				{{user.profile.firstName}} {{user.profile.lastName}}
+				<span class="time">{{date dateCreated}}</span>
 			</p>
 <!-- TODO:	link expands text		 -->
 <!-- TODO: Text should be limited to one line, no matter the with (just for messages with subjects) -->
-			<p class="text">DouglasElliman Real Estate and KnightFrank Residential, two of the biggest names in real estate <a href='#'>...<span class="blue-text">read <i class="fa fa-arrow-circle-right"></i></span></a></p>
+			<p class="text">{{{expandMessage message}}} <a href='#' class="readMore">{{{anchorText}}}</a></p>
 		</div>
 	</div>
 	<div class="clearfix"></div>
+</template>
+
+<template name="newsMessage">
+    <!-- Repeated for style -->
+  <div class="message {{isUserClass}}">
+
+    <div class="avatar">
+      <div class="status {{status user.profile.status}}"></div>
+      <img src="{{user.profile.photoUrl.thumb}}" alt="{{user.profile.firstName}} {{user.profile.lastName}}" />
+    </div>
+    <div class="message-body">
+
+      <p class="subject">{{messagePayload.title}}</p>
+      <img class="img-responsive" src="{{messagePayload.image}}" />
+      <p class="name">
+        {{user.profile.firstName}} {{user.profile.lastName}}
+        <span class="time">{{date dateCreated}}</span>
+      </p>
+<!-- TODO:  link expands text    -->
+<!-- TODO: Text should be limited to one line, no matter the with (just for messages with subjects) -->
+      <p class="text">{{{message}}}</p>
+    </div>
+  </div>
+  <div class="clearfix"></div>
 </template>
 
 <template name="newBar">

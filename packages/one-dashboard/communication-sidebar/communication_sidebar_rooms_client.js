@@ -11,10 +11,7 @@ Template.communicationSidebarRooms.rendered = function(){
 };
 
 Template.communicationSidebarRooms.created = function() {
-  Session.set('roomOpenId', false);
-  Tracker.autorun(function() {
-    Meteor.subscribe('room', Session.get('roomOpenId'));
-  });
+  Session.set('roomOpenId', null);
 };
 
 Template.communicationSidebarRoomsFill.helpers({
@@ -24,6 +21,7 @@ Template.communicationSidebarRoomsFill.helpers({
     });
   },
   unreadMessages: function() {
-    return RoomsController.getUnreadMessagesCount(this._id);
+    var roomCount = RoomsController.getUnreadMessagesCount(this._id);
+    return (roomCount > 0) ? roomCount : false;
   }
 });

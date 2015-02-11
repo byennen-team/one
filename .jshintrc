@@ -155,6 +155,7 @@
     "Routes": false,
     "Settings": false,
     "User": false,
+    "DocumentTools": false,
     "SharedDocument": false,
     "SharedDocuments": false,
     "SharedDocumentsStore": false
