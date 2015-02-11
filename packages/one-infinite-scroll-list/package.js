@@ -1,6 +1,6 @@
 Package.describe({
   name: 'one-infinite-scroll-list',
-  version: '0.0.1',
+  version: '0.0.0',
   // Brief, one-line summary of the package.
   summary: 'An infinite scroll list',
   // URL to the Git repository containing the source code for this package.
@@ -12,12 +12,15 @@ Package.describe({
 
 Package.onUse(function(api) {
   api.versionsFrom('1.0.3.1');
+
   api.use([
     'templating',
     'percolate:paginated-subscription@0.2.4'
-  ], 'client');
+  ], 'web');
+
   api.addFiles([
-    'one-infinite-scroll-list.html',
-    'one-infinite-scroll-list.js'
-  ], 'client');
+    'one_infinite_scroll_list.less',
+    'one_infinite_scroll_list.html',
+    'one_infinite_scroll_list.js'
+  ], 'web');
 });

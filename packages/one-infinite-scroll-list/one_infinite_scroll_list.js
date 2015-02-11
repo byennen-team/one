@@ -21,16 +21,25 @@ Template.oneInfiniteScrollList.created = function () {
 };
 
 Template.oneInfiniteScrollList.helpers({
+
   items: function () {
     return Template.instance().data.cursor;
   },
+
   moreAvailable: function () {
     var templateInstance = Template.instance();
     var cursorCount = templateInstance.data.cursor.count();
     var subscriptionHandler = templateInstance.subscriptionHandler;
 
     return subscriptionHandler.limit() <= cursorCount;
+  },
+
+  isLoading: function () {
+    var templateInstance = Template.instance();
+
+    return !templateInstance.subscriptionHandler.ready();
   }
+
 });
 
 Template.oneInfiniteScrollList.events({
