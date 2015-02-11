@@ -5,5 +5,5 @@ Package.describe({
 Package.onUse(function (api) {
   api.use('templating', 'web');
 
-  api.addFiles('loading.html', 'web');
+  api.addFiles(['loading.html', 'loading.gif'], 'web');
 });
