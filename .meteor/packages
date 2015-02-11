@@ -19,6 +19,7 @@ ccorcos:transitioner
 coffeescript
 xolvio:cucumber@0.3.8
 tsega:bootstrap3-datetimepicker
+percolate:synced-cron
 
 # Our Packages
 
@@ -51,3 +52,4 @@ users-elliman
 styles
 social-media
 
+afruth:wysiwygjs

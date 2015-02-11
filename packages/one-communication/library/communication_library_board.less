@@ -1,28 +1,44 @@
-// Variables 
+// Variables
 @import "/packages/styles/variables.import.less";
 
 .library-board {
 	height: 100%;
+	-webkit-box-shadow: inset 50px 0px 84px -50px #000000;
+	-moz-box-shadow: inset 50px 0px 84px -50px #000000;
+	box-shadow: inset 50px 0px 84px -50px #000000;
 	.header {
-		border-bottom: solid 1px @dk-purple;
-		height: 3.5em;
+		border-bottom: solid 1px @darker-purple;
+		height: 3.75em;
 	}
 	.top-btn {
 		float: left;
 		width: 25%;
-		padding-top: 1em;;
+		padding-top: 1.25em;;
 		text-align: center;
 		cursor: pointer;
 		color: @lt-blue-purple;
 		.fa {
-			font-size: 17px;
+			font-size: 14px;
 		}
+		.icon-x-blunt {
+			font-size: 12px;
+		}
+	}
+	.top-btn:hover {
+		color: @blue-purple;
 	}
 	.top-btn.secondary {
 		position: relative;
-		border-left: solid 1px @dk-purple;
+		border-left: solid 1px @ink;
 		height: 100%;
 		color: @white;
+		.fa-chevron-left {
+			margin-left: -8px;
+		}
+		z-index: 1;
+	}
+	.top-btn.secondary:hover {
+		color: @white-hover;
 	}
 	.top-btn.secondary:after {
 		content: "";
@@ -31,8 +47,9 @@
 		bottom: 0;
 		left: 0;
 		right: 0;
-		background-color: #384661;
-		opacity: 0.5;
+		background-color: @ink;
+		opacity: 0.8;
+		z-index: -1;
 	}
 	.top-btn.active {
 		color: @lt-sky;

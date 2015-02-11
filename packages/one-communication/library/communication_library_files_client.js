@@ -1,5 +1,5 @@
 Template.libraryFiles.rendered = function(){
-  $(".library-board-sleeve").mCustomScrollbar({
+  $(".library-files-sleeve").mCustomScrollbar({
   	theme:"one-light",
   	scrollbarPosition: "inside"
   });

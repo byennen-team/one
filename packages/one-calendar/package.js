@@ -4,5 +4,5 @@ Package.describe({
 
 Package.onUse(function (api) {
   api.use(['templating', 'less'], 'web');
-  api.addFiles(['calendar.html'], 'web');
+  api.addFiles(['calendar.html', 'calendar_modal.html'], 'web');
 });

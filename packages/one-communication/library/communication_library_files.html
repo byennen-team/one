@@ -1,10 +1,8 @@
 <template name='libraryFiles'>
 	
-	<div class='library-board-sleeve files'>
+	<div class='library-files'>
 
 		<div class="drop-box">
-			<p>Files in</p>
-
 			<div class="dropdown">
 			  <div class="dropdown-toggle" type="button" id="communication-library-files-folders" data-toggle="dropdown" aria-expanded="true">
 			<!-- TODO: Should show currently selectec/shown folder -->
@@ -26,9 +24,11 @@
 			<input type="text" placeholder='Find file...' />
 		</div>
 
-    {{#each documents}}
-      {{> libraryFile}}
-    {{/each}}
+    <div class='library-files-sleeve'>
+      {{#each documents}}
+        {{> libraryFile}}
+      {{/each}}
+    </div>  
 
 	</div>
 

@@ -1,7 +1,6 @@
 <template name="documentRow">
   <tr id="row-{{_id}}"
-      class="document-file-row {{#if isSelected this}}selected{{/if}}"
-      data-action="toggle-row">
+      class="document-file-row {{#if isSelected this}}selected{{/if}}">
     <td class="selectCheckbox">
       <label>
         <input class="document-row-checkbox"
@@ -21,7 +20,7 @@
     <td class="file-type">
       <i class="fa {{#if isFolder}}fa-folder-o{{else}}fa-file{{/if}} pdf"></i>
     </td>
-    <td class="name">
+    <td class="name" data-action="toggle-row">
       {{#if isFolder}}
         <a href="{{pathFor 'folder'}}" >{{name}}</a>
       {{else}}

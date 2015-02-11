@@ -1,4 +1,4 @@
-// Variables 
+// Variables
 @import "/packages/styles/variables.import.less";
 
 #communication-message-post {
@@ -6,8 +6,9 @@
   display: none;
   // bottom: -400px;
   bottom: 0;
-  right: 33%;
+  right: 20%;
   width: 600px;
+  overflow: hidden;
   background-color: @white;
   -webkit-box-shadow: -2px -2px 25px -1px rgba(0, 0, 0, 0.5);
   -moz-box-shadow: -2px -2px 25px -1px rgba(0, 0, 0, 0.5);
@@ -15,11 +16,19 @@
   z-index: 8;
   transition: width 300ms ease-out;
   .header {
+    position: relative;
     float: left;
     font-size: 22px;
     height: 45px;
     width: 100%;
     background-color: @lime;
+  }
+  .medium-btn { // opens minimized window when clicked
+    position: absolute;
+    width: 85%;
+    top: 0;
+    bottom: 0;
+    left: 0;
   }
   .post-form-body {
     height: 400px;
@@ -32,21 +41,38 @@
     color: @white;
   }
   .close-x,
-  .minimize {
+  .minimize,
+  .mediumize,
+  .maximize {
     position: absolute;
     font-size: 16px;
-    color: @periwinkle;
+    color: @dk-green;
     right: 1em;
     top: 1em;
     cursor: pointer;
+    z-index: 1;
   }
-  .close-x:hover,
-  .minimize:hover {
-    color: @dk-periwinkle;
+  .maximize {
+    width: 1em;
+    height: 1em;
+    right: 3.3em;
+    border: solid 3px @dk-green;
+    border-radius: 3px;
+  }
+  .mediumize {
+    display: none;
+    font-size: 22px;
+    right: 53px;
+    top: 9px;
   }
   .minimize {
-    right: 3.5em;
+    right: 6em;
     top: 0.9em;
+  }
+  .close-x:hover,
+  .minimize:hover,
+  .maximize:hover {
+    color: darken( @dk-green, 10% );
   }
   .bootstrap-select {
     width: auto;
@@ -92,50 +118,57 @@
     font-size: 16px;
     letter-spacing: 0.0625em;
   }
-  ::-moz-placeholder { 
+  ::-moz-placeholder {
     color: @text;
     font-family: @raleway-bold;
-    font-size: 16px; 
+    font-size: 16px;
     letter-spacing: 0.0625em;
   }
-  :focus:-ms-input-placeholder {  
+  :focus:-ms-input-placeholder {
     color: @text-hover;
   }
   :focus::-webkit-input-placeholder {
     color:@text-hover;
   }
-  :focus::-moz-placeholder { 
+  :focus::-moz-placeholder {
     color: @text-hover;
   }
-  :focus:-ms-input-placeholder {  
+  :focus:-ms-input-placeholder {
     color: @text-hover;
   }
-  .fake-textarea {
-    height: 200px;
-    margin-top: 1.5em;
-    margin-left: 1em;
+  .fake-textarea { 
+    height: 180px;
     font-family: @raleway-regular;
     color: @text-navy;
     font-size: 15px;
+    overflow: hidden;
+    b {
+      font-family: @raleway-bold;
+    }
+    img {
+      max-width: 100%;
+    }
   }
   .fake-textarea:focus {
     outline: none;
     box-shadow: none;
     color: darken( @text-navy, 10% );
   }
-  .paperclip,
+  .font,
   .trash {
     position: absolute;
     bottom: 15px;
-    left: 1.5em;
     font-size: 20px;
     color: @med-navy;
     cursor: pointer;
   }
-  .trash {
-    left: 240px;
+  .font {
+    left: 1.5em;
   }
-  .paperclip:hover,
+  .trash {
+    right: 350px;
+  }
+  .font:hover,
   .trash:hover {
     color: @navy;
   }
@@ -181,15 +214,86 @@
     border: 3px solid @accent-hover;
     color: @accent-hover;
   }
+  // wysiwyg editor styles
+  .wysiwyg-container {
+    position: relative;
+    border: none;
+    margin-top: 1em;
+    margin-left: 0.5em;
+    .wysiwyg-toolbar {
+      display: none;
+      position: absolute;
+      height: 4em;
+      margin: -2.5em 0 0 -0.5em;
+      padding: 0.5em;
+      overflow: visible;
+      border-radius: 1px;
+      background-color: @lt-grey;
+      -webkit-box-shadow: 0px 1px 6px -1px rgba(0,0,0,0.75);
+      -moz-box-shadow: 0px 1px 6px -1px rgba(0,0,0,0.75);
+      box-shadow: 0px 1px 6px -1px rgba(0,0,0,0.75);
+      .wysiwyg-toolbar-icon {
+        margin: 0.25em;
+        color: @lt-blue-purple;
+        border: none;
+        box-shadow: none;
+        transition: color 350ms ease-out 50ms;
+      }
+      .wysiwyg-toolbar-icon:hover {
+        background-color: @lt-grey;
+        color: @med-navy;
+      }
+      .wysiwyg-toolbar-icon.active {
+        color: @med-navy;
+      }
+    }
+    .wysiwyg-toolbar:after {
+      content: "";
+      position: absolute;
+      left: 15px;
+      bottom: -8px;
+      width: 18px;
+      height: 9px;
+      background-image: url( '../../../images/com-hub-main/triangle.png' );
+    }
+  }
 }
 
-// Minimized styles 
+// WYSIWYG plugin modal styles
+.wysiwyg-popup {
+  .wysiwyg-browse {
+    height: 4.5em;
+  }
+  .wysiwyg-input {
+    height: 2.5em;
+    padding-left: 0.75em;
+  }
+}
+// Minimized styles
 #communication-message-post.little {
   width: 315px;
   .minimize {
     display: none;
   }
-  .icon {
+  .maximize {
+    display: none;
+  }
+  .header {
     cursor: pointer;
+  }
+}
+
+// Maximized styles
+#communication-message-post.big {
+  width: 315px;
+  .maximize {
+    display: none;
+  }
+  .mediumize {
+    display: block;
+  }
+  // wysiwyg editor styles
+  .wysiwyg-container {
+    height: 85%;
   }
 }

@@ -17,8 +17,8 @@ Package.onUse(function (api) {
     'mquandalle:bower@0.1.11',
     'maazalik:malihu-jquery-custom-scrollbar',
     'reactive-var',
-    'one-medium-editor',
-    'one-documents-core'
+    'afruth:wysiwygjs',
+    'one-documents-core',
     ], 'web');
 
   api.use([
@@ -60,6 +60,7 @@ Package.onUse(function (api) {
     'communication_post.html',
     'communication_post.less',
     'communication_post_client.js',
+    'communication_post_trash_modal.html',
     //task
     'task/communication_task_board.html',
     'task/communication_task_board.less',
@@ -81,6 +82,8 @@ Package.onUse(function (api) {
     'library/communication_library_files.html',
     'library/communication_library_files.less',
     'library/communication_library_files_client.js',
+    'library/communication_library_room_files.html',
+    'library/communication_library_room_files_client.js',
     //directory
     'directory/communication_directory_modal.html',
     'directory/communication_directory_modal.less',
