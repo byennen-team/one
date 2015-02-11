@@ -21,6 +21,7 @@ xolvio:cucumber@0.3.8
 tsega:bootstrap3-datetimepicker
 percolate:synced-cron
 settinghead:auto-nprogress
+jquery
 
 # Our Packages
 
