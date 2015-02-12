@@ -136,10 +136,13 @@
     "MatchEx": false,         // jonperl:match-ex
     "i18n": false,            // anti:i18n
     "Modal": false,           // peppelg:bootstrap-3-modal
+    "SyncedCron": false,      // percolate:synced-cron
 
     // Go One package exports
     "AWS": false,
     "Companies": false,
+    "FileAccess": false,
+    "SharedWithRule": false,
     "Files": false,
     "FileTools": false,
     "Folder": false,
@@ -151,6 +154,10 @@
     "Search": false,
     "Routes": false,
     "Settings": false,
-    "User": false
+    "User": false,
+    "DocumentTools": false,
+    "SharedDocument": false,
+    "SharedDocuments": false,
+    "SharedDocumentsStore": false
   }
 }

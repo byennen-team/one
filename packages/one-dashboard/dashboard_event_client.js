@@ -21,7 +21,7 @@ Template.eventMenu.rendered = function () {
 
 // TODO: if the event already has a color defined, insert in instead of 'purple'
   $( '.colorselectpicker' ).selectpicker(); // use specific class to call first
-  $( '.filter-option' ).addClass( 'purple dot-select' );
+  $( '#event-menu .filter-option' ).addClass( 'purple dot-select' );
 
 };
 
@@ -49,7 +49,7 @@ var roundTime = function( add ){
     }
   }
 
-  if( add === null ){
+  if( add === undefined ){
     return hour + ':' + min + ' ' + ampm; // make it pretty
   }else {
     hour = parseInt(hour, 10);

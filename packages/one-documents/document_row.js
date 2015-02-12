@@ -19,31 +19,22 @@ Template.documentRow.events({
     Meteor.call('favoriteDocument', file._id, checkbox.checked);
   },
 
-  'click [data-action="more"]': function (event) {
-    event.stopPropagation(); // Don't toggle the document selection
-    $(event.target).dropdown('toggle');
-  },
-
   'click .print': function (event) {
     event.preventDefault();
-    var file = window.open(event.target.getAttribute("href"));
-    file.print();
+    var href = event.target.getAttribute('href');
+    DocumentTools.print(href);
   },
 
   'click .download': function (event) {
     event.preventDefault();
-    var a = $('<a target="_blank">')
-      .attr("href", event.target.getAttribute("href"))
-      .attr("download", "img.png")
-      .appendTo("body");
-    a[0].click();
-    a.remove();
+    var href = event.target.getAttribute('href');
+    DocumentTools.download(href);
   },
 
   'click [data-action="share-document"]': function (event) {
     var document = Blaze.getData(event.target);
     updateSharedDocumentUrl(document);
-    Modal.show('shareDocumentModal');
+    Modal.show('shareDocumentModal', {document: document});
   },
 
   'click .rename-document': function (event) {
@@ -63,7 +54,7 @@ Template.documentRow.events({
   'click [data-action="email-document"]': function (event) {
     var document = Blaze.getData(event.target);
     updateSharedDocumentUrl(document);
-    Modal.show('emailDocumentModal');
+    Modal.show('emailDocumentModal', {document: document});
   },
 
   'mouseover td.name': function () {
@@ -86,6 +77,18 @@ function toggleSelection(document) {
 
   Session.set('selectedDocuments', selectedDocuments);
 }
+/* jshint ignore:start */
+function selectDocument(document) {
+  var documentId = document._id;
+  var selectedDocuments = Session.get('selectedDocuments') || [];
+
+  if (!_.contains(selectedDocuments, documentId)) {
+    selectedDocuments.push(documentId);
+  }
+
+  Session.set('selectedDocuments', selectedDocuments);
+}
+/* jshint ignore:end */
 
 function updateSharedDocumentUrl(document) {
   Session.set('sharedDocumentUrl');

@@ -1,0 +1,9 @@
+{
+  "packages": {
+    "bower": {}
+  },
+  "bower": {
+    "bootstrap-select": "1.6.3",
+    "bootstrap-datepicker": "1.3.0"
+  }
+}

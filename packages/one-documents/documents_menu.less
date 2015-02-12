@@ -1,14 +1,16 @@
 // Variables
 @import '/packages/styles/variables.import.less';
-// default styles are for Company Library mode
-.documentsMenu {
+
+// default styles are like the Company Library mode
+.documents-menu {
   height: 60px;
   margin: 0;
   padding: 0;
   position: relative;
   background-color: @fountain-blue;
-  .my-library,
-  .company-library {
+  transition: background-color 350ms ease-out 50ms;
+
+  .documents-menu-item {
     float: left;
     height: 40px;
     margin: 10px;
@@ -21,27 +23,46 @@
     text-align: center;
     letter-spacing: 0.2em;
     border-radius: 3px;
-    background-color: @fountain-blue;
     transition: background-color 350ms ease-out 50ms;
   }
-  .my-library.active,
-  .company-library.active {
-    background-color: @accent;
-    color: @white;
-  }
 }
+
 // My Library mode styles
-.documentsMenu.myDocuments {
+.documents-menu.my-library {
   background-color: @dk-teal;
-  .my-library,
-  .company-library {
+
+  .documents-menu-item {
     color: @very-lt-teal;
-    background-color: @dk-teal;
   }
-  .my-library.active,
-  .company-library.active {
+  .documents-menu-item.active {
     background-color: @lt-teal;
     color: @white;
   }
 }
 
+// Company Library mode styles
+.documents-menu.company-library {
+  background-color: @fountain-blue;
+
+  .documents-menu-item {
+    color: @sky;
+  }
+  .documents-menu-item.active {
+    background-color: @accent;
+    color: @white;
+  }
+}
+
+// Shared with me mode styles
+.documents-menu.shared-with-me {
+  background-color: @dk-teal;
+
+  .documents-menu-item {
+    color: @very-lt-teal;
+    background-color: @dk-teal;
+  }
+  .documents-menu-item.active {
+    background-color: @lt-teal;
+    color: @white;
+  }
+}
