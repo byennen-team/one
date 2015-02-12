@@ -62,6 +62,9 @@ Package.onUse(function (api) {
     'communication-sidebar/communication_sidebar_rooms.html',
     'communication-sidebar/communication_sidebar_rooms.less',
     'communication-sidebar/communication_sidebar_rooms_client.js',
+    'communication-sidebar/communication_sidebar_drafts.html',
+    'communication-sidebar/communication_sidebar_drafts.less',
+    'communication-sidebar/communication_sidebar_drafts_client.js',
     //messages
     // TODO: this is old code.
     //       Just putting this here until the new dashboard is approved. Remove.

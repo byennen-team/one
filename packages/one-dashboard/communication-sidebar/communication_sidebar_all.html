@@ -2,6 +2,9 @@
 	<div class='communication-sidebar-sleeve'>
 		{{> communicationSidebarCompanyFill}}
 		{{> communicationSidebarDirectFill}}
-		{{> communicationSidebarRoomsFill}}
+    {{> communicationSidebarRoomsFill}}
+    {{#if haveDrafts}}
+		  {{> communicationSidebarDraftsFill}}
+    {{/if}}
 	</div>
 </template>
