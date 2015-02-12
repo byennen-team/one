@@ -15,7 +15,7 @@ mizzao:bootstrap-3 #TODO: refactory to bootstrap-less
 peppelg:bootstrap-3-modal
 aldeed:simple-schema
 velocityjs:velocityjs
-ccorcos:transitioner
+ccorcos:transitioner@2.0.1
 coffeescript
 xolvio:cucumber@0.3.8
 
