@@ -2,6 +2,19 @@
 Template.messageInput.rendered = function(){
 	Session.set('menuOpen', false);
 	Session.set('attachment', false);
+
+  // Make row droppable
+  $(this.firstNode).droppable({
+    activeClass: "dropzone",
+    hoverClass: "message-input--drag-hover",
+    drop: function(event, ui) {
+      if (ui.helper.data('type') === 'attachment') {
+        Session.set('attachment', true);
+        Session.set('attachmentId', ui.helper.data('attachmentId'));
+        console.log(ui.helper.data('attachmentId'));
+      }
+    }
+  });
 };
 
 Template.messageInput.events({
@@ -144,8 +157,10 @@ Tracker.autorun(function () {
   var attachment = Session.get('attachment');
   if(attachment){
   	$('#communication-message-input').addClass('holding');
+    var attachmentId = Session.get('attachmentId');
+    var attachmentDocument = Files.findOne(attachmentId);
 		var str = $('#communication-message-input-attachment-input').val();
-		var fileName = /[^\\]*$/.exec(str)[0];
+		var fileName = attachmentDocument.name || /[^\\]*$/.exec(str)[0];
 		$('#communication-message-attachment-name').text('').prepend(fileName);
 		$('#communication-message-attachment-display')
 			.velocity({width: '270px'}, 800, "easeInSine")
