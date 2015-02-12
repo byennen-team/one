@@ -8,28 +8,40 @@ Template.communicationSidebar.helpers({
 				all: true,
 				company: false,
 				direct: false,
-				rooms: false
+				rooms: false,
+        drafts: false
 			};
 		}else if( filter === 'company' ){
 			return {
 				all: false,
 				company: true,
 				direct: false,
-				rooms: false
+				rooms: false,
+        drafts: false
 			};
 		}else if( filter === 'direct' ){
 			return {
 				all: false,
 				company: false,
 				direct: true,
-				rooms: false
+				rooms: false,
+        drafts: false
 			};
 		}else if( filter === 'rooms' ){
+      return {
+        all: false,
+        company: false,
+        direct: false,
+        rooms: true,
+        drafts: false
+      };
+    }else if( filter === 'drafts' ){
 			return {
 				all: false,
 				company: false,
 				direct: false,
-				rooms: true
+				rooms: false,
+        drafts: true
 			};
 		}
 	}
