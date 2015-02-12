@@ -1,3 +1,23 @@
+Template.communicationSidebar.rendered = function () {
+  // Set height on sidebar for scrollbar
+  var currentHeight = $( window ).height();
+  $( '.communication-sidebar-sleeve' ).css( 'height', currentHeight - 120 );
+  // add/remove sticky class on sidebar based on scroll position
+  var $sidebar = $( '#communication-sidebar' );
+  var sidebarWidth = $sidebar.width();
+  var stickyHeight = 400;
+  $( '#transitioner-1' ).on( 'scroll', function() {         
+    var scrollPosition = $( '#transitioner-1' ).scrollTop();
+    if ( scrollPosition > stickyHeight ) { 
+      $sidebar.addClass( 'sticky' );  
+      $sidebar.css( "width", sidebarWidth );
+    }else {
+      $sidebar.removeClass( 'sticky' );  
+      $sidebar.css( "width", "auto" );
+    }
+  }); 
+};
+
 Template.communicationSidebar.helpers({
 
 	// Presentation logic
@@ -8,28 +28,40 @@ Template.communicationSidebar.helpers({
 				all: true,
 				company: false,
 				direct: false,
-				rooms: false
+				rooms: false,
+        drafts: false
 			};
 		}else if( filter === 'company' ){
 			return {
 				all: false,
 				company: true,
 				direct: false,
-				rooms: false
+				rooms: false,
+        drafts: false
 			};
 		}else if( filter === 'direct' ){
 			return {
 				all: false,
 				company: false,
 				direct: true,
-				rooms: false
+				rooms: false,
+        drafts: false
 			};
 		}else if( filter === 'rooms' ){
+      return {
+        all: false,
+        company: false,
+        direct: false,
+        rooms: true,
+        drafts: false
+      };
+    }else if( filter === 'drafts' ){
 			return {
 				all: false,
 				company: false,
 				direct: false,
-				rooms: true
+				rooms: false,
+        drafts: true
 			};
 		}
 	}
@@ -59,15 +91,6 @@ Template.communicationSidebar.events({
 		$.Velocity.hook($('#communication-library-board'), "width", "22%");
 		// remove class from main chat window
 		$('#communication-main').removeClass('tasks');
-		// force scrollbar on sidebar
-    var currentHeight = $(window).height();
-    var $sleeve = $('.communication-sidebar-sleeve');
-    $sleeve.css( 'position', 'fixed' );
-    $sleeve.velocity( {
-      height: currentHeight - 130,
-      top: 120,
-      width: '24%'
-    });
 
 	  // lock scroll position, but retain settings for later
     var scrollPosition = [
@@ -97,15 +120,6 @@ Template.communicationSidebar.events({
 		$.Velocity.hook($('#communication-library-board'), "width", "22%");
 		// add class to main chat window
 		$('#communication-main').addClass('tasks');
-    // force scrollbar on sidebar
-    var currentHeight = $(window).height();
-    var $sleeve = $('.communication-sidebar-sleeve');
-    $sleeve.css( 'position', 'fixed' );
-    $sleeve.velocity( {
-      height: currentHeight - 130,
-      top: 120,
-      width: '24%'
-    });
 
 		// lock scroll position, but retain settings for later
     var scrollPosition = [

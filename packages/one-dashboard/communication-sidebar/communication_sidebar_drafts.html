@@ -1,0 +1,30 @@
+<template name='communicationSidebarDrafts'>
+  <div class='communication-sidebar-sleeve'>
+    {{> communicationSidebarDraftsFill}}
+  </div>
+</template>
+
+<template name='communicationSidebarDraftsFill'>
+
+  <div class="dropdown drafts">
+    <div class="dropdown-header" data-toggle="collapse" href="#communication-drafts-header" aria-expanded="true" aria-controls="communication-drafts-header">
+      Drafts
+      <span class="caret"></span>
+    </div>
+    <div class="collapse in" id="communication-drafts-header">
+      <div class="well">
+        <ul role="menu" >
+<!-- TODO: this will need to be tweaked - was just copied from Rooms -->
+        {{#each rooms}}
+          <li class="room" data-id="{{_id}}">{{roomName}}
+            <span class="delete-channel">
+              <i class="fa icon-x-blunt"></i>
+            </span>
+          </li>
+        {{/each}}
+        </ul>
+      </div>
+    </div>
+  </div>
+
+</template>

@@ -1,0 +1,251 @@
+// Variables
+@import "/packages/styles/variables.import.less";
+
+// Styles for bootstrap date/time picker
+// http://eonasdan.github.io/bootstrap-datetimepicker/
+.bootstrap-datetimepicker-widget {
+  width: 300px;
+  padding: 0;
+  border-radius: 2px;
+  border: none;
+  -webkit-box-shadow: 0px 1px 6px -1px rgba(0, 0, 0, 0.75);
+  -moz-box-shadow: 0px 1px 6px -1px rgba(0, 0, 0, 0.75);
+  box-shadow: 0px 1px 6px -1px rgba(0, 0, 0, 0.75);
+  .datepicker {
+    padding: 0;
+    border-radius: 2px;
+  }
+  .table-condensed {
+    .prev,
+    .next {
+      padding: 1em 0;
+      color: transparent;
+      border-radius: 0;
+      background-color: @white;
+      transition: background 350ms ease-out 50ms;
+    }
+    .prev:before {
+      content: "\f104";
+      font-family: FontAwesome;
+      color: @plum;
+    }
+    .next:before {
+      content: "\f105";
+      font-family: FontAwesome;
+      color: @plum;
+    }
+    .picker-switch {
+      font-size: 16px;
+      padding: 1em 0;
+      font-family: @raleway-bold;
+      font-variant: small-caps;
+      text-transform: lowercase;
+      letter-spacing: 0.2em;
+      border-radius: 0;
+      color: @plum;
+      background-color: @white;
+      transition: background 350ms ease-out 50ms;
+    }
+    .dow {
+      font-size: 13px;
+      padding-top: 10px;
+      padding-bottom: 10px;
+      background-color: @lt-plum;
+      color: @white;
+      font-family: @raleway-bold;
+      font-variant: small-caps;
+      text-transform: lowercase;
+      letter-spacing: 0.2em;
+      border-radius: 0;
+    }
+    .day,
+    .month,
+    .year {
+      font-size: 13px;
+      font-family: @raleway-semibold;
+      color: @periwinkle;
+      border-radius: 1px;
+      background-color: @white;
+      transition: background 350ms ease-out 50ms;
+    }
+    .day{
+      padding: 10px;
+    }
+    .day.old {
+      font-family: @raleway-light;
+    }
+    .month:hover,
+    .year:hover {
+      background: #eeeeee;
+    }
+    .day.today {
+      color: @white;
+      background: lighten( @lt-plum, 10%);
+    }
+    .day.today:hover {
+      color: @white;
+      background: @lt-plum;
+    }
+    .day.today:before {
+      border: none;
+    }
+    .day.active,
+    .day.active:hover,
+    .month.active,
+    .month.active:hover,
+    .year.active,
+    .year.active:hover {
+      color: @white;
+      background-color: @plum;
+    }
+  }
+  // Prevent top from collapsing
+  .collapse:first-of-type,
+  .collapsing:first-of-type {
+    height: auto!important;
+    display: block;
+    visibility: visible;
+  }
+  .picker-switch.accordion-toggle {
+    background-color: @lt-plum;
+    height: 4em;
+    padding-top: 0.75em;
+    overflow: hidden;
+    transition: height 350ms ease-out 50ms;
+    .glyphicon:before {
+      content: "g";
+      font-family: go-one-icons;
+      font-size: 17px;
+      color: @white;
+      vertical-align: middle;
+      margin-right: 1em;
+    }
+    .glyphicon:after {
+      content: "add time";
+      font-size: 17px;
+      color: @white;
+      font-family: @raleway-bold;
+      font-variant: small-caps;
+      text-transform: lowercase;
+      letter-spacing: 0.2em;
+    }
+  }
+  .collapse.in + .picker-switch.accordion-toggle {
+    height: 4em;
+  }
+  .collapse + .picker-switch.accordion-toggle,
+  .collapsing + .picker-switch.accordion-toggle {
+    height: 0;
+  }
+  // Time incrementer
+  .timepicker-picker {
+    background-color: @lt-plum;
+    td {
+      height: 20px;
+      line-height: 100%;
+    }
+    tr:last-of-type {
+      .btn {
+        padding-bottom: 1em;
+      }
+    }
+    .glyphicon {
+      height: 20px;
+      width: 70px;
+      line-height: 100%;
+      color: @white;
+    }
+    .glyphicon-chevron-down {
+      padding-top: 0.25em;
+    }
+    .separator {
+      font-size: 25px;
+      color: @white;
+      width: 15px;
+    }
+    .glyphicon:hover {
+      background-color: transparent;
+      color: @white-hover;
+    }
+    .glyphicon-chevron-up:before {
+      content: "\f106";
+      font-size: 35px;
+      font-family: FontAwesome;
+    }
+    .glyphicon-chevron-down:before {
+      content: "\f107";
+      font-size: 35px;
+      font-family: FontAwesome;
+    }
+    .btn {
+      padding: 0;
+    }
+    .timepicker-hour,
+    .timepicker-minute {
+      font-size: 25px;
+      width: 73px;
+      height: 40px;
+      line-height: 150%;
+      background-color: @plum;
+      color: @white;
+      font-family: @raleway-light;
+      border-radius: 0;
+      transition: background-color 350ms ease-out 50ms;
+    }
+    .btn-primary {
+      font-size: 25px;
+      width: 73px;
+      height: 40px;
+      line-height: 150%;
+      background-color: @plum;
+      color: @white;
+      font-family: @raleway-semibold;
+      text-transform: lowercase;
+      font-variant: small-caps;
+      letter-spacing: 0.2em;
+      border-radius: 0;
+    }
+    .timepicker-hour:hover,
+    .timepicker-minute:hover,
+    .btn-primary:hover {
+      background-color: @dk-plum; 
+    }
+    .btn-primary:active {
+      box-shadow: none; 
+    }
+  }
+  .timepicker-hours,
+  .timepicker-minutes {
+    background-color: @lt-plum;
+    color: @white;
+    font-family: @raleway-semibold;
+  }
+  td.minute,
+  td.hour {
+    background-color: @lt-plum;
+    transition: background-color 350ms ease-out 50ms;
+  }
+  td.minute:hover,
+  td.hour:hover {
+    background-color: @plum;
+    border-radius: 0;
+  }
+}
+// Remove Caret 
+.bootstrap-datetimepicker-widget.bottom:after,
+.bootstrap-datetimepicker-widget.bottom:before {
+  display: none;
+}
+// overriding plugin's WAY overly specific code. 
+body .bootstrap-datetimepicker-widget ul.list-unstyled li div.timepicker div.timepicker-picker table.table-condensed tbody > tr > td:first-of-type {
+  padding-left: 2em!important;
+}
+body .bootstrap-datetimepicker-widget ul.list-unstyled li div.timepicker div.timepicker-picker table.table-condensed tbody > tr:nth-of-type(2) > td:last-of-type {
+  padding-right: 2em!important;
+}
+
+
+
+
+
+
