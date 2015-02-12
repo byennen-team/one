@@ -60,14 +60,6 @@ Template.dashboardNewsWidget.events({
     $.Velocity.hook($('#communication-message-board'), "width", "60%");
     $.Velocity.hook($('#communication-task-board'), "width", "0");
     $.Velocity.hook($('#communication-library-board'), "width", "15.5%");
-    // force scrollbar on sidebar
-    var currentHeight = $(window).height();
-    $('.communication-sidebar-sleeve').css({
-      'height': currentHeight - 130 + 'px',
-      'position': 'fixed',
-      'top': '120px',
-      'width': '24%'
-    });
     // lock scroll position, but retain settings for later
     rememberScrollPosition();
   },
@@ -87,14 +79,6 @@ Template.dashboardNewsWidget.events({
     $.Velocity.hook($('#communication-message-board'), "width", "60%");
     $.Velocity.hook($('#communication-task-board'), "width", "0");
     $.Velocity.hook($('#communication-library-board'), "width", "15.5%");
-    // force scrollbar on sidebar
-    var currentHeight = $(window).height();
-    $('.communication-sidebar-sleeve').css({
-      'height': currentHeight - 130 + 'px',
-      'position': 'fixed',
-      'top': '120px',
-      'width': '24%'
-    });
     // lock scroll position, but retain settings for later
     rememberScrollPosition();
   }

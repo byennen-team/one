@@ -132,14 +132,6 @@ Template.dashboardBanner.events({
           $.Velocity.hook($('#communication-message-board'), "width", "78%");
           $.Velocity.hook($('#communication-task-board'), "width", "0");
           $.Velocity.hook($('#communication-library-board'), "width", "22%");
-          // force scrollbar on sidebar
-          var currentHeight = $(window).height();
-          $('.communication-sidebar-sleeve').css({
-            'height': currentHeight - 130 + 'px',
-            'position': 'fixed',
-            'top': '120px',
-            'width': '24%'
-          });
           // lock scroll position, but retain settings for later
           var scrollPosition = [
             window.pageXOffset ||
