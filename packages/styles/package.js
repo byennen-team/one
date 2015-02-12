@@ -26,6 +26,7 @@ Package.onUse(function (api) {
     'positioning.less',
     'select.less',
     'selectpicker.less',
+    'datetimepicker.less',
     'variables.import.less',
     'velocity_html_reporter.less'
   ], 'web');

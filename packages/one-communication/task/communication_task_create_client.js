@@ -3,7 +3,7 @@ Template.communicationCreateTask.rendered = function () {
   $('.datetimepicker').datetimepicker({
     minuteStepping: 5,
     format: 'h:mm a on M/D',
-    sideBySide: true,
+    toolbarPlacement: 'bottom',
     showClear: true  // this option doesn't seem to work
   });
 
