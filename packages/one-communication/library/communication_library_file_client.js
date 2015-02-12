@@ -29,9 +29,8 @@ Template.libraryFile.helpers({
 
   fileTypeIconClass: function () {
     var document = Template.currentData();
-    var extension = FileTools.ext(document.name);
 
-    return FileTools.getFileTypeIcon(extension);
+    return FileTools.getFileTypeIcon(document);
   }
 
 });

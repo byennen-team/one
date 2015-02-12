@@ -57,10 +57,14 @@ FileTools.deleteStub = function (method, filePath, callback) {
   });
 };
 
-FileTools.getFileTypeIcon = function (fileType) {
-  fileType = fileType.toLowerCase();
+FileTools.getFileTypeIcon = function (file) {
+  if (file.isFolder) {
+    return 'fa-folder-o';
+  }
 
-  switch (fileType) {
+  var extension = FileTools.ext(document.name).toLowerCase();
+
+  switch (extension) {
   case 'xls':
     return 'fa-table';
   case 'jpg':
