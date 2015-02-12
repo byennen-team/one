@@ -1,15 +1,5 @@
 Template.libraryFiles.created = function () {
   Session.setDefault('libraryFilesSelectedCategory', 'My Docs');
-  // Template level subscription for files
-  /*
-  this.autorun(function () {
-    if (Session.get('libraryFilesSelectedCategory') === 'Company Docs') {
-      // TODO: Subscribe to company docs
-    } else {
-      // TODO: Subscribe to my docs
-    }
-  });
-  */
 };
 
 Template.libraryFiles.rendered = function(){
@@ -20,6 +10,14 @@ Template.libraryFiles.rendered = function(){
 };
 
 Template.libraryFiles.helpers({
+
+  documentsListOptions: function () {
+    if (Session.get('libraryFilesSelectedCategory') === 'Company Docs') {
+      return DocumentSubscriptions.getCompanyLibraryDocumentsListOptions();
+    } else {
+      return DocumentSubscriptions.getMyLibraryDocumentsListOptions();
+    }
+  },
 
   documents: function () {
     if (Session.get('libraryFilesSelectedCategory') === 'Company Docs') {
