@@ -17,4 +17,4 @@ packages/tests-proxy
 auth1.png
 
 # Bower
-/**/**/.meteor/local/bower/*
+/**/**/.meteor/*
