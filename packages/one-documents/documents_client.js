@@ -36,7 +36,7 @@ var uploadFile = function (file) {
     'signUserDocumentUpload';
 
   var fileRow;
- FileTools.upload(method, file, {
+  FileTools.upload(method, file, {
     parentFolderId: Session.get('currentFolderId'),
     // TODO handle error
     //onError: function (error) {
@@ -75,6 +75,17 @@ Template.documents.events({
 });
 
 Template.documents.helpers({
+  documentsListOptions: function () {
+    if (Routes.getName() === Routes.SHARED_DOCUMENTS) {
+      return getSharedDocumetsListOptions();
+    } else if (FileTools.isMyDocumentsActive()) {
+      return getMyLibraryDocumentsListOptions();
+    } else if (FileTools.isCompanyDocumentsActive()) {
+      return getCompanyLibraryDocumentsListOptions();
+    } else {
+      throw new Error('Unknown documents page type');
+    }
+  },
   moveToActionState: function () {
     var selectedDocuments = Session.get('selectedDocuments') || [];
 
@@ -110,28 +121,53 @@ Template.documents.helpers({
         {_id: {$in: sharedDocumentFileIds}},
         {sort: {uploadDate: -1}}
       );
-    } else if (Routes.getName() === Routes.SHARED_DOCUMENTS) {
-      return Files.find(
-        {
-          'sharedWith.userId': Meteor.userId(),
-          'sharedWith.isInherited': false
-        },
-        {sort: {uploadDate: -1}}
-      );
-    } else {
-      return Files.find(
-        {
-          companyDocument: FileTools.isCompanyDocumentsActive(),
-          archived: {$ne: true},
-          parent: Session.get('currentFolderId')
-        },
-        {
-          sort: {uploadDate: -1}
-        }
-      );
     }
   }
 });
+
+function getSharedDocumetsListOptions() {
+  return {
+    subscription: {
+      name: 'sharedDocuments',
+      arguments: []
+    },
+    cursor: Files.find(
+      {
+        'sharedWith.userId': Meteor.userId(),
+        'sharedWith.isInherited': false
+      },
+      {sort: {uploadDate: -1}}
+    )
+  };
+}
+
+function getMyLibraryDocumentsListOptions() {
+  return {
+    subscription: {
+      name: 'myLibraryDocuments',
+      arguments: [Session.get('currentFolderId')]
+    },
+    cursor: Files.find({
+      companyDocument: false,
+      archived: {$ne: true},
+      parent: Session.get('currentFolderId')
+    })
+  };
+}
+
+function getCompanyLibraryDocumentsListOptions() {
+  return {
+    subscription: {
+      name: 'companyLibraryDocuments',
+      arguments: [Session.get('currentFolderId')]
+    },
+    cursor: Files.find({
+      companyDocument: true,
+      archived: {$ne: true},
+      parent: Session.get('currentFolderId')
+    })
+  };
+}
 
 Template.documents.rendered = function () {
   $(document.body).on('dragover', function (e) {

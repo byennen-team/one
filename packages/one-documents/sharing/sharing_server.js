@@ -261,12 +261,17 @@ Meteor.publishComposite(
   }
 );
 
-Meteor.publish('sharedDocuments', function () {
+Meteor.publish('sharedDocuments', function (limit) {
+  check(limit, Number);
+
   if (!this.userId) {
     throw new Meteor.Error('USER_MUST_BE_LOGGED_IN');
   }
 
-  return Files.find({'sharedWith.userId': this.userId});
+  return Files.find(
+    {'sharedWith.userId': this.userId},
+    {limit: limit}
+  );
 });
 
 

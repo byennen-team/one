@@ -1,4 +1,4 @@
-<template name="documents">
+<template name="sharedDocument">
   <div class="container-fluid">
     <div id="documents-container" class="documents row">
       {{> documentsMenu}}
@@ -9,42 +9,20 @@
         <div class="col-sm-9 col-xs-height">
           <div class="row">
             <div class="options col-sm-12">
-              <a href="#" class="folder" data-toggle="modal" data-target="#documentsFolderModal">
-                <i class="fa fa-folder-o"></i> 
-                New Folder
-              </a>
-              <a href="#" class="upload" data-toggle="modal" data-target="#documentsUploadModal">
-                <i class="fa fa-cloud-upload"></i> 
-                Upload File
-              </a>
               <a href="#"
                  class="{{acceptSharedDocumentState}}"
                  data-action="accept-shared-document">
                 <i class="fa fa-check"></i>
                 Accept shared document
               </a>
-              <a href="#" class="{{moveToActionState}}">
+              <a href="#" class="{{areDocumentsSelected}}">
                 <i class="fa fa-download"></i> 
                 download
               </a>
-              <a href="#" class="{{moveToActionState}}"
-                 data-action="show-move-to-modal">
-                <i class="fa fa-random"></i> 
-                Move to
-              </a>
-              <a href="#" class="{{moveToActionState}}">
+              <a href="#" class="{{areDocumentsSelected}}">
                 <i class="fa fa-copy"></i> 
                 copy
               </a>
-              <a href="#" class="{{moveToActionState}}">
-                <i class="fa fa-trash"></i> 
-                delete
-              </a>
-            </div>
-          </div>
-          <div class="row">
-            <div class="col-sm-12">
-              {{> documentsBreadcrumb}}
             </div>
           </div>
           <div class="row">
@@ -61,14 +39,11 @@
                   </tr>
                 </thead>
                 <tbody>
-                  {{#oneInfiniteScrollList documentsListOptions}}
+                  {{#each files}}
                     {{> documentRow}}
-                  {{/oneInfiniteScrollList}}
+                  {{/each}}
                 </tbody>
               </table>
-              {{> documentsFolderModal}}
-              {{> documentsUploadModal}}
-              {{> documentsRenameModal}}
             </div>
           </div>
         </div>
