@@ -153,6 +153,12 @@ Meteor.methods({
 });
 
 
+Meteor.publish('document', function (documentId) {
+  check(documentId, String);
+
+  return Files.find({_id: documentId});
+});
+
 Meteor.publish('myLibraryDocuments', function (parentFolderId, limit) {
   check(parentFolderId, Match.OneOf(null, String));
   check(limit, Number);

@@ -36,7 +36,7 @@ var uploadFile = function (file) {
     'signUserDocumentUpload';
 
   var fileRow;
- FileTools.upload(method, file, {
+  FileTools.upload(method, file, {
     parentFolderId: Session.get('currentFolderId'),
     // TODO handle error
     //onError: function (error) {

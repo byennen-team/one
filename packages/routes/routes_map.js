@@ -36,9 +36,6 @@ Router.route('/documents', {
 Router.route('/documents/company', {
   name: Routes.COMPANY_DOCUMENTS,
   template: 'documents',
-  waitOn: function () {
-    return Meteor.subscribe('files');
-  },
   action: function () {
     resetDocumentSelection();
     Session.set('currentFolderId', null);
@@ -66,9 +63,6 @@ Router.route('/documents/shared/:sharedDocumentId/:accessToken', {
 Router.route('/documents/shared', {
   name: Routes.SHARED_DOCUMENTS,
   template: 'documents',
-  waitOn: function () {
-    return Meteor.subscribe('sharedDocuments');
-  },
   action: function () {
     resetDocumentSelection();
     Session.set('currentFolderId', null);
@@ -80,7 +74,7 @@ Router.route('/folders/:_id', {
   name: Routes.FOLDER,
   template: 'documents',
   waitOn: function () {
-    return Meteor.subscribe('files');
+    return Meteor.subscribe('document', this.params._id);
   },
   action: function () {
     resetDocumentSelection();
