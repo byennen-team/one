@@ -34,3 +34,13 @@ Template.libraryFile.helpers({
   }
 
 });
+
+Template.libraryFile.events({
+
+  'click': function (event, templateInstance) {
+    if (templateInstance.data.isFolder) {
+      Session.set('currentFolderId', templateInstance.data._id);
+    }
+  }
+
+});

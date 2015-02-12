@@ -2,21 +2,34 @@ Template.libraryFiles.created = function () {
   Session.setDefault('libraryFilesSelectedCategory', 'My Docs');
 };
 
-Template.libraryFiles.rendered = function(){
+Template.libraryFiles.rendered = function () {
+  var templateInstance = this;
+
   this.$(".library-files-sleeve").mCustomScrollbar({
   	theme:"one-light",
   	scrollbarPosition: "inside"
+  });
+
+  // Scroll to the top when the current folder changes
+  this.autorun(function () {
+    Session.get('currentFolderId');
+    templateInstance.$(".library-files-sleeve")
+      .mCustomScrollbar('scrollTo', 'top');
   });
 };
 
 Template.libraryFiles.helpers({
 
   documentsListOptions: function () {
+    var options;
+
     if (Session.get('libraryFilesSelectedCategory') === 'Company Docs') {
-      return DocumentSubscriptions.getCompanyLibraryDocumentsListOptions();
+      options = DocumentSubscriptions.getCompanyLibraryDocumentsListOptions();
     } else {
-      return DocumentSubscriptions.getMyLibraryDocumentsListOptions();
+      options = DocumentSubscriptions.getMyLibraryDocumentsListOptions();
     }
+
+    return options;
   },
 
   documents: function () {
