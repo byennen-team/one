@@ -18,6 +18,9 @@ Template.navbar.events({
     // un-lock scroll position
     var body = $('body');
     var scrollPosition = body.data('scroll-position');
+    console.log( scrollPosition );
+    console.log( scrollPosition[0] );
+    console.log( scrollPosition[1] );
     body.css('overflow', body.data('previous-overflow'));
     window.scrollTo(scrollPosition[0], scrollPosition[1]);
 	},
