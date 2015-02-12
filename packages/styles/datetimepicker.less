@@ -231,6 +231,11 @@
     border-radius: 0;
   }
 }
+// Remove Caret 
+.bootstrap-datetimepicker-widget.bottom:after,
+.bootstrap-datetimepicker-widget.bottom:before {
+  display: none;
+}
 // overriding plugin's WAY overly specific code. 
 body .bootstrap-datetimepicker-widget ul.list-unstyled li div.timepicker div.timepicker-picker table.table-condensed tbody > tr > td:first-of-type {
   padding-left: 2em!important;
