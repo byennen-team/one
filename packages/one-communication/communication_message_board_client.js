@@ -85,6 +85,9 @@ Template.communicationMessageBoardSleeve.helpers({
   isPostMessage: function() {
     return (this.messageType === 'post');
   },
+  isNewsMessage: function() {
+    return (this.messageType === 'news');
+  },
   isDocumentMessage: function () {
     return (this.messageType === 'attachment');
   },
@@ -175,6 +178,32 @@ Template.postMessage.helpers({
       return $(text).text().slice(0,50);
     }
   },
+  isUserClass: function() {
+    return (this.creatorId === Meteor.userId())?'user':'';
+  },
+  user: function() {
+    return Meteor.users.findOne(this.creatorId);
+  },
+  date: function(dateToFormat) {
+    return moment(dateToFormat).calendar();
+  },
+  status: function (status) {
+    if (status) {
+      switch (status.toUpperCase()) {
+        case 'MOBILE':
+          return 'mobile';
+        case 'OUT OF OFFICE':
+          return 'inactive';
+        case 'IN THE OFFICE':
+          return 'active';
+      }
+    } else {
+      return "inactive";
+    }
+  }
+});
+
+Template.newsMessage.helpers({
   isUserClass: function() {
     return (this.creatorId === Meteor.userId())?'user':'';
   },

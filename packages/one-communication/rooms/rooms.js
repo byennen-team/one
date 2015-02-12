@@ -88,6 +88,18 @@ RoomsController.addAttachmentMessageToRoom =
   );
 };
 
+// context.postContent: String, context.title: String, context.fileUrl: String
+// context.newsType: String, context.author: String
+RoomsController.addNewsMessageToRoom = function(roomId, context, callback) {
+  Meteor.call('addNewsMessageToRoom', roomId, context, function(e,r) {
+    if (e)
+      console.log(e);
+
+  if(callback)
+    callback(e,r);
+  });
+};
+
 // context.postContent: String, context.title: String,
 // context.fileId: String optional
 RoomsController.addPostMessageToRoom = function(roomId, context, callback) {
@@ -157,7 +169,14 @@ RoomsController.getUnreadMessagesCount = function(roomId) {
 };
 
 RoomsController.getRoomsWithUnreadMessages = function() {
-  var rooms = Rooms.find().fetch();
+  var rooms = Rooms.find({
+    roomType: {
+      $ne: 'company'
+    },
+    roomName: {
+      $ne: 'News'
+    }
+  }).fetch();
   var roomsIds = [];
 
   _.each(rooms, function(room) {
