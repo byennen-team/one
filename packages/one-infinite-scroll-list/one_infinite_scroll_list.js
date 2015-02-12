@@ -13,11 +13,17 @@
 var itemsPerPage = 10;
 
 Template.oneInfiniteScrollList.created = function () {
-  var args = [this.data.subscription.name].concat(
-    this.data.subscription.arguments,
-    [itemsPerPage]
-  );
-  this.subscriptionHandler = Meteor.subscribeWithPagination.apply(Meteor, args);
+  var templateInstance = this;
+
+  this.autorun(function () {
+    var data = Template.currentData();
+    var args = [data.subscription.name].concat(
+      data.subscription.arguments,
+      [itemsPerPage]
+    );
+    templateInstance.subscriptionHandler =
+      Meteor.subscribeWithPagination.apply(Meteor, args);
+  });
 };
 
 Template.oneInfiniteScrollList.helpers({
