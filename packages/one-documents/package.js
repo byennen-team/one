@@ -78,7 +78,9 @@ Package.onUse(function (api) {
     'documents_menu.html',
     'documents_menu_client.js',
     'documents_menu.less',
-    'sharing/sharing_client.js'
+    'sharing/sharing_client.js',
+    'sharing/templates/shared_document.html',
+    'sharing/templates/shared_document.js'
 
   ], 'web');
 

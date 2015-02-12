@@ -1,0 +1,53 @@
+<template name="sharedDocument">
+  <div class="container-fluid">
+    <div id="documents-container" class="documents row">
+      {{> documentsMenu}}
+      <div class="row-same-height width-100">
+        <div class="leftside col-sm-3 col-xs-height">
+          {{> favoriteDocuments}}
+        </div>
+        <div class="col-sm-9 col-xs-height">
+          <div class="row">
+            <div class="options col-sm-12">
+              <a href="#"
+                 class="{{acceptSharedDocumentState}}"
+                 data-action="accept-shared-document">
+                <i class="fa fa-check"></i>
+                Accept shared document
+              </a>
+              <a href="#" class="{{areDocumentsSelected}}">
+                <i class="fa fa-download"></i> 
+                download
+              </a>
+              <a href="#" class="{{areDocumentsSelected}}">
+                <i class="fa fa-copy"></i> 
+                copy
+              </a>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-12">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th><span class="sr-only">Selected</span></th>
+                    <th></th>
+                    <th>Name</th>
+                    <th>Type</th>
+                    <th>Date</th>
+                    <th></th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {{#each files}}
+                    {{> documentRow}}
+                  {{/each}}
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</template>

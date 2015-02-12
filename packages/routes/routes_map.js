@@ -45,7 +45,7 @@ Router.route('/documents/company', {
 
 Router.route('/documents/shared/:sharedDocumentId/:accessToken', {
   name: Routes.SHARED_DOCUMENT,
-  template: 'documents',
+  template: 'sharedDocument',
   waitOn: function () {
     return Meteor.subscribe(
       'sharedDocument',
