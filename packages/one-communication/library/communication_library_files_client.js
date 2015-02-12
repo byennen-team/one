@@ -1,4 +1,5 @@
 Template.libraryFiles.created = function () {
+  Session.setDefault('libraryFilesSelectedCategory', 'My Docs');
   // Template level subscription for files
   /*
   this.autorun(function () {
