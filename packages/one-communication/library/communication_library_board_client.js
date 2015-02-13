@@ -47,9 +47,11 @@ Template.libraryBoard.events({
 
     // un-lock scroll position
     var body = $('body');
-    var scrollPosition = body.data('scroll-position');
-    body.css('overflow', body.data('previous-overflow'));
-    window.scrollTo(scrollPosition[0], scrollPosition[1]);
+    if( body.data('scroll-position') ){
+      var scrollPosition = body.data('scroll-position');
+      body.css('overflow', body.data('previous-overflow'));
+      window.scrollTo(scrollPosition[0], scrollPosition[1]);
+    }
 	}
 
 });

@@ -72,9 +72,6 @@ Template.communicationSidebar.events({
 
 	// Scroll to top when communication sidebar is clicked, to appear full screen
 	'click #communication-sidebar-options': function(){
-  // TODO: Scroll has stopped working. click event is firing.
-    //$( '#sidebar-scroll-target' ).velocity( "scroll", 600 );
-  // Velocity.js is unable to scroll a specific div to a point
     $( "#transitioner-1" ).animate( { scrollTop: 400 } );
 		// $('#main-wrap').addClass('blurry');
 	},

@@ -17,9 +17,11 @@ Template.navbar.events({
 		$.Velocity.hook($('#communication-library-board'), "width", "0");
     // un-lock scroll position
     var body = $('body');
-    var scrollPosition = body.data('scroll-position');
-    body.css('overflow', body.data('previous-overflow'));
-    window.scrollTo(scrollPosition[0], scrollPosition[1]);
+    if( body.data('scroll-position') ){
+      var scrollPosition = body.data('scroll-position');
+      body.css('overflow', body.data('previous-overflow'));
+      window.scrollTo(scrollPosition[0], scrollPosition[1]);
+    }
 	},
 
   'click #navbar-link-task': function () {
