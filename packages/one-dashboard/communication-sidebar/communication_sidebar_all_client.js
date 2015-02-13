@@ -8,3 +8,10 @@ Template.communicationSidebarAll.rendered = function(){
   });
 
 };
+
+Template.communicationSidebarAll.helpers({
+// TODO: if the user has any drafts return true, else return false.
+  haveDrafts: function () {
+    return true;
+  }
+});

@@ -2,17 +2,18 @@
 Template.channelWidget.rendered = function () {
   Session.set('unreadDirty', true);
   // initialize maazalik:malihu-jquery-custom-scrollbar scrollbar plugin
-  var sleeve = $( ".conversation" );
-  sleeve.mCustomScrollbar({
+  var $sleeve = $( ".conversation" );
+  $sleeve.mCustomScrollbar({
       theme:"one-dark",
       scrollbarPosition: "inside",
       autoHideScrollbar: true,
-      scrollInertia: 0
+      scrollInertia: 0,
+      callbacks:{
+        onInit: function(){
+          this.mCustomScrollbar( "scrollTo", "bottom" );
+        }
+      }
   });
-  // Delay gives the plugin a change to load fully
-  setTimeout(function(){
-    sleeve.mCustomScrollbar( "scrollTo", "bottom" );
-  }, 200);
 };
 
 Template.channelWidget.helpers({
@@ -125,15 +126,6 @@ Template.channelWidget.events({
     $.Velocity.hook($('#communication-message-board'), "width", "60%");
     $.Velocity.hook($('#communication-task-board'), "width", "0");
     $.Velocity.hook($('#communication-library-board'), "width", "22%");
-    // force scrollbar on sidebar
-    var currentHeight = $(window).height();
-    var $sleeve = $('.communication-sidebar-sleeve');
-    $sleeve.css( 'position', 'fixed' );
-    $sleeve.velocity( {
-      height: currentHeight - 130,
-      top: 120,
-      width: '24%'
-    });
     // lock scroll position, but retain settings for later
     var scrollPosition = [
       window.pageXOffset ||

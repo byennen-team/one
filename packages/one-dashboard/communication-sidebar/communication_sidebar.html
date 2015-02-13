@@ -15,7 +15,9 @@
       {{> communicationSidebarDirect}}
     {{else}} {{#if communicationFilter.rooms}}
       {{> communicationSidebarRooms}}
-	  {{/if}} {{/if}} {{/if}} {{/if}}
+    {{else}} {{#if communicationFilter.drafts}}
+      {{> communicationSidebarDrafts}}
+    {{/if}} {{/if}} {{/if}} {{/if}} {{/if}}
 
 		</div>
 	</div>

@@ -44,19 +44,6 @@ Template.libraryBoard.events({
 		$.Velocity.hook($('#communication-message-board'), "width", "0");
 		$.Velocity.hook($('#communication-task-board'), "width", "0");
 		$.Velocity.hook($('#communication-library-board'), "width", "0");
-		// release scrollbar on sidebar
-    var $sleeve = $('.communication-sidebar-sleeve');
-    $sleeve.css({
-    	'position': 'static',
-    	'height': 'auto',
-    	'top': 'auto',
-    	'width': '100%'
-    });
-    // this would probably work with a global variable
-    // $sleeve.velocity( {
-    //   top: 130,
-    //   width: '100%'
-    // });
 
     // un-lock scroll position
     var body = $('body');

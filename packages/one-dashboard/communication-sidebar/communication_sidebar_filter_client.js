@@ -15,7 +15,12 @@ Template.communicationSidebarFilter.helpers({
 			var pretty = filter.pretty;
 			return pretty;
 		}
-	}
+	},
+
+// TODO: if the user has any drafts return true, else return false.
+  haveDrafts: function () {
+    return true;
+  }
 
 });
 

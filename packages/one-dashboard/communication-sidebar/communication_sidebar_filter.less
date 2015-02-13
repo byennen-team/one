@@ -22,10 +22,16 @@
 		li {
 			font-size: 12px;
 			padding-left: 0;
+			background-color: transparent;
 			text-transform: uppercase;
 			letter-spacing: 0.188em;
-			padding: 1em 0.5em;
+			padding: 1em 0.5em 1em 3em;
 			cursor: pointer;
+			transition: opacity 350ms ease-out 50ms;
+		}
+		li:hover {
+			background-color: transparent;
+			opacity: 0.6;
 		}
 	}
 	.dropdown-menu{
@@ -40,6 +46,9 @@
 		}
 		.rooms {
 			color: @text-blue;
+		}
+		.drafts {
+			color: @green;
 		}
 	}
 	hr {

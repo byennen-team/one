@@ -1,126 +1,128 @@
 <template name="accountSettings">
-  <h1 class=header-blue>One Account</h1>
-  <div class="container">
-    <div class="row">
-      <div class="col-sm-12">
-        <h2>Profile</h2>
-        <form id="accountSettingsForm">
-          <div class="row">
-            <div class="col-sm-4">
-              <div class="row">
-                <div class="col-sm-6">
-                  <img src="{{profile.photoUrl.large}}" class="img-circle img-responsive"/>
-                </div>
-                <div class="col-sm-6">
-                  <input class="upload new-pic" type="file" title="">
-                  <a href="#" class="delete btn btn-default btn-block" id="delete-profile-picture" data-url="{{photoKey}}">Delete</a>
-                </div>
-              </div>
-            </div>
-            <div class="col-sm-8">
-              <div class="row">
-                <div class="col-sm-6">
-                  <div class="form-group">
-                    {{text_field 'firstName'}}
+  <div class="transitioner-container">
+    <h1 class=header-blue>One Account</h1>
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-12">
+          <h2>Profile</h2>
+          <form id="accountSettingsForm">
+            <div class="row">
+              <div class="col-sm-4">
+                <div class="row">
+                  <div class="col-sm-6">
+                    <img src="{{profile.photoUrl.large}}" class="img-circle img-responsive"/>
                   </div>
-                </div>
-                <div class="col-sm-6">
-                  <div class="form-group">
-                    {{text_field 'lastName'}}
+                  <div class="col-sm-6">
+                    <input class="upload new-pic" type="file" title="">
+                    <a href="#" class="delete btn btn-default btn-block" id="delete-profile-picture" data-url="{{photoKey}}">Delete</a>
                   </div>
                 </div>
               </div>
-              <div class="row">
-                <div class="col-sm-12 ">
-                  <div class="form-group">
-                    {{text_field 'title'}}
+              <div class="col-sm-8">
+                <div class="row">
+                  <div class="col-sm-6">
+                    <div class="form-group">
+                      {{text_field 'firstName'}}
+                    </div>
+                  </div>
+                  <div class="col-sm-6">
+                    <div class="form-group">
+                      {{text_field 'lastName'}}
+                    </div>
                   </div>
                 </div>
-              </div>
-            </div>
-          </div>
-          <div class="row">
-            <div class="col-sm-4">
-              <div class="form-group">
-                {{text_field 'company'}}
-              </div>
-            </div>
-            <div class="col-sm-8">
-              <div class="form-group">
-                {{text_field 'company_website'}}
-              </div>
-            </div>
-          </div>
-          <div class="row">
-            <div class="col-sm-12">
-              <h2>Contact Information</h2>
-              <div class="row">
-                <div class="col-sm-6 ">
-                  <div class="form-group">
-                    {{text_field 'office'}}
-                  </div>
-                </div>
-                <div class="col-sm-6 ">
-                  <div class="form-group">
-                    {{text_field 'phone'}}
+                <div class="row">
+                  <div class="col-sm-12 ">
+                    <div class="form-group">
+                      {{text_field 'title'}}
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
-          </div>
-          <div class="row">
-            <div class="col-sm-6 ">
-              <div class="form-group">
-                {{text_field 'email'}}
+            <div class="row">
+              <div class="col-sm-4">
+                <div class="form-group">
+                  {{text_field 'company'}}
+                </div>
+              </div>
+              <div class="col-sm-8">
+                <div class="form-group">
+                  {{text_field 'company_website'}}
+                </div>
               </div>
             </div>
-            <div class="col-sm-6 ">
-              <div class="form-group">
-                {{text_field 'personal_website'}}
+            <div class="row">
+              <div class="col-sm-12">
+                <h2>Contact Information</h2>
+                <div class="row">
+                  <div class="col-sm-6 ">
+                    <div class="form-group">
+                      {{text_field 'office'}}
+                    </div>
+                  </div>
+                  <div class="col-sm-6 ">
+                    <div class="form-group">
+                      {{text_field 'phone'}}
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
-          </div>
-          <div class="row">
-            <div class="col-sm-6 ">
-              <div class="form-group">
-                {{text_field 'address'}}
+            <div class="row">
+              <div class="col-sm-6 ">
+                <div class="form-group">
+                  {{text_field 'email'}}
+                </div>
+              </div>
+              <div class="col-sm-6 ">
+                <div class="form-group">
+                  {{text_field 'personal_website'}}
+                </div>
               </div>
             </div>
-            <div class="col-sm-6 ">
-              <div class="form-group">
-                {{text_field 'apt_suite'}}
+            <div class="row">
+              <div class="col-sm-6 ">
+                <div class="form-group">
+                  {{text_field 'address'}}
+                </div>
+              </div>
+              <div class="col-sm-6 ">
+                <div class="form-group">
+                  {{text_field 'apt_suite'}}
+                </div>
               </div>
             </div>
-          </div>
-          <div class="row">
-            <div class="col-sm-6 ">
-              <div class="form-group">
-                {{text_field 'city'}}
+            <div class="row">
+              <div class="col-sm-6 ">
+                <div class="form-group">
+                  {{text_field 'city'}}
+                </div>
+              </div>
+              <div class="col-sm-3 ">
+                <div class="form-group">
+                  {{text_field 'state'}}
+                </div>
+              </div>
+              <div class="col-sm-3 ">
+                <div class="form-group">
+                  {{text_field 'zip'}}
+                </div>
               </div>
             </div>
-            <div class="col-sm-3 ">
-              <div class="form-group">
-                {{text_field 'state'}}
+            <div class="row">
+              <div class="col-sm-12 text-center">
+                {{> loginWithSocialMedia}}
               </div>
             </div>
-            <div class="col-sm-3 ">
-              <div class="form-group">
-                {{text_field 'zip'}}
-              </div>
-            </div>
-          </div>
-          <div class="row">
-            <div class="col-sm-12 text-center">
-              {{> loginWithSocialMedia}}
-            </div>
-          </div>
 
-          <div class="row">
-            <div class="col-sm-12 text-center">
-              <button type="submit" class="btn btn-primary btn-lg">Save Changes</button>
+            <div class="row">
+              <div class="col-sm-12 text-center">
+                <button type="submit" class="btn btn-primary btn-lg">Save Changes</button>
+              </div>
             </div>
-          </div>
-        </form>
+          </form>
+        </div>
       </div>
     </div>
   </div>
