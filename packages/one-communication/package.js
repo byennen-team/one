@@ -69,6 +69,7 @@ Package.onUse(function (api) {
     'task/communication_task_create.less',
     'task/communication_task_create_client.js',
     'task/communication_task_welcome.html',
+    'task/communication_task_welcome_client.js',
     //library
     'library/communication_library_board.html',
     'library/communication_library_board.less',
@@ -86,7 +87,13 @@ Package.onUse(function (api) {
     'directory/communication_directory_modal.less',
     'directory/communication_directory_modal.js',
     'directory/communication_add_teammember_modal.html',
-    'directory/communication_add_teammember_modal.js'
+    'directory/communication_add_teammember_modal.js',
+    //modals
+    "modals/communication_help_task_modal.html",
+    "modals/communication_help_room_modal.html",
+    "modals/communication_help_task_modal_client.js",
+    "modals/communication_help_room_modal_client.js",
+    "modals/communication_help_modal.less"
   ], 'web');
 
   // Bower packages

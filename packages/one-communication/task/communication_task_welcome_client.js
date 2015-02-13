@@ -1,5 +1,4 @@
-
-Template.welcomeRoom.events({
+Template.welcomeTask.events({
     // Opens the task menu  
   'click .welcome-task': function () {
     // expands the main dialog box t0 60% of full screen - task bar open
@@ -53,6 +52,41 @@ Template.welcomeRoom.events({
             .velocity( { opacity: 0 }, 300 )
             .velocity( { opacity: 1 }, 300 )
             .velocity( { opacity: 0 }, 250 );
+    },
+
+    // Hightlights myLibrary panel
+    'click .welcome-input': function () {
+        // Animate the add button
+        $( "#addMessageInput" ).focus();
+        $( "#communication-message-input-flash" )
+            .velocity( { opacity: 1 }, 300 )
+            .velocity( { opacity: 0 }, 300 )
+            .velocity( { opacity: 1 }, 300 )
+            .velocity( { opacity: 0 }, 250 );
+    },
+
+     // Highlights the search input
+    'click .welcome-search': function () {
+        // Animate the add button
+        $( "#message-board-search" )
+            .velocity({ 
+                translateZ: 0, 
+                translateY: -20,
+                color: '#5bb8d7'
+            }, 200)
+            .velocity({ 
+                translateZ: 0, 
+                translateY: 0
+            }, 200)
+            .velocity({ 
+                translateZ: 0, 
+                translateY: -10
+            }, 100)
+            .velocity({ 
+                translateZ: 0, 
+                translateY: 0,
+                color: '#333333'
+            }, 100);
     }
 
 });

@@ -1,5 +1,4 @@
-
-Template.welcomeRoom.events({
+Template.helpRoomModal.events({
     // Opens the task menu  
   'click .welcome-task': function () {
     // expands the main dialog box t0 60% of full screen - task bar open
@@ -23,6 +22,7 @@ Template.welcomeRoom.events({
         Session.set( 'members', false );
         // Animate the add button
         $( "#communication-library-add-files" )
+            .delay( 500 )  // allow the modal to leave
             .velocity({ 
                 translateZ: 0, 
                 translateY: -20,
@@ -49,6 +49,7 @@ Template.welcomeRoom.events({
         Session.set( 'members', false );
         // Animate the add button
         $( "#communication-library-panel-files-shadow" )
+            .delay( 300 )
             .velocity( { opacity: 1 }, 300 )
             .velocity( { opacity: 0 }, 300 )
             .velocity( { opacity: 1 }, 300 )
