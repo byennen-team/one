@@ -20,7 +20,7 @@ Meteor.publish('user', function () {
 Meteor.publish('userProfile', function (slug) {
   check(slug, String);
 
-  return Meteor.users.find({slug: slug}, {fields: {slug: 1, profile: 1}});
+  return Meteor.users.find({slug: slug}, {fields: {slug: 1, profile: 1, teamMembers: 1}});
 });
 
 /**

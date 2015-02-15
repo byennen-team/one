@@ -18,7 +18,7 @@ Package.onUse(function (api) {
     'social-media'
     ], 'web');
 
-  api.use(['aldeed:simple-schema','files'], ['server','client']);
+  api.use(['aldeed:simple-schema','files','one-dashboard'], ['server','client']);
 
 
   // less
@@ -69,6 +69,7 @@ Package.onUse(function (api) {
   api.addFiles([
     'lib/client/templates/profile.js',
     'lib/client/templates/profile_about.html',
+    'lib/client/templates/profile_about.js',
     'lib/client/templates/profile.html',
     'lib/client/templates/profile_client.js',
     'lib/client/templates/profile_card.html',
