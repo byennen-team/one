@@ -18,7 +18,8 @@ Package.onUse(function (api) {
     'social-media'
     ], 'web');
 
-  api.use(['aldeed:simple-schema','files','one-dashboard'], ['server','client']);
+  api.use(['aldeed:simple-schema','files','one-dashboard'],
+    ['server','client']);
 
 
   // less

@@ -20,7 +20,8 @@ Meteor.publish('user', function () {
 Meteor.publish('userProfile', function (slug) {
   check(slug, String);
 
-  return Meteor.users.find({slug: slug}, {fields: {slug: 1, profile: 1, teamMembers: 1}});
+  return Meteor.users.find({slug: slug}, {fields: {slug: 1, profile: 1,
+    teamMembers: 1}});
 });
 
 /**
@@ -31,7 +32,7 @@ Meteor.publish('userProfiles', function (userIds) {
 
   return Meteor.users.find(
     {_id: {$in: userIds}},
-    {fields: {slug: 1, profile: 1}}
+    {fields: {slug: 1, profile: 1,  teamMembers: 1}}
   );
 });
 
