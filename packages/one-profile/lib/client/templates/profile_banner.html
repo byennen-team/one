@@ -7,24 +7,26 @@
         </div>
 
         <div class="col-sm-3 col-md-2">
-          {{#if isMyProfileEditable}}
-            <div class="dropdown">
-              <button id="status-drop-button" class="status-drop-button text-uppercase green raleway-semibold spacing-250" type="button" data-toggle="dropdown" aria-haspopup="true" role="button" aria-expanded="false" >
-                {{profile.status}}
-                <span class="caret user-only"></span>
-              </button>
-              <ul id="status-drop" class="status-drop dropdown-menu" role="menu" aria-labelledby="status-drop-button">
-                <li role="presentation"><div id="status-in" role="menuitem" class='raleway-semibold spacing-0625 text-uppercase green'>In the office</div></li>
-                <li role="presentation"><div id="status-out" role="menuitem" class='raleway-semibold spacing-0625 text-uppercase red'>out of office</div></li>
-                <li role="presentation"><div id="status-mobile" role="menuitem" class='raleway-semibold spacing-0625 text-uppercase accent'>mobile</div></li>
-              </ul>
-            </div>
-          {{else}}
-            {{#if isLoggedIn}}
-              <p class="text-uppercase green raleway-semibold spacing-250">{{profile.status}}</p>
+          <div class="hidden-xs">
+            {{#if isMyProfileEditable}}
+              <div class="dropdown">
+                <button id="status-drop-button" class="status-drop-button text-uppercase green raleway-semibold spacing-250" type="button" data-toggle="dropdown" aria-haspopup="true" role="button" aria-expanded="false" >
+                  {{profile.status}}
+                  <span class="caret user-only"></span>
+                </button>
+                <ul id="status-drop" class="status-drop dropdown-menu" role="menu" aria-labelledby="status-drop-button">
+                  <li role="presentation"><div id="status-in" role="menuitem" class='raleway-semibold spacing-0625 text-uppercase green'>In the office</div></li>
+                  <li role="presentation"><div id="status-out" role="menuitem" class='raleway-semibold spacing-0625 text-uppercase red'>out of office</div></li>
+                  <li role="presentation"><div id="status-mobile" role="menuitem" class='raleway-semibold spacing-0625 text-uppercase accent'>mobile</div></li>
+                </ul>
+              </div>
+            {{else}}
+              {{#if isLoggedIn}}
+                <p class="text-uppercase green raleway-semibold spacing-250">{{profile.status}}</p>
+              {{/if}}
+            {{! Internal profile }}
             {{/if}}
-          {{! Internal profile }}
-          {{/if}}
+          </div>
 
           <p class='name'>{{profile.firstName}} {{profile.lastName}}</p>
           <p class='title'>{{profile.title}}</p>
@@ -32,6 +34,27 @@
             <i class="fa icon-plus-circle fa-lg no-transition"></i>
             add to team
           </a>
+
+          <div class="visible-xs-block">
+            {{#if isMyProfileEditable}}
+              <div class="dropdown">
+                <button id="status-drop-button" class="status-drop-button text-uppercase green raleway-semibold spacing-250" type="button" data-toggle="dropdown" aria-haspopup="true" role="button" aria-expanded="false" >
+                  {{profile.status}}
+                  <span class="caret user-only"></span>
+                </button>
+                <ul id="status-drop" class="status-drop dropdown-menu" role="menu" aria-labelledby="status-drop-button">
+                  <li role="presentation"><div id="status-in" role="menuitem" class='raleway-semibold spacing-0625 text-uppercase green'>In the office</div></li>
+                  <li role="presentation"><div id="status-out" role="menuitem" class='raleway-semibold spacing-0625 text-uppercase red'>out of office</div></li>
+                  <li role="presentation"><div id="status-mobile" role="menuitem" class='raleway-semibold spacing-0625 text-uppercase accent'>mobile</div></li>
+                </ul>
+              </div>
+            {{else}}
+              {{#if isLoggedIn}}
+                <p class="text-uppercase green raleway-semibold spacing-250">{{profile.status}}</p>
+              {{/if}}
+            {{! Internal profile }}
+            {{/if}}
+          </div>
         </div>
 
         <div class="bottom">
@@ -48,10 +71,10 @@
 
           <div class="col-sm-3 phone-listing">
             <p class='phone-title'>
-              <i class="fa fa-phone"></i>
               <span class="words">phone</span>
             </p>
-            <p class='text'><span class='title'>office:</span> (212) 555-1234</p>
+            <p class='text'><span class='title'><i class="fa fa-phone"></i> office:</span> (212) 555-1234</p>
+            <p class='text'><span class='title'><i class="fa fa-phone"></i> office:</span> (212) 555-1234</p>
             {{#if profile.numbers.mobile}}
               <p class='text'><span class='title'>mobile:</span> {{profile.numbers.mobile}}</p>
             {{/if}}

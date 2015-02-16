@@ -1,0 +1,55 @@
+// Variables 
+@import "/packages/styles/variables.import.less";
+
+
+.nav-tabs {
+  border: 2px solid @grey;
+  border-style: none none solid none;
+}
+.nav-tabs > li {
+  font-size: 16px;
+  margin-bottom: -2px;
+  font-family: @raleway-semibold;
+  color: @lt-grey;
+  font-variant: small-caps;
+  text-transform: lowercase;
+  letter-spacing: 0.2em;
+  text-align: center;
+}
+.nav-tabs > li:hover {
+  background-color: transparent;
+}
+.nav-tabs > li > a {
+  margin-left: 0;
+  background-color: transparent;
+  border: 3px solid transparent;
+  border-style: none none solid none;
+  color: @grey;
+  transition: color 350ms ease-out 50ms, border-color 350ms ease-out 50ms;
+}
+.nav-tabs > li > a:hover {
+  color: #a3b3c3;
+  border: 3px solid #a3b3c3;
+  border-style: none none solid none;
+  background-color: transparent;
+}
+.nav-tabs > li.active > a,
+.nav-tabs > li.active > a:hover,
+.nav-tabs > li.active > a:focus {
+  color: #000000;
+  background-color: transparent;
+  border: 3px solid #5bb8d7;
+  border-style: none none solid none;
+}
+.nav-data {
+  color: #5bb8d7;
+}
+.nav-btn {
+  width: 3em;
+  height: 2em;
+}
+@media all and (min-width: 768px) and (max-width: 991px) {
+  .nav-tabs > li > a {
+    padding: 10px 0;
+  }
+}

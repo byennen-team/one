@@ -1,35 +1,49 @@
 <template name="profileNav">
-  <nav class='hidden-xs'>
-    <ul class="nav nav-tabs row m-top-20">
-      <li role="presentation" class="active col-sm-2 raleway-semibold lt-grey text-uppercase text-center spacing-0625">
-        <a data-toggle="tab" href="#section-activity">activity</a>
+  <!-- <nav class='hidden-xs'> -->
+  <nav class='profile-nav'>
+    <ul class="nav nav-tabs row">
+      <li role="presentation" class="active col-sm-2 tab">
+        <a data-toggle="tab" href="#section-activity">
+          <i class="fa fa-align-left"></i>
+          activity
+        </a>
       </li>
-      <li role="presentation" class="col-sm-2 raleway-semibold lt-grey text-uppercase text-center spacing-0625">
-        <a data-toggle="tab" href="#section-about">about</a>
+      <li role="presentation" class="col-sm-2 tab">
+        <a data-toggle="tab" href="#section-about">
+          <i class="fa fa-user"></i>
+          about
+        </a>
       </li>
-      <li role="presentation" class="col-sm-2 raleway-semibold lt-grey text-uppercase text-center spacing-0625">
-        <a data-toggle="tab" href="#section-gallery">gallery</a>
+      <li role="presentation" class="col-sm-2 tab">
+        <a data-toggle="tab" href="#section-gallery">
+          <i class="fa fa-picture-o"></i>
+          gallery
+        </a>
       </li>
-      <li role="presentation" class="col-sm-2 raleway-semibold lt-grey text-uppercase text-center spacing-0625">
-        <!-- TEMPLATE - Number of followers User has in .nav-data	  		 -->
-        <a data-toggle="tab" href="#section-followers">followers <span class='nav-data visible-lg-inline'>{{followersCount}}</span></a>
+      <li role="presentation" class="col-sm-2 tab">
+        <a data-toggle="tab" href="#section-followers">
+          <i class="fa fa-users"></i>
+          followers 
+          <span class='nav-data visible-lg-inline'>{{followersCount}}</span>
+        </a>
       </li>
-      <li role="presentation" class="col-sm-2 raleway-semibold lt-grey text-uppercase text-center spacing-0625">
-        <!-- TEMPLATE - Number of users User is following  in .nav-data 		 -->
-        <a data-toggle="tab" href="#section-following">following <span class='nav-data visible-lg-inline'>{{followingCount}}</span></a>
+      <li role="presentation" class="col-sm-2 hidden-xs">
+        <a data-toggle="tab" href="#section-following">
+          following 
+          <span class='nav-data visible-lg-inline'>{{followingCount}}</span>
+        </a>
       </li>
     </ul>
   </nav>
 
   <!-- dropdown mobile tabs -->
-  <nav class='visible-xs-block'>
+<!--   <nav class='visible-xs-block'>
     <div class="dropdown">
 
       <button class="btn dropdown-toggle btn-accent raleway-semibold white text-uppercase spacing-0625 m-top-20" type="button" id="mobile-nav-dropdown" data-toggle="dropdown" aria-expanded="true">
         menu
       </button>
       <ul class="dropdown-menu" role="menu" aria-labelledby="mobile-nav-dropdown">
-        <!-- <ul class="nav nav-tabs row m-top-20"> -->
         <li role="presentation" class="active col-sm-2 raleway-semibold lt-grey text-uppercase text-center spacing-0625">
           <a data-toggle="tab" href="#section-activity">activity</a>
         </li>
@@ -47,5 +61,5 @@
         </li>
       </ul>
     </div>
-  </nav>
+  </nav> -->
 </template>

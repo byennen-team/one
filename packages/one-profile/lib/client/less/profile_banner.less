@@ -11,6 +11,7 @@
   .name {
     font-family: @raleway-thin;
     font-size: 20px;
+    margin-top: 0.25em;
     color: @white;
   }
   .title {
@@ -20,6 +21,12 @@
     letter-spacing: 0.2em;
     text-transform: lowercase;
   }
+  .address,
+  .phone-listing  {
+    .fa {
+      display: none;
+    }
+  }
   .address-title,
   .phone-title  {
     font-family: @raleway-semibold;
@@ -27,20 +34,11 @@
     font-variant: small-caps;
     text-transform: lowercase;
     letter-spacing: 0.2em;
-    .fa {
-      display: none;
-    }
   }
   .text {
     color: @white;
     font-family: @raleway-light;
   }
-  // .btn:hover,
-  // .btn:focus,
-  // .btn.focus {
-  //   color: #ffffff;
-  //   text-decoration: none;
-  // }
 
   .btn {
     font-size: 14px;
@@ -54,6 +52,12 @@
     border-radius: 3px;
   }
 
+  .dropdown {
+    width: 50%;
+    margin-left: 25%;
+    margin-right: 25%;
+    text-align: center;
+  }
   .status-drop-button {
     font-size: 11px;
     font-size: 1.1rem;
@@ -108,6 +112,7 @@
 // Mobile only
 @media all and (max-width: 767px) {
   .profileBanner {
+    padding: 0;
     .container {
       width: 100%;
     }
@@ -126,34 +131,41 @@
     .name {
       text-align: center;
       margin-bottom: 0;
+      margin-top: 0.5em;
     }
     .title {
       text-align: center;
+      margin-bottom: 0;
+    }
+    .dropdown {
+      margin-bottom: 1em;
     }
     .pipe {
       color: @white;
       font-family: @raleway-thin;
       margin: 0 5px; 
     }
-    .address-title,
-    .phone-title {
-      display: inline-block;
-      .fa {
-        display: inline-block;
-        color: @accent;
-      }
-      .words {
-        display: none;
-      }
-    }
     .address,
     .phone-listing {
       text-align: center;
       .title {
         color: @accent;
+        letter-spacing: 0;
       }
       .text {
         display: inline-block;
+      }
+      .fa {
+        display: inline-block;
+        color: @accent;
+        margin-left: 0.5em;
+      }
+    }
+    .address-title,
+    .phone-title {
+      display: inline-block;
+      .words {
+        display: none;
       }
     }
     .text {
@@ -162,7 +174,7 @@
     .bottom {
       width: 100%;
       background-color: @grey-med-navy;
-      padding-top: 1em;
+      padding: 1em 0;
     }
     .account-settings {
       display: none;
@@ -170,12 +182,23 @@
     .btn {
       width: auto;
       margin: 1em auto;
-      padding: 9px 24px;
+      padding: 6px 35px 8px 35px;
       border-width: 2px;
     }
   }
 }
 
+// Small Phones
+@media all and (max-width: 479px) {
+  .profileBanner {
+    .address,
+    .phone-listing {
+      .text {
+        font-size: 13px;
+      }
+    }
+  }
+}
 // Desktop only
 @media all and (min-width: 768px) {
   .profileBanner {
