@@ -1,64 +1,156 @@
+// Variables 
+@import "/packages/styles/variables.import.less";
+
 .profileBanner {
   margin: 0;
   padding: 0 0 40px 0;
   position: relative;
+  .main-column {
+    margin-top: 70px;
+  }
+  .name {
+    font-family: @raleway-thin;
+    font-size: 20px;
+    color: @white;
+  }
+  .title {
+    font-family: @raleway-semibold;
+    color: @white;
+    font-variant: small-caps;
+    letter-spacing: 0.2em;
+    text-transform: lowercase;
+  }
+  .address-title,
+  .phone-title  {
+    font-family: @raleway-semibold;
+    color: @accent;
+    font-variant: small-caps;
+    text-transform: lowercase;
+    letter-spacing: 0.2em;
+  }
+  .text {
+    color: @white;
+    font-family: @raleway-light;
+  }
+  .btn:hover,
+  .btn:focus,
+  .btn.focus {
+    color: #ffffff;
+    text-decoration: none;
+  }
+
+  .btn {
+    font-size: 11px;
+    font-size: 1.1rem;
+    padding: 9px 24px;
+  }
+
+  .status-drop-button {
+    font-size: 11px;
+    font-size: 1.1rem;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    transition: color 350ms ease-out 50ms;
+  }
+  .status-drop-button .caret {
+    right: 0;
+    position: absolute;
+    top: 0.9em;
+  }
+  .status-drop {
+    position: absolute;
+    width: 18em;
+    left: -1em;
+    padding: 0;
+    border-radius: 0;
+    z-index: 1000;
+  }
+  .status-drop li div {
+    font-size: 11px;
+    font-size: 1.1rem;
+    letter-spacing: 0.25em;
+    padding: 1em;
+    background-color: #e8eaeb;
+    cursor: pointer;
+    transition: background-color 350ms ease-out 50ms;
+  }
+  .status-drop li div:hover {
+    background-color: #cde7ef;
+  }
+  .status-drop .status-other {
+    background-color: #ffffff;
+    cursor: text;
+  }
+  .status-drop .status-other:hover {
+    background-color: #ffffff;
+  }
+
+  .img-responsive-sm {
+    display: block;
+    height: 140px;
+    width: 140px;
+    background-size: cover;
+    background-position: top center;
+  }
 }
 
-.profileBanner .btn:hover,
-.profileBanner .btn:focus,
-.profileBanner .btn.focus {
-  color: #ffffff;
-  text-decoration: none;
+// Mobile only
+@media all and (max-width: 767px) {
+  .profileBanner {
+    .container {
+      width: 100%;
+    }
+    .main-column {
+      margin-top: 10px;
+      padding: 0;
+      .container {
+        padding: 0;
+      }
+    }
+    .img-responsive-sm {
+      margin: 0 auto;
+      height: 90px;
+      width: 90px;
+    }
+    .name {
+      text-align: center;
+      margin-bottom: 0;
+    }
+    .title {
+      text-align: center;
+    }
+    .pipe {
+      color: @white;
+      font-family: @raleway-thin;
+      margin: 0 5px; 
+    }
+    .address-title {
+      display: none;
+    }
+    .address {
+      text-align: center;
+      .text {
+        display: inline-block;
+      }
+    }
+    .text {
+      font-family: @raleway-thin;
+    }
+    .bottom {
+      background-color: @grey-med-navy;
+      width: 100%;
+    }
+
+  }
 }
 
-.profileBanner .btn {
-  font-size: 11px;
-  font-size: 1.1rem;
-  padding: 9px 24px;
-}
-
-.status-drop-button {
-  font-size: 11px;
-  font-size: 1.1rem;
-  background-color: transparent;
-  border: none;
-  cursor: pointer;
-  padding: 0;
-  transition: color 350ms ease-out 50ms;
-}
-.little {
-  font-size: 11px;
-  font-size: 1.1rem;
-}
-.status-drop-button .caret {
-  right: 0;
-  position: absolute;
-  top: 0.9em;
-}
-.status-drop {
-  position: absolute;
-  width: 18em;
-  left: -1em;
-  padding: 0;
-  border-radius: 0;
-  z-index: 1000;
-}
-.status-drop li div {
-  font-size: 11px;
-  font-size: 1.1rem;
-  letter-spacing: 0.25em;
-  padding: 1em;
-  background-color: #e8eaeb;
-  cursor: pointer;
-  transition: background-color 350ms ease-out 50ms;
-}
-.status-drop li div:hover {
-  background-color: #cde7ef;
-}
-.status-drop .status-other {
-  background-color: #ffffff;
-  cursor: text;
-}
-.status-drop .status-other:hover {
-  background-color: #ffffff;
+// Desktop only
+@media all and (min-width: 768px) {
+  .profileBanner {
+    .pipe {
+      display: none;
+    }
+  }
 }

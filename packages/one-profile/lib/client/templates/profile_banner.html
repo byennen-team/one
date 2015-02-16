@@ -1,9 +1,9 @@
 <template name="profileBanner">
   <div class="row navy-bg profileBanner">
-    <div class="col-sm-12 m-top-70px">
+    <div class="col-sm-12 main-column">
       <div class="container">
         <div class="col-sm-2">
-          <img class="img-circle img-responsive-sm" src="{{profile.photoUrl.large}}"/>
+          <div class="img-circle img-responsive-sm" style='background-image: url({{profile.photoUrl.large}})'></div>
         </div>
 
         <div class="col-sm-3 col-md-2">
@@ -26,59 +26,65 @@
           {{! Internal profile }}
           {{/if}}
 
-          <p class='h3 raleway-light white m-top-025'>{{profile.firstName}} {{profile.lastName}}</p>
-          <p class='raleway-semibold white text-uppercase spacing-250 little'>{{profile.title}}</p>
+          <p class='name'>{{profile.firstName}} {{profile.lastName}}</p>
+          <p class='title'>{{profile.title}}</p>
           <a href='' class='raleway-semibold accent text-uppercase spacing-0625 not-for-user'>
             <i class="fa icon-plus-circle fa-lg no-transition"></i>
             add to team
           </a>
         </div>
 
-        <div class="col-sm-2">
-          <p class='raleway-semibold accent text-uppercase spacing-0625'>address</p>
-          <p class='raleway-light white'>575 Madison Ave</p>
-          <p class='raleway-light white'>New York, NY 10022</p>
-        </div>
+        <div class="bottom">
+          
+          <div class="col-sm-2 address">
+            <p class='address-title'>address</p>
+            <p class='text'>575 Madison Ave</p>
+            <span class="pipe">|</span>
+            <p class='text'>New York, NY 10022</p>
+          </div>
 
-        <div class="col-sm-3">
-          <p class='raleway-semibold accent text-uppercase spacing-0625'>phone</p>
-          <p class='raleway-light white'><span class='raleway-semibold text-uppercase spacing-0625'>office:</span> (212) 555-1234</p>
-          {{#if profile.numbers.mobile}}
-            <p class='raleway-light white'><span class='raleway-semibold text-uppercase spacing-0625'>mobile:</span> {{profile.numbers.mobile}}</p>
-          {{/if}}
-        </div>
-
-        <div class="col-sm-2 col-md-3">
-          <div class="right-0">
-            {{#if isMyProfile}}
-            <a href="{{pathFor 'accountSettings'}}">
-              <button class='btn btn-block btn-small btn-accent raleway-semibold white text-uppercase spacing-0625 small'>account settings</button>
-            </a>
-            {{else}}
-              {{#unless isMyProfile}}
-                {{#if isLoggedIn}}
-                  {{#if isFollowing}}
-                    <button class='btn btn-block btn-small btn-accent raleway-semibold white text-uppercase spacing-0625 small un-follow'>unfollow</button>
-                  {{else}}
-                    <button class='btn btn-block btn-small btn-accent raleway-semibold white text-uppercase spacing-0625 small follow'>follow</button>
-                  {{/if}}
-                {{/if}}
-              {{/unless}}
+          <div class="col-sm-3">
+            <p class='phone-title'>phone</p>
+            <p class='text'><span class='title'>office:</span> (212) 555-1234</p>
+            {{#if profile.numbers.mobile}}
+              <p class='text'><span class='title'>mobile:</span> {{profile.numbers.mobile}}</p>
             {{/if}}
-            <a href="#">
-              {{#if isPrivate}}
-                <button class='btn btn-block btn-small btn-accent-border raleway-semibold white text-uppercase spacing-0625 m-top-08 public'>public profile</button>
+          </div>
+
+          <div class="col-sm-2 col-md-3">
+            <div class="right-0">
+              {{#if isMyProfile}}
+              <a href="{{pathFor 'accountSettings'}}">
+                <button class='btn btn-block btn-small btn-accent raleway-semibold white text-uppercase spacing-0625 small'>account settings</button>
+              </a>
               {{else}}
-                {{#if isLoggedIn}}
-                  <button class='btn btn-block btn-small btn-accent-border raleway-semibold white text-uppercase spacing-0625 m-top-08 private'>private profile</button>
-                {{/if}}
                 {{#unless isMyProfile}}
-                  <button id="send-message-btn" class='btn btn-block btn-small btn-accent raleway-semibold white text-uppercase spacing-125 small'>send message</button>
+                  {{#if isLoggedIn}}
+                    {{#if isFollowing}}
+                      <button class='btn btn-block btn-small btn-accent raleway-semibold white text-uppercase spacing-0625 small un-follow'>unfollow</button>
+                    {{else}}
+                      <button class='btn btn-block btn-small btn-accent raleway-semibold white text-uppercase spacing-0625 small follow'>follow</button>
+                    {{/if}}
+                  {{/if}}
                 {{/unless}}
               {{/if}}
-            </a>
+              <a href="#">
+                {{#if isPrivate}}
+                  <button class='btn btn-block btn-small btn-accent-border raleway-semibold white text-uppercase spacing-0625 m-top-08 public'>public profile</button>
+                {{else}}
+                  {{#if isLoggedIn}}
+                    <button class='btn btn-block btn-small btn-accent-border raleway-semibold white text-uppercase spacing-0625 m-top-08 private'>private profile</button>
+                  {{/if}}
+                  {{#unless isMyProfile}}
+                    <button id="send-message-btn" class='btn btn-block btn-small btn-accent raleway-semibold white text-uppercase spacing-125 small'>send message</button>
+                  {{/unless}}
+                {{/if}}
+              </a>
+            </div>
           </div>
+
         </div>
+
       </div>
     </div>
   </div>
