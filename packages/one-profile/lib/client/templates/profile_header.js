@@ -1,26 +1,6 @@
-var goScroll = function(target, trigger){
-  trigger.on( 'click', function(){
-    if (target.length) {
-      $("html").velocity("scroll", {
-        offset: target.offset().top,
-        duration: 800,
-        easing: "easeInSine",
-        mobileHA: false
-      });
-      return false;
-    }
-  });
-};
 
 Template.profileHeader.rendered = function () {
   $('body').addClass('public-profile');
-
-  $(document).ready(function($) {
-    goScroll($('#section-about'), $('.nav-about'));
-    goScroll($('#listings'), $('.nav-properties'));
-    goScroll($('#contact'), $('.nav-contact'));
-    goScroll($('#contact'), $('#send-message-btn'));
-  });
 };
 
 Template.profileHeader.helpers({
@@ -49,3 +29,29 @@ Template.profileHeader.helpers({
     return (this.index === 0)?'active':'';
   }
 });
+
+Template.profileHeader.events({
+  'click .nav-about': function () {
+    var scrollTarget = $( "#section-about" ).offset();
+    $( "#transitioner-1" ).animate( { scrollTop: scrollTarget.top } );
+  },
+
+  'click .nav-properties': function () {
+    var scrollTarget = $( "#listings" ).offset();
+    $( "#transitioner-1" ).animate( { scrollTop: scrollTarget.top } );
+  },
+
+  'click .nav-contact, click #send-message-btn': function () {
+    var scrollTarget = $( "#contact" ).offset();
+    $( "#transitioner-1" ).animate( { scrollTop: scrollTarget.top } );
+  }
+
+});
+
+
+
+
+
+
+
+

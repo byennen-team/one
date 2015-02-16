@@ -16,11 +16,40 @@
 		border-bottom: solid 1px @darker-purple;
 		overflow: hidden;
 	}
+	.add-files-input {
+		float: right;
+		font-size: 16px;
+		margin: 0.85em 5% 0 0; 
+		color: @accent;
+		font-family: @raleway-bold;
+		text-transform: lowercase;
+		font-variant: small-caps;
+		letter-spacing: 0.2em;
+		cursor: pointer;
+		transition: none;
+		.fa {
+			color: @accent;
+			vertical-align: bottom;
+			font-size: 15px;
+			transform: none;
+		}
+	}
 	.library-files {
 		position: relative;
 		height: 50%;
 		overflow: hidden;
 		z-index: 1;
+		.shadow {
+			position: absolute;
+			top: 0;
+			bottom: 6px;
+			left: 0;
+			right: 6px;
+			z-index: 0;
+			opacity: 0;
+			border: 3px solid @accent;
+			pointer-events: none;
+		}
 	}
 	.library-files:after {
 		content: "";

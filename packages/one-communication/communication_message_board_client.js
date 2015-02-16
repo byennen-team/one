@@ -119,6 +119,14 @@ Template.communicationMessageBoardSleeve.helpers({
       limit: 1
     });
     return (latestUnreadMessage && latestUnreadMessage._id === this._id);
+  },
+// TODO: returns true if current channel is a room
+  roomChannel: function () {
+    return true;
+  },
+// TODO: returns true if current channel is a task
+  taskChannel: function () {
+    return false;
   }
 });
 
