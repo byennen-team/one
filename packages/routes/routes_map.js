@@ -152,6 +152,10 @@ Router.route('/:slug', {
       Meteor.subscribe('socialStatuses', user._id);
     }
 
+    if(user && user.teamMembers) {
+      Meteor.subscribe('userProfiles', user.teamMembers);
+    }
+
     return user;
   },
   waitOn: function () {

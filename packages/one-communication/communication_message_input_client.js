@@ -17,6 +17,16 @@ Template.messageInput.rendered = function(){
   });
 };
 
+Template.messageInput.helpers({
+// TODO: If channel has welcome text, return channel type, else return false.
+//    Current channels "task" or "room". String or boolean.
+  channel: function () {
+    return "task";
+    // return "room";
+    // return false; 
+  }
+});
+
 Template.messageInput.events({
 	// toggle the menu on button click
 	'click #communication-message-input-btn': function(){

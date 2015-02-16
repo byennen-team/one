@@ -20,5 +20,9 @@
   "FORECAST_API_KEY": "14825320e632a4c6c1aa9cc827bc7a94",
   "GOOGLE_API_KEY": "AIzaSyBf1mUne6CU0ZGFGOEwCv4wyojCl0XRzO4",
   "HTTP_USERNAME": "elliman",
-  "HTTP_PASSWORD": "elliman"
+  "HTTP_PASSWORD": "elliman",
+  "kadira": {
+    "appId": "zsp3HoHmghJMZ5tZ6",
+    "appSecret": "d93d4315-05f2-4282-a0b1-d0f532768c37"
+  }
 }
