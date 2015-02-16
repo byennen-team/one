@@ -75,7 +75,7 @@ FileTools.resizeTemp = function(size, callback) {
       width: resizeWidths[size],
       height: resizeHeights[size],
       quality: 1,
-      gravity: "Center"
+      gravity: "North"
     }, Meteor.bindEnvironment(function(err) {
       if (err) {
         console.log('resized error: ', err);
