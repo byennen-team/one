@@ -80,12 +80,12 @@ fade =
 Transitioner.transition
   fromRoute: Routes.LOGIN
   toRoute: Routes.DASHBOARD
-  velocityAnimaton: fade
+  velocityAnimation: fade
 
 Transitioner.transition
   toRoute: Routes.LOGIN
   fromRoute: Routes.DASHBOARD
-  velocityAnimaton: fade
+  velocityAnimation: fade
 
 
 slideRightBetween = [Routes.DASHBOARD,
@@ -108,6 +108,6 @@ for route in slideRightBetween
     Transitioner.transition
       fromRoute: route
       toRoute: other
-      velocityAnimaton:
+      velocityAnimation:
         in: 'transition.slideRightIn'
         out: 'transition.slideLeftOut'
