@@ -7,9 +7,17 @@
 	height: 70px;
 	bottom: 0;
 	background-color: @white;
-	border: 2px solid @lt-dk-grey;
-	border-style: solid none none none;
+	border-top: 2px solid @lt-dk-grey;
 	z-index: 2;
+	.help-btn {
+		position: absolute;
+		font-size: 16px;
+		color: @accent;
+		left: 1em;
+		top: 50%;
+		margin-top: -10px;
+		cursor: pointer;
+	}
 	.message-btn {
 		float: left;
 		background-color: @lt-blue-grey;
@@ -61,10 +69,14 @@
 	.input {
 		font-size: 16px;
 		float: left;
-		margin: 16px;
+		margin: 16px 0 16px 16px;
+		width: 60%;
 		padding: 0.5em 1em 0.5em 5px;
 		color: @blue-grey;
 		border: none;
+	}
+	.input:focus {
+		box-shadow: none;
 	}
 	.dropdown {
 		width: auto;
@@ -113,29 +125,18 @@
 	.new-post-form {
 		display: none;
 	}
+	.flash {
+		position: absolute;
+		top: 0;
+		bottom: 0;
+		left: 0;
+		right: 0;
+		z-index: 0;
+		opacity: 0;
+		border: 3px solid @accent;
+		pointer-events: none;
+	}
 }
-
-// // alternate styles when New Post window is open
-// .message-board.new-post {
-// 	.sleeve {
-// 		padding-bottom: 435px;
-// 	}
-// 	.message-input {
-// 		height: 370px;
-// 	}
-// 	.message-btn {
-// 		margin-top: 30px;
-// 		background-color: @lime;
-// 		color: @white;
-// 		.fa-bars::before {
-// 			content: "\f044";
-// 			font-size: 22px;
-// 		}
-// 	}
-// 	.input {
-// 		display: none;
-// 	}
-// }
 
 // alternate styles when tasks are enabled
 .tasks {
@@ -160,5 +161,21 @@
 	}
 	.fa-bars::before {
 		content: "\f0c6";
+	}
+}
+
+
+@media all and (min-width : 1200px) and (max-width: 1400px) {
+	.message-input {
+		.input {
+			width: 70%;
+		}
+	}
+}
+@media all and (min-width : 1400px) {
+	.message-input {
+		.input {
+			width: 79%;
+		}
 	}
 }

@@ -97,6 +97,56 @@
 	.message.user {
 		background-color: @lt-grey;
 	}
+	.message.welcome { // for new channel welcome message   
+		.avatar {
+			width: 55px;
+			height: 55px;
+			border: solid 3px @sky-blue;
+			border-radius: 50%;
+			text-align: center;
+			.fa {
+				font-size: 22px;
+				margin-top: 15px;
+				color: @dk-periwinkle;
+			}
+		}
+		.message-body {
+			h4 {
+				font-size: 16px;
+				color: @med-navy;
+				font-family: @raleway-semibold;
+			}
+			.name {
+				color: @sky-blue;
+				margin-top: 0.5em;
+				margin-bottom: 2em;
+			}
+			.text {
+				margin-left: 2em;
+				color: @med-navy;
+			}
+			.bold {
+				font-family: @raleway-bold;
+				cursor: pointer;
+			}
+			.sub-header {
+				font-size: 16px;
+				margin-top: 1.5em;
+				font-family: @raleway-bold;
+				cursor: pointer;
+				.fa {
+					margin-right: 0.75em;
+				}
+				.icon-addteam {
+					margin-left: 0.75em;
+					vertical-align: middle;
+				}
+			}
+			.bot {
+				color: @sky-blue;
+			}
+		}
+	}
 	.new-message-bar {
 		width: 96%;
 		margin: 1em 2%;
