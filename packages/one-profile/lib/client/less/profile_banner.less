@@ -27,22 +27,31 @@
     font-variant: small-caps;
     text-transform: lowercase;
     letter-spacing: 0.2em;
+    .fa {
+      display: none;
+    }
   }
   .text {
     color: @white;
     font-family: @raleway-light;
   }
-  .btn:hover,
-  .btn:focus,
-  .btn.focus {
-    color: #ffffff;
-    text-decoration: none;
-  }
+  // .btn:hover,
+  // .btn:focus,
+  // .btn.focus {
+  //   color: #ffffff;
+  //   text-decoration: none;
+  // }
 
   .btn {
-    font-size: 11px;
-    font-size: 1.1rem;
+    font-size: 14px;
+    margin-top: 0.8em;
     padding: 9px 24px;
+    font-variant: small-caps;
+    text-transform: lowercase;
+    letter-spacing: 0.2em;
+    color: @white;
+    border: 3px solid @accent;
+    border-radius: 3px;
   }
 
   .status-drop-button {
@@ -126,11 +135,23 @@
       font-family: @raleway-thin;
       margin: 0 5px; 
     }
-    .address-title {
-      display: none;
+    .address-title,
+    .phone-title {
+      display: inline-block;
+      .fa {
+        display: inline-block;
+        color: @accent;
+      }
+      .words {
+        display: none;
+      }
     }
-    .address {
+    .address,
+    .phone-listing {
       text-align: center;
+      .title {
+        color: @accent;
+      }
       .text {
         display: inline-block;
       }
@@ -139,10 +160,19 @@
       font-family: @raleway-thin;
     }
     .bottom {
-      background-color: @grey-med-navy;
       width: 100%;
+      background-color: @grey-med-navy;
+      padding-top: 1em;
     }
-
+    .account-settings {
+      display: none;
+    }
+    .btn {
+      width: auto;
+      margin: 1em auto;
+      padding: 9px 24px;
+      border-width: 2px;
+    }
   }
 }
 

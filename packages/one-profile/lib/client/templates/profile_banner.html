@@ -37,14 +37,20 @@
         <div class="bottom">
           
           <div class="col-sm-2 address">
-            <p class='address-title'>address</p>
+            <p class='address-title'>
+              <i class="fa fa-building-o"></i>
+              <span class="words">address</span>
+            </p>
             <p class='text'>575 Madison Ave</p>
             <span class="pipe">|</span>
             <p class='text'>New York, NY 10022</p>
           </div>
 
-          <div class="col-sm-3">
-            <p class='phone-title'>phone</p>
+          <div class="col-sm-3 phone-listing">
+            <p class='phone-title'>
+              <i class="fa fa-phone"></i>
+              <span class="words">phone</span>
+            </p>
             <p class='text'><span class='title'>office:</span> (212) 555-1234</p>
             {{#if profile.numbers.mobile}}
               <p class='text'><span class='title'>mobile:</span> {{profile.numbers.mobile}}</p>
@@ -54,29 +60,29 @@
           <div class="col-sm-2 col-md-3">
             <div class="right-0">
               {{#if isMyProfile}}
-              <a href="{{pathFor 'accountSettings'}}">
-                <button class='btn btn-block btn-small btn-accent raleway-semibold white text-uppercase spacing-0625 small'>account settings</button>
+              <a class="account-settings" href="{{pathFor 'accountSettings'}}">
+                <button class='btn btn-block btn-primary'>account settings</button>
               </a>
               {{else}}
                 {{#unless isMyProfile}}
                   {{#if isLoggedIn}}
                     {{#if isFollowing}}
-                      <button class='btn btn-block btn-small btn-accent raleway-semibold white text-uppercase spacing-0625 small un-follow'>unfollow</button>
+                      <button class='btn btn-block btn-primary un-follow'>unfollow</button>
                     {{else}}
-                      <button class='btn btn-block btn-small btn-accent raleway-semibold white text-uppercase spacing-0625 small follow'>follow</button>
+                      <button class='btn btn-block btn-primary follow'>follow</button>
                     {{/if}}
                   {{/if}}
                 {{/unless}}
               {{/if}}
               <a href="#">
                 {{#if isPrivate}}
-                  <button class='btn btn-block btn-small btn-accent-border raleway-semibold white text-uppercase spacing-0625 m-top-08 public'>public profile</button>
+                  <button class='btn btn-block btn-default public'>public profile</button>
                 {{else}}
                   {{#if isLoggedIn}}
-                    <button class='btn btn-block btn-small btn-accent-border raleway-semibold white text-uppercase spacing-0625 m-top-08 private'>private profile</button>
+                    <button class='btn btn-block btn-default private'>private profile</button>
                   {{/if}}
                   {{#unless isMyProfile}}
-                    <button id="send-message-btn" class='btn btn-block btn-small btn-accent raleway-semibold white text-uppercase spacing-125 small'>send message</button>
+                    <button id="send-message-btn" class='btn btn-block btn-primary'>send message</button>
                   {{/unless}}
                 {{/if}}
               </a>
