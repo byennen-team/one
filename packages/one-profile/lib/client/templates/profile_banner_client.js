@@ -17,6 +17,7 @@ Template.profileBanner.helpers({
   isFollowing: function (){
     return Profile.isFollowing(Profile.currentUser());
   }
+  
 });
 
 Template.profileBanner.events({

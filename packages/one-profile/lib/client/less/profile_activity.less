@@ -1,7 +1,12 @@
+// Variables 
+@import "/packages/styles/variables.import.less";
+
 .profile {
+
   .add-post {
     border: 1px solid #d7dfed;
-    border-radius: 5px;
+    border-radius: 3px;
+    margin-top: 5px;
     .form-control {
       color: #999;
       font-family: RalewaySemibold, Verdana, Geneva, sans-serif;
@@ -113,9 +118,12 @@
     color: #849aaf;
   }
 
+  .post {
+    margin-top: 2em;
+  }
   .post .post-body {
     border: 1px solid #d7dfed;
-    border-radius: 5px;
+    border-radius: 3px;
     background-color: #ffffff;
     overflow: hidden;
   }
@@ -141,6 +149,18 @@
     border: 1px solid #d7dfed;
     border-style: solid none none none;
     padding: 0.5em 1em;
+  }
+  .listing-text {
+    .name {
+      font-size: 17px;
+      font-family: @raleway-light;
+      color: @accent;
+      margin-top: 0;
+      margin-bottom: 0;
+    }
+    .type {
+      font-family: @raleway-regular;
+    }
   }
   .team-connector {
     position: relative;
@@ -206,7 +226,7 @@
     position: relative;
     width: 100%;
     border: 1px solid #d7dfed;
-    border-radius: 5px;
+    border-radius: 3px;
     overflow: hidden;
   }
   .social-media .comment-box input[type=text]:focus,
@@ -317,6 +337,37 @@
     border-top: 5px solid transparent;
     border-bottom: 5px solid transparent;
     border-right: 5px solid;
+  }
+
+  // Mobile
+  @media all and (max-width: 767px) {
+    .post {
+      margin-top: 5px;
+    }
+    .listing-image {
+      margin-top: 64px;
+      height: 200px;
+      width: 100%;
+    }
+    .listing-text {
+      font-size: 12px;
+      width: 100%;
+      .avatar {
+        position: absolute;
+      }
+      .name {
+        font-size: 15px;
+        margin-left: 50px;
+      }
+      .type {
+        margin-left: 50px;
+      }
+      .mobile-timestamp {
+        margin-left: 50px;
+        font-variant: small-caps;
+        text-transform: lowercase;
+      }
+    }
   }
   @media all and (min-width: 768px) and (max-width: 991px) {
     .activity-sidebar {

@@ -11,9 +11,15 @@
 // Mobile
 @media all and (max-width: 767px) {
   .profile-nav {
+    position: relative;
+    padding-bottom: 0.5em;
+    background-color: @lt-grey;
+    border-top: solid 2px @lt-med-grey;
     .nav-tabs {
       border: none;
       margin-top: 1em;
+      padding-left: 10px;
+      padding-right: 10px;
     }
     .tab {
       float: left;
@@ -29,8 +35,10 @@
         padding: 0;
         text-align: center;
         .fa {
+          display: block;
           font-size: 18px;
           text-align: center;
+          margin-bottom: 4px;
         }
       }
     }
@@ -43,6 +51,15 @@
         }
       }
     }
+  }
+  .profile-nav.sticky {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    padding-bottom: 0.5em;
+    background-color: @lt-grey;
+    z-index: 10;
   }
 }
 // Desktop only

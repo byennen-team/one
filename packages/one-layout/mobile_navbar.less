@@ -1,0 +1,29 @@
+// Variables 
+@import "/packages/styles/variables.import.less";
+
+
+.navbar-mobile {
+  display: none;
+  height: 40px;
+  background-color: transparent;
+  .menu-link,
+  .settings {
+    font-size: 20px;
+    float: left;
+    padding-top: 10px;
+    width: 40px;
+    text-align: center;
+    color: @white;
+    cursor: pointer;
+  }
+  .settings {
+    float: right;
+  }
+}
+
+// Mobile Only
+@media all and (max-width: 767px) {
+  .navbar-mobile {
+    display: block;
+  }
+}

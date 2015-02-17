@@ -1,3 +1,6 @@
+// Variables 
+@import "/packages/styles/variables.import.less";
+
 .profile {
   background-color: #f4f5f6;
   overflow-y: scroll;
@@ -5,6 +8,9 @@
   //-webkit-transform: translateZ(0); breaks modals in chrome
   height: 100%;
   min-height: 100%;
+  .profile-container {
+    padding-bottom: 4em;
+  }
   .nav-box {
     position: absolute;
     width: 70%;
@@ -87,6 +93,18 @@
     font-size: 12px;
     letter-spacing: 0.2em;
     padding: 11px 12px 9px 12px;
+  }
+  @media all and (max-width: 767px) {
+    .profile-container {
+      padding-bottom: 4em;
+      padding-left: 0;
+      padding-right: 0;
+    }
+    .tab-content {
+      padding-left: 5px;
+      padding-right: 5px;
+      background-color: @lt-med-grey;
+    }
   }
   @media all and (max-width: 480px) {
     .info-header {

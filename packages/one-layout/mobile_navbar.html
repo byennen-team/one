@@ -1,0 +1,12 @@
+<template name="mobileNavbar">
+  <div class="navbar-mobile">
+    <a href="{{last}}" class="menu-link">
+      <i class="fa icon-caret-left"></i>
+    </a>
+    {{#if userProfile}}
+      <a href="/account-settings" class="settings">
+        <i class="fa fa-gear"></i>
+      </a>
+    {{/if}}
+  </div>
+</template>

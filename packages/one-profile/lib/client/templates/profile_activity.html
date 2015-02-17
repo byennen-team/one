@@ -1,7 +1,7 @@
 <template name="profileActivity">
-  <section id="section-activity" class="tab-pane fade in active row m-top-25">
+  <section id="section-activity" class="tab-pane fade in active row">
 
-    <div class="col-sm-7 col-sm-offset-1 m-top-15 user-only">
+    <div class="col-sm-7 col-sm-offset-1 user-only">
       <!-- TEMPLATE - Form needs to be plugged in  		 -->
       <form role="form" class='add-post not-lt-grey-bg'>
         <div class="form-group">
@@ -145,10 +145,10 @@
     </div>
 
 
-    <div class="post post-listing col-sm-7 col-sm-offset-1 m-top-20">
-      <!-- TEMPLATE - Post date		 -->
-      <p class='raleway-semibold auto-width m-left-05 text-uppercase pull-left'>2 hours ago</p>
-      <div class="pull-right">
+    <div class="post post-listing col-sm-7 col-sm-offset-1">
+      <!-- TODO - Post date		 -->
+      <p class='raleway-semibold auto-width m-left-05 text-uppercase pull-left hidden-xs'>{{timestamp}}</p>
+      <div class="pull-right hidden-xs">
         <span class="sr-only">Listing:</span>
         <i class="fa icon-listing fa-lg purple"></i>
       </div>
@@ -156,15 +156,22 @@
 
       <div class="post-body">
         <div class='row no-gutter relative'>
-          <div class="col-sm-6">
+
+          <div class="col-sm-6 listing-image full-height pull-right">
+            <!-- TEMPLATE - Post image url in style        -->
+            <div class="full-bg-img" style="background-image: url(../../images/profile/post-1.jpg);"></div>
+          </div>
+
+          <div class="col-sm-6 listing-text pull-left">
             <div class="p-all-10">
               <div class="avatar pull-left">
                 <!-- TEMPLATE - Post author's avatar in SRC	  		 -->
                 <img class="img-circle img-responsive" src="../../images/profile/avatar.jpg" />
               </div>
               <!-- TEMPLATE - Post author's name  		 -->
-              <p class='h4 raleway-light accent m-top-0 m-bottom-0'>Marie Espinal</p>
-              <p class='raleway-regular'>posted a <span class='raleway-semibold navy'>New Listing</span></p>
+              <p class='name'>Marie Espinal</p>
+              <p class='type'>posted a <span class='raleway-semibold navy'>New Listing</span></p>
+              <p class="mobile-timestamp visible-xs-block">{{timestamp}}</p>
               <!-- TEMPLATE - Listing price  		 -->
               <p class='h1 raleway-light accent m-top-20'>$875,000</p>
               <!-- TEMPLATE - Listing address  		 -->
@@ -194,10 +201,7 @@
               </div>
             </div>
           </div>
-          <div class="col-sm-6 full-height">
-            <!-- TEMPLATE - Post image url in style	  		 -->
-            <div class="full-bg-img" style="background-image: url(../../images/profile/post-1.jpg);"></div>
-          </div>
+
         </div>
         <!-- TEMPLATE - Form needs to be plugged in  		 -->
         <form role="form" class='comment-box'>
@@ -267,7 +271,14 @@
 
       <div class="post-body">
         <div class='row no-gutter relative'>
-          <div class="col-sm-6">
+
+          <div class="col-sm-6 listing-image full-height pull-right">
+            <!-- TEMPLATE - Post image url in style        -->
+            <div class="full-bg-img" style="background-image: url(../../images/profile/post-2.jpg);"></div>
+          </div>
+        </div>
+          
+          <div class="col-sm-6 listing-text pull-left">
             <div class="p-all-10">
               <div class="avatar pull-left">
                 <!-- TEMPLATE - Post author's avatar in SRC	  		 -->
@@ -305,11 +316,6 @@
               </div>
             </div>
           </div>
-          <div class="col-sm-6 full-height">
-            <!-- TEMPLATE - Post image url in style	  		 -->
-            <div class="full-bg-img" style="background-image: url(../../images/profile/post-2.jpg);"></div>
-          </div>
-        </div>
 
         <div class="comment not-lt-grey-bg">
           <div class="avatar pull-left">
@@ -341,7 +347,13 @@
 
       <div class="post-body">
         <div class='row no-gutter relative'>
-          <div class="col-sm-6">
+
+          <div class="col-sm-6 listing-image full-height pull-right">
+            <!-- TEMPLATE - Post image url in style        -->
+            <div class="full-bg-img" style="background-image: url(../../images/profile/post-3.jpg);"></div>
+          </div>
+          
+          <div class="col-sm-6 listing-text pull-left">
             <div class="p-all-10">
               <div class="avatar pull-left">
                 <!-- TEMPLATE - Post author's avatar in SRC	  		 -->
@@ -369,10 +381,7 @@
               </div>
             </div>
           </div>
-          <div class="col-sm-6 full-height">
-            <!-- TEMPLATE - Post image url in style	  		 -->
-            <div class="full-bg-img" style="background-image: url(../../images/profile/post-3.jpg);"></div>
-          </div>
+
         </div>
 
         <div class="comment not-lt-grey-bg">
