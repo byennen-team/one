@@ -1,0 +1,124 @@
+<template name="profileAddTeam">
+
+  <div class="modal fade" id="add-team-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header accent-bg">
+          <button type="button" class="close" data-dismiss="modal">
+            <span class="raleway-light white" aria-hidden="true">X</span>
+            <span class="sr-only">Close</span>
+          </button>
+          <h4 class="modal-title raleway-semibold white text-uppercase spacing-250 m-left-05" id="exampleModalLabel">Add a Team Member</h4>
+        </div>
+        <div class="modal-body">
+          <!-- TEMPLATE - Add Team member modal - searchfield      -->
+          <form role="form">
+            <div class="form-group">
+              <i class="fa fa-search fa-lg accent"></i>
+              <input type="text" class="h4 form-control not-lt-grey-bg accent-placeholder" id="add-team-search" placeholder='Search users to add to your team...' />
+            </div>
+          </form>
+
+          <!-- TEMPLATE - Populate potential team members    -->
+          <!-- TEMPLATE - Add class 'on-team' if Person is in User's network     -->
+          <div class="namecard cornflower-underline m-top-10">
+            <div class="avatar pull-left">
+              <!-- TEMPLATE - Potential team member's avatar(color) - url in src     100x100px     -->
+              <img class="img-circle team-img pull-left m-right-10" src="../../images/profile/edilyn-color.jpg" />
+            </div>
+            <!-- TEMPLATE - Potential team member's name     -->
+            <p class='h3 m-left-10 raleway-light text m-top-05 m-bottom-025 auto-width inline-block m-bottom-0'>Edilyn Abeleda</p>
+            <!-- TEMPLATE - Potential team member's title  - shortened to actual function (?)    -->
+            <br/>
+            <p class='h6 m-left-20 raleway-light accent text-uppercase spacing-125 m-top-0 m-bottom-025 lh-180 auto-width inline-block'>Agent</p>
+            <!-- TEMPLATE - Add to team functionality   - JS event profile.js line 195ish      -->
+            <a href="#" class='add m-right-25 pull-right'>
+              <i class="fa icon-plus-circle fa-lg accent"></i>
+            </a>
+            <!-- TEMPLATE - Remove from team functionality  - JS event profile.js line 198ish      -->
+            <a href="#" class='remove m-right-10 pull-right raleway-semibold accent text-uppercase spacing-0625'>
+              <p class='raleway-semibold periwinkle text-uppercase spacing-125 no-transition text-center'>remove</p>
+            </a>
+          </div>
+          <div class='clearfix'></div>
+          <!-- repeated for style      -->
+          <div class="on-team namecard cornflower-underline m-top-10">
+            <div class="avatar pull-left">
+              <img class="img-circle team-img pull-left m-right-10" src="../../images/profile/mike-color.jpg" />
+            </div>
+            <p class='h3 m-left-10 raleway-light text m-top-05 m-bottom-025 auto-width inline-block m-bottom-0'>Mike Allen</p>
+            <br/>
+            <p class='h6 m-left-20 raleway-light accent text-uppercase spacing-125 m-top-0 m-bottom-025 auto-width inline-block lh-180'>Agent</p>
+            <a href="#" class='add m-right-25 pull-right'>
+              <i class="fa icon-plus-circle fa-lg accent"></i>
+            </a>
+            <a href="#" class='remove m-right-10 raleway-semibold accent text-uppercase spacing-0625 pull-right'>
+              <p class='raleway-semibold periwinkle text-uppercase spacing-125 no-transition text-center'>remove</p>
+            </a>
+          </div>
+          <div class='clearfix'></div>
+          <div class="namecard cornflower-underline m-top-10">
+            <div class="avatar pull-left">
+              <img class="img-circle team-img pull-left m-right-10" src="../../images/profile/terry-color.jpg" />
+            </div>
+            <p class='h3 m-left-10 raleway-light text m-top-05 m-bottom-025 auto-width inline-block m-bottom-0'>Terry Bankey</p>
+            <br/>
+            <p class='h6 m-left-20 raleway-light accent text-uppercase spacing-125 m-top-0 m-bottom-025 auto-width inline-block lh-180'>Agent</p>
+            <a href="#" class='add m-right-25 pull-right'>
+              <i class="fa icon-plus-circle fa-lg accent"></i>
+            </a>
+            <a href="#" class='remove m-right-10 raleway-semibold accent text-uppercase spacing-0625 pull-right'>
+              <p class='raleway-semibold periwinkle text-uppercase spacing-125 no-transition text-center'>remove</p>
+            </a>
+          </div>
+          <div class='clearfix'></div>
+          <div class="namecard cornflower-underline m-top-10">
+            <div class="avatar pull-left">
+              <img class="img-circle team-img pull-left m-right-10" src="../../images/profile/mike-color.jpg" />
+            </div>
+            <p class='h3 m-left-10 raleway-light text m-top-05 m-bottom-025 auto-width inline-block m-bottom-0'>Paul Basile</p>
+            <br/>
+            <p class='h6 m-left-20 raleway-light accent text-uppercase spacing-125 m-top-0 m-bottom-025 auto-width inline-block lh-180'>Broker</p>
+            <a href="#" class='add m-right-25 pull-right'>
+              <i class="fa icon-plus-circle fa-lg accent"></i>
+            </a>
+            <a href="#" class='remove m-right-10 raleway-semibold accent text-uppercase spacing-0625 pull-right'>
+              <p class='raleway-semibold periwinkle text-uppercase spacing-125 no-transition text-center'>remove</p>
+            </a>
+          </div>
+          <div class='clearfix'></div>
+          <div class="namecard on-team cornflower-underline m-top-10">
+            <div class="avatar pull-left">
+              <img class="img-circle team-img pull-left m-right-10" src="../../images/profile/hakeem-color.jpg" />
+            </div>
+            <p class='h3 m-left-10 raleway-light text m-top-05 m-bottom-025 auto-width inline-block m-bottom-0'>Hakeem Folami</p>
+            <br/>
+            <p class='h6 m-left-20 raleway-light accent text-uppercase spacing-125 m-top-0 m-bottom-025 auto-width inline-block lh-180'>Real Estate Salesperson</p>
+            <a href="#" class='add m-right-25 pull-right'>
+              <i class="fa icon-plus-circle fa-lg accent"></i>
+            </a>
+            <a href="#" class='remove m-right-10 raleway-semibold accent text-uppercase spacing-0625 pull-right'>
+              <p class='raleway-semibold periwinkle text-uppercase spacing-125 no-transition text-center'>remove</p>
+            </a>
+          </div>
+          <div class='clearfix'></div>
+          <div class="namecard cornflower-underline m-top-10">
+            <div class="avatar pull-left">
+              <img class="img-circle team-img pull-left m-right-10" src="../../images/profile/dottie-color.jpg" />
+            </div>
+            <p class='h3 m-left-10 raleway-light text m-top-05 m-bottom-025 auto-width inline-block m-bottom-0'>Dottie Herman</p>
+            <br/>
+            <p class='h6 m-left-20 raleway-light accent text-uppercase spacing-125 m-top-0 m-bottom-025 auto-width inline-block lh-180'>CEO &amp; President</p>
+            <a href="#" class='add m-right-25 pull-right'>
+              <i class="fa icon-plus-circle fa-lg accent"></i>
+            </a>
+            <a href="#" class='remove m-right-10 raleway-semibold accent text-uppercase spacing-0625 pull-right'>
+              <p class='raleway-semibold periwinkle text-uppercase spacing-125 no-transition text-center'>remove</p>
+            </a>
+          </div>
+          <div class='clearfix'></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</template> 

@@ -1,223 +1,107 @@
 <template name="profileAbout">
   <section id="section-about" class="tab-pane section-about row">
-    <div class="col-sm-6 col-sm-offset-1 m-top-25 text-justify">
-      <!-- TEMPLATE - User's first name 		 -->
-      <p class='raleway-semibold pull-left auto-width accent m-top-025 text-uppercase spacing-125'>About {{profile.firstName}}</p>
-      <!-- TEMPLATE - Plug in edit functionality 	- line 154 (ish) in profile.js	 -->
-      <div id='edit-bio' class="pull-right user-only pointer">
-        <span class="sr-only">Edit</span>
-        <i class="fa fa-pencil grey"></i>
+    <div class="col-sm-6 col-sm-offset-1 about-text">
+      <div class="about-tile">
+        <p class='name'>About {{profile.firstName}}</p>
+        <!-- TODO: - Plug in edit functionality 	- line 154 (ish) in profile.js	 -->
+        <div id='edit-bio' class="pull-right user-only pointer">
+          <span class="sr-only">Edit</span>
+          <i class="fa fa-pencil grey"></i>
+        </div>
+
+        <button id='edit-bio-save' class='btn btn-block btn-small btn-grey raleway-semibold white text-uppercase spacing-125 small pull-right auto-width m-left-20'>save</button>
+
+        <p id='edit-bio-cancel' class='raleway-semibold grey text-uppercase spacing-125 small pull-right auto-width m-top-05 pointer'>cancel</p>
+
+        <div class='clearfix'></div>
+
+        <div id='bio-board' class='bio-board' contenteditable='false'>
+          <p class='raleway-light navy lh-200'>{{{profile.bio}}}</p>
+        </div>
       </div>
 
-      <button id='edit-bio-save' class='btn btn-block btn-small btn-grey raleway-semibold white text-uppercase spacing-125 small pull-right auto-width m-left-20'>save</button>
-
-      <p id='edit-bio-cancel' class='raleway-semibold grey text-uppercase spacing-125 small pull-right auto-width m-top-05 pointer'>cancel</p>
-
-      <div class='clearfix'></div>
-      <!-- TEMPLATE - User's bio 		 -->
-      <div id='bio-board' class='bio-board lt-grey-bg m-top-10' contenteditable='false'>
-        <p class='raleway-light navy lh-200'>{{{profile.bio}}}</p>
-      </div>
-
       <div class='clearfix'></div>
 
-      <p class='raleway-semibold pull-left auto-width accent m-top-20 text-uppercase spacing-125'>expertise</p>
-      <!-- TEMPLATE - Plug in edit functionality 	- line 185 (ish) in profile.js	 -->
-      <div id='edit-skills' class="pull-right user-only pointer m-top-20">
-        <span class="sr-only">Edit</span>
-        <i class="fa fa-pencil grey"></i>
-      </div>
+      <div class="about-tile">
+        <p class='name'>expertise</p>
+        <!-- TEMPLATE - Plug in edit functionality 	- line 185 (ish) in profile.js	 -->
+        <div id='edit-skills' class="pull-right user-only pointer m-top-20">
+          <span class="sr-only">Edit</span>
+          <i class="fa fa-pencil grey"></i>
+        </div>
 
-      <button id='edit-skills-save' class='btn btn-block btn-small btn-grey raleway-semibold white text-uppercase spacing-125 small pull-right auto-width m-left-20 m-top-20'>save</button>
+        <button id='edit-skills-save' class='btn btn-block btn-small btn-grey raleway-semibold white text-uppercase spacing-125 small pull-right auto-width m-left-20 m-top-20'>save</button>
 
-      <p id='edit-skills-cancel' class='raleway-semibold grey text-uppercase spacing-125 small pull-right auto-width m-top-30 pointer'>cancel</p>
+        <p id='edit-skills-cancel' class='raleway-semibold grey text-uppercase spacing-125 small pull-right auto-width m-top-30 pointer'>cancel</p>
 
-      <div class='clearfix'></div>
-      <!-- TEMPLATE - User's expertise 		 -->
-      <div id='skills-board' class='bio-board lt-grey-bg m-top-10' contenteditable='false'>
-        <p class='raleway-light navy lh-200'>New York Real Estate, Purchasing, Negotiating, Financial Advisor, Commercial Real Estate, Residential Real Estate, Leasing, Renting.</p>
+        <div class='clearfix'></div>
+        <!-- TEMPLATE - User's expertise 		 -->
+        <div id='skills-board' class='bio-board' contenteditable='false'>
+          <p class='raleway-light navy lh-200'>New York Real Estate, Purchasing, Negotiating, Financial Advisor, Commercial Real Estate, Residential Real Estate, Leasing, Renting.</p>
+        </div>
       </div>
     </div>
 
-    <div class="col-sm-3 col-sm-offset-2 m-top-25">
-      <p class='raleway-semibold pull-left auto-width accent m-top-025 text-uppercase spacing-125'>team</p>
+    <div class="col-sm-3 col-sm-offset-2 m-top-25 hidden-xs">
+      <div class="about-tile">
+        <p class='raleway-semibold pull-left auto-width accent m-top-025 text-uppercase spacing-125'>team</p>
 
-      <div class="pull-right user-only pointer" data-toggle="modal" data-target="#add-team-modal">
-        <span class='raleway-light auto-width m-right-05 accent'>Add New</span>
-        <i class="fa icon-plus-circle fa-lg accent lh-180"></i>
-      </div>
+        <div class="pull-right user-only pointer" data-toggle="modal" data-target="#add-team-modal">
+          <span class='raleway-light auto-width m-right-05 accent'>Add New</span>
+          <i class="fa icon-plus-circle fa-lg accent lh-180"></i>
+        </div>
 
-      <!-- Modal -->
-      <div class="modal fade" id="add-team-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-          <div class="modal-content">
-            <div class="modal-header accent-bg">
-              <button type="button" class="close" data-dismiss="modal">
-                <span class="raleway-light white" aria-hidden="true">X</span>
-                <span class="sr-only">Close</span>
-              </button>
-              <h4 class="modal-title raleway-semibold white text-uppercase spacing-250 m-left-05" id="exampleModalLabel">Add a Team Member</h4>
+        <div class='clearfix'></div>
+
+        <div class='m-top-20'>
+
+          <!-- TEMPLATE - repeat this block for each Team member 	  		 -->
+          <div class="m-bottom-20">
+            <div class="avatar pull-left">
+              <!-- TEMPLATE - Team member's avatar in SRC	  		 -->
+              <img class="img-circle team-img pull-left m-right-10" src="../../images/profile/laura.jpg" />
             </div>
-            <div class="modal-body">
-              <!-- TEMPLATE - Add Team member modal - searchfield 		 -->
-              <form role="form">
-                <div class="form-group">
-                  <i class="fa fa-search fa-lg accent"></i>
-                  <input type="text" class="h4 form-control not-lt-grey-bg accent-placeholder" id="add-team-search" placeholder='Search users to add to your team...' />
-                </div>
-              </form>
+            <!-- TEMPLATE - Team member's name  		 -->
+            <p class='h4 raleway-light accent m-top-0 m-bottom-025 p-left-35'>Laura Scott</p>
+            <!-- TEMPLATE - Team member's title 		 -->
+            <p class='h6 raleway-semibold text text-uppercase spacing-125 m-top-0 m-bottom-025 p-left-525 lh-180'>executive vp de development</p>
+          </div>
 
-              <!-- TEMPLATE - Populate potential team members		 -->
-              <!-- TEMPLATE - Add class 'on-team' if Person is in User's network		 -->
-              <div class="namecard cornflower-underline m-top-10">
-                <div class="avatar pull-left">
-                  <!-- TEMPLATE - Potential team member's avatar(color) - url in src     100x100px 		 -->
-                  <img class="img-circle team-img pull-left m-right-10" src="../../images/profile/edilyn-color.jpg" />
-                </div>
-                <!-- TEMPLATE - Potential team member's name 		 -->
-                <p class='h3 m-left-10 raleway-light text m-top-05 m-bottom-025 auto-width inline-block m-bottom-0'>Edilyn Abeleda</p>
-                <!-- TEMPLATE - Potential team member's title  - shortened to actual function (?)		 -->
-                <br/>
-                <p class='h6 m-left-20 raleway-light accent text-uppercase spacing-125 m-top-0 m-bottom-025 lh-180 auto-width inline-block'>Agent</p>
-                <!-- TEMPLATE - Add to team functionality   - JS event profile.js line 195ish 		 -->
-                <a href="#" class='add m-right-25 pull-right'>
-                  <i class="fa icon-plus-circle fa-lg accent"></i>
-                </a>
-                <!-- TEMPLATE - Remove from team functionality  - JS event profile.js line 198ish 		 -->
-                <a href="#" class='remove m-right-10 pull-right raleway-semibold accent text-uppercase spacing-0625'>
-                  <p class='raleway-semibold periwinkle text-uppercase spacing-125 no-transition text-center'>remove</p>
-                </a>
-              </div>
-              <div class='clearfix'></div>
-              <!-- repeated for style 		 -->
-              <div class="on-team namecard cornflower-underline m-top-10">
-                <div class="avatar pull-left">
-                  <img class="img-circle team-img pull-left m-right-10" src="../../images/profile/mike-color.jpg" />
-                </div>
-                <p class='h3 m-left-10 raleway-light text m-top-05 m-bottom-025 auto-width inline-block m-bottom-0'>Mike Allen</p>
-                <br/>
-                <p class='h6 m-left-20 raleway-light accent text-uppercase spacing-125 m-top-0 m-bottom-025 auto-width inline-block lh-180'>Agent</p>
-                <a href="#" class='add m-right-25 pull-right'>
-                  <i class="fa icon-plus-circle fa-lg accent"></i>
-                </a>
-                <a href="#" class='remove m-right-10 raleway-semibold accent text-uppercase spacing-0625 pull-right'>
-                  <p class='raleway-semibold periwinkle text-uppercase spacing-125 no-transition text-center'>remove</p>
-                </a>
-              </div>
-              <div class='clearfix'></div>
-              <div class="namecard cornflower-underline m-top-10">
-                <div class="avatar pull-left">
-                  <img class="img-circle team-img pull-left m-right-10" src="../../images/profile/terry-color.jpg" />
-                </div>
-                <p class='h3 m-left-10 raleway-light text m-top-05 m-bottom-025 auto-width inline-block m-bottom-0'>Terry Bankey</p>
-                <br/>
-                <p class='h6 m-left-20 raleway-light accent text-uppercase spacing-125 m-top-0 m-bottom-025 auto-width inline-block lh-180'>Agent</p>
-                <a href="#" class='add m-right-25 pull-right'>
-                  <i class="fa icon-plus-circle fa-lg accent"></i>
-                </a>
-                <a href="#" class='remove m-right-10 raleway-semibold accent text-uppercase spacing-0625 pull-right'>
-                  <p class='raleway-semibold periwinkle text-uppercase spacing-125 no-transition text-center'>remove</p>
-                </a>
-              </div>
-              <div class='clearfix'></div>
-              <div class="namecard cornflower-underline m-top-10">
-                <div class="avatar pull-left">
-                  <img class="img-circle team-img pull-left m-right-10" src="../../images/profile/mike-color.jpg" />
-                </div>
-                <p class='h3 m-left-10 raleway-light text m-top-05 m-bottom-025 auto-width inline-block m-bottom-0'>Paul Basile</p>
-                <br/>
-                <p class='h6 m-left-20 raleway-light accent text-uppercase spacing-125 m-top-0 m-bottom-025 auto-width inline-block lh-180'>Broker</p>
-                <a href="#" class='add m-right-25 pull-right'>
-                  <i class="fa icon-plus-circle fa-lg accent"></i>
-                </a>
-                <a href="#" class='remove m-right-10 raleway-semibold accent text-uppercase spacing-0625 pull-right'>
-                  <p class='raleway-semibold periwinkle text-uppercase spacing-125 no-transition text-center'>remove</p>
-                </a>
-              </div>
-              <div class='clearfix'></div>
-              <div class="namecard on-team cornflower-underline m-top-10">
-                <div class="avatar pull-left">
-                  <img class="img-circle team-img pull-left m-right-10" src="../../images/profile/hakeem-color.jpg" />
-                </div>
-                <p class='h3 m-left-10 raleway-light text m-top-05 m-bottom-025 auto-width inline-block m-bottom-0'>Hakeem Folami</p>
-                <br/>
-                <p class='h6 m-left-20 raleway-light accent text-uppercase spacing-125 m-top-0 m-bottom-025 auto-width inline-block lh-180'>Real Estate Salesperson</p>
-                <a href="#" class='add m-right-25 pull-right'>
-                  <i class="fa icon-plus-circle fa-lg accent"></i>
-                </a>
-                <a href="#" class='remove m-right-10 raleway-semibold accent text-uppercase spacing-0625 pull-right'>
-                  <p class='raleway-semibold periwinkle text-uppercase spacing-125 no-transition text-center'>remove</p>
-                </a>
-              </div>
-              <div class='clearfix'></div>
-              <div class="namecard cornflower-underline m-top-10">
-                <div class="avatar pull-left">
-                  <img class="img-circle team-img pull-left m-right-10" src="../../images/profile/dottie-color.jpg" />
-                </div>
-                <p class='h3 m-left-10 raleway-light text m-top-05 m-bottom-025 auto-width inline-block m-bottom-0'>Dottie Herman</p>
-                <br/>
-                <p class='h6 m-left-20 raleway-light accent text-uppercase spacing-125 m-top-0 m-bottom-025 auto-width inline-block lh-180'>CEO &amp; President</p>
-                <a href="#" class='add m-right-25 pull-right'>
-                  <i class="fa icon-plus-circle fa-lg accent"></i>
-                </a>
-                <a href="#" class='remove m-right-10 raleway-semibold accent text-uppercase spacing-0625 pull-right'>
-                  <p class='raleway-semibold periwinkle text-uppercase spacing-125 no-transition text-center'>remove</p>
-                </a>
-              </div>
-              <div class='clearfix'></div>
+          <!-- Repeated for style		 -->
+          <div class="m-bottom-20">
+            <div class="avatar pull-left">
+              <img class="img-circle team-img pull-left m-right-10" src="../../images/profile/susan.jpg" />
             </div>
+            <p class='h4 raleway-light accent m-top-0 m-bottom-025 p-left-35'>Susan de Franca</p>
+            <p class='h6 raleway-semibold text text-uppercase spacing-125 m-top-0 m-bottom-025 p-left-525 lh-180'>president &amp; ceo de marketing</p>
           </div>
-        </div>
-      </div>
-
-      <div class='clearfix'></div>
-
-      <div class='m-top-20'>
-
-        <!-- TEMPLATE - repeat this block for each Team member 	  		 -->
-        <div class="m-bottom-20">
-          <div class="avatar pull-left">
-            <!-- TEMPLATE - Team member's avatar in SRC	  		 -->
-            <img class="img-circle team-img pull-left m-right-10" src="../../images/profile/laura.jpg" />
+          <div class="m-bottom-20">
+            <div class="avatar pull-left">
+              <img class="img-circle team-img pull-left m-right-10" src="../../images/profile/mike.jpg" />
+            </div>
+            <p class='h4 raleway-light accent m-top-0 m-bottom-025 p-left-35'>Mike Allen</p>
+            <p class='h6 raleway-semibold text text-uppercase spacing-125 m-top-0 m-bottom-025 p-left-525 lh-180'>executive vp &amp; director of sales</p>
           </div>
-          <!-- TEMPLATE - Team member's name  		 -->
-          <p class='h4 raleway-light accent m-top-0 m-bottom-025 p-left-35'>Laura Scott</p>
-          <!-- TEMPLATE - Team member's title 		 -->
-          <p class='h6 raleway-semibold text text-uppercase spacing-125 m-top-0 m-bottom-025 p-left-525 lh-180'>executive vp de development</p>
-        </div>
-
-        <!-- Repeated for style		 -->
-        <div class="m-bottom-20">
-          <div class="avatar pull-left">
-            <img class="img-circle team-img pull-left m-right-10" src="../../images/profile/susan.jpg" />
+          <div class="m-bottom-20">
+            <div class="avatar pull-left">
+              <img class="img-circle team-img pull-left m-right-10" src="../../images/profile/ace.jpg" />
+            </div>
+            <p class='h4 raleway-light accent m-top-0 m-bottom-025 p-left-35'>Ace Watanasuparp</p>
+            <p class='h6 raleway-semibold text text-uppercase spacing-125 m-top-0 m-bottom-025 p-left-525 lh-180'>president de capital mortgage</p>
           </div>
-          <p class='h4 raleway-light accent m-top-0 m-bottom-025 p-left-35'>Susan de Franca</p>
-          <p class='h6 raleway-semibold text text-uppercase spacing-125 m-top-0 m-bottom-025 p-left-525 lh-180'>president &amp; ceo de marketing</p>
-        </div>
-        <div class="m-bottom-20">
-          <div class="avatar pull-left">
-            <img class="img-circle team-img pull-left m-right-10" src="../../images/profile/mike.jpg" />
+          <div class="m-bottom-20">
+            <div class="avatar pull-left">
+              <img class="img-circle team-img pull-left m-right-10" src="../../images/profile/dottie.jpg" />
+            </div>
+            <p class='h4 raleway-light accent m-top-0 m-bottom-025 p-left-35'>Dottie Herman</p>
+            <p class='h6 raleway-semibold text text-uppercase spacing-125 m-top-0 m-bottom-025 p-left-525 lh-180'>president &amp; ceo</p>
           </div>
-          <p class='h4 raleway-light accent m-top-0 m-bottom-025 p-left-35'>Mike Allen</p>
-          <p class='h6 raleway-semibold text text-uppercase spacing-125 m-top-0 m-bottom-025 p-left-525 lh-180'>executive vp &amp; director of sales</p>
+          <!-- end repeat 		 -->
         </div>
-        <div class="m-bottom-20">
-          <div class="avatar pull-left">
-            <img class="img-circle team-img pull-left m-right-10" src="../../images/profile/ace.jpg" />
-          </div>
-          <p class='h4 raleway-light accent m-top-0 m-bottom-025 p-left-35'>Ace Watanasuparp</p>
-          <p class='h6 raleway-semibold text text-uppercase spacing-125 m-top-0 m-bottom-025 p-left-525 lh-180'>president de capital mortgage</p>
-        </div>
-        <div class="m-bottom-20">
-          <div class="avatar pull-left">
-            <img class="img-circle team-img pull-left m-right-10" src="../../images/profile/dottie.jpg" />
-          </div>
-          <p class='h4 raleway-light accent m-top-0 m-bottom-025 p-left-35'>Dottie Herman</p>
-          <p class='h6 raleway-semibold text text-uppercase spacing-125 m-top-0 m-bottom-025 p-left-525 lh-180'>president &amp; ceo</p>
-        </div>
-        <!-- end repeat 		 -->
-
       </div>
     </div>
+    
+    <a href="/account-settings" class="btn edit-section user-only visible-xs-block">Edit section</a>
+
   </section>
 </template>

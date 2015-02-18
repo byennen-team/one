@@ -1,5 +1,22 @@
+// Variables 
+@import "/packages/styles/variables.import.less";
+
 .profile {
   .section-about {
+    .about-text {
+      margin-top: 2.5em;
+      text-align: justify;
+      .name {
+        font-size: 18px;
+        float: left;
+        width: auto;
+        font-family: @raleway-semibold;
+        color: @accent;
+        font-variant: small-caps;
+        text-transform: lowercase;
+        letter-spacing: 0.2em;
+      }
+    }
     .btn-grey {
       outline: none;
       padding: 0.25em 2.5em;
@@ -15,8 +32,10 @@
       font-size: 1.5rem;
       outline: none;
       padding: 10px 15px;
+      margin-top: 1.0em;
       margin-left: -15px;
       margin-right: -15px;
+      background-color: @lt-grey;
       transition: background-color 350ms ease-out 50ms;
     }
     .modal-backdrop {
@@ -86,6 +105,43 @@
     .on-team .remove {
       display: block;
       margin-top: -1.5em;
+    }
+    // Mobile
+    @media all and (max-width: 767px) {
+      .about-text {
+        margin-top: 5px;
+        text-align: left;
+        .name {
+          font-size: 16px;
+          margin-bottom: 0;
+        }
+      }
+      .about-tile {
+        margin-bottom: 5px;
+        padding: 1.5em;
+        background-color: @white;
+      }
+      .bio-board {
+        margin-top: 0;
+        background-color: transparent;
+      }
+      #edit-bio,
+      #edit-skills {
+        display: none;
+      }
+      .edit-section {
+        font-size: 17px;
+        width: 90%;
+        margin: 5px 5%;
+        padding: 0.25em 0.25em 0.4em;
+        font-family: @raleway-semibold;
+        color: @med-med-grey;
+        border: solid 2px @med-med-grey;
+        border-radius: 3px;
+        font-variant: small-caps;
+        text-transform: lowercase;
+        letter-spacing: 0.2em;
+      }
     }
   }
   #edit-bio-save,

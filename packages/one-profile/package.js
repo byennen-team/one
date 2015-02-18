@@ -59,6 +59,7 @@ Package.onUse(function (api) {
     'lib/client/modals/profile_contact_message_failed_modal.html',
     'lib/client/modals/profile_activity_link_modal.html',
     'lib/client/modals/gallery_modal.html',
+    'lib/client/modals/profile_add_team_modal.html',
     'lib/client/modals/profile_add_gallery_modal.html',
     'lib/client/modals/profile_add_gallery_modal.js',
     'lib/client/modals/profile_add_picture_gallery_modal.html',
