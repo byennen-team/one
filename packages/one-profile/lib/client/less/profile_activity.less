@@ -2,11 +2,19 @@
 @import "/packages/styles/variables.import.less";
 
 .profile {
-
+  .timestamp {
+    font-size: 16px;
+    float: left;
+    font-family: @raleway-semibold;
+    font-variant: small-caps;
+    text-transform: lowercase;
+    width: auto;
+    margin-left: 0.5em;
+  }
   .add-post {
     border: 1px solid #d7dfed;
     border-radius: 3px;
-    margin-top: 5px;
+    margin-top: 20px;
     .form-control {
       color: #999;
       font-family: RalewaySemibold, Verdana, Geneva, sans-serif;
@@ -23,87 +31,87 @@
       color: #999;
       font-family: RalewaySemibold, Verdana, Geneva, sans-serif;
     }
-  }
-  .add-post textarea {
-    width: 100%;
-    height: 8.675em;
-    padding: 1em 1.25em;
-    border: none;
-    outline: 0px;
-    font-size: 14px;
-    line-height: 1.42857143;
-    color: #555;
-    background-color: #fff;
-    background-image: none;
-    -webkit-appearance: none;
-    -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
-    box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
-  }
-  .add-post .btn {
-    font-size: 14px;
-    padding: 0.25em 3em;
-    margin: 0.5em;
-  }
-  .add-post .btn:hover {
-    color: #ffffff;
-  }
-  .add-post .form-group {
-    margin-bottom: 0;
-  }
-  .add-post .thumb {
-    position: absolute;
-    right: 2em;
-    top: 0.75em;
-    bottom: 4em;
-    width: 15%;
-    border: 1px solid #e9eef3;
-  }
-  .add-post .x-box {
-    position: absolute;
-    left: 0.5em;
-    top: 0.5em;
-    height: 1em;
-    width: 1em;
-    z-index: 2;
-  }
-  .add-post .x-box .fa {
-    margin: -1px 0 0 -1px;
-  }
-  .add-post .content-preview {
-    display: none;
-    position: relative;
-    width: 100%;
-    padding: 1em;
-    border: 1px solid #d7dfed;
-    border-style: solid none;
-  }
-  .add-post .content-preview p {
-    width: 85%;
-    margin-left: 15%;
-  }
-  .add-post .content-preview .close {
-    position: absolute;
-    right: 0.5em;
-    top: 50%;
-    margin-top: -0.5em;
-  }
-  .add-post .content-preview-thumb {
-    position: absolute;
-    left: 0;
-    top: 0;
-    bottom: 0;
-    width: 15%;
-    border: 1px solid #e9eef3;
-  }
-  .add-post .header {
-    font-family: RalewaySemibold, Verdana, Geneva, sans-serif;
-  }
-  .add-post .link {
-    font-family: RalewayLight, Verdana, Geneva, sans-serif;
-    color: #5bb8d7;
-  }
-  .add-post .text {
-    font-family: RalewayLight, Verdana, Geneva, sans-serif;
+    textarea {
+      width: 100%;
+      height: 8.675em;
+      padding: 1em 1.25em;
+      border: none;
+      outline: 0px;
+      font-size: 14px;
+      line-height: 1.42857143;
+      color: #555;
+      background-color: #fff;
+      background-image: none;
+      -webkit-appearance: none;
+      -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+      box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+    }
+    .btn {
+      font-size: 14px;
+      padding: 0.25em 3em;
+      margin: 0.5em;
+    }
+    .btn:hover {
+      color: #ffffff;
+    }
+    .form-group {
+      margin-bottom: 0;
+    }
+    .thumb {
+      position: absolute;
+      right: 2em;
+      top: 0.75em;
+      bottom: 4em;
+      width: 15%;
+      border: 1px solid #e9eef3;
+    }
+    .x-box {
+      position: absolute;
+      left: 0.5em;
+      top: 0.5em;
+      height: 1em;
+      width: 1em;
+      z-index: 2;
+    }
+    .x-box .fa {
+      margin: -1px 0 0 -1px;
+    }
+    .content-preview {
+      display: none;
+      position: relative;
+      width: 100%;
+      padding: 1em;
+      border: 1px solid #d7dfed;
+      border-style: solid none;
+    }
+    .content-preview p {
+      width: 85%;
+      margin-left: 15%;
+    }
+    .content-preview .close {
+      position: absolute;
+      right: 0.5em;
+      top: 50%;
+      margin-top: -0.5em;
+    }
+    .content-preview-thumb {
+      position: absolute;
+      left: 0;
+      top: 0;
+      bottom: 0;
+      width: 15%;
+      border: 1px solid #e9eef3;
+    }
+    .header {
+      font-family: RalewaySemibold, Verdana, Geneva, sans-serif;
+    }
+    .link {
+      font-family: RalewayLight, Verdana, Geneva, sans-serif;
+      color: #5bb8d7;
+    }
+    .text {
+      font-family: RalewayLight, Verdana, Geneva, sans-serif;
+    }
   }
   .input-btn {
     float: left;
@@ -120,37 +128,17 @@
 
   .post {
     margin-top: 2em;
-  }
-  .post .post-body {
-    border: 1px solid #d7dfed;
-    border-radius: 3px;
-    background-color: #ffffff;
-    overflow: hidden;
-  }
-  .post .avatar {
-    width: 3.5em;
-    height: 3.5em;
-    margin-right: 1em;
-  }
-  .post .comment-box {
-    width: 100%;
-    border: 1px solid #d7dfed;
-    border-style: solid none none none;
-  }
-  .post .comment-box input {
-    width: 100%;
-    height: 100%;
-    padding: 1em;
-    outline: none;
-    border: none;
-    margin: 0;
-  }
-  .post .comment {
-    border: 1px solid #d7dfed;
-    border-style: solid none none none;
-    padding: 0.5em 1em;
-  }
-  .listing-text {
+    .post-body {
+      border: 1px solid #d7dfed;
+      border-radius: 3px;
+      background-color: #ffffff;
+      overflow: hidden;
+    }
+    .avatar {
+      width: 3.5em;
+      height: 3.5em;
+      margin-right: 1em;
+    }
     .name {
       font-size: 17px;
       font-family: @raleway-light;
@@ -160,39 +148,83 @@
     }
     .type {
       font-family: @raleway-regular;
+      margin-bottom: 0;
+    }
+    .price {
+      font-size: 36px;
+      font-family: @raleway-light;
+      color: @accent;
+      margin-top: 2.0em;
+    }
+    .price.orange {
+      color: @orange;
+    }
+    .address {
+      font-family: @raleway-light;
+      color: @navy;
+    }
+    .comment-box {
+      width: 100%;
+      border: 1px solid #d7dfed;
+      border-style: solid none none none;
+    }
+    .comment-box input {
+      width: 100%;
+      height: 100%;
+      padding: 1em;
+      outline: none;
+      border: none;
+      margin: 0;
+    }
+    .comment {
+      border: 1px solid #d7dfed;
+      border-style: solid none none none;
+      padding: 0.5em 1em;
     }
   }
-  .team-connector {
-    position: relative;
-    height: 4.25em;
-    width: 4em;
-    margin-left: 0.75em;
-  }
-  .team-connector-pipe {
-    position: absolute;
-    width: 2px;
-    background-color: #b2c0cd;
-    height: 2.5em;
-    left: 0.9em;
-  }
-  .team-connector-plus {
-    position: absolute;
-    bottom: -0.25em;
-    left: -0.05em;
-    background-color: #ffffff;
-    z-index: 2;
-  }
-  .team-connector-dash {
-    position: absolute;
-    width: 2.5em;
-    background-color: #b2c0cd;
-    height: 2px;
-    bottom: 1em;
-    right: 0;
-  }
-  .team-img {
-    width: 3.5em;
-    height: 3.5em;
+  .post-team {
+    .team-connector {
+      position: relative;
+      clear: left;
+      height: 4.5em;
+      width: 4em;
+      margin-top: -4px;
+      margin-left: 0.75em;
+    }
+    .team-connector-pipe {
+      position: absolute;
+      width: 2px;
+      background-color: #b2c0cd;
+      height: 2.5em;
+      left: 0.9em;
+    }
+    .team-connector-plus {
+      position: absolute;
+      bottom: -0.25em;
+      left: -0.05em;
+      width: 50%;
+      background-color: #ffffff;
+      z-index: 2;
+    }
+    .team-connector-dash {
+      position: absolute;
+      width: 2.5em;
+      background-color: #b2c0cd;
+      height: 2px;
+      bottom: 1em;
+      right: 0;
+    }
+    .team-container {
+      float: left;
+      margin-top: 1.5em;
+      margin-bottom: 1.5em;
+      width: 80%;
+    }
+    .team-img {
+      width: 3.5em;
+      height: 3.5em;
+      margin-bottom: 0.5em;
+    }
   }
   .delete-photo {
     position: absolute;
@@ -344,12 +376,16 @@
     .post {
       margin-top: 5px;
     }
+    .add-post {
+      margin-top: 5px;
+    }
     .listing-image {
       margin-top: 64px;
       height: 200px;
       width: 100%;
     }
-    .listing-text {
+    .listing-text,
+    .post-team {        //  Cross post type mobile styles here:
       font-size: 12px;
       width: 100%;
       .avatar {
@@ -358,14 +394,48 @@
       .name {
         font-size: 15px;
         margin-left: 50px;
+        line-height: 100%;
       }
       .type {
         margin-left: 50px;
+        margin-bottom: 0;
+        line-height: 120%;
       }
       .mobile-timestamp {
         margin-left: 50px;
+        margin-bottom: 0;
         font-variant: small-caps;
         text-transform: lowercase;
+        line-height: 120%;
+      }
+    }
+    .listing-text {
+      .price {
+        font-size: 22px;
+        font-family: @raleway-thin;
+        margin-top: 220px;
+        margin-bottom: 0;
+      }
+    }
+    .post-team {
+      .team-container {
+        width: 70%;
+      }
+    }
+  }
+  @media all and (min-width: 640px) and (max-width: 767px) {
+    .add-post {
+      textarea {
+        height: 150px;
+      }
+    }
+    .listing-image {
+      height: 300px;
+    }
+    .listing-text,
+    .post-team {        //  Cross post type mobile styles here:
+      .price {
+        margin-top: 320px;
       }
     }
   }

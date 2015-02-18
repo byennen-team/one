@@ -57,7 +57,23 @@ Template.profileActivity.helpers({
 //    "February 7th", etc
   timestamp: function () {
     return '2 hours ago';
+  },
+
+// TODO: Return Agent's name. String
+  name: function () {
+    return 'Marie Espinal';
+  },
+
+// TODO: Return's Price - needs to be formatted. String.
+  price: function () {
+    return '$875,000';
+  },
+
+// TODO: Return's Address. String.
+  address: function () {
+    return '575 Madison Ave, New York, NY';
   }
+  
 });
 
 Template.socialMediaTemplate.rendered = function() {
