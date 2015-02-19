@@ -8,3 +8,22 @@ Template.communicationSidebarDrafts.rendered = function(){
   });
 
 };
+
+Template.communicationSidebarDraftsFill.helpers({
+  drafts: function() {
+    return Messages.find({
+      creatorId: Meteor.userId(),
+      messageType: 'post',
+      'messagePayload.draft': true
+    });
+  }
+});
+
+Template.communicationSidebarDraftsFill.events({
+  'click .draft': function (event) {
+    Session.set('draftId', $(event.currentTarget).data('id'));
+    $('.selectpicker').selectpicker('render');
+    $( '#communication-message-post' )
+      .velocity( "slideDown", { duration: 500 } );
+  }
+});

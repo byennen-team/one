@@ -15,8 +15,8 @@
       <div class="well">
         <ul role="menu" >
 <!-- TODO: this will need to be tweaked - was just copied from Rooms -->
-        {{#each rooms}}
-          <li class="room" data-id="{{_id}}">{{roomName}}
+        {{#each drafts}}
+          <li class="draft" data-id="{{_id}}">{{messagePayload.title}}
             <span class="delete-channel">
               <i class="fa icon-x-blunt"></i>
             </span>

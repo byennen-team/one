@@ -61,6 +61,14 @@ Meteor.publish('unreadMessages', function() {
     }
 });
 
+Meteor.publish('drafts', function() {
+  return Messages.find({
+    creatorId: this.userId,
+    'messagePayload.draft': true,
+    messageType: 'post'
+  })
+});
+
 Meteor.methods({
   addSimpleMessageToRoom: function(roomId, message) {
     check(roomId, String);

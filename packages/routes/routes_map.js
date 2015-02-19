@@ -94,7 +94,8 @@ Router.route('/dashboard', {
       Meteor.settings.public.twitter.COMPANY_USERID),
       Meteor.subscribe('files'),
       Meteor.subscribe('rooms'),
-      Meteor.subscribe('unreadMessages')];
+      Meteor.subscribe('unreadMessages'),
+      Meteor.subscribe('drafts')];
   }
 });
 
