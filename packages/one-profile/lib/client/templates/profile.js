@@ -24,3 +24,4 @@ Profile.isFollowing = function (user) {
   var following = Following.findOne({userId: me._id});
   return following && _.indexOf(following.followingUserIds, user._id) > -1;
 };
+

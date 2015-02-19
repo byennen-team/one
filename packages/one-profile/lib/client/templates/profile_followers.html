@@ -1,7 +1,17 @@
-<template name="profileFollowers">
+<template name="profileFollowersWrap">
   <section id="section-followers" class="tab-pane followers fade row">    
+      {{> profileFollowers}}
+  </section>
+</template>
+
+<template name="profileFollowersWrapSub">
+  <section id="section-followers-sub" class="tab-pane followers fade active in">    
+      {{> profileFollowers}}
+  </section>
+</template>
+
+<template name="profileFollowers">
     {{#each followers}}
       {{> profileCard}}
     {{/each}}
-  </section>
 </template>

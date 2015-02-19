@@ -1,0 +1,31 @@
+// Variables 
+@import "/packages/styles/variables.import.less";
+
+.network {
+  background-color: @lt-med-grey;
+  overflow: hidden;
+  .network-tab {
+    float: left;
+    width: 50%;
+    margin-top: 5px;
+    color: @blue-grey;
+    font-family: @raleway-semibold;
+    background-color: transparent;
+    text-align: center;
+    font-variant: small-caps;
+    text-transform: lowercase;
+    letter-spacing: 0.2em;
+    -moz-border-radius: 3px 3px 0 0;
+    -webkit-border-radius: 3px 3px 0 0;
+    border-radius: 3px 3px 0 0; 
+    cursor: pointer;
+  }
+  .network-tab.active {
+    background-color: @white;
+  } 
+  .nav-tabs > li > a,
+  .nav-tabs > li.active > a {
+    border: none;
+    color: @blue-grey;
+  }
+}

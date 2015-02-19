@@ -94,6 +94,25 @@
     letter-spacing: 0.2em;
     padding: 11px 12px 9px 12px;
   }
+  .tab-content {
+    position: relative;
+  }
+  #section-network {  // override min-height for other tab-content
+    .tab-content {
+      min-height: 0;
+    }
+  }
+  .profile-screen {  // custom modal screen
+    display: none;
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: @navy;
+    opacity: 0.9;
+    z-index: 99;
+  }
   @media all and (max-width: 767px) {
     .profile-container {
       padding-bottom: 0;
@@ -133,6 +152,9 @@
     .contact .radio {
       margin: 1.5em 1% 0 1%;
     }
+    .tab-content {
+      min-height: 420px;
+    }
   }
   @media all and (min-width: 481px) and (max-width: 767px) {
     .info-header {
@@ -158,6 +180,9 @@
       max-width: 419px;
       margin-right: auto;
       margin-left: auto;
+    }
+    .tab-content {
+      min-height: 580px;
     }
   }
   @media all and (min-width: 768px) {

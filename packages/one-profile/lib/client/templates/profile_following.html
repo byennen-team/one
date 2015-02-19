@@ -1,7 +1,17 @@
-<template name="profileFollowing">
+<template name="profileFollowingWrap">
   <section id="section-following" class="tab-pane following-people fade row">
+      {{> profileFollowing}}
+  </section>
+</template>
+
+<template name="profileFollowingWrapSub">
+  <section id="section-following-sub" class="tab-pane following-people fade">
+      {{> profileFollowing}}
+  </section>
+</template>
+
+<template name="profileFollowing">
     {{#each following}}
       {{> profileCard}}
     {{/each}}
-  </section>
 </template>

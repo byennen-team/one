@@ -1,10 +1,11 @@
 <template name="profileGallery">
-  <section id="section-gallery" class="tab-pane fade row gallery-pane">
-    <div class="fixed-xs col-sm-10 col-sm-offset-1 m-top-20">
-      <div class="gallery-top-controls">
-        <!-- TEMPLATE - Post date		 -->
+  <section id="section-gallery" class="tab-pane fade gallery-pane">
+    <div class="gallery-box fixed-xs col-sm-10 col-sm-offset-1">
+
+      <div id="profile-gallery-mobile-control" class="mobile-control visible-xs-block"></div>
+
+      <div class="gallery-top-controls hidden-xs">
         <p class='not-for-user raleway-semibold auto-width m-left-05 text-uppercase purple pull-left spacing-125'>gallery</p>
-        <!-- TEMPLATE - Add picture functionality		 -->
         {{#if isMyProfileEditable}}
           {{#if galleries.count}}
             <a href="#" class="raleway-light auto-width m-right-10 purple" data-toggle="modal" data-target="#picturesUploadModal"><i class="fa icon-addteam"></i> Add a picture</a>
@@ -16,12 +17,11 @@
     <div class='clearfix'></div>
 
     {{#each galleries}}
-      <div class='album row m-top-20' album-id="{{_id}}">
-        <!-- TEMPLATE - Album date     -->
-        <p class='h6 raleway-semibold text-uppercase periwinkle pull-left spacing-0625'>{{date createdAt}}</p>
+      <div class='album row' album-id="{{_id}}">
+        <p class='hidden-xs h6 raleway-semibold text-uppercase periwinkle pull-left spacing-0625'>{{date createdAt}}</p>
         <div class='clearfix'></div>
-        <p class='h3 raleway-light pull-left navy m-top-0'>{{galleryName}}</p>
-        <div class="controls">
+        <p class='title'>{{galleryName}}</p>
+        <div class="controls hidden-xs">
   <!-- TODO: pre-select album when modal is called -->
           <a href="#" class="add-pics" data-id="{{_id}}" data-toggle="modal" data-target="#picturesUploadModal">
             <i class="fa icon-addteam"></i>
@@ -32,24 +32,18 @@
             <span>Delete album</span>
           </a>
         </div>
-        <!-- TEMPLATE - Album title - on hold  -->
-        <!-- <p class='h4 raleway-light auto-width navy pull-left'>NYC in the Fall</p> -->
-        <!-- TEMPLATE - Number of pictures in the album    -->
-        <p class='h6 raleway-semibold auto-width purple pull-right m-top-10'>{{pictureCount}} pictures</p>
+        <p class='h6 raleway-semibold auto-width purple pull-right m-top-10 hidden-xs'>{{pictureCount}} pictures</p>
 
         <div class='clearfix'></div>
 
         <div class="galleryHolder">
           {{#each pictures}}
           <a href="{{pictureUrl}}" rel="{{_id}}" class="swipebox">
-            <!-- TEMPLATE - gallery urls  - 600x600px min        -->
-            <!-- TEMPLATE - gallery image url in 'data-pic'          -->
             <div class='gallery-square col-sm-2 half-gutter m-bottom-10 pointer pswipe-picture' data-url="{{pictureUrl}}">
               <div class="delete-photo user-only black-bg img-circle" data-id="{{pictureKey}}">
                 <span class="sr-only">delete</span>
                 <i class="fa icon-x-circle fa-lg white"></i>
               </div>
-              <!-- TEMPLATE - gallery image url in 'style'      -->
               <div class="full-bg-img" style="background-image: url({{pictureUrl}});" data-url="{{pictureUrl}}"></div>
             </div>
             </a>
@@ -63,3 +57,5 @@
   {{> addGalleryModal}}
   {{> picturesUploadModal}}
 </template>
+
+

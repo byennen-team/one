@@ -18,6 +18,7 @@
     .nav-tabs {
       border: none;
       margin-top: 1em;
+      height: 40px;
       padding-left: 10px;
       padding-right: 10px;
     }
@@ -26,6 +27,8 @@
       width: 25%;
     }
     .nav-tabs > li {
+      position: relative;
+      height: 30px;
       font-size: 12px;
       font-family: @raleway-regular;
       font-variant: normal;
@@ -36,9 +39,16 @@
         text-align: center;
         .fa {
           display: block;
+          position: absolute;
+          width: 20px;
+          left: 50%;
+          margin-left: -10px;
           font-size: 18px;
-          text-align: center;
           margin-bottom: 4px;
+        }
+        span {
+          display: inline-block;
+          margin-top: 20px;
         }
       }
     }
@@ -51,15 +61,25 @@
         }
       }
     }
+    .icon-user {
+      margin-bottom: 1px;
+    }
+    .icon-network {
+      margin-bottom: -5px;
+      font-size: 24px;
+    }
   }
   .profile-nav.sticky {
     position: fixed;
     top: 0;
     left: 0;
     right: 0;
-    padding-bottom: 0.5em;
+    // padding-bottom: 0.5em;
     background-color: @lt-grey;
     z-index: 10;
+  }
+  .profile-nav.sticky + .tab-content {
+    margin-top: 60px;
   }
 }
 // Desktop only

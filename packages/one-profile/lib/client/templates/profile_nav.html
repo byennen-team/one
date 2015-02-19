@@ -1,34 +1,39 @@
 <template name="profileNav">
   <nav id="profile-nav-tabs" class='profile-nav'>
-    <ul class="nav nav-tabs row">
+    <ul class="nav nav-tabs">
       <li role="presentation" class="active col-sm-2 tab">
         <a data-toggle="tab" href="#section-activity">
           <i class="fa fa-align-left"></i>
-          activity
+          <span>activity</span>
         </a>
       </li>
       <li role="presentation" class="col-sm-2 tab">
         <a data-toggle="tab" href="#section-about">
-          <i class="fa fa-user"></i>
-          about
+          <i class="fa icon-user"></i>
+          <span>about</span>
         </a>
       </li>
       <li role="presentation" class="col-sm-2 tab">
         <a data-toggle="tab" href="#section-gallery">
           <i class="fa fa-picture-o"></i>
-          gallery
+          <span>gallery</span>
         </a>
       </li>
-      <li role="presentation" class="col-sm-2 tab">
+      <li role="presentation" class="col-sm-2 tab visible-xs-block">
+        <a data-toggle="tab" href="#section-network">
+          <i class="fa icon-network"></i>
+          <span>network</span>
+        </a>
+      </li>
+      <li role="presentation" class="col-sm-2 hidden-xs">
         <a data-toggle="tab" href="#section-followers">
-          <i class="fa fa-users"></i>
-          followers 
+          <span>followers</span> 
           <span class='nav-data visible-lg-inline'>{{followersCount}}</span>
         </a>
       </li>
       <li role="presentation" class="col-sm-2 hidden-xs">
         <a data-toggle="tab" href="#section-following">
-          following 
+          <span>following</span> 
           <span class='nav-data visible-lg-inline'>{{followingCount}}</span>
         </a>
       </li>

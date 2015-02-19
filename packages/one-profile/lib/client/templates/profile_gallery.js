@@ -63,7 +63,15 @@ Template.profileGallery.events({
 			  }
       );
 		}
-	}
+	},
+
+  // Brings up mobile controls
+  'click #profile-gallery-mobile-control': function () {
+    $( "#profile-screen" ).velocity( "fadeIn", { duration: 500 } );
+    $( "#profile-gallery-mobile-controls" )
+      .velocity( "slideDown", { duration: 500 } );
+  }
+
 });
 
 Template.profileGallery.rendered = function () {

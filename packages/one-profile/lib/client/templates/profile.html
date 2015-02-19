@@ -8,10 +8,12 @@
           {{> profileActivity}}
           {{> profileAbout}}
           {{> profileGallery}}
-          {{> profileFollowers}}
-          {{> profileFollowing}}
+          {{> profileNetwork}}
+          {{> profileFollowersWrap}}
+          {{> profileFollowingWrap}}
 
           {{> profileAddTeam}}
+          {{> profileGalleryMobileControls}}
         </div>
       </div>
     {{else}}
@@ -24,9 +26,15 @@
       {{> profileContact}}
       {{> profileFooter}}
     {{/if}}
+
+    {{> profileScreen}}
   </div>
 </template>
 
+
+<template name="profileScreen">
+  <div id="profile-screen" class="profile-screen"></div>
+</template>
 <!-- Example:
   {{#if isPrivate}}
     if private
