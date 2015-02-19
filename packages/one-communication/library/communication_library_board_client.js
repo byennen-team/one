@@ -7,13 +7,27 @@ Template.libraryBoard.rendered = function () {
 
 Template.libraryBoard.helpers({
 
-	// True if session members is true
+	// True if session members is true. Keeps track of which panel is visible.
 	libraryCard: function(){
 		var members = Session.get('members');
 		if( members ){
-			return true;
+			return 'true';
 		}else {
 			return false;
+		}
+	},
+
+	membersActive: function() {
+		var members = Session.get('members');
+		if( members ){
+			return 'active';
+		}
+	},
+
+	filesActive: function() {
+		var members = Session.get('members');
+		if( ! members ){
+			return 'active';
 		}
 	}
 

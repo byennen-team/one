@@ -46,61 +46,32 @@
       <div class="about-tile">
         <p class='raleway-semibold pull-left auto-width accent m-top-025 text-uppercase spacing-125'>team</p>
 
-        <div class="pull-right user-only pointer" data-toggle="modal" data-target="#add-team-modal">
-          <span class='raleway-light auto-width m-right-05 accent'>Add New</span>
-          <i class="fa icon-plus-circle fa-lg accent lh-180"></i>
-        </div>
+        {{#if isMyProfile}}
+          <div class="pull-right user-only pointer" data-toggle="modal" data-target="#communication-directory-modal">
+            <span class='raleway-light auto-width m-right-05 accent'>Add New</span>
+            <i class="fa icon-plus-circle fa-lg accent lh-180"></i>
+          </div>
+        {{/if}}
 
         <div class='clearfix'></div>
 
         <div class='m-top-20'>
 
-          <!-- TEMPLATE - repeat this block for each Team member 	  		 -->
+          {{#each teamMembers}}
           <div class="m-bottom-20">
             <div class="avatar pull-left">
-              <!-- TEMPLATE - Team member's avatar in SRC	  		 -->
-              <img class="img-circle team-img pull-left m-right-10" src="../../images/profile/laura.jpg" />
+              <img class="img-circle team-img pull-left m-right-10" src="{{profile.photoUrl.thumb}}" />
             </div>
-            <!-- TEMPLATE - Team member's name  		 -->
-            <p class='h4 raleway-light accent m-top-0 m-bottom-025 p-left-35'>Laura Scott</p>
-            <!-- TEMPLATE - Team member's title 		 -->
-            <p class='h6 raleway-semibold text text-uppercase spacing-125 m-top-0 m-bottom-025 p-left-525 lh-180'>executive vp de development</p>
+            <p class='h4 raleway-light accent m-top-0 m-bottom-025 p-left-35'>{{profile.firstName}} {{profile.lastName}}</p>
+            <p class='h6 raleway-semibold text text-uppercase spacing-125 m-top-0 m-bottom-025 p-left-525 lh-180'>{{profile.title}}</p>
           </div>
+          {{/each}}
 
-          <!-- Repeated for style		 -->
-          <div class="m-bottom-20">
-            <div class="avatar pull-left">
-              <img class="img-circle team-img pull-left m-right-10" src="../../images/profile/susan.jpg" />
-            </div>
-            <p class='h4 raleway-light accent m-top-0 m-bottom-025 p-left-35'>Susan de Franca</p>
-            <p class='h6 raleway-semibold text text-uppercase spacing-125 m-top-0 m-bottom-025 p-left-525 lh-180'>president &amp; ceo de marketing</p>
-          </div>
-          <div class="m-bottom-20">
-            <div class="avatar pull-left">
-              <img class="img-circle team-img pull-left m-right-10" src="../../images/profile/mike.jpg" />
-            </div>
-            <p class='h4 raleway-light accent m-top-0 m-bottom-025 p-left-35'>Mike Allen</p>
-            <p class='h6 raleway-semibold text text-uppercase spacing-125 m-top-0 m-bottom-025 p-left-525 lh-180'>executive vp &amp; director of sales</p>
-          </div>
-          <div class="m-bottom-20">
-            <div class="avatar pull-left">
-              <img class="img-circle team-img pull-left m-right-10" src="../../images/profile/ace.jpg" />
-            </div>
-            <p class='h4 raleway-light accent m-top-0 m-bottom-025 p-left-35'>Ace Watanasuparp</p>
-            <p class='h6 raleway-semibold text text-uppercase spacing-125 m-top-0 m-bottom-025 p-left-525 lh-180'>president de capital mortgage</p>
-          </div>
-          <div class="m-bottom-20">
-            <div class="avatar pull-left">
-              <img class="img-circle team-img pull-left m-right-10" src="../../images/profile/dottie.jpg" />
-            </div>
-            <p class='h4 raleway-light accent m-top-0 m-bottom-025 p-left-35'>Dottie Herman</p>
-            <p class='h6 raleway-semibold text text-uppercase spacing-125 m-top-0 m-bottom-025 p-left-525 lh-180'>president &amp; ceo</p>
-          </div>
-          <!-- end repeat 		 -->
         </div>
       </div>
     </div>
-    
+    {{> communicationDirectoryModal}}
+
     <a href="/account-settings" class="btn edit-section user-only visible-xs-block">Edit section</a>
 
   </section>

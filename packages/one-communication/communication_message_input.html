@@ -1,6 +1,12 @@
 <template name='messageInput'>
 
 	<div id='communication-message-input' class="message-input">
+		
+		{{#if channel}}
+			<div class="help-btn" data-toggle="modal" data-target="#help-text-{{channel}}-modal">
+				<i class="fa fa-question-circle"></i>
+			</div>
+		{{/if}}
 
 		<div id='communication-message-input-btn' class="message-btn">
 			<i class="fa fa-bars"></i>
@@ -37,7 +43,8 @@
 		<form id="addMessageForm">
 			<input class='input' id="addMessageInput" type="text" placeholder="Type your message..." />
 		</form>
-
+		
+		<div id='communication-message-input-flash' class="flash"></div>
 	</div>
 
 </template>

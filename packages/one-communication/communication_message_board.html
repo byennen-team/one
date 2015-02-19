@@ -11,7 +11,7 @@
 	</div>
 <!-- TODO: Install search, and add animation -->
 	<div class="col-xs-6"></div>
-	<div class="search">
+	<div id="message-board-search" class="search">
 		<input class='message-search' type="text">
 		<i class="fa fa-lg fa-search"></i>
 	</div>
@@ -25,6 +25,11 @@
 <template name="communicationMessageBoardSleeve">
 	<div id='communication-message-board-sleeve' class="sleeve">
 	<div>
+<!-- 	TODO: the welcome messages need to be shown as the first message of the 
+	Room channel or	My Tasks channel.  -->
+	<!-- {{> welcomeRoom}} -->
+	{{> welcomeTask}}
+
 	{{#each messages}}
 		{{#if isFirstUnread ../_id}}
 			{{> newBar}}

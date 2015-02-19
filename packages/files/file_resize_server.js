@@ -4,8 +4,8 @@ knox         = Npm.require('knox'),
 request      = Npm.require('request'), // fetchin remote image data
 tmp          = Npm.require('tmp'), // creates temporary directory
 im           = Npm.require('imagemagick'), // re-size images
-resizeWidths = { "mobile_":480, "thumb_":65, "full_":140 },
-resizeHeights = { "mobile_": 480, "thumb_": 65, "full_": 140 },
+resizeWidths = { "thumb_": 65, "full_": 140 },
+resizeHeights = { "thumb_": 65, "full_": 140 },
 imgTmp = 'imagetmp',
 imgExt = '.jpeg',
 flag404 = false,
@@ -69,18 +69,19 @@ FileTools.fetchToTemp = function(url, callback){
 //resize
 FileTools.resizeTemp = function(size, callback) {
     if (flag404) { return callback(); }
-    Meteor.wrapAsync(im.resize({
+    im.crop({
       srcPath: base+imgTmp+imgExt,
       dstPath: base+size+imgTmp+imgExt,
-      width:  resizeWidths[size],
+      width: resizeWidths[size],
       height: resizeHeights[size],
-      quality: 0.6
+      quality: 1,
+      gravity: "North"
     }, Meteor.bindEnvironment(function(err) {
       if (err) {
         console.log('resized error: ', err);
       }
       callback();
-    })));
+    }));
 };
 
 //upload
