@@ -1,3 +1,67 @@
+// Variables 
+@import "/packages/styles/variables.import.less";
+
 .card {
   cursor: pointer;
+  .avatar {
+    margin-top: 5px;
+    .img-circle {
+      display: block;
+      height: 50px;
+      width: 50px;
+      background-size: cover;
+      background-position: top center;
+    }
+  }
+  .name {
+    font-size: 17px;
+    padding-left: 3.3em;
+    margin-top: 10px;
+    margin-bottom: 0;
+    font-family: @raleway-light;
+    color: @accent;
+  }
+  .title {
+    font-size: 14px;
+    margin-bottom: 10px;
+    line-height: 120%;
+    font-family: @raleway-semibold;
+    font-variant: small-caps;
+    text-transform: lowercase;
+    letter-spacing: 0.125em;
+    color: @text;
+  }
+}
+  // Mobile
+@media all and (max-width: 767px) {
+  .card {
+    .avatar {
+      margin-top: -5px;
+    }
+    .name {
+      color: @dk-blue;
+    }
+    .title {
+      font-size: 12px;
+      font-family: @raleway-light;
+      color: @text-lt-grey;
+      font-variant: normal;
+      text-transform: none;
+      letter-spacing: 0;
+      line-height: 50%;
+    }
+    .p-all-10 {
+      padding: 0.5em;
+    }
+    .following {
+      hr {
+        width: 100%;
+      }
+    }
+  }
+  .card:last-of-type {
+    hr {
+      display: none;
+    }
+  }
 }
