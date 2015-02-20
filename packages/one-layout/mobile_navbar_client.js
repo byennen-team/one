@@ -19,6 +19,18 @@ Template.mobileNavbar.helpers({
 
   isFollowing: function (){
     return Profile.isFollowing(Profile.currentUser());
+  },
+
+  dashboard: function() {
+    var page = Router.current().route.getName();
+    if( page === 'dashboard' ){
+      return true;
+    }
+  },
+
+  page: function() {
+    var page = Router.current().route.getName();
+    return Router.current().route.getName();
   }
   
 });

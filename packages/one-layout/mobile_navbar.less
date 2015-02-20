@@ -4,9 +4,43 @@
 
 .navbar-mobile {
   display: none;
+  position: relative;
   height: 40px;
   background-color: transparent;
-  .menu-link,
+  z-index: 2;
+  .page {
+    position: absolute;
+    text-align: center;
+  }
+  .logo {
+    position: absolute;
+    width: 53px;
+    height: 21px;
+    left: 50%;
+    margin-left: -26px;
+    top: 15px;
+    background-image: url( ../../images/layout/logo.png );
+    background-size: contain;
+  }
+  .menu-link  {
+    font-size: 20px;
+    float: left;
+    padding-top: 20px;
+    margin-left: 10px;
+    width: 40px;
+    text-align: center;
+    color: @white;
+    cursor: pointer;
+  }
+  .icon-bar {
+    margin-bottom: 3px;
+    display: block;
+    width: 20px;
+    height: 2px;
+    background-color: @white;
+    border-radius: 1px;
+  }
+  .back,
   .settings {
     font-size: 20px;
     float: left;

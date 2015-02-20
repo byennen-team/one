@@ -9,238 +9,251 @@
     background-size: cover;
     color: @white;
     position: relative;
-    .title {
-      margin-top: 20px;
-      color: white;
-      letter-spacing: 2px;
-      .weather {
-        font-family: @raleway-light;
-        font-variant: small-caps;
-        text-transform: lowercase;
-        margin-left: 4px;
-        .skycon {
-          margin-bottom: -0.35em;
-        }
-        .temp {
-          font-size: 13px;
-          font-family: @raleway-semibold;
-        }
-        .city {
-          font-family: @raleway-semibold;
-        }
+  }
+  .title {
+    margin-top: 20px;
+    color: white;
+    letter-spacing: 2px;
+    .weather {
+      font-family: @raleway-light;
+      font-variant: small-caps;
+      text-transform: lowercase;
+      margin-left: 4px;
+      .skycon {
+        margin-bottom: -0.35em;
       }
-      .date {
-        color: white;
-        font-size: 15px;
-        margin-left: 4px;
-        margin-top: 5px;
-        font-variant: small-caps;
-        text-transform: lowercase;
-        letter-spacing: 0.125em;
-        .month {
-          font-family: @raleway-light;
-        }
-        .time {
-          font-family: @raleway-semibold;
-        }
+      .temp {
+        font-size: 13px;
+        font-family: @raleway-semibold;
       }
-      h1.company-title {
-        margin: 0;
-        font-size: 47px;
-        font-family: @raleway-thin; 
-        letter-spacing: 0;
-        opacity: 0.8;
-      }
-      .company-slogan {
-        color: white;
-        font-size: 14px;
-        text-transform: uppercase;
-        letter-spacing: 0.5em;
-        font-weight: 700;
-        margin-left: 4px;
-        margin-top: 10px;
+      .city {
+        font-family: @raleway-semibold;
       }
     }
-    .team {
-      position: absolute;
-      bottom: 1em;
-      left: 1em;
-      .add-team {
-        float: left;
-        font-size: 50px;
+    .date {
+      color: white;
+      font-size: 15px;
+      margin-left: 4px;
+      margin-top: 5px;
+      font-variant: small-caps;
+      text-transform: lowercase;
+      letter-spacing: 0.125em;
+      .month {
+        font-family: @raleway-light;
+      }
+      .time {
+        font-family: @raleway-semibold;
+      }
+    }
+    h1.company-title {
+      margin: 0;
+      font-size: 47px;
+      font-family: @raleway-thin; 
+      letter-spacing: 0;
+      opacity: 0.8;
+    }
+    .company-slogan {
+      color: white;
+      font-size: 14px;
+      text-transform: uppercase;
+      letter-spacing: 0.5em;
+      font-weight: 700;
+      margin-left: 4px;
+      margin-top: 10px;
+    }
+  }
+  .team {
+    position: absolute;
+    bottom: 1em;
+    left: 1em;
+    .add-team {
+      float: left;
+      font-size: 50px;
+      width: 50px;
+      height: 50px;
+      margin-top: 2px;
+      margin-right: 5px;
+      color: @accent;
+      cursor: pointer;
+    }
+    .avatar-box{
+      float: left;
+      position: relative;
+      cursor: pointer;
+      .avatar {
+        margin: 5px;
         width: 50px;
         height: 50px;
-        margin-top: 2px;
-        margin-right: 5px;
-        color: @accent;
-        cursor: pointer;
-      }
-      .avatar-box{
-        float: left;
-        position: relative;
-        cursor: pointer;
-        .avatar {
-          margin: 5px;
-          width: 50px;
-          height: 50px;
-          border-radius: 50%;
-        }
-        .status-dot {
-          position: absolute;
-          width: 10px;
-          height: 10px;
-          margin-top: -5px;
-          top: 50%;
-          left: 0;
-          border-radius: 50%;
-        }
-        .status-dot.active {
-          background-color: @green;
-        }
-        .status-dot.inactive {
-          background-color: @red;
-        }
-        .status-dot.mobile {
-          background-color: @accent;
-        }
-      }
-      .message {
-        position: absolute;
-        width: 20px;
-        height: 20px;
-        bottom: 0;
-        right: -2px;
         border-radius: 50%;
-        background-color: @purple;
-        color: #fff;
-        text-align: center;
-        cursor: pointer;
-        opacity: 0.9;
       }
-      .message.none {
-        display: none;
-      }
-    }
-    .schedule {
-      position: absolute;
-      right: 1em;
-      bottom: 1em;
-      width: 50%;
-      .sleeve {
-        max-height: 350px;
-        overflow: hidden;
-        margin-right: 1em;
-      }
-      .sleeve.mCS_no_scrollbar { // only without scrollbar
-        margin-right: 0;
-      }
-      .add-event {
+      .status-dot {
         position: absolute;
-        right: 2em;
-        top: -1em;
-        width: 1.25em;
-        height: 1.25em;
-        color: @accent;
-        cursor: pointer;
-        .icon-addteam {
-          font-size: 18px;
-        }
+        width: 10px;
+        height: 10px;
+        margin-top: -5px;
+        top: 50%;
+        left: 0;
+        border-radius: 50%;
       }
-      .sleeve.mCS_no_scrollbar ~ .add-event { // only without scrollbar
-        right: 1em;
+      .status-dot.active {
+        background-color: @green;
       }
-      .event {
-        position: relative;
-        height: 3em;
-        .description-box {
-          position: absolute;
-          display: none;
-          right: 120px;
-          top: -0.25em;
-          height: 4em;
-          font-size: 13px;
-          font-family: @raleway-light;
-          overflow: hidden;
-          z-index: 1;
-          cursor: pointer;
-          .description {
-            position: relative;
-            float: right;
-            padding-top: 1.35em;
-            height: 4em;
-            p {
-              margin: 0 20px;
-              color: @white;
-            }
-          }
-          .caret-right {
-            float: right;
-            margin-top: 1.35em;
-            border-bottom: 8px solid transparent;
-            border-top: 8px solid transparent;
-            border-left: 8px solid @black;
-            opacity: 0.5;
-          }
-        }
-        .description::after {
-          content: "";
-          position: absolute;
-          top: 0;
-          bottom: 0;
-          right: 0;
-          left: 0;
-          background-color: @black;
-          opacity: 0.5;
-          z-index: -1;
-        }
-        .time {
-          position: absolute;
-          right: -10px;
-          width: 105px;
-          top: 13px;
-          font-size: 13px;
-          font-family: @raleway-semibold;
-          color: @med-grey;
-          cursor: pointer;
-          transition: color 350ms ease-out 50ms, font-size 350ms ease-out 50ms, top 350ms ease-out 50ms;
-        }
-        .delete-event {
-          position: absolute;
-          font-size: 10px;
-          right: 0;
-          top: 1.75em;
-          color: @white;
-          opacity: 0;
-          cursor: pointer;
-          transition: color 350ms ease-out 50ms, font-family 350ms ease-out 50ms;
-        }
-        .delete-event:hover {
-          color: @red;
-          opacity: 1;
-        }
+      .status-dot.inactive {
+        background-color: @red;
       }
-      .time:hover {
-        font-family: @raleway-light;
-        color: @white;
-      }
-      .time:hover ~ .delete-event {
-        opacity: 1;
-      }
-      .event:last-of-type {
-        margin-bottom: 0.5em;
-      }
-      .blue-line {
-        position: absolute;
-        top: 1em;
-        bottom: 1em;
-        right: 2.5em;
-        width: 1px;
+      .status-dot.mobile {
         background-color: @accent;
       }
-      .sleeve.mCS_no_scrollbar ~ .blue-line { // only without scrollbar
-        right: 1.5em;
+    }
+    .message {
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      bottom: 0;
+      right: -2px;
+      border-radius: 50%;
+      background-color: @purple;
+      color: #fff;
+      text-align: center;
+      cursor: pointer;
+      opacity: 0.9;
+    }
+    .message.none {
+      display: none;
+    }
+  }
+  .schedule {
+    position: absolute;
+    right: 1em;
+    bottom: 1em;
+    width: 50%;
+    .sleeve {
+      max-height: 350px;
+      overflow: hidden;
+      margin-right: 1em;
+    }
+    .sleeve.mCS_no_scrollbar { // only without scrollbar
+      margin-right: 0;
+    }
+    .add-event {
+      position: absolute;
+      right: 2em;
+      top: -1em;
+      width: 1.25em;
+      height: 1.25em;
+      color: @accent;
+      cursor: pointer;
+      .icon-addteam {
+        font-size: 18px;
       }
     }
-
+    .sleeve.mCS_no_scrollbar ~ .add-event { // only without scrollbar
+      right: 1em;
+    }
+    .event {
+      position: relative;
+      height: 3em;
+      .description-box {
+        position: absolute;
+        display: none;
+        right: 120px;
+        top: -0.25em;
+        height: 4em;
+        font-size: 13px;
+        font-family: @raleway-light;
+        overflow: hidden;
+        z-index: 1;
+        cursor: pointer;
+        .description {
+          position: relative;
+          float: right;
+          padding-top: 1.35em;
+          height: 4em;
+          p {
+            margin: 0 20px;
+            color: @white;
+          }
+        }
+        .caret-right {
+          float: right;
+          margin-top: 1.35em;
+          border-bottom: 8px solid transparent;
+          border-top: 8px solid transparent;
+          border-left: 8px solid @black;
+          opacity: 0.5;
+        }
+      }
+      .description::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        right: 0;
+        left: 0;
+        background-color: @black;
+        opacity: 0.5;
+        z-index: -1;
+      }
+      .time {
+        position: absolute;
+        right: -10px;
+        width: 105px;
+        top: 13px;
+        font-size: 13px;
+        font-family: @raleway-semibold;
+        color: @med-grey;
+        cursor: pointer;
+        transition: color 350ms ease-out 50ms, font-size 350ms ease-out 50ms, top 350ms ease-out 50ms;
+      }
+      .delete-event {
+        position: absolute;
+        font-size: 10px;
+        right: 0;
+        top: 1.75em;
+        color: @white;
+        opacity: 0;
+        cursor: pointer;
+        transition: color 350ms ease-out 50ms, font-family 350ms ease-out 50ms;
+      }
+      .delete-event:hover {
+        color: @red;
+        opacity: 1;
+      }
+    }
+    .time:hover {
+      font-family: @raleway-light;
+      color: @white;
+    }
+    .time:hover ~ .delete-event {
+      opacity: 1;
+    }
+    .event:last-of-type {
+      margin-bottom: 0.5em;
+    }
+    .blue-line {
+      position: absolute;
+      top: 1em;
+      bottom: 1em;
+      right: 2.5em;
+      width: 1px;
+      background-color: @accent;
+    }
+    .sleeve.mCS_no_scrollbar ~ .blue-line { // only without scrollbar
+      right: 1.5em;
+    }
   }
+  // Mobile
+  @media all and (max-width: 767px) {
+    .title {
+      margin-top: -40px;
+      padding-top: 40px;
+      padding-bottom: 5px;
+      text-align: center;
+      background-color: @less-blue;
+      .date {
+        margin-bottom: 0;
+      }
+    }
+  }
+
 }

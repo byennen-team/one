@@ -1,8 +1,19 @@
 <template name="mobileNavbar">
   <div class="navbar-mobile">
-    <a href="{{last}}" class="menu-link">
+
+    {{#if dashboard}}
+    <a href="#menu" class="menu-link">
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+    </a>
+    <p class='logo'></p>
+    {{else}}
+    <a href="{{last}}" class="back">
       <i class="fa icon-caret-left-thick"></i>
     </a>
+    <p class='page'>{{page}}</p>
+    {{/if}}
 
     {{#if isMyProfile}}
       <a href="/account-settings" class="settings">
