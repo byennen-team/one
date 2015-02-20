@@ -3,11 +3,11 @@
     {{> mobileNavbar}}
     <div class="col-sm-12 main-column">
       <div class="container">
-        <div class="col-sm-2">
+        <div class="col-md-2">
           <div class="img-circle img-responsive-sm" style='background-image: url({{profile.photoUrl.large}})'></div>
         </div>
 
-        <div class="col-sm-3 col-md-2">
+        <div class="col-md-2">
           <div class="hidden-xs">
             {{#if isMyProfileEditable}}
               <div class="dropdown">
@@ -36,6 +36,20 @@
             add to team
           </a>
 
+          {{#unless isMyProfile}}
+            {{#if isLoggedIn}}
+              {{#if isFollowing}}
+                <div class="un-follow hidden-xs">
+                  <i class="fa fa-check"></i>
+                  <span class="standard">Following</span>
+                  <span class="hovered">Unfollow</span>
+                </div>
+              {{else}}
+                <div class="follow hidden-xs"><i class="fa icon-addteam"></i>Follow</div>
+              {{/if}}
+            {{/if}}
+          {{/unless}}
+
           <div class="visible-xs-block">
             {{#if isMyProfileEditable}}
               <div class="dropdown">
@@ -60,7 +74,7 @@
 
         <div class="bottom">
           
-          <div class="col-sm-2 address">
+          <div class="col-md-2 address">
             <p class='address-title'>
               <i class="fa fa-building-o"></i>
               <span class="words">address</span>
@@ -70,7 +84,7 @@
             <p class='text'>New York, NY 10022</p>
           </div>
 
-          <div class="col-sm-3 phone-listing">
+          <div class="col-md-3 phone-listing">
             <p class='phone-title'>
               <span class="words">phone</span>
             </p>
@@ -81,33 +95,36 @@
             {{/if}}
           </div>
 
-          <div class="col-sm-2 col-md-3">
-            <div class="right-0">
+          <div class="col-md-3">
+            <div class="right-0 btn-house"> 
               {{#if isMyProfile}}
               <a class="account-settings" href="{{pathFor 'accountSettings'}}">
                 <button class='btn btn-block btn-primary'>account settings</button>
               </a>
               {{else}}
-                {{#unless isMyProfile}}
+              <!--   {{#unless isMyProfile}}
                   {{#if isLoggedIn}}
                     {{#if isFollowing}}
-                      <button class='btn btn-block btn-primary un-follow'>unfollow</button>
+                      <button class='btn btn-block btn-primary un-follow hidden-xs'>unfollow</button>
                     {{else}}
-                      <button class='btn btn-block btn-primary follow'>follow</button>
+                      <button class='btn btn-block btn-primary follow hidden-xs'>follow</button>
                     {{/if}}
                   {{/if}}
-                {{/unless}}
+                {{/unless}} -->
               {{/if}}
               <a href="#">
                 {{#if isPrivate}}
-                  <button class='btn btn-block btn-default public'>public profile</button>
-                {{else}}
-                  {{#if isLoggedIn}}
-                    <button class='btn btn-block btn-default private'>private profile</button>
-                  {{/if}}
                   {{#unless isMyProfile}}
                     <button id="send-message-btn" class='btn btn-block btn-primary'>send message</button>
                   {{/unless}}
+                  <button class='btn btn-block btn-default public'>public profile</button>
+                {{else}}
+                  {{#unless isMyProfile}}
+                    <button id="send-message-btn" class='btn btn-block btn-primary'>send message</button>
+                  {{/unless}}
+                  {{#if isLoggedIn}}
+                    <button class='btn btn-block btn-default private'>private profile</button>
+                  {{/if}}
                 {{/if}}
               </a>
             </div>

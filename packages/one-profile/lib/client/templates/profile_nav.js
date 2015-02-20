@@ -1,6 +1,7 @@
-/* globals navOffset: true */
+var navOffset = new ReactiveVar();
+
 Template.profileNav.rendered = function () {
-  // add/remove sticky class on sidebar based on scroll position
+  // add/remove sticky class on navbar based on scroll position
   var $navTabs = $( '#profile-nav-tabs' );
   navOffset = $navTabs.offset().top - 60; // return height from page top
   $( '#transitioner-1' ).on( 'scroll', function() {         
@@ -12,7 +13,6 @@ Template.profileNav.rendered = function () {
     }
   }); 
 };
-
 
 Template.profileNav.helpers({
   followingCount: function () {
