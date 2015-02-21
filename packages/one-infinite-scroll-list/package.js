@@ -17,7 +17,7 @@ Package.onUse(function(api) {
     'less',
     'templating',
     'percolate:paginated-subscription@0.2.4',
-    'aldeed:template-extension@3.4.0'
+    'aldeed:template-extension@3.4.1'
   ], 'web');
 
   api.addFiles([
