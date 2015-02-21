@@ -46,6 +46,10 @@ Template.libraryFiles.helpers({
 
   selectedCategory: function () {
     return Session.get('libraryFilesSelectedCategory');
+  },
+
+  currentFolderId: function () {
+    return Session.get('currentFolderId');
   }
 
 });
@@ -60,6 +64,13 @@ Template.libraryFiles.events({
   'click [data-action="select-company-docs"]': function (event) {
     event.preventDefault();
     Session.set('libraryFilesSelectedCategory', 'Company Docs');
+  },
+
+  'click [data-action="level-up"]': function () {
+    var parentFolder = Files.findOne(Session.get('currentFolderId'));
+    if (parentFolder) {
+      Session.set('currentFolderId', parentFolder.parent || null);
+    }
   }
 
 });
