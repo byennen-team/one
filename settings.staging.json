@@ -3,7 +3,7 @@
   "AWS_ACCESS_KEY_ID": "AKIAI32HMA3JVVRDWMUQ",
   "AWS_SECRET_ACCESS_KEY": "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",
   "public": {
-    "AWS_BUCKET_URL": "https://goone-staging.s3.amazonaws.com",
+    "AWS_BUCKET_URL": "https://one-staging.s3.amazonaws.com",
     "ENVIRONMENT": "staging",
     "twitter": {
       "COMPANY_SCREENNAME": "DouglasElliman",
