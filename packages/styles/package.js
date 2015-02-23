@@ -23,6 +23,7 @@ Package.onUse(function (api) {
     'typography.less',
   	'modals.less',
     'tooltip.less',
+    'nav-tabs.less',
     'positioning.less',
     'select.less',
     'selectpicker.less',

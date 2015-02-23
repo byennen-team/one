@@ -34,11 +34,13 @@ Package.onUse(function (api) {
     'lib/client/less/profile_gallery.less',
     'lib/client/less/gallery_modal.less',
     'lib/client/less/profile_header.less',
+    'lib/client/less/profile_network.less',
     'lib/client/less/profile_property_search.less',
     'lib/client/less/profile_testimonial.less',
     'lib/client/less/profile_buyer.less',
     'lib/client/less/profile_contact.less',
-    'lib/client/less/profile_footer.less'
+    'lib/client/less/profile_footer.less',
+    'lib/client/less/profile_gallery_mobile_controls.less'
   ], 'web');
 
 
@@ -60,10 +62,13 @@ Package.onUse(function (api) {
     'lib/client/modals/profile_contact_message_failed_modal.html',
     'lib/client/modals/profile_activity_link_modal.html',
     'lib/client/modals/gallery_modal.html',
+    'lib/client/modals/profile_add_team_modal.html',
     'lib/client/modals/profile_add_gallery_modal.html',
     'lib/client/modals/profile_add_gallery_modal.js',
     'lib/client/modals/profile_add_picture_gallery_modal.html',
-    'lib/client/modals/profile_add_picture_gallery_modal.js'
+    'lib/client/modals/profile_add_picture_gallery_modal.js',
+    'lib/client/modals/profile_gallery_mobile_controls.html',
+    'lib/client/modals/profile_gallery_mobile_controls_client.js'
     ], 'web');
 
   // templates
@@ -85,6 +90,7 @@ Package.onUse(function (api) {
     'lib/client/templates/profile_followers.js',
     'lib/client/templates/profile_following.html',
     'lib/client/templates/profile_following.js',
+    'lib/client/templates/profile_network.html',
     'lib/client/templates/profile_gallery.html',
     'lib/client/templates/profile_gallery.js',
     'lib/client/templates/profile_header.html',
@@ -95,6 +101,7 @@ Package.onUse(function (api) {
     'lib/client/templates/profile_buyer.html',
     'lib/client/templates/profile_contact.html',
     'lib/client/templates/profile_contact_client.js',
+    'lib/client/templates/profile_screen_client.js',
     'lib/client/templates/profile_footer.html',
     'gallery/gallery_client.js'
     ], 'web');

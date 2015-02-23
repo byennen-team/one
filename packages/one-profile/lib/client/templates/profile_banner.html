@@ -1,84 +1,137 @@
 <template name="profileBanner">
   <div class="row navy-bg profileBanner">
-    <div class="col-sm-12 m-top-70px">
+    {{> mobileNavbar}}
+    <div class="col-sm-12 main-column">
       <div class="container">
-        <div class="col-sm-2">
-          <img class="img-circle img-responsive-sm" src="{{profile.photoUrl.large}}"/>
+        <div class="col-md-2">
+          <div class="img-circle img-responsive-sm" style='background-image: url({{profile.photoUrl.large}})'></div>
         </div>
 
-        <div class="col-sm-3 col-md-2">
-          {{#if isMyProfileEditable}}
-            <div class="dropdown">
-              <button id="status-drop-button" class="status-drop-button text-uppercase green raleway-semibold spacing-250" type="button" data-toggle="dropdown" aria-haspopup="true" role="button" aria-expanded="false" >
-                {{profile.status}}
-                <span class="caret user-only"></span>
-              </button>
-              <ul id="status-drop" class="status-drop dropdown-menu" role="menu" aria-labelledby="status-drop-button">
-                <li role="presentation"><div id="status-in" role="menuitem" class='raleway-semibold spacing-0625 text-uppercase green'>In the office</div></li>
-                <li role="presentation"><div id="status-out" role="menuitem" class='raleway-semibold spacing-0625 text-uppercase red'>out of office</div></li>
-                <li role="presentation"><div id="status-mobile" role="menuitem" class='raleway-semibold spacing-0625 text-uppercase accent'>mobile</div></li>
-              </ul>
-            </div>
-          {{else}}
-            {{#if isLoggedIn}}
-              <p class="text-uppercase green raleway-semibold spacing-250">{{profile.status}}</p>
+        <div class="col-md-2">
+          <div class="hidden-xs">
+            {{#if isMyProfileEditable}}
+              <div class="dropdown">
+                <button id="status-drop-button" class="status-drop-button text-uppercase green raleway-semibold spacing-250" type="button" data-toggle="dropdown" aria-haspopup="true" role="button" aria-expanded="false" >
+                  {{profile.status}}
+                  <span class="caret user-only"></span>
+                </button>
+                <ul id="status-drop" class="status-drop dropdown-menu" role="menu" aria-labelledby="status-drop-button">
+                  <li role="presentation"><div id="status-in" role="menuitem" class='raleway-semibold spacing-0625 text-uppercase green'>In the office</div></li>
+                  <li role="presentation"><div id="status-out" role="menuitem" class='raleway-semibold spacing-0625 text-uppercase red'>out of office</div></li>
+                  <li role="presentation"><div id="status-mobile" role="menuitem" class='raleway-semibold spacing-0625 text-uppercase accent'>mobile</div></li>
+                </ul>
+              </div>
+            {{else}}
+              {{#if isLoggedIn}}
+                <p class="text-uppercase green raleway-semibold spacing-250">{{profile.status}}</p>
+              {{/if}}
+            {{! Internal profile }}
             {{/if}}
-          {{! Internal profile }}
-          {{/if}}
+          </div>
 
-          <p class='h3 raleway-light white m-top-025'>{{profile.firstName}} {{profile.lastName}}</p>
-          <p class='raleway-semibold white text-uppercase spacing-250 little'>{{profile.title}}</p>
+          <p class='name'>{{profile.firstName}} {{profile.lastName}}</p>
+          <p class='title'>{{profile.title}}</p>
           <a href='' class='raleway-semibold accent text-uppercase spacing-0625 not-for-user'>
             <i class="fa icon-plus-circle fa-lg no-transition"></i>
             add to team
           </a>
-        </div>
 
-        <div class="col-sm-2">
-          <p class='raleway-semibold accent text-uppercase spacing-0625'>address</p>
-          <p class='raleway-light white'>575 Madison Ave</p>
-          <p class='raleway-light white'>New York, NY 10022</p>
-        </div>
-
-        <div class="col-sm-3">
-          <p class='raleway-semibold accent text-uppercase spacing-0625'>phone</p>
-          <p class='raleway-light white'><span class='raleway-semibold text-uppercase spacing-0625'>office:</span> (212) 555-1234</p>
-          {{#if profile.numbers.mobile}}
-            <p class='raleway-light white'><span class='raleway-semibold text-uppercase spacing-0625'>mobile:</span> {{profile.numbers.mobile}}</p>
-          {{/if}}
-        </div>
-
-        <div class="col-sm-2 col-md-3">
-          <div class="right-0">
-            {{#if isMyProfile}}
-            <a href="{{pathFor 'accountSettings'}}">
-              <button class='btn btn-block btn-small btn-accent raleway-semibold white text-uppercase spacing-0625 small'>account settings</button>
-            </a>
-            {{else}}
-              {{#unless isMyProfile}}
-                {{#if isLoggedIn}}
-                  {{#if isFollowing}}
-                    <button class='btn btn-block btn-small btn-accent raleway-semibold white text-uppercase spacing-0625 small un-follow'>unfollow</button>
-                  {{else}}
-                    <button class='btn btn-block btn-small btn-accent raleway-semibold white text-uppercase spacing-0625 small follow'>follow</button>
-                  {{/if}}
-                {{/if}}
-              {{/unless}}
-            {{/if}}
-            <a href="#">
-              {{#if isPrivate}}
-                <button class='btn btn-block btn-small btn-accent-border raleway-semibold white text-uppercase spacing-0625 m-top-08 public'>public profile</button>
+          {{#unless isMyProfile}}
+            {{#if isLoggedIn}}
+              {{#if isFollowing}}
+                <div class="un-follow hidden-xs">
+                  <i class="fa fa-check"></i>
+                  <span class="standard">Following</span>
+                  <span class="hovered">Unfollow</span>
+                </div>
               {{else}}
-                {{#if isLoggedIn}}
-                  <button class='btn btn-block btn-small btn-accent-border raleway-semibold white text-uppercase spacing-0625 m-top-08 private'>private profile</button>
-                {{/if}}
-                {{#unless isMyProfile}}
-                  <button id="send-message-btn" class='btn btn-block btn-small btn-accent raleway-semibold white text-uppercase spacing-125 small'>send message</button>
-                {{/unless}}
+                <div class="follow hidden-xs"><i class="fa icon-addteam"></i>Follow</div>
               {{/if}}
-            </a>
+            {{/if}}
+          {{/unless}}
+
+          <div class="visible-xs-block">
+            {{#if isMyProfileEditable}}
+              <div class="dropdown">
+                <button id="status-drop-button" class="status-drop-button text-uppercase green raleway-semibold spacing-250" type="button" data-toggle="dropdown" aria-haspopup="true" role="button" aria-expanded="false" >
+                  {{profile.status}}
+                  <span class="caret user-only"></span>
+                </button>
+                <ul id="status-drop" class="status-drop dropdown-menu" role="menu" aria-labelledby="status-drop-button">
+                  <li role="presentation"><div id="status-in" role="menuitem" class='raleway-semibold spacing-0625 text-uppercase green'>In the office</div></li>
+                  <li role="presentation"><div id="status-out" role="menuitem" class='raleway-semibold spacing-0625 text-uppercase red'>out of office</div></li>
+                  <li role="presentation"><div id="status-mobile" role="menuitem" class='raleway-semibold spacing-0625 text-uppercase accent'>mobile</div></li>
+                </ul>
+              </div>
+            {{else}}
+              {{#if isLoggedIn}}
+                <p class="text-uppercase green raleway-semibold spacing-250">{{profile.status}}</p>
+              {{/if}}
+            {{! Internal profile }}
+            {{/if}}
           </div>
         </div>
+
+        <div class="bottom">
+          
+          <div class="col-md-2 address">
+            <p class='address-title'>
+              <i class="fa fa-building-o"></i>
+              <span class="words">address</span>
+            </p>
+            <p class='text'>575 Madison Ave</p>
+            <span class="pipe">|</span>
+            <p class='text'>New York, NY 10022</p>
+          </div>
+
+          <div class="col-md-3 phone-listing">
+            <p class='phone-title'>
+              <span class="words">phone</span>
+            </p>
+            <p class='text'><span class='title'><i class="fa fa-phone"></i> office:</span> (212) 555-1234</p>
+            <p class='text'><span class='title'><i class="fa fa-phone"></i> office:</span> (212) 555-1234</p>
+            {{#if profile.numbers.mobile}}
+              <p class='text'><span class='title'>mobile:</span> {{profile.numbers.mobile}}</p>
+            {{/if}}
+          </div>
+
+          <div class="col-md-3">
+            <div class="right-0 btn-house"> 
+              {{#if isMyProfile}}
+              <a class="account-settings" href="{{pathFor 'accountSettings'}}">
+                <button class='btn btn-block btn-primary'>account settings</button>
+              </a>
+              {{else}}
+              <!--   {{#unless isMyProfile}}
+                  {{#if isLoggedIn}}
+                    {{#if isFollowing}}
+                      <button class='btn btn-block btn-primary un-follow hidden-xs'>unfollow</button>
+                    {{else}}
+                      <button class='btn btn-block btn-primary follow hidden-xs'>follow</button>
+                    {{/if}}
+                  {{/if}}
+                {{/unless}} -->
+              {{/if}}
+              <a href="#">
+                {{#if isPrivate}}
+                  {{#unless isMyProfile}}
+                    <button id="send-message-btn" class='btn btn-block btn-primary'>send message</button>
+                  {{/unless}}
+                  <button class='btn btn-block btn-default public'>public profile</button>
+                {{else}}
+                  {{#unless isMyProfile}}
+                    <button id="send-message-btn" class='btn btn-block btn-primary'>send message</button>
+                  {{/unless}}
+                  {{#if isLoggedIn}}
+                    <button class='btn btn-block btn-default private'>private profile</button>
+                  {{/if}}
+                {{/if}}
+              </a>
+            </div>
+          </div>
+
+        </div>
+
       </div>
     </div>
   </div>

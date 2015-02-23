@@ -2,14 +2,18 @@
   <div class="transitioner-container">
     {{#if isPrivate}}
       {{> profileBanner isPrivate=isPrivate profile=profile isMyProfile=isMyProfile}}
-      <div class='container p-bottom-40'>
+      <div class='container profile-container'>
         {{> profileNav}}
         <div id="tab-content" class="tab-content">
           {{> profileActivity}}
           {{> profileAbout}}
           {{> profileGallery}}
-          {{> profileFollowers}}
-          {{> profileFollowing}}
+          {{> profileNetwork}}
+          {{> profileFollowersWrap}}
+          {{> profileFollowingWrap}}
+
+          {{> profileAddTeam}}
+          {{> profileGalleryMobileControls}}
         </div>
       </div>
     {{else}}
@@ -22,9 +26,15 @@
       {{> profileContact}}
       {{> profileFooter}}
     {{/if}}
+
+    {{> profileScreen}}
   </div>
 </template>
 
+
+<template name="profileScreen">
+  <div id="profile-screen" class="profile-screen"></div>
+</template>
 <!-- Example:
   {{#if isPrivate}}
     if private

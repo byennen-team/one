@@ -17,6 +17,13 @@
     .album {
       padding-left: 5px;
       padding-right: 5px;
+      .title {
+        font-size: 24px;
+        float: left;
+        font-family: @raleway-light;
+        color: @navy;
+        margin-top: 0;
+      }
       .controls {
         font-family: @raleway-semibold;
         clear: both;
@@ -37,45 +44,84 @@
         }
       }
     }
-  }
+    .album.draggedOver {
+      opacity: 0.3;
+      border: 2px dotted gray;
+    }
+    .picture-loader {
+      text-align: center;
+      line-height:90px;
+      border: 1px dotted #eeeeee;
+    }
+    .mobile-control {
+      position: fixed;
+      height: 46px;
+      width: 45px;
+      bottom: 1em;
+      right: 0.5em;
+      background-image: url( ../../../../../images/profile/gallery-add.png );
+      cursor: pointer;
+      z-index: 2;
+    }
 
 
 
+    @media all and (max-width: 767px) {
+      .album {
+        margin-top: 5px;
+        padding-top: 8px;
+        background-color: @white;
+        .title {
+          font-size: 16px;
+          margin-left: 0.5em;
+          font-family: @raleway-semibold;
+          font-variant: small-caps;
+          text-transform: lowercase;
+          letter-spacing: 0.2em;
+          color: @accent;
+        }
+      }
+      .gallery-square {
+        float: left;
+        width: 33%;
+        height: 100px;
+        margin-bottom: 6px;
+        padding-left: 3px;      // overrides .half-gutter
+        padding-right: 3px;
+      }
+    }
 
-  @media all and (min-width: 768px) {
-    .gallery-square {
-      height:90px;
+    @media all and (max-width: 480px) {
+      #section-gallery .fixed-xs {
+        width: 80%;
+        margin: 1em 10% 2em 10%;
+        padding: 0;
+      }
+      .gallery-square {
+        height: 80px;
+      }
     }
-  }
-  @media all and (max-width: 480px) {
-    #section-gallery .fixed-xs {
-      width: 80%;
-      margin: 1em 10% 2em 10%;
-      padding: 0;
+    @media all and (min-width: 481px) and (max-width: 767px) {
+      #section-gallery .fixed-xs {
+        width: 80%;
+        margin: 1em 10% 2em 10%;
+        padding: 0;
+      }
+      .gallery-square {
+        height:480px;
+      }
     }
-    .gallery-square {
-      height:400px;
+    @media all and (min-width: 768px) {
+      .gallery-box {
+        margin-top: 2.0em;
+      }
+      .album {
+        margin-top: 2.0em;
+      }
+      .gallery-square {
+        height:90px;
+      }
     }
-  }
-  @media all and (min-width: 481px) and (max-width: 767px) {
-    #section-gallery .fixed-xs {
-      width: 80%;
-      margin: 1em 10% 2em 10%;
-      padding: 0;
-    }
-    .gallery-square {
-      height:480px;
-    }
-  }
-  .album.draggedOver {
-    opacity: 0.3;
-    border: 2px dotted gray;
-  }
-
-  .picture-loader {
-    text-align: center;
-    line-height:90px;
-    border: 1px dotted #eeeeee;
   }
 }
 
