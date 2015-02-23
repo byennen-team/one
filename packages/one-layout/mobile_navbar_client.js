@@ -1,3 +1,7 @@
+Template.mobileNavbar.rendered = function () {
+  $('.mobile-menu-link').leftNav();
+}
+
 Template.mobileNavbar.helpers({
 
 // TODO: Returns last page link/route (for back button)
@@ -30,7 +34,7 @@ Template.mobileNavbar.helpers({
 
   page: function() {
     var page = Router.current().route.getName();
-    return Router.current().route.getName();
+    return page;
   }
   
 });

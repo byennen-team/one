@@ -3,7 +3,7 @@ $.fn.leftNav = function(options) {
   var settings = $.extend({
     'menu': ('#left_nav'),
     'push': ('.push'),
-    'menuWidth': '22em',
+    'menuWidth': '20em',
     'activeBtn':'menu-open'
   }, options);
 

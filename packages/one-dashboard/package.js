@@ -23,6 +23,7 @@ Package.onUse(function (api) {
     api.addFiles([
     'dashboard.html',
     'dashboard.less',
+    'dashboard_client.js',
     'dashboard_banner.html',
     'dashboard_skycons_client.js',
     'dashboard_banner_client.js',

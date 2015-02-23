@@ -1,6 +1,6 @@
 Template.notifications.rendered = function () {
   Meteor.subscribe('notifications',5);
-  Session.set( 'dropdown', false );
+  Session.set( 'notificationDropdown', false );
   Session.set( 'statusPanel', true );
 };
 
@@ -46,16 +46,16 @@ Template.notifications.events({
 
   // Toggle the dropdown when the avatar is clicked
   'click #notifications-avatar': function () {
-     var open = Session.get( 'dropdown' );
+     var open = Session.get( 'notificationDropdown' );
     if( open ){
-      $( '#notification-dropdown' ).velocity("slideUp", { duration: 300 });
-      Session.set( 'dropdown', false );
+      $( '.notification-dropdown' ).velocity("slideUp", { duration: 300 });
+      Session.set( 'notificationDropdown', false );
     } else {
-      $( '#notification-dropdown' ).velocity("slideDown", {
+      $( '.notification-dropdown' ).velocity("slideDown", {
         duration: 500,
         easing: "ease-out"
       });
-      Session.set( 'dropdown', true );
+      Session.set( 'notificationDropdown', true );
     }
   },
 

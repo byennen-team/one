@@ -1,0 +1,39 @@
+// Variables 
+@import "/packages/styles/variables.import.less";
+
+.tabbbar {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 46px;
+  background-color: @less-blue;
+  z-index: 10;
+  ul {
+    list-style: none;
+  }
+  li {
+    float: left;
+    width: 20%;
+  }
+  .link {
+    padding: 5px;
+    text-align: center;
+  }
+  .fa {
+    color: @text-lt-blue;
+  }
+  .link-text {
+    font-size: 12px;
+    font-family: @raleway-light;
+    color: @text-lt-blue;
+  }
+  li.active {
+    .fa {
+      color: @accent;
+    }
+    .link-text {
+      color: @white;
+    }
+  }
+}

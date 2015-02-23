@@ -6,31 +6,34 @@
   margin-top: -1px; // not sure why this is necessary
   cursor: pointer;
   .avatar-box{
+    padding: 5px 0;
     background-color: #fff;
-    .avatar {
-      margin: 5px;
-      width: 50px;
-      height: 50px;
-      border-radius: 50%;
-    }
-    .status-dot {
-      position: absolute;
-      width: 10px;
-      height: 10px;
-      margin-top: -5px;
-      top: 50%;
-      left: 0;
-      border-radius: 50%;
-    }
-    .status-dot.active {
-      background-color: #4baf00;
-    }
-    .status-dot.inactive {
-      background-color: #f26c4f;
-    }
-    .status-dot.mobile {
-      background-color: #5bb8d7;
-    }
+  }
+  .avatar {
+    margin-left: 5px;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background-position: top center;
+    background-size: cover;
+  }
+  .status-dot {
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    margin-top: -5px;
+    top: 50%;
+    left: 0;
+    border-radius: 50%;
+  }
+  .status-dot.active {
+    background-color: #4baf00;
+  }
+  .status-dot.inactive {
+    background-color: #f26c4f;
+  }
+  .status-dot.mobile {
+    background-color: #5bb8d7;
   }
   .notification-alert {
     position: absolute;
@@ -187,6 +190,23 @@
         font-size: 12px;
         font-family: RalewayRegular, Verdana, Geneva, sans-serif;
       }
+    }
+  }
+
+  // Mobile 
+  @media all and (max-width: 991px){
+    width: 40px;
+    height: 40px;
+    .avatar-box {
+      background-color: transparent;
+    }
+    .avatar {
+      width: 30px;
+      height: 30px;
+    }
+    .notification-dropdown {
+    left: -275px;
+    width: 320px;
     }
   }
 }

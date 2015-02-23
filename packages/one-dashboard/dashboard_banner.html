@@ -1,7 +1,7 @@
 <template name="dashboardBanner">
   <div class="banner">
-    <div class="title col-sm-6">
 
+    <div class="title col-md-6 hidden-xs hidden-sm">
       <div class="weather">
         <canvas id="skycon" class='skycon' width="18" height="18"></canvas>
       {{#if temp}}
@@ -11,14 +11,14 @@
       {{/if}}
       </div>
 
-      <h1 class="company-title hidden-xs">Douglas Elliman</h1>
+      <h1 class="company-title">Douglas Elliman</h1>
       <p class="date">
         <span class="month">{{month}}</span>
         <span class="time">{{time}}</span>
       </p>
     </div>
 
-    <div class="team hidden-xs">
+    <div class="team hidden-xs hidden-sm">
 <!-- TODO: Selected Agent should be added to User's team -->
       <div id="dashboard-add-team" class='add-team' data-toggle="modal" data-target="#communication-directory-modal">
         <i class="fa icon-addteam"></i>
@@ -33,7 +33,7 @@
       {{/each}}
     </div>
 
-    <div class="schedule hidden-xs">
+    <div class="schedule hidden-xs hidden-sm">
 
       <div id="dashboard-schedule-sleeve" class="sleeve">
         <div class="event">
