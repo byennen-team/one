@@ -71,3 +71,58 @@
     z-index: -1;
   }
 }
+
+// Mobile 
+@media all and (max-width: 991px){
+  .notifications-popup {
+    position: relative;
+    width: 100%;
+    margin-top: 5px;
+    margin-left: 0;
+    top: 0;
+    left: 0;
+    .banner {
+      margin: 0.5em;
+      .fa {
+        color: @accent;
+      }
+      p {
+        display: inline;
+        color: @white;
+        font-family: @raleway-bold;
+        letter-spacing: 0.2em;
+        font-variant: small-caps;
+        text-transform: lowercase;
+      }
+    }
+  }
+  .notifications-popup:after {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    background-color: @blue;
+    border-radius: 3px;
+    opacity: 0.5;
+    z-index: -1;
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

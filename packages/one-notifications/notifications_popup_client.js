@@ -1,9 +1,13 @@
 // TODO: animate notice slide down (what will call them?)
 Template.notificationsPopup.rendered = function () {
-  $( "#notifications-popup-sleeve" ).mCustomScrollbar({
-      theme:"one-dark",
-      scrollbarPosition: "inside"
-  });
+  // Initialize scrollbar - mobile only
+  var currentWidth = $( window ).width();
+  if( currentWidth >= 992 ){
+    $( "#notifications-popup-sleeve" ).mCustomScrollbar({
+        theme:"one-dark",
+        scrollbarPosition: "inside"
+    });
+  }
 };
 
 Template.notificationsPopup.helpers({
