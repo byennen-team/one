@@ -1,0 +1,25 @@
+<template name="mobileNavbar">
+  <div class="navbar-mobile">
+    <a href="{{last}}" class="menu-link">
+      <i class="fa icon-caret-left-thick"></i>
+    </a>
+
+    {{#if isMyProfile}}
+      <a href="/account-settings" class="settings">
+        <i class="fa fa-gear"></i>
+      </a>
+    {{else}}
+      {{#if isLoggedIn}}
+        {{#if isFollowing}}
+          <div class="un-follow">
+            <i class="fa fa-check"></i>
+            <span>Following</span>
+          </div>
+        {{else}}
+          <div class="follow">Follow</div>
+        {{/if}}
+      {{/if}}
+    {{/if}}
+
+  </div>
+</template>

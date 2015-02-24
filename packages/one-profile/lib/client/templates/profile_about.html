@@ -1,74 +1,78 @@
 <template name="profileAbout">
-  <section id="section-about" class="tab-pane section-about row m-top-10">
-    <div class="col-sm-6 col-sm-offset-1 m-top-25 text-justify">
-      <!-- TEMPLATE - User's first name 		 -->
-      <p class='raleway-semibold pull-left auto-width accent m-top-025 text-uppercase spacing-125'>About {{profile.firstName}}</p>
-      <!-- TEMPLATE - Plug in edit functionality 	- line 154 (ish) in profile.js	 -->
-      <div id='edit-bio' class="pull-right user-only pointer">
-        <span class="sr-only">Edit</span>
-        <i class="fa fa-pencil grey"></i>
+  <section id="section-about" class="tab-pane section-about row">
+    <div class="col-sm-6 col-sm-offset-1 about-text">
+      <div class="about-tile">
+        <p class='name'>About {{profile.firstName}}</p>
+        <!-- TODO: - Plug in edit functionality 	- line 154 (ish) in profile.js	 -->
+        <div id='edit-bio' class="pull-right user-only pointer">
+          <span class="sr-only">Edit</span>
+          <i class="fa fa-pencil grey"></i>
+        </div>
+
+        <button id='edit-bio-save' class='btn btn-block btn-small btn-grey raleway-semibold white text-uppercase spacing-125 small pull-right auto-width m-left-20'>save</button>
+
+        <p id='edit-bio-cancel' class='raleway-semibold grey text-uppercase spacing-125 small pull-right auto-width m-top-05 pointer'>cancel</p>
+
+        <div class='clearfix'></div>
+
+        <div id='bio-board' class='bio-board' contenteditable='false'>
+          <p class='raleway-light navy lh-200'>{{{profile.bio}}}</p>
+        </div>
       </div>
 
-      <button id='edit-bio-save' class='btn btn-block btn-small btn-grey raleway-semibold white text-uppercase spacing-125 small pull-right auto-width m-left-20'>save</button>
-
-      <p id='edit-bio-cancel' class='raleway-semibold grey text-uppercase spacing-125 small pull-right auto-width m-top-05 pointer'>cancel</p>
-
-      <div class='clearfix'></div>
-      <!-- TEMPLATE - User's bio 		 -->
-      <div id='bio-board' class='bio-board lt-grey-bg m-top-10' contenteditable='false'>
-        <p class='raleway-light navy lh-200'>{{{profile.bio}}}</p>
-      </div>
-
       <div class='clearfix'></div>
 
-      <p class='raleway-semibold pull-left auto-width accent m-top-20 text-uppercase spacing-125'>expertise</p>
-      <!-- TEMPLATE - Plug in edit functionality 	- line 185 (ish) in profile.js	 -->
-      <div id='edit-skills' class="pull-right user-only pointer m-top-20">
-        <span class="sr-only">Edit</span>
-        <i class="fa fa-pencil grey"></i>
-      </div>
+      <div class="about-tile">
+        <p class='name'>expertise</p>
+        <!-- TEMPLATE - Plug in edit functionality 	- line 185 (ish) in profile.js	 -->
+        <div id='edit-skills' class="pull-right user-only pointer m-top-20">
+          <span class="sr-only">Edit</span>
+          <i class="fa fa-pencil grey"></i>
+        </div>
 
-      <button id='edit-skills-save' class='btn btn-block btn-small btn-grey raleway-semibold white text-uppercase spacing-125 small pull-right auto-width m-left-20 m-top-20'>save</button>
+        <button id='edit-skills-save' class='btn btn-block btn-small btn-grey raleway-semibold white text-uppercase spacing-125 small pull-right auto-width m-left-20 m-top-20'>save</button>
 
-      <p id='edit-skills-cancel' class='raleway-semibold grey text-uppercase spacing-125 small pull-right auto-width m-top-30 pointer'>cancel</p>
+        <p id='edit-skills-cancel' class='raleway-semibold grey text-uppercase spacing-125 small pull-right auto-width m-top-30 pointer'>cancel</p>
 
-      <div class='clearfix'></div>
-      <!-- TEMPLATE - User's expertise 		 -->
-      <div id='skills-board' class='bio-board lt-grey-bg m-top-10' contenteditable='false'>
-        <p class='raleway-light navy lh-200'>New York Real Estate, Purchasing, Negotiating, Financial Advisor, Commercial Real Estate, Residential Real Estate, Leasing, Renting.</p>
+        <div class='clearfix'></div>
+        <!-- TEMPLATE - User's expertise 		 -->
+        <div id='skills-board' class='bio-board' contenteditable='false'>
+          <p class='raleway-light navy lh-200'>New York Real Estate, Purchasing, Negotiating, Financial Advisor, Commercial Real Estate, Residential Real Estate, Leasing, Renting.</p>
+        </div>
       </div>
     </div>
 
-    <div class="col-sm-3 col-sm-offset-2 m-top-25">
-      <p class='raleway-semibold pull-left auto-width accent m-top-025 text-uppercase spacing-125'>team</p>
+    <div class="col-sm-3 col-sm-offset-2 m-top-25 hidden-xs">
+      <div class="about-tile">
+        <p class='raleway-semibold pull-left auto-width accent m-top-025 text-uppercase spacing-125'>team</p>
 
-      {{#if isMyProfile}}
-        <div class="pull-right user-only pointer" data-toggle="modal" data-target="#communication-directory-modal">
-          <span class='raleway-light auto-width m-right-05 accent'>Add New</span>
-          <i class="fa icon-plus-circle fa-lg accent lh-180"></i>
-        </div>
-      {{/if}}
-
-
-
-      <div class='clearfix'></div>
-
-      <div class='m-top-20'>
-
-        {{#each teamMembers}}
-        <!-- TEMPLATE - repeat this block for each Team member 	  		 -->
-        <div class="m-bottom-20">
-          <div class="avatar pull-left">
-            <!-- TEMPLATE - Team member's avatar in SRC	  		 -->
-            <img class="img-circle team-img pull-left m-right-10" src="{{profile.photoUrl.thumb}}" />
+        {{#if isMyProfile}}
+          <div class="pull-right user-only pointer" data-toggle="modal" data-target="#communication-directory-modal">
+            <span class='raleway-light auto-width m-right-05 accent'>Add New</span>
+            <i class="fa icon-plus-circle fa-lg accent lh-180"></i>
           </div>
-          <!-- TEMPLATE - Team member's name  		 -->
-          <p class='h4 raleway-light accent m-top-0 m-bottom-025 p-left-35'>{{profile.firstName}} {{profile.lastName}}</p>
-          <!-- TEMPLATE - Team member's title 		 -->
-          <p class='h6 raleway-semibold text text-uppercase spacing-125 m-top-0 m-bottom-025 p-left-525 lh-180'>{{profile.title}}</p>
+        {{/if}}
+
+        <div class='clearfix'></div>
+
+        <div class='m-top-20'>
+
+          {{#each teamMembers}}
+          <div class="m-bottom-20">
+            <div class="avatar pull-left">
+              <img class="img-circle team-img pull-left m-right-10" src="{{profile.photoUrl.thumb}}" />
+            </div>
+            <p class='h4 raleway-light accent m-top-0 m-bottom-025 p-left-35'>{{profile.firstName}} {{profile.lastName}}</p>
+            <p class='h6 raleway-semibold text text-uppercase spacing-125 m-top-0 m-bottom-025 p-left-525 lh-180'>{{profile.title}}</p>
+          </div>
+          {{/each}}
+
         </div>
-        {{/each}}
       </div>
-    </div>{{> communicationDirectoryModal}}
+    </div>
+    {{> communicationDirectoryModal}}
+
+    <a href="/account-settings" class="btn edit-section user-only visible-xs-block">Edit section</a>
+
   </section>
 </template>

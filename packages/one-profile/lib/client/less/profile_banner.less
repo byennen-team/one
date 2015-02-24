@@ -1,64 +1,259 @@
+// Variables 
+@import "/packages/styles/variables.import.less";
+
 .profileBanner {
   margin: 0;
   padding: 0 0 40px 0;
   position: relative;
+  .main-column {
+    margin-top: 70px;
+  }
+  .name {
+    font-family: @raleway-thin;
+    font-size: 20px;
+    margin-top: 0.25em;
+    color: @white;
+  }
+  .title {
+    font-family: @raleway-semibold;
+    color: @white;
+    font-variant: small-caps;
+    letter-spacing: 0.2em;
+    text-transform: lowercase;
+  }
+  .address,
+  .phone-listing  {
+    .fa {
+      display: none;
+    }
+  }
+  .address-title,
+  .phone-title  {
+    font-family: @raleway-semibold;
+    color: @accent;
+    font-variant: small-caps;
+    text-transform: lowercase;
+    letter-spacing: 0.2em;
+  }
+  .text {
+    color: @white;
+    font-family: @raleway-light;
+  }
+
+  .btn {
+    font-size: 14px;
+    margin-top: 0.8em;
+    padding: 9px 24px;
+    font-variant: small-caps;
+    text-transform: lowercase;
+    letter-spacing: 0.2em;
+    color: @white;
+    border: 3px solid @accent;
+    border-radius: 3px;
+  }
+  .btn:hover {
+    background-color: @accent-hover;
+    border-color: @accent-hover;
+  }
+
+  .status-drop-button {
+    font-size: 11px;
+    font-size: 1.1rem;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    transition: color 350ms ease-out 50ms;
+  }
+  .status-drop-button .caret {
+    right: 0;
+    position: absolute;
+    top: 0.9em;
+  }
+  .status-drop {
+    position: absolute;
+    width: 18em;
+    left: -1em;
+    padding: 0;
+    border-radius: 0;
+    z-index: 1000;
+  }
+  .status-drop li div {
+    font-size: 11px;
+    font-size: 1.1rem;
+    letter-spacing: 0.25em;
+    padding: 1em;
+    background-color: #e8eaeb;
+    cursor: pointer;
+    transition: background-color 350ms ease-out 50ms;
+  }
+  .status-drop li div:hover {
+    background-color: #cde7ef;
+  }
+  .status-drop .status-other {
+    background-color: #ffffff;
+    cursor: text;
+  }
+  .status-drop .status-other:hover {
+    background-color: #ffffff;
+  }
+
+  .img-responsive-sm {
+    display: block;
+    height: 140px;
+    width: 140px;
+    background-size: cover;
+    background-position: top center;
+  }
 }
 
-.profileBanner .btn:hover,
-.profileBanner .btn:focus,
-.profileBanner .btn.focus {
-  color: #ffffff;
-  text-decoration: none;
+// Mobile & Medium
+@media all and (max-width: 991px) {
+  .profileBanner {
+    padding: 0;
+    .container {
+      width: 100%;
+    }
+    .main-column {
+      margin-top: 10px;
+      padding: 0;
+      .container {
+        padding: 0;
+      }
+    }
+    .img-responsive-sm {
+      margin: 0 auto;
+      height: 90px;
+      width: 90px;
+    }
+    .name {
+      text-align: center;
+      margin-bottom: 0;
+      margin-top: 0.5em;
+    }
+    .title {
+      text-align: center;
+      margin-bottom: 0.5em;
+    }
+    .dropdown {
+      margin-bottom: 1em;
+      width: 50%;
+      margin-left: 25%;
+      margin-right: 25%;
+      text-align: center;
+    }
+    .pipe {
+      color: @white;
+      font-family: @raleway-thin;
+      margin: 0 5px; 
+    }
+    .address,
+    .phone-listing {
+      text-align: center;
+      .title {
+        color: @accent;
+        letter-spacing: 0;
+      }
+      .text {
+        display: inline-block;
+      }
+      .fa {
+        display: inline-block;
+        color: @accent;
+        margin-left: 0.5em;
+      }
+    }
+    .address-title,
+    .phone-title {
+      display: inline-block;
+      .words {
+        display: none;
+      }
+    }
+    .text {
+      font-family: @raleway-thin;
+    }
+    .bottom {
+      width: 100%;
+      background-color: @grey-med-navy;
+      padding: 1em 0;
+      overflow: hidden;
+    }
+    .account-settings {
+      display: none;
+    }
+    .btn-house {
+      text-align: center;
+    }
+    .btn {
+      display: inline-block;
+      width: 215px;
+      margin: 1em 1%;
+      padding: 6px 0 8px 0;
+      text-align: center;
+      border-width: 2px;
+    }
+  }
 }
 
-.profileBanner .btn {
-  font-size: 11px;
-  font-size: 1.1rem;
-  padding: 9px 24px;
+// Small Phones
+@media all and (max-width: 479px) {
+  .profileBanner {
+    .address,
+    .phone-listing {
+      .text {
+        font-size: 13px;
+      }
+    }
+    .btn {
+      float: left;
+      width: 48%;
+      margin: 1em 1%;
+      padding: 6px 0 8px 0;
+      text-align: center;
+      border-width: 2px;
+    }
+  }
 }
-
-.status-drop-button {
-  font-size: 11px;
-  font-size: 1.1rem;
-  background-color: transparent;
-  border: none;
-  cursor: pointer;
-  padding: 0;
-  transition: color 350ms ease-out 50ms;
-}
-.little {
-  font-size: 11px;
-  font-size: 1.1rem;
-}
-.status-drop-button .caret {
-  right: 0;
-  position: absolute;
-  top: 0.9em;
-}
-.status-drop {
-  position: absolute;
-  width: 18em;
-  left: -1em;
-  padding: 0;
-  border-radius: 0;
-  z-index: 1000;
-}
-.status-drop li div {
-  font-size: 11px;
-  font-size: 1.1rem;
-  letter-spacing: 0.25em;
-  padding: 1em;
-  background-color: #e8eaeb;
-  cursor: pointer;
-  transition: background-color 350ms ease-out 50ms;
-}
-.status-drop li div:hover {
-  background-color: #cde7ef;
-}
-.status-drop .status-other {
-  background-color: #ffffff;
-  cursor: text;
-}
-.status-drop .status-other:hover {
-  background-color: #ffffff;
+// Desktop only
+@media all and (min-width: 992px) {
+  .profileBanner {
+    .pipe {
+      display: none;
+    }
+    .follow,
+    .un-follow {
+      position: absolute;
+      font-size: 16px;
+      margin-right: 13px;
+      margin-top: 0;
+      font-family: @raleway-light;
+      text-align: left;
+      font-variant: small-caps;
+      text-transform: lowercase;
+      letter-spacing: 0.125em;
+      color: @teal;
+      cursor: pointer;
+      .fa {
+        vertical-align: bottom;
+        margin-right: 0.5em;
+      }
+      .hovered {
+        display: none;
+      }
+    }
+    .container .follow {
+      margin-top: 0;
+    }
+    .un-follow.hover {
+      .standard,
+      .fa-check {
+        display: none;
+      }
+      .hovered {
+        display: inline;
+        margin-left: 2em;
+      }
+    }
+  }
 }

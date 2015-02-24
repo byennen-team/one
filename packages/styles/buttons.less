@@ -6,8 +6,8 @@ button {
   outline: none;
 }
 .btn-primary {
-  background-color: #5bb8d7;
-  color: #fff;
+  background-color: @accent;
+  color: @white;
   border: none;
   &:hover, &:focus {
     background-color: #50a9c7;
@@ -18,10 +18,26 @@ button {
   outline: none;
 }
 
+.btn-default {
+  font-variant: small-caps;
+  text-transform: lowercase;
+  letter-spacing: 0.2em;
+  color: @white;
+  background-color: transparent;
+  border: 3px solid @accent;
+  border-radius: 3px;
+}
+.btn-default:hover,
+.btn-default:active,
+.btn-default:focus {
+  color: @white-hover;
+  background-color: transparent;
+}
+
 // /* Color Buttons
 // --------------------------------------- */
 .btn-accent {
-  background-color: #5bb8d7;
+  background-color: @accent;
   text-shadow: 1px 1px 1px #2d96b9;
 }
 .btn-accent:hover {
@@ -29,7 +45,7 @@ button {
 }
 .btn-accent-border {
   background-color: transparent;
-  border: 3px solid #5bb8d7;
+  border: 3px solid @accent;
 }
 .btn-accent-border:hover {
   background-color: transparent;

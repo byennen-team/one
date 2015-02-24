@@ -1,8 +1,8 @@
 <template name="profileActivity">
-  <section id="section-activity" class="tab-pane fade in active row m-top-25">
+  <section id="section-activity" class="tab-pane fade in active row">
 
-    <div class="col-sm-7 col-sm-offset-1 m-top-15 user-only">
-      <!-- TEMPLATE - Form needs to be plugged in  		 -->
+    <div class="col-sm-7 col-sm-offset-1 user-only">
+      <!-- TODO: - Form needs to be plugged in  		 -->
       <form role="form" class='add-post not-lt-grey-bg'>
         <div class="form-group">
           <!-- <div class="form-control" contenteditable='true'>Add a post...</div> -->
@@ -25,7 +25,7 @@
               <br/>
               <span id="content-preview-text" class='text'>This beautiful property is finally for sale...</span>
             </p>
-            <!-- TEMPLATE - Should remove linked content. Hooked in in profile.js line 277ish  		 -->
+            <!-- TODO: - Should remove linked content. Hooked in in profile.js line 277ish  		 -->
             <button id='content-preview-close' type="button" class="close">
               <span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
             </button>
@@ -56,9 +56,9 @@
 
 
     <div class="col-sm-4 col-md-3 col-md-offset-1 pull-right hidden-xs m-top-20 activity-sidebar">
-      <!-- TEMPLATE - Post date		 -->
+      <!-- TODO: - Post date		 -->
       <p class='raleway-semibold auto-width text-uppercase purple pull-left spacing-125 left007'>gallery</p>
-      <!-- TEMPLATE - Add picture functionality		 -->
+      <!-- TODO: - Add picture functionality		 -->
       <form class="block pull-right user-only right007">
         <label for='activity-gallery-image-upload' class='raleway-light auto-width purple pointer'>Add pics</label>
         <span class="sr-only">Add Picture</span>
@@ -70,15 +70,15 @@
       <div class='clearfix'></div>
 
       <div class='row gallery'>
-        <!-- TEMPLATE - gallery images -  600x600px min	  		 -->
-        <!-- TEMPLATE - gallery image url in 'data-pic'  	  		 -->
+        <!-- TODO: - gallery images -  600x600px min	  		 -->
+        <!-- TODO: - gallery image url in 'data-pic'  	  		 -->
         <div class='gallery-thumbnail col-sm-6 half-gutter square pointer m-bottom-10' data-toggle="modal" data-target="#gallery-modal" data-slide-to="0">
-          <!-- TEMPLATE - delete photo from album   	  		 -->
+          <!-- TODO: - delete photo from album   	  		 -->
           <div class="delete-photo user-only black-bg img-circle ">
             <span class="sr-only">delete</span>
             <i class="fa icon-x-circle fa-lg white"></i>
           </div>
-          <!-- TEMPLATE - gallery image url in 'style'   				-->
+          <!-- TODO: - gallery image url in 'style'   				-->
           <div class="full-bg-img gallery-img" style="background-image: url(../../images/profile/central-park.jpg);"></div>
         </div>
 
@@ -145,10 +145,9 @@
     </div>
 
 
-    <div class="post post-listing col-sm-7 col-sm-offset-1 m-top-20">
-      <!-- TEMPLATE - Post date		 -->
-      <p class='raleway-semibold auto-width m-left-05 text-uppercase pull-left'>2 hours ago</p>
-      <div class="pull-right">
+    <div class="post post-listing col-sm-7 col-sm-offset-1">
+      <p class='timestamp hidden-xs'>{{timestamp}}</p>
+      <div class="pull-right hidden-xs">
         <span class="sr-only">Listing:</span>
         <i class="fa icon-listing fa-lg purple"></i>
       </div>
@@ -156,50 +155,51 @@
 
       <div class="post-body">
         <div class='row no-gutter relative'>
-          <div class="col-sm-6">
+
+          <div class="col-sm-6 listing-image full-height pull-right">
+            <!-- TODO: - Post image url in style        -->
+            <div class="full-bg-img" style="background-image: url(../../images/profile/post-1.jpg);"></div>
+          </div>
+
+          <div class="col-sm-6 listing-text pull-left">
             <div class="p-all-10">
               <div class="avatar pull-left">
-                <!-- TEMPLATE - Post author's avatar in SRC	  		 -->
+                <!-- TODO: - Post author's avatar in SRC	  		 -->
                 <img class="img-circle img-responsive" src="../../images/profile/avatar.jpg" />
               </div>
-              <!-- TEMPLATE - Post author's name  		 -->
-              <p class='h4 raleway-light accent m-top-0 m-bottom-0'>Marie Espinal</p>
-              <p class='raleway-regular'>posted a <span class='raleway-semibold navy'>New Listing</span></p>
-              <!-- TEMPLATE - Listing price  		 -->
-              <p class='h1 raleway-light accent m-top-20'>$875,000</p>
-              <!-- TEMPLATE - Listing address  		 -->
-              <p class='raleway-light navy'>575 Madison Ave, New York, NY</p>
+              <p class='name'>{{name}}</p>
+              <p class='type'>posted a <span class='raleway-semibold navy'>New Listing</span></p>
+              <p class="mobile-timestamp visible-xs-block">{{timestamp}}</p> 
+              <p class='price'>{{price}}</p>
+              <p class='address'>{{address}}</p>
 
               <div class='text-left lh-250'>
                 <div class='inline-block'>
                   <span class="sr-only">Bedrooms</span>
                   <label class="fa icon-bed fa-lg grey m-right-05"></label>
-                  <!-- TEMPLATE - Number of bedrooms in listing  		 -->
+                  <!-- TODO: - Number of bedrooms in listing  		 -->
                   <span class='h4 raleway-semibold navy m-right-10'>5</span>
                 </div>
 
                 <div class='inline-block'>
                   <span class="sr-only">Bathrooms</span>
                   <label class="fa icon-bath fa-lg grey m-right-05"></label>
-                  <!-- TEMPLATE - Number of bathrooms in listing  		 -->
+                  <!-- TODO: - Number of bathrooms in listing  		 -->
                   <span class='h4 raleway-semibold navy m-right-10'>5</span>
                 </div>
 
                 <div class='inline-block'>
                   <span class="sr-only">Bedrooms</span>
                   <label class="fa icon-sqfeet fa-lg grey m-right-05"></label>
-                  <!-- TEMPLATE - Number of square footage in listing  		 -->
+                  <!-- TODO: - Number of square footage in listing  		 -->
                   <span class='h4 raleway-semibold navy'>2800<span class='raleway-light'>&nbsp;ft<sup>2</sup></span></span>
                 </div>
               </div>
             </div>
           </div>
-          <div class="col-sm-6 full-height">
-            <!-- TEMPLATE - Post image url in style	  		 -->
-            <div class="full-bg-img" style="background-image: url(../../images/profile/post-1.jpg);"></div>
-          </div>
+
         </div>
-        <!-- TEMPLATE - Form needs to be plugged in  		 -->
+        <!-- TODO: - Form needs to be plugged in  		 -->
         <form role="form" class='comment-box'>
           <input type="text" placeholder='Leave comment...' >
         </form>
@@ -209,9 +209,8 @@
 
 
     <div class="post post-team col-sm-7 col-sm-offset-1 m-top-20">
-      <!-- TEMPLATE - Post date		 -->
-      <p class='raleway-semibold auto-width m-left-05 text-uppercase pull-left'>18 hours ago</p>
-      <div class="pull-right">
+      <p class='timestamp hidden-xs'>{{timestamp}}</p>
+      <div class="pull-right hidden-xs">
         <span class="sr-only">New Team Member:</span>
         <i class="fa icon-teamadd fa-lg accent"></i>
       </div>
@@ -220,25 +219,25 @@
       <div class="post-body">
         <div class="p-all-10">
           <div class="avatar pull-left">
-            <!-- TEMPLATE - Post author's avatar in SRC	  		 -->
+            <!-- TODO: - Post author's avatar in SRC	  		 -->
             <img class="img-circle img-responsive" src="../../images/profile/avatar.jpg" />
           </div>
-          <!-- TEMPLATE - Post author's name  		 -->
-          <p class='h4 raleway-light accent m-top-0 m-bottom-0'>Marie Espinal</p>
-          <!-- TEMPLATE - Name of new Team member 		 -->
-          <p class='raleway-regular'>added <span class='raleway-semibold accent'>Dottie Herman</span> to <span class='raleway-semibold navy'>Team</span></p>
+          <p class='name'>{{name}}</p>
+          <!-- TODO: - Name of new Team member 		 -->
+          <p class='type'>added <span class='raleway-semibold accent'>Dottie Herman</span> to <span class='raleway-semibold navy'>Team</span></p>
+          <p class="mobile-timestamp visible-xs-block">{{timestamp}}</p> 
 
           <div class="team-connector pull-left">
             <div class="team-connector-pipe"></div>
             <div class="team-connector-plus">
-              <i class="fa icon-plus-circle fa-2x accent"></i>
+              <i class="fa icon-addteam fa-2x accent"></i>
             </div>
             <div class="team-connector-dash"></div>
           </div>
-          <div class="pull-left m-top-15 m-bottom-15">
-            <!-- TEMPLATE - b/w Avatar of user added to team	  		 -->
+          <div class="team-container">
+            <!-- TODO: - b/w Avatar of user added to team	  		 -->
             <img class="img-circle team-img pull-left m-right-10" src="../../images/profile/dottie.jpg" />
-            <!-- TEMPLATE - b/w Avatars of the rest of the team	  		 -->
+            <!-- TODO: - b/w Avatars of the rest of the team	  		 -->
             <img class="img-circle team-img pull-left m-right-10" src="../../images/profile/susan.jpg" />
             <img class="img-circle team-img pull-left m-right-10" src="../../images/profile/ace.jpg" />
             <img class="img-circle team-img pull-left m-right-10" src="../../images/profile/laura.jpg" />
@@ -247,7 +246,7 @@
 
         </div>
         <div class='clearfix'></div>
-        <!-- TEMPLATE - Form needs to be plugged in  		 -->
+        <!-- TODO: - Form needs to be plugged in  		 -->
         <form role="form" class='comment-box'>
           <input type="text" placeholder='Leave comment...' >
         </form>
@@ -257,9 +256,8 @@
 
 
     <div class="post post-sold col-sm-7 col-sm-offset-1 m-top-20">
-      <!-- TEMPLATE - Post date		 -->
-      <p class='raleway-semibold auto-width m-left-05 text-uppercase pull-left'>Nov 18</p>
-      <div class="pull-right">
+      <p class='timestamp hidden-xs'>{{timestamp}}</p>
+      <div class="pull-right hidden-xs">
         <span class="sr-only">Listing Sold:</span>
         <i class="fa icon-tag fa-lg red"></i>
       </div>
@@ -267,62 +265,62 @@
 
       <div class="post-body">
         <div class='row no-gutter relative'>
-          <div class="col-sm-6">
+
+          <div class="col-sm-6 listing-image full-height pull-right">
+            <!-- TODO: - Post image url in style        -->
+            <div class="full-bg-img" style="background-image: url(../../images/profile/post-2.jpg);"></div>
+          </div>
+       
+          <div class="col-sm-6 listing-text pull-left">
             <div class="p-all-10">
               <div class="avatar pull-left">
-                <!-- TEMPLATE - Post author's avatar in SRC	  		 -->
+                <!-- TODO: - Post author's avatar in SRC	  		 -->
                 <img class="img-circle img-responsive" src="../../images/profile/avatar.jpg" />
               </div>
-              <!-- TEMPLATE - Post author's name  		 -->
-              <p class='h4 raleway-light accent m-top-0 m-bottom-0'>Marie Espinal</p>
-              <p class='raleway-regular'>sold a <span class='raleway-semibold navy'>Property</span></p>
-              <!-- TEMPLATE - Listing price  		 -->
-              <p class='h1 raleway-light accent m-top-20'>$875,000</p>
-              <!-- TEMPLATE - Listing address  		 -->
-              <p class='raleway-light navy'>575 Madison Ave, New York, NY</p>
+              <p class='name'>{{name}}</p>
+              <p class='type'>sold a <span class='raleway-semibold navy'>Property</span></p>
+              <p class="mobile-timestamp visible-xs-block">{{timestamp}}</p> 
+              <p class='price'>{{price}}</p>
+              <p class='address'>{{address}}</p>
 
               <div class='text-left lh-250'>
                 <div class='inline-block'>
                   <span class="sr-only">Bedrooms</span>
                   <label class="fa fa-arrows-h fa-lg grey m-right-05"></label>
-                  <!-- TEMPLATE - Number of bedrooms in listing  		 -->
+                  <!-- TODO: - Number of bedrooms in listing  		 -->
                   <span class='h4 raleway-semibold navy m-right-10'>5</span>
                 </div>
 
                 <div class='inline-block'>
                   <span class="sr-only">Bathrooms</span>
                   <label class="fa icon-bath fa-lg grey m-right-05"></label>
-                  <!-- TEMPLATE - Number of bathrooms in listing  		 -->
+                  <!-- TODO: - Number of bathrooms in listing  		 -->
                   <span class='h4 raleway-semibold navy m-right-10'>5</span>
                 </div>
 
                 <div class='inline-block'>
                   <span class="sr-only">Bedrooms</span>
                   <label class="fa icon-sqfeet fa-lg grey m-right-05"></label>
-                  <!-- TEMPLATE - Number of square footage in listing  		 -->
+                  <!-- TODO: - Number of square footage in listing  		 -->
                   <span class='h4 raleway-semibold navy'>2800<span class='raleway-light'>&nbsp;ft<sup>2</sup></span></span>
                 </div>
               </div>
             </div>
           </div>
-          <div class="col-sm-6 full-height">
-            <!-- TEMPLATE - Post image url in style	  		 -->
-            <div class="full-bg-img" style="background-image: url(../../images/profile/post-2.jpg);"></div>
-          </div>
         </div>
 
         <div class="comment not-lt-grey-bg">
           <div class="avatar pull-left">
-            <!-- TEMPLATE - commenter's avatar in SRC(in color)  		 -->
+            <!-- TODO: - commenter's avatar in SRC(in color)  		 -->
             <img class="img-circle img-responsive" src="../../images/profile/avatar-2.jpg" />
           </div>
-          <!-- TEMPLATE - Commenter's name and post date 		 -->
+          <!-- TODO: - Commenter's name and post date 		 -->
           <p class='raleway-regular navy m-top-025 m-bottom-0 m-left-40'>Dottie Herman on Nov 13 at 7:34pm</p>
-          <!-- TEMPLATE - Comment text		 -->
+          <!-- TODO: - Comment text		 -->
           <p class='raleway-regular m-bottom-0 m-left-40'>I love this property! Congrats!</p>
           <div class='clearfix'></div>
         </div>
-        <!-- TEMPLATE - Form needs to be plugged in  		 -->
+        <!-- TODO: - Form needs to be plugged in  		 -->
         <form role="form" class='comment-box'>
           <input type="text" placeholder='Leave comment...' >
         </form>
@@ -331,9 +329,8 @@
 
 
     <div class="post post-award col-sm-7 col-sm-offset-1 m-top-20">
-      <!-- TEMPLATE - Post date		 -->
-      <p class='raleway-semibold auto-width m-left-05 text-uppercase pull-left'>Nov 13</p>
-      <div class="pull-right">
+      <p class='timestamp hidden-xs'>{{timestamp}}</p>
+      <div class="pull-right hidden-xs">
         <span class="sr-only">Award:</span>
         <i class="fa fa-dollar fa-lg orange"></i>
       </div>
@@ -341,19 +338,24 @@
 
       <div class="post-body">
         <div class='row no-gutter relative'>
-          <div class="col-sm-6">
+
+          <div class="col-sm-6 listing-image full-height pull-right">
+            <!-- TODO: - Post image url in style        -->
+            <div class="full-bg-img" style="background-image: url(../../images/profile/post-3.jpg);"></div>
+          </div>
+          
+          <div class="col-sm-6 listing-text pull-left">
             <div class="p-all-10">
               <div class="avatar pull-left">
-                <!-- TEMPLATE - Post author's avatar in SRC	  		 -->
+                <!-- TODO: - Post author's avatar in SRC	  		 -->
                 <img class="img-circle img-responsive" src="../../images/profile/avatar.jpg" />
               </div>
-              <!-- TEMPLATE - Post author's name  		 -->
-              <p class='h4 raleway-light accent m-top-0 m-bottom-0'>Marie Espinal</p>
-              <p class='raleway-regular'>achieved a <span class='raleway-semibold navy'>Sales Record!</span></p>
-              <!-- TEMPLATE - Listing price  		 -->
-              <p class='h1 raleway-light orange m-top-10'>$500 million</p>
-              <!-- TEMPLATE - Listing address  		 -->
-              <p class='h4 raleway-light navy m-bottom-15'>1st Quarter Sales!</p>
+              <p class='name'>{{name}}</p>
+              <p class='type'>achieved a <span class='raleway-semibold navy'>Sales Record!</span></p>
+              <p class="mobile-timestamp visible-xs-block">{{timestamp}}</p> 
+              <p class='price orange'>{{price}}</p>
+              <!-- TODO: achievement earned -->
+              <p class='address'>In sales during the 1st quarter!</p>
 
               <div class="pull-left m-left-075">
                 <span class="sr-only">Award:</span>
@@ -362,31 +364,28 @@
 
               <div class='text-left m-left-20'>
                 <p class='raleway-semibold navy m-bottom-0 text-uppercase'>biggest sale</p>
-                <!-- TEMPLATE - Award winners's biggest sale  		 -->
+                <!-- TODO: - Award winners's biggest sale  		 -->
                 <p class='raleway-light accent m-bottom-0'>$6,800,888</p>
-                <!-- TEMPLATE - Address of biggest sale 		 -->
+                <!-- TODO: - Address of biggest sale 		 -->
                 <p class='raleway-light navy m-bottom-0'>575 Madison Ave, New York, NY</p>
               </div>
             </div>
           </div>
-          <div class="col-sm-6 full-height">
-            <!-- TEMPLATE - Post image url in style	  		 -->
-            <div class="full-bg-img" style="background-image: url(../../images/profile/post-3.jpg);"></div>
-          </div>
+
         </div>
 
         <div class="comment not-lt-grey-bg">
           <div class="avatar pull-left">
-            <!-- TEMPLATE - commenter's avatar in SRC(in color)  		 -->
+            <!-- TODO: - commenter's avatar in SRC(in color)  		 -->
             <img class="img-circle img-responsive" src="../../images/profile/avatar-3.jpg" />
           </div>
-          <!-- TEMPLATE - Commenter's name and post date 		 -->
+          <!-- TODO: - Commenter's name and post date 		 -->
           <p class='raleway-regular navy m-top-025 m-bottom-0 m-left-40'>Ace Watanasuparp on Nov 18 at 2:34pm</p>
-          <!-- TEMPLATE - Comment text		 -->
+          <!-- TODO: - Comment text		 -->
           <p class='raleway-regular m-bottom-0 m-left-40'>What a start!</p>
           <div class='clearfix'></div>
         </div>
-        <!-- TEMPLATE - Form needs to be plugged in  		 -->
+        <!-- TODO: - Form needs to be plugged in  		 -->
         <form role="form" class='comment-box'>
           <input type="text" placeholder='Congradulate Marie...' >
         </form>
@@ -402,7 +401,7 @@
       <p class='raleway-semibold auto-width m-left-05 text-uppercase facebook pull-left spacing-125'>social media</p>
 
       {{#if hasFacebook}}
-        <!-- TEMPLATE - link to User's Facebook page         -->
+        <!-- TODO: - link to User's Facebook page         -->
         <a href='facebook.com' target='_blank'>
           <div class="pull-right m-right-10">
             <span class="sr-only">link to Facebook</span>
@@ -412,7 +411,7 @@
       {{/if}}
 
       {{#if hasTwitter}}
-        <!-- TEMPLATE - link to User's Twitter page        -->
+        <!-- TODO: - link to User's Twitter page        -->
         <a href='https://www.twitter.com/{{services.twitter.screenName}}' target='_blank'>
           <div class="pull-right m-right-10">
             <span class="sr-only">link to Twitter</span>
@@ -422,9 +421,9 @@
       {{/if}}
 
       <div class='clearfix'></div>
-      <!-- TEMPLATE - Form needs to be plugged in      -->
+      <!-- TODO: - Form needs to be plugged in      -->
       <form role="form" class='comment-box'>
-        <!-- TEMPLATE - When User is not logged in, placeholder should be the user's twitter handle      -->
+        <!-- TODO: - When User is not logged in, placeholder should be the user's twitter handle      -->
         <input class='tweeter' type="text" placeholder='Write message...' >
 
         {{#if hasFacebook}}
@@ -442,11 +441,11 @@
       </form>
       {{#each socialStatuses}}
         <div class='m-top-05 m-bottom-15 p-left-05 p-right-05'>
-          <!-- TEMPLATE - text from social media post      -->
+          <!-- TODO: - text from social media post      -->
           <p class='raleway-light m-bottom-0'>{{{text}}}</p>
-          <!-- TEMPLATE - Post's date      -->
+          <!-- TODO: - Post's date      -->
           <span class='h6 raleway-semibold text-uppercase navy spacing-125'>{{date datePosted}}</span>
-          <!-- TEMPLATE - include the spans that correspond to the networks for the post     -->
+          <!-- TODO: - include the spans that correspond to the networks for the post     -->
           <span class="fa fa-{{network}} navy"></span>
         </div>
       {{/each}}

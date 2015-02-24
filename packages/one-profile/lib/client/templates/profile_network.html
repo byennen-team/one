@@ -1,0 +1,25 @@
+<template name="profileNetwork">
+  <section id="section-network" class="tab-pane network fade">    
+    
+    <div class="tab-content">
+      <ul class="nav nav-tabs">
+        <li role="presentation" class="network-tab active">
+          <a data-toggle="tab" href="#section-followers-sub">
+            followers 
+          </a>
+        </li>
+        <li role="presentation" class="network-tab">
+          <a data-toggle="tab" href="#section-following-sub">
+            following 
+          </a>
+        </li>
+      </ul>
+    </div>
+
+    <div class="tab-content">
+      {{> profileFollowersWrapSub}}
+      {{> profileFollowingWrapSub}} 
+    </div>
+
+  </section>
+</template>

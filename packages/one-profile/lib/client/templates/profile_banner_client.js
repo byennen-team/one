@@ -17,6 +17,7 @@ Template.profileBanner.helpers({
   isFollowing: function (){
     return Profile.isFollowing(Profile.currentUser());
   }
+  
 });
 
 Template.profileBanner.events({
@@ -40,5 +41,16 @@ Template.profileBanner.events({
       _id: Meteor.userId()},
       {$set: {'profile.status': status }}
     );
+  },
+
+  'mouseenter .un-follow': function ( event ) {
+    var $this = $( event.currentTarget );
+    $this.addClass( 'hover' );
+  },
+
+  'mouseleave .un-follow': function ( event ) {
+    var $this = $( event.currentTarget );
+    $this.removeClass( 'hover' );
   }
+
 });
