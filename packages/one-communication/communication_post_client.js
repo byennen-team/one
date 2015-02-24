@@ -1,4 +1,21 @@
-/* globals Rooms: false, RoomsController: false */
+/* globals Rooms: false, RoomsController: false, Messages: false */
+Template.communicationPostInput.created = function() {
+  this.autorun( function() {
+    var draftId = Session.get('draftId');
+
+    if (! draftId)
+      return;
+
+    var draft = Messages.findOne(draftId);
+
+    if(! draft)
+      return;
+
+    $('#new-post-subject').val(draft.messagePayload.title);
+    $('#communication-message-post-textarea').html(draft.message);
+  });
+};
+
 Template.communicationPostInput.rendered = function(){
   $('.selectpicker').selectpicker();
 
@@ -81,7 +98,7 @@ Template.communicationPostInput.rendered = function(){
   //     theme:"one-dark",
   //     scrollbarPosition: "inside"
   // });
-  // Can't use scrollbar (plugin or native) with the WYSIWYG because it 
+  // Can't use scrollbar (plugin or native) with the WYSIWYG because it
   // scrolls the tools out of sight.
 };
 
@@ -162,7 +179,7 @@ Template.communicationPostInput.events({
       }, 300 )
       .removeClass( 'little' )
       .addClass( 'big' );
-    $( '#communication-message-post-textarea' ).velocity({ 
+    $( '#communication-message-post-textarea' ).velocity({
       height: tall - 234
     });
   },
@@ -177,7 +194,7 @@ Template.communicationPostInput.events({
         right: '20%'
       }, 300 )
       .removeClass( 'little big' );
-    $( '#communication-message-post-textarea' ).velocity({ 
+    $( '#communication-message-post-textarea' ).velocity({
       height: 180
     });
   },
@@ -273,7 +290,7 @@ Template.communicationPostInput.events({
   'click #communication-message-post-attachment-btn': function() {
     $('.wysiwyg-toolbar').toggle();
   },
-// ANDREAS: can't get this click event to fire. I guess it's not in this 
+// ANDREAS: can't get this click event to fire. I guess it's not in this
 // template?
   'click .wysiwyg-toolbar-icon': function ( event ) {
     console.log( 'click' );

@@ -10,13 +10,14 @@ Template.messageInput.helpers({
   channel: function () {
     return "task";
     // return "room";
-    // return false; 
+    // return false;
   }
 });
 
 Template.messageInput.events({
 	// toggle the menu on button click
 	'click #communication-message-input-btn': function(){
+    Session.set('draftId', null);
 		var x = Session.get('menuOpen');
 		if(x){
 			Session.set("menuOpen", false);

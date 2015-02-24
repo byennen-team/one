@@ -1,3 +1,4 @@
+/* globals Messages: false */
 Template.communicationSidebarAll.rendered = function(){
 
   // initialize maazalik:malihu-jquery-custom-scrollbar scrollbar plugin
