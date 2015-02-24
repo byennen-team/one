@@ -2,7 +2,9 @@
   <div class="content">
   {{> mobileNavbar}}
   {{> mobileTabbBar}}
-  {{> notificationsPopup}}
+  <div class="hidden-xs hidden-sm">
+    {{> notificationsPopup}}
+  </div>
 
   <div class="dashboard-search hidden-md hidden-lg">
     <div class="weather">
@@ -33,15 +35,20 @@
     <div class="row">
       <div class="row-same-height">
 
-        <div id="left-column" class="col-md-3 col-xs-height col-top left-column hidden-xs hidden-md">
+        <div id="left-column" class="col-md-3 col-xs-height col-top left-column hidden-xs hidden-sm">
           {{> communicationSidebar}}
         </div>
 
         <div id="main" class="main col-md-9 col-xs-height no-float col-top">
-          {{> communicationMain}}
+          <div class="hidden-xs hidden-sm">
+            {{> communicationMain}}
+          </div>
           <div id="main-wrap" class="main-wrap">
             <div class="col-md-6">
 
+              <div class="hidden-md hidden-lg">
+                {{> notificationsPopup}}
+              </div>
               {{> channelWidget}}
 
             </div>

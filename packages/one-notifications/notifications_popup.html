@@ -1,6 +1,6 @@
 <template name='notificationsPopup'>
-{{#if haveNotifications}}
-  <div class="notifications-popup hidden-xs">
+<!-- {{#if haveNotifications}}
+  <div class="notifications-popup">
     <div id='notifications-popup-sleeve' class="sleeve">
 
     {{#each notificationsUnread}}
@@ -23,5 +23,57 @@
 
     </div>
   </div>
-{{/if}}
+{{/if}} -->
+
+
+  <div class="notifications-popup">
+    <div class="banner hidden-md hidden-lg">
+      <i class="fa fa-flag-o"></i>
+      <p>notifications</p>
+    </div>
+    <div id='notifications-popup-sleeve' class="sleeve">
+
+      <div class="notice">
+        <div class="x" data-id={{_id}}>
+          <i class="fa icon-x-blunt"></i>
+        </div>
+        <div class="clearfix"></div>
+
+        <a href="{{notificationActionLink}}">
+          <h5>Company Brunch<i class="fa fa-long-arrow-right"></i></h5>
+        </a>
+
+        <p class="date">today</p>
+        <p class='text'>Come to the board room on Thursday at 11 for champagne and pastries from Sullivan Street Bakery.</p>
+      </div>
+
+
+      <div class="notice">
+        <div class="x" data-id={{_id}}>
+          <i class="fa icon-x-blunt"></i>
+        </div>
+        <div class="clearfix"></div>
+
+        <h5>second Message</h5>
+
+        <p class="date">today</p>
+        <p class='text'>Come to the board room on Thursday at 11 for champagne and pastries from Sullivan Street Bakery.</p>
+      </div>
+
+
+      <div class="notice">
+        <div class="x" data-id={{_id}}>
+          <i class="fa icon-x-blunt"></i>
+        </div>
+        <div class="clearfix"></div>
+
+        <h5>Third title</h5>
+
+        <p class="date">today</p>
+        <p class='text'>Come to the board room on Thursday at 11 for champagne and pastries from Sullivan Street Bakery.Come to the board room on Thursday at 11 for champagne and pastries from Sullivan Street Bakery.</p>
+      </div>
+
+    </div>
+  </div>
+
 </template>
