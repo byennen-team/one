@@ -4,9 +4,21 @@ Package.describe({
 });
 var both = ['server','web'];
 Package.onUse(function(api) {
-	api.use(['aldeed:simple-schema','templating', 'authorization', 'less',
-    'styles', 'jquery', 'velocityjs:velocityjs',
-    'tracker', 'session', 'maazalik:malihu-jquery-custom-scrollbar'], both);
+	api.use([
+    'aldeed:simple-schema',
+    'templating', 
+    'authorization', 
+    'less',
+    'styles', 
+    'jquery', 
+    'velocityjs:velocityjs',
+    'chriswessels:hammer',
+    'swiper:swiper',
+    'tracker', 
+    'reactive-var',
+    'session',
+    'maazalik:malihu-jquery-custom-scrollbar'
+    ], both);
 
 	api.versionsFrom('METEOR@0.9.3.1');
 	api.addFiles('notifications.js', ['server', 'web']);
@@ -14,12 +26,15 @@ Package.onUse(function(api) {
 	api.addFiles('notifications_server.js','server');
 
 	api.addFiles([
-		'notifications.html',
-		'notifications_client.js',
-		'notifications.less',
+	'notifications.html',
+	'notifications_client.js',
+	'notifications.less',
     'notifications_popup.html',
     'notifications_popup.less',
-    'notifications_popup_client.js'
+    'notifications_popup_client.js',
+    'notifications_mobile_popup.html',
+    'notifications_mobile_popup.less',
+    'notifications_mobile_popup_client.js'
 		], 'web');
 
 

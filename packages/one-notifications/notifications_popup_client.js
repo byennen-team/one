@@ -1,13 +1,10 @@
 // TODO: animate notice slide down (what will call them?)
 Template.notificationsPopup.rendered = function () {
-  // Initialize scrollbar - mobile only
-  var currentWidth = $( window ).width();
-  if( currentWidth >= 992 ){
-    $( "#notifications-popup-sleeve" ).mCustomScrollbar({
-        theme:"one-dark",
-        scrollbarPosition: "inside"
-    });
-  }
+  // Initialize scrollbar 
+  $( "#notifications-popup-sleeve" ).mCustomScrollbar({
+      theme:"one-dark",
+      scrollbarPosition: "inside"
+  });
 };
 
 Template.notificationsPopup.helpers({
@@ -24,8 +21,7 @@ Template.notificationsPopup.helpers({
 });
 
 Template.notificationsPopup.events({
-  // Hides .notice when .x is clicked
-  // TODO: (maybe) might need to update database as well as hide
+  // Hides .notice when .x is clicked & updates database
   'click .x': function (event) {
     var $this = $(event.target);
     $this.closest( '.notice' ).velocity("slideUp", { duration: 500 });

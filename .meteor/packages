@@ -21,6 +21,7 @@ xolvio:cucumber@0.3.8
 percolate:synced-cron
 settinghead:auto-nprogress
 meteorhacks:kadira
+chriswessels:hammer
 
 #TODO: add these packages inside the packages that our using them.
 tsega:bootstrap3-datetimepicker

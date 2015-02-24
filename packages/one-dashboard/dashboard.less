@@ -119,17 +119,21 @@
       }
     }
     .main {
-      margin: 5px;
-      padding: 5px 2%;
+      display: block;  // removes table-cell
+      margin: 10px 6px;
+      padding: 0;
     }
     .main-wrap {
-      width: 96%;
+      width: 100%;
     }
     .main-wrap > .col-md-6 {
       padding: 0;
     }
     .calendar, .news, .supportWidget, .chat, .appsWidget {
       margin-top: 5px;
+    }
+    .row-same-height {
+      display: block;  // removes table
     }
   }
 }
