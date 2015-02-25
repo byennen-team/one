@@ -18,21 +18,10 @@
       </p>
     </div>
 
-    <div class="team hidden-xs hidden-sm">
-<!-- TODO: Selected Agent should be added to User's team -->
-      <div id="dashboard-add-team" class='add-team' data-toggle="modal" data-target="#communication-directory-modal">
-        <i class="fa icon-addteam"></i>
-      </div>
-
-      {{#each teamMembers}}
-        <div class="avatar-box" data-id="{{_id}}">
-          <img class="avatar" src="{{profile.photoUrl.thumb}}" />
-          <div class="status-dot {{status profile.status}}"></div>
-          <div class="message {{#unless unreadMessages}}none{{/unless}}">{{unreadMessages}}</div>
-        </div>
-      {{/each}}
+    <div class="hidden-xs hidden-sm">
+      {{> teamMembers}}
     </div>
-
+    
     <div class="schedule hidden-xs hidden-sm">
 
       <div id="dashboard-schedule-sleeve" class="sleeve">

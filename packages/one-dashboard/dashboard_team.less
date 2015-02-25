@@ -1,0 +1,167 @@
+// Variables 
+@import "/packages/styles/variables.import.less";
+
+
+.team-members-panel {
+  position: absolute;
+  bottom: 1em;
+  left: 1em;
+  .add-team {
+    float: left;
+    font-size: 50px;
+    width: 50px;
+    height: 50px;
+    margin-top: 2px;
+    margin-right: 5px;
+    color: @accent;
+    cursor: pointer;
+  }
+  .avatar-box{
+    float: left;
+    position: relative;
+    cursor: pointer;
+    .avatar {
+      margin: 5px;
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+    }
+    .status-dot {
+      position: absolute;
+      width: 10px;
+      height: 10px;
+      margin-top: -5px;
+      top: 50%;
+      left: 0;
+      border-radius: 50%;
+    }
+    .status-dot.active {
+      background-color: @green;
+    }
+    .status-dot.inactive {
+      background-color: @red;
+    }
+    .status-dot.mobile {
+      background-color: @accent;
+    }
+  }
+  .message {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    bottom: 0;
+    right: -2px;
+    border-radius: 50%;
+    background-color: @purple;
+    color: #fff;
+    text-align: center;
+    cursor: pointer;
+    opacity: 0.9;
+  }
+  .message.none {
+    display: none;
+  }
+}
+// Mobile
+@media all and (max-width: 991px) {
+  .team-members-panel {
+    position: relative;
+    min-height: 33px;
+    width: 100%;
+    bottom: auto;
+    left: auto;
+    margin-top: 10px;
+    overflow: hidden;
+    z-index: 1;
+    .add-team {
+      position: absolute;
+      font-size: 20px;
+      width: 21px;
+      height: 21px;
+      right: 0.125em;
+      top: 0.25em;
+      color: @white;
+    }
+    .avatar-box{
+      .avatar {
+        width: 32px;
+        height: 32px;
+        margin: 8px;
+      }
+      .status-dot {
+        width: 8px;
+        height: 8px;
+        margin-top: -4px;
+        left: 3px;
+      }
+    }
+    .message {
+      font-size: 10px;
+      line-height: 120%;
+      width: 12px;
+      height: 12px;
+      bottom: auto;
+      top: 50%;
+      margin-top: -6px;
+      right: 0;
+      opacity: 1;
+    }
+  }
+  .team-members-panel:after {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    background-color: #344c7b;
+    border-radius: 3px;
+    opacity: 0.5;
+    z-index: -1;
+  }
+}
+// Tablet Portrait
+@media all and (min-width: 768px) and (max-width: 991px) {
+  .team-members-panel {
+    min-height: 38px;
+    .add-team {
+      font-size: 23px;
+      width: 24px;
+      height: 24px;
+    }
+    .avatar-box{
+      .avatar {
+        width: 40px;
+        height: 40px;
+        margin: 10px;
+      }
+      .status-dot {
+        width: 10px;
+        height: 10px;
+        margin-top: -5px;
+        left: 4px;
+      }
+    }
+    .message {
+      font-size: 11px;
+      line-height: 150%;
+      width: 16px;
+      height: 16px;
+      margin-top: -8px;
+      right: 2px;
+    }
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+

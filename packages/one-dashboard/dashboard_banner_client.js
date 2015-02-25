@@ -80,14 +80,6 @@ Template.dashboardBanner.helpers({
   time: function() {
     return moment().format('h:mm a');
   },
-  teamMembers: function() {
-    if(Meteor.user() && Meteor.user().teamMembers)
-      return Meteor.users.find({
-        _id: {
-          $in: Meteor.user().teamMembers
-        }
-      });
-  },
   status: function (status) {
     if (status) {
       switch (status.toUpperCase()) {
@@ -101,22 +93,8 @@ Template.dashboardBanner.helpers({
     } else {
       return "inactive";
     }
-  },
-  unreadMessages: function() {
-    //getting dm room if it exists
-    var dm = Rooms.findOne({
-      roomType: 'dm',
-      $and: [
-      { 'participants.participantId': this._id },
-      { 'participants.participantId': Meteor.userId() }
-      ]
-    });
-
-    if(dm)
-      return RoomsController.getUnreadMessagesCount(dm._id);
-    else
-      return false;
   }
+  
 });
 
 Template.dashboardBanner.events({

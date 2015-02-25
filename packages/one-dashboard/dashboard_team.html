@@ -1,0 +1,22 @@
+<template name="teamMembers">
+  
+  <div class="team-members-panel">
+    <div class="banner hidden-md hidden-lg">
+      <i class="fa icon-user"></i>
+      <p>team</p>
+    </div>
+    <div id="dashboard-add-team" class='add-team' data-toggle="modal" data-target="#communication-directory-modal">
+      <i class="fa icon-addteam"></i>
+    </div>
+
+    {{#each teamMembers}}
+      <div class="avatar-box" data-id="{{_id}}">
+        <img class="avatar" src="{{profile.photoUrl.thumb}}" />
+        <div class="status-dot {{status profile.status}}"></div>
+        <div class="message {{#unless unreadMessages}}none{{/unless}}">{{unreadMessages}}</div>
+      </div>
+    {{/each}}
+
+  </div>
+
+</template> 
