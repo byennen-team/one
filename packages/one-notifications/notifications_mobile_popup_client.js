@@ -1,11 +1,13 @@
 
-Template.notificationsMobilePopup.created = function () {
-  var mySwiper = new ReactiveVar();
-};
+/* globals Swiper:false */
+
+// Template.notificationsMobilePopup.created = function () {
+//   var mySwiper = new ReactiveVar();
+// };
 
 Template.notificationsMobilePopup.rendered = function () {
   //initialize swiper when document ready  
-  mySwiper = new Swiper ('.swiper-container', {
+  this.mySwiper.set = new Swiper ('.swiper-container', {
     // Optional parameters
     // loop: true,
     spaceBetween: 20,
@@ -13,7 +15,8 @@ Template.notificationsMobilePopup.rendered = function () {
     slidesPerView: 'auto',
     centeredSlides: true,
     paginationClickable: true
-  });      
+  });   
+
 };
 
 
@@ -40,14 +43,16 @@ Template.notificationsMobilePopup.events({
     Notify.markNotificationAsRead($(event.currentTarget).data("id"));
     setTimeout(function(){ 
       $slide.remove();
+      // getting: Uncaught TypeError: Cannot read property 'mySwiper' of null
+      var mySwiper = Template.instance().mySwiper.get();
+      mySwiper.update();
       // Getting "undefined" error for these, also a 500 error for Notify 
       // mySwiper.updatePagination();
       // mySwiper.updateClasses();
-      // mySwiper.update();
       // mySwiper.slideNext();
     }, 500);
-    
   }
+  
 });
 
 // Template.notificationsMobilePopup.gestures({
