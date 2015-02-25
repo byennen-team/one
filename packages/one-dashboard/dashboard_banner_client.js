@@ -9,6 +9,31 @@ Template.dashboardBanner.created = function() {
 };
 
 Template.dashboardBanner.rendered = function () {
+    // Scroll animation
+  var $search = $( '#dashboard-mobile-search' );
+  // add padding to following div to prevent jump.
+  var $padding = $( '#dashboard-mobile-search-padding' );
+  var offset = 90; 
+  var lastScrollTop = 0;
+  $( '#transitioner-1' ).on( 'scroll', function() {       
+    // check for scroll direction
+    var scrollPosition = $( '#transitioner-1' ).scrollTop();
+    // once past offset, make search sticky
+    if ( scrollPosition > offset ) { 
+      if ( scrollPosition < lastScrollTop ){ // if scrolling up
+        $search.removeClass( 'closed' ).addClass( 'open' );
+      } else {
+        $search.removeClass( 'open' ).addClass( 'closed' );
+      }
+      $search.addClass( 'sticky' );  
+      $padding.addClass( 'fat' );  
+    }else {
+      $search.removeClass( 'sticky' );  
+      $padding.removeClass( 'fat' );  
+    }
+    lastScrollTop = scrollPosition; // reset lastScrollTop
+
+  }); 
   //geting geolocation
   if(navigator.geolocation) {
     navigator.geolocation.getCurrentPosition(function(position) {

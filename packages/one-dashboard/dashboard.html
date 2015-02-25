@@ -20,12 +20,15 @@
       <span class="month">{{month}}</span>
       <span class="time">{{time}}</span>
     </p>
-    <div class="mobile-search hidden-md hidden-lg">
-      {{> searchBox}}
-    </div>
   </div>
 
-  <div class="container-fluid">
+  <div id="dashboard-mobile-search" class="mobile-search hidden-md hidden-lg">
+    {{> searchBox}}
+  </div>
+
+<!--   This #id should go on whatever div follows #dashboard-mobile-search,
+  assuming that it is visible under 992px wide -->
+  <div id="dashboard-mobile-search-padding" class="container-fluid">
     <div class="row">
       <div class="dashboard-banner ">
         {{> dashboardBanner}}
