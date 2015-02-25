@@ -12,7 +12,6 @@ Package.onUse(function(api) {
     'styles', 
     'jquery', 
     'velocityjs:velocityjs',
-    'chriswessels:hammer',
     'swiper:swiper',
     'tracker', 
     'reactive-var',
