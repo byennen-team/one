@@ -5,6 +5,16 @@ Template.dashboardSchedule.rendered = function() {
   });
 };  
 
+Template.dashboardSchedule.helpers({
+
+// TODO: return color selected for event. String.
+  // Options are:
+  color: function () {
+    return 'red';
+  }
+
+});
+
 Template.dashboardSchedule.events({
 
   'click .event': function (event) { // these events are different

@@ -44,24 +44,24 @@
       overflow: hidden;
       z-index: 1;
       cursor: pointer;
-      .description {
-        position: relative;
-        float: right;
-        padding-top: 1.35em;
-        height: 4em;
-        p {
-          margin: 0 20px;
-          color: @white;
-        }
+    }
+    .description {
+      position: relative;
+      float: right;
+      padding-top: 1.35em;
+      height: 4em;
+      p {
+        margin: 0 20px;
+        color: @white;
       }
-      .caret-right {
-        float: right;
-        margin-top: 1.35em;
-        border-bottom: 8px solid transparent;
-        border-top: 8px solid transparent;
-        border-left: 8px solid @black;
-        opacity: 0.5;
-      }
+    }
+    .caret-right {
+      float: right;
+      margin-top: 1.35em;
+      border-bottom: 8px solid transparent;
+      border-top: 8px solid transparent;
+      border-left: 8px solid @black;
+      opacity: 0.5;
     }
     .description::after {
       content: "";
@@ -121,4 +121,142 @@
   .sleeve.mCS_no_scrollbar ~ .blue-line { // only without scrollbar
     right: 1.5em;
   }
+  .color {
+    display: none;  // Mobile only (for now)
+    position: absolute;
+    height: 10px;
+    width: 10px;
+    margin-top: 1.15em;
+    left: 12px;
+    border-radius: 50%;
+  }
+  .color.glow:after {
+    position: absolute;
+    top: -5px;
+    bottom: -5px;
+    left: -5px;
+    right: -5px;
+    border-radius: 50%;
+  }
+  .purple.color,
+  .purple.glow:after {
+    background-color: @purple;
+  }
+  .pink.color,
+  .pink.glow:after {
+    background-color: @pink;
+  }
+  .orange.color,
+  .orange.glow:after {
+    background-color: @cameo;
+  }
+  .teal.color,
+  .teal.glow:after {
+    background-color: @teal;
+  }
+  .blue.color,
+  .blue.glow:after {
+    background-color: @accent;
+  }
+  .red.color,
+  .red.glow:after {
+    background-color: @red;
+  }
 }
+
+@media all and (max-width: 991px){
+  .dashboard-schedule {
+    position: relative;
+    width: 100%;
+    margin-top: 10px;
+    right: auto;
+    bottom: auto;
+    overflow: hidden;
+    z-index: 1;
+    .sleeve {
+      margin-right: 0;
+      .banner {
+        position: relative;
+        margin: 0;
+        padding: 0.5em;
+        z-index: 1;
+        .icon-caret-left-thick.fa {
+          color: @white;
+          float: right;
+        }
+      }
+      .banner:after {
+        content: "";
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: 0;
+        bottom: 0;
+        background-color: #344c7b;
+        border-radius: 3px 3px 0 0;
+        opacity: 0.5;
+        z-index: -1;
+      }
+    }
+    .events-body {
+      position: relative;
+      margin-top: 3px;
+      padding-bottom: 0.25em;
+      z-index: 1;
+    }
+    .events-body:after {
+      content: "";
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: 0;
+      bottom: 0;
+      background-color: #344c7b;
+      border-radius: 0 0 3px 3px;
+      opacity: 0.5;
+      z-index: -1;
+    }
+    .event {
+      display: block;
+      height: 30px;
+      .description-box {
+        display: block;
+        right: auto;
+        left: 90px;
+      }
+      .description {
+        p {
+          font-size: 12px;
+          height: 1.25em;
+          margin: 0 5px;
+          overflow: hidden;
+        }
+      }
+      .description:after {
+        display: none;
+      }
+      .caret-right {
+        display: none;
+      }
+      .time {
+        font-size: 11px;
+        width: 60px;
+        left: 30px;
+        color: @text-lt-blue;
+        right: auto;
+      }
+    }
+    .color {
+      display: block;
+    }
+  }
+}
+
+
+
+
+
+
+
+
+
