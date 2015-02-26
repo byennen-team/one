@@ -4,7 +4,7 @@ Meteor.startup(function() {
   //checking if rooms are created for general and for offices
   //if not we create them
 
-  var companyChannels = ['General', 'News', 'Events', 'Training'];
+  var companyChannels = ['General', 'News', 'Events', 'Marketing'];
   var officeChannels = ['General', 'Water Cooler', 'Listings', 'Open Houses'];
 
   //placeholder until we get the real office names
