@@ -58,6 +58,7 @@ Template.searchBox.events({
 // TODO: This needs to clear search results, not just the input value
   'click #navbar-search-clear': function () {
     $( '#navbar-search-input' ).val("");
+    $('.results').velocity("slideUp");
   }
 });
 
