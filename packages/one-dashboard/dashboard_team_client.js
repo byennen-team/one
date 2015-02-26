@@ -1,3 +1,5 @@
+/* globals Rooms: false, RoomsController: false */
+
 Template.teamMembers.helpers({
 
   teamMembers: function() {

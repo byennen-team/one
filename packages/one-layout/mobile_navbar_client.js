@@ -1,6 +1,6 @@
 Template.mobileNavbar.rendered = function () {
   $('.mobile-menu-link').leftNav();
-}
+};
 
 Template.mobileNavbar.helpers({
 

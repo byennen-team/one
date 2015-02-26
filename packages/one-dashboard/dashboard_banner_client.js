@@ -1,4 +1,4 @@
-/* globals Skycons: false, RoomsController: false, Rooms: false */
+/* globals Skycons: false, RoomsController: false */
 var temp = new ReactiveVar();
 
 Template.dashboardBanner.created = function() {

@@ -1,3 +1,5 @@
+/* globals temp: false */
+
 Template.dashboard.helpers({
   // Return current temperature
   temp: function() {

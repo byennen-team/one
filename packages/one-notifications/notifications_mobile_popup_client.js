@@ -43,7 +43,7 @@ Template.notificationsMobilePopup.events({
     Notify.markNotificationAsRead($(event.currentTarget).data("id"));
     setTimeout(function(){ 
       $slide.remove();
-      // getting: Uncaught TypeError: Cannot read property 'get
+      // getting: Uncaught TypeError: Cannot read property 'get'
       var mySwiper = instance.mySwiper.get();
       mySwiper.update();
       // Getting "undefined" error for these, also a 500 error for Notify 
