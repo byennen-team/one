@@ -123,6 +123,8 @@ Meteor.methods({
     }, function(e, r) {
       return(e, r);
     });
+
+    Rooms.update(roomId, {$addToSet: {documentIds: documentId}});
   },
   addPostMessageToRoom: function(roomId, context) {
     check(roomId, String);

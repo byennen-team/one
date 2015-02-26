@@ -156,8 +156,10 @@
     "Settings": false,
     "User": false,
     "DocumentTools": false,
+    "DocumentSubscriptions": false,
     "SharedDocument": false,
     "SharedDocuments": false,
-    "SharedDocumentsStore": false
+    "SharedDocumentsStore": false,
+    "Helpers": false
   }
 }

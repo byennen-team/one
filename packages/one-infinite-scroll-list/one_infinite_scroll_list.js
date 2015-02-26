@@ -1,30 +1,24 @@
-/**
- * A reusable infinite scroll list.
- *
- * For a usage example see one-documents package.
- *
- * Arguments:
- * - subscription
- *   - name
- *   - arguments
- * - cursor
- */
+var defaultItemsPerPage = 10;
 
-var itemsPerPage = 10;
+Template.oneInfiniteScrollList.hooks({
 
-Template.oneInfiniteScrollList.created = function () {
-  var templateInstance = this;
+  created: function () {
+    var templateInstance = this;
 
-  this.autorun(function () {
-    var data = Template.currentData();
-    var args = [data.subscription.name].concat(
-      data.subscription.arguments,
-      [itemsPerPage]
+    this.autorun(
+      function () {
+        var data = Template.currentData();
+        var itemsPerPage = data.itemsPerPage || defaultItemsPerPage;
+        var args = [data.subscription.name].concat(
+          data.subscription.arguments, [itemsPerPage]
+        );
+        templateInstance.subscriptionHandler =
+          Meteor.subscribeWithPagination.apply(Meteor, args);
+      }
     );
-    templateInstance.subscriptionHandler =
-      Meteor.subscribeWithPagination.apply(Meteor, args);
-  });
-};
+  }
+
+});
 
 Template.oneInfiniteScrollList.helpers({
 
