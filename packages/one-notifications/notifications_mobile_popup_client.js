@@ -7,15 +7,15 @@ Template.notificationsMobilePopup.created = function () {
 
 Template.notificationsMobilePopup.rendered = function () {
   //initialize swiper when document ready  
-  this.mySwiper.set = new Swiper('.swiper-container', {
+  // this.mySwiper.set = new Swiper('.swiper-container', {
+   this.mySwiper.set(new Swiper ('.swiper-container', {
     // Optional parameters
-    // loop: true,
     spaceBetween: 20,
     pagination: '.swiper-pagination',
     slidesPerView: 'auto',
     centeredSlides: true,
     paginationClickable: true
-  });   
+  }));   
 
 };
 
@@ -42,15 +42,17 @@ Template.notificationsMobilePopup.events({
     $slide.velocity( "slideUp", { duration: 500 } );
     Notify.markNotificationAsRead($(event.currentTarget).data("id"));
     setTimeout(function(){ 
-      $slide.remove();
-      // getting: Uncaught TypeError: Cannot read property 'get'
-      var mySwiper = instance.mySwiper.get();
-      console.log(mySwiper)
-      mySwiper.update();
-      // Getting "undefined" error for these, also a 500 error for Notify 
-      // mySwiper.updatePagination();
-      // mySwiper.updateClasses();
-      // mySwiper.slideNext();
+      mySwiper = instance.mySwiper.get();
+      var doomed = mySwiper.activeIndex;
+      var reel = mySwiper.slides.length;
+      // if there's more than one slide left, remove current slide
+      if( reel > 1 ){ 
+        mySwiper.removeSlide( doomed );
+      } else { // else destroy swiper and close notifications
+        mySwiper.destroy();
+        $this.closest( ".notifications-mobile-popup" )
+          .velocity( "slideUp", { duration: 500 } );
+      }
     }, 500);
   }
   
