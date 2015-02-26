@@ -1,46 +1,93 @@
-.profile {
+// Variables 
+@import "/packages/styles/variables.import.less";
+
+.profile-nav {
   .nav-tabs {
-    border: 2px solid #b2c0cd;
-    border-style: none none solid none;
+    margin-top: 2em;
   }
-  .nav-tabs > li {
-    margin-bottom: -2px;
-  }
-  .nav-tabs > li:hover {
-    background-color: transparent;
-  }
-  .nav-tabs > li > a {
-    margin-left: 0;
-    background-color: transparent;
-    border: 3px solid transparent;
-    border-style: none none solid none;
-    color: #b2c0cd;
-    transition: color 350ms ease-out 50ms, border-color 350ms ease-out 50ms;
-  }
-  .nav-tabs > li > a:hover {
-    color: #a3b3c3;
-    border: 3px solid #a3b3c3;
-    border-style: none none solid none;
-    background-color: transparent;
-  }
-  .nav-tabs > li.active > a,
-  .nav-tabs > li.active > a:hover,
-  .nav-tabs > li.active > a:focus {
-    color: #000000;
-    background-color: transparent;
-    border: 3px solid #5bb8d7;
-    border-style: none none solid none;
-  }
-  .nav-data {
-    color: #5bb8d7;
-  }
-  .nav-btn {
-    width: 3em;
-    height: 2em;
-  }
-  @media all and (min-width: 768px) and (max-width: 991px) {
-    .nav-tabs > li > a {
-      padding: 10px 0;
+}
+
+
+// Mobile
+@media all and (max-width: 767px) {
+  .profile-nav {
+    position: relative;
+    padding-bottom: 0.5em;
+    background-color: @lt-grey;
+    border-top: solid 2px @lt-med-grey;
+    .nav-tabs {
+      border: none;
+      margin-top: 1em;
+      height: 40px;
+      padding-left: 10px;
+      padding-right: 10px;
     }
+    .tab {
+      float: left;
+      width: 25%;
+    }
+    .nav-tabs > li {
+      position: relative;
+      height: 30px;
+      font-size: 12px;
+      font-family: @raleway-regular;
+      font-variant: normal;
+      text-transform: capitalize;
+      letter-spacing: 0;
+      a {
+        padding: 0;
+        text-align: center;
+        .fa {
+          display: block;
+          position: absolute;
+          width: 20px;
+          left: 50%;
+          margin-left: -10px;
+          font-size: 18px;
+          margin-bottom: 4px;
+        }
+        span {
+          display: inline-block;
+          margin-top: 20px;
+        }
+      }
+    }
+    .nav-tabs > li.active {
+      a {
+        color: @grey;
+        border: none;
+        .fa {
+          color: @accent;
+        }
+      }
+    }
+    .icon-user {
+      margin-bottom: 1px;
+    }
+    .icon-network {
+      margin-bottom: -5px;
+      font-size: 24px;
+    }
+  }
+  .profile-nav.sticky {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    // padding-bottom: 0.5em;
+    background-color: @lt-grey;
+    z-index: 10;
+  }
+  .profile-nav.sticky + .tab-content {
+    margin-top: 60px;
+  }
+}
+// Desktop only
+@media all and (min-width: 768px) {
+  .profile-nav {
+    .fa {
+      display: none;
+    }
+
   }
 }

@@ -1,9 +1,9 @@
 {
   "AWS_BUCKET": "one-staging",
-  "AWS_ACCESS_KEY_ID": "AKIAJ2ED7QHQWODAJ37A",
-  "AWS_SECRET_ACCESS_KEY": "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",
+  "AWS_ACCESS_KEY_ID": "AKIAI32HMA3JVVRDWMUQ",
+  "AWS_SECRET_ACCESS_KEY": "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",
   "public": {
-    "AWS_BUCKET_URL": "https://goone-staging.s3.amazonaws.com",
+    "AWS_BUCKET_URL": "https://one-staging.s3.amazonaws.com",
     "ENVIRONMENT": "staging",
     "twitter": {
       "COMPANY_SCREENNAME": "DouglasElliman",
@@ -19,9 +19,9 @@
   },
   "FORECAST_API_KEY": "14825320e632a4c6c1aa9cc827bc7a94",
   "GOOGLE_API_KEY": "AIzaSyBf1mUne6CU0ZGFGOEwCv4wyojCl0XRzO4",
-  "HTTP_USERNAME": "elliman",
-  "HTTP_PASSWORD": "elliman",
-  "kadira": { 
+  "HTTP_USERNAME": "launch",
+  "HTTP_PASSWORD": "launch",
+  "kadira": {
     "appId": "zsp3HoHmghJMZ5tZ6",
     "appSecret": "d93d4315-05f2-4282-a0b1-d0f532768c37"
   }

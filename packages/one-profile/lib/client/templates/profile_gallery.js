@@ -1,4 +1,6 @@
-/* global Galleries: false */
+/* global 
+    Galleries: false
+*/
 
 Template.profileGallery.helpers({
 	galleries: function() {
@@ -55,7 +57,18 @@ Template.profileGallery.events({
 			  }
       );
 		}
-	}
+	},
+
+  // Brings up mobile controls
+  'click #profile-gallery-mobile-control': function () {
+    // scroll to top - otherwise modal is off screen 
+    var $transitioner = $( "#transitioner-1" );
+    $transitioner.animate( { scrollTop: 50000 } );
+    $( "#profile-screen" ).velocity( "fadeIn", { duration: 500 } );
+    $( "#profile-gallery-mobile-controls" )
+      .velocity( "slideDown", { duration: 500 } );
+  }
+
 });
 
 Template.profileGallery.rendered = function () {

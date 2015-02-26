@@ -51,14 +51,38 @@ Template.profileActivity.helpers({
     var user = Profile.currentUser();
     return (user && user.services) &&
       (user.services.twitter || user.services.facebook) ? true : false;
+  },
+
+//  TODO: Return post's timestamp. "Just now", '2 hours ago', 'yesterday',
+//    "February 7th", etc
+  timestamp: function () {
+    return '2 hours ago';
+  },
+
+// TODO: Return Agent's name. String
+  name: function () {
+    return 'Marie Espinal';
+  },
+
+// TODO: Return's Price - needs to be formatted. String.
+  price: function () {
+    return '$875,000';
+  },
+
+// TODO: Return's Address. String.
+  address: function () {
+    return '575 Madison Ave, New York, NY';
   }
+  
 });
+
 Template.socialMediaTemplate.rendered = function() {
   var user = Profile.currentUser();
 
   if (user && user.services && user.services.twitter)
     Meteor.call('getLatestTweets', user._id);
 };
+
 Template.socialMediaTemplate.helpers({
   socialStatuses: function() {
     return SocialStatuses.find({},{

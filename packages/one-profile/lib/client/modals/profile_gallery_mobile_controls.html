@@ -1,0 +1,22 @@
+<template name="profileGalleryMobileControls">
+  
+  <div id="profile-gallery-mobile-controls" class="mobile-control-modal">
+    <ul class="control-panel">
+      <li data-toggle="modal" data-target="#picturesUploadModal">
+        <i class="fa fa-picture-o"></i>
+        <p>Add photos from library</p>
+      </li>
+<!-- TODO: plug this option in -->
+<!-- TODO: make this option conditional on camera existing -->
+      <li>
+        <i class="fa fa-camera"></i>
+        <p>Take photo with camera</p>
+      </li>
+      <li data-toggle="modal" data-target="#addGaleryModal">
+        <i class="fa fa-th"></i>
+        <p>Create Album</p>
+      </li>
+    </ul>
+    <div id="profile-gallery-mobile-cancel" class="btn btn-default">cancel</div>
+  </div>
+</template>

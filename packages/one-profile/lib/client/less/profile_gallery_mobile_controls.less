@@ -1,0 +1,34 @@
+// Variables 
+@import "/packages/styles/variables.import.less";
+
+.mobile-control-modal {
+  display: none;
+  position: absolute;
+  bottom: 5px;
+  left: 5px;
+  right: 5px;
+  z-index: 100;
+  .control-panel {
+    width: 100%;
+    padding-left: 16px;
+    background-color: @white;
+    list-style: none;
+    color: @dk-purple;
+    li {
+      padding: 16px 0;
+    }
+    p {
+      display: inline-block;
+      margin-left: 0.75em;
+    }
+  }
+  .btn-default {
+    font-size: 20px;
+    width: 100%;
+    height: 48px;
+    padding-top: 7px;
+    font-family: @raleway-bold;
+    color: @teal;
+    border: 2px solid @teal;
+  }
+}

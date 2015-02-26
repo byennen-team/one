@@ -1,3 +1,6 @@
+// Variables 
+@import "/packages/styles/variables.import.less";
+
 .profile {
   .follow {
     display: block;
@@ -45,10 +48,11 @@
     border: 1px solid #e9eef3;
     border-style: none none solid none;
   }
+  
   .followers .card,
   .following-people .card {
     position: relative;
-    min-height: 10em;
+    // min-height: 10em; // not sure why this was here
   }
   .followers .card .v-center,
   .following-people .card .v-center {
@@ -74,6 +78,24 @@
     bottom: 0;
   }
 
+  // Mobile Only
+  @media all and (max-width: 767px) {
+    .followers,
+    .following-people {
+      background-color: @white;
+    }
+    .followers {
+      -moz-border-radius: 0 3px 3px 3px;
+      -webkit-border-radius: 0 3px 3px 3px;
+      border-radius: 0 3px 3px 3px;
+    }
+    .following-people {
+      -moz-border-radius: 3px 0 3px 3px;
+      -webkit-border-radius: 3px 0 3px 3px;
+      border-radius: 3px 0 3px 3px;
+    }
+
+  }
   @media all and (min-width: 768px) and (max-width: 991px) {
     .following .unfollow {
       display: block;
@@ -89,7 +111,7 @@
   @media all and (min-width: 1200px) {
     .followers .card,
     .following .card {
-      min-height: 8em;
+      // min-height: 8em;
     }
   }
 }

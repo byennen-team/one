@@ -10,9 +10,17 @@ Package.onUse(function (api) {
     ], 'web');
 
   api.addFiles([
-    'application.html', 'application_client.js',
-    'navbar.html', 'navbar_client.js', 'navbar.less',
-    'left_nav.html', 'leftNav.js', 'left_nav_client.js',
+    'application.html', 
+    'application_client.js',
+    'navbar.html', 
+    'navbar.less',
+    'navbar_client.js', 
+    'mobile_navbar.html', 
+    'mobile_navbar.less',
+    'mobile_navbar_client.js', 
+    'left_nav.html', 
+    'leftNav.js', 
+    'left_nav_client.js',
     'left_nav.less'
     ], 'web');
 });
