@@ -23,7 +23,7 @@ Template.messageInput.helpers({
   channel: function () {
     return "task";
     // return "room";
-    // return false; 
+    // return false;
   }
 });
 
@@ -170,7 +170,9 @@ Tracker.autorun(function () {
     var attachmentId = Session.get('attachmentId');
     var attachmentDocument = Files.findOne(attachmentId);
 		var str = $('#communication-message-input-attachment-input').val();
-		var fileName = attachmentDocument.name || /[^\\]*$/.exec(str)[0];
+		var fileName = attachmentDocument ?
+      attachmentDocument.name :
+      /[^\\]*$/.exec(str)[0];
 		$('#communication-message-attachment-name').text('').prepend(fileName);
 		$('#communication-message-attachment-display')
 			.velocity({width: '270px'}, 800, "easeInSine")

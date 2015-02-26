@@ -159,33 +159,51 @@ Meteor.publish('document', function (documentId) {
   return Files.find({_id: documentId});
 });
 
-Meteor.publish('myLibraryDocuments', function (parentFolderId, limit) {
+Meteor.publishComposite(
+  'myLibraryDocuments',
+  _.partial(publishDocuments, false)
+);
+
+Meteor.publish(
+  'companyLibraryDocuments',
+  _.partial(publishDocuments, true)
+);
+
+function publishDocuments(isCompanyDocument, parentFolderId, limit) {
   check(parentFolderId, Match.OneOf(null, String));
   check(limit, Number);
 
-  return Files.find(
-    {
-      companyDocument: false,
-      archived: {$ne: true},
-      parent: parentFolderId
-    },
-    {limit: limit}
-  );
-});
+  var findChildDocuments = function () {
+    return Files.find(
+      {
+        companyDocument: isCompanyDocument,
+        archived: {$ne: true},
+        parent: parentFolderId
+      },
+      {
+        limit: limit,
+        sort: {_id: -1}
+      }
+    );
+  };
 
-Meteor.publish('companyLibraryDocuments', function (parentFolderId, limit) {
-  check(parentFolderId, Match.OneOf(null, String));
-  check(limit, Number);
-
-  return Files.find(
-    {
-      companyDocument: true,
-      archived: {$ne: true},
-      parent: parentFolderId
-    },
-    {limit: limit}
-  );
-});
+  if (parentFolderId) {
+    return {
+      find: function () {
+        return Files.find({_id: parentFolderId});
+      },
+      children: [
+        {
+          find: findChildDocuments
+        }
+      ]
+    };
+  } else {
+    return {
+      find: findChildDocuments
+    };
+  }
+}
 
 
 function escapeRegExp(str) {

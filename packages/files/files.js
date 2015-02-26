@@ -62,7 +62,7 @@ FileTools.getFileTypeIcon = function (file) {
     return 'fa-folder-o';
   }
 
-  var extension = FileTools.ext(document.name).toLowerCase();
+  var extension = FileTools.ext(file.name).toLowerCase();
 
   switch (extension) {
   case 'xls':

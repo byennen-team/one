@@ -59,6 +59,22 @@ DocumentSubscriptions = {
         {sort: {_id: -1}}
       )
     };
+  },
+
+  /**
+   * Options for oneInfinitScrollList for company library documents.
+   */
+  getRoomDocumentsListOptions: function (room) {
+    return {
+      subscription: {
+        name: 'roomDocuments',
+        arguments: [room._id]
+      },
+      cursor: Files.find(
+        {_id: {$in: room.documentIds}},
+        {sort: {_id: -1}}
+      )
+    };
   }
 
 };
