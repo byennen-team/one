@@ -83,10 +83,6 @@ Router.route('/folders/:_id', {
   }
 });
 
-Router.route('/messages', {
-  name: Routes.MESSAGES
-});
-
 Router.route('/dashboard', {
   name: Routes.DASHBOARD,
   waitOn: function() {

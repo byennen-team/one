@@ -14,7 +14,6 @@ Routes = {
   SHARED_DOCUMENT: 'sharedDocument',
   SHARED_DOCUMENTS: 'sharedDocuments',
   SUPPORT: 'support',
-  MESSAGES: 'messages',
   STYLE_GUIDE: 'styleGuide'
 };
 
