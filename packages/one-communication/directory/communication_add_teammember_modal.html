@@ -16,17 +16,26 @@
         </div>
         <div class="modal-body">
           <div class="form-group">
-            <input id="modalAddMembersSearchInput" class="form-control" type="text" placeholder="Search directory" />
+              {{#if isNewRoom}}
+                <div class="row">
+                  <div class="col-sm-12 text-center">
+                    <p class="raleway-semibold">
+                      A room is a private workspace for your properties or projects.
+                    </p>
+                  </div>
+                </div>
+                <input class="form-control" type="text" id="new-room-name"
+                  placeholder="Name your room" />
+              {{/if}}
+              <!-- Team member search -->
+              <input id="modalAddMembersSearchInput" class="form-control"
+                type="text" placeholder="Search directory" />
 
-            <div class="people">
-              {{#each people}}
-                {{> teamMember}}
-              {{/each}}
-            </div>
-
-            {{#if isNewRoom}}
-              <input class="form-control" type="text" id="new-room-name" placeholder="Name your room" />
-            {{/if}}
+              <div class="people">
+                {{#each people}}
+                  {{> teamMember}}
+                {{/each}}
+              </div>
           </div>
         </div>
         <div class="modal-footer">
