@@ -14,7 +14,8 @@ Rooms.simpleSchema = new SimpleSchema({
   dateCreated: { type: Date },
   roomType: { type: String, optional: true},
   roomStatus: { type: String, defaultValue: 'private'},
-  officeNo: { type: Number, optional: true }
+  officeNo: { type: Number, optional: true },
+  documentIds: {type: [String], defaultValue: []}
 });
 
 RoomsController = {};

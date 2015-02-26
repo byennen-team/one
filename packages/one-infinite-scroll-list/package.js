@@ -14,13 +14,18 @@ Package.onUse(function(api) {
   api.versionsFrom('1.0.3.1');
 
   api.use([
+    'less',
     'templating',
-    'percolate:paginated-subscription@0.2.4'
+    'percolate:paginated-subscription@0.2.4',
+    'aldeed:template-extension@3.4.1'
   ], 'web');
 
   api.addFiles([
     'one_infinite_scroll_list.less',
     'one_infinite_scroll_list.html',
-    'one_infinite_scroll_list.js'
+    'one_infinite_scroll_list.js',
+    'one_infinite_scroll_list_for_table.less',
+    'one_infinite_scroll_list_for_table.html',
+    'one_infinite_scroll_list_for_table.js'
   ], 'web');
 });

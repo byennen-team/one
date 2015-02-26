@@ -116,9 +116,6 @@ Template.documentRow.helpers({
   url: function (file) {
     return FileTools.url(file);
   },
-  date: function (file) {
-    return moment(file.uploadDate).format('MMM D, YYYY');
-  },
   type: function (file) {
     return file.isFolder ? 'folder' : file.name.split('.').pop();
   },
