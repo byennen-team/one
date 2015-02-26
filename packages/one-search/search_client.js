@@ -53,6 +53,7 @@ Template.searchBox.events({
     var user = Meteor.users.findOne({_id: this._id});
     console.log(user);
     $('.results').velocity("slideUp");
+    $( '#navbar-search-input' ).val("");
     Router.go(Routes.PROFILE, {slug: user.slug});
   },
 // TODO: This needs to clear search results, not just the input value
