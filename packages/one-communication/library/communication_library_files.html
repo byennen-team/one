@@ -5,16 +5,28 @@
 		<div class="drop-box">
 			<div class="dropdown">
 			  <div class="dropdown-toggle" type="button" id="communication-library-files-folders" data-toggle="dropdown" aria-expanded="true">
-			<!-- TODO: Should show currently selectec/shown folder -->
-			    My Docs
+			    {{selectedCategory}}
 			    <span class="caret"></span>
 			  </div>
 			  <ul class="dropdown-menu" role="menu" aria-labelledby="communication-library-files-folders">
-			<!-- TODO: List folders -->
-			<!-- TODO: Selecting one of these brings up files in folder -->
-			    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">My Docs</a></li>
-			    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Company Docs</a></li>
-			    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Team Awesome</a></li>
+			    <li role="presentation">
+            <a role="menuitem"
+               tabindex="-1"
+               href="#"
+               data-action="select-my-docs"
+            >
+              My Docs
+            </a>
+          </li>
+			    <li role="presentation">
+            <a role="menuitem"
+               tabindex="-1"
+               href="#"
+               data-action="select-company-docs"
+            >
+              Company Docs
+            </a>
+          </li>
 			  </ul>
 			</div>
 		</div>
@@ -24,85 +36,19 @@
 <!-- TODO: search within shown documents folder, maybe other as a secondary search -->
 			<input type="text" placeholder='Find file...' />
 		</div>
-		
-		<div class='library-files-sleeve'>
-	<!-- TODO: insert "company" or "personal" for document type
-	class="file {{company/personal}}" -->
-			<div class="file company">
-				<div class="file-icon">
-	<!-- TODO: file icon goes here, determined by file type:
-		for .xls file: 					<i class="fa fa-table"></i>
-		for .jpg, .png, .gif : 	<img src="path_to_thumbnail" alt="title_of_file"/>
-		for all other files: 		<i class="fa fa-file"></i> 
-		 -->
-					<i class="fa fa-file"></i>
-	<!-- TODO: file's title -->
-				</div>
-				<div class="title">Listing Agreement.doc</div>
-	<!-- TODO: file's date modified -->
-				<div class="date">Dec 17, 2013</div>
-			</div>
 
-	<!-- Repeated for style -->
-			<div class="file company">
-				<div class="file-icon">
-					<i class="fa fa-file"></i>
-				</div>
-				<div class="title">Blank Offer to Purchase.doc</div>
-				<div class="date">Dec 17, 2013</div>
-			</div>
+    <div class="library-files-sleeve">
+      {{!-- We need this extra container so that Blaze throws no errors
+            because of the scrollbar DOM transformation.
+      --}}
+      <div>
+        {{#oneInfiniteScrollList documentsListOptions}}
+          {{> libraryFile}}
+        {{/oneInfiniteScrollList}}
+      </div>
+    </div>
 
-			<div class="file company">
-				<div class="file-icon">
-					<i class="fa fa-table"></i>
-				</div>
-				<div class="title">Broker Settlement Statement.xls</div>
-				<div class="date">Dec 17, 2013</div>
-			</div>
-
-			<div class="file personal">
-				<div class="file-icon">
-					<i class="fa fa-table"></i>
-				</div>
-				<div class="title">Business plan 5 Step Agent...xls</div>
-				<div class="date">Dec 17, 2013</div>
-			</div>
-
-			<div class="file company">
-				<div class="file-icon">
-					<i class="fa fa-file"></i>
-				</div>
-				<div class="title">Broker Settlement Statement.doc</div>
-				<div class="date">Dec 17, 2013</div>
-			</div>
-
-			<div class="file personal">
-				<div class="file-icon">
-					<img src="images/com-hub-main/interior.jpg" alt="title_of_file"/>
-				</div>
-				<div class="title">Staging Idea.jpg</div>
-				<div class="date">Dec 17, 2013</div>
-			</div>
-
-			<div class="file personal">
-				<div class="file-icon">
-					<i class="fa fa-file"></i>
-				</div>
-				<div class="title">575 Madison Ave description.doc</div>
-				<div class="date">Dec 17, 2013</div>
-			</div>
-
-			<div class="file company">
-				<div class="file-icon">
-					<img src="images/com-hub-main/de-mark.png" alt="title_of_file"/>
-				</div>
-				<div class="title">DE Mark.png</div>
-				<div class="date">Dec 17, 2013</div>
-			</div>
-<!-- /style repeat -->
-		</div>
-		
-		<div id="communication-library-panel-files-shadow" class='shadow'></div>
+    <div id="communication-library-panel-files-shadow" class='shadow'></div>
 	</div>
 
 </template>

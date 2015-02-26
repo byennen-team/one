@@ -56,3 +56,30 @@ FileTools.deleteStub = function (method, filePath, callback) {
      callback(null, result);
   });
 };
+
+FileTools.getFileTypeIcon = function (file) {
+  if (file.isFolder) {
+    return 'fa-folder-o';
+  }
+
+  var extension = FileTools.ext(document.name).toLowerCase();
+
+  switch (extension) {
+  case 'xls':
+    return 'fa-table';
+  case 'jpg':
+  case 'jpeg':
+  case 'png':
+  case 'gif':
+    return 'fa-file-image-o';
+  default:
+    return 'fa-file';
+  }
+};
+
+FileTools.isImage = function (file) {
+  var imageExtensions = ['jpg', 'jpeg', 'png', 'gif'];
+  var fileExtension = FileTools.ext(file.name).toLowerCase();
+
+  return _.contains(imageExtensions, fileExtension);
+};
