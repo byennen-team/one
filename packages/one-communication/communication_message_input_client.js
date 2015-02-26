@@ -97,21 +97,21 @@ Template.messageInput.events({
     event.preventDefault();
     var message = $('#addMessageInput').val();
 
-    if(message && message.length > 0)
-      if (Session.get('attachment')) {
-        RoomsController.addAttachmentMessageToRoom(
-          Session.get('openRoomId'),
-          message,
-          Session.get('attachmentId')
-        );
-        Session.set('attachment', false);
-        Session.set('attachmentId', null);
-      } else {
+    if (Session.get('attachment')) {
+      RoomsController.addAttachmentMessageToRoom(
+        Session.get('openRoomId'),
+        message,
+        Session.get('attachmentId')
+      );
+      Session.set('attachment', false);
+      Session.set('attachmentId', null);
+    } else {
+      if(message && message.length > 0) {
         RoomsController.addSimpleMessageToRoom(
           Session.get('openRoomId'),
           message);
       }
-
+    }
 
     $('#addMessageInput').val("");
 
