@@ -145,3 +145,50 @@
     padding: 0 0 2em;
   }
 }
+
+// Mobile 
+@media all and (max-width: 991px) {
+  #communication-add-teammember-modal {
+    .modal-backdrop.in {
+      min-height: 200%;
+    } 
+    .modal-header {
+      .teamMembers {
+        display: none;
+      }
+    }
+    .modal-body {
+      .form-control {
+        margin-bottom: 0.75em;
+      }
+      .user {
+        .name,
+        .job {
+          margin-left: 80px;
+        }
+      }
+    }
+  }
+}
+
+// Small Phones, portrait
+@media all and (max-width: 479px) {
+  #communication-add-teammember-modal {
+    .modal-body {
+      .user {
+        .name,
+        .job {
+          margin-left: 70px;
+        }
+      }
+    }
+  }
+}
+
+
+
+
+
+
+
+
