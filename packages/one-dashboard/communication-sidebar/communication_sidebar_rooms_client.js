@@ -1,12 +1,18 @@
-/* globals Rooms: true, RoomsController: true */
+/* globals 
+  Rooms: true, 
+  RoomsController: true,
+  comSidebarCurrentWidth: true
+*/
 Template.communicationSidebarRooms.rendered = function(){
 
   // initialize maazalik:malihu-jquery-custom-scrollbar scrollbar plugin
-  // Repeated to play nice with plugin
-  $(".communication-sidebar-sleeve").mCustomScrollbar({
-	  	theme:"one-light",
-	  	scrollbarPosition: "inside"
-  });
+  // Desktop Only
+  if( comSidebarCurrentWidth >= 992 ){
+    $(".communication-sidebar-sleeve").mCustomScrollbar({
+  	  	theme:"one-light",
+  	  	scrollbarPosition: "inside"
+    });
+  }
 
 };
 

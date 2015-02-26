@@ -1,13 +1,13 @@
 
 /* globals Swiper:false */
 
-// Template.notificationsMobilePopup.created = function () {
-//   var mySwiper = new ReactiveVar();
-// };
+Template.notificationsMobilePopup.created = function () {
+  this.mySwiper = new ReactiveVar();
+};
 
 Template.notificationsMobilePopup.rendered = function () {
   //initialize swiper when document ready  
-  this.mySwiper.set = new Swiper ('.swiper-container', {
+  this.mySwiper.set = new Swiper('.swiper-container', {
     // Optional parameters
     // loop: true,
     spaceBetween: 20,
@@ -45,6 +45,7 @@ Template.notificationsMobilePopup.events({
       $slide.remove();
       // getting: Uncaught TypeError: Cannot read property 'get'
       var mySwiper = instance.mySwiper.get();
+      console.log(mySwiper)
       mySwiper.update();
       // Getting "undefined" error for these, also a 500 error for Notify 
       // mySwiper.updatePagination();

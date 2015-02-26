@@ -1,13 +1,19 @@
-/* globals Rooms: false, RoomsController: false */
+/* globals 
+  Rooms: false, 
+  RoomsController: false,
+  comSidebarCurrentWidth: false 
+*/
+
 Template.communicationSidebarCompany.rendered = function(){
 
   // initialize maazalik:malihu-jquery-custom-scrollbar scrollbar plugin
-  // Repeated to play nice with plugin
-  $(".communication-sidebar-sleeve").mCustomScrollbar({
-	  	theme:"one-light",
-	  	scrollbarPosition: "inside"
-  });
-
+  // Desktop Only
+  if( comSidebarCurrentWidth >= 992 ){
+    $(".communication-sidebar-sleeve").mCustomScrollbar({
+  	  	theme:"one-light",
+  	  	scrollbarPosition: "inside"
+    });
+  }
 };
 
 Template.communicationSidebarCompanyFill.helpers({
@@ -33,7 +39,7 @@ Template.communicationSidebarCompanyFill.helpers({
       '33 Office Road',
       '99 NY',
       '18 Venice St.',
-      '575 Madisson'
+      '575 Madison'
     ];
     var index = Meteor.user().profile.officeId;
     if (index > 9)

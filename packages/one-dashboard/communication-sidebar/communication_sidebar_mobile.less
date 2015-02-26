@@ -1,2 +1,31 @@
 // Variables 
 @import "/packages/styles/variables.import.less";
+
+.communication-menu {
+  .communication-sidebar {
+    margin-top: 40px;
+    height: 100%;
+    .communication-sidebar-sleeve {
+      margin-top: 80px;
+      background-color: @blue-grey;
+    }
+  }
+  .communication-filter {
+    position: fixed;
+    top: 40px;
+    left: 0;
+    right: 0;
+    height: 40px;
+    z-index: 1;
+    .dropdown-header {
+      height: 40px;
+      padding: 0.5em 2em;
+      .caret {
+        top: 1em;
+      }
+    }
+  }
+  .well {
+    margin-bottom: 0;
+  }
+}

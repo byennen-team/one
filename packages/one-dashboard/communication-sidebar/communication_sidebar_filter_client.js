@@ -1,3 +1,6 @@
+/* globals 
+  comSidebarCurrentWidth: false 
+*/
 
 Template.communicationSidebarFilter.helpers({
 
@@ -39,9 +42,11 @@ Template.communicationSidebarFilter.events({
 		Session.set('filter', json);
 	},
 
-	// Scroll to com-hub position when filter is clicked
+	// Scroll to com-hub position when filter is clicked - desktop only
 	'click #communication-filter': function () {
-		$( "#transitioner-1" ).animate( { scrollTop: 400 } );
+		if( comSidebarCurrentWidth >= 992 ){
+			$( "#transitioner-1" ).animate( { scrollTop: 400 } );
+		}
 	}
 
 });

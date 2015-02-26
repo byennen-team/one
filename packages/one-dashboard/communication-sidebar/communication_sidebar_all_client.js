@@ -1,12 +1,17 @@
+/* globals 
+  comSidebarCurrentWidth: false 
+*/
+
 Template.communicationSidebarAll.rendered = function(){
 
   // initialize maazalik:malihu-jquery-custom-scrollbar scrollbar plugin
-  // Repeated to play nice with plugin
-  $(".communication-sidebar-sleeve").mCustomScrollbar({
-	  	theme:"one-light",
-	  	scrollbarPosition: "inside"
-  });
-
+  // Desktop Only
+  if( comSidebarCurrentWidth >= 992 ){
+    $(".communication-sidebar-sleeve").mCustomScrollbar({
+  	  	theme:"one-light",
+  	  	scrollbarPosition: "inside"
+    });
+  }
 };
 
 Template.communicationSidebarAll.helpers({

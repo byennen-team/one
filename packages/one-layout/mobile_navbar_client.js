@@ -27,7 +27,7 @@ Template.mobileNavbar.helpers({
 
   dashboard: function() {
     var page = Router.current().route.getName();
-    if( page === 'dashboard' ){
+    if( page === 'dashboard' || page === 'comHub' ){
       return true;
     }
   },
