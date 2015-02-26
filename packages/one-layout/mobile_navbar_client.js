@@ -6,7 +6,7 @@ Template.mobileNavbar.helpers({
 
 // TODO: Returns last page link/route (for back button)
   last: function () {
-    return '#';
+    return '/dashboard';
   },
 
   isLoggedIn: function() {
@@ -27,7 +27,14 @@ Template.mobileNavbar.helpers({
 
   dashboard: function() {
     var page = Router.current().route.getName();
-    if( page === 'dashboard' || page === 'comHub' ){
+    if( page === 'dashboard' ){
+      return true;
+    }
+  },
+
+  comHub: function() {
+    var page = Router.current().route.getName();
+    if( page === 'comHub' ){
       return true;
     }
   },

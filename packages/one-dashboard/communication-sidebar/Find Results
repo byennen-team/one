@@ -1,0 +1,85 @@
+Searching 2523 files for "addDM"
+
+/Users/dave/one/packages/one-dashboard/communication-sidebar/communication_sidebar_client.js:
+  157      Session.set('teamModalPurpose','newTeam');
+  158    },
+  159:   'click .addDM': function() {
+  160      Session.set('teamModalPurpose','newDM');
+  161    }
+
+1 match in 1 file
+
+
+Searching 2523 files for "teamModalPurpose"
+
+/Users/dave/one/packages/one-communication/directory/communication_add_teammember_modal.js:
+   26    },
+   27    isNewRoom: function() {
+   28:     return (Session.get('teamModalPurpose') === 'newTeam');
+   29    }
+   30  });
+   ..
+   62      var newRoomMembers = Session.get("teamMembers");
+   63  
+   64:     if (Session.get('teamModalPurpose') === 'newDM') {
+   65        RoomsController.createOrGetDMRoom(Session.get("teamMembers")[0]);
+   66      } else {
+   ..
+   75  
+   76        if((! roomName || roomName.length === 0) &&
+   77:         Session.get('teamModalPurpose') === 'newTeam')
+   78          return;
+   79  
+   ..
+   87        });
+   88  
+   89:       if(Session.get('teamModalPurpose') === 'newTeam') {
+   90          RoomsController.createRoom({
+   91            participants: participants,
+   ..
+  160      if (checkbox.prop('checked') === false) {
+  161        currentMembers = Session.get("teamMembers");
+  162:       if (Session.get('teamModalPurpose') === 'newDM') {
+  163          currentMembers = [checkbox.val()];
+  164        } else {
+
+/Users/dave/one/packages/one-communication/library/communication_library_members_client.js:
+   18  	},
+   19    'click #communication-library-invite-directory': function() {
+   20:     Session.set('teamModalPurpose','editTeam');
+   21      var room = Rooms.findOne(Session.get('openRoomId'));
+   22      var members = _.pluck(room.participants, 'participantId');
+
+/Users/dave/one/packages/one-dashboard/communication-sidebar/communication_sidebar_client.js:
+  155  	},
+  156    'click .addRoom': function() {
+  157:     Session.set('teamModalPurpose','newTeam');
+  158    },
+  159    'click .addDM': function() {
+  160:     Session.set('teamModalPurpose','newDM');
+  161    }
+  162  
+
+8 matches across 3 files
+
+
+Searching 7 files for "teamModalPurpose"
+
+0 matches across 0 files
+
+
+Searching 7 files for ".channel"
+
+/Users/dave/one/packages/one-dashboard/communication-sidebar/communication_sidebar.less:
+    7  	margin-right: -15px;
+    8  	background-color: @blue-grey;
+    9: 	.channel {
+   10  		cursor: pointer;
+   11  	}
+
+1 match in 1 file
+
+
+Searching 7 files for ".communication-menu"
+
+0 matches across 0 files

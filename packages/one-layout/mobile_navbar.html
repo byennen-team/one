@@ -7,12 +7,16 @@
       <span class="icon-bar"></span>
       <span class="icon-bar"></span>
     </a>
-    <p class='logo'></p>
+    <a href="/dashboard" class='logo'></a>
     {{else}}
-    <a href="{{last}}" class="back">
-      <i class="fa icon-caret-left-thick"></i>
-    </a>
-    <p class='page'>{{page}}</p>
+      <a href="{{last}}" class="back">
+        <i class="fa icon-caret-left-thick"></i>
+      </a>
+      {{#if comHub}}
+        <a href="/dashboard" class='logo'></a>
+      {{else}}
+        <p class='page'>{{page}}</p>
+      {{/if}}
     {{/if}}
 
     {{#if isMyProfile}}

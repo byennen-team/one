@@ -57,7 +57,6 @@ Package.onUse(function (api) {
     'communication-sidebar/communication_sidebar_client.js',
     'communication-sidebar/communication_sidebar_mobile.html',
     'communication-sidebar/communication_sidebar_mobile.less',
-    'communication-sidebar/communication_sidebar_mobile_client.js',
     'communication-sidebar/communication_sidebar_filter.html',
     'communication-sidebar/communication_sidebar_filter.less',
     'communication-sidebar/communication_sidebar_filter_client.js',
