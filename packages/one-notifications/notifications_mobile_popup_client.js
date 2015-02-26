@@ -36,7 +36,7 @@ Template.notificationsMobilePopup.helpers({
 
 Template.notificationsMobilePopup.events({
   // Hides .notice when .x is clicked & updates database
-  'click .x': function (event) {
+  'click .x': function (event, instance) {
     var $this = $(event.target);
     var $slide = $this.closest( '.swiper-slide' );
     $slide.velocity( "slideUp", { duration: 500 } );
@@ -44,7 +44,7 @@ Template.notificationsMobilePopup.events({
     setTimeout(function(){ 
       $slide.remove();
       // getting: Uncaught TypeError: Cannot read property 'mySwiper' of null
-      var mySwiper = Template.instance().mySwiper.get();
+      var mySwiper = instance.mySwiper.get();
       mySwiper.update();
       // Getting "undefined" error for these, also a 500 error for Notify 
       // mySwiper.updatePagination();
@@ -55,12 +55,3 @@ Template.notificationsMobilePopup.events({
   
 });
 
-// Template.notificationsMobilePopup.gestures({
-//   // move carousel on swipe
-//   'swipeleft .notifications-mobile-popup': function () {
-//     $( "#notifications-carousel-left" ).click();
-//   },
-//   'swiperight .notifications-mobile-popup': function () {
-//     $( "#notifications-carousel-right" ).click();
-//   }
-// });

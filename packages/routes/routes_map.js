@@ -115,6 +115,10 @@ Router.route('/account-settings', {
   }
 });
 
+Router.route('/comHub', {
+  name: Routes.COM_HUB
+});
+
 Router.route('/support', {
   name: Routes.SUPPORT
 });
