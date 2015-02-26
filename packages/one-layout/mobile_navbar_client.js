@@ -32,6 +32,13 @@ Template.mobileNavbar.helpers({
     }
   },
 
+  profile: function() {
+    var page = Router.current().route.getName();
+    if( page === 'profile' ){
+      return true;
+    }
+  },
+
   page: function() {
     var page = Router.current().route.getName();
     return page;
