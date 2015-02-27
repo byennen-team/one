@@ -13,11 +13,9 @@ Template.dashboardBanner.rendered = function () {
       theme:"one-dark",
       scrollbarPosition: "outside"
   });
-  //geting geolocation
-  if(navigator.geolocation) {
-    function positionSuccess(position) {
+  function positionSuccess(position) {
       if (_.isEmpty(position)) {
-        console.log('Position Object is Empty!')
+        console.log('Position Object is Empty!');
         return;
       }
 
@@ -43,7 +41,7 @@ Template.dashboardBanner.rendered = function () {
         // start animation
         skycons.play();
       });
-    };
+    }
 
     function positionError(error) {
       switch (error.code) {
@@ -61,8 +59,9 @@ Template.dashboardBanner.rendered = function () {
           console.log("Unknown error");
           break;
       }
-    };
-
+    }
+  //geting geolocation
+  if(navigator.geolocation) {
     navigator.geolocation.getCurrentPosition(positionSuccess, positionError,
       {maximumAge:Infinity, timeout:0});
   }
