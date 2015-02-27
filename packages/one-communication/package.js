@@ -43,10 +43,6 @@ Package.onUse(function (api) {
   api.addFiles([
     'communication_main.html',
     'communication_main.less',
-    'communication_main_client.js',
-    'communication_channel.html',
-    'communication_channel.less',
-    'communication_channel_client.js',
     'communication_room_welcome.html',
     'communication_room_welcome_client.js',
     'communication_message_board.html',

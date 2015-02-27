@@ -1,6 +1,0 @@
-Template.communicationMain.rendered = function () {
-
-
-
-
-};
