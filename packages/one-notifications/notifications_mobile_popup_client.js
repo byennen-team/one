@@ -42,7 +42,7 @@ Template.notificationsMobilePopup.events({
     $slide.velocity( "slideUp", { duration: 500 } );
     Notify.markNotificationAsRead($(event.currentTarget).data("id"));
     setTimeout(function(){ 
-      mySwiper = instance.mySwiper.get();
+      var mySwiper = instance.mySwiper.get();
       var doomed = mySwiper.activeIndex;
       var reel = mySwiper.slides.length;
       // if there's more than one slide left, remove current slide
