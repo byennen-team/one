@@ -1,4 +1,4 @@
-/* globals Messages: true, Rooms: true */
+/* globals Messages: true, Rooms: true */ 
 Template.messageBoard.events({
 
 });

@@ -115,8 +115,19 @@ Router.route('/account-settings', {
   }
 });
 
-Router.route('/comHub', {
-  name: Routes.COM_HUB,
+Router.route('comm', {
+  name: Routes.COMM,
+  waitOn: function() {
+    return [Meteor.subscribe('companySocialStatuses',
+      Meteor.settings.public.twitter.COMPANY_USERID),
+      Meteor.subscribe('files'),
+      Meteor.subscribe('rooms'),
+      Meteor.subscribe('unreadMessages')];
+  }
+});
+
+Router.route('/comm/chat', {
+  name: Routes.CHAT,
   waitOn: function() {
     return [Meteor.subscribe('companySocialStatuses',
       Meteor.settings.public.twitter.COMPANY_USERID),

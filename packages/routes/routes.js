@@ -16,7 +16,8 @@ Routes = {
   SUPPORT: 'support',
   MESSAGES: 'messages',
   STYLE_GUIDE: 'styleGuide',
-  COM_HUB: 'comHub'
+  COMM: 'comm',
+  CHAT: 'chat' 
 };
 
 Routes.Admin = {

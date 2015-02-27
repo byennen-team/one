@@ -32,9 +32,9 @@ Template.mobileNavbar.helpers({
     }
   },
 
-  comHub: function() {
+  comm: function() {
     var page = Router.current().route.getName();
-    if( page === 'comHub' ){
+    if( page === 'comm' ){
       return true;
     }
   },

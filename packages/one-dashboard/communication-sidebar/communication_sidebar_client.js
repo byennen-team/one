@@ -95,7 +95,7 @@ Template.communicationSidebar.events({
     Session.set('openRoomId', $(event.currentTarget).data('id'));
     Session.set('messageLimit',20);
     // Desktop Only
-    if( comSidebarCurrentWidth >= 992 ){
+    if( comSidebarCurrentWidth >= 992 ){ 
   		// expands the main dialog box to 80% of full screen
       $.Velocity.hook($('#communication-main'), "overflow", "visible");
   		$.Velocity.hook($('#communication-main'), "width", "76%");
@@ -119,6 +119,9 @@ Template.communicationSidebar.events({
       body.data('previous-overflow', body.css('overflow'));
       body.css('overflow', 'hidden');
       window.scrollTo(scrollPosition[0], scrollPosition[1]);
+    }else { // for mobile
+      var url = window.location.href;
+      window.location.href = url + '/chat';
     }
 
 	},
@@ -151,6 +154,9 @@ Template.communicationSidebar.events({
       body.data('previous-overflow', body.css('overflow'));
       body.css('overflow', 'hidden');
       window.scrollTo(scrollPosition[0], scrollPosition[1]);
+    }else { // for mobile
+      var url = window.location.href;
+      window.location.href = url + '/chat';
     }
 	},
   'click .addRoom': function() {
