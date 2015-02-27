@@ -14,17 +14,20 @@
     <div class="collapse in" id="communication-drafts-header">
       <div class="well">
         <ul role="menu" >
-<!-- TODO: this will need to be tweaked - was just copied from Rooms -->
-        {{#each rooms}}
-          <li class="room" data-id="{{_id}}">{{roomName}}
-            <span class="delete-channel">
-              <i class="fa icon-x-blunt"></i>
-            </span>
-          </li>
+        {{#each drafts}}
+          {{> draftTemplate}}
         {{/each}}
         </ul>
       </div>
     </div>
   </div>
 
+</template>
+
+<template name="draftTemplate">
+  <li class="draft" data-id="{{_id}}" owner-id="{{creatorId}}">{{messagePayload.title}}
+    <span class="delete-channel">
+      <i class="fa icon-x-blunt"></i>
+    </span>
+  </li>
 </template>

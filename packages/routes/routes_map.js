@@ -89,7 +89,8 @@ Router.route('/dashboard', {
     return [Meteor.subscribe('companySocialStatuses',
       Meteor.settings.public.twitter.COMPANY_USERID),
       Meteor.subscribe('rooms'),
-      Meteor.subscribe('unreadMessages')];
+      Meteor.subscribe('unreadMessages'),
+      Meteor.subscribe('drafts')];
   }
 });
 
