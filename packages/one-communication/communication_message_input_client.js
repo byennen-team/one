@@ -118,7 +118,9 @@ Template.messageInput.events({
     //also mark room as read
 
     RoomsController.updateTimestamp(Session.get('openRoomId'));
-
+		console.log('here');
+		$("#communication-message-board-sleeve")
+			.mCustomScrollbar("scrollTo", "bottom");
   },
   'click #communication-message-post-btn': function() {
 
