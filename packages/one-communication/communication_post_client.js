@@ -144,6 +144,8 @@ Template.communicationPostInput.events({
   'click .close-x': function () {
     $( '#communication-message-post' )
       .velocity( "slideUp", { duration: 500 } );
+
+    Session.set('draftId', null);
   },
 
    // minimize the post window
@@ -225,6 +227,12 @@ Template.communicationPostInput.events({
         RoomsController.updateTimestamp(Session.get('openRoomId'));
       });
 
+      var draftId = Session.get('draftId');
+
+      if (draftId)
+        RoomsController.deleteMessage(draftId);
+
+      Session.set('draftId', null);
 
       //and cleanup
       $('#new-post-subject').val("");
@@ -258,6 +266,12 @@ Template.communicationPostInput.events({
 
       RoomsController.updateTimestamp(Session.get('openRoomId'));
 
+      var draftId = Session.get('draftId');
+
+      if (draftId)
+        RoomsController.deleteMessage(draftId);
+
+      Session.set('draftId', null);
       //and cleanup
       $('#new-post-subject').val("");
       $('#communication-message-post-textarea').html("");
@@ -280,6 +294,13 @@ Template.communicationPostInput.events({
         Meteor.settings.public.AWS_BUCKET_URL + '/', '');
       FileTools.deleteStub('deleteFilesFromS3',key);
     });
+
+    var draftId = Session.get('draftId');
+
+      if (draftId)
+        RoomsController.deleteMessage(draftId);
+
+      Session.set('draftId', null);
     //and cleanup
     $('#new-post-subject').val("");
     $('#communication-message-post-textarea').html("");
