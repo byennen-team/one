@@ -14,7 +14,8 @@ Routes = {
   SHARED_DOCUMENT: 'sharedDocument',
   SHARED_DOCUMENTS: 'sharedDocuments',
   SUPPORT: 'support',
-  STYLE_GUIDE: 'styleGuide'
+  STYLE_GUIDE: 'styleGuide',
+  COMM: 'communication'
 };
 
 Routes.Admin = {

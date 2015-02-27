@@ -94,6 +94,23 @@ Router.route('/dashboard', {
   }
 });
 
+Router.route('/comm/:_id?', {
+  name: Routes.COMM,
+  waitOn: function() {
+    var subscribeArray = [
+      Meteor.subscribe('rooms'),
+      Meteor.subscribe('unreadMessages'),
+      Meteor.subscribe('drafts')];
+
+    if (this.params._id) {
+      Session.set('openRoomId',this.params._id);
+      subscribeArray.push(Meteor.subscribe('roomData', this.params._id, 20));
+    }
+
+    return subscribeArray
+  }
+});
+
 Router.route('/directory/:letter?', {
   name: Routes.DIRECTORY,
   onBeforeAction: function () {
