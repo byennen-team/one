@@ -83,16 +83,11 @@ Router.route('/folders/:_id', {
   }
 });
 
-Router.route('/messages', {
-  name: Routes.MESSAGES
-});
-
 Router.route('/dashboard', {
   name: Routes.DASHBOARD,
   waitOn: function() {
     return [Meteor.subscribe('companySocialStatuses',
       Meteor.settings.public.twitter.COMPANY_USERID),
-      Meteor.subscribe('files'),
       Meteor.subscribe('rooms'),
       Meteor.subscribe('unreadMessages'),
       Meteor.subscribe('drafts')];

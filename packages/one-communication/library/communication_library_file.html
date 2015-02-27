@@ -1,0 +1,17 @@
+<template name="libraryFile">
+  <div class="file {{#if companyDocument}}company{{else}}personal{{/if}}">
+    <div class="file-icon">
+      {{#if isImage}}
+        <!-- TODO: Show thumbnail when document is an image
+        <img src="path_to_thumbnail" alt="title_of_file"/>
+         -->
+        <i class="fa {{fileTypeIconClass}}"></i>
+      {{else}}
+        <i class="fa {{fileTypeIconClass}}"></i>
+      {{/if}}
+    </div>
+    <div class="title shorten-text">{{name}}</div>
+    <!-- TODO: file's date modified -->
+    <div class="date">{{date uploadDate}}</div>
+  </div>
+</template>

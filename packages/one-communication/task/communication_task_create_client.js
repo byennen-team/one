@@ -1,14 +1,14 @@
 Template.communicationCreateTask.rendered = function () {
-  // call bootstrap3-datetimepicker plugin 
+  // call bootstrap3-datetimepicker plugin
   $('.datetimepicker').datetimepicker({
-    minuteStepping: 5,
+    // minuteStepping: 5,
     format: 'h:mm a on M/D',
     toolbarPlacement: 'bottom',
     showClear: true  // this option doesn't seem to work
   });
 
   // use specific class to call first
-  $( '.taskcolorselectpicker' ).selectpicker(); 
+  $( '.taskcolorselectpicker' ).selectpicker();
 // TODO: if the event already has a color defined, insert it instead of 'purple'
   $( '#task-menu .filter-option' ).addClass( 'purple dot-select' );
 
@@ -87,7 +87,7 @@ Template.communicationCreateTask.events({
 
 
 Template.communicationCreateTask.helpers({
-// TODO: should return false if the current task is new, 
+// TODO: should return false if the current task is new,
 //    false if it already exists.
   notNew: function () {
     return true;

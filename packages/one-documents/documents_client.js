@@ -76,15 +76,21 @@ Template.documents.events({
 
 Template.documents.helpers({
   documentsListOptions: function () {
+    var options;
+
     if (Routes.getName() === Routes.SHARED_DOCUMENTS) {
-      return getSharedDocumetsListOptions();
+      options = DocumentSubscriptions.getSharedDocumetsListOptions();
     } else if (FileTools.isMyDocumentsActive()) {
-      return getMyLibraryDocumentsListOptions();
+      options = DocumentSubscriptions.getMyLibraryDocumentsListOptions();
     } else if (FileTools.isCompanyDocumentsActive()) {
-      return getCompanyLibraryDocumentsListOptions();
+      options = DocumentSubscriptions.getCompanyLibraryDocumentsListOptions();
     } else {
       throw new Error('Unknown documents page type');
     }
+
+    options.colspan = 6;
+
+    return options;
   },
   moveToActionState: function () {
     var selectedDocuments = Session.get('selectedDocuments') || [];
@@ -124,50 +130,6 @@ Template.documents.helpers({
     }
   }
 });
-
-function getSharedDocumetsListOptions() {
-  return {
-    subscription: {
-      name: 'sharedDocuments',
-      arguments: []
-    },
-    cursor: Files.find(
-      {
-        'sharedWith.userId': Meteor.userId(),
-        'sharedWith.isInherited': false
-      },
-      {sort: {uploadDate: -1}}
-    )
-  };
-}
-
-function getMyLibraryDocumentsListOptions() {
-  return {
-    subscription: {
-      name: 'myLibraryDocuments',
-      arguments: [Session.get('currentFolderId')]
-    },
-    cursor: Files.find({
-      companyDocument: false,
-      archived: {$ne: true},
-      parent: Session.get('currentFolderId')
-    })
-  };
-}
-
-function getCompanyLibraryDocumentsListOptions() {
-  return {
-    subscription: {
-      name: 'companyLibraryDocuments',
-      arguments: [Session.get('currentFolderId')]
-    },
-    cursor: Files.find({
-      companyDocument: true,
-      archived: {$ne: true},
-      parent: Session.get('currentFolderId')
-    })
-  };
-}
 
 Template.documents.rendered = function () {
   $(document.body).on('dragover', function (e) {

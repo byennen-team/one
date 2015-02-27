@@ -1,0 +1,21 @@
+<template name="oneInfiniteScrollListForTable">
+  {{#each items}}
+    {{> Template.contentBlock this}}
+  {{/each}}
+  <tr class="{{#unless isLoading}}hidden{{/unless}}">
+    <td colspan="{{colspan}}" class="one-infinite-scroll-list-for-table__loading">
+      <img src="/photo-load.gif" alt="Loading...">
+    </td>
+  </tr>
+  <tr class="{{#unless moreAvailable}}hidden{{/unless}}">
+    <td colspan="{{colspan}}" class="one-infinite-scroll-list-for-table__load-more">
+      <button
+        data-action="load-more"
+        type="button"
+        class="btn btn-default"
+        >
+        Load more
+      </button>
+    </td>
+  </tr>
+</template>
