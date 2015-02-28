@@ -1,6 +1,12 @@
 /* globals Messages: true */
 Messages = new Meteor.Collection('messages');
 
+commentSchema = new SimpleSchema({
+  comment: { type: String },
+  creatorId: { type: String },
+  dateCreated: { type: Date }
+});
+
 Messages.simpleSchema = new SimpleSchema({
   //the id of the room
   roomId: { type: String },
@@ -24,5 +30,7 @@ Messages.simpleSchema = new SimpleSchema({
   // -> post (optional)
   //event: TBD
   //listing: TBD
-  messagePayload: { type: [Object], optional: true, blackbox: true}
+  messagePayload: { type: [Object], optional: true, blackbox: true},
+  comments: { type: [commentSchema], optional: true },
+  likes: { type: [String], optional: true }
 });

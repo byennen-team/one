@@ -335,9 +335,19 @@ RoomsController.addStatusToTimeline = function(userId) {
 };
 
 RoomsController.addCommentToMessage = function(commenterId, statusId) {
-  //TODO
+  Meteor.call('addCommentToMessage',commenterId, statusId, function(e, r) {
+    if(e)
+      console.log(e);
+
+    console.log(r);
+  });
 };
 
 RoomsController.addLikeToMessage = function(likerId, statusId) {
-  //TODO
+  Meteor.call('addLikeToMessage',likerId, statusId, function(e, r) {
+    if(e)
+      console.log(e);
+
+    console.log(r);
+  });
 };

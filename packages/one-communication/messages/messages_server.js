@@ -319,5 +319,48 @@ Meteor.methods({
 
     Messages.insert(query);
 
+  },
+  addCommentToMessage: function(commenterId, statusId, comment) {
+    check(commenterId, String);
+    check(statusId, String);
+    check(comment, String);
+
+    //check if admin or logged in user TODO: check admin
+    if(this.userId !== commenterId)
+      throw new Meteor.Error(403, "You can only comment on behalf of yourself");
+
+    var message = Messages.findOne(statusId);
+
+    if(! message)
+      throw new Meteor.Error(404, "Status not found");
+
+    Messages.update(statusId, {
+      $push: {
+        comments: {
+          text: comment,
+          creatorId: commenterId,
+          dateCreated: new Date()
+        }
+      }
+    });
+  },
+  addLikeToMessage: function(likerId, statusId) {
+    check(likerId, String);
+    check(statusId, String);
+
+    //check if admin or logged in user TODO: check admin
+    if(this.userId !== likerId)
+      throw new Meteor.Error(403, "You can only like on behalf of yourself");
+
+    var message = Messages.findOne(statusId);
+
+    if(! message)
+      throw new Meteor.Error(404, "Status not found");
+
+    Messages.update(statusId, {
+      $addToSet: {
+        likes: likerId
+      }
+    });
   }
 });
