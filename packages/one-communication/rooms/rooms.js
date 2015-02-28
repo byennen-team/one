@@ -324,3 +324,20 @@ RoomsController.adjustParticipantsInRoom = function(
       console.log(r);
     });
 };
+
+RoomsController.addStatusToTimeline = function(userId) {
+  Meteor.call('addStatusToTimeline', userId, function(e, r) {
+    if(e)
+      console.log(e);
+
+    console.log(r);
+  });
+};
+
+RoomsController.addCommentToMessage = function(commenterId, statusId) {
+  //TODO
+};
+
+RoomsController.addLikeToMessage = function(likerId, statusId) {
+  //TODO
+};

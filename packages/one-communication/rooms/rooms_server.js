@@ -261,7 +261,8 @@ Meteor.methods({
       roomType: Match.Optional(String),
       roomName: Match.Optional(String),
       roomStatus: Match.Optional(String),
-      officeNo: Match.Optional(Number)
+      officeNo: Match.Optional(Number),
+      ownerId: Match.Optional(String)
     });
 
     // if(! this.userId)
@@ -275,10 +276,13 @@ Meteor.methods({
 
     context.dateCreated = new Date();
 
-    if(this.userId)
-      context.ownerId = this.userId;
-    else
-      context.ownerId = 'public-room';
+    if (! context.ownerId) {
+      if(this.userId)
+        context.ownerId = this.userId;
+      else
+        context.ownerId = 'public-room';
+    }
+
 
     Rooms.insert(context, function(e,r) {
       return(e,r);

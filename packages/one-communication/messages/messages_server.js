@@ -265,5 +265,59 @@ Meteor.methods({
     }, function(e, r) {
       return(e, r);
     });
+  },
+  addStatusToTimeline: function(userId, context) {
+    check (userId, String);
+    check (context, {
+      postContent: String,
+      fileId: Match.Optional(String),
+      link: Match.Optional(String)
+    });
+
+    var user = Meteor.users.findOne(userId);
+
+    if (! user)
+      throw new Meteor.Error(404, "User not found!");
+
+    var room = Rooms.findOne({
+      roomType: 'timeline',
+      ownerId: userId
+    });
+
+    if (! room) {
+      var context = {
+        participants: [],
+        roomType: 'timeline',
+        ownerId: userId
+      }
+
+      RoomsController.createRoom(context);
+
+      room = Rooms.findOne({
+        roomType: 'timeline',
+        ownerId: userId
+      });
+    }
+
+    console.log(room)
+
+    //check if admin or owner TODO: check admin
+    if(this.userId !== userId)
+      throw new Meteor.Error(403, "You can only post to your timeline");
+
+    var query = {
+      roomId: room._id,
+      creatorId: userId,
+      dateCreated: new Date(),
+      message: context.postContent,
+      messageType: 'status',
+      messagePayload: {
+        image: context.fileId,
+        link: context.link
+      }
+    };
+
+    Messages.insert(query);
+
   }
 });
