@@ -107,7 +107,7 @@ Router.route('/comm/:_id?', {
       subscribeArray.push(Meteor.subscribe('roomData', this.params._id, 20));
     }
 
-    return subscribeArray
+    return subscribeArray;
   }
 });
 
