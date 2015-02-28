@@ -1,5 +1,5 @@
 <template name='roomFiles'>
-  
+
   <div class="room-files">
     <p>Files in This Room</p>
     <label id="communication-library-add-files" class='add-files-input'>
@@ -8,22 +8,24 @@
       </span>
       <input type="file" class="hidden" />
     </label>
-  
+
     <div class="search">
       <div class="fa fa-search"></div>
 <!-- TODO: search within shown documents folder, maybe other as a secondary search -->
       <input type="text" placeholder='Find file in room...' />
     </div>
-      
+
     <div class='room-files-sleeve'>
       {{!-- We need this extra container so that Blaze throws no errors
             because of the scrollbar DOM transformation.
       --}}
       <div>
         {{#if currentRoom}}
-          {{#oneInfiniteScrollList documentsListOptions}}
-            {{> roomFile}}
-          {{/oneInfiniteScrollList}}
+          {{#if documentsListOptions}}
+            {{#oneInfiniteScrollList documentsListOptions}}
+              {{> roomFile}}
+            {{/oneInfiniteScrollList}}
+          {{/if}}
         {{/if}}
       </div>
     </div>

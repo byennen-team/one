@@ -49,6 +49,12 @@ Template.libraryBoard.events({
 		$('#communication-library-files-btn').addClass('active');
 	},
 
+	// pops the comm in a new window
+	'click #communication-library-popout': function(){
+		window.open("comm/" + Session.get("openRoomId"),"_blank",
+			"height= 1024, width= 1280, menubar= 0, status= 0, toolbar= 0");
+	},
+
 		// closes the Communication Hub
 	'click #communication-library-close': function(){
 
