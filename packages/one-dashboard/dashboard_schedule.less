@@ -100,13 +100,6 @@
       opacity: 1;
     }
   }
-  .time:hover {
-    font-family: @raleway-light;
-    color: @white;
-  }
-  .time:hover ~ .delete-event {
-    opacity: 1;
-  }
   .event:last-of-type {
     margin-bottom: 0.5em;
   }
@@ -164,6 +157,7 @@
   }
 }
 
+// mobile Only
 @media all and (max-width: 991px){
   .dashboard-schedule {
     position: relative;
@@ -253,7 +247,18 @@
 }
 
 
-
+// Large and XL Only
+@media all and (min-width: 992px){
+  .dashboard-schedule {
+    .time:hover {
+      font-family: @raleway-light;
+      color: @white;
+    }
+    .time:hover ~ .delete-event {
+      opacity: 1;
+    }
+  }
+}
 
 
 

@@ -3,6 +3,7 @@ Template.dashboardSchedule.rendered = function() {
       theme:"one-dark",
       scrollbarPosition: "outside"
   });
+
 };  
 
 Template.dashboardSchedule.helpers({
@@ -24,26 +25,38 @@ Template.dashboardSchedule.events({
   },
 
   'mouseenter .time': function (event) {
-    var $time = $( event.target );
-    $time.velocity( "stop", true ); // clear queue - no dancing!
-    $time.velocity({
-      scaleX: 1.3,
-      scaleY: 1.3
-    });
+    // TODO: refactor this (should define var in render block)
+    var currentWidth = $( window ).width();
+    if( currentWidth >= 992 ){
+      var $time = $( event.target );
+      $time.velocity( "stop", true ); // clear queue - no dancing!
+      $time.velocity({
+        scaleX: 1.3,
+        scaleY: 1.3
+      });
+    }
   },
 
   'mouseleave .time': function (event) {
-    var $time = $( event.target );
-    $time.velocity({
-      scaleX: 1.0,
-      scaleY: 1.0
-    });
+    // TODO: refactor this (should define var in render block)
+    var currentWidth = $( window ).width();
+    if( currentWidth >= 992 ){
+      var $time = $( event.target );
+      $time.velocity({
+        scaleX: 1.0,
+        scaleY: 1.0
+      });
+    }
   },
 
   'mouseleave .event': function (event) {
-    var $this = $( event.target );
-    var $description = $this.find( '.description-box' );
-    $description.velocity("fadeOut", { duration: 300 });
+    // TODO: refactor this (should define var in render block)
+    var currentWidth = $( window ).width();
+    if( currentWidth >= 992 ){
+      var $this = $( event.target );
+      var $description = $this.find( '.description-box' );
+      $description.velocity("fadeOut", { duration: 300 });
+    }
   },
 
 // TODO: Should populate the event menu with data for event

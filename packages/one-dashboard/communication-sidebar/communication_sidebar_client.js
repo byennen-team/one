@@ -4,7 +4,7 @@
 */
 
 Template.communicationSidebar.rendered = function () {
-<<<<<<< HEAD
+
   comSidebarCurrentHeight = $( window ).height();
   comSidebarCurrentWidth = $( window ).width();
   
@@ -28,25 +28,7 @@ Template.communicationSidebar.rendered = function () {
       }
     }); 
   }
-=======
-  // Set height on sidebar for scrollbar
-  var currentHeight = $( window ).height();
-  $( '.communication-sidebar-sleeve' ).css( 'height', currentHeight - 120 );
-  // add/remove sticky class on sidebar based on scroll position
-  var $sidebar = $( '#communication-sidebar' );
-  var sidebarWidth = $sidebar.width();
-  var stickyHeight = 400;
-  $( '#transitioner-1' ).on( 'scroll', function() {
-    var scrollPosition = $( '#transitioner-1' ).scrollTop();
-    if ( scrollPosition > stickyHeight ) {
-      $sidebar.addClass( 'sticky' );
-      $sidebar.css( "width", sidebarWidth );
-    }else {
-      $sidebar.removeClass( 'sticky' );
-      $sidebar.css( "width", "auto" );
-    }
-  });
->>>>>>> origin/andreas-popup-comm-window
+
 };
 
 Template.communicationSidebar.helpers({
