@@ -34,9 +34,17 @@ Template.dashboardBanner.rendered = function () {
     lastScrollTop = scrollPosition; // reset lastScrollTop
 
   }); 
-  //geting geolocation
-  if(navigator.geolocation) {
-    navigator.geolocation.getCurrentPosition(function(position) {
+
+  $("#dashboard-schedule-sleeve").mCustomScrollbar({
+      theme:"one-dark",
+      scrollbarPosition: "outside"
+  });
+  function positionSuccess(position) {
+      if (_.isEmpty(position)) {
+        console.log('Position Object is Empty!');
+        return;
+      }
+
       //requesting position from Forecast
       Meteor.call('getForecast', position, function(e,r) {
         if (e)
@@ -59,7 +67,9 @@ Template.dashboardBanner.rendered = function () {
         // start animation
         skycons.play();
       });
-    }, function(error) {
+    }
+
+    function positionError(error) {
       switch (error.code) {
         case error.PERMISSION_DENIED:
           console.log("You have to allow access to your location in " +
@@ -75,7 +85,11 @@ Template.dashboardBanner.rendered = function () {
           console.log("Unknown error");
           break;
       }
-    });
+    }
+  //geting geolocation
+  if(navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(positionSuccess, positionError,
+      {maximumAge:Infinity, timeout:0});
   }
 };
 

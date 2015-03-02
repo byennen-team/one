@@ -5,7 +5,10 @@ Package.describe({
 Package.onUse(function (api) {
   var both = ['web', 'server'];
 
-  api.use(['aldeed:simple-schema'], both);
+  api.use([
+    'underscore',
+    'aldeed:simple-schema'
+  ], both);
   api.use([
     'cfs:reactive-list@0.0.9',
     'cfs:power-queue@0.9.11',

@@ -98,8 +98,7 @@ slideRightBetween = [Routes.DASHBOARD,
                      Routes.SHARED_DOCUMENTS,
                      Routes.ACCOUNT_SETTINGS,
                      Routes.PROFILE,
-                     Routes.SUPPORT,
-                     Routes.MESSAGES #TODO: remove messages
+                     Routes.SUPPORT
                     ]
 
 for route in slideRightBetween

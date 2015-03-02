@@ -9,14 +9,18 @@ Package.onUse(function(api) {
   api.versionsFrom('1.0.3.1');
 
   api.export([
-    'DocumentTools'
+    'DocumentTools',
+    'DocumentSubscriptions'
   ], 'web');
 
   api.use([
-    'underscore'
+    'underscore',
+    'session',
+    'files'
   ]);
 
   api.addFiles([
-    'document_tools_client.js'
+    'document_tools_client.js',
+    'document_subscriptions_client.js'
   ], 'web');
 });

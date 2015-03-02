@@ -1,0 +1,18 @@
+<template name="communication">
+  <div class="row">
+    <div class="row-same-height">
+      <div id="left-column" class="col-sm-3 col-xs-height col-top left-column">
+        {{> communicationSidebar}}
+      </div>
+      <div id="main" class="col-sm-9 col-xs-height no-float col-top open">
+        {{#if roomId}}
+          {{> communicationMain}}
+        {{/if}}
+      </div>
+    </div>
+  </div>
+
+  {{> communicationAddTeammemberModal}}
+  {{> calendarModal}}
+  {{> communicationPostInput}}
+</template>

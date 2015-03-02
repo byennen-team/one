@@ -61,6 +61,14 @@ Meteor.publish('unreadMessages', function() {
     }
 });
 
+Meteor.publish('drafts', function() {
+  return Messages.find({
+    creatorId: this.userId,
+    'messagePayload.draft': true,
+    messageType: 'post'
+  });
+});
+
 Meteor.methods({
   addSimpleMessageToRoom: function(roomId, message) {
     check(roomId, String);
@@ -123,6 +131,8 @@ Meteor.methods({
     }, function(e, r) {
       return(e, r);
     });
+
+    Rooms.update(roomId, {$addToSet: {documentIds: documentId}});
   },
   addPostMessageToRoom: function(roomId, context) {
     check(roomId, String);
@@ -217,7 +227,7 @@ Meteor.methods({
     if(! message)
       throw new Meteor.Error(404, "Message not found!");
 
-    if(message.ownerId !== this.userId) //TODO: allow admin
+    if(message.creatorId !== this.userId) //TODO: allow admin
       throw new Meteor.Error(403, "You can only delete your messages");
 
     Messages.remove({
@@ -243,7 +253,7 @@ Meteor.methods({
     if(message.type !== 'message')
       throw new Meteor.Error(403, "This is not a simple message!");
 
-    if(message.ownerId !== this.userId) //TODO: allow admin
+    if(message.creatorId !== this.userId) //TODO: allow admin
       throw new Meteor.Error(403, "You can only edit your messages");
 
     Messages.update({

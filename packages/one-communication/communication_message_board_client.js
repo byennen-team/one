@@ -264,7 +264,7 @@ Template.documentMessage.helpers({
   documentUrl: function () {
     var data = Template.instance().data;
     var document = getMessageDocument(data);
-    return FileTools.url(document);
+    return document ? FileTools.url(document) : '';
   }
 
 });

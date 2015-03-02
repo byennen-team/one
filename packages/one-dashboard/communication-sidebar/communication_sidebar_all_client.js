@@ -1,5 +1,6 @@
 /* globals 
-  comSidebarCurrentWidth: false 
+  comSidebarCurrentWidth: false,
+  Messages: false 
 */
 
 Template.communicationSidebarAll.rendered = function(){
@@ -15,8 +16,12 @@ Template.communicationSidebarAll.rendered = function(){
 };
 
 Template.communicationSidebarAll.helpers({
-// TODO: if the user has any drafts return true, else return false.
   haveDrafts: function () {
-    return true;
+    var messages = Messages.find({
+      creatorId: Meteor.userId(),
+      messageType: 'post',
+      'messagePayload.draft': true
+    });
+    return messages.count() > 0;
   }
 });

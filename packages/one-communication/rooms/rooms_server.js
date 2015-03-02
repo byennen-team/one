@@ -4,7 +4,7 @@ Meteor.startup(function() {
   //checking if rooms are created for general and for offices
   //if not we create them
 
-  var companyChannels = ['General', 'News', 'Events', 'Training'];
+  var companyChannels = ['General', 'News', 'Events', 'Marketing'];
   var officeChannels = ['General', 'Water Cooler', 'Listings', 'Open Houses'];
 
   //placeholder until we get the real office names
@@ -167,12 +167,42 @@ Meteor.publishComposite('roomData', function(roomId, limit) {
           },
           {
             find: function (message) {
-              if (message.type === 'attachment') {
+              if (message.messageType === 'attachment') {
                 return Files.find({_id: message.messagePayload.documentId});
               }
             }
           }
         ]
+      }
+    ]
+  };
+});
+
+
+Meteor.publishComposite('roomDocuments', function(roomId, limit) {
+  check(roomId, String);
+  check(limit, Number);
+
+  return {
+    //getting the room
+    find: function() {
+      return Rooms.find({
+        _id: roomId
+      });
+    },
+    children: [
+      {
+        //getting room documents
+        find: function (room) {
+          return Files.find(
+            {
+              _id: {
+                $in: room.documentIds || []
+              }
+            },
+            {sort: {_id: -1}}
+          );
+        }
       }
     ]
   };

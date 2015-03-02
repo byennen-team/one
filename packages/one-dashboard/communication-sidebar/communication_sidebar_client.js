@@ -4,6 +4,7 @@
 */
 
 Template.communicationSidebar.rendered = function () {
+<<<<<<< HEAD
   comSidebarCurrentHeight = $( window ).height();
   comSidebarCurrentWidth = $( window ).width();
   
@@ -27,6 +28,25 @@ Template.communicationSidebar.rendered = function () {
       }
     }); 
   }
+=======
+  // Set height on sidebar for scrollbar
+  var currentHeight = $( window ).height();
+  $( '.communication-sidebar-sleeve' ).css( 'height', currentHeight - 120 );
+  // add/remove sticky class on sidebar based on scroll position
+  var $sidebar = $( '#communication-sidebar' );
+  var sidebarWidth = $sidebar.width();
+  var stickyHeight = 400;
+  $( '#transitioner-1' ).on( 'scroll', function() {
+    var scrollPosition = $( '#transitioner-1' ).scrollTop();
+    if ( scrollPosition > stickyHeight ) {
+      $sidebar.addClass( 'sticky' );
+      $sidebar.css( "width", sidebarWidth );
+    }else {
+      $sidebar.removeClass( 'sticky' );
+      $sidebar.css( "width", "auto" );
+    }
+  });
+>>>>>>> origin/andreas-popup-comm-window
 };
 
 Template.communicationSidebar.helpers({
@@ -92,20 +112,24 @@ Template.communicationSidebar.events({
 
 	// Opens the Communication Hub
 	'click .channel': function(event){
-    Session.set('openRoomId', $(event.currentTarget).data('id'));
-    Session.set('messageLimit',20);
-    // Desktop Only
-    if( comSidebarCurrentWidth >= 992 ){ 
-  		// expands the main dialog box to 80% of full screen
-      $.Velocity.hook($('#communication-main'), "overflow", "visible");
-  		$.Velocity.hook($('#communication-main'), "width", "76%");
-  		$.Velocity.hook($('#communication-message-board'), "width", "78%");
-  		$.Velocity.hook($('#communication-task-board'), "width", "0%");
-  		$.Velocity.hook($('#communication-library-board'), "width", "22%");
-  		// remove class from main chat window
-  		$('#communication-main').removeClass('tasks');
 
-  	  // lock scroll position, but retain settings for later
+    if(Router.current().route.getName() === 'communication') {
+      Router.go('communication', {
+        _id: $(event.currentTarget).data('id')
+      });
+    } else {
+      Session.set('openRoomId', $(event.currentTarget).data('id'));
+      Session.set('messageLimit',20);
+      // expands the main dialog box to 80% of full screen
+      $.Velocity.hook($('#communication-main'), "overflow", "visible");
+      $.Velocity.hook($('#communication-main'), "width", "76%");
+      $.Velocity.hook($('#communication-message-board'), "width", "78%");
+      $.Velocity.hook($('#communication-task-board'), "width", "0%");
+      $.Velocity.hook($('#communication-library-board'), "width", "22%");
+      // remove class from main chat window
+      $('#communication-main').removeClass('tasks');
+
+      // lock scroll position, but retain settings for later
       var scrollPosition = [
         window.pageXOffset ||
         document.documentElement.scrollLeft ||
@@ -119,18 +143,25 @@ Template.communicationSidebar.events({
       body.data('previous-overflow', body.css('overflow'));
       body.css('overflow', 'hidden');
       window.scrollTo(scrollPosition[0], scrollPosition[1]);
-    }else { // for mobile
-      var url = window.location.href;
-      window.location.href = url + '/chat';
+
+    // TODO: Use or remove
+    // }else { // for mobile
+    //   var url = window.location.href;
+    //   window.location.href = url + '/chat';
+    // }
     }
+
 
 	},
 
 	'click .room': function(event){
-    Session.set('openRoomId', $(event.currentTarget).data('id'));
-    Session.set('messageLimit',20);
-    // Desktop Only
-    if( comSidebarCurrentWidth >= 992 ){
+    if(Router.current().route.getName() === 'communication') {
+      Router.go('communication', {
+        _id: $(event.currentTarget).data('id')
+      });
+    } else {
+      Session.set('openRoomId', $(event.currentTarget).data('id'));
+      Session.set('messageLimit',20);
   		// expands the main dialog box t0 60% of full screen
       $.Velocity.hook($('#communication-main'), "overflow", "visible");
   		$.Velocity.hook($('#communication-main'), "width", "76%");
@@ -154,10 +185,8 @@ Template.communicationSidebar.events({
       body.data('previous-overflow', body.css('overflow'));
       body.css('overflow', 'hidden');
       window.scrollTo(scrollPosition[0], scrollPosition[1]);
-    }else { // for mobile
-      var url = window.location.href;
-      window.location.href = url + '/chat';
     }
+
 	},
   'click .addRoom': function() {
     Session.set('teamModalPurpose','newTeam');
