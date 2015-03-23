@@ -1,10 +1,19 @@
-<template name="comm">
+<template name="communicationMobileSidebar">
   
-  <div class="communication-menu">
-    {{> mobileNavbar}}
-    {{> communicationSidebar}}
-  </div>
+  <div id="communication-mobile-sidebar" class="communication-mobile-sidebar">
+    <div class="navbar-mobile">
+      <div class="back">
+        <i class="fa icon-caret-left-thick"></i>
+      </div>
+      <div class='logo'></div>
+      {{#if isLoggedIn}}
+        {{> notifications}}
+      {{/if}}
+    </div>
 
-  {{> communicationAddTeammemberModal}}
+    <div id="communication-mobile-sidebar-sleeve" class="sleeve">
+      {{> communicationSidebar}}
+    </div>
+  </div>
 
 </template>

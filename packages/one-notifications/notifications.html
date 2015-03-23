@@ -2,20 +2,20 @@
   <div class="notifications">
     <div class="avatar-box">    
 
-      <div id='notifications-avatar' class="avatar" style="background-image: url( {{profile.photoUrl.thumb}} );"></div>
+      <div class="notifications-avatar avatar" style="background-image: url( {{profile.photoUrl.thumb}} );"></div>
 
       <div class="status-dot {{status profile.status}}"></div>
 
       {{#if notificationsUnread.count}}
-        <div id='notification-alert' class="notification-alert {{hasNotifications}}">{{notificationsUnread.count}}</div>
+        <div class="notification-alert {{hasNotifications}}">{{notificationsUnread.count}}</div>
       {{/if}}
     </div>
 
 
-    <div id="notification-dropdown" class='notification-dropdown'>
+    <div class='notification-dropdown'>
 
-      <div id="notification-panel" class="notification-panel">
-        <div id="notification-deactivate" class='notification-object'>
+      <div class="notification-panel">
+        <div class='notification-object notification-deactivate'>
           <div class="caret"></div>
             <p>Notifications</p>
           {{#if notificationsUnread.count}}
@@ -40,8 +40,8 @@
         </div>
       </div>
 
-      <div id="status-panel" class="status-panel">
-        <div id="notification-activate" class='notification-object {{hasNotifications}}'>
+      <div class="status-panel">
+        <div class='notification-object notification-activate {{hasNotifications}}'>
         {{#if notificationsUnread.count}}
           <p>Notifications</p>
         {{else}}
@@ -52,9 +52,9 @@
           {{/if}}
         </div>
 <!-- TODO: 'active' class should be added to the div that reflects User's status -->
-        <div id="notification-status-in" class='notification-object status-changer in {{isActive "in the office" profile.status}}'>In the office</div>
-        <div id="notification-status-out" class='notification-object status-changer out {{isActive "out of office" profile.status}}'>out of office</div>
-        <div id="notification-status-mobile" class='notification-object status-changer mobile {{isActive "mobile" profile.status}}'>mobile</div>
+        <div class='notification-status-in notification-object status-changer in {{isActive "in the office" profile.status}}'>In the office</div>
+        <div class='notification-status-out notification-object status-changer out {{isActive "out of office" profile.status}}'>out of office</div>
+        <div class='notification-status-mobile notification-object status-changer mobile {{isActive "mobile" profile.status}}'>mobile</div>
 
         <div class="business-card">
           <p>Send Business Card to Mobile</p>

@@ -25,6 +25,7 @@ Template.mobileNavbar.helpers({
     return Profile.isFollowing(Profile.currentUser());
   },
 
+  // supplies class for styling
   dashboard: function() {
     var page = Router.current().route.getName();
     if( page === 'dashboard' ){
