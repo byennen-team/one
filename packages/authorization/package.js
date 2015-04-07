@@ -4,7 +4,8 @@ Package.describe({
 
 Package.onUse(function (api) {
   api.use([
-    'webapp', 'underscore',
+    'webapp', 
+    'underscore',
     'digilord:roles',
     'settings'
   ], 'server');
