@@ -6,7 +6,10 @@
 		<div class="member">
 			<div class="avatar">
 				<div class="status {{status profile.status}}"></div>
-				<img src="{{profile.photoUrl.thumb}}" alt="{{profile.firstName}} {{profile.lastName}}" />
+
+				<!-- <img src="{{profile.photoUrl.thumb}}" alt="{{profile.firstName}} {{profile.lastName}}" /> -->
+				<div class="img-responsive-sm" style='background-image: url({{profile.photoUrl.thumb}})'></div>
+
 			</div>
 			<div class="name">{{profile.firstName}} {{profile.lastName}}</div>
 			<div class="title">{{profile.title}}</div>

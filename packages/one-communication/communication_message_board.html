@@ -88,11 +88,11 @@
 </template>
 
 <template name="message">
-	<!-- Repeated for style -->
 	<div class="message {{isUserClass}}">
 		<div class="avatar">
 			<div class="status {{status user.profile.status}}"></div>
-			<img src="{{user.profile.photoUrl.thumb}}" alt="{{user.profile.firstName}} {{user.profile.lastName}}" />
+			<!-- <img src="{{user.profile.photoUrl.thumb}}" alt="{{user.profile.firstName}} {{user.profile.lastName}}" /> -->
+      <div class="img-responsive-sm" style='background-image: url({{user.profile.photoUrl.thumb}})'></div>
 		</div>
 		<div class="message-body">
 			<p class="name">
@@ -113,7 +113,8 @@
 	<div class="message {{isUserClass}}">
 		<div class="avatar">
 			<div class="status {{status user.profile.status}}"></div>
-			<img src="{{user.profile.photoUrl.thumb}}" alt="{{user.profile.firstName}} {{user.profile.lastName}}" />
+			<!-- <img src="{{user.profile.photoUrl.thumb}}" alt="{{user.profile.firstName}} {{user.profile.lastName}}" /> -->
+      <div class="img-responsive-sm" style='background-image: url({{user.profile.photoUrl.thumb}})'></div>
 		</div>
 		<div class="message-body">
 			<p class="subject">{{messagePayload.title}}</p>
@@ -135,7 +136,8 @@
 
     <div class="avatar">
       <div class="status {{status user.profile.status}}"></div>
-      <img src="{{user.profile.photoUrl.thumb}}" alt="{{user.profile.firstName}} {{user.profile.lastName}}" />
+     <!--  <img src="{{user.profile.photoUrl.thumb}}" alt="{{user.profile.firstName}} {{user.profile.lastName}}" /> -->
+     <div class="img-responsive-sm" style='background-image: url({{user.profile.photoUrl.thumb}})'></div>
     </div>
     <div class="message-body">
 

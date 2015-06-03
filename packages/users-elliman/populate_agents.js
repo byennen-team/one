@@ -112,7 +112,7 @@ if (process.env.SEED) {
     var ellimanAgents = JSON.parse(
       Assets.getText('elliman_agents_production.json')
     );
-    if (Settings.isDevelopment || Settings.isStaging) {
+    if (Settings.isDevelopment) {
         ellimanAgents = ellimanAgents.slice(14,20);
     }
     var count = 1;
