@@ -55,6 +55,8 @@ Package.onUse(function (api) {
     'communication_message_input.html',
     'communication_message_input.less',
     'communication_message_input_client.js',
+    'communication_popup.html',
+    'communication_popup.js',
     'communication_post.html',
     'communication_post.less',
     'communication_post_client.js',
